@@ -1,5 +1,8 @@
-CACHE_DIR=../kustomized-cache
-COMPARE_DIR=../change-history
+SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"  
+ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"/..
+
+CACHE_DIR=$ROOT/kustomized-cache
+COMPARE_DIR=$ROOT/change-history
 
 START_TAG=$1
 if [[ -z "$START_TAG" ]]; then

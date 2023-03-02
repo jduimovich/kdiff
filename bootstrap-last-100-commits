@@ -1,7 +1,0 @@
-
-cd infra-deployments
-git checkout main  
-for loop in {0..100}
-do 
-	bash ../kdiff
-done
