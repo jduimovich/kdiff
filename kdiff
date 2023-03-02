@@ -1,0 +1,69 @@
+CACHE_DIR=../kustomized-cache
+COMPARE_DIR=../change-history
+
+
+function ktry() {  
+    COMPONENT_DIR=$1
+    TAG_DIR=$2 
+    OUT_DIR=$TAG_DIR/$COMPONENT_DIR 
+    OUT_FILE=$OUT_DIR/kustomize.out  
+    if [ -f "$OUT_FILE" ]; then
+        #echo "Kustomize expanded $OUT_FILE exists - reusing."
+        echo -n . 
+    else  
+        K1=$COMPONENT_DIR 
+        if [ -f "$K1/kustomization.yaml" ]; then 
+            mkdir -p $OUT_DIR  
+            kustomizex build $K1 | cat > $OUT_FILE
+            # clear 
+            # tree $TAG_DIR 
+        # else   
+        #     echo "No kustomization $K1, skipping"
+        fi    
+    fi     
+}
+
+function generateManifests()  { 
+    TAG=$1
+    echo "Generating for Tag $TAG" 
+    TAG_DIR=$CACHE_DIR/tag-$TAG
+    mkdir -p $TAG_DIR
+    APP_OF_APPS=$TAG_DIR/app-of-apps-staging.yaml 
+    if [ -f "$APP_OF_APPS" ]; then
+        #echo "Cached File $APP_OF_APPS exists - reusing."
+        echo -n .
+    else  
+        kustomizex build argo-cd-apps/overlays/staging >$APP_OF_APPS
+    fi  
+    for component in components/* 
+    do 
+        ktry $component $TAG_DIR  
+        ktry $component/staging $TAG_DIR  
+        ktry $component/staging/stone-stg-rh01 $TAG_DIR  
+        ktry $component/staging/stone-stg-m01 $TAG_DIR   
+    done 
+}
+
+echo "----------------------------------------" 
+ pwd
+TAG_CURRENT=$(git rev-parse --short HEAD)
+generateManifests  $TAG_CURRENT
+git checkout HEAD^
+TAG_PREV=$(git rev-parse --short HEAD)
+generateManifests $TAG_PREV
+
+DIR_CURRENT=$CACHE_DIR/tag-$TAG_CURRENT
+DIR_PREV=$CACHE_DIR/tag-$TAG_PREV
+
+echo "Compare $DIR_CURRENT $DIR_PREV"
+echo "diff -r $DIR_CURRENT $DIR_PREV"
+
+mkdir -p $COMPARE_DIR  
+DIFF_FILE=$COMPARE_DIR/delta-$TAG_CURRENT-to-$TAG_PREV
+diff -r $DIR_CURRENT $DIR_PREV > $DIFF_FILE
+
+echo "wc $DIFF_FILE"
+wc $DIFF_FILE
+
+echo "----------------------------------------"
+echo 

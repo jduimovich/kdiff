@@ -1,0 +1,6 @@
+diff -r ../kustomized-cache/tag-b697560/components/enterprise-contract/kustomize.out ../kustomized-cache/tag-811f137/components/enterprise-contract/kustomize.out
+4c4,5
+<   annotations: {}
+---
+>   annotations:
+>     controller-gen.kubebuilder.io/version: v0.11.2

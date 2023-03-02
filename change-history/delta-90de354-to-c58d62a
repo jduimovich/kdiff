@@ -1,0 +1,8 @@
+diff -r ../kustomized-cache/tag-90de354/components/dev-sso/kustomize.out ../kustomized-cache/tag-c58d62a/components/dev-sso/kustomize.out
+45,48c45
+<     - clientRoles:
+<         realm-management:
+<         - manage-users
+<       credentials:
+---
+>     - credentials:

@@ -1,0 +1,9 @@
+diff -r ../kustomized-cache/tag-66e0e1c/components/quality-dashboard/staging/kustomize.out ../kustomized-cache/tag-93721b3/components/quality-dashboard/staging/kustomize.out
+119c119
+<         image: quay.io/redhat-appstudio/quality-dashboard-backend:00b4fcbfee90cf4edb5eb332467648dfed031ad3
+---
+>         image: quay.io/redhat-appstudio/quality-dashboard-backend:dea0b94a906b57aa8de117296bc9d5c7946060d5
+201c201
+<         image: quay.io/redhat-appstudio/quality-dashboard-frontend:00b4fcbfee90cf4edb5eb332467648dfed031ad3
+---
+>         image: quay.io/redhat-appstudio/quality-dashboard-frontend:dea0b94a906b57aa8de117296bc9d5c7946060d5

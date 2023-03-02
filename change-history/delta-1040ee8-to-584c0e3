@@ -1,0 +1,60 @@
+diff -r ../kustomized-cache/tag-1040ee8/components/authentication/kustomize.out ../kustomized-cache/tag-584c0e3/components/authentication/kustomize.out
+9,21d8
+<   name: gitops-namespace-all-access
+<   namespace: gitops
+< rules:
+< - apiGroups:
+<   - '*'
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+184,197d170
+<   name: gitops-component-maintainer
+< rules:
+< - apiGroups:
+<   - '*'
+<   resources:
+<   - '*'
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+437c410
+<   name: gitops-service-gitops-component-maintainers
+---
+>   name: gitops-service-maintainers
+442c415
+<   name: gitops-component-maintainer
+---
+>   name: component-maintainer
+446,457c419
+<   name: jgwest
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: gitops-service-maintainers-gitops-namespace-all-access
+<   namespace: gitops
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: gitops-namespace-all-access
+< subjects:
+---
+>   name: sbose78
+460c422,425
+<   name: jgwest
+---
+>   name: jduimovich
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov

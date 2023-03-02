@@ -1,0 +1,5 @@
+diff -r ../kustomized-cache/tag-013bdcb/components/release/kustomize.out ../kustomized-cache/tag-fda25c4/components/release/kustomize.out
+1833c1833
+<         image: quay.io/redhat-appstudio/release-service:1f1725480b6d88ed90864aa7ab99e2b666c606ac
+---
+>         image: quay.io/redhat-appstudio/release-service:7889cd932fce8d9e655aaab0ff1bed48e528c224

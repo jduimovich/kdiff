@@ -1,0 +1,5 @@
+diff -r ../kustomized-cache/tag-fda25c4/components/has/kustomize.out ../kustomized-cache/tag-6fb5c0d/components/has/kustomize.out
+677c677
+<         image: quay.io/redhat-appstudio/application-service:df9177f14a0e46f9e9da51ff2d0f6055b67f9abe
+---
+>         image: quay.io/redhat-appstudio/application-service:51958ae630fe062e869395eb0b94edc95a5d9e37

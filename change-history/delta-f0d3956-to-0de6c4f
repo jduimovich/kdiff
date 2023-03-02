@@ -1,0 +1,25 @@
+diff -r ../kustomized-cache/tag-f0d3956/components/dev-sso/kustomize.out ../kustomized-cache/tag-0de6c4f/components/dev-sso/kustomize.out
+17c17
+<   name: redhat-external
+---
+>   name: testrealm
+25c25
+<     - clientId: cloud-services
+---
+>     - clientId: sandbox-public
+29c29
+<       name: cloud-services
+---
+>       name: sandbox-public
+37c37
+<     displayName: Redhat External for HAC
+---
+>     displayName: Appstudio Realm
+39c39
+<     id: hac-sso
+---
+>     id: rh-sso
+41c41
+<     realm: redhat-external
+---
+>     realm: testrealm

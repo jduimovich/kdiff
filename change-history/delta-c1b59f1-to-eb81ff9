@@ -1,0 +1,25 @@
+diff -r ../kustomized-cache/tag-c1b59f1/components/release/kustomize.out ../kustomized-cache/tag-eb81ff9/components/release/kustomize.out
+241,248d240
+<     - jsonPath: .status.deploymentStartTime
+<       name: Deployment Start Time
+<       priority: 1
+<       type: date
+<     - jsonPath: .status.deploymentCompletionTime
+<       name: Deployment Completion Time
+<       priority: 1
+<       type: date
+361,370d352
+<               deploymentCompletionTime:
+<                 description: DeploymentCompletionTime is the time when the SnapshotEnvironmentBinding
+<                   has all components deployed
+<                 format: date-time
+<                 type: string
+<               deploymentStartTime:
+<                 description: DeploymentStartTime is the time when the SnapshotEnvironmentBinding
+<                   was created
+<                 format: date-time
+<                 type: string
+1851c1833
+<         image: quay.io/redhat-appstudio/release-service:3aedd895b70ed464c53624489fa4b8f5140a1091
+---
+>         image: quay.io/redhat-appstudio/release-service:fe1657ef9ad9153de69acb0a1aabfa905dd216c2

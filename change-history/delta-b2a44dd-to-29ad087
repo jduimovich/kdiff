@@ -1,0 +1,25 @@
+diff -r ../kustomized-cache/tag-b2a44dd/app-of-apps-staging.yaml ../kustomized-cache/tag-29ad087/app-of-apps-staging.yaml
+699,712c699,702
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: staging
+<             sourceRoot: components/monitoring/prometheus
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+---
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+722c712
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+---
+>         path: components/monitoring/prometheus/base

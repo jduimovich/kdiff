@@ -1,0 +1,19 @@
+diff -r ../kustomized-cache/tag-ebb2026/components/jvm-build-service/kustomize.out ../kustomized-cache/tag-bd5a5ad/components/jvm-build-service/kustomize.out
+288,289d287
+<                   postBuildScript:
+<                     type: string
+347,348d344
+<                     postBuildScript:
+<                       type: string
+367,368d362
+<               pipelineRetries:
+<                 type: integer
+407,408d400
+<                     postBuildScript:
+<                       type: string
+1039,1040c1031,1032
+<           value: 715102850a1dab062a4170c712f21cab3569f858
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:715102850a1dab062a4170c712f21cab3569f858
+---
+>           value: 9c5ce555e6ef08757b76daa60eb2dc096221bf83
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:9c5ce555e6ef08757b76daa60eb2dc096221bf83

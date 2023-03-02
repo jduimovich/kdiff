@@ -1,0 +1,5 @@
+diff -r ../kustomized-cache/tag-e8c558f/components/enterprise-contract/kustomize.out ../kustomized-cache/tag-dfb33dc/components/enterprise-contract/kustomize.out
+212c212
+<   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:9a50ecf11a32ae77ac3a1bfed79072bd1528d88f@sha256:7d0117dfc10c29cc507392323f1880fb62289a847bd827bb9a06cda17cac2370
+---
+>   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:a30537c1e3f17187b099453704cacd6f18db14f0@sha256:eab10cfd43093ac7422bf3d576285c5315b0aca7b6248be8b7ff357b524ff669

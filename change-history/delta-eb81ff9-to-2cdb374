@@ -1,0 +1,39 @@
+diff -r ../kustomized-cache/tag-eb81ff9/components/internal-services/kustomize.out ../kustomized-cache/tag-2cdb374/components/internal-services/kustomize.out
+17,24c17
+<   - additionalPrinterColumns:
+<     - jsonPath: .status.conditions[?(@.type=="InternalRequestSucceeded")].status
+<       name: Succeeded
+<       type: string
+<     - jsonPath: .status.conditions[?(@.type=="InternalRequestSucceeded")].reason
+<       name: Reason
+<       type: string
+<     name: v1alpha1
+---
+>   - name: v1alpha1
+27c20
+<         description: InternalRequest is the Schema for the internalrequests API.
+---
+>         description: InternalRequest is the Schema for the internalrequests API
+42c35
+<             description: InternalRequestSpec defines the desired state of InternalRequest.
+---
+>             description: InternalRequestSpec defines the desired state of InternalRequest
+59c52
+<             description: InternalRequestStatus defines the observed state of InternalRequest.
+---
+>             description: InternalRequestStatus defines the observed state of InternalRequest
+61,64d53
+<               completionTime:
+<                 description: CompletionTime is the time the Release PipelineRun completed
+<                 format: date-time
+<                 type: string
+139c128
+<                   Tekton PipelineRun kubebuilder:pruning:PreserveUnknownFields
+---
+>                   Tekton pipeline kubebuilder:pruning:PreserveUnknownFields
+141,145d129
+<               startTime:
+<                 description: StartTime is the time when the Release PipelineRun was
+<                   created and set to run
+<                 format: date-time
+<                 type: string

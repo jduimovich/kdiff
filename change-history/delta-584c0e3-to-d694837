@@ -1,0 +1,8 @@
+diff -r ../kustomized-cache/tag-584c0e3/components/spi-vault/kustomize.out ../kustomized-cache/tag-d694837/components/spi-vault/kustomize.out
+328,330d327
+<           capabilities:
+<             drop:
+<             - ALL
+333,334d329
+<           seccompProfile:
+<             type: RuntimeDefault

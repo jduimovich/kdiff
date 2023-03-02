@@ -1,0 +1,5 @@
+diff -r ../kustomized-cache/tag-9cef4d8/components/authentication/kustomize.out ../kustomized-cache/tag-ed91abd/components/authentication/kustomize.out
+686,688d685
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: jinqi7

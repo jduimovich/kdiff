@@ -1,0 +1,9 @@
+diff -r ../kustomized-cache/tag-811f137/components/enterprise-contract/kustomize.out ../kustomized-cache/tag-b984529/components/enterprise-contract/kustomize.out
+226,227c226,229
+<     collections:
+<     - minimal
+---
+>     collections: []
+>     exclude: []
+>     include:
+>     - '*'

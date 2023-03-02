@@ -1,0 +1,239 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations: {}
+  creationTimestamp: null
+  name: enterprisecontractpolicies.appstudio.redhat.com
+spec:
+  group: appstudio.redhat.com
+  names:
+    kind: EnterpriseContractPolicy
+    listKind: EnterpriseContractPolicyList
+    plural: enterprisecontractpolicies
+    shortNames:
+    - ecp
+    singular: enterprisecontractpolicy
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: EnterpriseContractPolicy is the Schema for the enterprisecontractpolicies
+          API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: EnterpriseContractPolicySpec is used to configure the Enterprise
+              Contract Policy
+            properties:
+              authorization:
+                description: Authorization for per component release approvals
+                properties:
+                  components:
+                    description: Components based authorization
+                    items:
+                      description: Authorization defines a release approval on a component
+                        basis
+                      properties:
+                        authorizer:
+                          description: Authorizer is the email address of the person
+                            authorizing the release
+                          type: string
+                        changeId:
+                          description: ChangeID is the identifier of the change, e.g.
+                            git commit id
+                          type: string
+                        repository:
+                          description: Repository of the component sources
+                          type: string
+                      type: object
+                    type: array
+                type: object
+              configuration:
+                description: Configuration handles policy modification configuration
+                  (collections, exclusions, inclusions)
+                properties:
+                  collections:
+                    description: Collections set of predefined rules.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                  exclude:
+                    description: Exclude set of policy exclusions that, in case of
+                      failure, do not block the success of the outcome.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                  include:
+                    description: Include set of policy inclusions that are added to
+                      the policy evaluation. These override excluded rules.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                type: object
+              description:
+                description: Description of the policy or its intended use
+                type: string
+              exceptions:
+                description: 'Exceptions under which the policy is evaluated as successful
+                  even if the listed policy checks have reported failure Deprecated:
+                  This has been replaced by the configuration.'
+                properties:
+                  nonBlocking:
+                    description: NonBlocking set of policy exceptions that in case
+                      of failure do not block the success of the outcome
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                type: object
+              publicKey:
+                description: Public key used to validate the signature of images and
+                  attestations
+                type: string
+              rekorUrl:
+                description: URL of the Rekor instance. Empty string disables Rekor
+                  integration
+                type: string
+              sources:
+                description: One or more groups of policy rules
+                items:
+                  description: Source defines policies and data that are evaluated
+                    together
+                  properties:
+                    data:
+                      description: List of go-getter style policy data source urls
+                      items:
+                        type: string
+                      type: array
+                    name:
+                      description: Optional name for the source
+                      type: string
+                    policy:
+                      description: List of go-getter style policy source urls
+                      items:
+                        type: string
+                      minItems: 1
+                      type: array
+                  type: object
+                minItems: 1
+                type: array
+            type: object
+          status:
+            description: EnterpriseContractPolicyStatus defines the observed state
+              of EnterpriseContractPolicy
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-edit: "true"
+  name: enterprisecontractpolicy-editor-role
+rules:
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - enterprisecontractpolicies
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - enterprisecontractpolicies/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-view: "true"
+  name: enterprisecontractpolicy-viewer-role
+rules:
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - enterprisecontractpolicies
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - enterprisecontractpolicies/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: public-ecp
+  namespace: enterprise-contract-service
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: enterprisecontractpolicy-viewer-role
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:authenticated
+---
+apiVersion: v1
+data:
+  ec_data_source: oci::https://quay.io/hacbs-contract/ec-policy-data:git-a3ca9be@sha256:d548e0808348c017782ae87920c94d45ad7117e0e630b5b991c8df557c22a844
+  ec_policy_source: oci::https://quay.io/hacbs-contract/ec-release-policy:git-8ca675b@sha256:caf2a8991ca3feb80edfc8ff7c1930ed09481a7c8d934bb719007bffc1153ecc
+  verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:9a50ecf11a32ae77ac3a1bfed79072bd1528d88f@sha256:7d0117dfc10c29cc507392323f1880fb62289a847bd827bb9a06cda17cac2370
+kind: ConfigMap
+metadata:
+  name: ec-defaults
+  namespace: enterprise-contract-service
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: EnterpriseContractPolicy
+metadata:
+  name: default
+  namespace: enterprise-contract-service
+spec:
+  configuration:
+    collections:
+    - minimal
+  description: |
+    Default EnterpriseContractPolicy. If a different policy is desired, this resource can serve as a starting point.
+  publicKey: |-
+    -----BEGIN PUBLIC KEY-----
+    MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEODgxyIz09vBqJlXXzjp/X2h17WIt
+    jCVQhnDYVWHvXhw6rgqGeg6NTUxIEhRQqQZaF9mcBotHkuYGJfYZbai+FA==
+    -----END PUBLIC KEY-----
+  sources:
+  - data:
+    - oci::https://quay.io/hacbs-contract/ec-policy-data:git-5e76d0e@sha256:0a74ea290975fbe9280b17b43add061d59caa63a3e7b988bd61872b037fa82ed
+    name: Default Policies
+    policy:
+    - oci::https://quay.io/hacbs-contract/ec-release-policy:git-95fe672@sha256:c0c9232c3ed4310b486dae22bacaaedc6f6759bcb1f404e96c69cb8311b52977

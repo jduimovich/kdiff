@@ -1,0 +1,22 @@
+diff -r ../kustomized-cache/tag-b984529/components/jvm-build-service/kustomize.out ../kustomized-cache/tag-9cef4d8/components/jvm-build-service/kustomize.out
+286,289d285
+<                   repositories:
+<                     items:
+<                       type: string
+<                     type: array
+339,342d334
+<                     repositories:
+<                       items:
+<                         type: string
+<                       type: array
+395,398d386
+<                     repositories:
+<                       items:
+<                         type: string
+<                       type: array
+1024,1025c1012,1013
+<           value: e3b1d16647d9b5b8a3765c91ce1ac7bfc580f14b
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:e3b1d16647d9b5b8a3765c91ce1ac7bfc580f14b
+---
+>           value: 900fb71c3cc7b193ca6b701afe801c417e0f37e0
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:900fb71c3cc7b193ca6b701afe801c417e0f37e0
