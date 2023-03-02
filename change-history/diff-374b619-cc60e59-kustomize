@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-cc60e59/app-of-apps-staging.yaml ../kustomized-cache/tag-374b619/app-of-apps-staging.yaml
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-cc60e59/app-of-apps-staging.yaml /home/john/dev/kdiff/hack/../kustomized-cache/tag-374b619/app-of-apps-staging.yaml
 1,14d0
 < apiVersion: v1
 < kind: Secret
@@ -1573,14 +1573,14 @@ diff -r ../kustomized-cache/tag-cc60e59/app-of-apps-staging.yaml ../kustomized-c
 >       limit: -1
 >     syncOptions:
 >     - CreateNamespace=true
-Only in ../kustomized-cache/tag-374b619/components/authentication: kustomize.out
-Only in ../kustomized-cache/tag-cc60e59/components/authentication: staging
-Only in ../kustomized-cache/tag-374b619/components/build-service: kustomize.out
-Only in ../kustomized-cache/tag-cc60e59/components/build-service: staging
-Only in ../kustomized-cache/tag-374b619/components/build-templates: kustomize.out
-Only in ../kustomized-cache/tag-cc60e59/components/build-templates: staging
-Only in ../kustomized-cache/tag-cc60e59/components: cluster-secret-store
-diff -r ../kustomized-cache/tag-cc60e59/components/dev-sso/kustomize.out ../kustomized-cache/tag-374b619/components/dev-sso/kustomize.out
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-374b619/components/authentication: kustomize.out
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-cc60e59/components/authentication: staging
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-374b619/components/build-service: kustomize.out
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-cc60e59/components/build-service: staging
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-374b619/components/build-templates: kustomize.out
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-cc60e59/components/build-templates: staging
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-cc60e59/components: cluster-secret-store
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-cc60e59/components/dev-sso/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-374b619/components/dev-sso/kustomize.out
 6,7d5
 <   labels:
 <     appstudio.redhat.com/keycloak: dev
@@ -1588,13 +1588,13 @@ diff -r ../kustomized-cache/tag-cc60e59/components/dev-sso/kustomize.out ../kust
 <       appstudio.redhat.com/keycloak: dev
 ---
 >       app.kubernetes.io/instance: dev-sso
-Only in ../kustomized-cache/tag-cc60e59/components: external-secrets-operator
-Only in ../kustomized-cache/tag-374b619/components/gitops: kustomize.out
-Only in ../kustomized-cache/tag-374b619/components/gitops/staging: kustomize.out
-Only in ../kustomized-cache/tag-cc60e59/components/gitops/staging: stone-stg-m01
-Only in ../kustomized-cache/tag-cc60e59/components/gitops/staging: stone-stg-rh01
-Only in ../kustomized-cache/tag-374b619/components/has: kustomize.out
-Only in ../kustomized-cache/tag-cc60e59/components/has: staging
-Only in ../kustomized-cache/tag-374b619/components/pipeline-service: kustomize.out
-Only in ../kustomized-cache/tag-cc60e59/components/pipeline-service: staging
-Only in ../kustomized-cache/tag-cc60e59/components: sprayproxy
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-cc60e59/components: external-secrets-operator
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-374b619/components/gitops: kustomize.out
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-374b619/components/gitops/staging: kustomize.out
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-cc60e59/components/gitops/staging: stone-stg-m01
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-cc60e59/components/gitops/staging: stone-stg-rh01
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-374b619/components/has: kustomize.out
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-cc60e59/components/has: staging
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-374b619/components/pipeline-service: kustomize.out
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-cc60e59/components/pipeline-service: staging
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-cc60e59/components: sprayproxy

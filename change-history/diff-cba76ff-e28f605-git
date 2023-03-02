@@ -1,0 +1,36 @@
+diff --git a/components/monitoring/logging/stagging/base/kustomization.yaml b/components/monitoring/logging/stagging/base/kustomization.yaml
+index eb1f92d..fb91d82 100644
+--- a/components/monitoring/logging/stagging/base/kustomization.yaml
++++ b/components/monitoring/logging/stagging/base/kustomization.yaml
+@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- ../../base/external-secrets
+\ No newline at end of file
++- ../../base/external-secrets
++- ../../base
+diff --git a/components/monitoring/prometheus/production/base/kustomization.yaml b/components/monitoring/prometheus/production/base/kustomization.yaml
+index eb1f92d..fb91d82 100644
+--- a/components/monitoring/prometheus/production/base/kustomization.yaml
++++ b/components/monitoring/prometheus/production/base/kustomization.yaml
+@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- ../../base/external-secrets
+\ No newline at end of file
++- ../../base/external-secrets
++- ../../base
+diff --git a/components/monitoring/prometheus/stagging/base/kustomization.yaml b/components/monitoring/prometheus/stagging/base/kustomization.yaml
+index eb1f92d..fb91d82 100644
+--- a/components/monitoring/prometheus/stagging/base/kustomization.yaml
++++ b/components/monitoring/prometheus/stagging/base/kustomization.yaml
+@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- ../../base/external-secrets
+\ No newline at end of file
++- ../../base/external-secrets
++- ../../base

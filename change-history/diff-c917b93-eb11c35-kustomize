@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-eb11c35/components/enterprise-contract/kustomize.out ../kustomized-cache/tag-c917b93/components/enterprise-contract/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-eb11c35/components/enterprise-contract/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-c917b93/components/enterprise-contract/kustomize.out
 212c212
 <   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:snapshot@sha256:6f4dad9b165576680fd20ce6b9b78ede9aceec0035d6212f833cb2504aa1bb30
 ---

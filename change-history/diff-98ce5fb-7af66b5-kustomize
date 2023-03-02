@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-7af66b5/components/jvm-build-service/kustomize.out ../kustomized-cache/tag-98ce5fb/components/jvm-build-service/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-7af66b5/components/jvm-build-service/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-98ce5fb/components/jvm-build-service/kustomize.out
 1039,1040c1039,1040
 <           value: 1ebf43a09e758ecb13552fc741683caa2fefb853
 <         image: quay.io/redhat-appstudio/hacbs-jvm-controller:1ebf43a09e758ecb13552fc741683caa2fefb853

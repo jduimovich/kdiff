@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-704d64c/components/gitops/kustomize.out ../kustomized-cache/tag-b1e43d1/components/gitops/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-704d64c/components/gitops/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-b1e43d1/components/gitops/kustomize.out
 16a17,1164
 >   name: applications.appstudio.redhat.com
 > spec:
@@ -1956,7 +1956,7 @@ diff -r ../kustomized-cache/tag-704d64c/components/gitops/kustomize.out ../kusto
 <         image: quay.io/redhat-appstudio/gitops-service:de0006e1ca9cd25c9f709527c01deb3fb88f3678
 ---
 >         image: quay.io/redhat-appstudio/gitops-service:d2480e7abbe50e4207b4ef9368e481a9329a3a46
-diff -r ../kustomized-cache/tag-704d64c/components/gitops/staging/kustomize.out ../kustomized-cache/tag-b1e43d1/components/gitops/staging/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-704d64c/components/gitops/staging/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-b1e43d1/components/gitops/staging/kustomize.out
 16a17,1164
 >   name: applications.appstudio.redhat.com
 > spec:

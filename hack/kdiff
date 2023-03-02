@@ -25,7 +25,8 @@ function ktry() {
         if [ -f "$K1/kustomization.yaml" ]; then 
             mkdir -p $OUT_DIR  
             kustomize build $K1 | cat > $OUT_FILE 
-        fi    
+        fi 
+        echo -n .   
     fi     
 }
 

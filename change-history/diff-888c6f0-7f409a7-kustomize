@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-7f409a7/app-of-apps-staging.yaml ../kustomized-cache/tag-888c6f0/app-of-apps-staging.yaml
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-7f409a7/app-of-apps-staging.yaml /home/john/dev/kdiff/hack/../kustomized-cache/tag-888c6f0/app-of-apps-staging.yaml
 409,412d408
 <           - nameNormalized: stone-prd-m01
 <             values.clusterDir: stone-prd-m01
@@ -38,5 +38,5 @@ diff -r ../kustomized-cache/tag-7f409a7/app-of-apps-staging.yaml ../kustomized-c
 <         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
 ---
 >         path: components/sprayproxy
-Only in ../kustomized-cache/tag-888c6f0/components/sprayproxy: kustomize.out
-Only in ../kustomized-cache/tag-7f409a7/components/sprayproxy: staging
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-888c6f0/components/sprayproxy: kustomize.out
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-7f409a7/components/sprayproxy: staging

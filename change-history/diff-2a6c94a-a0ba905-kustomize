@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-a0ba905/components/jvm-build-service/kustomize.out ../kustomized-cache/tag-2a6c94a/components/jvm-build-service/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-a0ba905/components/jvm-build-service/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-2a6c94a/components/jvm-build-service/kustomize.out
 64,65d63
 <                   commitHash:
 <                     type: string

@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-9f8089b/components/has/staging/kustomize.out ../kustomized-cache/tag-a2cb230/components/has/staging/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-9f8089b/components/has/staging/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-a2cb230/components/has/staging/kustomize.out
 671,676d670
 <         - name: CDQ_GITHUB_TOKEN
 <           valueFrom:

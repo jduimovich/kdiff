@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-4ea9589/components/integration/kustomize.out ../kustomized-cache/tag-526e0d2/components/integration/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-4ea9589/components/integration/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-526e0d2/components/integration/kustomize.out
 1024c1024
 <         image: quay.io/redhat-appstudio/integration-service:14a0355396cafcd3ee51c5385eb0094f8866979f
 ---

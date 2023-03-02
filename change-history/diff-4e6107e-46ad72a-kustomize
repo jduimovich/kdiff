@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-46ad72a/app-of-apps-staging.yaml ../kustomized-cache/tag-4e6107e/app-of-apps-staging.yaml
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-46ad72a/app-of-apps-staging.yaml /home/john/dev/kdiff/hack/../kustomized-cache/tag-4e6107e/app-of-apps-staging.yaml
 274,284c274,278
 <   - merge:
 <       generators:
@@ -116,7 +116,7 @@ diff -r ../kustomized-cache/tag-46ad72a/app-of-apps-staging.yaml ../kustomized-c
 <       project: default
 <       source:
 <         path: components/quality-dashboard
-Only in ../kustomized-cache/tag-4e6107e/components/dora-metrics: kustomize.out
-Only in ../kustomized-cache/tag-46ad72a/components/dora-metrics: staging
-Only in ../kustomized-cache/tag-4e6107e/components/quality-dashboard: kustomize.out
-Only in ../kustomized-cache/tag-46ad72a/components/quality-dashboard: staging
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-4e6107e/components/dora-metrics: kustomize.out
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-46ad72a/components/dora-metrics: staging
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-4e6107e/components/quality-dashboard: kustomize.out
+Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-46ad72a/components/quality-dashboard: staging

@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-2b0c4ac/components/pipeline-service/kustomize.out ../kustomized-cache/tag-95985e0/components/pipeline-service/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-2b0c4ac/components/pipeline-service/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-95985e0/components/pipeline-service/kustomize.out
 678,708d677
 <   name: pipeline-service-exporter-reader
 < rules:

@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-98ce5fb/components/authentication/staging/kustomize.out ../kustomized-cache/tag-be64ed0/components/authentication/staging/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-98ce5fb/components/authentication/staging/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-be64ed0/components/authentication/staging/kustomize.out
 677a678,691
 > kind: RoleBinding
 > metadata:

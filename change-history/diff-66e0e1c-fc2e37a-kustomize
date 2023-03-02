@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-fc2e37a/components/release/kustomize.out ../kustomized-cache/tag-66e0e1c/components/release/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-fc2e37a/components/release/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-66e0e1c/components/release/kustomize.out
 1237c1237,1238
 <   release-attempts.json: |
 ---

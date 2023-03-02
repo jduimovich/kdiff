@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-c77a8eb/components/integration/kustomize.out ../kustomized-cache/tag-57af6e4/components/integration/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-c77a8eb/components/integration/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-57af6e4/components/integration/kustomize.out
 442c442
 <   - integrationtestscenarios
 ---

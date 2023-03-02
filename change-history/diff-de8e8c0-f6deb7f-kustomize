@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-f6deb7f/components/enterprise-contract/kustomize.out ../kustomized-cache/tag-de8e8c0/components/enterprise-contract/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-f6deb7f/components/enterprise-contract/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-de8e8c0/components/enterprise-contract/kustomize.out
 236c236
 <     - oci::https://quay.io/hacbs-contract/ec-policy-data:git-5e76d0e@sha256:0a74ea290975fbe9280b17b43add061d59caa63a3e7b988bd61872b037fa82ed
 ---

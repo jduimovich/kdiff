@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-11246c6/components/authentication/staging/kustomize.out ../kustomized-cache/tag-476e728/components/authentication/staging/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-11246c6/components/authentication/staging/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-476e728/components/authentication/staging/kustomize.out
 81a82,97
 >   name: quality-dashboard-maintainer
 >   namespace: quality-dashboard
@@ -40,7 +40,7 @@ diff -r ../kustomized-cache/tag-11246c6/components/authentication/staging/kustom
 > - apiGroup: rbac.authorization.k8s.io
 >   kind: User
 >   name: sawood14012
-diff -r ../kustomized-cache/tag-11246c6/components/quality-dashboard/staging/kustomize.out ../kustomized-cache/tag-476e728/components/quality-dashboard/staging/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-11246c6/components/quality-dashboard/staging/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-476e728/components/quality-dashboard/staging/kustomize.out
 8,46d7
 < apiVersion: rbac.authorization.k8s.io/v1
 < kind: ClusterRole

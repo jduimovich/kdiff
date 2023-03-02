@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-374b619/components/tekton-ci/kustomize.out ../kustomized-cache/tag-58c00f5/components/tekton-ci/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-374b619/components/tekton-ci/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-58c00f5/components/tekton-ci/kustomize.out
 128,136d127
 <   name: image-controller
 < spec:

@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-c1b59f1/components/release/kustomize.out ../kustomized-cache/tag-eb81ff9/components/release/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-c1b59f1/components/release/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-eb81ff9/components/release/kustomize.out
 241,248d240
 <     - jsonPath: .status.deploymentStartTime
 <       name: Deployment Start Time

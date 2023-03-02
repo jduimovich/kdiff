@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-464feb1/components/pipeline-service/staging/stone-stg-m01/kustomize.out ../kustomized-cache/tag-02bc30d/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-464feb1/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-02bc30d/components/pipeline-service/staging/stone-stg-m01/kustomize.out
 2392,2412d2391
 < apiVersion: external-secrets.io/v1beta1
 < kind: ExternalSecret
@@ -21,7 +21,7 @@ diff -r ../kustomized-cache/tag-464feb1/components/pipeline-service/staging/ston
 <     deletionPolicy: Delete
 <     name: tekton-results-s3
 < ---
-diff -r ../kustomized-cache/tag-464feb1/components/pipeline-service/staging/stone-stg-rh01/kustomize.out ../kustomized-cache/tag-02bc30d/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-464feb1/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-02bc30d/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
 2392,2412d2391
 < apiVersion: external-secrets.io/v1beta1
 < kind: ExternalSecret

@@ -1,3 +1,3 @@
-diff -r ../kustomized-cache/tag-6c9a49a/components/application-api/kustomize.out ../kustomized-cache/tag-cefc822/components/application-api/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-6c9a49a/components/application-api/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-cefc822/components/application-api/kustomize.out
 1118a1119
 >             - type

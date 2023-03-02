@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-43080c8/components/release/kustomize.out ../kustomized-cache/tag-9f8089b/components/release/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-43080c8/components/release/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-9f8089b/components/release/kustomize.out
 2311c2311
 <         image: quay.io/redhat-appstudio/release-service:0d1556017d4c19a1ae9e6cafc9c7a60cd9a316f8
 ---

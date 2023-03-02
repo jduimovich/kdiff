@@ -1,4 +1,4 @@
-diff -r ../kustomized-cache/tag-ebb2026/components/jvm-build-service/kustomize.out ../kustomized-cache/tag-bd5a5ad/components/jvm-build-service/kustomize.out
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-ebb2026/components/jvm-build-service/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-bd5a5ad/components/jvm-build-service/kustomize.out
 288,289d287
 <                   postBuildScript:
 <                     type: string
