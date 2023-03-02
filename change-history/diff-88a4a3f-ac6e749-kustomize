@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-ac6e749/app-of-apps-staging.yaml /home/john/dev/kdiff/hack/../kustomized-cache/tag-88a4a3f/app-of-apps-staging.yaml
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-ac6e749/app-of-apps-staging.yaml /home/john/dev/kdiff/kustomized-cache/tag-88a4a3f/app-of-apps-staging.yaml
 711,724c711,714
 <   - merge:
 <       generators:

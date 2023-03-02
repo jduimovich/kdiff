@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-58c00f5/components/jvm-build-service/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-e8c558f/components/jvm-build-service/kustomize.out
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-58c00f5/components/jvm-build-service/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-e8c558f/components/jvm-build-service/kustomize.out
 303,306d302
 <               diagnosticDockerFiles:
 <                 items:

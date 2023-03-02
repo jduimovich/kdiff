@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-cba76ff/app-of-apps-staging.yaml /home/john/dev/kdiff/hack/../kustomized-cache/tag-719738d/app-of-apps-staging.yaml
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-cba76ff/app-of-apps-staging.yaml /home/john/dev/kdiff/kustomized-cache/tag-719738d/app-of-apps-staging.yaml
 722,730c722
 <           elements:
 <           - nameNormalized: stone-stg-m01

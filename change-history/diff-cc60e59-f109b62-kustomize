@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-f109b62/app-of-apps-staging.yaml /home/john/dev/kdiff/hack/../kustomized-cache/tag-cc60e59/app-of-apps-staging.yaml
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-f109b62/app-of-apps-staging.yaml /home/john/dev/kdiff/kustomized-cache/tag-cc60e59/app-of-apps-staging.yaml
 37c37
 <         targetRevision: main
 ---

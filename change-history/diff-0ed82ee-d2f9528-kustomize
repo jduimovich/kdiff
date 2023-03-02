@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-d2f9528/components/build-service/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-0ed82ee/components/build-service/kustomize.out
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-d2f9528/components/build-service/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-0ed82ee/components/build-service/kustomize.out
 586c586
 <       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:ef9cb03abdc3988a0eea946de59fd2f62430d726
 ---

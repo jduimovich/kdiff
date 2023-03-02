@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-bf722ff/components/authentication/staging/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-46ad72a/components/authentication/staging/kustomize.out
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-bf722ff/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-46ad72a/components/authentication/staging/kustomize.out
 704a705,727
 >   name: tekton-ci-maintainers
 >   namespace: tekton-ci
@@ -23,7 +23,7 @@ diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-bf722ff/components/aut
 > apiVersion: rbac.authorization.k8s.io/v1
 > kind: RoleBinding
 > metadata:
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-bf722ff/components/tekton-ci/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-46ad72a/components/tekton-ci/kustomize.out
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-bf722ff/components/tekton-ci/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-46ad72a/components/tekton-ci/kustomize.out
 20,44d19
 < apiVersion: rbac.authorization.k8s.io/v1
 < kind: RoleBinding

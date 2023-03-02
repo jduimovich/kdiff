@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-bd5a5ad/components/integration/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-bf722ff/components/integration/kustomize.out
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-bd5a5ad/components/integration/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-bf722ff/components/integration/kustomize.out
 6d5
 <     openshift.io/cluster-monitoring: "true"
 534,551d532

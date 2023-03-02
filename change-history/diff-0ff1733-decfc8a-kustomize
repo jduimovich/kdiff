@@ -1,11 +1,11 @@
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-decfc8a/components/authentication/staging/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-0ff1733/components/authentication/staging/kustomize.out
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-decfc8a/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-0ff1733/components/authentication/staging/kustomize.out
 846,847d845
 <   annotations:
 <     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 863,864d860
 <   annotations:
 <     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-decfc8a/components/gitops/staging/stone-stg-m01/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-0ff1733/components/gitops/staging/stone-stg-m01/kustomize.out
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-decfc8a/components/gitops/staging/stone-stg-m01/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-0ff1733/components/gitops/staging/stone-stg-m01/kustomize.out
 4,5d3
 <   annotations:
 <     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
@@ -134,7 +134,7 @@ diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-decfc8a/components/git
 <     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 2040d1957
 <     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-decfc8a/components/gitops/staging/stone-stg-rh01/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-0ff1733/components/gitops/staging/stone-stg-rh01/kustomize.out
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-decfc8a/components/gitops/staging/stone-stg-rh01/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-0ff1733/components/gitops/staging/stone-stg-rh01/kustomize.out
 4,5d3
 <   annotations:
 <     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-e5c589e/components/tekton-ci/staging/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-d75b32d/components/tekton-ci/staging/kustomize.out
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-e5c589e/components/tekton-ci/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-d75b32d/components/tekton-ci/staging/kustomize.out
 44a45,57
 > apiVersion: v1
 > kind: PersistentVolumeClaim

@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-fa38325/app-of-apps-staging.yaml /home/john/dev/kdiff/hack/../kustomized-cache/tag-33924c8/app-of-apps-staging.yaml
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-fa38325/app-of-apps-staging.yaml /home/john/dev/kdiff/kustomized-cache/tag-33924c8/app-of-apps-staging.yaml
 523,568d522
 <   name: image-controller
 <   namespace: argocd-staging
@@ -46,7 +46,7 @@ diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-fa38325/app-of-apps-st
 < apiVersion: argoproj.io/v1alpha1
 < kind: ApplicationSet
 < metadata:
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-fa38325/components/cluster-secret-store/staging/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-33924c8/components/cluster-secret-store/staging/kustomize.out
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-fa38325/components/cluster-secret-store/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-33924c8/components/cluster-secret-store/staging/kustomize.out
 21d20
 <     - image-controller
-Only in /home/john/dev/kdiff/hack/../kustomized-cache/tag-fa38325/components: image-controller
+Only in /home/john/dev/kdiff/kustomized-cache/tag-fa38325/components: image-controller

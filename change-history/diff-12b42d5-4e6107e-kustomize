@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/hack/../kustomized-cache/tag-4e6107e/components/build-service/staging/kustomize.out /home/john/dev/kdiff/hack/../kustomized-cache/tag-12b42d5/components/build-service/staging/kustomize.out
+diff -r /home/john/dev/kdiff/kustomized-cache/tag-4e6107e/components/build-service/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-12b42d5/components/build-service/staging/kustomize.out
 522c522
 <         image: quay.io/redhat-appstudio/build-service:1b9be3cdafb7b0da494bf9f4c968055623aceacc
 ---

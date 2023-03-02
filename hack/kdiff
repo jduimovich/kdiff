@@ -17,16 +17,13 @@ function ktry() {
     TAG_DIR=$2 
     OUT_DIR=$TAG_DIR/$COMPONENT_DIR 
     OUT_FILE=$OUT_DIR/kustomize.out  
-    if [ -f "$OUT_FILE" ]; then
-        #echo "Kustomize expanded $OUT_FILE exists - reusing."
-        echo -n . 
-    else  
+    if [ ! -f "$OUT_FILE" ]; then 
         K1=$COMPONENT_DIR 
         if [ -f "$K1/kustomization.yaml" ]; then 
+            echo -n . 
             mkdir -p $OUT_DIR  
             kustomize build $K1 | cat > $OUT_FILE 
-        fi 
-        echo -n .   
+        fi  
     fi     
 }
 
@@ -42,7 +39,6 @@ function generateManifests()  {
         kustomize build argo-cd-apps/overlays/staging >$APP_OF_APPS
     fi
     # currently hard coded envs, need to parse App of Apps for each overlay dev, stage, prod
-    # and 
     for component in components/* 
     do 
         ktry $component $TAG_DIR  
@@ -59,15 +55,16 @@ git checkout HEAD^ >/dev/null 2>&1
 TAG_PREV=$(git rev-parse --short HEAD)
 generateManifests $TAG_PREV
 
-DIR_CURRENT=$CACHE_DIR/tag-$TAG_CURRENT
-DIR_PREV=$CACHE_DIR/tag-$TAG_PREV
+DIR_CURRENT=$(realpath $CACHE_DIR/tag-$TAG_CURRENT)
+DIR_PREV=$(realpath $CACHE_DIR/tag-$TAG_PREV)
 
-echo "Comparing $DIR_CURRENT with prior version $DIR_PREV" 
+echo "TAG $TAG_CURRENT in $DIR_CURRENT" 
+echo "TAG $TAG_PREV in $DIR_PREV"  
 
 mkdir -p $COMPARE_DIR  
 DIFF_FILE=$COMPARE_DIR/diff-$TAG_PREV-$TAG_CURRENT
-KDIFF=$DIFF_FILE-kustomize  
-GDIFF=$DIFF_FILE-git  
+KDIFF=$(realpath $DIFF_FILE-kustomize)  
+GDIFF=$(realpath  $DIFF_FILE-git)
 diff -r $DIR_CURRENT $DIR_PREV >$KDIFF
 git diff $TAG_PREV...$TAG_CURRENT > $GDIFF
 
