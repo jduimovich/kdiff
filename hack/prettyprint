@@ -1,0 +1,22 @@
+SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"  
+ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"/..
+
+SUMMARY=$ROOT/summary.md
+COMPARE_DIR=$ROOT/change-history
+ 
+echo "# kustomize changes per commits "> $SUMMARY 
+echo "## https://github.com/redhat-appstudio/infra-deployments.gits " >> $SUMMARY 
+
+for change in $COMPARE_DIR/*-kustomize
+do 
+    TITLE="Changes in $(basename $change)"
+    LINES=$(wc -l $change | cut -d ' ' -f 1)
+    DELTA=$(cat $change)
+cat <<EOF >> $SUMMARY
+<details> 
+<summary>$TITLE with $LINES lines changed </summary>  
+<pre> $DELTA </pre> 
+</details>
+EOF
+done
+ 
