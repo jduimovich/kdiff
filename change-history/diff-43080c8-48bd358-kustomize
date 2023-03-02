@@ -1,0 +1,7 @@
+diff -r ../kustomized-cache/tag-48bd358/components/jvm-build-service/kustomize.out ../kustomized-cache/tag-43080c8/components/jvm-build-service/kustomize.out
+1039,1040c1039,1040
+<           value: 48dc87180fc211ddebd79d85bb394a8f3f057ad2
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:48dc87180fc211ddebd79d85bb394a8f3f057ad2
+---
+>           value: 3b4e904fb3567649f539aa4ab0b51de27318d64a
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:3b4e904fb3567649f539aa4ab0b51de27318d64a

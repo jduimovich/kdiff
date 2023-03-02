@@ -1,0 +1,13 @@
+diff --git a/argo-cd-apps/base/host/sprayproxy/sprayproxy.yaml b/argo-cd-apps/base/host/sprayproxy/sprayproxy.yaml
+index 7c31994..29a6d8f 100644
+--- a/argo-cd-apps/base/host/sprayproxy/sprayproxy.yaml
++++ b/argo-cd-apps/base/host/sprayproxy/sprayproxy.yaml
+@@ -13,7 +13,7 @@ spec:
+               values:
+                 sourceRoot: components/sprayproxy
+                 environment: staging
+-                clusterDir: base
++                clusterDir: ""
+           - list:
+               elements: []
+   template:

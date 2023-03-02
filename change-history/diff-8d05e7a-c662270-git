@@ -1,0 +1,50 @@
+diff --git a/components/enterprise-contract/default-ecp.yaml b/components/enterprise-contract/default-ecp.yaml
+index 3fe1294..0a6222b 100644
+--- a/components/enterprise-contract/default-ecp.yaml
++++ b/components/enterprise-contract/default-ecp.yaml
+@@ -24,9 +24,9 @@ spec:
+   sources:
+     - name: Default Policies
+       data:
+-        - oci::https://quay.io/hacbs-contract/ec-policy-data:latest@sha256:59b9caa14e241454950f82ae1b54ce0a21063c279db1b6148a7b983c9b6c1bee
++        - oci::https://quay.io/hacbs-contract/ec-policy-data:latest@sha256:2321f0c6e9367d9e203dfbd17455cb0238d4c9b55e61e11ab659948d9bb8af9e
+       policy:
+-        - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:c16fc87e87bb97169726322a05bf2e5eb228d1bbd4abc34c9912fbe4f4011b1f
++        - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:7779b9074fd58693fda5657422be1b025b876a880c058a29360b8383a511f687
+ ---
+ # Allow any authenticated user to access to get/list/watch the EnterpriseContractPolicy resources
+ # in the enterprise-contract-service namespace.
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index d28cc05..38f9bd7 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,13 +1,13 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/hacbs-contract/enterprise-contract-controller/config/crd?ref=7436e4fac444866c4f5c6389056380d8ce02a523
++  - https://github.com/hacbs-contract/enterprise-contract-controller/config/crd?ref=51aefbd5491baed69fc23305b77164a83f2ffe8d
+   # Kustomize does not allow github.com urls that reference a single-file. They must always reference
+   # a directory that contains a kustomization.yaml file. The directory /config/rbac does include a
+   # kustomization.yaml file but it includes many other RBAC changes that are not desirable here. Use
+   # a URL to the "raw" version of the file instead.
+-  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/7436e4fac444866c4f5c6389056380d8ce02a523/config/rbac/enterprisecontractpolicy_viewer_role.yaml
+-  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/7436e4fac444866c4f5c6389056380d8ce02a523/config/rbac/enterprisecontractpolicy_editor_role.yaml
++  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/51aefbd5491baed69fc23305b77164a83f2ffe8d/config/rbac/enterprisecontractpolicy_viewer_role.yaml
++  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/51aefbd5491baed69fc23305b77164a83f2ffe8d/config/rbac/enterprisecontractpolicy_editor_role.yaml
+   - default-ecp.yaml
+ generatorOptions:
+   disableNameSuffixHash: true
+@@ -15,10 +15,10 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:snapshot@sha256:6f4dad9b165576680fd20ce6b9b78ede9aceec0035d6212f833cb2504aa1bb30
++      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:snapshot@sha256:76c0adc3ea2e662f30d850243ab91df32c1d722a13e0b3f30a6431207323d7a6
+       - ec_policy_source=oci::https://quay.io/hacbs-contract/ec-release-policy:git-8ca675b@sha256:caf2a8991ca3feb80edfc8ff7c1930ed09481a7c8d934bb719007bffc1153ecc
+       - ec_data_source=oci::https://quay.io/hacbs-contract/ec-policy-data:git-a3ca9be@sha256:d548e0808348c017782ae87920c94d45ad7117e0e630b5b991c8df557c22a844
+ images:
+   - name: quay.io/redhat-appstudio/enterprise-contract-controller
+     newName: quay.io/redhat-appstudio/enterprise-contract-controller
+-    newTag: 7436e4fac444866c4f5c6389056380d8ce02a523
++    newTag: 51aefbd5491baed69fc23305b77164a83f2ffe8d

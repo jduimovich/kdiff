@@ -1,0 +1,28 @@
+diff --git a/components/authentication/staging/kustomization.yaml b/components/authentication/staging/kustomization.yaml
+index 7c6bf0e..12e39d2 100644
+--- a/components/authentication/staging/kustomization.yaml
++++ b/components/authentication/staging/kustomization.yaml
+@@ -15,7 +15,6 @@ resources:
+ - dora-metrics.yaml
+ - test-team.yaml
+ - pact-broker.yaml
+-- tekton-ci.yaml
+ - internal-services.yaml
+ - pipeline-service-sre.yaml
+ 
+diff --git a/components/tekton-ci/kustomization.yaml b/components/tekton-ci/kustomization.yaml
+index 2e3df3f..8fcf7a7 100644
+--- a/components/tekton-ci/kustomization.yaml
++++ b/components/tekton-ci/kustomization.yaml
+@@ -3,6 +3,7 @@ resources:
+ - serviceaccount.yaml
+ - pvc.yaml
+ - repository.yaml
++- tekton-ci-maintainers-rb.yaml
+ 
+ # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
+ # See more information about this option, here: 
+diff --git a/components/authentication/staging/tekton-ci.yaml b/components/tekton-ci/tekton-ci-maintainers-rb.yaml
+similarity index 100%
+rename from components/authentication/staging/tekton-ci.yaml
+rename to components/tekton-ci/tekton-ci-maintainers-rb.yaml

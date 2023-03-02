@@ -1,0 +1,43 @@
+diff --git a/components/monitoring/grafana/base/spi/kustomization.yaml b/components/monitoring/grafana/base/spi/kustomization.yaml
+index 308cc95..6926f67 100644
+--- a/components/monitoring/grafana/base/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/spi/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/base?ref=e0f757724c59b36c39545e01469a815ae5f0bfe2
++- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/base?ref=ee1a8621e69462080b7a53ccea450595ab9e8c38
+diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
+index 4f448fa..ecca91a 100644
+--- a/components/spi-vault/kustomization.yaml
++++ b/components/spi-vault/kustomization.yaml
+@@ -4,4 +4,4 @@ kind: Kustomization
+ namespace: spi-vault
+ 
+ resources:
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=e0f757724c59b36c39545e01469a815ae5f0bfe2
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=ee1a8621e69462080b7a53ccea450595ab9e8c38
+diff --git a/components/spi/base/kustomization.yaml b/components/spi/base/kustomization.yaml
+index 266e1d9..1635063 100644
+--- a/components/spi/base/kustomization.yaml
++++ b/components/spi/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ 
+ resources:
+   - argocd-permissions.yaml
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/openshift?ref=e0f757724c59b36c39545e01469a815ae5f0bfe2
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/openshift?ref=ee1a8621e69462080b7a53ccea450595ab9e8c38
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: e0f757724c59b36c39545e01469a815ae5f0bfe2
++    newTag: ee1a8621e69462080b7a53ccea450595ab9e8c38
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: e0f757724c59b36c39545e01469a815ae5f0bfe2
++    newTag: ee1a8621e69462080b7a53ccea450595ab9e8c38
+ 
+ namespace: spi-system
+ 

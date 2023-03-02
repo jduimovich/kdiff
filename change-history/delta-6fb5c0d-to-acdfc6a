@@ -1,5 +1,0 @@
-diff -r ../kustomized-cache/tag-6fb5c0d/components/build-service/kustomize.out ../kustomized-cache/tag-acdfc6a/components/build-service/kustomize.out
-522c522
-<         image: quay.io/redhat-appstudio/build-service:63d2e88dbfcffe2702bf99cd7a9e2ceb7d6a1e94
----
->         image: quay.io/redhat-appstudio/build-service:9feed7ab2e9205159577538b43868bc786797bac

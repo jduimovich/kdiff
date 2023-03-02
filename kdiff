@@ -1,6 +1,13 @@
 CACHE_DIR=../kustomized-cache
 COMPARE_DIR=../change-history
 
+START_TAG=$1
+if [[ -z "$START_TAG" ]]; then
+  echo "No start tag parameter, will use current HEAD and HEAD^ to compute diff"   
+else 
+  echo "Diff from $START_TAG" 
+  git checkout $START_TAG   >/dev/null 2>&1
+fi
 
 function ktry() {  
     COMPONENT_DIR=$1
@@ -14,56 +21,52 @@ function ktry() {
         K1=$COMPONENT_DIR 
         if [ -f "$K1/kustomization.yaml" ]; then 
             mkdir -p $OUT_DIR  
-            kustomizex build $K1 | cat > $OUT_FILE
-            # clear 
-            # tree $TAG_DIR 
-        # else   
-        #     echo "No kustomization $K1, skipping"
+            kustomize build $K1 | cat > $OUT_FILE 
         fi    
     fi     
 }
 
 function generateManifests()  { 
     TAG=$1
-    echo "Generating for Tag $TAG" 
+    echo -n "Generating kustomize for Tag $TAG " 
     TAG_DIR=$CACHE_DIR/tag-$TAG
     mkdir -p $TAG_DIR
     APP_OF_APPS=$TAG_DIR/app-of-apps-staging.yaml 
-    if [ -f "$APP_OF_APPS" ]; then
-        #echo "Cached File $APP_OF_APPS exists - reusing."
+    if [ -f "$APP_OF_APPS" ]; then 
         echo -n .
     else  
-        kustomizex build argo-cd-apps/overlays/staging >$APP_OF_APPS
-    fi  
+        kustomize build argo-cd-apps/overlays/staging >$APP_OF_APPS
+    fi
+    # currently hard coded envs, need to parse App of Apps for each overlay dev, stage, prod
+    # and 
     for component in components/* 
     do 
         ktry $component $TAG_DIR  
         ktry $component/staging $TAG_DIR  
         ktry $component/staging/stone-stg-rh01 $TAG_DIR  
         ktry $component/staging/stone-stg-m01 $TAG_DIR   
-    done 
+    done
+    echo
 }
-
-echo "----------------------------------------" 
- pwd
+ 
 TAG_CURRENT=$(git rev-parse --short HEAD)
 generateManifests  $TAG_CURRENT
-git checkout HEAD^
+git checkout HEAD^ >/dev/null 2>&1
 TAG_PREV=$(git rev-parse --short HEAD)
 generateManifests $TAG_PREV
 
 DIR_CURRENT=$CACHE_DIR/tag-$TAG_CURRENT
 DIR_PREV=$CACHE_DIR/tag-$TAG_PREV
 
-echo "Compare $DIR_CURRENT $DIR_PREV"
-echo "diff -r $DIR_CURRENT $DIR_PREV"
+echo "Comparing $DIR_CURRENT with prior version $DIR_PREV" 
 
 mkdir -p $COMPARE_DIR  
-DIFF_FILE=$COMPARE_DIR/delta-$TAG_CURRENT-to-$TAG_PREV
-diff -r $DIR_CURRENT $DIR_PREV > $DIFF_FILE
+DIFF_FILE=$COMPARE_DIR/diff-$TAG_PREV-$TAG_CURRENT
+KDIFF=$DIFF_FILE-kustomize  
+GDIFF=$DIFF_FILE-git  
+diff -r $DIR_CURRENT $DIR_PREV >$KDIFF
+git diff $TAG_PREV...$TAG_CURRENT > $GDIFF
 
-echo "wc $DIFF_FILE"
-wc $DIFF_FILE
-
-echo "----------------------------------------"
+echo "Diff size for kustomize: $(wc -l $KDIFF)"
+echo "Diff size for git: $(wc -l $GDIFF)" 
 echo 

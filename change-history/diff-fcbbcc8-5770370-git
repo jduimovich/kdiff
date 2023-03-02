@@ -1,0 +1,15 @@
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index 9d4a96c..6d89818 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -138,3 +138,10 @@ metadata:
+   name: image-controller
+ spec:
+   url: "https://github.com/redhat-appstudio/image-controller"
++---
++apiVersion: pipelinesascode.tekton.dev/v1alpha1
++kind: Repository
++metadata:
++  name: o11y
++spec:
++  url: "https://github.com/redhat-appstudio/o11y"

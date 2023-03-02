@@ -1,0 +1,9 @@
+diff --git a/OWNERS b/OWNERS
+index a549cfc..a7c910c 100644
+--- a/OWNERS
++++ b/OWNERS
+@@ -23,3 +23,4 @@ approvers:
+ - scoheb
+ - roming22
+ - adambkaplan
++- gbenhaim

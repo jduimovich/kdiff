@@ -1,0 +1,1241 @@
+diff --git a/argo-cd-apps/app-of-app-sets/production/change-source-path.yaml b/argo-cd-apps/app-of-app-sets/production/change-source-path.yaml
+new file mode 100644
+index 0000000..8b13220
+--- /dev/null
++++ b/argo-cd-apps/app-of-app-sets/production/change-source-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: replace
++  path: /spec/source/path
++  value: argo-cd-apps/overlays/production
+diff --git a/argo-cd-apps/app-of-app-sets/production/change-target-namespace.yaml b/argo-cd-apps/app-of-app-sets/production/change-target-namespace.yaml
+new file mode 100644
+index 0000000..3a6a7a6
+--- /dev/null
++++ b/argo-cd-apps/app-of-app-sets/production/change-target-namespace.yaml
+@@ -0,0 +1,4 @@
++---
++- op: replace
++  path: /spec/destination/namespace
++  value: argocd
+diff --git a/argo-cd-apps/app-of-app-sets/production/kustomization.yaml b/argo-cd-apps/app-of-app-sets/production/kustomization.yaml
+new file mode 100644
+index 0000000..739eef2
+--- /dev/null
++++ b/argo-cd-apps/app-of-app-sets/production/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++patches:
++  - path: change-source-path.yaml
++    target:
++      group: argoproj.io
++      version: v1alpha1
++      kind: Application
++  - path: change-target-namespace.yaml
++    target:
++      group: argoproj.io
++      version: v1alpha1
++      kind: Application
++namespace: argocd
+diff --git a/argo-cd-apps/base/host/kustomization.yaml b/argo-cd-apps/base/host/kustomization.yaml
+index b3b4985..5f85d3a 100644
+--- a/argo-cd-apps/base/host/kustomization.yaml
++++ b/argo-cd-apps/base/host/kustomization.yaml
+@@ -3,5 +3,5 @@ kind: Kustomization
+ resources:
+   - sprayproxy
+ components:
+-  - ../../k-components/deploy-to-host-cluster
++  - ../../k-components/deploy-to-host-cluster-merge-generator
+   - ../../k-components/inject-argocd-namespace
+diff --git a/argo-cd-apps/base/host/sprayproxy/sprayproxy.yaml b/argo-cd-apps/base/host/sprayproxy/sprayproxy.yaml
+index 90e17c9..7c31994 100644
+--- a/argo-cd-apps/base/host/sprayproxy/sprayproxy.yaml
++++ b/argo-cd-apps/base/host/sprayproxy/sprayproxy.yaml
+@@ -5,14 +5,24 @@ metadata:
+   name: sprayproxy
+ spec:
+   generators:
+-    - clusters: {}
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/sprayproxy
++                environment: staging
++                clusterDir: base
++          - list:
++              elements: []
+   template:
+     metadata:
+       name: sprayproxy-{{nameNormalized}}
+     spec:
+       project: default
+       source:
+-        path: components/sprayproxy
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
+diff --git a/argo-cd-apps/base/member/infra-deployments/gitops/gitops.yaml b/argo-cd-apps/base/member/infra-deployments/gitops/gitops.yaml
+index c4c638b..1421c1a 100644
+--- a/argo-cd-apps/base/member/infra-deployments/gitops/gitops.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/gitops/gitops.yaml
+@@ -19,6 +19,10 @@ spec:
+                   values.clusterDir: stone-stg-m01
+                 - nameNormalized: stone-stg-rh01
+                   values.clusterDir: stone-stg-rh01
++                - nameNormalized: stone-prd-m01
++                  values.clusterDir: stone-prd-m01
++                - nameNormalized: stone-prd-rh01
++                  values.clusterDir: stone-prd-rh01
+   template:
+     metadata:
+       name: gitops-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
+index 1468b57..ad41ef5 100644
+--- a/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/pipeline-service/pipeline-service.yaml
+@@ -19,6 +19,10 @@ spec:
+                   values.clusterDir: stone-stg-m01
+                 - nameNormalized: stone-stg-rh01
+                   values.clusterDir: stone-stg-rh01
++                - nameNormalized: stone-prd-m01
++                  values.clusterDir: stone-prd-m01
++                - nameNormalized: stone-prd-rh01
++                  values.clusterDir: stone-prd-rh01
+   template:
+     metadata:
+       name: pipeline-service-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/spi/spi.yaml b/argo-cd-apps/base/member/infra-deployments/spi/spi.yaml
+index 9530108..4efc268 100644
+--- a/argo-cd-apps/base/member/infra-deployments/spi/spi.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/spi/spi.yaml
+@@ -19,6 +19,10 @@ spec:
+                   values.clusterDir: stone-stg-m01
+                 - nameNormalized: stone-stg-rh01
+                   values.clusterDir: stone-stg-rh01
++                - nameNormalized: stone-prd-m01
++                  values.clusterDir: stone-prd-m01
++                - nameNormalized: stone-prd-rh01
++                  values.clusterDir: stone-prd-rh01                  
+   template:
+     metadata:
+       name: spi-{{nameNormalized}}
+diff --git a/argo-cd-apps/k-components/deploy-to-host-cluster-merge-generator/host-cluster-label-selector.yaml b/argo-cd-apps/k-components/deploy-to-host-cluster-merge-generator/host-cluster-label-selector.yaml
+new file mode 100644
+index 0000000..138cc09
+--- /dev/null
++++ b/argo-cd-apps/k-components/deploy-to-host-cluster-merge-generator/host-cluster-label-selector.yaml
+@@ -0,0 +1,6 @@
++---
++- op: add
++  path: /spec/generators/0/merge/generators/0/clusters/selector
++  value:
++      matchLabels:
++        appstudio.redhat.com/host-cluster: "true"
+diff --git a/argo-cd-apps/k-components/deploy-to-host-cluster-merge-generator/kustomization.yaml b/argo-cd-apps/k-components/deploy-to-host-cluster-merge-generator/kustomization.yaml
+new file mode 100644
+index 0000000..463d567
+--- /dev/null
++++ b/argo-cd-apps/k-components/deploy-to-host-cluster-merge-generator/kustomization.yaml
+@@ -0,0 +1,9 @@
++---
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++patches:
++  - path: host-cluster-label-selector.yaml
++    target:
++      group: argoproj.io
++      version: v1alpha1
++      kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+new file mode 100644
+index 0000000..ed23a52
+--- /dev/null
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -0,0 +1,59 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/local-cluster-secret/host-on-local-cluster
++  - ../../base/host
++  - ../../base/member
++  - ../../base/all-clusters
++namespace: argocd
++patches:
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: gitops
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: pipeline-service
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: build-service
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: build-templates
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: has
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: spi
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: dora-metrics
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: authentication
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: cluster-secret-store
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: sprayproxy
+diff --git a/argo-cd-apps/overlays/production/production-overlay-patch.yaml b/argo-cd-apps/overlays/production/production-overlay-patch.yaml
+new file mode 100644
+index 0000000..1596344
+--- /dev/null
++++ b/argo-cd-apps/overlays/production/production-overlay-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/generators/0/merge/generators/0/clusters/values/environment
++  value: production
+diff --git a/components/authentication/staging/build.yaml b/components/authentication/base/build.yaml
+similarity index 100%
+rename from components/authentication/staging/build.yaml
+rename to components/authentication/base/build.yaml
+diff --git a/components/authentication/staging/cluster-registration-maintainer.yaml b/components/authentication/base/cluster-registration-maintainer.yaml
+similarity index 100%
+rename from components/authentication/staging/cluster-registration-maintainer.yaml
+rename to components/authentication/base/cluster-registration-maintainer.yaml
+diff --git a/components/authentication/staging/component-maintainer.yaml b/components/authentication/base/component-maintainer.yaml
+similarity index 100%
+rename from components/authentication/staging/component-maintainer.yaml
+rename to components/authentication/base/component-maintainer.yaml
+diff --git a/components/authentication/staging/dora-metrics.yaml b/components/authentication/base/dora-metrics.yaml
+similarity index 100%
+rename from components/authentication/staging/dora-metrics.yaml
+rename to components/authentication/base/dora-metrics.yaml
+diff --git a/components/authentication/staging/everyone-can-view.yaml b/components/authentication/base/everyone-can-view.yaml
+similarity index 100%
+rename from components/authentication/staging/everyone-can-view.yaml
+rename to components/authentication/base/everyone-can-view.yaml
+diff --git a/components/authentication/staging/gitops-component-maintainer.yaml b/components/authentication/base/gitops-component-maintainer.yaml
+similarity index 100%
+rename from components/authentication/staging/gitops-component-maintainer.yaml
+rename to components/authentication/base/gitops-component-maintainer.yaml
+diff --git a/components/authentication/staging/gitops.yaml b/components/authentication/base/gitops.yaml
+similarity index 100%
+rename from components/authentication/staging/gitops.yaml
+rename to components/authentication/base/gitops.yaml
+diff --git a/components/authentication/staging/group-sync/external-secrets/github-redhat-appstudio-sre.yaml b/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
+similarity index 100%
+rename from components/authentication/staging/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
+rename to components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
+diff --git a/components/authentication/staging/group-sync/external-secrets/github-redhat-appstudio.yaml b/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml
+similarity index 100%
+rename from components/authentication/staging/group-sync/external-secrets/github-redhat-appstudio.yaml
+rename to components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml
+diff --git a/components/authentication/staging/group-sync/external-secrets/kustomization.yaml b/components/authentication/base/group-sync/external-secrets/kustomization.yaml
+similarity index 100%
+rename from components/authentication/staging/group-sync/external-secrets/kustomization.yaml
+rename to components/authentication/base/group-sync/external-secrets/kustomization.yaml
+diff --git a/components/authentication/staging/group-sync/github-redhat-appstudio-sre.yaml b/components/authentication/base/group-sync/github-redhat-appstudio-sre.yaml
+similarity index 100%
+rename from components/authentication/staging/group-sync/github-redhat-appstudio-sre.yaml
+rename to components/authentication/base/group-sync/github-redhat-appstudio-sre.yaml
+diff --git a/components/authentication/staging/group-sync/github-redhat-appstudio.yaml b/components/authentication/base/group-sync/github-redhat-appstudio.yaml
+similarity index 100%
+rename from components/authentication/staging/group-sync/github-redhat-appstudio.yaml
+rename to components/authentication/base/group-sync/github-redhat-appstudio.yaml
+diff --git a/components/authentication/staging/group-sync/group-sync.yaml b/components/authentication/base/group-sync/group-sync.yaml
+similarity index 100%
+rename from components/authentication/staging/group-sync/group-sync.yaml
+rename to components/authentication/base/group-sync/group-sync.yaml
+diff --git a/components/authentication/staging/group-sync/kustomization.yaml b/components/authentication/base/group-sync/kustomization.yaml
+similarity index 100%
+rename from components/authentication/staging/group-sync/kustomization.yaml
+rename to components/authentication/base/group-sync/kustomization.yaml
+diff --git a/components/authentication/staging/group-sync/namespaces.yaml b/components/authentication/base/group-sync/namespaces.yaml
+similarity index 100%
+rename from components/authentication/staging/group-sync/namespaces.yaml
+rename to components/authentication/base/group-sync/namespaces.yaml
+diff --git a/components/authentication/staging/group-sync/subscription.yaml b/components/authentication/base/group-sync/subscription.yaml
+similarity index 100%
+rename from components/authentication/staging/group-sync/subscription.yaml
+rename to components/authentication/base/group-sync/subscription.yaml
+diff --git a/components/authentication/staging/has.yaml b/components/authentication/base/has.yaml
+similarity index 100%
+rename from components/authentication/staging/has.yaml
+rename to components/authentication/base/has.yaml
+diff --git a/components/authentication/staging/integration.yaml b/components/authentication/base/integration.yaml
+similarity index 100%
+rename from components/authentication/staging/integration.yaml
+rename to components/authentication/base/integration.yaml
+diff --git a/components/authentication/staging/internal-services.yaml b/components/authentication/base/internal-services.yaml
+similarity index 100%
+rename from components/authentication/staging/internal-services.yaml
+rename to components/authentication/base/internal-services.yaml
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+new file mode 100644
+index 0000000..12e39d2
+--- /dev/null
++++ b/components/authentication/base/kustomization.yaml
+@@ -0,0 +1,22 @@
++resources:
++- everyone-can-view.yaml
++- component-maintainer.yaml
++- spi.yaml
++- spi-vault-admin.yaml
++- gitops.yaml
++- gitops-component-maintainer.yaml
++- release-team.yaml
++- has.yaml
++- build.yaml
++- integration.yaml
++- cluster-registration-maintainer.yaml
++- group-sync/
++- quality-dashboard.yaml
++- dora-metrics.yaml
++- test-team.yaml
++- pact-broker.yaml
++- internal-services.yaml
++- pipeline-service-sre.yaml
++
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
+diff --git a/components/authentication/staging/pact-broker.yaml b/components/authentication/base/pact-broker.yaml
+similarity index 100%
+rename from components/authentication/staging/pact-broker.yaml
+rename to components/authentication/base/pact-broker.yaml
+diff --git a/components/authentication/staging/pipeline-service-sre.yaml b/components/authentication/base/pipeline-service-sre.yaml
+similarity index 100%
+rename from components/authentication/staging/pipeline-service-sre.yaml
+rename to components/authentication/base/pipeline-service-sre.yaml
+diff --git a/components/authentication/staging/quality-dashboard.yaml b/components/authentication/base/quality-dashboard.yaml
+similarity index 100%
+rename from components/authentication/staging/quality-dashboard.yaml
+rename to components/authentication/base/quality-dashboard.yaml
+diff --git a/components/authentication/staging/release-team.yaml b/components/authentication/base/release-team.yaml
+similarity index 100%
+rename from components/authentication/staging/release-team.yaml
+rename to components/authentication/base/release-team.yaml
+diff --git a/components/authentication/staging/spi-vault-admin.yaml b/components/authentication/base/spi-vault-admin.yaml
+similarity index 100%
+rename from components/authentication/staging/spi-vault-admin.yaml
+rename to components/authentication/base/spi-vault-admin.yaml
+diff --git a/components/authentication/staging/spi.yaml b/components/authentication/base/spi.yaml
+similarity index 100%
+rename from components/authentication/staging/spi.yaml
+rename to components/authentication/base/spi.yaml
+diff --git a/components/authentication/staging/test-team.yaml b/components/authentication/base/test-team.yaml
+similarity index 100%
+rename from components/authentication/staging/test-team.yaml
+rename to components/authentication/base/test-team.yaml
+diff --git a/components/authentication/production/kustomization.yaml b/components/authentication/production/kustomization.yaml
+new file mode 100644
+index 0000000..27bb5cb
+--- /dev/null
++++ b/components/authentication/production/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
+diff --git a/components/authentication/staging/kustomization.yaml b/components/authentication/staging/kustomization.yaml
+index 12e39d2..27bb5cb 100644
+--- a/components/authentication/staging/kustomization.yaml
++++ b/components/authentication/staging/kustomization.yaml
+@@ -1,22 +1,4 @@
+-resources:
+-- everyone-can-view.yaml
+-- component-maintainer.yaml
+-- spi.yaml
+-- spi-vault-admin.yaml
+-- gitops.yaml
+-- gitops-component-maintainer.yaml
+-- release-team.yaml
+-- has.yaml
+-- build.yaml
+-- integration.yaml
+-- cluster-registration-maintainer.yaml
+-- group-sync/
+-- quality-dashboard.yaml
+-- dora-metrics.yaml
+-- test-team.yaml
+-- pact-broker.yaml
+-- internal-services.yaml
+-- pipeline-service-sre.yaml
+-
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++resources:
++  - ../base
+diff --git a/components/build-service/staging/external-secrets/kustomization.yaml b/components/build-service/base/external-secrets/kustomization.yaml
+similarity index 100%
+rename from components/build-service/staging/external-secrets/kustomization.yaml
+rename to components/build-service/base/external-secrets/kustomization.yaml
+diff --git a/components/build-service/staging/external-secrets/pipelines-as-code-secret.yaml b/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
+similarity index 100%
+rename from components/build-service/staging/external-secrets/pipelines-as-code-secret.yaml
+rename to components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
+diff --git a/components/build-service/production/kustomization.yaml b/components/build-service/production/kustomization.yaml
+new file mode 100644
+index 0000000..18c942f
+--- /dev/null
++++ b/components/build-service/production/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- ../base/external-secrets
++patches:
++  - path: pipelines-as-code-secret-patch.yaml
++    target:
++      name: pipelines-as-code-secret
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
+diff --git a/components/build-service/production/pipelines-as-code-secret-patch.yaml b/components/build-service/production/pipelines-as-code-secret-patch.yaml
+new file mode 100644
+index 0000000..8927426
+--- /dev/null
++++ b/components/build-service/production/pipelines-as-code-secret-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/build/build-service
+diff --git a/components/build-service/staging/kustomization.yaml b/components/build-service/staging/kustomization.yaml
+index cfc4432..479bc60 100644
+--- a/components/build-service/staging/kustomization.yaml
++++ b/components/build-service/staging/kustomization.yaml
+@@ -2,4 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- external-secrets
++- ../base/external-secrets
+diff --git a/components/build-templates/staging/external-secrets/kustomization.yaml b/components/build-templates/base/external-secrets/kustomization.yaml
+similarity index 100%
+rename from components/build-templates/staging/external-secrets/kustomization.yaml
+rename to components/build-templates/base/external-secrets/kustomization.yaml
+diff --git a/components/build-templates/staging/external-secrets/redhat-appstudio-user-workload.yaml b/components/build-templates/base/external-secrets/redhat-appstudio-user-workload.yaml
+similarity index 100%
+rename from components/build-templates/staging/external-secrets/redhat-appstudio-user-workload.yaml
+rename to components/build-templates/base/external-secrets/redhat-appstudio-user-workload.yaml
+diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml
+new file mode 100644
+index 0000000..0f36cad
+--- /dev/null
++++ b/components/build-templates/production/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - ../base/external-secrets
++patches:
++  - path: redhat-appstudio-user-workload.yaml
++    target:
++      name: redhat-appstudio-user-workload
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
+diff --git a/components/build-templates/production/redhat-appstudio-user-workload.yaml b/components/build-templates/production/redhat-appstudio-user-workload.yaml
+new file mode 100644
+index 0000000..009163b
+--- /dev/null
++++ b/components/build-templates/production/redhat-appstudio-user-workload.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/build/redhat-appstudio-user-workload
+diff --git a/components/build-templates/staging/kustomization.yaml b/components/build-templates/staging/kustomization.yaml
+index 8caa505..564d870 100644
+--- a/components/build-templates/staging/kustomization.yaml
++++ b/components/build-templates/staging/kustomization.yaml
+@@ -2,4 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - external-secrets
++  - ../base/external-secrets
+diff --git a/components/cluster-secret-store/staging/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+similarity index 100%
+rename from components/cluster-secret-store/staging/appsre-stonesoup-vault-secret-store.yaml
+rename to components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+diff --git a/components/cluster-secret-store/staging/appsre-vault-secret-store.yml b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
+similarity index 100%
+rename from components/cluster-secret-store/staging/appsre-vault-secret-store.yml
+rename to components/cluster-secret-store/base/appsre-vault-secret-store.yml
+diff --git a/components/cluster-secret-store/base/kustomization.yaml b/components/cluster-secret-store/base/kustomization.yaml
+new file mode 100644
+index 0000000..e00e631
+--- /dev/null
++++ b/components/cluster-secret-store/base/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - appsre-stonesoup-vault-secret-store.yaml
++  - appsre-vault-secret-store.yml
+diff --git a/components/cluster-secret-store/production/approle-id-patch.yaml b/components/cluster-secret-store/production/approle-id-patch.yaml
+new file mode 100644
+index 0000000..bb24a46
+--- /dev/null
++++ b/components/cluster-secret-store/production/approle-id-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/provider/vault/auth/appRole/roleId
++  value: 8ef732dc-177a-a940-ebd4-f25bd2607bd2
+diff --git a/components/cluster-secret-store/production/kustomization.yaml b/components/cluster-secret-store/production/kustomization.yaml
+new file mode 100644
+index 0000000..b533732
+--- /dev/null
++++ b/components/cluster-secret-store/production/kustomization.yaml
+@@ -0,0 +1,17 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++patches:
++  - path: approle-id-patch.yaml
++    target:
++      name: appsre-stonesoup-vault
++      kind: ClusterSecretStore
++      group: external-secrets.io
++      version: v1beta1
++  - path: approle-id-patch.yaml
++    target:
++      name: appsre-vault
++      kind: ClusterSecretStore
++      group: external-secrets.io
++      version: v1beta1
+diff --git a/components/cluster-secret-store/staging/kustomization.yaml b/components/cluster-secret-store/staging/kustomization.yaml
+index e00e631..27bb5cb 100644
+--- a/components/cluster-secret-store/staging/kustomization.yaml
++++ b/components/cluster-secret-store/staging/kustomization.yaml
+@@ -1,5 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - appsre-stonesoup-vault-secret-store.yaml
+-  - appsre-vault-secret-store.yml
++  - ../base
+diff --git a/components/dora-metrics/staging/external-secrets/exporters-secrets.yaml b/components/dora-metrics/base/external-secrets/exporters-secrets.yaml
+similarity index 100%
+rename from components/dora-metrics/staging/external-secrets/exporters-secrets.yaml
+rename to components/dora-metrics/base/external-secrets/exporters-secrets.yaml
+diff --git a/components/dora-metrics/staging/external-secrets/kustomization.yaml b/components/dora-metrics/base/external-secrets/kustomization.yaml
+similarity index 100%
+rename from components/dora-metrics/staging/external-secrets/kustomization.yaml
+rename to components/dora-metrics/base/external-secrets/kustomization.yaml
+diff --git a/components/dora-metrics/production/exporters-secrets-patch.yaml b/components/dora-metrics/production/exporters-secrets-patch.yaml
+new file mode 100644
+index 0000000..6b6f533
+--- /dev/null
++++ b/components/dora-metrics/production/exporters-secrets-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/qe/exporters-secret
+diff --git a/components/dora-metrics/production/kustomization.yaml b/components/dora-metrics/production/kustomization.yaml
+new file mode 100644
+index 0000000..4e51095
+--- /dev/null
++++ b/components/dora-metrics/production/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- ../base/external-secrets
++patches:
++  - path: exporters-secrets-patch.yaml
++    target:
++      name: exporters-secret
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
+diff --git a/components/dora-metrics/staging/kustomization.yaml b/components/dora-metrics/staging/kustomization.yaml
+index cfc4432..479bc60 100644
+--- a/components/dora-metrics/staging/kustomization.yaml
++++ b/components/dora-metrics/staging/kustomization.yaml
+@@ -2,4 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- external-secrets
++- ../base/external-secrets
+diff --git a/components/gitops/staging/base/external-secrets/gitops-service-postgres-rds-config.yaml b/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml
+similarity index 100%
+rename from components/gitops/staging/base/external-secrets/gitops-service-postgres-rds-config.yaml
+rename to components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml
+diff --git a/components/gitops/staging/base/external-secrets/kustomization.yaml b/components/gitops/base/external-secrets/kustomization.yaml
+similarity index 100%
+rename from components/gitops/staging/base/external-secrets/kustomization.yaml
+rename to components/gitops/base/external-secrets/kustomization.yaml
+diff --git a/components/gitops/production/base/kustomization.yaml b/components/gitops/production/base/kustomization.yaml
+new file mode 100644
+index 0000000..78f4716
+--- /dev/null
++++ b/components/gitops/production/base/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=6963dac78dbea949f9218e448c053fdde84759e5
++- ../../openshift-gitops
++- ../../base/external-secrets
++
++images:
++  - name: \${COMMON_IMAGE}
++    newName: quay.io/redhat-appstudio/gitops-service
++    newTag: 6963dac78dbea949f9218e448c053fdde84759e5
+diff --git a/components/gitops/production/stone-prd-m01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prd-m01/gitops-service-postgres-rds-config-path.yaml
+new file mode 100644
+index 0000000..16a20ed
+--- /dev/null
++++ b/components/gitops/production/stone-prd-m01/gitops-service-postgres-rds-config-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: TBA
+diff --git a/components/gitops/production/stone-prd-m01/kustomization.yaml b/components/gitops/production/stone-prd-m01/kustomization.yaml
+new file mode 100644
+index 0000000..92c671c
+--- /dev/null
++++ b/components/gitops/production/stone-prd-m01/kustomization.yaml
+@@ -0,0 +1,13 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- ../base
++
++patches:
++  - path: gitops-service-postgres-rds-config-path.yaml
++    target:
++      name: gitops-service-postgres-rds-config
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/gitops/production/stone-prd-rh01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/production/stone-prd-rh01/gitops-service-postgres-rds-config-path.yaml
+new file mode 100644
+index 0000000..16a20ed
+--- /dev/null
++++ b/components/gitops/production/stone-prd-rh01/gitops-service-postgres-rds-config-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: TBA
+diff --git a/components/gitops/production/stone-prd-rh01/kustomization.yaml b/components/gitops/production/stone-prd-rh01/kustomization.yaml
+new file mode 100644
+index 0000000..92c671c
+--- /dev/null
++++ b/components/gitops/production/stone-prd-rh01/kustomization.yaml
+@@ -0,0 +1,13 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- ../base
++
++patches:
++  - path: gitops-service-postgres-rds-config-path.yaml
++    target:
++      name: gitops-service-postgres-rds-config
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/gitops/staging/base/allow-argocd-to-manage.yaml b/components/gitops/staging/base/allow-argocd-to-manage.yaml
+deleted file mode 100644
+index 448c3d2..0000000
+--- a/components/gitops/staging/base/allow-argocd-to-manage.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+-metadata:
+-  name: grant-argocd
+-  namespace: gitops
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+\ No newline at end of file
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+index 3eb6369..78f4716 100644
+--- a/components/gitops/staging/base/kustomization.yaml
++++ b/components/gitops/staging/base/kustomization.yaml
+@@ -4,7 +4,7 @@ kind: Kustomization
+ resources:
+ - https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=6963dac78dbea949f9218e448c053fdde84759e5
+ - ../../openshift-gitops
+-- external-secrets
++- ../../base/external-secrets
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+diff --git a/components/has/staging/external-secrets/has-github-token.yaml b/components/has/base/external-secrets/has-github-token.yaml
+similarity index 100%
+rename from components/has/staging/external-secrets/has-github-token.yaml
+rename to components/has/base/external-secrets/has-github-token.yaml
+diff --git a/components/has/staging/external-secrets/kustomization.yaml b/components/has/base/external-secrets/kustomization.yaml
+similarity index 100%
+rename from components/has/staging/external-secrets/kustomization.yaml
+rename to components/has/base/external-secrets/kustomization.yaml
+diff --git a/components/has/production/has-github-token-patch.yaml b/components/has/production/has-github-token-patch.yaml
+new file mode 100644
+index 0000000..7970112
+--- /dev/null
++++ b/components/has/production/has-github-token-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/has/github-token
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+new file mode 100644
+index 0000000..2ce30e4
+--- /dev/null
++++ b/components/has/production/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - ../base/external-secrets
++patches:
++  - path: has-github-token-patch.yaml
++    target:
++      name: has-github-token
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index 8caa505..564d870 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -2,4 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - external-secrets
++  - ../base/external-secrets
+diff --git a/components/pipeline-service/staging/base/external-secrets/kustomization.yaml b/components/pipeline-service/base/external-secrets/kustomization.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/base/external-secrets/kustomization.yaml
+rename to components/pipeline-service/base/external-secrets/kustomization.yaml
+diff --git a/components/pipeline-service/staging/base/external-secrets/pipelines-as-code/kustomization.yaml b/components/pipeline-service/base/external-secrets/pipelines-as-code/kustomization.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/base/external-secrets/pipelines-as-code/kustomization.yaml
+rename to components/pipeline-service/base/external-secrets/pipelines-as-code/kustomization.yaml
+diff --git a/components/pipeline-service/staging/base/external-secrets/pipelines-as-code/pipelines-as-code-secret.yaml b/components/pipeline-service/base/external-secrets/pipelines-as-code/pipelines-as-code-secret.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/base/external-secrets/pipelines-as-code/pipelines-as-code-secret.yaml
+rename to components/pipeline-service/base/external-secrets/pipelines-as-code/pipelines-as-code-secret.yaml
+diff --git a/components/pipeline-service/staging/base/external-secrets/tekton-results/kustomization.yaml b/components/pipeline-service/base/external-secrets/tekton-results/kustomization.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/base/external-secrets/tekton-results/kustomization.yaml
+rename to components/pipeline-service/base/external-secrets/tekton-results/kustomization.yaml
+diff --git a/components/pipeline-service/staging/base/external-secrets/tekton-results/tekton-results-database.yaml b/components/pipeline-service/base/external-secrets/tekton-results/tekton-results-database.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/base/external-secrets/tekton-results/tekton-results-database.yaml
+rename to components/pipeline-service/base/external-secrets/tekton-results/tekton-results-database.yaml
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+new file mode 100644
+index 0000000..8f2c93f
+--- /dev/null
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -0,0 +1,23 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++# Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
++# See more information about this option, here: 
++# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types 
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++
++resources:
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=appstudio-staging
++  - ../../base/external-secrets
++
++components:
++  - ../../components/tekton-chains
++
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/production/base/pipelines-as-code-secret-path.yaml b/components/pipeline-service/production/base/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 0000000..7af9ce5
+--- /dev/null
++++ b/components/pipeline-service/production/base/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/github-app
+diff --git a/components/pipeline-service/production/stone-prd-m01/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/kustomization.yaml
+new file mode 100644
+index 0000000..b92396e
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/kustomization.yaml
+@@ -0,0 +1,11 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prd-m01/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prd-m01/tekton-results-database-secret-path.yaml
+new file mode 100644
+index 0000000..16a20ed
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/tekton-results-database-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: TBA
+diff --git a/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml
+new file mode 100644
+index 0000000..b92396e
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml
+@@ -0,0 +1,11 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prd-rh01/tekton-results-database-secret-path.yaml
+new file mode 100644
+index 0000000..16a20ed
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-rh01/tekton-results-database-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: TBA
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 66437a0..cc57079 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -9,7 +9,7 @@ commonAnnotations:
+ 
+ resources:
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=appstudio-staging
+-  - external-secrets
++  - ../../base/external-secrets
+ 
+ components:
+   - ../../components/tekton-chains
+diff --git a/components/spi/base/external-secrets/kustomization.yaml b/components/spi/base/external-secrets/kustomization.yaml
+new file mode 100644
+index 0000000..5724905
+--- /dev/null
++++ b/components/spi/base/external-secrets/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - spi-shared-configuration-file.yaml
++  - spi-vault-approle-spi-oauth.yaml
++  - spi-vault-approle-spi-operator.yaml
++namespace: spi-system
+diff --git a/components/spi/overlays/staging/base/spi-shared-configuration-file.yaml b/components/spi/base/external-secrets/spi-shared-configuration-file.yaml
+similarity index 100%
+rename from components/spi/overlays/staging/base/spi-shared-configuration-file.yaml
+rename to components/spi/base/external-secrets/spi-shared-configuration-file.yaml
+diff --git a/components/spi/overlays/staging/base/spi-vault-approle-spi-oauth.yaml b/components/spi/base/external-secrets/spi-vault-approle-spi-oauth.yaml
+similarity index 100%
+rename from components/spi/overlays/staging/base/spi-vault-approle-spi-oauth.yaml
+rename to components/spi/base/external-secrets/spi-vault-approle-spi-oauth.yaml
+diff --git a/components/spi/overlays/staging/base/spi-vault-approle-spi-operator.yaml b/components/spi/base/external-secrets/spi-vault-approle-spi-operator.yaml
+similarity index 100%
+rename from components/spi/overlays/staging/base/spi-vault-approle-spi-operator.yaml
+rename to components/spi/base/external-secrets/spi-vault-approle-spi-operator.yaml
+diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml
+new file mode 100644
+index 0000000..6287c92
+--- /dev/null
++++ b/components/spi/overlays/production/base/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../../base
++  - ../../../base/external-secrets
++namespace: spi-system
+diff --git a/components/spi/overlays/production/stone-prd-m01/config-patch.json b/components/spi/overlays/production/stone-prd-m01/config-patch.json
+new file mode 100644
+index 0000000..fd53f78
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-m01/config-patch.json
+@@ -0,0 +1,12 @@
++[
++  {
++    "op": "replace",
++    "path": "/data/VAULTHOST",
++    "value": "TBA"
++  },
++  {
++    "op": "replace",
++    "path": "/data/BASEURL",
++    "value": "TBA"
++  }
++]
+diff --git a/components/spi/overlays/production/stone-prd-m01/kustomization.yaml b/components/spi/overlays/production/stone-prd-m01/kustomization.yaml
+new file mode 100644
+index 0000000..13d72d7
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-m01/kustomization.yaml
+@@ -0,0 +1,33 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - ../base
++
++patches:
++  - target:
++      kind: ConfigMap
++      name: oauth-service-environment-config
++    path: oauth-service-config-patch.json
++  - target:
++      kind: ConfigMap
++      name: shared-environment-config
++    path: config-patch.json
++  - path: spi-shared-configuration-file-config-path.yaml
++    target:
++      name: spi-shared-configuration-file
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: spi-vault-approle-spi-oauth-config-path.yaml
++    target:
++      name: spi-vault-approle-spi-oauth
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: spi-vault-approle-spi-operator-config-path.yaml
++    target:
++      name: spi-vault-approle-spi-operator
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/spi/overlays/production/stone-prd-m01/oauth-service-config-patch.json b/components/spi/overlays/production/stone-prd-m01/oauth-service-config-patch.json
+new file mode 100644
+index 0000000..22def8c
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-m01/oauth-service-config-patch.json
+@@ -0,0 +1,7 @@
++[
++  {
++    "op": "add",
++    "path": "/data/API_SERVER",
++    "value": "TBA"
++  }
++]
+diff --git a/components/spi/overlays/production/stone-prd-m01/spi-shared-configuration-file-config-path.yaml b/components/spi/overlays/production/stone-prd-m01/spi-shared-configuration-file-config-path.yaml
+new file mode 100644
+index 0000000..58b57b9
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-m01/spi-shared-configuration-file-config-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/spi/m01/shared-configuration-file
+diff --git a/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-oauth-config-path.yaml b/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-oauth-config-path.yaml
+new file mode 100644
+index 0000000..483244f
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-oauth-config-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/spi/m01/vault-approle-spi-oauth
+diff --git a/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-operator-config-path.yaml b/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-operator-config-path.yaml
+new file mode 100644
+index 0000000..4cc2cf5
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-operator-config-path.yaml
+@@ -0,0 +1,5 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/spi/m01/vault-approle-spi-operator
++
+diff --git a/components/spi/overlays/production/stone-prd-rh01/config-patch.json b/components/spi/overlays/production/stone-prd-rh01/config-patch.json
+new file mode 100644
+index 0000000..fd53f78
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-rh01/config-patch.json
+@@ -0,0 +1,12 @@
++[
++  {
++    "op": "replace",
++    "path": "/data/VAULTHOST",
++    "value": "TBA"
++  },
++  {
++    "op": "replace",
++    "path": "/data/BASEURL",
++    "value": "TBA"
++  }
++]
+diff --git a/components/spi/overlays/production/stone-prd-rh01/kustomization.yaml b/components/spi/overlays/production/stone-prd-rh01/kustomization.yaml
+new file mode 100644
+index 0000000..13d72d7
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-rh01/kustomization.yaml
+@@ -0,0 +1,33 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - ../base
++
++patches:
++  - target:
++      kind: ConfigMap
++      name: oauth-service-environment-config
++    path: oauth-service-config-patch.json
++  - target:
++      kind: ConfigMap
++      name: shared-environment-config
++    path: config-patch.json
++  - path: spi-shared-configuration-file-config-path.yaml
++    target:
++      name: spi-shared-configuration-file
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: spi-vault-approle-spi-oauth-config-path.yaml
++    target:
++      name: spi-vault-approle-spi-oauth
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: spi-vault-approle-spi-operator-config-path.yaml
++    target:
++      name: spi-vault-approle-spi-operator
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/spi/overlays/production/stone-prd-rh01/oauth-service-config-patch.json b/components/spi/overlays/production/stone-prd-rh01/oauth-service-config-patch.json
+new file mode 100644
+index 0000000..22def8c
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-rh01/oauth-service-config-patch.json
+@@ -0,0 +1,7 @@
++[
++  {
++    "op": "add",
++    "path": "/data/API_SERVER",
++    "value": "TBA"
++  }
++]
+diff --git a/components/spi/overlays/production/stone-prd-rh01/spi-shared-configuration-file-config-path.yaml b/components/spi/overlays/production/stone-prd-rh01/spi-shared-configuration-file-config-path.yaml
+new file mode 100644
+index 0000000..7470108
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-rh01/spi-shared-configuration-file-config-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/spi/rh01/shared-configuration-file
+diff --git a/components/spi/overlays/production/stone-prd-rh01/spi-vault-approle-spi-oauth-config-path.yaml b/components/spi/overlays/production/stone-prd-rh01/spi-vault-approle-spi-oauth-config-path.yaml
+new file mode 100644
+index 0000000..c6c1aea
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-rh01/spi-vault-approle-spi-oauth-config-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/spi/rh01/vault-approle-spi-oauth
+diff --git a/components/spi/overlays/production/stone-prd-rh01/spi-vault-approle-spi-operator-config-path.yaml b/components/spi/overlays/production/stone-prd-rh01/spi-vault-approle-spi-operator-config-path.yaml
+new file mode 100644
+index 0000000..36f2f3a
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-rh01/spi-vault-approle-spi-operator-config-path.yaml
+@@ -0,0 +1,5 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/spi/rh01/vault-approle-spi-operator
++
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index 6116475..6287c92 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -2,7 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../../base
+-  - spi-shared-configuration-file.yaml
+-  - spi-vault-approle-spi-oauth.yaml
+-  - spi-vault-approle-spi-operator.yaml
++  - ../../../base/external-secrets
+ namespace: spi-system
+diff --git a/components/sprayproxy/allow-argocd-to-manage.yaml b/components/sprayproxy/allow-argocd-to-manage.yaml
+deleted file mode 100644
+index 25d1d41..0000000
+--- a/components/sprayproxy/allow-argocd-to-manage.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+-metadata:
+-  name: grant-argocd
+-  namespace: sprayproxy
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: admin
+-subjects:
+-- kind: ServiceAccount
+-  name: openshift-gitops-argocd-application-controller
+-  namespace: openshift-gitops
+diff --git a/components/sprayproxy/kustomization.yaml b/components/sprayproxy/base/kustomization.yaml
+similarity index 77%
+rename from components/sprayproxy/kustomization.yaml
+rename to components/sprayproxy/base/kustomization.yaml
+index 2e2dae4..382bdee 100644
+--- a/components/sprayproxy/kustomization.yaml
++++ b/components/sprayproxy/base/kustomization.yaml
+@@ -10,10 +10,3 @@ images:
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+-
+-patches:
+-  - path: add-backends.yml
+-    target:
+-      name: sprayproxy
+-      group: apps
+-      version: v1
+diff --git a/components/sprayproxy/servicemonitor-rbacproxy/auth-proxy-clusterrolebinding.yaml b/components/sprayproxy/base/servicemonitor-rbacproxy/auth-proxy-clusterrolebinding.yaml
+similarity index 100%
+rename from components/sprayproxy/servicemonitor-rbacproxy/auth-proxy-clusterrolebinding.yaml
+rename to components/sprayproxy/base/servicemonitor-rbacproxy/auth-proxy-clusterrolebinding.yaml
+diff --git a/components/sprayproxy/servicemonitor-rbacproxy/kustomization.yaml b/components/sprayproxy/base/servicemonitor-rbacproxy/kustomization.yaml
+similarity index 100%
+rename from components/sprayproxy/servicemonitor-rbacproxy/kustomization.yaml
+rename to components/sprayproxy/base/servicemonitor-rbacproxy/kustomization.yaml
+diff --git a/components/sprayproxy/servicemonitor-rbacproxy/servicemonitor.yaml b/components/sprayproxy/base/servicemonitor-rbacproxy/servicemonitor.yaml
+similarity index 100%
+rename from components/sprayproxy/servicemonitor-rbacproxy/servicemonitor.yaml
+rename to components/sprayproxy/base/servicemonitor-rbacproxy/servicemonitor.yaml
+diff --git a/components/sprayproxy/production/add-backends.yml b/components/sprayproxy/production/add-backends.yml
+new file mode 100644
+index 0000000..ce5ded1
+--- /dev/null
++++ b/components/sprayproxy/production/add-backends.yml
+@@ -0,0 +1,6 @@
++---
++- op: add
++  path: /spec/template/spec/containers/0/env/0/value
++  value: >
++      https://pipelines-as-code-controller-pipelines-as-code.apps.stone-prd-m01.84db.p1.openshiftapps.com
++      https://pipelines-as-code-controller-pipelines-as-code.apps.stone-prd-rh01.pg1f.p1.openshiftapps.com
+diff --git a/components/sprayproxy/production/kustomization.yaml b/components/sprayproxy/production/kustomization.yaml
+new file mode 100644
+index 0000000..a88cd6b
+--- /dev/null
++++ b/components/sprayproxy/production/kustomization.yaml
+@@ -0,0 +1,10 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++patches:
++  - path: add-backends.yml
++    target:
++      name: sprayproxy
++      group: apps
++      version: v1
+diff --git a/components/sprayproxy/add-backends.yml b/components/sprayproxy/staging/add-backends.yml
+similarity index 100%
+rename from components/sprayproxy/add-backends.yml
+rename to components/sprayproxy/staging/add-backends.yml
+diff --git a/components/sprayproxy/staging/kustomization.yaml b/components/sprayproxy/staging/kustomization.yaml
+new file mode 100644
+index 0000000..a88cd6b
+--- /dev/null
++++ b/components/sprayproxy/staging/kustomization.yaml
+@@ -0,0 +1,10 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++patches:
++  - path: add-backends.yml
++    target:
++      name: sprayproxy
++      group: apps
++      version: v1

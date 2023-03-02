@@ -1,0 +1,35 @@
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index 12e39d2..24bb54b 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -11,7 +11,6 @@ resources:
+ - integration.yaml
+ - cluster-registration-maintainer.yaml
+ - group-sync/
+-- quality-dashboard.yaml
+ - dora-metrics.yaml
+ - test-team.yaml
+ - pact-broker.yaml
+diff --git a/components/quality-dashboard/base/rbac/kustomization.yaml b/components/quality-dashboard/base/rbac/kustomization.yaml
+new file mode 100644
+index 0000000..005f8b7
+--- /dev/null
++++ b/components/quality-dashboard/base/rbac/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - quality-dashboard.yaml
+diff --git a/components/authentication/base/quality-dashboard.yaml b/components/quality-dashboard/base/rbac/quality-dashboard.yaml
+similarity index 100%
+rename from components/authentication/base/quality-dashboard.yaml
+rename to components/quality-dashboard/base/rbac/quality-dashboard.yaml
+diff --git a/components/quality-dashboard/staging/kustomization.yaml b/components/quality-dashboard/staging/kustomization.yaml
+index cfc4432..6f10c10 100644
+--- a/components/quality-dashboard/staging/kustomization.yaml
++++ b/components/quality-dashboard/staging/kustomization.yaml
+@@ -3,3 +3,4 @@ kind: Kustomization
+ resources:
+ - ../base
+ - external-secrets
++- ../base/rbac

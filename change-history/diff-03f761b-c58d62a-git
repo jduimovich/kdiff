@@ -1,0 +1,22 @@
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index 552a4fe..2996b76 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -5,6 +5,7 @@ resources:
+   - ../../base/host
+   - ../../base/member
+   - ../../base/all-clusters
++  - ../../base/tekton-ci
+ namespace: argocd
+ patches:
+   - path: production-overlay-patch.yaml
+diff --git a/argo-cd-apps/overlays/staging/kustomization.yaml b/argo-cd-apps/overlays/staging/kustomization.yaml
+index 80085f6..dfb3739 100644
+--- a/argo-cd-apps/overlays/staging/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging/kustomization.yaml
+@@ -5,5 +5,4 @@ resources:
+   - ../../base/host
+   - ../../base/member
+   - ../../base/all-clusters
+-  - ../../base/tekton-ci
+   - ../../base/quality-dashboard

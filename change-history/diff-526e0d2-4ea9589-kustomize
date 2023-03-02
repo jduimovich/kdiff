@@ -1,0 +1,5 @@
+diff -r ../kustomized-cache/tag-4ea9589/components/integration/kustomize.out ../kustomized-cache/tag-526e0d2/components/integration/kustomize.out
+1024c1024
+<         image: quay.io/redhat-appstudio/integration-service:14a0355396cafcd3ee51c5385eb0094f8866979f
+---
+>         image: quay.io/redhat-appstudio/integration-service:464ba9a20822fa69afa71a76f72cb6b678cae753

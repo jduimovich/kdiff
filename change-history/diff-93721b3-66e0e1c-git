@@ -1,0 +1,24 @@
+diff --git a/components/quality-dashboard/base/backend/kustomization.yaml b/components/quality-dashboard/base/backend/kustomization.yaml
+index 0f244bd..a575191 100644
+--- a/components/quality-dashboard/base/backend/kustomization.yaml
++++ b/components/quality-dashboard/base/backend/kustomization.yaml
+@@ -8,4 +8,4 @@ kind: Kustomization
+ images:
+   - name: quay.io/redhat-appstudio/quality-dashboard-backend
+     newName: quay.io/redhat-appstudio/quality-dashboard-backend
+-    newTag: dea0b94a906b57aa8de117296bc9d5c7946060d5
+\ No newline at end of file
++    newTag: 00b4fcbfee90cf4edb5eb332467648dfed031ad3
+\ No newline at end of file
+diff --git a/components/quality-dashboard/base/frontend/kustomization.yaml b/components/quality-dashboard/base/frontend/kustomization.yaml
+index 5ff6179..e26c7ff 100644
+--- a/components/quality-dashboard/base/frontend/kustomization.yaml
++++ b/components/quality-dashboard/base/frontend/kustomization.yaml
+@@ -12,4 +12,4 @@ configMapGenerator:
+ images:
+   - name: quay.io/redhat-appstudio/quality-dashboard-frontend
+     newName: quay.io/redhat-appstudio/quality-dashboard-frontend
+-    newTag: dea0b94a906b57aa8de117296bc9d5c7946060d5
+\ No newline at end of file
++    newTag: 00b4fcbfee90cf4edb5eb332467648dfed031ad3
+\ No newline at end of file

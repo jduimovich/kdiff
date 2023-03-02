@@ -1,5 +1,0 @@
-diff -r ../kustomized-cache/tag-4d753c9/components/enterprise-contract/kustomize.out ../kustomized-cache/tag-92e054e/components/enterprise-contract/kustomize.out
-211c211
-<   ec_data_source: oci::https://quay.io/hacbs-contract/ec-policy-data:git-a3ca9be@sha256:d548e0808348c017782ae87920c94d45ad7117e0e630b5b991c8df557c22a844
----
->   ec_data_source: oci::https://quay.io/hacbs-contract/ec-policy-data:git-68f0cb6@sha256:02192f729b75c671abdb4455dbb4f689c79dfb3c85fae89891f2b68eecb64959

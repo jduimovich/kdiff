@@ -1,0 +1,20 @@
+diff --git a/docs/development/deployment.md b/docs/development/deployment.md
+index be61b9c..8568c6c 100644
+--- a/docs/development/deployment.md
++++ b/docs/development/deployment.md
+@@ -30,7 +30,7 @@ To enable development for a team or individual to test changes on your own clust
+ 
+ There are a set of scripts that help with this, and minimize the changes needed in your forks.
+ 
+-The [development configuration](../../argo-cd-apps/overlays/development) includes a kustomize overlay that can redirect the default components individual repositories to your fork.
++The [development configuration](https://github.com/redhat-appstudio/infra-deployments/tree/main/argo-cd-apps/overlays/development) includes a kustomize overlay that can redirect the default components individual repositories to your fork.
+ The script also supports branches automatically. If you work in a checked out branch, each of the components in the overlays will mapped to that branch by setting `targetRevision:`.
+ 
+ Preview mode works in a feature branch, apply script which creates new preview branch and create additional commit with customization.
+@@ -62,4 +62,4 @@ Note running these scripts in a clone repo will have no effect as the repo will
+ 
+ ## Optional: OpenShift Local Post-Bootstrap Configuration
+ 
+-Even with 6 CPU cores, you will need to reduce the CPU resource requests for each StoneSoup application. Either run `./hack/reduce-gitops-cpu-requests.sh` which will set resources.requests.cpu values to 50m or use `kubectl edit argocd/openshift-gitops -n openshift-gitops` to reduce the values to some other value. More details are in the FAQ below.
+\ No newline at end of file
++Even with 6 CPU cores, you will need to reduce the CPU resource requests for each StoneSoup application. Either run `./hack/reduce-gitops-cpu-requests.sh` which will set resources.requests.cpu values to 50m or use `kubectl edit argocd/openshift-gitops -n openshift-gitops` to reduce the values to some other value. More details are in the FAQ below.

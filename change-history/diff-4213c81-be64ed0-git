@@ -1,0 +1,61 @@
+diff --git a/components/spi/overlays/production/stone-prd-m01/config-patch.json b/components/spi/overlays/production/stone-prd-m01/config-patch.json
+index fd53f78..21a2bf3 100644
+--- a/components/spi/overlays/production/stone-prd-m01/config-patch.json
++++ b/components/spi/overlays/production/stone-prd-m01/config-patch.json
+@@ -2,11 +2,11 @@
+   {
+     "op": "replace",
+     "path": "/data/VAULTHOST",
+-    "value": "TBA"
++    "value": "https://vault-spi-vault.apps.stone-prd-m01.84db.p1.openshiftapps.com"
+   },
+   {
+     "op": "replace",
+     "path": "/data/BASEURL",
+-    "value": "TBA"
++    "value": "https://spi-oauth-spi-system.apps.stone-prd-m01.84db.p1.openshiftapps.com"
+   }
+ ]
+diff --git a/components/spi/overlays/production/stone-prd-m01/oauth-service-config-patch.json b/components/spi/overlays/production/stone-prd-m01/oauth-service-config-patch.json
+index 22def8c..ff33389 100644
+--- a/components/spi/overlays/production/stone-prd-m01/oauth-service-config-patch.json
++++ b/components/spi/overlays/production/stone-prd-m01/oauth-service-config-patch.json
+@@ -2,6 +2,6 @@
+   {
+     "op": "add",
+     "path": "/data/API_SERVER",
+-    "value": "TBA"
++    "value": "https://api-toolchain-host-operator.apps.stone-prd-host1.wdlc.p1.openshiftapps.com"
+   }
+ ]
+diff --git a/components/spi/overlays/production/stone-prd-m01/spi-shared-configuration-file-config-path.yaml b/components/spi/overlays/production/stone-prd-m01/spi-shared-configuration-file-config-path.yaml
+index 58b57b9..0a755f6 100644
+--- a/components/spi/overlays/production/stone-prd-m01/spi-shared-configuration-file-config-path.yaml
++++ b/components/spi/overlays/production/stone-prd-m01/spi-shared-configuration-file-config-path.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: staging/spi/m01/shared-configuration-file
++  value: production/spi/m01/shared-configuration-file
+diff --git a/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-oauth-config-path.yaml b/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-oauth-config-path.yaml
+index 483244f..07eff4e 100644
+--- a/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-oauth-config-path.yaml
++++ b/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-oauth-config-path.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: staging/spi/m01/vault-approle-spi-oauth
++  value: production/spi/m01/vault-approle-spi-oauth
+diff --git a/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-operator-config-path.yaml b/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-operator-config-path.yaml
+index 4cc2cf5..09a4946 100644
+--- a/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-operator-config-path.yaml
++++ b/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-operator-config-path.yaml
+@@ -1,5 +1,5 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: staging/spi/m01/vault-approle-spi-operator
++  value: production/spi/m01/vault-approle-spi-operator
+ 

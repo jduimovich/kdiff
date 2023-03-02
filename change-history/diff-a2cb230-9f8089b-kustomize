@@ -1,0 +1,12 @@
+diff -r ../kustomized-cache/tag-9f8089b/components/has/staging/kustomize.out ../kustomized-cache/tag-a2cb230/components/has/staging/kustomize.out
+671,676d670
+<         - name: CDQ_GITHUB_TOKEN
+<           valueFrom:
+<             secretKeyRef:
+<               key: cdq-token
+<               name: has-github-token
+<               optional: true
+683c677
+<         image: quay.io/redhat-appstudio/application-service:7c9be3eb116b9a58b962142cf1efb8470c5ab77b
+---
+>         image: quay.io/redhat-appstudio/application-service:2c4594d2b793e50a6203208e920d16bab536446f

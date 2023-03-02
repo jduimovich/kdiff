@@ -1,0 +1,10 @@
+diff --git a/components/monitoring/grafana/base/managed-gitops/kustomization.yaml b/components/monitoring/grafana/base/managed-gitops/kustomization.yaml
+index 90c0260..5562d2e 100644
+--- a/components/monitoring/grafana/base/managed-gitops/kustomization.yaml
++++ b/components/monitoring/grafana/base/managed-gitops/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/base/monitoring/grafana-dashboards/stonesoup-new?ref=d2480e7abbe50e4207b4ef9368e481a9329a3a46
++- https://github.com/redhat-appstudio/managed-gitops/manifests/base/monitoring/grafana-dashboards/stonesoup?ref=d2480e7abbe50e4207b4ef9368e481a9329a3a46

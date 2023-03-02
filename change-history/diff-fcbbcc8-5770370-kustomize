@@ -1,0 +1,11 @@
+diff -r ../kustomized-cache/tag-5770370/components/tekton-ci/staging/kustomize.out ../kustomized-cache/tag-fcbbcc8/components/tekton-ci/staging/kustomize.out
+232,240d231
+<   name: o11y
+< spec:
+<   url: https://github.com/redhat-appstudio/o11y
+< ---
+< apiVersion: pipelinesascode.tekton.dev/v1alpha1
+< kind: Repository
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

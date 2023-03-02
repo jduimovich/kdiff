@@ -1,0 +1,91 @@
+diff --git a/components/quality-dashboard/backend/kustomization.yaml b/components/quality-dashboard/backend/kustomization.yaml
+index 56199a7..f0cfa42 100644
+--- a/components/quality-dashboard/backend/kustomization.yaml
++++ b/components/quality-dashboard/backend/kustomization.yaml
+@@ -1,5 +1,5 @@
+ resources:
+-- https://github.com/redhat-appstudio/quality-dashboard/backend/deploy/base?ref=132f37b89595331df68e6e23981424d7eb04db0f
++- https://github.com/redhat-appstudio/quality-dashboard/backend/deploy/base?ref=b124604afa730718b2dbe80e1d3132a67764fb7f
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+@@ -8,4 +8,4 @@ kind: Kustomization
+ images:
+   - name: quay.io/redhat-appstudio/quality-dashboard-backend
+     newName: quay.io/redhat-appstudio/quality-dashboard-backend
+-    newTag: 132f37b89595331df68e6e23981424d7eb04db0f
+\ No newline at end of file
++    newTag: b124604afa730718b2dbe80e1d3132a67764fb7f
+\ No newline at end of file
+diff --git a/components/quality-dashboard/frontend/kustomization.yaml b/components/quality-dashboard/frontend/kustomization.yaml
+index 53ad2d7..e6355ca 100644
+--- a/components/quality-dashboard/frontend/kustomization.yaml
++++ b/components/quality-dashboard/frontend/kustomization.yaml
+@@ -1,5 +1,5 @@
+ resources:
+-- https://github.com/redhat-appstudio/quality-dashboard/frontend/deploy/base?ref=132f37b89595331df68e6e23981424d7eb04db0f
++- https://github.com/redhat-appstudio/quality-dashboard/frontend/deploy/base?ref=b124604afa730718b2dbe80e1d3132a67764fb7f
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+@@ -12,4 +12,4 @@ configMapGenerator:
+ images:
+   - name: quay.io/redhat-appstudio/quality-dashboard-frontend
+     newName: quay.io/redhat-appstudio/quality-dashboard-frontend
+-    newTag: 132f37b89595331df68e6e23981424d7eb04db0f
+\ No newline at end of file
++    newTag: b124604afa730718b2dbe80e1d3132a67764fb7f
+\ No newline at end of file
+diff --git a/docs/deployment/stage.md b/docs/deployment/stage.md
+index 09197db..e039293 100644
+--- a/docs/deployment/stage.md
++++ b/docs/deployment/stage.md
+@@ -4,11 +4,11 @@ title: Staging Environment
+ 
+ Currently all the components are deployed to a single cluster using ArgoCD.
+ Components are declared using [ArgoCD Applications](../../argo-cd-apps/base/), and synced periodically by it to
+-the Staging cluster.  
++the Staging cluster.
+ 
+ Having access to the staging cluster and ArgoCD can help a component maintainer
+ ensuring its component were properly deployed and debug it in cases they are not functioning properly,
+-for example, by accessing the logs of of the component's pods.  
++for example, by accessing the logs of of the component's pods.
+ 
+ If you are not a component maintainer, you probably won't need
+ access to the staging cluster.
+@@ -17,7 +17,7 @@ access to the staging cluster.
+ 
+ ### Getting Permissions
+ 
+-In order to connect to the staging cluster you should be part of the 
++In order to connect to the staging cluster you should be part of the
+ [stage](https://github.com/orgs/redhat-appstudio-sre/teams/stage) team in [redhat-appstudio-sre](https://github.com/redhat-appstudio-sre) organization.
+ 
+ For getting an invite for the team, please send a request on [Slack](https://coreos.slack.com/archives/C04F4NE15U1)
+diff --git a/docs/development/pre.md b/docs/development/pre.md
+index 3c9ad23..5c5c104 100644
+--- a/docs/development/pre.md
++++ b/docs/development/pre.md
+@@ -6,7 +6,7 @@ title: Prerequisites
+ 
+ The prerequisites are:
+ 
+-- You must have the following tools install: 
++- You must have the following tools install:
+   - `kubectl` - that matches your cluster version.
+   - `oc` - that matches your cluster version.
+   - `jq` >= `1.6`
+diff --git a/docs/introduction/about.md b/docs/introduction/about.md
+index 8af27d8..ac1ad10 100644
+--- a/docs/introduction/about.md
++++ b/docs/introduction/about.md
+@@ -2,6 +2,6 @@
+ title: StoneSoup Infrastructure Deployments
+ ---
+ 
+-Welcome to **StoneSoup Infrastructure Deployments** documentation!  
++Welcome to **StoneSoup Infrastructure Deployments** documentation!
+ 
+ In the next pages you'll learn how to deploy, test and develop StoneSoup!
+\ No newline at end of file

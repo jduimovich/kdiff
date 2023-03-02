@@ -1,0 +1,54 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/monitoring-workload-prometheus/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/monitoring-workload-prometheus/kustomization.yaml
+index db1ac77..f337ee3 100644
+--- a/argo-cd-apps/base/member/infra-deployments/monitoring-workload-prometheus/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/monitoring-workload-prometheus/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ resources:
+ - monitoring-workload-prometheus.yaml
+ components:
+-  - ../../../../k-components/deploy-to-member-cluster
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml b/argo-cd-apps/base/member/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
+index 8ce21c8..acbb891 100644
+--- a/argo-cd-apps/base/member/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
+@@ -4,14 +4,24 @@ metadata:
+   name: monitoring-workload-prometheus
+ spec:
+   generators:
+-    - clusters: {}
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/monitoring/prometheus
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
+   template:
+     metadata:
+       name: monitoring-workload-prometheus-{{nameNormalized}}
+     spec:
+       project: default
+       source:
+-        path: components/monitoring/prometheus/base
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index ed23a52..552a4fe 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -57,3 +57,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: sprayproxy
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: monitoring-workload-prometheus

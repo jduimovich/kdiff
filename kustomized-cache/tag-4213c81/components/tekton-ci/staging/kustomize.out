@@ -1,0 +1,270 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    operator.tekton.dev/prune.skip: "true"
+  name: tekton-ci
+---
+apiVersion: v1
+imagePullSecrets:
+- name: tekton-ci-push-secret
+kind: ServiceAccount
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: pipeline
+secrets:
+- name: tekton-ci-push-secret
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: tekton-ci-maintainers
+  namespace: tekton-ci
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: sbose78
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: Michkov
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: psturc
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: jinqi7
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
+  name: infra-deployments-pr-creator
+  namespace: tekton-ci
+spec:
+  dataFrom:
+  - extract:
+      key: staging/build/infra-deployments-pr-creator
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: infra-deployments-pr-creator
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "1"
+  name: tekton-ci-push-secret
+  namespace: tekton-ci
+spec:
+  dataFrom:
+  - extract:
+      key: staging/build/tekton-ci
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: tekton-ci-push-secret
+    template:
+      data:
+        .dockerconfigjson: '{{ .config }}'
+      engineVersion: v2
+      type: kubernetes.io/dockerconfigjson
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: application-api
+spec:
+  url: https://github.com/redhat-appstudio/application-api
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: application-service
+spec:
+  url: https://github.com/redhat-appstudio/application-service
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: build-definitions
+spec:
+  url: https://github.com/redhat-appstudio/build-definitions
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: build-service
+spec:
+  url: https://github.com/redhat-appstudio/build-service
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: e2e-tests
+spec:
+  url: https://github.com/redhat-appstudio/e2e-tests
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: ec-cli
+spec:
+  url: https://github.com/hacbs-contract/ec-cli
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: ec-golden-image
+spec:
+  url: https://github.com/hacbs-contract/golden-container
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: enterprise-contract
+spec:
+  url: https://github.com/hacbs-contract/enterprise-contract-controller
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: gitops
+spec:
+  url: https://github.com/redhat-appstudio/managed-gitops
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: gitops-repo-pruner
+spec:
+  url: https://github.com/redhat-appstudio/gitops-repo-pruner
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: image-controller
+spec:
+  url: https://github.com/redhat-appstudio/image-controller
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: integration-service
+spec:
+  url: https://github.com/redhat-appstudio/integration-service
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: internal-services
+spec:
+  url: https://github.com/redhat-appstudio/internal-services
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: jvm-build-service
+spec:
+  url: https://github.com/redhat-appstudio/jvm-build-service
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: jvm-build-service-builder-images
+spec:
+  url: https://github.com/redhat-appstudio/jvm-build-service-builder-images
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: quality-dashboard
+spec:
+  url: https://github.com/redhat-appstudio/quality-dashboard
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: release-service
+spec:
+  url: https://github.com/redhat-appstudio/release-service
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: service-provider-integration
+spec:
+  url: https://github.com/redhat-appstudio/service-provider-integration-operator
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: sprayproxy
+spec:
+  url: https://github.com/redhat-appstudio/sprayproxy
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: tekton-results
+spec:
+  url: https://github.com/openshift-pipelines/tektoncd-results

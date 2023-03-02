@@ -1,0 +1,46 @@
+diff -r ../kustomized-cache/tag-464feb1/components/pipeline-service/staging/stone-stg-m01/kustomize.out ../kustomized-cache/tag-02bc30d/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+2392,2412d2391
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "1"
+<   name: tekton-results-s3
+<   namespace: tekton-results
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-staging-plnsvc-s3
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: tekton-results-s3
+< ---
+diff -r ../kustomized-cache/tag-464feb1/components/pipeline-service/staging/stone-stg-rh01/kustomize.out ../kustomized-cache/tag-02bc30d/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+2392,2412d2391
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "1"
+<   name: tekton-results-s3
+<   namespace: tekton-results
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-staging-plnsvc-s3
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: tekton-results-s3
+< ---

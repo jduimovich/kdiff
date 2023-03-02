@@ -1,0 +1,11 @@
+diff --git a/components/dev-sso/keycloak-realm.yaml b/components/dev-sso/keycloak-realm.yaml
+index 60fc29b..1eb0deb 100644
+--- a/components/dev-sso/keycloak-realm.yaml
++++ b/components/dev-sso/keycloak-realm.yaml
+@@ -36,3 +36,6 @@ spec:
+         firstName: user1
+         id: user1
+         username: user1
++        clientRoles:
++          realm-management:
++            - "manage-users"

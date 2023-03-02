@@ -1,0 +1,45 @@
+diff --git a/argo-cd-apps/base/host/sprayproxy/kustomization.yaml b/argo-cd-apps/base/host/sprayproxy/kustomization.yaml
+index 285b6de..1aece4f 100644
+--- a/argo-cd-apps/base/host/sprayproxy/kustomization.yaml
++++ b/argo-cd-apps/base/host/sprayproxy/kustomization.yaml
+@@ -2,3 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - sprayproxy.yaml
++components:
++  - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/host/sprayproxy/sprayproxy.yaml b/argo-cd-apps/base/host/sprayproxy/sprayproxy.yaml
+index c164eeb..90e17c9 100644
+--- a/argo-cd-apps/base/host/sprayproxy/sprayproxy.yaml
++++ b/argo-cd-apps/base/host/sprayproxy/sprayproxy.yaml
+@@ -14,7 +14,7 @@ spec:
+       source:
+         path: components/sprayproxy
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+-        targetRevision: multi-cluster
++        targetRevision: main
+       destination:
+         namespace: sprayproxy
+         server: '{{server}}'
+diff --git a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/application-patch.yaml b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/application-patch.yaml
+index ab5803d..fde9d2f 100644
+--- a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/application-patch.yaml
++++ b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/application-patch.yaml
+@@ -4,4 +4,4 @@
+   value: https://github.com/redhat-appstudio/infra-deployments.git
+ - op: replace
+   path: /spec/source/targetRevision
+-  value: multi-cluster
+\ No newline at end of file
++  value: main
+diff --git a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/application-set-patch.yaml b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/application-set-patch.yaml
+index e9ac0c6..0870134 100644
+--- a/argo-cd-apps/k-components/inject-infra-deployments-repo-details/application-set-patch.yaml
++++ b/argo-cd-apps/k-components/inject-infra-deployments-repo-details/application-set-patch.yaml
+@@ -4,4 +4,4 @@
+   value: https://github.com/redhat-appstudio/infra-deployments.git
+ - op: replace
+   path: /spec/template/spec/source/targetRevision
+-  value: multi-cluster
+\ No newline at end of file
++  value: main

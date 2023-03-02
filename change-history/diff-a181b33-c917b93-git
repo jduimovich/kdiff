@@ -1,0 +1,19 @@
+diff --git a/components/enterprise-contract/default-ecp.yaml b/components/enterprise-contract/default-ecp.yaml
+index fdb7f58..f9a5586 100644
+--- a/components/enterprise-contract/default-ecp.yaml
++++ b/components/enterprise-contract/default-ecp.yaml
+@@ -20,13 +20,7 @@ spec:
+       #exclude: []
+       #include: ["*"]
+       #
+-  # TODO: public key is copied from components/pipeline-service/public/tekton-chains-signing-secret.pub
+-  # until https://issues.redhat.com/browse/HACBS-1660 is in place.
+-  publicKey: |-
+-    -----BEGIN PUBLIC KEY-----
+-    MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEODgxyIz09vBqJlXXzjp/X2h17WIt
+-    jCVQhnDYVWHvXhw6rgqGeg6NTUxIEhRQqQZaF9mcBotHkuYGJfYZbai+FA==
+-    -----END PUBLIC KEY-----
++  publicKey: k8s://tekton-chains/public-key
+   sources:
+     - name: Default Policies
+       data:
