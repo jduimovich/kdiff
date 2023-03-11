@@ -9,7 +9,7 @@ fi
 
 INFRA=$ROOT/infra-deployments 
 
-SUMMARY=$ROOT/summary.md
+SUMMARY=$ROOT/docs/summary.md
 COMPARE_DIR=$ROOT/change-history
  
 echo "# kustomize changes tracked by commits "> $SUMMARY 
