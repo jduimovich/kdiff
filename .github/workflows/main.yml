@@ -1,9 +1,27 @@
-on:
+name: Show Commit History 
+on: 
   schedule:
     - cron: '0 * * * *' 
 jobs:
-  compute_diff:
-    runs-on: ubuntu-latest
+  compute_diff: 
+    name: Build and Push Images
+    runs-on: ubuntu-20.04
     steps:
-      - name: Show Commit History   
-        run: echo "This step will always run"
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '1'            
+      - name: Update
+        run: |
+          bash  ./hack/bootstrap-last-100-commits      
+          bash  ./hack/prettyprint   
+      - name: Cleanup
+        run: |
+          rm -rf infra-deployments
+      - name: Direct Push Update 
+        run: |
+            echo "Direct Push:"
+            git config --global user.name "Auto-Push[bot]"
+            git config --global user.email "auto-push@users.noreply.github.com"
+            git add -A
+            git commit -m "Direct Push to Repo"
+            git push
