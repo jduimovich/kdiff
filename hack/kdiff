@@ -61,10 +61,9 @@ else
   git checkout $COMMIT_CURRENT   >/dev/null 2>&1
 fi
 
-DATE=$(git show -s --format=%ci $COMMIT_CURRENT)
-DY=$(echo $DATE | cut -d " " -f 1)
-DH=$(echo $DATE | cut -d " " -f 2 | tr : -)
-FNAME_SORTED=$DY-$DH
+
+DATE=$(TZ=UTC0 git show --quiet --date='format-local:%Y-%m-%d-%H-%M-%S' --format="%cd" $COMMIT_CURRENT) 
+FNAME_SORTED=$DATE
 generateManifests  $COMMIT_CURRENT
 
 COMMIT_PREV=$2
@@ -82,8 +81,11 @@ COMPARE_DIR=$COMPARE_ROOT/$FNAME_SORTED-$COMMIT_PREV-$COMMIT_CURRENT
 mkdir -p $COMPARE_DIR  
 GDIFF=$(realpath $COMPARE_DIR/diff-git)
 git diff $COMMIT_PREV...$COMMIT_CURRENT > $GDIFF
-echo "Diff size for git: $(wc -l $GDIFF)" 
 
+DATE=$(TZ=UTC0 git show --quiet --date='local' --format="%cd" $COMMIT_CURRENT) 
+echo "changes from $COMMIT_PREV to $COMMIT_CURRENT on $DATE" > $COMPARE_DIR/title
+
+echo "Diff size for git: $(wc -l $GDIFF)" 
 for overlay in $OVERLAYS
 do 
     COMMIT_DIR=$CACHE_DIR/commit-$COMMIT/$overlay 

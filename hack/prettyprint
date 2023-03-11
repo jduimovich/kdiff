@@ -1,6 +1,11 @@
+#!/bin/bash
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"  
 ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"/..
 
+MAX_LINES=$1
+if [ -z $MAX_LINES ]; then
+MAX_LINES=20
+fi
 
 INFRA=$ROOT/infra-deployments 
 
@@ -8,12 +13,16 @@ SUMMARY=$ROOT/summary.md
 COMPARE_DIR=$ROOT/change-history
  
 echo "# kustomize changes tracked by commits "> $SUMMARY 
-echo "## Repo - https://github.com/redhat-appstudio/infra-deployments.gits " >> $SUMMARY 
+echo "## Repo - https://github.com/redhat-appstudio/infra-deployments.git " >> $SUMMARY 
 echo "## Overlays: staging, development" >> $SUMMARY 
+echo "## Showing last $MAX_LINES commits" >> $SUMMARY 
+
 echo >> $SUMMARY 
  
+OUT_COUNT=0
 for diff in $(ls change-history/ | sort -r)
-do  
+do
+    let OUT_COUNT++
     diff=$(realpath $COMPARE_DIR/$diff)  
     GIT=$(cat $diff/diff-git)
     echo $diff
@@ -21,7 +30,7 @@ do
     do 
         diff=$(realpath $diff)
         if [ -f $diff/title ]; then
-            TITLE=$(cat $diff/$overlay/title)
+            TITLE="${overlay^} $(cat $diff/title)"
         else
             BASE=$(basename $diff)  
             TITLE="${overlay^}"-$BASE 
@@ -30,22 +39,37 @@ do
         DELTA=$(cat $diff/$overlay/diff-kustomize)
         
 cat <<EOF >> $SUMMARY
+
+<div>
+<h3>$OUT_COUNT: $TITLE with $LINES lines changed </h3>  
+ 
 <details> 
-<summary>$TITLE with $LINES lines changed </summary>  
+<summary>Git Diff</summary>  
 
-|   git |             
-|        ---|       
-|    <pre> $GIT </pre>        |  
+\`\`\` 
+$GIT 
+\`\`\`
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff</summary>  
+
+\`\`\` 
+$DELTA 
+\`\`\`
+ 
+</details> 
+<br> 
 
 
-|   DELTA |             
-|        ---|       
-|    <pre> $DELTA </pre>        |  
-
-
-</details>
+</div>
 EOF
-    done
 
+    done
+    echo $OUT_COUNT
+    if [ $OUT_COUNT = $MAX_LINES ]; then
+        break
+    fi
 done
  
