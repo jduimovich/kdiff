@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-7fdade5/staging/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-cbe4b59/staging/components/authentication/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7fdade5/staging/components/authentication/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cbe4b59/staging/components/authentication/staging/kustomize.out
 581c581
 <   name: pipeline-service-admin
 ---

@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-42950e0/staging/components/enterprise-contract/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-d174e44/staging/components/enterprise-contract/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-42950e0/staging/components/enterprise-contract/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-d174e44/staging/components/enterprise-contract/kustomize.out
 212c212
 <   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:snapshot@sha256:6d28b973ea96c4d65b64244212b69f85030e7dbfa5f2363ac6470f825b3fa95f
 ---

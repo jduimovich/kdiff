@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-d79bb21/staging/components/build-service/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-2153ebb/staging/components/build-service/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-d79bb21/staging/components/build-service/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2153ebb/staging/components/build-service/staging/kustomize.out
 250,296d249
 < kind: Role
 < metadata:

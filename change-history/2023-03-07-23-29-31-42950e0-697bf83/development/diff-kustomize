@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-697bf83/development/components/gitops/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-42950e0/development/components/gitops/development/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-697bf83/development/components/gitops/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-42950e0/development/components/gitops/development/kustomize.out
 1609c1609
 <         image: quay.io/redhat-appstudio/gitops-service:489156497d26c4cae149a8b682d9280d440bd3ad
 ---

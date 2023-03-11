@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-97222bd/development/components/dev-sso/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-dc89e78/development/components/dev-sso/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-97222bd/development/components/dev-sso/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-dc89e78/development/components/dev-sso/kustomize.out
 26,384d25
 <     clientScopes:
 <     - attributes:

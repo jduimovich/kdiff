@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-928e19a/staging/components/dora-metrics/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/staging/components/dora-metrics/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-928e19a/staging/components/dora-metrics/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/staging/components/dora-metrics/staging/kustomize.out
 1,133d0
 < apiVersion: v1
 < kind: Namespace
@@ -133,7 +133,7 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-928e19a/staging/components/
 <     creationPolicy: Owner
 <     deletionPolicy: Delete
 <     name: exporters-secret
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-928e19a/staging/components/release/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/staging/components/release/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-928e19a/staging/components/release/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/staging/components/release/kustomize.out
 14d13
 <   creationTimestamp: null
 16a16,25

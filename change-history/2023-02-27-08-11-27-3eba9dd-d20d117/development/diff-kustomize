@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-d20d117/development/components/shared-resources/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-3eba9dd/development/components/shared-resources/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-d20d117/development/components/shared-resources/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-3eba9dd/development/components/shared-resources/kustomize.out
 0a1,9
 > apiVersion: v1
 > kind: Namespace

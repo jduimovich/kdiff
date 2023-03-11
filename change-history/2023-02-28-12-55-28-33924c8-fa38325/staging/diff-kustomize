@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-fa38325/staging/app-of-apps-staging.yaml /home/john/dev/kdiff/kustomized-cache/commit-33924c8/staging/app-of-apps-staging.yaml
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-fa38325/staging/app-of-apps-staging.yaml /home/runner/work/kdiff/kdiff/kustomized-cache/commit-33924c8/staging/app-of-apps-staging.yaml
 523,568d522
 <   name: image-controller
 <   namespace: argocd-staging
@@ -46,7 +46,7 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-fa38325/staging/app-of-apps
 < apiVersion: argoproj.io/v1alpha1
 < kind: ApplicationSet
 < metadata:
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-fa38325/staging/components/cluster-secret-store/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-33924c8/staging/components/cluster-secret-store/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-fa38325/staging/components/cluster-secret-store/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-33924c8/staging/components/cluster-secret-store/staging/kustomize.out
 21d20
 <     - image-controller
-Only in /home/john/dev/kdiff/kustomized-cache/commit-fa38325/staging/components: image-controller
+Only in /home/runner/work/kdiff/kdiff/kustomized-cache/commit-fa38325/staging/components: image-controller

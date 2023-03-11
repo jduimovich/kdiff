@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-ad8c524/staging/app-of-apps-staging.yaml /home/john/dev/kdiff/kustomized-cache/commit-4c69ef2/staging/app-of-apps-staging.yaml
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ad8c524/staging/app-of-apps-staging.yaml /home/runner/work/kdiff/kdiff/kustomized-cache/commit-4c69ef2/staging/app-of-apps-staging.yaml
 720c720
 <             sourceRoot: components/monitoring/logging
 ---

@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-5a9c776/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-f728a9c/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5a9c776/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f728a9c/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
 223,230d222
 <   name: tekton-results-tests
 <   namespace: plnsvc-tests
@@ -25,7 +25,7 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-5a9c776/staging/components/
 < - kind: ServiceAccount
 <   name: tekton-results-tests
 <   namespace: plnsvc-tests
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-5a9c776/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-f728a9c/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5a9c776/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f728a9c/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
 223,230d222
 <   name: tekton-results-tests
 <   namespace: plnsvc-tests

@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-fc2e37a/development/components/release/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-66e0e1c/development/components/release/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-fc2e37a/development/components/release/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-66e0e1c/development/components/release/kustomize.out
 1237c1237,1238
 <   release-attempts.json: |
 ---

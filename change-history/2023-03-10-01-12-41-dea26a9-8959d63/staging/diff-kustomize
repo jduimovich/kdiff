@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/staging/components/gitops/staging/stone-stg-m01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-dea26a9/staging/components/gitops/staging/stone-stg-m01/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8959d63/staging/components/gitops/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-dea26a9/staging/components/gitops/staging/stone-stg-m01/kustomize.out
 1565,1580d1564
 <     service.beta.openshift.io/serving-cert-secret-name: webhook-server-cert
 <   name: gitops-appstudio-service-webhook-service
@@ -118,7 +118,7 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/staging/components/
 <     resources:
 <     - promotionruns
 <   sideEffects: None
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-dea26a9/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8959d63/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-dea26a9/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
 1565,1580d1564
 <     service.beta.openshift.io/serving-cert-secret-name: webhook-server-cert
 <   name: gitops-appstudio-service-webhook-service

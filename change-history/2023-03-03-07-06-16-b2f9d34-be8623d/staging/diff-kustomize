@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-be8623d/staging/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-b2f9d34/staging/components/authentication/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-be8623d/staging/components/authentication/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-b2f9d34/staging/components/authentication/staging/kustomize.out
 314,316d313
 < - apiGroup: rbac.authorization.k8s.io
 <   kind: User

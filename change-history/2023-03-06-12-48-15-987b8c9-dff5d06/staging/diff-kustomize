@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-dff5d06/staging/components/enterprise-contract/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-987b8c9/staging/components/enterprise-contract/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-dff5d06/staging/components/enterprise-contract/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-987b8c9/staging/components/enterprise-contract/kustomize.out
 221,237d220
 <   name: all
 <   namespace: enterprise-contract-service

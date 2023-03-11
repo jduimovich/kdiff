@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-e71ef6d/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-8531b70/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-e71ef6d/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8531b70/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
 0a1,2191
 > apiVersion: v1
 > kind: Namespace

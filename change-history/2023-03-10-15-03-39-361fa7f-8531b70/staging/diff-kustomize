@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-8531b70/staging/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-361fa7f/staging/components/authentication/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8531b70/staging/components/authentication/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-361fa7f/staging/components/authentication/staging/kustomize.out
 22,34d21
 <   name: edit-spacerequests
 <   namespace: rh-ee-fmuntean-tenant

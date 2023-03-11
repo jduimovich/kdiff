@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/development/components/application-api/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-237461b/development/components/application-api/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/development/components/application-api/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-237461b/development/components/application-api/kustomize.out
 258,260c258,259
 <                     description: 'If specified, the devfile at the URI will be used
 <                       for the component. Can be a local path inside the repository,

@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-2bb01dc/staging/components/application-api/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-5a9c776/staging/components/application-api/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2bb01dc/staging/components/application-api/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5a9c776/staging/components/application-api/kustomize.out
 271,272c271,272
 <                     description: An HTTPS URL representing the git repository to create
 <                       the component from.

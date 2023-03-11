@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-2887ab9/staging/components/quality-dashboard/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-a4b853e/staging/components/quality-dashboard/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2887ab9/staging/components/quality-dashboard/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a4b853e/staging/components/quality-dashboard/staging/kustomize.out
 5d4
 <     argocd.argoproj.io/sync-wave: "0"
 82d80

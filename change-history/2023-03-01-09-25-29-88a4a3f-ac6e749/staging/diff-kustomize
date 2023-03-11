@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-ac6e749/staging/app-of-apps-staging.yaml /home/john/dev/kdiff/kustomized-cache/commit-88a4a3f/staging/app-of-apps-staging.yaml
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ac6e749/staging/app-of-apps-staging.yaml /home/runner/work/kdiff/kdiff/kustomized-cache/commit-88a4a3f/staging/app-of-apps-staging.yaml
 711,724c711,714
 <   - merge:
 <       generators:

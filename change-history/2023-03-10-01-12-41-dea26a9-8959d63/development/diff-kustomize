@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/development/components/gitops/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-dea26a9/development/components/gitops/development/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8959d63/development/components/gitops/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-dea26a9/development/components/gitops/development/kustomize.out
 1498,1512d1497
 <   annotations:
 <     service.beta.openshift.io/serving-cert-secret-name: webhook-server-cert

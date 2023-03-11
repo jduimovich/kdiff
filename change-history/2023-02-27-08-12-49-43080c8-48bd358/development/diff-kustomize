@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-48bd358/development/components/jvm-build-service/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-43080c8/development/components/jvm-build-service/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-48bd358/development/components/jvm-build-service/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-43080c8/development/components/jvm-build-service/kustomize.out
 1039,1040c1039,1040
 <           value: 48dc87180fc211ddebd79d85bb394a8f3f057ad2
 <         image: quay.io/redhat-appstudio/hacbs-jvm-controller:48dc87180fc211ddebd79d85bb394a8f3f057ad2

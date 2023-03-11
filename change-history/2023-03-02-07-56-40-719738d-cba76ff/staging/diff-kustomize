@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-cba76ff/staging/app-of-apps-staging.yaml /home/john/dev/kdiff/kustomized-cache/commit-719738d/staging/app-of-apps-staging.yaml
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cba76ff/staging/app-of-apps-staging.yaml /home/runner/work/kdiff/kdiff/kustomized-cache/commit-719738d/staging/app-of-apps-staging.yaml
 722,730c722
 <           elements:
 <           - nameNormalized: stone-stg-m01

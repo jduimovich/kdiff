@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-f728a9c/development/components/pipeline-service/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-fea1b7b/development/components/pipeline-service/development/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f728a9c/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-fea1b7b/development/components/pipeline-service/development/kustomize.out
 171a172,179
 >   name: pipeline-service-exporter
 >   namespace: openshift-pipelines

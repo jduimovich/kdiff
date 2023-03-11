@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-c58d62a/staging/app-of-apps-staging.yaml /home/john/dev/kdiff/kustomized-cache/commit-03f761b/staging/app-of-apps-staging.yaml
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c58d62a/staging/app-of-apps-staging.yaml /home/runner/work/kdiff/kdiff/kustomized-cache/commit-03f761b/staging/app-of-apps-staging.yaml
 1035a1036,1076
 > ---
 > apiVersion: argoproj.io/v1alpha1

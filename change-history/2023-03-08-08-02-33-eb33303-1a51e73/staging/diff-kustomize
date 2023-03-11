@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-1a51e73/staging/components/build-service/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-eb33303/staging/components/build-service/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-1a51e73/staging/components/build-service/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-eb33303/staging/components/build-service/staging/kustomize.out
 311,320d310
 <   - batch
 <   resources:

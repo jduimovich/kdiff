@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-9f8089b/staging/components/has/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-a2cb230/staging/components/has/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9f8089b/staging/components/has/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a2cb230/staging/components/has/staging/kustomize.out
 671,676d670
 <         - name: CDQ_GITHUB_TOKEN
 <           valueFrom:

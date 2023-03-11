@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-90de354/development/components/dev-sso/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-c58d62a/development/components/dev-sso/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-90de354/development/components/dev-sso/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c58d62a/development/components/dev-sso/kustomize.out
 45,48c45
 <     - clientRoles:
 <         realm-management:

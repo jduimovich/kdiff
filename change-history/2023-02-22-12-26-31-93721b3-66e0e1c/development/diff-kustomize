@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-66e0e1c/development/components/quality-dashboard/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-93721b3/development/components/quality-dashboard/development/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-66e0e1c/development/components/quality-dashboard/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-93721b3/development/components/quality-dashboard/development/kustomize.out
 119c119
 <         image: quay.io/redhat-appstudio/quality-dashboard-backend:00b4fcbfee90cf4edb5eb332467648dfed031ad3
 ---

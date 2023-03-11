@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/staging/components/application-api/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-237461b/staging/components/application-api/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/staging/components/application-api/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-237461b/staging/components/application-api/kustomize.out
 258,260c258,259
 <                     description: 'If specified, the devfile at the URI will be used
 <                       for the component. Can be a local path inside the repository,
@@ -41,7 +41,7 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/staging/components/
 ---
 >                         description: If specified, the dockerfile at the URL will
 >                           be used for the component. Optional.
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/staging/components/dora-metrics/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-237461b/staging/components/dora-metrics/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/staging/components/dora-metrics/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-237461b/staging/components/dora-metrics/staging/kustomize.out
 0a1,133
 > apiVersion: v1
 > kind: Namespace

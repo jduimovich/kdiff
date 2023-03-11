@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-928e19a/development/components/release/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/development/components/release/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-928e19a/development/components/release/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/development/components/release/kustomize.out
 14d13
 <   creationTimestamp: null
 16a16,25

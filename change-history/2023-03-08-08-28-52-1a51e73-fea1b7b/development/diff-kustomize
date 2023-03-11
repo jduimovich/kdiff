@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-fea1b7b/development/components/build-service/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-1a51e73/development/components/build-service/development/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-fea1b7b/development/components/build-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-1a51e73/development/components/build-service/development/kustomize.out
 315d314
 <   - create
 533c532

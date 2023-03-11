@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-c426b69/development/components/jvm-build-service/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-48a8ba2/development/components/jvm-build-service/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c426b69/development/components/jvm-build-service/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-48a8ba2/development/components/jvm-build-service/kustomize.out
 704d703
 <                 description: DEPRECATED
 1040,1041c1039,1040

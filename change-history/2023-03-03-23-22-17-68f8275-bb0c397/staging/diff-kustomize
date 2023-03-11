@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-bb0c397/staging/components/gitops/staging/stone-stg-m01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-68f8275/staging/components/gitops/staging/stone-stg-m01/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-bb0c397/staging/components/gitops/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-68f8275/staging/components/gitops/staging/stone-stg-m01/kustomize.out
 1213,1236d1212
 <   - argoproj.io
 <   resources:
@@ -36,7 +36,7 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-bb0c397/staging/components/
 <         image: quay.io/redhat-appstudio/gitops-service:bdfabd4fc106b7f25535ef3a7a800f99a8bc0233
 ---
 >         image: quay.io/redhat-appstudio/gitops-service:6963dac78dbea949f9218e448c053fdde84759e5
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-bb0c397/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-68f8275/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-bb0c397/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-68f8275/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
 1213,1236d1212
 <   - argoproj.io
 <   resources:

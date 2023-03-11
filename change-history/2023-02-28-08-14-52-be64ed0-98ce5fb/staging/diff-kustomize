@@ -1,4 +1,4 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-98ce5fb/staging/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-be64ed0/staging/components/authentication/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-98ce5fb/staging/components/authentication/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-be64ed0/staging/components/authentication/staging/kustomize.out
 677a678,691
 > kind: RoleBinding
 > metadata:
