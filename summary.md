@@ -31,7 +31,7 @@ index cab3d27..c4a4093 100644
 <summary>Kustomize Generated Diff (2193 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-e71ef6d/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-8531b70/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-e71ef6d/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8531b70/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
 0a1,2191
 > apiVersion: v1
 > kind: Namespace
@@ -2259,7 +2259,7 @@ index cab3d27..c4a4093 100644
 <summary>Kustomize Generated Diff (758 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-e71ef6d/development/app-of-apps-development.yaml /home/john/dev/kdiff/kustomized-cache/commit-8531b70/development/app-of-apps-development.yaml
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-e71ef6d/development/app-of-apps-development.yaml /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8531b70/development/app-of-apps-development.yaml
 0a1,756
 > apiVersion: v1
 > kind: Secret
@@ -3085,7 +3085,7 @@ index 0000000..76ff6a1
 <summary>Kustomize Generated Diff (30 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-8531b70/staging/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-361fa7f/staging/components/authentication/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8531b70/staging/components/authentication/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-361fa7f/staging/components/authentication/staging/kustomize.out
 22,34d21
 <   name: edit-spacerequests
 <   namespace: rh-ee-fmuntean-tenant
@@ -3529,7 +3529,7 @@ index d6c7ba1..5741356 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-ef3ef0c/staging/components/integration/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-75df761/staging/components/integration/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ef3ef0c/staging/components/integration/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-75df761/staging/components/integration/kustomize.out
 1024c1024
 <         image: quay.io/redhat-appstudio/integration-service:41fbdb124775323f58fd5ce93c70bb7d79c20650
 ---
@@ -3579,7 +3579,7 @@ index d6c7ba1..5741356 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-ef3ef0c/development/components/integration/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-75df761/development/components/integration/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ef3ef0c/development/components/integration/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-75df761/development/components/integration/kustomize.out
 1024c1024
 <         image: quay.io/redhat-appstudio/integration-service:41fbdb124775323f58fd5ce93c70bb7d79c20650
 ---
@@ -3654,7 +3654,7 @@ index bdc8f52..968e264 100644
 <summary>Kustomize Generated Diff (24 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-75df761/staging/components/jvm-build-service/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-928e19a/staging/components/jvm-build-service/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-75df761/staging/components/jvm-build-service/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-928e19a/staging/components/jvm-build-service/kustomize.out
 176,183c176,182
 <                     \n \ttype FooStatus struct{ \t    // Represents the observations
 <                     of a foo's current state. \t    // Known .status.conditions.type
@@ -3748,7 +3748,7 @@ index bdc8f52..968e264 100644
 <summary>Kustomize Generated Diff (24 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-75df761/development/components/jvm-build-service/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-928e19a/development/components/jvm-build-service/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-75df761/development/components/jvm-build-service/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-928e19a/development/components/jvm-build-service/kustomize.out
 176,183c176,182
 <                     \n \ttype FooStatus struct{ \t    // Represents the observations
 <                     of a foo's current state. \t    // Known .status.conditions.type
@@ -3827,7 +3827,7 @@ index b322b7e..77fb71a 100644
 <summary>Kustomize Generated Diff (166 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-928e19a/staging/components/dora-metrics/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/staging/components/dora-metrics/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-928e19a/staging/components/dora-metrics/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/staging/components/dora-metrics/staging/kustomize.out
 1,133d0
 < apiVersion: v1
 < kind: Namespace
@@ -3962,7 +3962,7 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-928e19a/staging/components/
 <     creationPolicy: Owner
 <     deletionPolicy: Delete
 <     name: exporters-secret
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-928e19a/staging/components/release/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/staging/components/release/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-928e19a/staging/components/release/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/staging/components/release/kustomize.out
 14d13
 <   creationTimestamp: null
 16a16,25
@@ -4048,7 +4048,7 @@ index b322b7e..77fb71a 100644
 <summary>Kustomize Generated Diff (31 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-928e19a/development/components/release/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/development/components/release/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-928e19a/development/components/release/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/development/components/release/kustomize.out
 14d13
 <   creationTimestamp: null
 16a16,25
@@ -4115,7 +4115,7 @@ index 9de2911..13ab154 100644
 <summary>Kustomize Generated Diff (178 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/staging/components/application-api/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-237461b/staging/components/application-api/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/staging/components/application-api/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-237461b/staging/components/application-api/kustomize.out
 258,260c258,259
 <                     description: 'If specified, the devfile at the URI will be used
 <                       for the component. Can be a local path inside the repository,
@@ -4158,7 +4158,7 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/staging/components/
 ---
 >                         description: If specified, the dockerfile at the URL will
 >                           be used for the component. Optional.
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/staging/components/dora-metrics/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-237461b/staging/components/dora-metrics/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/staging/components/dora-metrics/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-237461b/staging/components/dora-metrics/staging/kustomize.out
 0a1,133
 > apiVersion: v1
 > kind: Namespace
@@ -4329,7 +4329,7 @@ index 9de2911..13ab154 100644
 <summary>Kustomize Generated Diff (43 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/development/components/application-api/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-237461b/development/components/application-api/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/development/components/application-api/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-237461b/development/components/application-api/kustomize.out
 258,260c258,259
 <                     description: 'If specified, the devfile at the URI will be used
 <                       for the component. Can be a local path inside the repository,
@@ -4427,7 +4427,7 @@ index f9a3ce9..7493156 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-237461b/staging/components/has/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-d79bb21/staging/components/has/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-237461b/staging/components/has/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-d79bb21/staging/components/has/staging/kustomize.out
 683c683
 <         image: quay.io/redhat-appstudio/application-service:d4d3f6e353a7f300de0e91a5bf9333a222d412bc
 ---
@@ -4487,7 +4487,7 @@ index f9a3ce9..7493156 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-237461b/development/components/has/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-d79bb21/development/components/has/development/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-237461b/development/components/has/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-d79bb21/development/components/has/development/kustomize.out
 683c683
 <         image: quay.io/redhat-appstudio/application-service:d4d3f6e353a7f300de0e91a5bf9333a222d412bc
 ---
@@ -4546,7 +4546,7 @@ index b90cfbe..959a581 100644
 <summary>Kustomize Generated Diff (82 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-d79bb21/staging/components/build-service/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-2153ebb/staging/components/build-service/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-d79bb21/staging/components/build-service/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2153ebb/staging/components/build-service/staging/kustomize.out
 250,296d249
 < kind: Role
 < metadata:
@@ -4682,7 +4682,7 @@ index b90cfbe..959a581 100644
 <summary>Kustomize Generated Diff (82 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-d79bb21/development/components/build-service/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-2153ebb/development/components/build-service/development/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-d79bb21/development/components/build-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2153ebb/development/components/build-service/development/kustomize.out
 250,296d249
 < kind: Role
 < metadata:
@@ -5064,7 +5064,7 @@ index c1ea634..a0b895d 100644
 <summary>Kustomize Generated Diff (240 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/staging/components/gitops/staging/stone-stg-m01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-dea26a9/staging/components/gitops/staging/stone-stg-m01/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8959d63/staging/components/gitops/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-dea26a9/staging/components/gitops/staging/stone-stg-m01/kustomize.out
 1565,1580d1564
 <     service.beta.openshift.io/serving-cert-secret-name: webhook-server-cert
 <   name: gitops-appstudio-service-webhook-service
@@ -5184,7 +5184,7 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/staging/components/
 <     resources:
 <     - promotionruns
 <   sideEffects: None
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-dea26a9/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8959d63/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-dea26a9/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
 1565,1580d1564
 <     service.beta.openshift.io/serving-cert-secret-name: webhook-server-cert
 <   name: gitops-appstudio-service-webhook-service
@@ -5386,7 +5386,7 @@ index c1ea634..a0b895d 100644
 <summary>Kustomize Generated Diff (114 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/development/components/gitops/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-dea26a9/development/components/gitops/development/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8959d63/development/components/gitops/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-dea26a9/development/components/gitops/development/kustomize.out
 1498,1512d1497
 <   annotations:
 <     service.beta.openshift.io/serving-cert-secret-name: webhook-server-cert
@@ -5631,7 +5631,7 @@ index e26c7ff..0883dc6 100644
 <summary>Kustomize Generated Diff (19 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-2887ab9/staging/components/quality-dashboard/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-a4b853e/staging/components/quality-dashboard/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2887ab9/staging/components/quality-dashboard/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a4b853e/staging/components/quality-dashboard/staging/kustomize.out
 5d4
 <     argocd.argoproj.io/sync-wave: "0"
 82d80
@@ -5711,7 +5711,7 @@ index e26c7ff..0883dc6 100644
 <summary>Kustomize Generated Diff (19 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-2887ab9/development/components/quality-dashboard/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-a4b853e/development/components/quality-dashboard/development/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2887ab9/development/components/quality-dashboard/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a4b853e/development/components/quality-dashboard/development/kustomize.out
 5d4
 <     argocd.argoproj.io/sync-wave: "0"
 43d41
@@ -5757,7 +5757,7 @@ rename to components/authentication/base/sandbox-sre-admins.yaml
 <summary>Kustomize Generated Diff (898 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-a4b853e/staging/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-498d7c6/staging/components/authentication/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a4b853e/staging/components/authentication/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-498d7c6/staging/components/authentication/staging/kustomize.out
 1,896d0
 < apiVersion: v1
 < kind: Namespace
@@ -6992,7 +6992,7 @@ index 0000000..febbfa0
 <summary>Kustomize Generated Diff (866 lines)</summary>  
 
 ``` 
-diff -r /home/john/dev/kdiff/kustomized-cache/commit-9eb0e40/staging/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-c69b6b2/staging/components/authentication/staging/kustomize.out
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9eb0e40/staging/components/authentication/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c69b6b2/staging/components/authentication/staging/kustomize.out
 0a1,864
 > apiVersion: v1
 > kind: Namespace
