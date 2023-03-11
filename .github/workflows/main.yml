@@ -1,0 +1,9 @@
+on:
+  schedule:
+    - cron: '0 * * * *' 
+jobs:
+  compute_diff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show Commit History   
+        run: echo "This step will always run"
