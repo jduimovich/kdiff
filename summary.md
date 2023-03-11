@@ -5,10 +5,10 @@
 
 
 <div>
-<h3>1: Staging changes from 8531b70 to e71ef6d on Fri Mar 10 16:55:45 2023 with 2193 lines changed </h3>  
+<h3>1: Staging changes from 8531b70 to e71ef6d on Fri Mar 10 16:55:45 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (12 lines)</summary>  
 
 ``` 
 diff --git a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
@@ -28,7 +28,7 @@ index cab3d27..c4a4093 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (2193 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-e71ef6d/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-8531b70/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
@@ -2233,10 +2233,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-e71ef6d/staging/components/
 </div>
 
 <div>
-<h3>1: Development changes from 8531b70 to e71ef6d on Fri Mar 10 16:55:45 2023 with 758 lines changed </h3>  
+<h3>1: Development changes from 8531b70 to e71ef6d on Fri Mar 10 16:55:45 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (12 lines)</summary>  
 
 ``` 
 diff --git a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
@@ -2256,7 +2256,7 @@ index cab3d27..c4a4093 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (758 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-e71ef6d/development/app-of-apps-development.yaml /home/john/dev/kdiff/kustomized-cache/commit-8531b70/development/app-of-apps-development.yaml
@@ -3026,10 +3026,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-e71ef6d/development/app-of-
 </div>
 
 <div>
-<h3>2: Staging changes from 361fa7f to 8531b70 on Fri Mar 10 15:03:39 2023 with 30 lines changed </h3>  
+<h3>2: Staging changes from 361fa7f to 8531b70 on Fri Mar 10 15:03:39 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (45 lines)</summary>  
 
 ``` 
 diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
@@ -3082,7 +3082,7 @@ index 0000000..76ff6a1
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (30 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-8531b70/staging/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-361fa7f/staging/components/authentication/staging/kustomize.out
@@ -3124,10 +3124,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-8531b70/staging/components/
 </div>
 
 <div>
-<h3>2: Development changes from 361fa7f to 8531b70 on Fri Mar 10 15:03:39 2023 with 0 lines changed </h3>  
+<h3>2: Development changes from 361fa7f to 8531b70 on Fri Mar 10 15:03:39 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (45 lines)</summary>  
 
 ``` 
 diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
@@ -3180,7 +3180,7 @@ index 0000000..76ff6a1
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -3193,10 +3193,10 @@ index 0000000..76ff6a1
 </div>
 
 <div>
-<h3>3: Staging changes from ef3ef0c to 361fa7f on Fri Mar 10 14:52:38 2023 with 0 lines changed </h3>  
+<h3>3: Staging changes from ef3ef0c to 361fa7f on Fri Mar 10 14:52:38 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (126 lines)</summary>  
 
 ``` 
 diff --git a/hack/hac/installHac.sh b/hack/hac/installHac.sh
@@ -3330,7 +3330,7 @@ index 0000000..5355737
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -3343,10 +3343,10 @@ index 0000000..5355737
 </div>
 
 <div>
-<h3>3: Development changes from ef3ef0c to 361fa7f on Fri Mar 10 14:52:38 2023 with 0 lines changed </h3>  
+<h3>3: Development changes from ef3ef0c to 361fa7f on Fri Mar 10 14:52:38 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (126 lines)</summary>  
 
 ``` 
 diff --git a/hack/hac/installHac.sh b/hack/hac/installHac.sh
@@ -3480,7 +3480,7 @@ index 0000000..5355737
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -3493,10 +3493,10 @@ index 0000000..5355737
 </div>
 
 <div>
-<h3>4: Staging changes from 75df761 to ef3ef0c on Fri Mar 10 13:21:16 2023 with 5 lines changed </h3>  
+<h3>4: Staging changes from 75df761 to ef3ef0c on Fri Mar 10 13:21:16 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (22 lines)</summary>  
 
 ``` 
 diff --git a/components/integration/kustomization.yaml b/components/integration/kustomization.yaml
@@ -3526,7 +3526,7 @@ index d6c7ba1..5741356 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-ef3ef0c/staging/components/integration/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-75df761/staging/components/integration/kustomize.out
@@ -3543,10 +3543,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-ef3ef0c/staging/components/
 </div>
 
 <div>
-<h3>4: Development changes from 75df761 to ef3ef0c on Fri Mar 10 13:21:16 2023 with 5 lines changed </h3>  
+<h3>4: Development changes from 75df761 to ef3ef0c on Fri Mar 10 13:21:16 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (22 lines)</summary>  
 
 ``` 
 diff --git a/components/integration/kustomization.yaml b/components/integration/kustomization.yaml
@@ -3576,7 +3576,7 @@ index d6c7ba1..5741356 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-ef3ef0c/development/components/integration/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-75df761/development/components/integration/kustomize.out
@@ -3593,10 +3593,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-ef3ef0c/development/compone
 </div>
 
 <div>
-<h3>5: Staging changes from 928e19a to 75df761 on Fri Mar 10 12:09:03 2023 with 24 lines changed </h3>  
+<h3>5: Staging changes from 928e19a to 75df761 on Fri Mar 10 12:09:03 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (47 lines)</summary>  
 
 ``` 
 diff --git a/components/jvm-build-service/kustomization.yaml b/components/jvm-build-service/kustomization.yaml
@@ -3651,7 +3651,7 @@ index bdc8f52..968e264 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (24 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-75df761/staging/components/jvm-build-service/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-928e19a/staging/components/jvm-build-service/kustomize.out
@@ -3687,10 +3687,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-75df761/staging/components/
 </div>
 
 <div>
-<h3>5: Development changes from 928e19a to 75df761 on Fri Mar 10 12:09:03 2023 with 24 lines changed </h3>  
+<h3>5: Development changes from 928e19a to 75df761 on Fri Mar 10 12:09:03 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (47 lines)</summary>  
 
 ``` 
 diff --git a/components/jvm-build-service/kustomization.yaml b/components/jvm-build-service/kustomization.yaml
@@ -3745,7 +3745,7 @@ index bdc8f52..968e264 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (24 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-75df761/development/components/jvm-build-service/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-928e19a/development/components/jvm-build-service/kustomize.out
@@ -3781,10 +3781,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-75df761/development/compone
 </div>
 
 <div>
-<h3>6: Staging changes from afa1f62 to 928e19a on Fri Mar 10 12:08:48 2023 with 166 lines changed </h3>  
+<h3>6: Staging changes from afa1f62 to 928e19a on Fri Mar 10 12:08:48 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (32 lines)</summary>  
 
 ``` 
 diff --git a/components/monitoring/grafana/base/release-service/kustomization.yaml b/components/monitoring/grafana/base/release-service/kustomization.yaml
@@ -3824,7 +3824,7 @@ index b322b7e..77fb71a 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (166 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-928e19a/staging/components/dora-metrics/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/staging/components/dora-metrics/staging/kustomize.out
@@ -4002,10 +4002,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-928e19a/staging/components/
 </div>
 
 <div>
-<h3>6: Development changes from afa1f62 to 928e19a on Fri Mar 10 12:08:48 2023 with 31 lines changed </h3>  
+<h3>6: Development changes from afa1f62 to 928e19a on Fri Mar 10 12:08:48 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (32 lines)</summary>  
 
 ``` 
 diff --git a/components/monitoring/grafana/base/release-service/kustomization.yaml b/components/monitoring/grafana/base/release-service/kustomization.yaml
@@ -4045,7 +4045,7 @@ index b322b7e..77fb71a 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (31 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-928e19a/development/components/release/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/development/components/release/kustomize.out
@@ -4088,10 +4088,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-928e19a/development/compone
 </div>
 
 <div>
-<h3>7: Staging changes from 237461b to afa1f62 on Fri Mar 10 12:08:26 2023 with 178 lines changed </h3>  
+<h3>7: Staging changes from 237461b to afa1f62 on Fri Mar 10 12:08:26 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (13 lines)</summary>  
 
 ``` 
 diff --git a/components/application-api/kustomization.yaml b/components/application-api/kustomization.yaml
@@ -4112,7 +4112,7 @@ index 9de2911..13ab154 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (178 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/staging/components/application-api/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-237461b/staging/components/application-api/kustomize.out
@@ -4302,10 +4302,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/staging/components/
 </div>
 
 <div>
-<h3>7: Development changes from 237461b to afa1f62 on Fri Mar 10 12:08:26 2023 with 43 lines changed </h3>  
+<h3>7: Development changes from 237461b to afa1f62 on Fri Mar 10 12:08:26 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (13 lines)</summary>  
 
 ``` 
 diff --git a/components/application-api/kustomization.yaml b/components/application-api/kustomization.yaml
@@ -4326,7 +4326,7 @@ index 9de2911..13ab154 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (43 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/development/components/application-api/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-237461b/development/components/application-api/kustomize.out
@@ -4381,10 +4381,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/development/compone
 </div>
 
 <div>
-<h3>8: Staging changes from d79bb21 to 237461b on Fri Mar 10 12:08:12 2023 with 5 lines changed </h3>  
+<h3>8: Staging changes from d79bb21 to 237461b on Fri Mar 10 12:08:12 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (32 lines)</summary>  
 
 ``` 
 diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
@@ -4424,7 +4424,7 @@ index f9a3ce9..7493156 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-237461b/staging/components/has/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-d79bb21/staging/components/has/staging/kustomize.out
@@ -4441,10 +4441,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-237461b/staging/components/
 </div>
 
 <div>
-<h3>8: Development changes from d79bb21 to 237461b on Fri Mar 10 12:08:12 2023 with 5 lines changed </h3>  
+<h3>8: Development changes from d79bb21 to 237461b on Fri Mar 10 12:08:12 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (32 lines)</summary>  
 
 ``` 
 diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
@@ -4484,7 +4484,7 @@ index f9a3ce9..7493156 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-237461b/development/components/has/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-d79bb21/development/components/has/development/kustomize.out
@@ -4501,10 +4501,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-237461b/development/compone
 </div>
 
 <div>
-<h3>9: Staging changes from 2153ebb to d79bb21 on Fri Mar 10 12:07:13 2023 with 82 lines changed </h3>  
+<h3>9: Staging changes from 2153ebb to d79bb21 on Fri Mar 10 12:07:13 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (31 lines)</summary>  
 
 ``` 
 diff --git a/components/build-service/base/kustomization.yaml b/components/build-service/base/kustomization.yaml
@@ -4543,7 +4543,7 @@ index b90cfbe..959a581 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (82 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-d79bb21/staging/components/build-service/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-2153ebb/staging/components/build-service/staging/kustomize.out
@@ -4637,10 +4637,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-d79bb21/staging/components/
 </div>
 
 <div>
-<h3>9: Development changes from 2153ebb to d79bb21 on Fri Mar 10 12:07:13 2023 with 82 lines changed </h3>  
+<h3>9: Development changes from 2153ebb to d79bb21 on Fri Mar 10 12:07:13 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (31 lines)</summary>  
 
 ``` 
 diff --git a/components/build-service/base/kustomization.yaml b/components/build-service/base/kustomization.yaml
@@ -4679,7 +4679,7 @@ index b90cfbe..959a581 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (82 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-d79bb21/development/components/build-service/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-2153ebb/development/components/build-service/development/kustomize.out
@@ -4773,10 +4773,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-d79bb21/development/compone
 </div>
 
 <div>
-<h3>10: Staging changes from 68157f1 to 2153ebb on Fri Mar 10 11:30:14 2023 with 0 lines changed </h3>  
+<h3>10: Staging changes from 68157f1 to 2153ebb on Fri Mar 10 11:30:14 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (60 lines)</summary>  
 
 ``` 
 diff --git a/components/spi/overlays/staging/stone-stg-m01/config-patch.json b/components/spi/overlays/staging/stone-stg-m01/config-patch.json
@@ -4844,7 +4844,7 @@ index 7f37bf6..836f3fd 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -4857,10 +4857,10 @@ index 7f37bf6..836f3fd 100644
 </div>
 
 <div>
-<h3>10: Development changes from 68157f1 to 2153ebb on Fri Mar 10 11:30:14 2023 with 0 lines changed </h3>  
+<h3>10: Development changes from 68157f1 to 2153ebb on Fri Mar 10 11:30:14 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (60 lines)</summary>  
 
 ``` 
 diff --git a/components/spi/overlays/staging/stone-stg-m01/config-patch.json b/components/spi/overlays/staging/stone-stg-m01/config-patch.json
@@ -4928,7 +4928,7 @@ index 7f37bf6..836f3fd 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -4941,10 +4941,10 @@ index 7f37bf6..836f3fd 100644
 </div>
 
 <div>
-<h3>11: Staging changes from 8959d63 to 68157f1 on Fri Mar 10 01:12:51 2023 with 0 lines changed </h3>  
+<h3>11: Staging changes from 8959d63 to 68157f1 on Fri Mar 10 01:12:51 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (0 lines)</summary>  
 
 ``` 
  
@@ -4953,32 +4953,7 @@ index 7f37bf6..836f3fd 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
-
-``` 
- 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>11: Development changes from 8959d63 to 68157f1 on Fri Mar 10 01:12:51 2023 with 0 lines changed </h3>  
- 
-<details> 
-<summary>Git Diff</summary>  
-
-``` 
- 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -4991,10 +4966,35 @@ index 7f37bf6..836f3fd 100644
 </div>
 
 <div>
-<h3>12: Staging changes from dea26a9 to 8959d63 on Fri Mar 10 01:12:41 2023 with 240 lines changed </h3>  
+<h3>11: Development changes from 8959d63 to 68157f1 on Fri Mar 10 01:12:51 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>12: Staging changes from dea26a9 to 8959d63 on Fri Mar 10 01:12:41 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (59 lines)</summary>  
 
 ``` 
 diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
@@ -5061,7 +5061,7 @@ index c1ea634..a0b895d 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (240 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/staging/components/gitops/staging/stone-stg-m01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-dea26a9/staging/components/gitops/staging/stone-stg-m01/kustomize.out
@@ -5313,10 +5313,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/staging/components/
 </div>
 
 <div>
-<h3>12: Development changes from dea26a9 to 8959d63 on Fri Mar 10 01:12:41 2023 with 114 lines changed </h3>  
+<h3>12: Development changes from dea26a9 to 8959d63 on Fri Mar 10 01:12:41 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (59 lines)</summary>  
 
 ``` 
 diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
@@ -5383,7 +5383,7 @@ index c1ea634..a0b895d 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (114 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/development/components/gitops/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-dea26a9/development/components/gitops/development/kustomize.out
@@ -5509,10 +5509,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/development/compone
 </div>
 
 <div>
-<h3>13: Staging changes from 2887ab9 to dea26a9 on Thu Mar 9 17:26:35 2023 with 0 lines changed </h3>  
+<h3>13: Staging changes from 2887ab9 to dea26a9 on Thu Mar 9 17:26:35 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (11 lines)</summary>  
 
 ``` 
 diff --git a/docs/testing/e2e-tests.md b/docs/testing/e2e-tests.md
@@ -5531,7 +5531,7 @@ index 033c916..d4138a2 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -5544,10 +5544,10 @@ index 033c916..d4138a2 100644
 </div>
 
 <div>
-<h3>13: Development changes from 2887ab9 to dea26a9 on Thu Mar 9 17:26:35 2023 with 0 lines changed </h3>  
+<h3>13: Development changes from 2887ab9 to dea26a9 on Thu Mar 9 17:26:35 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (11 lines)</summary>  
 
 ``` 
 diff --git a/docs/testing/e2e-tests.md b/docs/testing/e2e-tests.md
@@ -5566,7 +5566,7 @@ index 033c916..d4138a2 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -5579,10 +5579,10 @@ index 033c916..d4138a2 100644
 </div>
 
 <div>
-<h3>14: Staging changes from a4b853e to 2887ab9 on Thu Mar 9 14:38:22 2023 with 19 lines changed </h3>  
+<h3>14: Staging changes from a4b853e to 2887ab9 on Thu Mar 9 14:38:22 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (38 lines)</summary>  
 
 ``` 
 diff --git a/components/quality-dashboard/base/backend/kustomization.yaml b/components/quality-dashboard/base/backend/kustomization.yaml
@@ -5628,7 +5628,7 @@ index e26c7ff..0883dc6 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (19 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-2887ab9/staging/components/quality-dashboard/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-a4b853e/staging/components/quality-dashboard/staging/kustomize.out
@@ -5659,10 +5659,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-2887ab9/staging/components/
 </div>
 
 <div>
-<h3>14: Development changes from a4b853e to 2887ab9 on Thu Mar 9 14:38:22 2023 with 19 lines changed </h3>  
+<h3>14: Development changes from a4b853e to 2887ab9 on Thu Mar 9 14:38:22 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (38 lines)</summary>  
 
 ``` 
 diff --git a/components/quality-dashboard/base/backend/kustomization.yaml b/components/quality-dashboard/base/backend/kustomization.yaml
@@ -5708,7 +5708,7 @@ index e26c7ff..0883dc6 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (19 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-2887ab9/development/components/quality-dashboard/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-a4b853e/development/components/quality-dashboard/development/kustomize.out
@@ -5739,10 +5739,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-2887ab9/development/compone
 </div>
 
 <div>
-<h3>15: Staging changes from 498d7c6 to a4b853e on Thu Mar 9 13:19:19 2023 with 898 lines changed </h3>  
+<h3>15: Staging changes from 498d7c6 to a4b853e on Thu Mar 9 13:19:19 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (4 lines)</summary>  
 
 ``` 
 diff --git a/components/authentication/sandbox-sre-admins.yaml b/components/authentication/base/sandbox-sre-admins.yaml
@@ -5754,7 +5754,7 @@ rename to components/authentication/base/sandbox-sre-admins.yaml
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (898 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-a4b853e/staging/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-498d7c6/staging/components/authentication/staging/kustomize.out
@@ -6664,10 +6664,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-a4b853e/staging/components/
 </div>
 
 <div>
-<h3>15: Development changes from 498d7c6 to a4b853e on Thu Mar 9 13:19:19 2023 with 0 lines changed </h3>  
+<h3>15: Development changes from 498d7c6 to a4b853e on Thu Mar 9 13:19:19 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (4 lines)</summary>  
 
 ``` 
 diff --git a/components/authentication/sandbox-sre-admins.yaml b/components/authentication/base/sandbox-sre-admins.yaml
@@ -6679,7 +6679,7 @@ rename to components/authentication/base/sandbox-sre-admins.yaml
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -6692,10 +6692,10 @@ rename to components/authentication/base/sandbox-sre-admins.yaml
 </div>
 
 <div>
-<h3>16: Staging changes from 8ff4b18 to 498d7c6 on Thu Mar 9 12:34:49 2023 with 0 lines changed </h3>  
+<h3>16: Staging changes from 8ff4b18 to 498d7c6 on Thu Mar 9 12:34:49 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (43 lines)</summary>  
 
 ``` 
 diff --git a/components/monitoring/grafana/base/spi/kustomization.yaml b/components/monitoring/grafana/base/spi/kustomization.yaml
@@ -6746,7 +6746,7 @@ index 9990176..d80a0ce 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -6759,10 +6759,10 @@ index 9990176..d80a0ce 100644
 </div>
 
 <div>
-<h3>16: Development changes from 8ff4b18 to 498d7c6 on Thu Mar 9 12:34:49 2023 with 0 lines changed </h3>  
+<h3>16: Development changes from 8ff4b18 to 498d7c6 on Thu Mar 9 12:34:49 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (43 lines)</summary>  
 
 ``` 
 diff --git a/components/monitoring/grafana/base/spi/kustomization.yaml b/components/monitoring/grafana/base/spi/kustomization.yaml
@@ -6813,7 +6813,7 @@ index 9990176..d80a0ce 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -6826,10 +6826,10 @@ index 9990176..d80a0ce 100644
 </div>
 
 <div>
-<h3>17: Staging changes from 9eb0e40 to 8ff4b18 on Thu Mar 9 10:27:43 2023 with 0 lines changed </h3>  
+<h3>17: Staging changes from 9eb0e40 to 8ff4b18 on Thu Mar 9 10:27:43 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (27 lines)</summary>  
 
 ``` 
 diff --git a/components/monitoring/logging/base/install-logging-operator.yaml b/components/monitoring/logging/base/install-logging-operator.yaml
@@ -6864,7 +6864,7 @@ index 1bf6bcb..548eb3e 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -6877,10 +6877,10 @@ index 1bf6bcb..548eb3e 100644
 </div>
 
 <div>
-<h3>17: Development changes from 9eb0e40 to 8ff4b18 on Thu Mar 9 10:27:43 2023 with 0 lines changed </h3>  
+<h3>17: Development changes from 9eb0e40 to 8ff4b18 on Thu Mar 9 10:27:43 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (27 lines)</summary>  
 
 ``` 
 diff --git a/components/monitoring/logging/base/install-logging-operator.yaml b/components/monitoring/logging/base/install-logging-operator.yaml
@@ -6915,7 +6915,7 @@ index 1bf6bcb..548eb3e 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -6928,10 +6928,10 @@ index 1bf6bcb..548eb3e 100644
 </div>
 
 <div>
-<h3>18: Staging changes from c69b6b2 to 9eb0e40 on Thu Mar 9 10:16:15 2023 with 866 lines changed </h3>  
+<h3>18: Staging changes from c69b6b2 to 9eb0e40 on Thu Mar 9 10:16:15 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (50 lines)</summary>  
 
 ``` 
 diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
@@ -6989,7 +6989,7 @@ index 0000000..febbfa0
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (866 lines)</summary>  
 
 ``` 
 diff -r /home/john/dev/kdiff/kustomized-cache/commit-9eb0e40/staging/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-c69b6b2/staging/components/authentication/staging/kustomize.out
@@ -7867,10 +7867,10 @@ diff -r /home/john/dev/kdiff/kustomized-cache/commit-9eb0e40/staging/components/
 </div>
 
 <div>
-<h3>18: Development changes from c69b6b2 to 9eb0e40 on Thu Mar 9 10:16:15 2023 with 0 lines changed </h3>  
+<h3>18: Development changes from c69b6b2 to 9eb0e40 on Thu Mar 9 10:16:15 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (50 lines)</summary>  
 
 ``` 
 diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
@@ -7928,7 +7928,7 @@ index 0000000..febbfa0
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -7941,10 +7941,10 @@ index 0000000..febbfa0
 </div>
 
 <div>
-<h3>19: Staging changes from 6129c46 to c69b6b2 on Thu Mar 9 10:06:21 2023 with 0 lines changed </h3>  
+<h3>19: Staging changes from 6129c46 to c69b6b2 on Thu Mar 9 10:06:21 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (13 lines)</summary>  
 
 ``` 
 diff --git a/hack/preview.sh b/hack/preview.sh
@@ -7965,7 +7965,7 @@ index 682daee..d0308cd 100755
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -7978,10 +7978,10 @@ index 682daee..d0308cd 100755
 </div>
 
 <div>
-<h3>19: Development changes from 6129c46 to c69b6b2 on Thu Mar 9 10:06:21 2023 with 0 lines changed </h3>  
+<h3>19: Development changes from 6129c46 to c69b6b2 on Thu Mar 9 10:06:21 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (13 lines)</summary>  
 
 ``` 
 diff --git a/hack/preview.sh b/hack/preview.sh
@@ -8002,7 +8002,7 @@ index 682daee..d0308cd 100755
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -8015,10 +8015,10 @@ index 682daee..d0308cd 100755
 </div>
 
 <div>
-<h3>20: Staging changes from 698f27e to 6129c46 on Thu Mar 9 08:54:19 2023 with 0 lines changed </h3>  
+<h3>20: Staging changes from 698f27e to 6129c46 on Thu Mar 9 08:54:19 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (12 lines)</summary>  
 
 ``` 
 diff --git a/components/monitoring/prometheus/base/external-secrets/monitoring-prometheus-oauth-config.yaml b/components/monitoring/prometheus/base/external-secrets/monitoring-prometheus-oauth-config.yaml
@@ -8038,7 +8038,7 @@ index 7012547..85e3a95 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  
@@ -8051,10 +8051,10 @@ index 7012547..85e3a95 100644
 </div>
 
 <div>
-<h3>20: Development changes from 698f27e to 6129c46 on Thu Mar 9 08:54:19 2023 with 0 lines changed </h3>  
+<h3>20: Development changes from 698f27e to 6129c46 on Thu Mar 9 08:54:19 2023 </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff (12 lines)</summary>  
 
 ``` 
 diff --git a/components/monitoring/prometheus/base/external-secrets/monitoring-prometheus-oauth-config.yaml b/components/monitoring/prometheus/base/external-secrets/monitoring-prometheus-oauth-config.yaml
@@ -8074,7 +8074,7 @@ index 7012547..85e3a95 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
  

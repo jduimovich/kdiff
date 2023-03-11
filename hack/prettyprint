@@ -25,6 +25,7 @@ do
     let OUT_COUNT++
     diff=$(realpath $COMPARE_DIR/$diff)  
     GIT=$(cat $diff/diff-git)
+    GLINES=$(wc -l $diff/diff-git | cut -d ' ' -f 1)
     echo $diff
     for overlay in  staging  development
     do 
@@ -35,16 +36,16 @@ do
             BASE=$(basename $diff)  
             TITLE="${overlay^}"-$BASE 
         fi 
-        LINES=$(wc -l $diff/$overlay/diff-kustomize | cut -d ' ' -f 1)
+        KLINES=$(wc -l $diff/$overlay/diff-kustomize | cut -d ' ' -f 1)
         DELTA=$(cat $diff/$overlay/diff-kustomize)
         
 cat <<EOF >> $SUMMARY
 
 <div>
-<h3>$OUT_COUNT: $TITLE with $LINES lines changed </h3>  
+<h3>$OUT_COUNT: $TITLE </h3>  
  
 <details> 
-<summary>Git Diff</summary>  
+<summary>Git Diff ($GLINES lines)</summary>  
 
 \`\`\` 
 $GIT 
@@ -53,7 +54,7 @@ $GIT
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff</summary>  
+<summary>Kustomize Generated Diff ($KLINES lines)</summary>  
 
 \`\`\` 
 $DELTA 
