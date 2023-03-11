@@ -1,0 +1,3 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-81cbdd7/staging/components/cluster-secret-store/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-8fb8d98/staging/components/cluster-secret-store/staging/kustomize.out
+20d19
+<     - tekton-ci

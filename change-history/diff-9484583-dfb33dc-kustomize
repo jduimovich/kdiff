@@ -1,9 +1,0 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/tag-dfb33dc/components/quality-dashboard/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-9484583/components/quality-dashboard/kustomize.out
-119c119
-<         image: quay.io/redhat-appstudio/quality-dashboard-backend:dea0b94a906b57aa8de117296bc9d5c7946060d5
----
->         image: quay.io/redhat-appstudio/quality-dashboard-backend:b124604afa730718b2dbe80e1d3132a67764fb7f
-201c201
-<         image: quay.io/redhat-appstudio/quality-dashboard-frontend:dea0b94a906b57aa8de117296bc9d5c7946060d5
----
->         image: quay.io/redhat-appstudio/quality-dashboard-frontend:b124604afa730718b2dbe80e1d3132a67764fb7f

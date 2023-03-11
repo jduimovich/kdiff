@@ -1,0 +1,12 @@
+diff --git a/OWNERS b/OWNERS
+index a7c910c..87e9d03 100644
+--- a/OWNERS
++++ b/OWNERS
+@@ -18,7 +18,6 @@ approvers:
+ - elsony
+ - gazarenkov
+ - skabashnyuk
+-- deboer-tim
+ - ksprinkl
+ - scoheb
+ - roming22

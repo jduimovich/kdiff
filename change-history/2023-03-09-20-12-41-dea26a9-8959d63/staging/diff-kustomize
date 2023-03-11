@@ -1,0 +1,240 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/staging/components/gitops/staging/stone-stg-m01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-dea26a9/staging/components/gitops/staging/stone-stg-m01/kustomize.out
+1565,1580d1564
+<     service.beta.openshift.io/serving-cert-secret-name: webhook-server-cert
+<   name: gitops-appstudio-service-webhook-service
+<   namespace: gitops
+< spec:
+<   ports:
+<   - port: 443
+<     protocol: TCP
+<     targetPort: 9443
+<   selector:
+<     control-plane: appstudio-controller-manager
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1654c1638
+<         image: quay.io/redhat-appstudio/gitops-service:514ecbefc26d7b623334c7b35fa9b2f2950b55d3
+---
+>         image: quay.io/redhat-appstudio/gitops-service:489156497d26c4cae149a8b682d9280d440bd3ad
+1665,1667d1648
+<         - containerPort: 9443
+<           name: webhook-server
+<           protocol: TCP
+1684,1687d1664
+<         volumeMounts:
+<         - mountPath: /tmp/k8s-webhook-server/serving-certs
+<           name: cert
+<           readOnly: true
+1707,1711d1683
+<       volumes:
+<       - name: cert
+<         secret:
+<           defaultMode: 420
+<           secretName: webhook-server-cert
+1757c1729
+<         image: quay.io/redhat-appstudio/gitops-service:514ecbefc26d7b623334c7b35fa9b2f2950b55d3
+---
+>         image: quay.io/redhat-appstudio/gitops-service:489156497d26c4cae149a8b682d9280d440bd3ad
+1817c1789
+<         image: quay.io/redhat-appstudio/gitops-service:514ecbefc26d7b623334c7b35fa9b2f2950b55d3
+---
+>         image: quay.io/redhat-appstudio/gitops-service:489156497d26c4cae149a8b682d9280d440bd3ad
+1868c1840
+<         image: quay.io/redhat-appstudio/gitops-service:514ecbefc26d7b623334c7b35fa9b2f2950b55d3
+---
+>         image: quay.io/redhat-appstudio/gitops-service:489156497d26c4cae149a8b682d9280d440bd3ad
+2122,2191d2093
+< ---
+< apiVersion: admissionregistration.k8s.io/v1
+< kind: ValidatingWebhookConfiguration
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     service.beta.openshift.io/inject-cabundle: "true"
+<   creationTimestamp: null
+<   name: gitops-appstudio-service-validating-webhook-configuration
+< webhooks:
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-appstudio-service-webhook-service
+<       namespace: gitops
+<       path: /validate-appstudio-redhat-com-v1alpha1-snapshot
+<   failurePolicy: Fail
+<   name: vsnapshot.kb.io
+<   rules:
+<   - apiGroups:
+<     - appstudio.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - snapshots
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-appstudio-service-webhook-service
+<       namespace: gitops
+<       path: /validate-appstudio-redhat-com-v1alpha1-snapshotenvironmentbinding
+<   failurePolicy: Fail
+<   name: vsnapshotenvironmentbinding.kb.io
+<   rules:
+<   - apiGroups:
+<     - appstudio.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - snapshotenvironmentbindings
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-appstudio-service-webhook-service
+<       namespace: gitops
+<       path: /validate-appstudio-redhat-com-v1alpha1-promotionrun
+<   failurePolicy: Fail
+<   name: vpromotionrun.kb.io
+<   rules:
+<   - apiGroups:
+<     - appstudio.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - promotionruns
+<   sideEffects: None
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-8959d63/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-dea26a9/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
+1565,1580d1564
+<     service.beta.openshift.io/serving-cert-secret-name: webhook-server-cert
+<   name: gitops-appstudio-service-webhook-service
+<   namespace: gitops
+< spec:
+<   ports:
+<   - port: 443
+<     protocol: TCP
+<     targetPort: 9443
+<   selector:
+<     control-plane: appstudio-controller-manager
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1654c1638
+<         image: quay.io/redhat-appstudio/gitops-service:514ecbefc26d7b623334c7b35fa9b2f2950b55d3
+---
+>         image: quay.io/redhat-appstudio/gitops-service:489156497d26c4cae149a8b682d9280d440bd3ad
+1665,1667d1648
+<         - containerPort: 9443
+<           name: webhook-server
+<           protocol: TCP
+1684,1687d1664
+<         volumeMounts:
+<         - mountPath: /tmp/k8s-webhook-server/serving-certs
+<           name: cert
+<           readOnly: true
+1707,1711d1683
+<       volumes:
+<       - name: cert
+<         secret:
+<           defaultMode: 420
+<           secretName: webhook-server-cert
+1757c1729
+<         image: quay.io/redhat-appstudio/gitops-service:514ecbefc26d7b623334c7b35fa9b2f2950b55d3
+---
+>         image: quay.io/redhat-appstudio/gitops-service:489156497d26c4cae149a8b682d9280d440bd3ad
+1817c1789
+<         image: quay.io/redhat-appstudio/gitops-service:514ecbefc26d7b623334c7b35fa9b2f2950b55d3
+---
+>         image: quay.io/redhat-appstudio/gitops-service:489156497d26c4cae149a8b682d9280d440bd3ad
+1868c1840
+<         image: quay.io/redhat-appstudio/gitops-service:514ecbefc26d7b623334c7b35fa9b2f2950b55d3
+---
+>         image: quay.io/redhat-appstudio/gitops-service:489156497d26c4cae149a8b682d9280d440bd3ad
+2122,2191d2093
+< ---
+< apiVersion: admissionregistration.k8s.io/v1
+< kind: ValidatingWebhookConfiguration
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     service.beta.openshift.io/inject-cabundle: "true"
+<   creationTimestamp: null
+<   name: gitops-appstudio-service-validating-webhook-configuration
+< webhooks:
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-appstudio-service-webhook-service
+<       namespace: gitops
+<       path: /validate-appstudio-redhat-com-v1alpha1-snapshot
+<   failurePolicy: Fail
+<   name: vsnapshot.kb.io
+<   rules:
+<   - apiGroups:
+<     - appstudio.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - snapshots
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-appstudio-service-webhook-service
+<       namespace: gitops
+<       path: /validate-appstudio-redhat-com-v1alpha1-snapshotenvironmentbinding
+<   failurePolicy: Fail
+<   name: vsnapshotenvironmentbinding.kb.io
+<   rules:
+<   - apiGroups:
+<     - appstudio.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - snapshotenvironmentbindings
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-appstudio-service-webhook-service
+<       namespace: gitops
+<       path: /validate-appstudio-redhat-com-v1alpha1-promotionrun
+<   failurePolicy: Fail
+<   name: vpromotionrun.kb.io
+<   rules:
+<   - apiGroups:
+<     - appstudio.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - promotionruns
+<   sideEffects: None

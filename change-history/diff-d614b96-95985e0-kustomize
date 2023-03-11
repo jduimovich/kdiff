@@ -1,5 +1,0 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/tag-95985e0/components/has/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-d614b96/components/has/kustomize.out
-677c677
-<         image: quay.io/redhat-appstudio/application-service:695765c656ab1cd87a661881543114e540a23b8c
----
->         image: quay.io/redhat-appstudio/application-service:df9177f14a0e46f9e9da51ff2d0f6055b67f9abe

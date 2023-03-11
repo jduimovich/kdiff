@@ -1,0 +1,29 @@
+diff --git a/components/monitoring/logging/production/kustomization.yaml b/components/monitoring/logging/production/kustomization.yaml
+new file mode 100644
+index 0000000..258f5ec
+--- /dev/null
++++ b/components/monitoring/logging/production/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base/external-secrets
++- ../base
++patches:
++  - path: monitoring-logging-cloudwatch-forwarder-path.yaml
++    target:
++      name: monitoring-logging-cloudwatch-forwarder
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+\ No newline at end of file
+diff --git a/components/monitoring/logging/production/monitoring-logging-cloudwatch-forwarder-path.yaml b/components/monitoring/logging/production/monitoring-logging-cloudwatch-forwarder-path.yaml
+new file mode 100644
+index 0000000..a7526b4
+--- /dev/null
++++ b/components/monitoring/logging/production/monitoring-logging-cloudwatch-forwarder-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/monitoring/logging/fluentd/cloudwatch-forwarder

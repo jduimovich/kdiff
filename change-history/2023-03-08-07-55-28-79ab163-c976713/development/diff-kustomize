@@ -1,0 +1,16 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-c976713/development/components/jvm-build-service/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-79ab163/development/components/jvm-build-service/kustomize.out
+262,263d261
+<                         packageName:
+<                           type: string
+323,324d320
+<                           packageName:
+<                             type: string
+385,386d380
+<                           packageName:
+<                             type: string
+1046,1047c1040,1041
+<           value: 77e1ca7dff9d83a159e64aacd3b6a7db9121b3de
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:77e1ca7dff9d83a159e64aacd3b6a7db9121b3de
+---
+>           value: 1dbb0cf59ab05b2c020171dc19c0014a164f39eb
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:1dbb0cf59ab05b2c020171dc19c0014a164f39eb

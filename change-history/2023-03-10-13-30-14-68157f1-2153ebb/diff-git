@@ -1,0 +1,60 @@
+diff --git a/components/spi/overlays/staging/stone-stg-m01/config-patch.json b/components/spi/overlays/staging/stone-stg-m01/config-patch.json
+index f0c606e..4daf990 100644
+--- a/components/spi/overlays/staging/stone-stg-m01/config-patch.json
++++ b/components/spi/overlays/staging/stone-stg-m01/config-patch.json
+@@ -2,11 +2,11 @@
+   {
+     "op": "replace",
+     "path": "/data/VAULTHOST",
+-    "value": "https://vault-spi-vault.apps.stone-stg-m01.1ion.p1.openshiftapps.com"
++    "value": "https://vault-spi-vault.apps.stone-stg-m01.7ayg.p1.openshiftapps.com"
+   },
+   {
+     "op": "replace",
+     "path": "/data/BASEURL",
+-    "value": "https://spi-oauth-spi-system.apps.stone-stg-m01.1ion.p1.openshiftapps.com"
++    "value": "https://spi-oauth-spi-system.apps.stone-stg-m01.7ayg.p1.openshiftapps.com"
+   }
+ ]
+diff --git a/components/spi/overlays/staging/stone-stg-m01/oauth-service-config-patch.json b/components/spi/overlays/staging/stone-stg-m01/oauth-service-config-patch.json
+index 7f37bf6..836f3fd 100644
+--- a/components/spi/overlays/staging/stone-stg-m01/oauth-service-config-patch.json
++++ b/components/spi/overlays/staging/stone-stg-m01/oauth-service-config-patch.json
+@@ -2,6 +2,6 @@
+   {
+     "op": "add",
+     "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.stone-stg-host1.hjvn.p1.openshiftapps.com:443"
++    "value": "https://api-toolchain-host-operator.apps.stone-stg-host.qc0p.p1.openshiftapps.com:443"
+   }
+ ]
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/config-patch.json b/components/spi/overlays/staging/stone-stg-rh01/config-patch.json
+index 477ed1f..55d3199 100644
+--- a/components/spi/overlays/staging/stone-stg-rh01/config-patch.json
++++ b/components/spi/overlays/staging/stone-stg-rh01/config-patch.json
+@@ -2,11 +2,11 @@
+   {
+     "op": "replace",
+     "path": "/data/VAULTHOST",
+-    "value": "https://vault-spi-vault.apps.stone-stg-rh01.0fk9.p1.openshiftapps.com"
++    "value": "https://vault-spi-vault.apps.stone-stg-rh01.l2vh.p1.openshiftapps.com"
+   },
+   {
+     "op": "replace",
+     "path": "/data/BASEURL",
+-    "value": "https://spi-oauth-spi-system.apps.stone-stg-rh01.0fk9.p1.openshiftapps.com"
++    "value": "https://spi-oauth-spi-system.apps.stone-stg-rh01.l2vh.p1.openshiftapps.com"
+   }
+ ]
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/oauth-service-config-patch.json b/components/spi/overlays/staging/stone-stg-rh01/oauth-service-config-patch.json
+index 7f37bf6..836f3fd 100644
+--- a/components/spi/overlays/staging/stone-stg-rh01/oauth-service-config-patch.json
++++ b/components/spi/overlays/staging/stone-stg-rh01/oauth-service-config-patch.json
+@@ -2,6 +2,6 @@
+   {
+     "op": "add",
+     "path": "/data/API_SERVER",
+-    "value": "https://api-toolchain-host-operator.apps.stone-stg-host1.hjvn.p1.openshiftapps.com:443"
++    "value": "https://api-toolchain-host-operator.apps.stone-stg-host.qc0p.p1.openshiftapps.com:443"
+   }
+ ]

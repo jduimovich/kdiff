@@ -1,0 +1,19 @@
+diff --git a/components/authentication/base/pipeline-service-sre.yaml b/components/authentication/base/pipeline-service-sre.yaml
+index ee0fd6c..36e36ac 100644
+--- a/components/authentication/base/pipeline-service-sre.yaml
++++ b/components/authentication/base/pipeline-service-sre.yaml
+@@ -93,7 +93,7 @@ roleRef:
+ kind: RoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+-  name: openshift-pipelines-maintainers
++  name: pipeline-service-admin
+   namespace: plnsvc-tests
+ subjects:
+   - kind: Group
+@@ -102,4 +102,4 @@ subjects:
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+-  name: component-maintainer
++  name: admin

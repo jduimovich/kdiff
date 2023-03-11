@@ -1,0 +1,8 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-90de354/staging/components/dev-sso/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-c58d62a/staging/components/dev-sso/kustomize.out
+45,48c45
+<     - clientRoles:
+<         realm-management:
+<         - manage-users
+<       credentials:
+---
+>     - credentials:

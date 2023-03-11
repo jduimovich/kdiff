@@ -1,22 +1,51 @@
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"  
 ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"/..
 
+
+INFRA=$ROOT/infra-deployments 
+
 SUMMARY=$ROOT/summary.md
 COMPARE_DIR=$ROOT/change-history
  
-echo "# kustomize changes per commits "> $SUMMARY 
-echo "## https://github.com/redhat-appstudio/infra-deployments.gits " >> $SUMMARY 
-
-for change in $COMPARE_DIR/*-kustomize
-do 
-    TITLE="Changes in $(basename $change)"
-    LINES=$(wc -l $change | cut -d ' ' -f 1)
-    DELTA=$(cat $change)
+echo "# kustomize changes tracked by commits "> $SUMMARY 
+echo "## Repo - https://github.com/redhat-appstudio/infra-deployments.gits " >> $SUMMARY 
+echo "## Overlays: staging, development" >> $SUMMARY 
+echo >> $SUMMARY 
+ 
+for diff in $(ls change-history/ | sort -r)
+do  
+    diff=$(realpath $COMPARE_DIR/$diff)  
+    GIT=$(cat $diff/diff-git)
+    echo $diff
+    for overlay in  staging  development
+    do 
+        diff=$(realpath $diff)
+        if [ -f $diff/title ]; then
+            TITLE=$(cat $diff/$overlay/title)
+        else
+            BASE=$(basename $diff)  
+            TITLE="${overlay^}"-$BASE 
+        fi 
+        LINES=$(wc -l $diff/$overlay/diff-kustomize | cut -d ' ' -f 1)
+        DELTA=$(cat $diff/$overlay/diff-kustomize)
+        
 cat <<EOF >> $SUMMARY
 <details> 
 <summary>$TITLE with $LINES lines changed </summary>  
-<pre> $DELTA </pre> 
+
+|   git |             
+|        ---|       
+|    <pre> $GIT </pre>        |  
+
+
+|   DELTA |             
+|        ---|       
+|    <pre> $DELTA </pre>        |  
+
+
 </details>
 EOF
+    done
+
 done
  

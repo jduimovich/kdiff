@@ -1,0 +1,247 @@
+diff --git a/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml b/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
+index 0d4cf2d..374420c 100644
+--- a/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
++++ b/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: github-redhat-appstudio-sre
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml b/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml
+index 99d48aa..5585c53 100644
+--- a/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml
++++ b/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: github-redhat-appstudio
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml b/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
+index 1911f00..4667939 100644
+--- a/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
++++ b/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: pipelines-as-code-secret
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/build-templates/base/external-secrets/redhat-appstudio-user-workload.yaml b/components/build-templates/base/external-secrets/redhat-appstudio-user-workload.yaml
+index a421d7b..2dd9aea 100644
+--- a/components/build-templates/base/external-secrets/redhat-appstudio-user-workload.yaml
++++ b/components/build-templates/base/external-secrets/redhat-appstudio-user-workload.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: redhat-appstudio-user-workload
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/dora-metrics/base/external-secrets/exporters-secrets.yaml b/components/dora-metrics/base/external-secrets/exporters-secrets.yaml
+index 36c00c1..5a1cfe4 100644
+--- a/components/dora-metrics/base/external-secrets/exporters-secrets.yaml
++++ b/components/dora-metrics/base/external-secrets/exporters-secrets.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: exporters-secret
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml b/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml
+index e083814..f175bc9 100644
+--- a/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml
++++ b/components/gitops/base/external-secrets/gitops-service-postgres-rds-config.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: gitops-service-postgres-rds-config
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/has/base/external-secrets/has-github-token.yaml b/components/has/base/external-secrets/has-github-token.yaml
+index 8a361ec..ffb3309 100644
+--- a/components/has/base/external-secrets/has-github-token.yaml
++++ b/components/has/base/external-secrets/has-github-token.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: has-github-token
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/image-controller/base/external-secrets/quaytoken.yaml b/components/image-controller/base/external-secrets/quaytoken.yaml
+index 31669a2..cf4b227 100644
+--- a/components/image-controller/base/external-secrets/quaytoken.yaml
++++ b/components/image-controller/base/external-secrets/quaytoken.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: quaytoken
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/monitoring/logging/base/external-secrets/monitoring-logging-cloudwatch-forwarder.yaml b/components/monitoring/logging/base/external-secrets/monitoring-logging-cloudwatch-forwarder.yaml
+index f507c3f..78f513c 100644
+--- a/components/monitoring/logging/base/external-secrets/monitoring-logging-cloudwatch-forwarder.yaml
++++ b/components/monitoring/logging/base/external-secrets/monitoring-logging-cloudwatch-forwarder.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: monitoring-logging-cloudwatch-forwarder
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+   - extract:
+diff --git a/components/monitoring/prometheus/base/external-secrets/monitoring-prometheus-oauth-config.yaml b/components/monitoring/prometheus/base/external-secrets/monitoring-prometheus-oauth-config.yaml
+index 22ce620..7012547 100644
+--- a/components/monitoring/prometheus/base/external-secrets/monitoring-prometheus-oauth-config.yaml
++++ b/components/monitoring/prometheus/base/external-secrets/monitoring-prometheus-oauth-config.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: monitoring-prometheus-oauth-config
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+   - extract:
+diff --git a/components/pipeline-service/base/external-secrets/pipelines-as-code/pipelines-as-code-secret.yaml b/components/pipeline-service/base/external-secrets/pipelines-as-code/pipelines-as-code-secret.yaml
+index b75be3c..3aa1ec9 100644
+--- a/components/pipeline-service/base/external-secrets/pipelines-as-code/pipelines-as-code-secret.yaml
++++ b/components/pipeline-service/base/external-secrets/pipelines-as-code/pipelines-as-code-secret.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: pipelines-as-code-secret
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/pipeline-service/base/external-secrets/tekton-results/tekton-results-database.yaml b/components/pipeline-service/base/external-secrets/tekton-results/tekton-results-database.yaml
+index ac5a206..f21076b 100644
+--- a/components/pipeline-service/base/external-secrets/tekton-results/tekton-results-database.yaml
++++ b/components/pipeline-service/base/external-secrets/tekton-results/tekton-results-database.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: tekton-results-database
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/pipeline-service/base/external-secrets/tekton-results/tekton-results-s3.yaml b/components/pipeline-service/base/external-secrets/tekton-results/tekton-results-s3.yaml
+index 249c75f..2d23ce4 100644
+--- a/components/pipeline-service/base/external-secrets/tekton-results/tekton-results-s3.yaml
++++ b/components/pipeline-service/base/external-secrets/tekton-results/tekton-results-s3.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: tekton-results-s3
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/quality-dashboard/staging/external-secrets/quality-dashboard-secrets.yaml b/components/quality-dashboard/staging/external-secrets/quality-dashboard-secrets.yaml
+index 2b8b3f3..ed8a09e 100644
+--- a/components/quality-dashboard/staging/external-secrets/quality-dashboard-secrets.yaml
++++ b/components/quality-dashboard/staging/external-secrets/quality-dashboard-secrets.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: quality-dashboard-secrets
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/spi/base/external-secrets/spi-shared-configuration-file.yaml b/components/spi/base/external-secrets/spi-shared-configuration-file.yaml
+index 9e92d6b..245a24f 100644
+--- a/components/spi/base/external-secrets/spi-shared-configuration-file.yaml
++++ b/components/spi/base/external-secrets/spi-shared-configuration-file.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: spi-shared-configuration-file
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/spi/base/external-secrets/spi-vault-approle-spi-oauth.yaml b/components/spi/base/external-secrets/spi-vault-approle-spi-oauth.yaml
+index 79339d0..4a7a641 100644
+--- a/components/spi/base/external-secrets/spi-vault-approle-spi-oauth.yaml
++++ b/components/spi/base/external-secrets/spi-vault-approle-spi-oauth.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: spi-vault-approle-spi-oauth
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/spi/base/external-secrets/spi-vault-approle-spi-operator.yaml b/components/spi/base/external-secrets/spi-vault-approle-spi-operator.yaml
+index b9fb2b4..3e3bc1c 100644
+--- a/components/spi/base/external-secrets/spi-vault-approle-spi-operator.yaml
++++ b/components/spi/base/external-secrets/spi-vault-approle-spi-operator.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: spi-vault-approle-spi-operator
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/tekton-ci/base/external-secrets/infra-deployments-pr-creator.yaml b/components/tekton-ci/base/external-secrets/infra-deployments-pr-creator.yaml
+index a89d1a4..ab6aae2 100644
+--- a/components/tekton-ci/base/external-secrets/infra-deployments-pr-creator.yaml
++++ b/components/tekton-ci/base/external-secrets/infra-deployments-pr-creator.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: infra-deployments-pr-creator
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+diff --git a/components/tekton-ci/base/external-secrets/tekton-ci-push-secret.yaml b/components/tekton-ci/base/external-secrets/tekton-ci-push-secret.yaml
+index ac3ba77..bce9885 100644
+--- a/components/tekton-ci/base/external-secrets/tekton-ci-push-secret.yaml
++++ b/components/tekton-ci/base/external-secrets/tekton-ci-push-secret.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: tekton-ci-push-secret
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:

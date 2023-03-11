@@ -1,0 +1,14 @@
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 90d0433..f45a283 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -11,6 +11,9 @@ spec:
+   configuration:
+     collections:
+       - minimal
++    exclude:
++      # This can be removed once https://issues.redhat.com/browse/OCPBUGS-8428 is addressed
++      - step_image_registries
+   publicKey: k8s://tekton-chains/public-key
+   sources:
+     - name: Release Policies

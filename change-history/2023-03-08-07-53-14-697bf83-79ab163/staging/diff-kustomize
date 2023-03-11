@@ -1,0 +1,3 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-79ab163/staging/components/cluster-secret-store/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-697bf83/staging/components/cluster-secret-store/staging/kustomize.out
+22d21
+<     - openshift-logging

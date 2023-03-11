@@ -1,0 +1,24 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-75df761/development/components/jvm-build-service/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-928e19a/development/components/jvm-build-service/kustomize.out
+176,183c176,182
+<                     \n \ttype FooStatus struct{ \t    // Represents the observations
+<                     of a foo's current state. \t    // Known .status.conditions.type
+<                     are: \"Available\", \"Progressing\", and \"Degraded\" \t    //
+<                     +patchMergeKey=type \t    // +patchStrategy=merge \t    // +listType=map
+<                     \t    // +listMapKey=type \t    Conditions []metav1.Condition
+<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
+<                     protobuf:\"bytes,1,rep,name=conditions\"` \n \t    // other fields
+<                     \t}"
+---
+>                     type FooStatus struct{     // Represents the observations of a
+>                     foo's current state.     // Known .status.conditions.type are:
+>                     \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
+>                     \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
+>                     \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
+>                     patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
+>                     \n     // other fields }"
+1047,1048c1046,1047
+<           value: 45b1f0cb3762952135a9ec6c62d79c1132fdaa6c
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:45b1f0cb3762952135a9ec6c62d79c1132fdaa6c
+---
+>           value: 77e1ca7dff9d83a159e64aacd3b6a7db9121b3de
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:77e1ca7dff9d83a159e64aacd3b6a7db9121b3de

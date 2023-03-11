@@ -1,9 +1,0 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/tag-c917b93/components/enterprise-contract/kustomize.out /home/john/dev/kdiff/kustomized-cache/tag-a181b33/components/enterprise-contract/kustomize.out
-229c229,233
-<   publicKey: k8s://tekton-chains/public-key
----
->   publicKey: |-
->     -----BEGIN PUBLIC KEY-----
->     MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEODgxyIz09vBqJlXXzjp/X2h17WIt
->     jCVQhnDYVWHvXhw6rgqGeg6NTUxIEhRQqQZaF9mcBotHkuYGJfYZbai+FA==
->     -----END PUBLIC KEY-----

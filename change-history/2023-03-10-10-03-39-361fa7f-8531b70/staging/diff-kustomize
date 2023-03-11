@@ -1,0 +1,30 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-8531b70/staging/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-361fa7f/staging/components/authentication/staging/kustomize.out
+22,34d21
+<   name: edit-spacerequests
+<   namespace: rh-ee-fmuntean-tenant
+< rules:
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+<   - spacerequests
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+634,647d620
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: edit-spacerequests-rb
+<   namespace: rh-ee-fmuntean-tenant
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: edit-spacerequests
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: mfrancisc

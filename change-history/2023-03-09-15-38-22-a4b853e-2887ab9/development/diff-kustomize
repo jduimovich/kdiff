@@ -1,0 +1,19 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-2887ab9/development/components/quality-dashboard/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-a4b853e/development/components/quality-dashboard/development/kustomize.out
+5d4
+<     argocd.argoproj.io/sync-wave: "0"
+43d41
+<     argocd.argoproj.io/sync-wave: "0"
+121c119
+<         image: quay.io/redhat-appstudio/quality-dashboard-backend:62d693e2f57a4c3394a842966f51e646691b28df
+---
+>         image: quay.io/redhat-appstudio/quality-dashboard-backend:00b4fcbfee90cf4edb5eb332467648dfed031ad3
+145,146d142
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "0"
+205c201
+<         image: quay.io/redhat-appstudio/quality-dashboard-frontend:62d693e2f57a4c3394a842966f51e646691b28df
+---
+>         image: quay.io/redhat-appstudio/quality-dashboard-frontend:00b4fcbfee90cf4edb5eb332467648dfed031ad3
+247,248d242
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "1"

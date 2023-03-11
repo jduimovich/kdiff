@@ -1,0 +1,25 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-ac6e749/staging/app-of-apps-staging.yaml /home/john/dev/kdiff/kustomized-cache/commit-88a4a3f/staging/app-of-apps-staging.yaml
+711,724c711,714
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: staging
+<             sourceRoot: components/monitoring/prometheus
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+---
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+734c724
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+---
+>         path: components/monitoring/logging/base

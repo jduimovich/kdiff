@@ -1,0 +1,32 @@
+diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
+index 1c5a84a..932127d 100644
+--- a/components/has/base/kustomization.yaml
++++ b/components/has/base/kustomization.yaml
+@@ -1,7 +1,7 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+ - argocd-permissions.yaml
+-- https://github.com/redhat-appstudio/application-service/config/default?ref=86e2cdb03d7379474c2ba2f8a267ed97b48bac9b
++- https://github.com/redhat-appstudio/application-service/config/default?ref=fee6ebe4a942d6f1eefcc6bf6a7ff2bf3507ffab
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+@@ -9,7 +9,7 @@ kind: Kustomization
+ images:
+ - name: quay.io/redhat-appstudio/application-service
+   newName: quay.io/redhat-appstudio/application-service
+-  newTag: 86e2cdb03d7379474c2ba2f8a267ed97b48bac9b
++  newTag: fee6ebe4a942d6f1eefcc6bf6a7ff2bf3507ffab
+ 
+ configMapGenerator:
+ - literals:
+diff --git a/components/monitoring/grafana/base/has/kustomization.yaml b/components/monitoring/grafana/base/has/kustomization.yaml
+index 5904857..f9a3ce9 100644
+--- a/components/monitoring/grafana/base/has/kustomization.yaml
++++ b/components/monitoring/grafana/base/has/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=86e2cdb03d7379474c2ba2f8a267ed97b48bac9b
++  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=fee6ebe4a942d6f1eefcc6bf6a7ff2bf3507ffab

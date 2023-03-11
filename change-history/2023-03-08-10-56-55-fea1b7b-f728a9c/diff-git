@@ -1,0 +1,149 @@
+diff --git a/components/pipeline-service/base/testing/kustomization.yaml b/components/pipeline-service/base/testing/kustomization.yaml
+new file mode 100644
+index 0000000..e878e4e
+--- /dev/null
++++ b/components/pipeline-service/base/testing/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ns.yaml
+diff --git a/components/pipeline-service/base/testing/ns.yaml b/components/pipeline-service/base/testing/ns.yaml
+new file mode 100644
+index 0000000..c2c1ad4
+--- /dev/null
++++ b/components/pipeline-service/base/testing/ns.yaml
+@@ -0,0 +1,5 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: plnsvc-tests
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 4920cc2..5c1c6f0 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,7 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=c3d1e5f85e64205a3c4fd7476d0ef0d03e4b570f
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=52dcd4770bc24b8ed9ad92303289e6e7e7696ba5
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=52dcd4770bc24b8ed9ad92303289e6e7e7696ba5
+ 
+ components:
+   - ../components/tekton-chains
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 8f2c93f..b9c98ad 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,8 +8,9 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=appstudio-staging
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=52dcd4770bc24b8ed9ad92303289e6e7e7696ba5
+   - ../../base/external-secrets
++  - ../../base/testing
+ 
+ components:
+   - ../../components/tekton-chains
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index cc57079..8d1ec02 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,8 +8,9 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=appstudio-staging
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=52dcd4770bc24b8ed9ad92303289e6e7e7696ba5
+   - ../../base/external-secrets
++  - ../../base/testing
+ 
+ components:
+   - ../../components/tekton-chains
+diff --git a/hack/bootstrap-member-cluster.sh b/hack/bootstrap-member-cluster.sh
+index 710eca6..d56bd3b 100755
+--- a/hack/bootstrap-member-cluster.sh
++++ b/hack/bootstrap-member-cluster.sh
+@@ -4,6 +4,7 @@ declare -r ROOT="${BASH_SOURCE[0]%/*}"
+ 
+ main() {
+     load_global_vars
++    "${ROOT}/secret-creator/create-plnsvc-secrets.sh"
+     "${ROOT}/secret-creator/create-gitops-secrets.sh"
+     [[ -z "$MY_GITHUB_TOKEN" ]] ||
+         "${ROOT}/secret-creator/create-github-secret.sh" "$MY_GITHUB_TOKEN"
+diff --git a/hack/secret-creator/create-plnsvc-secrets.sh b/hack/secret-creator/create-plnsvc-secrets.sh
+new file mode 100755
+index 0000000..c89a48b
+--- /dev/null
++++ b/hack/secret-creator/create-plnsvc-secrets.sh
+@@ -0,0 +1,66 @@
++#!/bin/bash -e
++
++main() {
++    echo "Setting secrets for pipeline-service"
++    create_namespace
++    create_db_secret
++    create_s3_secret
++}
++
++create_namespace() {
++    if kubectl get namespace tekton-results &>/dev/null; then
++        echo "tekton-results namespace already exists, skipping creation"
++        return
++    fi
++    kubectl create namespace tekton-results -o yaml --dry-run=client | kubectl apply -f-
++}
++
++create_db_secret() {
++    echo "Creating DB secret" >&2
++    if kubectl get secret -n tekton-results tekton-results-database &>/dev/null; then
++        echo "DB secret already exists, skipping creation"
++        return
++    fi
++    kubectl create secret generic -n tekton-results tekton-results-database \
++      --from-literal=db.user=tekton \
++      --from-literal=db.password="$(openssl rand -base64 20)" \
++      --from-literal=db.host="tekton-results-database-service.tekton-results.svc.cluster.local" \
++      --from-literal=db.name="tekton_results"
++}
++
++create_s3_secret() {
++    echo "Creating S3 secret" >&2
++    if kubectl get secret -n tekton-results tekton-results-s3 &>/dev/null; then
++        echo "S3 secret already exists, skipping creation"
++        return
++    fi
++    USER=minio
++    PASS="$(openssl rand -base64 20)"
++    kubectl create secret generic -n tekton-results tekton-results-s3 \
++      --from-literal=S3_ACCESS_KEY_ID="$USER" \
++      --from-literal=S3_SECRET_ACCESS_KEY="$PASS"
++
++    echo "Creating MinIO config" >&2
++    if kubectl get secret -n tekton-results minio-storage-configuration &>/dev/null; then
++        echo "MinIO config already exists, skipping creation"
++        return
++    fi
++    cat <<EOF | kubectl apply -f -
++apiVersion: v1
++kind: Secret
++metadata:
++  name: minio-storage-configuration
++  namespace: tekton-results
++type: Opaque
++stringData:
++  config.env: |-
++    export MINIO_ROOT_USER="$USER"
++    export MINIO_ROOT_PASSWORD="$PASS"
++    export MINIO_STORAGE_CLASS_STANDARD="EC:2"
++    export MINIO_BROWSER="on"
++EOF
++}
++
++if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
++    main "$@"
++fi

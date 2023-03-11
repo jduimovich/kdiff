@@ -1,0 +1,58 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-9268973/staging/components/authentication/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-4f7235c/staging/components/authentication/staging/kustomize.out
+770c770
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "1"
+793c793
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "1"
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-9268973/staging/components/build-service/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-4f7235c/staging/components/build-service/staging/kustomize.out
+614c614
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "1"
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-9268973/staging/components/build-templates/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-4f7235c/staging/components/build-templates/staging/kustomize.out
+96c96
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "1"
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-9268973/staging/components/dora-metrics/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-4f7235c/staging/components/dora-metrics/staging/kustomize.out
+119c119
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "1"
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-9268973/staging/components/gitops/staging/stone-stg-m01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-4f7235c/staging/components/gitops/staging/stone-stg-m01/kustomize.out
+2044c2044
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "1"
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-9268973/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-4f7235c/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
+2044c2044
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "1"
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-9268973/staging/components/has/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-4f7235c/staging/components/has/staging/kustomize.out
+741c741
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "1"
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-9268973/staging/components/image-controller/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-4f7235c/staging/components/image-controller/staging/kustomize.out
+302c302
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "1"
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-9268973/staging/components/quality-dashboard/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-4f7235c/staging/components/quality-dashboard/staging/kustomize.out
+271c271
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "1"
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-9268973/staging/components/tekton-ci/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-4f7235c/staging/components/tekton-ci/staging/kustomize.out
+50c50
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "1"
+71c71
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "1"

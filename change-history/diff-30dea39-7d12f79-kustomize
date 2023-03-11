@@ -1,5 +1,0 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/tag-7d12f79/app-of-apps-staging.yaml /home/john/dev/kdiff/kustomized-cache/tag-30dea39/app-of-apps-staging.yaml
-1011c1011
-<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
----
->         path: components/quality-dashboard

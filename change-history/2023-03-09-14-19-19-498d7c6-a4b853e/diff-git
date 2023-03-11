@@ -1,0 +1,4 @@
+diff --git a/components/authentication/sandbox-sre-admins.yaml b/components/authentication/base/sandbox-sre-admins.yaml
+similarity index 100%
+rename from components/authentication/sandbox-sre-admins.yaml
+rename to components/authentication/base/sandbox-sre-admins.yaml

@@ -1,0 +1,5 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-ef3ef0c/development/components/integration/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-75df761/development/components/integration/kustomize.out
+1024c1024
+<         image: quay.io/redhat-appstudio/integration-service:41fbdb124775323f58fd5ce93c70bb7d79c20650
+---
+>         image: quay.io/redhat-appstudio/integration-service:949eecfb02c6be08a3d840ba03739aa5bacf9ec7

@@ -1,0 +1,15 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-e5c589e/staging/components/tekton-ci/staging/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-d75b32d/staging/components/tekton-ci/staging/kustomize.out
+44a45,57
+> apiVersion: v1
+> kind: PersistentVolumeClaim
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: app-studio-default-workspace
+> spec:
+>   accessModes:
+>   - ReadWriteOnce
+>   resources:
+>     requests:
+>       storage: 100Gi
+> ---

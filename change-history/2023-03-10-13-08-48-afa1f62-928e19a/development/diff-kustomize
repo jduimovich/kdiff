@@ -1,0 +1,31 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-928e19a/development/components/release/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-afa1f62/development/components/release/kustomize.out
+14d13
+<   creationTimestamp: null
+16a16,25
+>   conversion:
+>     strategy: Webhook
+>     webhook:
+>       clientConfig:
+>         service:
+>           name: release-service-webhook-service
+>           namespace: release-service
+>           path: /convert
+>       conversionReviewVersions:
+>       - v1
+112d120
+<   creationTimestamp: null
+114a123,132
+>   conversion:
+>     strategy: Webhook
+>     webhook:
+>       clientConfig:
+>         service:
+>           name: release-service-webhook-service
+>           namespace: release-service
+>           path: /convert
+>       conversionReviewVersions:
+>       - v1
+2293c2311
+<         image: quay.io/redhat-appstudio/release-service:913a02c3595a2457680bb6221ae17753e04a08cd
+---
+>         image: quay.io/redhat-appstudio/release-service:57e894304ade673867272ba0a1dacc64b3a9a6e9

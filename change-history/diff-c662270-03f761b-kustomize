@@ -1,5 +1,0 @@
-diff -r /home/john/dev/kdiff/kustomized-cache/tag-03f761b/app-of-apps-staging.yaml /home/john/dev/kdiff/kustomized-cache/tag-c662270/app-of-apps-staging.yaml
-960c960
-<             clusterDir: ""
----
->             clusterDir: base

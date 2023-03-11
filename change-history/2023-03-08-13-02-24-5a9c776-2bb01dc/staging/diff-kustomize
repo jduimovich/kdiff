@@ -1,0 +1,235 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-2bb01dc/staging/components/application-api/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-5a9c776/staging/components/application-api/kustomize.out
+271,272c271,272
+<                     description: An HTTPS URL representing the git repository to create
+<                       the component from.
+---
+>                     description: If importing from git, the repository to create the
+>                       component from
+509,510c509,510
+<                                   description: An HTTPS URL representing the git repository
+<                                     to create the component from.
+---
+>                                   description: If importing from git, the repository
+>                                     to create the component from
+864,865c864,865
+<                         description: An HTTPS URL representing the git repository
+<                           to create the component from.
+---
+>                         description: If importing from git, the repository to create
+>                           the component from
+998,1195d997
+<   name: deploymenttargetclaims.appstudio.redhat.com
+< spec:
+<   group: appstudio.redhat.com
+<   names:
+<     kind: DeploymentTargetClaim
+<     listKind: DeploymentTargetClaimList
+<     plural: deploymenttargetclaims
+<     singular: deploymenttargetclaim
+<   scope: Namespaced
+<   versions:
+<   - name: v1alpha1
+<     schema:
+<       openAPIV3Schema:
+<         description: DeploymentTargetClaim is the Schema for the deploymenttargetclaims
+<           API. It represents a request for a DeploymentTarget.
+<         properties:
+<           apiVersion:
+<             description: 'APIVersion defines the versioned schema of this representation
+<               of an object. Servers should convert recognized schemas to the latest
+<               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+<             type: string
+<           kind:
+<             description: 'Kind is a string value representing the REST resource this
+<               object represents. Servers may infer this from the endpoint the client
+<               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+<             type: string
+<           metadata:
+<             type: object
+<           spec:
+<             description: DeploymentTargetClaimSpec defines the desired state of DeploymentTargetClaim
+<             properties:
+<               deploymentTargetClassName:
+<                 type: string
+<               targetName:
+<                 type: string
+<             required:
+<             - deploymentTargetClassName
+<             type: object
+<           status:
+<             description: DeploymentTargetClaimStatus defines the observed state of
+<               DeploymentTargetClaim
+<             properties:
+<               phase:
+<                 type: string
+<             type: object
+<         type: object
+<     served: true
+<     storage: true
+<     subresources:
+<       status: {}
+< ---
+< apiVersion: apiextensions.k8s.io/v1
+< kind: CustomResourceDefinition
+< metadata:
+<   annotations:
+<     controller-gen.kubebuilder.io/version: v0.10.0
+<   creationTimestamp: null
+<   name: deploymenttargetclasses.appstudio.redhat.com
+< spec:
+<   group: appstudio.redhat.com
+<   names:
+<     kind: DeploymentTargetClass
+<     listKind: DeploymentTargetClassList
+<     plural: deploymenttargetclasses
+<     singular: deploymenttargetclass
+<   scope: Cluster
+<   versions:
+<   - name: v1alpha1
+<     schema:
+<       openAPIV3Schema:
+<         description: DeploymentTargetClass is the Schema for the deploymenttargetclasses
+<           API. Defines DeploymentTarget properties that should be abstracted from
+<           the controller/user that creates a DTC and wants a DT to be provisioned
+<           automatically for it.
+<         properties:
+<           apiVersion:
+<             description: 'APIVersion defines the versioned schema of this representation
+<               of an object. Servers should convert recognized schemas to the latest
+<               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+<             type: string
+<           kind:
+<             description: 'Kind is a string value representing the REST resource this
+<               object represents. Servers may infer this from the endpoint the client
+<               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+<             type: string
+<           metadata:
+<             type: object
+<           spec:
+<             description: DeploymentTargetClassSpec defines the desired state of DeploymentTargetClass
+<             properties:
+<               parameters:
+<                 description: Parameters are used to forward additional information
+<                   to the provisioner.
+<                 type: object
+<               provisioner:
+<                 type: string
+<               reclaimPolicy:
+<                 description: The reclaimPolicy field will tell the provisioner what
+<                   to do with the DT once its corresponding DTC is deleted, the values
+<                   can be Retain or Delete.
+<                 type: string
+<             required:
+<             - provisioner
+<             - reclaimPolicy
+<             type: object
+<           status:
+<             description: DeploymentTargetClassStatus defines the observed state of
+<               DeploymentTargetClass
+<             type: object
+<         type: object
+<     served: true
+<     storage: true
+<     subresources:
+<       status: {}
+< ---
+< apiVersion: apiextensions.k8s.io/v1
+< kind: CustomResourceDefinition
+< metadata:
+<   annotations:
+<     controller-gen.kubebuilder.io/version: v0.10.0
+<   creationTimestamp: null
+<   name: deploymenttargets.appstudio.redhat.com
+< spec:
+<   group: appstudio.redhat.com
+<   names:
+<     kind: DeploymentTarget
+<     listKind: DeploymentTargetList
+<     plural: deploymenttargets
+<     singular: deploymenttarget
+<   scope: Namespaced
+<   versions:
+<   - name: v1alpha1
+<     schema:
+<       openAPIV3Schema:
+<         description: DeploymentTarget is the Schema for the deploymenttargets API.
+<           A deployment target, usually a K8s api endpoint. The credentials for connecting
+<           to the target will be stored in a secret which will be referenced in the
+<           clusterCredentialsSecret field
+<         properties:
+<           apiVersion:
+<             description: 'APIVersion defines the versioned schema of this representation
+<               of an object. Servers should convert recognized schemas to the latest
+<               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+<             type: string
+<           kind:
+<             description: 'Kind is a string value representing the REST resource this
+<               object represents. Servers may infer this from the endpoint the client
+<               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+<             type: string
+<           metadata:
+<             type: object
+<           spec:
+<             description: DeploymentTargetSpec defines the desired state of DeploymentTarget
+<             properties:
+<               claimRef:
+<                 type: string
+<               deploymentTargetClassName:
+<                 type: string
+<               kubernetesCredentials:
+<                 description: DeploymentTargetKubernetesClusterCredentials defines
+<                   the K8s cluster credentials for the DeploymentTarget.
+<                 properties:
+<                   apiURL:
+<                     description: APIURL is a reference to a cluster API url.
+<                     type: string
+<                   clusterCredentialsSecret:
+<                     description: ClusterCredentialsSecret is a reference to the name
+<                       of k8s Secret that contains a kubeconfig.
+<                     type: string
+<                   defaultNamespace:
+<                     type: string
+<                 required:
+<                 - apiURL
+<                 - clusterCredentialsSecret
+<                 - defaultNamespace
+<                 type: object
+<             required:
+<             - deploymentTargetClassName
+<             - kubernetesCredentials
+<             type: object
+<           status:
+<             description: DeploymentTargetStatus defines the observed state of DeploymentTarget
+<             properties:
+<               phase:
+<                 type: string
+<             type: object
+<         type: object
+<     served: true
+<     storage: true
+<     subresources:
+<       status: {}
+< ---
+< apiVersion: apiextensions.k8s.io/v1
+< kind: CustomResourceDefinition
+< metadata:
+<   annotations:
+<     controller-gen.kubebuilder.io/version: v0.10.0
+<   creationTimestamp: null
+1840,1843d1641
+<                     commitID:
+<                       description: GitOpsDeploymentCommitID is the commit ID of the
+<                         GitOpsDeployment
+<                       type: string
+1852,1860c1650
+<                         the references GitOpsDeployment
+<                       type: string
+<                     health:
+<                       description: GitOpsDeploymentHealthStatus is the health status
+<                         of the deployment owned by the binding
+<                       type: string
+<                     syncStatus:
+<                       description: GitOpsDeploymentSyncStatus is the sync status of
+<                         the deployment owned by the binding
+---
+>                         the references GitOpsDEployment

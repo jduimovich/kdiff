@@ -1,0 +1,17 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-9d168da/development/components/build-service/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-be8623d/development/components/build-service/development/kustomize.out
+586c586
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:53b1e7e72fac671a62ab949379899ab1952224b6
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:549b18485f1624d2585a096e3b93424076a43b48
+592c592
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:53b1e7e72fac671a62ab949379899ab1952224b6
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:549b18485f1624d2585a096e3b93424076a43b48
+598c598
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:53b1e7e72fac671a62ab949379899ab1952224b6
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:549b18485f1624d2585a096e3b93424076a43b48
+604c604
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:53b1e7e72fac671a62ab949379899ab1952224b6
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:549b18485f1624d2585a096e3b93424076a43b48

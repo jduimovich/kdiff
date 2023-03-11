@@ -1,0 +1,54 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-5a9c776/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-f728a9c/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+223,230d222
+<   name: tekton-results-tests
+<   namespace: plnsvc-tests
+< ---
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1338,1353d1329
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: tekton-results-tests
+<   namespace: plnsvc-tests
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-readonly
+< subjects:
+< - kind: ServiceAccount
+<   name: tekton-results-tests
+<   namespace: plnsvc-tests
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-5a9c776/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-f728a9c/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+223,230d222
+<   name: tekton-results-tests
+<   namespace: plnsvc-tests
+< ---
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1338,1353d1329
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: tekton-results-tests
+<   namespace: plnsvc-tests
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-readonly
+< subjects:
+< - kind: ServiceAccount
+<   name: tekton-results-tests
+<   namespace: plnsvc-tests

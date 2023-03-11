@@ -1,0 +1,16 @@
+diff -r /home/john/dev/kdiff/kustomized-cache/commit-1a51e73/development/components/build-service/development/kustomize.out /home/john/dev/kdiff/kustomized-cache/commit-eb33303/development/components/build-service/development/kustomize.out
+311,320d310
+<   - batch
+<   resources:
+<   - jobs
+<   verbs:
+<   - delete
+<   - deletecollection
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+532c522
+<         image: quay.io/redhat-appstudio/build-service:fd2f6b59d085031731af4da20c71b2b7a8fb0c30
+---
+>         image: quay.io/redhat-appstudio/build-service:ce53f3b2020858edc0d6908f2da4fd4b62d576c1
