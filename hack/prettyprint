@@ -16,6 +16,7 @@ echo "# kustomize changes tracked by commits "> $SUMMARY
 echo "## Repo - https://github.com/redhat-appstudio/infra-deployments.git " >> $SUMMARY 
 echo "## Overlays: staging, development" >> $SUMMARY 
 echo "## Showing last $MAX_LINES commits" >> $SUMMARY 
+echo "## This file generated at echo $(date)" >> $SUMMARY 
 
 echo >> $SUMMARY 
  
