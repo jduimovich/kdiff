@@ -21,8 +21,8 @@
 title: Infra Deployments History
 email: jduimovich@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This is a site description
-baseurl: "" # the subpath of your site, e.g. /blog
+  A commit history of Infra Deployments
+baseurl: "/kdiff" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jduimovich
 github_username:  jduimovich
