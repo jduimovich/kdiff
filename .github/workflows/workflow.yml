@@ -1,4 +1,4 @@
-name: Show Commit History 
+name: workflow_dispatch Show Commit History 
 on: [workflow_dispatch] 
 jobs:
   compute_diff: 
