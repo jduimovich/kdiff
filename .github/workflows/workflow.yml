@@ -2,12 +2,10 @@ name: workflow_dispatch Show Commit History
 on: [workflow_dispatch] 
 jobs:
   compute_diff: 
-    name: Build and Push Images
+    name: Update Commit Info
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: '1'            
+      - uses: actions/checkout@v2 
       - name: Update
         run: |
           bash  ./hack/bootstrap-last-100-commits      
@@ -20,6 +18,6 @@ jobs:
             echo "Direct Push:"
             git config --global user.name "Auto-Push[bot]"
             git config --global user.email "auto-push@users.noreply.github.com"
-            git add -A
+            git add summary.md
             git commit -m "Direct Push to Repo"
             git push
