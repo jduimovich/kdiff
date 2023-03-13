@@ -1,0 +1,40 @@
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-bd704bc/staging/components/authentication/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a1aa328/staging/components/authentication/staging/kustomize.out
+21a22,34
+>   name: edit-spacerequests
+>   namespace: rh-ee-fmuntean-tenant
+> rules:
+> - apiGroups:
+>   - toolchain.dev.openshift.com
+>   resources:
+>   - spacerequests
+>   verbs:
+>   - '*'
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+620a634,647
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: edit-spacerequests-rb
+>   namespace: rh-ee-fmuntean-tenant
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: edit-spacerequests
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: mfrancisc
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-bd704bc/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a1aa328/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+1c1
+< 2023/03/13 14:04:11 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/13 12:05:46 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-bd704bc/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a1aa328/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+1c1
+< 2023/03/13 14:04:15 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/13 12:05:49 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
