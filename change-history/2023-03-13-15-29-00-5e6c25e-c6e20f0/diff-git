@@ -1,0 +1,14 @@
+diff --git a/hack/preview.sh b/hack/preview.sh
+index d0308cd..9b2ec79 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -215,7 +215,8 @@ if echo $APPS | grep -q spi; then
+         kubectl apply -f $SPI_APP_ROLE_FILE  -n spi-system
+     fi
+     echo "Vault init complete"
+-
++  else
++     echo "Vault initialization skipped"
+   fi
+ fi
+ 
