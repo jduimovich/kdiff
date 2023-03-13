@@ -1,12 +1,161 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Mar 13 08:06:46 UTC 2023
+### This file generated at Mon Mar 13 10:05:04 UTC 2023
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: staging, development
 ## Showing last 20 commits
 
 
 <div>
-<h3>1: Staging changes from f4d7c00 to b9c19d9 on Mon Mar 13 07:39:03 2023 </h3>  
+<h3>1: Staging changes from b9c19d9 to 04ec6a6 on Mon Mar 13 08:59:29 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (43 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/spi/kustomization.yaml b/components/monitoring/grafana/base/spi/kustomization.yaml
+index d23d2f4..103fd4c 100644
+--- a/components/monitoring/grafana/base/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/spi/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/base?ref=3005fd097b2e28f006ed7d97fe4705cb2377ec2b
++- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/base?ref=f3813849b1eb29a1dd21b33c42d681c7fc658e86
+diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
+index 40c2334..7a789df 100644
+--- a/components/spi-vault/kustomization.yaml
++++ b/components/spi-vault/kustomization.yaml
+@@ -4,4 +4,4 @@ kind: Kustomization
+ namespace: spi-vault
+ 
+ resources:
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=3005fd097b2e28f006ed7d97fe4705cb2377ec2b
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=f3813849b1eb29a1dd21b33c42d681c7fc658e86
+diff --git a/components/spi/base/kustomization.yaml b/components/spi/base/kustomization.yaml
+index d80a0ce..e64055e 100644
+--- a/components/spi/base/kustomization.yaml
++++ b/components/spi/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ 
+ resources:
+   - argocd-permissions.yaml
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/openshift?ref=3005fd097b2e28f006ed7d97fe4705cb2377ec2b
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=f3813849b1eb29a1dd21b33c42d681c7fc658e86
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 3005fd097b2e28f006ed7d97fe4705cb2377ec2b
++    newTag: f3813849b1eb29a1dd21b33c42d681c7fc658e86
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 3005fd097b2e28f006ed7d97fe4705cb2377ec2b
++    newTag: f3813849b1eb29a1dd21b33c42d681c7fc658e86
+ 
+ namespace: spi-system
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (10 lines)</summary>  
+
+``` 
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-04ec6a6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-b9c19d9/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+1c1
+< 2023/03/13 10:04:29 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/13 08:04:55 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-04ec6a6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-b9c19d9/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+1c1
+< 2023/03/13 10:04:33 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/13 08:05:01 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from b9c19d9 to 04ec6a6 on Mon Mar 13 08:59:29 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (43 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/spi/kustomization.yaml b/components/monitoring/grafana/base/spi/kustomization.yaml
+index d23d2f4..103fd4c 100644
+--- a/components/monitoring/grafana/base/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/spi/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/base?ref=3005fd097b2e28f006ed7d97fe4705cb2377ec2b
++- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/base?ref=f3813849b1eb29a1dd21b33c42d681c7fc658e86
+diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
+index 40c2334..7a789df 100644
+--- a/components/spi-vault/kustomization.yaml
++++ b/components/spi-vault/kustomization.yaml
+@@ -4,4 +4,4 @@ kind: Kustomization
+ namespace: spi-vault
+ 
+ resources:
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=3005fd097b2e28f006ed7d97fe4705cb2377ec2b
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=f3813849b1eb29a1dd21b33c42d681c7fc658e86
+diff --git a/components/spi/base/kustomization.yaml b/components/spi/base/kustomization.yaml
+index d80a0ce..e64055e 100644
+--- a/components/spi/base/kustomization.yaml
++++ b/components/spi/base/kustomization.yaml
+@@ -3,15 +3,15 @@ kind: Kustomization
+ 
+ resources:
+   - argocd-permissions.yaml
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/openshift?ref=3005fd097b2e28f006ed7d97fe4705cb2377ec2b
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=f3813849b1eb29a1dd21b33c42d681c7fc658e86
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 3005fd097b2e28f006ed7d97fe4705cb2377ec2b
++    newTag: f3813849b1eb29a1dd21b33c42d681c7fc658e86
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 3005fd097b2e28f006ed7d97fe4705cb2377ec2b
++    newTag: f3813849b1eb29a1dd21b33c42d681c7fc658e86
+ 
+ namespace: spi-system
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (7 lines)</summary>  
+
+``` 
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-04ec6a6/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-b9c19d9/development/components/pipeline-service/development/kustomize.out
+1,2c1,2
+< 2023/03/13 10:04:53 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+< 2023/03/13 10:04:56 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/13 08:05:31 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+> 2023/03/13 08:05:36 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from f4d7c00 to b9c19d9 on Mon Mar 13 07:39:03 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -200,7 +349,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-b9c19d9/staging/co
 </div>
 
 <div>
-<h3>1: Development changes from f4d7c00 to b9c19d9 on Mon Mar 13 07:39:03 2023 </h3>  
+<h3>2: Development changes from f4d7c00 to b9c19d9 on Mon Mar 13 07:39:03 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -391,7 +540,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-b9c19d9/developmen
 </div>
 
 <div>
-<h3>2: Staging changes from e71ef6d to f4d7c00 on Mon Mar 13 07:38:52 2023 </h3>  
+<h3>3: Staging changes from e71ef6d to f4d7c00 on Mon Mar 13 07:38:52 2023 </h3>  
  
 <details> 
 <summary>Git Diff (145 lines)</summary>  
@@ -7559,7 +7708,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f4d7c00/staging/co
 </div>
 
 <div>
-<h3>2: Development changes from e71ef6d to f4d7c00 on Mon Mar 13 07:38:52 2023 </h3>  
+<h3>3: Development changes from e71ef6d to f4d7c00 on Mon Mar 13 07:38:52 2023 </h3>  
  
 <details> 
 <summary>Git Diff (145 lines)</summary>  
@@ -13204,7 +13353,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f4d7c00/developmen
 </div>
 
 <div>
-<h3>3: Staging changes from 8531b70 to e71ef6d on Fri Mar 10 16:55:45 2023 </h3>  
+<h3>4: Staging changes from 8531b70 to e71ef6d on Fri Mar 10 16:55:45 2023 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -15432,7 +15581,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-e71ef6d/staging/co
 </div>
 
 <div>
-<h3>3: Development changes from 8531b70 to e71ef6d on Fri Mar 10 16:55:45 2023 </h3>  
+<h3>4: Development changes from 8531b70 to e71ef6d on Fri Mar 10 16:55:45 2023 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -16225,7 +16374,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-e71ef6d/developmen
 </div>
 
 <div>
-<h3>4: Staging changes from 361fa7f to 8531b70 on Fri Mar 10 15:03:39 2023 </h3>  
+<h3>5: Staging changes from 361fa7f to 8531b70 on Fri Mar 10 15:03:39 2023 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -16323,7 +16472,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8531b70/staging/co
 </div>
 
 <div>
-<h3>4: Development changes from 361fa7f to 8531b70 on Fri Mar 10 15:03:39 2023 </h3>  
+<h3>5: Development changes from 361fa7f to 8531b70 on Fri Mar 10 15:03:39 2023 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -16392,7 +16541,7 @@ index 0000000..76ff6a1
 </div>
 
 <div>
-<h3>5: Staging changes from ef3ef0c to 361fa7f on Fri Mar 10 14:52:38 2023 </h3>  
+<h3>6: Staging changes from ef3ef0c to 361fa7f on Fri Mar 10 14:52:38 2023 </h3>  
  
 <details> 
 <summary>Git Diff (126 lines)</summary>  
@@ -16542,7 +16691,7 @@ index 0000000..5355737
 </div>
 
 <div>
-<h3>5: Development changes from ef3ef0c to 361fa7f on Fri Mar 10 14:52:38 2023 </h3>  
+<h3>6: Development changes from ef3ef0c to 361fa7f on Fri Mar 10 14:52:38 2023 </h3>  
  
 <details> 
 <summary>Git Diff (126 lines)</summary>  
@@ -16692,7 +16841,7 @@ index 0000000..5355737
 </div>
 
 <div>
-<h3>6: Staging changes from 75df761 to ef3ef0c on Fri Mar 10 13:21:16 2023 </h3>  
+<h3>7: Staging changes from 75df761 to ef3ef0c on Fri Mar 10 13:21:16 2023 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -16742,7 +16891,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ef3ef0c/staging/co
 </div>
 
 <div>
-<h3>6: Development changes from 75df761 to ef3ef0c on Fri Mar 10 13:21:16 2023 </h3>  
+<h3>7: Development changes from 75df761 to ef3ef0c on Fri Mar 10 13:21:16 2023 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -16792,7 +16941,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ef3ef0c/developmen
 </div>
 
 <div>
-<h3>7: Staging changes from 928e19a to 75df761 on Fri Mar 10 12:09:03 2023 </h3>  
+<h3>8: Staging changes from 928e19a to 75df761 on Fri Mar 10 12:09:03 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -16886,7 +17035,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-75df761/staging/co
 </div>
 
 <div>
-<h3>7: Development changes from 928e19a to 75df761 on Fri Mar 10 12:09:03 2023 </h3>  
+<h3>8: Development changes from 928e19a to 75df761 on Fri Mar 10 12:09:03 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -16980,7 +17129,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-75df761/developmen
 </div>
 
 <div>
-<h3>8: Staging changes from afa1f62 to 928e19a on Fri Mar 10 12:08:48 2023 </h3>  
+<h3>9: Staging changes from afa1f62 to 928e19a on Fri Mar 10 12:08:48 2023 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -17201,7 +17350,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-928e19a/staging/co
 </div>
 
 <div>
-<h3>8: Development changes from afa1f62 to 928e19a on Fri Mar 10 12:08:48 2023 </h3>  
+<h3>9: Development changes from afa1f62 to 928e19a on Fri Mar 10 12:08:48 2023 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -17287,7 +17436,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-928e19a/developmen
 </div>
 
 <div>
-<h3>9: Staging changes from 237461b to afa1f62 on Fri Mar 10 12:08:26 2023 </h3>  
+<h3>10: Staging changes from 237461b to afa1f62 on Fri Mar 10 12:08:26 2023 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -17501,7 +17650,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/staging/co
 </div>
 
 <div>
-<h3>9: Development changes from 237461b to afa1f62 on Fri Mar 10 12:08:26 2023 </h3>  
+<h3>10: Development changes from 237461b to afa1f62 on Fri Mar 10 12:08:26 2023 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -17580,7 +17729,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-afa1f62/developmen
 </div>
 
 <div>
-<h3>10: Staging changes from d79bb21 to 237461b on Fri Mar 10 12:08:12 2023 </h3>  
+<h3>11: Staging changes from d79bb21 to 237461b on Fri Mar 10 12:08:12 2023 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -17640,7 +17789,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-237461b/staging/co
 </div>
 
 <div>
-<h3>10: Development changes from d79bb21 to 237461b on Fri Mar 10 12:08:12 2023 </h3>  
+<h3>11: Development changes from d79bb21 to 237461b on Fri Mar 10 12:08:12 2023 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -17700,7 +17849,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-237461b/developmen
 </div>
 
 <div>
-<h3>11: Staging changes from 2153ebb to d79bb21 on Fri Mar 10 12:07:13 2023 </h3>  
+<h3>12: Staging changes from 2153ebb to d79bb21 on Fri Mar 10 12:07:13 2023 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -17836,7 +17985,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-d79bb21/staging/co
 </div>
 
 <div>
-<h3>11: Development changes from 2153ebb to d79bb21 on Fri Mar 10 12:07:13 2023 </h3>  
+<h3>12: Development changes from 2153ebb to d79bb21 on Fri Mar 10 12:07:13 2023 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -17972,7 +18121,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-d79bb21/developmen
 </div>
 
 <div>
-<h3>12: Staging changes from 68157f1 to 2153ebb on Fri Mar 10 11:30:14 2023 </h3>  
+<h3>13: Staging changes from 68157f1 to 2153ebb on Fri Mar 10 11:30:14 2023 </h3>  
  
 <details> 
 <summary>Git Diff (60 lines)</summary>  
@@ -18056,7 +18205,7 @@ index 7f37bf6..836f3fd 100644
 </div>
 
 <div>
-<h3>12: Development changes from 68157f1 to 2153ebb on Fri Mar 10 11:30:14 2023 </h3>  
+<h3>13: Development changes from 68157f1 to 2153ebb on Fri Mar 10 11:30:14 2023 </h3>  
  
 <details> 
 <summary>Git Diff (60 lines)</summary>  
@@ -18140,7 +18289,7 @@ index 7f37bf6..836f3fd 100644
 </div>
 
 <div>
-<h3>13: Staging changes from 8959d63 to 68157f1 on Fri Mar 10 01:12:51 2023 </h3>  
+<h3>14: Staging changes from 8959d63 to 68157f1 on Fri Mar 10 01:12:51 2023 </h3>  
  
 <details> 
 <summary>Git Diff (0 lines)</summary>  
@@ -18165,7 +18314,7 @@ index 7f37bf6..836f3fd 100644
 </div>
 
 <div>
-<h3>13: Development changes from 8959d63 to 68157f1 on Fri Mar 10 01:12:51 2023 </h3>  
+<h3>14: Development changes from 8959d63 to 68157f1 on Fri Mar 10 01:12:51 2023 </h3>  
  
 <details> 
 <summary>Git Diff (0 lines)</summary>  
@@ -18190,7 +18339,7 @@ index 7f37bf6..836f3fd 100644
 </div>
 
 <div>
-<h3>14: Staging changes from dea26a9 to 8959d63 on Fri Mar 10 01:12:41 2023 </h3>  
+<h3>15: Staging changes from dea26a9 to 8959d63 on Fri Mar 10 01:12:41 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -18512,7 +18661,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8959d63/staging/co
 </div>
 
 <div>
-<h3>14: Development changes from dea26a9 to 8959d63 on Fri Mar 10 01:12:41 2023 </h3>  
+<h3>15: Development changes from dea26a9 to 8959d63 on Fri Mar 10 01:12:41 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -18708,7 +18857,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8959d63/developmen
 </div>
 
 <div>
-<h3>15: Staging changes from 2887ab9 to dea26a9 on Thu Mar 9 17:26:35 2023 </h3>  
+<h3>16: Staging changes from 2887ab9 to dea26a9 on Thu Mar 9 17:26:35 2023 </h3>  
  
 <details> 
 <summary>Git Diff (11 lines)</summary>  
@@ -18743,7 +18892,7 @@ index 033c916..d4138a2 100644
 </div>
 
 <div>
-<h3>15: Development changes from 2887ab9 to dea26a9 on Thu Mar 9 17:26:35 2023 </h3>  
+<h3>16: Development changes from 2887ab9 to dea26a9 on Thu Mar 9 17:26:35 2023 </h3>  
  
 <details> 
 <summary>Git Diff (11 lines)</summary>  
@@ -18778,7 +18927,7 @@ index 033c916..d4138a2 100644
 </div>
 
 <div>
-<h3>16: Staging changes from a4b853e to 2887ab9 on Thu Mar 9 14:38:22 2023 </h3>  
+<h3>17: Staging changes from a4b853e to 2887ab9 on Thu Mar 9 14:38:22 2023 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -18858,7 +19007,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2887ab9/staging/co
 </div>
 
 <div>
-<h3>16: Development changes from a4b853e to 2887ab9 on Thu Mar 9 14:38:22 2023 </h3>  
+<h3>17: Development changes from a4b853e to 2887ab9 on Thu Mar 9 14:38:22 2023 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -18938,7 +19087,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2887ab9/developmen
 </div>
 
 <div>
-<h3>17: Staging changes from 498d7c6 to a4b853e on Thu Mar 9 13:19:19 2023 </h3>  
+<h3>18: Staging changes from 498d7c6 to a4b853e on Thu Mar 9 13:19:19 2023 </h3>  
  
 <details> 
 <summary>Git Diff (4 lines)</summary>  
@@ -19863,7 +20012,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a4b853e/staging/co
 </div>
 
 <div>
-<h3>17: Development changes from 498d7c6 to a4b853e on Thu Mar 9 13:19:19 2023 </h3>  
+<h3>18: Development changes from 498d7c6 to a4b853e on Thu Mar 9 13:19:19 2023 </h3>  
  
 <details> 
 <summary>Git Diff (4 lines)</summary>  
@@ -19891,7 +20040,7 @@ rename to components/authentication/base/sandbox-sre-admins.yaml
 </div>
 
 <div>
-<h3>18: Staging changes from 8ff4b18 to 498d7c6 on Thu Mar 9 12:34:49 2023 </h3>  
+<h3>19: Staging changes from 8ff4b18 to 498d7c6 on Thu Mar 9 12:34:49 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -19958,7 +20107,7 @@ index 9990176..d80a0ce 100644
 </div>
 
 <div>
-<h3>18: Development changes from 8ff4b18 to 498d7c6 on Thu Mar 9 12:34:49 2023 </h3>  
+<h3>19: Development changes from 8ff4b18 to 498d7c6 on Thu Mar 9 12:34:49 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -20025,7 +20174,7 @@ index 9990176..d80a0ce 100644
 </div>
 
 <div>
-<h3>19: Staging changes from 9eb0e40 to 8ff4b18 on Thu Mar 9 10:27:43 2023 </h3>  
+<h3>20: Staging changes from 9eb0e40 to 8ff4b18 on Thu Mar 9 10:27:43 2023 </h3>  
  
 <details> 
 <summary>Git Diff (27 lines)</summary>  
@@ -20076,7 +20225,7 @@ index 1bf6bcb..548eb3e 100644
 </div>
 
 <div>
-<h3>19: Development changes from 9eb0e40 to 8ff4b18 on Thu Mar 9 10:27:43 2023 </h3>  
+<h3>20: Development changes from 9eb0e40 to 8ff4b18 on Thu Mar 9 10:27:43 2023 </h3>  
  
 <details> 
 <summary>Git Diff (27 lines)</summary>  
@@ -20109,1019 +20258,6 @@ index 1bf6bcb..548eb3e 100644
  apiVersion: operators.coreos.com/v1alpha1
  kind: Subscription
  metadata: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>20: Staging changes from c69b6b2 to 9eb0e40 on Thu Mar 9 10:16:15 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (50 lines)</summary>  
-
-``` 
-diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
-index 2ab01f9..862da26 100644
---- a/components/authentication/base/kustomization.yaml
-+++ b/components/authentication/base/kustomization.yaml
-@@ -15,6 +15,7 @@ resources:
- - pact-broker.yaml
- - internal-services.yaml
- - pipeline-service-sre.yaml
-+- sandbox-sre-admins.yaml
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-diff --git a/components/authentication/sandbox-sre-admins.yaml b/components/authentication/sandbox-sre-admins.yaml
-new file mode 100644
-index 0000000..febbfa0
---- /dev/null
-+++ b/components/authentication/sandbox-sre-admins.yaml
-@@ -0,0 +1,32 @@
-+---
-+kind: ClusterRole
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: impersonate-groups-and-users
-+rules:
-+- apiGroups:
-+  - ""
-+  resources:
-+  - "groups"
-+  - "users"
-+  verbs:
-+  - "impersonate"
-+---
-+kind: ClusterRoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: sandbox-sre-admins-can-impersonate
-+subjects:
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: MatousJobanek
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: alexeykazakov
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: xcoulon
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: impersonate-groups-and-users 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (866 lines)</summary>  
-
-``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9eb0e40/staging/components/authentication/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c69b6b2/staging/components/authentication/staging/kustomize.out
-0a1,864
-> apiVersion: v1
-> kind: Namespace
-> metadata:
->   name: group-sync-operator
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: Role
-> metadata:
->   name: gitops-namespace-all-access
->   namespace: gitops
-> rules:
-> - apiGroups:
->   - '*'
->   resources:
->   - '*'
->   verbs:
->   - '*'
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: Role
-> metadata:
->   name: vault-admin
->   namespace: spi-vault
-> rules:
-> - apiGroups:
->   - ""
->   resources:
->   - pods
->   verbs:
->   - get
->   - delete
-> - apiGroups:
->   - ""
->   resources:
->   - pods/exec
->   verbs:
->   - create
-> - apiGroups:
->   - ""
->   resources:
->   - secrets
->   verbs:
->   - get
->   - delete
->   - create
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRole
-> metadata:
->   name: dora-metrics-maintainer
->   namespace: dora-metrics
-> rules:
-> - apiGroups:
->   - ""
->   resources:
->   - secrets
->   verbs:
->   - create
->   - delete
->   - edit
->   - list
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRole
-> metadata:
->   name: pact-broker-maintainer
->   namespace: hac-pact-broker
-> rules:
-> - apiGroups:
->   - ""
->   resources:
->   - secrets
->   verbs:
->   - create
->   - delete
->   - edit
->   - list
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRole
-> metadata:
->   name: cluster-registration-maintainer
-> rules:
-> - apiGroups:
->   - singapore.open-cluster-management.io
->   resources:
->   - clusterregistrars
->   - hubconfigs
->   - registeredclusters
->   verbs:
->   - create
->   - delete
->   - get
->   - list
->   - patch
->   - update
-> - apiGroups:
->   - ""
->   resources:
->   - secrets
->   verbs:
->   - create
->   - delete
->   - list
-> - apiGroups:
->   - tekton.dev
->   resources:
->   - pipelineruns
->   verbs:
->   - '*'
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRole
-> metadata:
->   name: component-maintainer
-> rules:
-> - apiGroups:
->   - ""
->   resourceNames:
->   - pipeline
->   resources:
->   - serviceaccounts
->   verbs:
->   - patch
->   - get
-> - apiGroups:
->   - ""
->   resources:
->   - secrets
->   verbs:
->   - create
->   - get
->   - list
->   - watch
->   - delete
-> - apiGroups:
->   - tekton.dev
->   resources:
->   - pipelineruns
->   verbs:
->   - '*'
-> - apiGroups:
->   - results.tekton.dev
->   resources:
->   - results
->   - records
->   verbs:
->   - get
->   - list
-> - apiGroups:
->   - ""
->   resources:
->   - pods/exec
->   - pods/portforward
->   verbs:
->   - create
-> - apiGroups:
->   - apps
->   resources:
->   - deployments
->   verbs:
->   - get
->   - patch
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRole
-> metadata:
->   name: gitops-component-maintainer
-> rules:
-> - apiGroups:
->   - '*'
->   resources:
->   - '*'
->   verbs:
->   - get
->   - list
->   - watch
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRole
-> metadata:
->   name: pipeline-service-sre
-> rules:
-> - apiGroups:
->   - tekton.dev
->   resources:
->   - clustertasks
->   - conditions
->   - pipelineresources
->   - pipelineruns
->   - pipelines
->   - runs
->   - taskruns
->   - tasks
->   verbs:
->   - get
->   - list
->   - watch
->   - create
->   - delete
->   - patch
-> - apiGroups:
->   - triggers.tekton.dev
->   resources:
->   - clusterinterceptors
->   - clustertriggerbindings
->   - eventlisteners
->   - triggerbindings
->   - triggers
->   - triggertemplates
->   verbs:
->   - get
->   - list
->   - watch
->   - create
->   - delete
->   - patch
-> - apiGroups:
->   - pipelinesascode.tekton.dev
->   resources:
->   - repositories
->   verbs:
->   - get
->   - list
->   - watch
->   - create
->   - delete
->   - patch
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRole
-> metadata:
->   name: view-appstudio
-> rules:
-> - apiGroups:
->   - appstudio.redhat.com
->   resources:
->   - applications
->   - buildpipelineselectors
->   - componentdetectionqueries
->   - components
->   - enterprisecontractpolicies
->   - environments
->   - integrationtestscenarios
->   - promotionruns
->   - releaseplanadmissions
->   - releaseplans
->   - releases
->   - releasestrategies
->   - snapshotenvironmentbindings
->   - snapshots
->   - spiaccesschecks
->   - spiaccesstokenbindings
->   - spifilecontentrequests
->   verbs:
->   - get
->   - list
->   - watch
-> - apiGroups:
->   - managed-gitops.redhat.com
->   resources:
->   - gitopsdeploymentmanagedenvironments
->   - gitopsdeployments
->   - gitopsdeploymentsyncruns
->   - operations
->   verbs:
->   - get
->   - list
->   - watch
-> - apiGroups:
->   - jvmbuildservice.io
->   resources:
->   - artifactbuilds
->   - dependencybuilds
->   - rebuiltartifacts
->   - systemconfigs
->   - tektonwrappers
->   - jbsconfigs
->   verbs:
->   - get
->   - list
->   - watch
-> - apiGroups:
->   - pipelinesascode.tekton.dev
->   resources:
->   - repositories
->   verbs:
->   - get
->   - list
->   - watch
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: application-service-maintainers
->   namespace: application-service
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: sbose78
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: johnmcollier
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: jduimovich
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: kim-tsao
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: yangcao77
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: component-maintainers
->   namespace: build-service
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: sbose78
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: Michkov
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: build-templates-maintainers
->   namespace: build-templates-e2e
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: Michkov
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: psturc
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: build-templates-maintainers
->   namespace: build-templates
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: sbose78
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: jduimovich
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: Michkov
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: cluster-registration-service-component-maintainers
->   namespace: cluster-reg-config
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - kind: User
->   name: chrisahl
-> - kind: User
->   name: leena-jawale
-> - kind: User
->   name: itdove
-> - kind: User
->   name: vidyanambiar
-> - kind: User
->   name: tpouyer
-> - kind: User
->   name: robinbobbit
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: dora-metrics-maintainers
->   namespace: dora-metrics
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: dora-metrics-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: rhopp
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: flacatus
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: jkopriva
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: sawood14012
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: albarbaro
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: gitops-service-maintainers-gitops-namespace-all-access
->   namespace: gitops
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: Role
->   name: gitops-namespace-all-access
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: jgwest
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: group-sync-operator-maintainers
->   namespace: group-sync-operator
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - kind: User
->   name: Michkov
-> - kind: User
->   name: sbose78
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: pact-broker-maintainers
->   namespace: hac-pact-broker
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: pact-broker-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: Katka92
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: QE team
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: pact-broker-read
->   namespace: hac-pact-broker
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: view
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: Katka92
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: QE team
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: integration-service-maintainers
->   namespace: integration-service
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: dirgim
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: Michkov
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: internal-services
->   namespace: internal-services
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: Release team
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: Michkov
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: component-maintainers
->   namespace: jvm-build-service
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: stuartwdouglas
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: gabemontero
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: Michkov
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: openshift-pipelines-maintainers
->   namespace: openshift-pipelines
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: Pipeline Service
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: pipelines-as-code-maintainers
->   namespace: pipelines-as-code
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: Pipeline Service
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: sbose78
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: jduimovich
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: chmouel
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: Michkov
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: pipeline-service-admin
->   namespace: plnsvc-tests
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: admin
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: Pipeline Service
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: release-service-maintainers
->   namespace: release-service
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: Release team
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: Michkov
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: spi-service-maintainers
->   namespace: spi-system
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - kind: User
->   name: skabashnyuk
-> - kind: User
->   name: sbose78
-> - kind: User
->   name: Michkov
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: vault-admin
->   namespace: spi-vault
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: Role
->   name: vault-admin
-> subjects:
-> - kind: User
->   name: skabashnyuk
-> - kind: User
->   name: sparkoo
-> - kind: User
->   name: metlos
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: component-maintainers
->   namespace: tekton-chains
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: Pipeline Service
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: sbose78
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: jduimovich
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: Michkov
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: tekton-results-maintainers
->   namespace: tekton-results
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: component-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: Pipeline Service
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRoleBinding
-> metadata:
->   name: gitops-service-gitops-component-maintainers
->   namespace: gitops
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: gitops-component-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: jgwest
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRoleBinding
-> metadata:
->   name: cluster-registration-maintainer-rolebinding
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: cluster-registration-maintainer
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: chrisahl
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: robinbobbit
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRoleBinding
-> metadata:
->   name: everyone-view
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: view
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: stage
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRoleBinding
-> metadata:
->   name: everyone-view-appstudio
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: view-appstudio
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: stage
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRoleBinding
-> metadata:
->   name: internal-services
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: internal-service-request-role
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: Release team
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: Michkov
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: ClusterRoleBinding
-> metadata:
->   name: pipeline-service-sre
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: ClusterRole
->   name: pipeline-service-sre
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: Group
->   name: Pipeline Service
-> ---
-> apiVersion: external-secrets.io/v1beta1
-> kind: ExternalSecret
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
->     argocd.argoproj.io/sync-wave: "-1"
->   name: github-redhat-appstudio
->   namespace: group-sync-operator
-> spec:
->   dataFrom:
->   - extract:
->       conversionStrategy: Default
->       decodingStrategy: None
->       key: staging/group-sync/github-redhat-appstudio
->   refreshInterval: 1h
->   secretStoreRef:
->     kind: ClusterSecretStore
->     name: appsre-stonesoup-vault
->   target:
->     creationPolicy: Owner
->     deletionPolicy: Delete
->     name: github-redhat-appstudio
-> ---
-> apiVersion: external-secrets.io/v1beta1
-> kind: ExternalSecret
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
->     argocd.argoproj.io/sync-wave: "-1"
->   name: github-redhat-appstudio-sre
->   namespace: group-sync-operator
-> spec:
->   dataFrom:
->   - extract:
->       conversionStrategy: Default
->       decodingStrategy: None
->       key: staging/group-sync/github-redhat-appstudio-sre
->   refreshInterval: 1h
->   secretStoreRef:
->     kind: ClusterSecretStore
->     name: appsre-stonesoup-vault
->   target:
->     creationPolicy: Owner
->     deletionPolicy: Delete
->     name: github-redhat-appstudio-sre
-> ---
-> apiVersion: operators.coreos.com/v1
-> kind: OperatorGroup
-> metadata:
->   name: group-sync-operator
->   namespace: group-sync-operator
-> spec:
->   targetNamespaces:
->   - group-sync-operator
-> ---
-> apiVersion: operators.coreos.com/v1alpha1
-> kind: Subscription
-> metadata:
->   name: group-sync-operator
->   namespace: group-sync-operator
-> spec:
->   channel: alpha
->   installPlanApproval: Automatic
->   name: group-sync-operator
->   source: community-operators
->   sourceNamespace: openshift-marketplace
-> ---
-> apiVersion: redhatcop.redhat.io/v1alpha1
-> kind: GroupSync
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
->   name: github-redhat-appstudio
->   namespace: group-sync-operator
-> spec:
->   providers:
->   - github:
->       credentialsSecret:
->         name: github-redhat-appstudio
->         namespace: group-sync-operator
->       organization: redhat-appstudio
->     name: github
->   schedule: '*/15 * * * *'
-> ---
-> apiVersion: redhatcop.redhat.io/v1alpha1
-> kind: GroupSync
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
->   name: github-redhat-appstudio-sre
->   namespace: group-sync-operator
-> spec:
->   providers:
->   - github:
->       credentialsSecret:
->         name: github-redhat-appstudio-sre
->         namespace: group-sync-operator
->       organization: redhat-appstudio-sre
->     name: github
->   schedule: '*/15 * * * *' 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>20: Development changes from c69b6b2 to 9eb0e40 on Thu Mar 9 10:16:15 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (50 lines)</summary>  
-
-``` 
-diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
-index 2ab01f9..862da26 100644
---- a/components/authentication/base/kustomization.yaml
-+++ b/components/authentication/base/kustomization.yaml
-@@ -15,6 +15,7 @@ resources:
- - pact-broker.yaml
- - internal-services.yaml
- - pipeline-service-sre.yaml
-+- sandbox-sre-admins.yaml
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-diff --git a/components/authentication/sandbox-sre-admins.yaml b/components/authentication/sandbox-sre-admins.yaml
-new file mode 100644
-index 0000000..febbfa0
---- /dev/null
-+++ b/components/authentication/sandbox-sre-admins.yaml
-@@ -0,0 +1,32 @@
-+---
-+kind: ClusterRole
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: impersonate-groups-and-users
-+rules:
-+- apiGroups:
-+  - ""
-+  resources:
-+  - "groups"
-+  - "users"
-+  verbs:
-+  - "impersonate"
-+---
-+kind: ClusterRoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: sandbox-sre-admins-can-impersonate
-+subjects:
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: MatousJobanek
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: alexeykazakov
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: xcoulon
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: impersonate-groups-and-users 
 ```
  
 </details> 
