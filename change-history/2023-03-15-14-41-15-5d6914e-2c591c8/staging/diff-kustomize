@@ -1,0 +1,17 @@
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2c591c8/staging/components/jvm-build-service/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5d6914e/staging/components/jvm-build-service/kustomize.out
+1088,1089c1088,1089
+<           value: f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
+---
+>           value: cc70d4e85a5ec33256921f836e1fde8359eb04d4
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:cc70d4e85a5ec33256921f836e1fde8359eb04d4
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2c591c8/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5d6914e/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+1c1
+< 2023/03/15 16:05:26 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/15 14:04:17 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2c591c8/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5d6914e/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+1c1
+< 2023/03/15 16:05:32 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/15 14:04:22 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
