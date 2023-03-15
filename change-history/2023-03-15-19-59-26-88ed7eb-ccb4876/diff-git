@@ -1,0 +1,99 @@
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index f45a283..86d2a25 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -40,19 +40,3 @@ spec:
+         - oci::https://quay.io/hacbs-contract/ec-policy-data:latest@sha256:948877d0564c922d60dac24b4fce82ee2da74fa9bd1a4cdc6900b77dfd93af75
+       policy:
+         - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:a41da88e27bab10dec2e61b1844a4053e73ea4a422fa2a4997a1a1366becd68d
+----
+-# Allow any authenticated user to access to get/list/watch the EnterpriseContractPolicy resources
+-# in the enterprise-contract-service namespace.
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+-metadata:
+-  name: public-ecp
+-  namespace: enterprise-contract-service
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: enterprisecontractpolicy-viewer-role
+-subjects:
+-  - apiGroup: rbac.authorization.k8s.io
+-    kind: Group
+-    name: system:authenticated
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 727ae14..8c9b61c 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -9,6 +9,8 @@ resources:
+   - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/1e971bd09081c287854ce44432b3a6de0ca7785f/config/rbac/enterprisecontractpolicy_viewer_role.yaml
+   - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/1e971bd09081c287854ce44432b3a6de0ca7785f/config/rbac/enterprisecontractpolicy_editor_role.yaml
+   - ecp.yaml
++  - role.yaml
++  - rolebinding.yaml
+ generatorOptions:
+   disableNameSuffixHash: true
+ configMapGenerator:
+diff --git a/components/enterprise-contract/role.yaml b/components/enterprise-contract/role.yaml
+new file mode 100644
+index 0000000..55d8384
+--- /dev/null
++++ b/components/enterprise-contract/role.yaml
+@@ -0,0 +1,18 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  labels:
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: enterprisecontract-configmap-viewer-role
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - ec-defaults
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - list
++  - watch
+\ No newline at end of file
+diff --git a/components/enterprise-contract/rolebinding.yaml b/components/enterprise-contract/rolebinding.yaml
+new file mode 100644
+index 0000000..90bdf09
+--- /dev/null
++++ b/components/enterprise-contract/rolebinding.yaml
+@@ -0,0 +1,30 @@
++---
++# Allow any authenticated user to access to get/list/watch the EnterpriseContractPolicy resources
++# in the enterprise-contract-service namespace.
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: public-ecp
++  namespace: enterprise-contract-service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: enterprisecontractpolicy-viewer-role
++subjects:
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: public-ec-cm
++  namespace: enterprise-contract-service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: enterprisecontract-configmap-viewer-role
++subjects:
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: system:authenticated
+\ No newline at end of file
