@@ -1,0 +1,28 @@
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7012d1d/development/components/enterprise-contract/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a188244/development/components/enterprise-contract/kustomize.out
+243c243
+<   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:0fd4c7333ac560ab9cf93ab37a52019a5cfb3aa4@sha256:2dc90e46f14d3537946d39dae6e9c7057e14f4c9de794010f4f1f7c6bac328b7
+---
+>   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:snapshot@sha256:6d28b973ea96c4d65b64244212b69f85030e7dbfa5f2363ac6470f825b3fa95f
+261c261
+<     - oci::https://quay.io/hacbs-contract/ec-policy-data:git-9c9b9ad@sha256:350298530cd57866aec60b01c88c25f98eae08002bdb77e209ef36a5f42d5924
+---
+>     - oci::https://quay.io/hacbs-contract/ec-policy-data:latest@sha256:948877d0564c922d60dac24b4fce82ee2da74fa9bd1a4cdc6900b77dfd93af75
+264c264
+<     - oci::https://quay.io/hacbs-contract/ec-release-policy:git-deaf0d2@sha256:f83b14285753cde479ca972d5506f6352461b599c8b178739c16f069a6fb0844
+---
+>     - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:a41da88e27bab10dec2e61b1844a4053e73ea4a422fa2a4997a1a1366becd68d
+282c282
+<     - oci::https://quay.io/hacbs-contract/ec-policy-data:git-9c9b9ad@sha256:350298530cd57866aec60b01c88c25f98eae08002bdb77e209ef36a5f42d5924
+---
+>     - oci::https://quay.io/hacbs-contract/ec-policy-data:latest@sha256:948877d0564c922d60dac24b4fce82ee2da74fa9bd1a4cdc6900b77dfd93af75
+285c285
+<     - oci::https://quay.io/hacbs-contract/ec-release-policy:git-deaf0d2@sha256:f83b14285753cde479ca972d5506f6352461b599c8b178739c16f069a6fb0844
+---
+>     - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:a41da88e27bab10dec2e61b1844a4053e73ea4a422fa2a4997a1a1366becd68d
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7012d1d/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a188244/development/components/pipeline-service/development/kustomize.out
+1,2c1,2
+< 2023/03/16 20:04:46 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+< 2023/03/16 20:04:51 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/16 14:04:48 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+> 2023/03/16 14:04:51 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
