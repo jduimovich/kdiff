@@ -1,12 +1,574 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Mar 16 06:04:32 UTC 2023
+### This file generated at Thu Mar 16 08:06:32 UTC 2023
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: staging, development
 ## Showing last 20 commits
 
 
 <div>
-<h3>1: Staging changes from ccb4876 to 74871cf on Thu Mar 16 03:44:18 2023 </h3>  
+<h3>1: Staging changes from 9984034 to f76378c on Thu Mar 16 07:12:24 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (59 lines)</summary>  
+
+``` 
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+index 0635339..f90de51 100644
+--- a/components/gitops/development/kustomization.yaml
++++ b/components/gitops/development/kustomization.yaml
+@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=09799332c77cc1d53ff905fc9c444291d8807a6d
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+ - ../openshift-gitops
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 09799332c77cc1d53ff905fc9c444291d8807a6d
++    newTag: d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+diff --git a/components/gitops/production/base/kustomization.yaml b/components/gitops/production/base/kustomization.yaml
+index f584bd1..1ab58e4 100644
+--- a/components/gitops/production/base/kustomization.yaml
++++ b/components/gitops/production/base/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=09799332c77cc1d53ff905fc9c444291d8807a6d
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+ - ../../openshift-gitops
+ - ../../base/external-secrets
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 09799332c77cc1d53ff905fc9c444291d8807a6d
++    newTag: d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+index f584bd1..1ab58e4 100644
+--- a/components/gitops/staging/base/kustomization.yaml
++++ b/components/gitops/staging/base/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=09799332c77cc1d53ff905fc9c444291d8807a6d
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+ - ../../openshift-gitops
+ - ../../base/external-secrets
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 09799332c77cc1d53ff905fc9c444291d8807a6d
++    newTag: d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (44 lines)</summary>  
+
+``` 
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f76378c/staging/components/gitops/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/staging/components/gitops/staging/stone-stg-m01/kustomize.out
+1654c1654
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1757c1757
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1817c1817
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1868c1868
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f76378c/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
+1654c1654
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1757c1757
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1817c1817
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1868c1868
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f76378c/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+1c1
+< 2023/03/16 08:04:40 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/16 08:05:21 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f76378c/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+1c1
+< 2023/03/16 08:04:44 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/16 08:05:24 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 9984034 to f76378c on Thu Mar 16 07:12:24 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (59 lines)</summary>  
+
+``` 
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+index 0635339..f90de51 100644
+--- a/components/gitops/development/kustomization.yaml
++++ b/components/gitops/development/kustomization.yaml
+@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=09799332c77cc1d53ff905fc9c444291d8807a6d
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+ - ../openshift-gitops
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 09799332c77cc1d53ff905fc9c444291d8807a6d
++    newTag: d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+diff --git a/components/gitops/production/base/kustomization.yaml b/components/gitops/production/base/kustomization.yaml
+index f584bd1..1ab58e4 100644
+--- a/components/gitops/production/base/kustomization.yaml
++++ b/components/gitops/production/base/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=09799332c77cc1d53ff905fc9c444291d8807a6d
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+ - ../../openshift-gitops
+ - ../../base/external-secrets
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 09799332c77cc1d53ff905fc9c444291d8807a6d
++    newTag: d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+index f584bd1..1ab58e4 100644
+--- a/components/gitops/staging/base/kustomization.yaml
++++ b/components/gitops/staging/base/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=09799332c77cc1d53ff905fc9c444291d8807a6d
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+ - ../../openshift-gitops
+ - ../../base/external-secrets
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: 09799332c77cc1d53ff905fc9c444291d8807a6d
++    newTag: d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (20 lines)</summary>  
+
+``` 
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f76378c/development/components/gitops/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/development/components/gitops/development/kustomize.out
+1623c1623
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1717c1717
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1799c1799
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f76378c/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/development/components/pipeline-service/development/kustomize.out
+1,2c1,2
+< 2023/03/16 08:05:01 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+< 2023/03/16 08:05:05 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/16 08:05:41 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+> 2023/03/16 08:05:45 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 35c4c05 to 9984034 on Thu Mar 16 06:36:24 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (33 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selector.yaml
+index c1de13a..c395244 100644
+--- a/components/build-service/base/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selector.yaml
+@@ -7,24 +7,24 @@ spec:
+     - name: FBC
+       pipelineRef:
+         name: fbc-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:539531f37755bb287b23f979532660ad442025fb
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+       when:
+         language: fbc
+     - name: Docker build
+       pipelineRef:
+         name: docker-build
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:539531f37755bb287b23f979532660ad442025fb
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+       when:
+         dockerfile: true
+     - name: Java
+       pipelineRef:
+         name: java-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:539531f37755bb287b23f979532660ad442025fb
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+       when:
+         language: java
+     - name: NodeJS
+       pipelineRef:
+         name: nodejs-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:539531f37755bb287b23f979532660ad442025fb
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+       when:
+         language: nodejs,node 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (27 lines)</summary>  
+
+``` 
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/staging/components/build-service/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-35c4c05/staging/components/build-service/staging/kustomize.out
+649c649
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:539531f37755bb287b23f979532660ad442025fb
+655c655
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:539531f37755bb287b23f979532660ad442025fb
+661c661
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:539531f37755bb287b23f979532660ad442025fb
+667c667
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:539531f37755bb287b23f979532660ad442025fb
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-35c4c05/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+1c1
+< 2023/03/16 08:05:21 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/16 08:05:59 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-35c4c05/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+1c1
+< 2023/03/16 08:05:24 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/16 08:06:03 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 35c4c05 to 9984034 on Thu Mar 16 06:36:24 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (33 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selector.yaml
+index c1de13a..c395244 100644
+--- a/components/build-service/base/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selector.yaml
+@@ -7,24 +7,24 @@ spec:
+     - name: FBC
+       pipelineRef:
+         name: fbc-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:539531f37755bb287b23f979532660ad442025fb
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+       when:
+         language: fbc
+     - name: Docker build
+       pipelineRef:
+         name: docker-build
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:539531f37755bb287b23f979532660ad442025fb
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+       when:
+         dockerfile: true
+     - name: Java
+       pipelineRef:
+         name: java-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:539531f37755bb287b23f979532660ad442025fb
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+       when:
+         language: java
+     - name: NodeJS
+       pipelineRef:
+         name: nodejs-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:539531f37755bb287b23f979532660ad442025fb
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+       when:
+         language: nodejs,node 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (24 lines)</summary>  
+
+``` 
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/development/components/build-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-35c4c05/development/components/build-service/development/kustomize.out
+649c649
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:539531f37755bb287b23f979532660ad442025fb
+655c655
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:539531f37755bb287b23f979532660ad442025fb
+661c661
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:539531f37755bb287b23f979532660ad442025fb
+667c667
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:539531f37755bb287b23f979532660ad442025fb
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-35c4c05/development/components/pipeline-service/development/kustomize.out
+1,2c1,2
+< 2023/03/16 08:05:41 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+< 2023/03/16 08:05:45 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/16 08:06:19 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+> 2023/03/16 08:06:23 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from 74871cf to 35c4c05 on Thu Mar 16 06:21:30 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (47 lines)</summary>  
+
+``` 
+diff --git a/components/jvm-build-service/kustomization.yaml b/components/jvm-build-service/kustomization.yaml
+index f687484..fefdb5f 100644
+--- a/components/jvm-build-service/kustomization.yaml
++++ b/components/jvm-build-service/kustomization.yaml
+@@ -1,8 +1,8 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=d2c01c897abc3dafaf123ecd6a246bd029a5dccc
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=d2c01c897abc3dafaf123ecd6a246bd029a5dccc
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=d2c01c897abc3dafaf123ecd6a246bd029a5dccc
+ 
+ # Skip applying the jvm-build-service operands (SystemConfig) while the jvm-build-service operator is being installed.
+ # See more information about this option, here:
+@@ -15,7 +15,7 @@ namespace: jvm-build-service
+ images:
+ - name: hacbs-jvm-operator
+   newName: quay.io/redhat-appstudio/hacbs-jvm-controller
+-  newTag: f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
++  newTag: d2c01c897abc3dafaf123ecd6a246bd029a5dccc
+ 
+ patches:
+ - path: ./operator_env_patch.yaml
+diff --git a/components/jvm-build-service/operator_env_patch.yaml b/components/jvm-build-service/operator_env_patch.yaml
+index 0d1b1e0..915ebf8 100644
+--- a/components/jvm-build-service/operator_env_patch.yaml
++++ b/components/jvm-build-service/operator_env_patch.yaml
+@@ -3,4 +3,4 @@
+   path: /spec/template/spec/containers/0/env
+   value:
+   - name: IMAGE_TAG
+-    value: f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
+\ No newline at end of file
++    value: d2c01c897abc3dafaf123ecd6a246bd029a5dccc
+\ No newline at end of file
+diff --git a/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml b/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
+index 079cd61..d10bb3c 100644
+--- a/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=d2c01c897abc3dafaf123ecd6a246bd029a5dccc 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-35c4c05/staging/components/jvm-build-service/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-74871cf/staging/components/jvm-build-service/kustomize.out
+1088,1089c1088,1089
+<           value: d2c01c897abc3dafaf123ecd6a246bd029a5dccc
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:d2c01c897abc3dafaf123ecd6a246bd029a5dccc
+---
+>           value: f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-35c4c05/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-74871cf/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+1c1
+< 2023/03/16 08:05:59 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/16 04:04:35 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-35c4c05/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-74871cf/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+1c1
+< 2023/03/16 08:06:03 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/16 04:04:39 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from 74871cf to 35c4c05 on Thu Mar 16 06:21:30 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (47 lines)</summary>  
+
+``` 
+diff --git a/components/jvm-build-service/kustomization.yaml b/components/jvm-build-service/kustomization.yaml
+index f687484..fefdb5f 100644
+--- a/components/jvm-build-service/kustomization.yaml
++++ b/components/jvm-build-service/kustomization.yaml
+@@ -1,8 +1,8 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=d2c01c897abc3dafaf123ecd6a246bd029a5dccc
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=d2c01c897abc3dafaf123ecd6a246bd029a5dccc
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=d2c01c897abc3dafaf123ecd6a246bd029a5dccc
+ 
+ # Skip applying the jvm-build-service operands (SystemConfig) while the jvm-build-service operator is being installed.
+ # See more information about this option, here:
+@@ -15,7 +15,7 @@ namespace: jvm-build-service
+ images:
+ - name: hacbs-jvm-operator
+   newName: quay.io/redhat-appstudio/hacbs-jvm-controller
+-  newTag: f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
++  newTag: d2c01c897abc3dafaf123ecd6a246bd029a5dccc
+ 
+ patches:
+ - path: ./operator_env_patch.yaml
+diff --git a/components/jvm-build-service/operator_env_patch.yaml b/components/jvm-build-service/operator_env_patch.yaml
+index 0d1b1e0..915ebf8 100644
+--- a/components/jvm-build-service/operator_env_patch.yaml
++++ b/components/jvm-build-service/operator_env_patch.yaml
+@@ -3,4 +3,4 @@
+   path: /spec/template/spec/containers/0/env
+   value:
+   - name: IMAGE_TAG
+-    value: f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
+\ No newline at end of file
++    value: d2c01c897abc3dafaf123ecd6a246bd029a5dccc
+\ No newline at end of file
+diff --git a/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml b/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
+index 079cd61..d10bb3c 100644
+--- a/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=d2c01c897abc3dafaf123ecd6a246bd029a5dccc 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (14 lines)</summary>  
+
+``` 
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-35c4c05/development/components/jvm-build-service/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-74871cf/development/components/jvm-build-service/kustomize.out
+1088,1089c1088,1089
+<           value: d2c01c897abc3dafaf123ecd6a246bd029a5dccc
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:d2c01c897abc3dafaf123ecd6a246bd029a5dccc
+---
+>           value: f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:f18bc7ce720c4627aadca3ece6aa47fe48ef58b2
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-35c4c05/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-74871cf/development/components/pipeline-service/development/kustomize.out
+1,2c1,2
+< 2023/03/16 08:06:19 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+< 2023/03/16 08:06:23 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/16 04:04:57 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+> 2023/03/16 04:05:00 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Staging changes from ccb4876 to 74871cf on Thu Mar 16 03:44:18 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -132,7 +694,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-74871cf/staging/co
 </div>
 
 <div>
-<h3>1: Development changes from ccb4876 to 74871cf on Thu Mar 16 03:44:18 2023 </h3>  
+<h3>4: Development changes from ccb4876 to 74871cf on Thu Mar 16 03:44:18 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -234,7 +796,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-74871cf/developmen
 </div>
 
 <div>
-<h3>2: Staging changes from 88ed7eb to ccb4876 on Wed Mar 15 19:59:26 2023 </h3>  
+<h3>5: Staging changes from 88ed7eb to ccb4876 on Wed Mar 15 19:59:26 2023 </h3>  
  
 <details> 
 <summary>Git Diff (99 lines)</summary>  
@@ -401,7 +963,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ccb4876/staging/co
 </div>
 
 <div>
-<h3>2: Development changes from 88ed7eb to ccb4876 on Wed Mar 15 19:59:26 2023 </h3>  
+<h3>5: Development changes from 88ed7eb to ccb4876 on Wed Mar 15 19:59:26 2023 </h3>  
  
 <details> 
 <summary>Git Diff (99 lines)</summary>  
@@ -565,7 +1127,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ccb4876/developmen
 </div>
 
 <div>
-<h3>3: Staging changes from 6710c97 to 88ed7eb on Wed Mar 15 18:22:17 2023 </h3>  
+<h3>6: Staging changes from 6710c97 to 88ed7eb on Wed Mar 15 18:22:17 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -641,7 +1203,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-88ed7eb/staging/co
 </div>
 
 <div>
-<h3>3: Development changes from 6710c97 to 88ed7eb on Wed Mar 15 18:22:17 2023 </h3>  
+<h3>6: Development changes from 6710c97 to 88ed7eb on Wed Mar 15 18:22:17 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -714,7 +1276,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-88ed7eb/developmen
 </div>
 
 <div>
-<h3>4: Staging changes from 3f39a2e to 6710c97 on Wed Mar 15 16:56:44 2023 </h3>  
+<h3>7: Staging changes from 3f39a2e to 6710c97 on Wed Mar 15 16:56:44 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -790,7 +1352,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-6710c97/staging/co
 </div>
 
 <div>
-<h3>4: Development changes from 3f39a2e to 6710c97 on Wed Mar 15 16:56:44 2023 </h3>  
+<h3>7: Development changes from 3f39a2e to 6710c97 on Wed Mar 15 16:56:44 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -863,7 +1425,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-6710c97/developmen
 </div>
 
 <div>
-<h3>5: Staging changes from 2c591c8 to 3f39a2e on Wed Mar 15 14:43:07 2023 </h3>  
+<h3>8: Staging changes from 2c591c8 to 3f39a2e on Wed Mar 15 14:43:07 2023 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -932,7 +1494,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-3f39a2e/staging/co
 </div>
 
 <div>
-<h3>5: Development changes from 2c591c8 to 3f39a2e on Wed Mar 15 14:43:07 2023 </h3>  
+<h3>8: Development changes from 2c591c8 to 3f39a2e on Wed Mar 15 14:43:07 2023 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -998,7 +1560,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-3f39a2e/developmen
 </div>
 
 <div>
-<h3>6: Staging changes from 5d6914e to 2c591c8 on Wed Mar 15 14:41:15 2023 </h3>  
+<h3>9: Staging changes from 5d6914e to 2c591c8 on Wed Mar 15 14:41:15 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -1085,7 +1647,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2c591c8/staging/co
 </div>
 
 <div>
-<h3>6: Development changes from 5d6914e to 2c591c8 on Wed Mar 15 14:41:15 2023 </h3>  
+<h3>9: Development changes from 5d6914e to 2c591c8 on Wed Mar 15 14:41:15 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -1169,7 +1731,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2c591c8/developmen
 </div>
 
 <div>
-<h3>7: Staging changes from fbc5f3b to 5d6914e on Wed Mar 15 13:07:01 2023 </h3>  
+<h3>10: Staging changes from fbc5f3b to 5d6914e on Wed Mar 15 13:07:01 2023 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -1234,7 +1796,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5d6914e/staging/co
 </div>
 
 <div>
-<h3>7: Development changes from fbc5f3b to 5d6914e on Wed Mar 15 13:07:01 2023 </h3>  
+<h3>10: Development changes from fbc5f3b to 5d6914e on Wed Mar 15 13:07:01 2023 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -1296,7 +1858,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5d6914e/developmen
 </div>
 
 <div>
-<h3>8: Staging changes from bb5ea7d to fbc5f3b on Wed Mar 15 12:43:09 2023 </h3>  
+<h3>11: Staging changes from bb5ea7d to fbc5f3b on Wed Mar 15 12:43:09 2023 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1351,7 +1913,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-fbc5f3b/staging/co
 </div>
 
 <div>
-<h3>8: Development changes from bb5ea7d to fbc5f3b on Wed Mar 15 12:43:09 2023 </h3>  
+<h3>11: Development changes from bb5ea7d to fbc5f3b on Wed Mar 15 12:43:09 2023 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1403,7 +1965,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-fbc5f3b/developmen
 </div>
 
 <div>
-<h3>9: Staging changes from ae36801 to bb5ea7d on Wed Mar 15 12:24:44 2023 </h3>  
+<h3>12: Staging changes from ae36801 to bb5ea7d on Wed Mar 15 12:24:44 2023 </h3>  
  
 <details> 
 <summary>Git Diff (33 lines)</summary>  
@@ -1486,7 +2048,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-bb5ea7d/staging/co
 </div>
 
 <div>
-<h3>9: Development changes from ae36801 to bb5ea7d on Wed Mar 15 12:24:44 2023 </h3>  
+<h3>12: Development changes from ae36801 to bb5ea7d on Wed Mar 15 12:24:44 2023 </h3>  
  
 <details> 
 <summary>Git Diff (33 lines)</summary>  
@@ -1566,7 +2128,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-bb5ea7d/developmen
 </div>
 
 <div>
-<h3>10: Staging changes from f70f9d1 to ae36801 on Wed Mar 15 11:15:05 2023 </h3>  
+<h3>13: Staging changes from f70f9d1 to ae36801 on Wed Mar 15 11:15:05 2023 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -1631,7 +2193,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ae36801/staging/co
 </div>
 
 <div>
-<h3>10: Development changes from f70f9d1 to ae36801 on Wed Mar 15 11:15:05 2023 </h3>  
+<h3>13: Development changes from f70f9d1 to ae36801 on Wed Mar 15 11:15:05 2023 </h3>  
  
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -1693,7 +2255,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ae36801/developmen
 </div>
 
 <div>
-<h3>11: Staging changes from 80485db to f70f9d1 on Wed Mar 15 11:14:51 2023 </h3>  
+<h3>14: Staging changes from 80485db to f70f9d1 on Wed Mar 15 11:14:51 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -1769,7 +2331,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f70f9d1/staging/co
 </div>
 
 <div>
-<h3>11: Development changes from 80485db to f70f9d1 on Wed Mar 15 11:14:51 2023 </h3>  
+<h3>14: Development changes from 80485db to f70f9d1 on Wed Mar 15 11:14:51 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -1842,7 +2404,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f70f9d1/developmen
 </div>
 
 <div>
-<h3>12: Staging changes from aa4d748 to 80485db on Wed Mar 15 09:56:49 2023 </h3>  
+<h3>15: Staging changes from aa4d748 to 80485db on Wed Mar 15 09:56:49 2023 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -1911,7 +2473,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-80485db/staging/co
 </div>
 
 <div>
-<h3>12: Development changes from aa4d748 to 80485db on Wed Mar 15 09:56:49 2023 </h3>  
+<h3>15: Development changes from aa4d748 to 80485db on Wed Mar 15 09:56:49 2023 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -1977,7 +2539,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-80485db/developmen
 </div>
 
 <div>
-<h3>13: Staging changes from 575c8b1 to aa4d748 on Wed Mar 15 08:12:40 2023 </h3>  
+<h3>16: Staging changes from 575c8b1 to aa4d748 on Wed Mar 15 08:12:40 2023 </h3>  
  
 <details> 
 <summary>Git Diff (1605 lines)</summary>  
@@ -5180,7 +5742,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-aa4d748/staging/co
 </div>
 
 <div>
-<h3>13: Development changes from 575c8b1 to aa4d748 on Wed Mar 15 08:12:40 2023 </h3>  
+<h3>16: Development changes from 575c8b1 to aa4d748 on Wed Mar 15 08:12:40 2023 </h3>  
  
 <details> 
 <summary>Git Diff (1605 lines)</summary>  
@@ -8380,7 +8942,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-aa4d748/developmen
 </div>
 
 <div>
-<h3>14: Staging changes from 900c1b8 to 575c8b1 on Tue Mar 14 16:01:23 2023 </h3>  
+<h3>17: Staging changes from 900c1b8 to 575c8b1 on Tue Mar 14 16:01:23 2023 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -8460,7 +9022,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-575c8b1/staging/co
 </div>
 
 <div>
-<h3>14: Development changes from 900c1b8 to 575c8b1 on Tue Mar 14 16:01:23 2023 </h3>  
+<h3>17: Development changes from 900c1b8 to 575c8b1 on Tue Mar 14 16:01:23 2023 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -8537,7 +9099,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-575c8b1/developmen
 </div>
 
 <div>
-<h3>15: Staging changes from c6e20f0 to 900c1b8 on Tue Mar 14 14:22:38 2023 </h3>  
+<h3>18: Staging changes from c6e20f0 to 900c1b8 on Tue Mar 14 14:22:38 2023 </h3>  
  
 <details> 
 <summary>Git Diff (65 lines)</summary>  
@@ -8680,7 +9242,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-900c1b8/staging/co
 </div>
 
 <div>
-<h3>15: Development changes from c6e20f0 to 900c1b8 on Tue Mar 14 14:22:38 2023 </h3>  
+<h3>18: Development changes from c6e20f0 to 900c1b8 on Tue Mar 14 14:22:38 2023 </h3>  
  
 <details> 
 <summary>Git Diff (65 lines)</summary>  
@@ -8775,7 +9337,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-900c1b8/developmen
 </div>
 
 <div>
-<h3>16: Staging changes from 5e6c25e to c6e20f0 on Mon Mar 13 15:29:00 2023 </h3>  
+<h3>19: Staging changes from 5e6c25e to c6e20f0 on Mon Mar 13 15:29:00 2023 </h3>  
  
 <details> 
 <summary>Git Diff (14 lines)</summary>  
@@ -8822,7 +9384,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c6e20f0/staging/co
 </div>
 
 <div>
-<h3>16: Development changes from 5e6c25e to c6e20f0 on Mon Mar 13 15:29:00 2023 </h3>  
+<h3>19: Development changes from 5e6c25e to c6e20f0 on Mon Mar 13 15:29:00 2023 </h3>  
  
 <details> 
 <summary>Git Diff (14 lines)</summary>  
@@ -8866,7 +9428,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c6e20f0/developmen
 </div>
 
 <div>
-<h3>17: Staging changes from bd704bc to 5e6c25e on Mon Mar 13 14:53:31 2023 </h3>  
+<h3>20: Staging changes from bd704bc to 5e6c25e on Mon Mar 13 14:53:31 2023 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -8917,7 +9479,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5e6c25e/staging/co
 </div>
 
 <div>
-<h3>17: Development changes from bd704bc to 5e6c25e on Mon Mar 13 14:53:31 2023 </h3>  
+<h3>20: Development changes from bd704bc to 5e6c25e on Mon Mar 13 14:53:31 2023 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -8951,597 +9513,6 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5e6c25e/developmen
 ---
 > 2023/03/13 14:04:37 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
 > 2023/03/13 14:04:41 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>18: Staging changes from a1aa328 to bd704bc on Mon Mar 13 12:18:23 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (45 lines)</summary>  
-
-``` 
-diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
-index 829ae9b..862da26 100644
---- a/components/authentication/base/kustomization.yaml
-+++ b/components/authentication/base/kustomization.yaml
-@@ -16,7 +16,6 @@ resources:
- - internal-services.yaml
- - pipeline-service-sre.yaml
- - sandbox-sre-admins.yaml
--- sandbox-dev.yaml
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-diff --git a/components/authentication/base/sandbox-dev.yaml b/components/authentication/base/sandbox-dev.yaml
-deleted file mode 100644
-index 76ff6a1..0000000
---- a/components/authentication/base/sandbox-dev.yaml
-+++ /dev/null
-@@ -1,27 +0,0 @@
-----
--kind: Role
--apiVersion: rbac.authorization.k8s.io/v1
--metadata:
--  name: edit-spacerequests
--  namespace: rh-ee-fmuntean-tenant
--rules:
--- apiGroups:
--  - "toolchain.dev.openshift.com"
--  resources:
--  - "spacerequests"
--  verbs:
--  - "*"
-----
--kind: RoleBinding
--apiVersion: rbac.authorization.k8s.io/v1
--metadata:
--  name: edit-spacerequests-rb
--  namespace: rh-ee-fmuntean-tenant
--subjects:
--  - kind: User
--    apiGroup: rbac.authorization.k8s.io
--    name: mfrancisc
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: Role
--  name: edit-spacerequests 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (40 lines)</summary>  
-
-``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-bd704bc/staging/components/authentication/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a1aa328/staging/components/authentication/staging/kustomize.out
-21a22,34
->   name: edit-spacerequests
->   namespace: rh-ee-fmuntean-tenant
-> rules:
-> - apiGroups:
->   - toolchain.dev.openshift.com
->   resources:
->   - spacerequests
->   verbs:
->   - '*'
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: Role
-> metadata:
-620a634,647
-> ---
-> apiVersion: rbac.authorization.k8s.io/v1
-> kind: RoleBinding
-> metadata:
->   name: edit-spacerequests-rb
->   namespace: rh-ee-fmuntean-tenant
-> roleRef:
->   apiGroup: rbac.authorization.k8s.io
->   kind: Role
->   name: edit-spacerequests
-> subjects:
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
->   name: mfrancisc
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-bd704bc/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a1aa328/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
-1c1
-< 2023/03/13 14:04:11 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/13 12:05:46 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-bd704bc/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a1aa328/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
-1c1
-< 2023/03/13 14:04:15 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/13 12:05:49 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>18: Development changes from a1aa328 to bd704bc on Mon Mar 13 12:18:23 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (45 lines)</summary>  
-
-``` 
-diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
-index 829ae9b..862da26 100644
---- a/components/authentication/base/kustomization.yaml
-+++ b/components/authentication/base/kustomization.yaml
-@@ -16,7 +16,6 @@ resources:
- - internal-services.yaml
- - pipeline-service-sre.yaml
- - sandbox-sre-admins.yaml
--- sandbox-dev.yaml
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-diff --git a/components/authentication/base/sandbox-dev.yaml b/components/authentication/base/sandbox-dev.yaml
-deleted file mode 100644
-index 76ff6a1..0000000
---- a/components/authentication/base/sandbox-dev.yaml
-+++ /dev/null
-@@ -1,27 +0,0 @@
-----
--kind: Role
--apiVersion: rbac.authorization.k8s.io/v1
--metadata:
--  name: edit-spacerequests
--  namespace: rh-ee-fmuntean-tenant
--rules:
--- apiGroups:
--  - "toolchain.dev.openshift.com"
--  resources:
--  - "spacerequests"
--  verbs:
--  - "*"
-----
--kind: RoleBinding
--apiVersion: rbac.authorization.k8s.io/v1
--metadata:
--  name: edit-spacerequests-rb
--  namespace: rh-ee-fmuntean-tenant
--subjects:
--  - kind: User
--    apiGroup: rbac.authorization.k8s.io
--    name: mfrancisc
--roleRef:
--  apiGroup: rbac.authorization.k8s.io
--  kind: Role
--  name: edit-spacerequests 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (7 lines)</summary>  
-
-``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-bd704bc/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a1aa328/development/components/pipeline-service/development/kustomize.out
-1,2c1,2
-< 2023/03/13 14:04:37 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-< 2023/03/13 14:04:41 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/13 12:06:10 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-> 2023/03/13 12:06:13 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>19: Staging changes from 04ec6a6 to a1aa328 on Mon Mar 13 10:39:48 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (98 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/external-secrets/kustomization.yaml b/components/monitoring/grafana/base/external-secrets/kustomization.yaml
-new file mode 100644
-index 0000000..ebcfa07
---- /dev/null
-+++ b/components/monitoring/grafana/base/external-secrets/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- monitoring-grafana-oauth-config.yaml
-+namespace: appstudio-workload-monitoring
-\ No newline at end of file
-diff --git a/components/monitoring/grafana/base/external-secrets/monitoring-grafana-oauth-config.yaml b/components/monitoring/grafana/base/external-secrets/monitoring-grafana-oauth-config.yaml
-new file mode 100644
-index 0000000..1f427a7
---- /dev/null
-+++ b/components/monitoring/grafana/base/external-secrets/monitoring-grafana-oauth-config.yaml
-@@ -0,0 +1,20 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: monitoring-grafana-oauth-config
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: "" # will be added by the overlays
-+      decodingStrategy: Base64
-+  refreshInterval: 1h
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: grafana-oauth2-proxy
-\ No newline at end of file
-diff --git a/components/monitoring/grafana/production/kustomization.yaml b/components/monitoring/grafana/production/kustomization.yaml
-new file mode 100644
-index 0000000..4d6c160
---- /dev/null
-+++ b/components/monitoring/grafana/production/kustomization.yaml
-@@ -0,0 +1,12 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base/external-secrets
-+- ../base
-+patches:
-+  - path: monitoring-grafana-oauth-config-path.yaml
-+    target:
-+      name: monitoring-grafana-oauth-config
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-\ No newline at end of file
-diff --git a/components/monitoring/grafana/production/monitoring-grafana-oauth-config-path.yaml b/components/monitoring/grafana/production/monitoring-grafana-oauth-config-path.yaml
-new file mode 100644
-index 0000000..7e3abe5
---- /dev/null
-+++ b/components/monitoring/grafana/production/monitoring-grafana-oauth-config-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/monitoring/prd-m01/grafana/grafana-oauth2-proxy
-\ No newline at end of file
-diff --git a/components/monitoring/grafana/staging/kustomization.yaml b/components/monitoring/grafana/staging/kustomization.yaml
-new file mode 100644
-index 0000000..4d6c160
---- /dev/null
-+++ b/components/monitoring/grafana/staging/kustomization.yaml
-@@ -0,0 +1,12 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base/external-secrets
-+- ../base
-+patches:
-+  - path: monitoring-grafana-oauth-config-path.yaml
-+    target:
-+      name: monitoring-grafana-oauth-config
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-\ No newline at end of file
-diff --git a/components/monitoring/grafana/staging/monitoring-grafana-oauth-config-path.yaml b/components/monitoring/grafana/staging/monitoring-grafana-oauth-config-path.yaml
-new file mode 100644
-index 0000000..db40f35
---- /dev/null
-+++ b/components/monitoring/grafana/staging/monitoring-grafana-oauth-config-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: staging/monitoring/grafana/grafana-oauth2-proxy 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-
-``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a1aa328/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-04ec6a6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
-1c1
-< 2023/03/13 12:05:46 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/13 10:04:29 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a1aa328/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-04ec6a6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
-1c1
-< 2023/03/13 12:05:49 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/13 10:04:33 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>19: Development changes from 04ec6a6 to a1aa328 on Mon Mar 13 10:39:48 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (98 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/external-secrets/kustomization.yaml b/components/monitoring/grafana/base/external-secrets/kustomization.yaml
-new file mode 100644
-index 0000000..ebcfa07
---- /dev/null
-+++ b/components/monitoring/grafana/base/external-secrets/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- monitoring-grafana-oauth-config.yaml
-+namespace: appstudio-workload-monitoring
-\ No newline at end of file
-diff --git a/components/monitoring/grafana/base/external-secrets/monitoring-grafana-oauth-config.yaml b/components/monitoring/grafana/base/external-secrets/monitoring-grafana-oauth-config.yaml
-new file mode 100644
-index 0000000..1f427a7
---- /dev/null
-+++ b/components/monitoring/grafana/base/external-secrets/monitoring-grafana-oauth-config.yaml
-@@ -0,0 +1,20 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: monitoring-grafana-oauth-config
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: "" # will be added by the overlays
-+      decodingStrategy: Base64
-+  refreshInterval: 1h
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: grafana-oauth2-proxy
-\ No newline at end of file
-diff --git a/components/monitoring/grafana/production/kustomization.yaml b/components/monitoring/grafana/production/kustomization.yaml
-new file mode 100644
-index 0000000..4d6c160
---- /dev/null
-+++ b/components/monitoring/grafana/production/kustomization.yaml
-@@ -0,0 +1,12 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base/external-secrets
-+- ../base
-+patches:
-+  - path: monitoring-grafana-oauth-config-path.yaml
-+    target:
-+      name: monitoring-grafana-oauth-config
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-\ No newline at end of file
-diff --git a/components/monitoring/grafana/production/monitoring-grafana-oauth-config-path.yaml b/components/monitoring/grafana/production/monitoring-grafana-oauth-config-path.yaml
-new file mode 100644
-index 0000000..7e3abe5
---- /dev/null
-+++ b/components/monitoring/grafana/production/monitoring-grafana-oauth-config-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/monitoring/prd-m01/grafana/grafana-oauth2-proxy
-\ No newline at end of file
-diff --git a/components/monitoring/grafana/staging/kustomization.yaml b/components/monitoring/grafana/staging/kustomization.yaml
-new file mode 100644
-index 0000000..4d6c160
---- /dev/null
-+++ b/components/monitoring/grafana/staging/kustomization.yaml
-@@ -0,0 +1,12 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base/external-secrets
-+- ../base
-+patches:
-+  - path: monitoring-grafana-oauth-config-path.yaml
-+    target:
-+      name: monitoring-grafana-oauth-config
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-\ No newline at end of file
-diff --git a/components/monitoring/grafana/staging/monitoring-grafana-oauth-config-path.yaml b/components/monitoring/grafana/staging/monitoring-grafana-oauth-config-path.yaml
-new file mode 100644
-index 0000000..db40f35
---- /dev/null
-+++ b/components/monitoring/grafana/staging/monitoring-grafana-oauth-config-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: staging/monitoring/grafana/grafana-oauth2-proxy 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (7 lines)</summary>  
-
-``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a1aa328/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-04ec6a6/development/components/pipeline-service/development/kustomize.out
-1,2c1,2
-< 2023/03/13 12:06:10 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-< 2023/03/13 12:06:13 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/13 10:04:53 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-> 2023/03/13 10:04:56 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>20: Staging changes from b9c19d9 to 04ec6a6 on Mon Mar 13 08:59:29 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (43 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/spi/kustomization.yaml b/components/monitoring/grafana/base/spi/kustomization.yaml
-index d23d2f4..103fd4c 100644
---- a/components/monitoring/grafana/base/spi/kustomization.yaml
-+++ b/components/monitoring/grafana/base/spi/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/base?ref=3005fd097b2e28f006ed7d97fe4705cb2377ec2b
-+- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/base?ref=f3813849b1eb29a1dd21b33c42d681c7fc658e86
-diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
-index 40c2334..7a789df 100644
---- a/components/spi-vault/kustomization.yaml
-+++ b/components/spi-vault/kustomization.yaml
-@@ -4,4 +4,4 @@ kind: Kustomization
- namespace: spi-vault
- 
- resources:
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=3005fd097b2e28f006ed7d97fe4705cb2377ec2b
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=f3813849b1eb29a1dd21b33c42d681c7fc658e86
-diff --git a/components/spi/base/kustomization.yaml b/components/spi/base/kustomization.yaml
-index d80a0ce..e64055e 100644
---- a/components/spi/base/kustomization.yaml
-+++ b/components/spi/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- 
- resources:
-   - argocd-permissions.yaml
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/openshift?ref=3005fd097b2e28f006ed7d97fe4705cb2377ec2b
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=f3813849b1eb29a1dd21b33c42d681c7fc658e86
- 
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: 3005fd097b2e28f006ed7d97fe4705cb2377ec2b
-+    newTag: f3813849b1eb29a1dd21b33c42d681c7fc658e86
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: 3005fd097b2e28f006ed7d97fe4705cb2377ec2b
-+    newTag: f3813849b1eb29a1dd21b33c42d681c7fc658e86
- 
- namespace: spi-system
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-
-``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-04ec6a6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-b9c19d9/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
-1c1
-< 2023/03/13 10:04:29 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/13 08:04:55 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-04ec6a6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-b9c19d9/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
-1c1
-< 2023/03/13 10:04:33 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/13 08:05:01 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>20: Development changes from b9c19d9 to 04ec6a6 on Mon Mar 13 08:59:29 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (43 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/spi/kustomization.yaml b/components/monitoring/grafana/base/spi/kustomization.yaml
-index d23d2f4..103fd4c 100644
---- a/components/monitoring/grafana/base/spi/kustomization.yaml
-+++ b/components/monitoring/grafana/base/spi/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/base?ref=3005fd097b2e28f006ed7d97fe4705cb2377ec2b
-+- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/base?ref=f3813849b1eb29a1dd21b33c42d681c7fc658e86
-diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
-index 40c2334..7a789df 100644
---- a/components/spi-vault/kustomization.yaml
-+++ b/components/spi-vault/kustomization.yaml
-@@ -4,4 +4,4 @@ kind: Kustomization
- namespace: spi-vault
- 
- resources:
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=3005fd097b2e28f006ed7d97fe4705cb2377ec2b
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=f3813849b1eb29a1dd21b33c42d681c7fc658e86
-diff --git a/components/spi/base/kustomization.yaml b/components/spi/base/kustomization.yaml
-index d80a0ce..e64055e 100644
---- a/components/spi/base/kustomization.yaml
-+++ b/components/spi/base/kustomization.yaml
-@@ -3,15 +3,15 @@ kind: Kustomization
- 
- resources:
-   - argocd-permissions.yaml
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/openshift?ref=3005fd097b2e28f006ed7d97fe4705cb2377ec2b
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=f3813849b1eb29a1dd21b33c42d681c7fc658e86
- 
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: 3005fd097b2e28f006ed7d97fe4705cb2377ec2b
-+    newTag: f3813849b1eb29a1dd21b33c42d681c7fc658e86
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: 3005fd097b2e28f006ed7d97fe4705cb2377ec2b
-+    newTag: f3813849b1eb29a1dd21b33c42d681c7fc658e86
- 
- namespace: spi-system
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (7 lines)</summary>  
-
-``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-04ec6a6/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-b9c19d9/development/components/pipeline-service/development/kustomize.out
-1,2c1,2
-< 2023/03/13 10:04:53 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-< 2023/03/13 10:04:56 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/13 08:05:31 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-> 2023/03/13 08:05:36 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
 ```
  
 </details> 

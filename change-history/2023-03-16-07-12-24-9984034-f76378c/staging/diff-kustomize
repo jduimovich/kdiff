@@ -1,0 +1,44 @@
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f76378c/staging/components/gitops/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/staging/components/gitops/staging/stone-stg-m01/kustomize.out
+1654c1654
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1757c1757
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1817c1817
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1868c1868
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f76378c/staging/components/gitops/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/staging/components/gitops/staging/stone-stg-rh01/kustomize.out
+1654c1654
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1757c1757
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1817c1817
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+1868c1868
+<         image: quay.io/redhat-appstudio/gitops-service:d70ebbef9fa2c89c6fca2bf8f95e389657fe9d8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:09799332c77cc1d53ff905fc9c444291d8807a6d
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f76378c/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+1c1
+< 2023/03/16 08:04:40 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/16 08:05:21 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f76378c/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+1c1
+< 2023/03/16 08:04:44 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/16 08:05:24 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
