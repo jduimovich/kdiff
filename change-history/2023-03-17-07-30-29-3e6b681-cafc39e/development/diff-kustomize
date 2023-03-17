@@ -1,0 +1,380 @@
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cafc39e/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-3e6b681/development/components/pipeline-service/development/kustomize.out
+1,2c1,2
+< 2023/03/17 08:05:00 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+< 2023/03/17 08:05:03 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/17 08:05:37 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+> 2023/03/17 08:05:41 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+38c38
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+174,181d173
+<   name: pipeline-service-exporter
+<   namespace: openshift-pipelines
+< ---
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+185c177
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+197c189
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+209c201
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+278c270
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+299c291
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+341c333
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+374c366
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+509c501
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+565c557
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+597,603d588
+<   - tekton.dev
+<   resources:
+<   - taskruns
+<   verbs:
+<   - get
+<   - list
+< - apiGroups:
+632c617
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+748,778d732
+<   name: pipeline-service-exporter-reader
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods
+<   - services
+<   - namespaces
+<   - endpoints
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - tekton.dev
+<   resources:
+<   - pipelineruns
+<   - taskruns
+<   verbs:
+<   - get
+<   - list
+< - nonResourceURLs:
+<   - /metrics
+<   verbs:
+<   - get
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+782c736
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1110c1064
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1129c1083
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1167c1121
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1186c1140
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1312c1266
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1332c1286
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1352c1306
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1416,1430d1369
+<   name: pipeline-service-exporter-reader-binding
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: pipeline-service-exporter-reader
+< subjects:
+< - kind: ServiceAccount
+<   name: pipeline-service-exporter
+<   namespace: openshift-pipelines
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1534c1473
+<   secret-github-app-token-scoped: "true"
+---
+>   secret-github-app-token-scopped: "true"
+1543c1482
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1585c1524
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1593c1532
+<   version: v0.16.0
+---
+>   version: v0.15.0
+1601c1540
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1862c1801
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1881,1898d1819
+<     app: pipeline-metrics-exporter
+<   name: pipeline-metrics-exporter-service
+<   namespace: openshift-pipelines
+< spec:
+<   ports:
+<   - name: metrics
+<     port: 9117
+<     protocol: TCP
+<     targetPort: 9117
+<   selector:
+<     app: pipeline-metrics-exporter
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   labels:
+1901c1822
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1925c1846
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1948c1869
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2033,2066d1953
+<   name: pipeline-metrics-exporter
+<   namespace: openshift-pipelines
+< spec:
+<   replicas: 1
+<   selector:
+<     matchLabels:
+<       app: pipeline-metrics-exporter
+<   template:
+<     metadata:
+<       annotations:
+<         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<       labels:
+<         app: pipeline-metrics-exporter
+<     spec:
+<       containers:
+<       - image: quay.io/redhat-pipeline-service/metrics-exporter:45db641
+<         name: pipeline-metrics-exporter
+<         ports:
+<         - containerPort: 9117
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 256Mi
+<           requests:
+<             cpu: 250m
+<             memory: 128Mi
+<       restartPolicy: Always
+<       serviceAccountName: pipeline-service-exporter
+< ---
+< apiVersion: apps/v1
+< kind: Deployment
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2070c1957
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2090c1977
+<         app.kubernetes.io/version: v0.16.0
+---
+>         app.kubernetes.io/version: v0.15.0
+2110c1997
+<         image: ghcr.io/openshift-pipelines/pipelines-as-code-controller:v0.16.0
+---
+>         image: ghcr.io/openshift-pipelines/pipelines-as-code-controller:v0.15.0
+2162c2049
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2183c2070
+<         app.kubernetes.io/version: v0.16.0
+---
+>         app.kubernetes.io/version: v0.15.0
+2195c2082
+<         image: ghcr.io/openshift-pipelines/pipelines-as-code-watcher:v0.16.0
+---
+>         image: ghcr.io/openshift-pipelines/pipelines-as-code-watcher:v0.15.0
+2238c2125
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2258c2145
+<         app.kubernetes.io/version: v0.16.0
+---
+>         app.kubernetes.io/version: v0.15.0
+2272c2159
+<         image: ghcr.io/openshift-pipelines/pipelines-as-code-webhook:v0.16.0
+---
+>         image: ghcr.io/openshift-pipelines/pipelines-as-code-webhook:v0.15.0
+2418a2306,2309
+>         - name: S3_BUCKET_NAME
+>           value: tekton-results
+>         - name: S3_ENDPOINT
+>           value: https://minio.tekton-results.svc.cluster.local
+2420a2312,2313
+>         - name: S3_REGION
+>           value: us-east-1
+2424c2317
+<               key: aws_access_key_id
+---
+>               key: S3_ACCESS_KEY_ID
+2429,2444c2322
+<               key: aws_secret_access_key
+<               name: tekton-results-s3
+<         - name: S3_REGION
+<           valueFrom:
+<             secretKeyRef:
+<               key: aws_region
+<               name: tekton-results-s3
+<         - name: S3_BUCKET_NAME
+<           valueFrom:
+<             secretKeyRef:
+<               key: bucket
+<               name: tekton-results-s3
+<         - name: S3_ENDPOINT
+<           valueFrom:
+<             secretKeyRef:
+<               key: endpoint
+---
+>               key: S3_SECRET_ACCESS_KEY
+2466c2344
+<         image: quay.io/redhat-appstudio/tekton-results-api:c0e11ce68cacae1da6756713d0cb5f8b5a394b04
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:9a1f0cb73f3f3013a7f3770c78f715f5c337772c
+2478a2357,2359
+>         - mountPath: /etc/ssl/certs/s3-cert.crt
+>           name: ca-s3
+>           subPath: s3-cert.crt
+2500c2381
+<               key: aws_access_key_id
+---
+>               key: S3_ACCESS_KEY_ID
+2505,2510c2386
+<               key: aws_secret_access_key
+<               name: tekton-results-s3
+<         - name: S3_REGION
+<           valueFrom:
+<             secretKeyRef:
+<               key: aws_region
+---
+>               key: S3_SECRET_ACCESS_KEY
+2513,2516c2389
+<           valueFrom:
+<             secretKeyRef:
+<               key: bucket
+<               name: tekton-results-s3
+---
+>           value: tekton-results
+2518,2522c2391,2394
+<           valueFrom:
+<             secretKeyRef:
+<               key: endpoint
+<               name: tekton-results-s3
+<         image: quay.io/minio/mc:RELEASE.2023-01-28T20-29-38Z
+---
+>           value: https://minio.tekton-results.svc.cluster.local
+>         - name: S3_REGION
+>           value: us-east-1
+>         image: docker.io/minio/mc:RELEASE.2023-01-28T20-29-38Z
+2524a2397,2400
+>         volumeMounts:
+>         - mountPath: /etc/ssl/certs/s3-cert.crt
+>           name: ca-s3
+>           subPath: s3-cert.crt
+2526a2403,2408
+>       - name: ca-s3
+>         secret:
+>           items:
+>           - key: public.crt
+>             path: s3-cert.crt
+>           secretName: storage-tls
+2578c2460
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:c0e11ce68cacae1da6756713d0cb5f8b5a394b04
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:9a1f0cb73f3f3013a7f3770c78f715f5c337772c
+2588,2589d2469
+<             add:
+<             - NET_BIND_SERVICE
+2647c2527
+<         image: bitnami/postgresql@sha256:78ef3a36dd814e5f6dfbd8bb7c2e16086f7ea3cc68108714883671523168d4d5
+---
+>         image: bitnami/postgresql@sha256:23b9a21460fefdd83accd0f864e734c88bebc67c86ee752a97b77dd4843907f0
+2844c2724
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2869,2872d2748
+<     enable-bundles-resolver: true
+<     enable-cluster-resolver: true
+<     enable-git-resolver: true
+<     enable-hub-resolver: true
+2922c2798
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0

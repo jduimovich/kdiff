@@ -1,0 +1,466 @@
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cafc39e/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-3e6b681/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+1c1
+< 2023/03/17 08:04:38 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/17 08:05:18 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+44c44
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+191c191
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+203c203
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+215c215
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+292c292
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+313c313
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+355c355
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+388c388
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+523c523
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+579c579
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+611,617d610
+<   - tekton.dev
+<   resources:
+<   - taskruns
+<   verbs:
+<   - get
+<   - list
+< - apiGroups:
+646c639
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+765c758
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1093c1086
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1112c1105
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1150c1143
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1169c1162
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1295c1288
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1315c1308
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1335c1328
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1484,1498d1476
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: tekton-results-watcher-logs
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-admin
+< subjects:
+< - kind: ServiceAccount
+<   name: tekton-results-watcher
+<   namespace: tekton-results
+< ---
+1518c1496
+<   secret-github-app-token-scoped: "true"
+---
+>   secret-github-app-token-scopped: "true"
+1527c1505
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1569c1547
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1577c1555
+<   version: v0.16.0
+---
+>   version: v0.15.0
+1585c1563
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1846c1824
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1885c1863
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1909c1887
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1932c1910
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2035c2013
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2055c2033
+<         app.kubernetes.io/version: v0.16.0
+---
+>         app.kubernetes.io/version: v0.15.0
+2075c2053
+<         image: ghcr.io/openshift-pipelines/pipelines-as-code-controller:v0.16.0
+---
+>         image: ghcr.io/openshift-pipelines/pipelines-as-code-controller:v0.15.0
+2127c2105
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2148c2126
+<         app.kubernetes.io/version: v0.16.0
+---
+>         app.kubernetes.io/version: v0.15.0
+2160c2138
+<         image: ghcr.io/openshift-pipelines/pipelines-as-code-watcher:v0.16.0
+---
+>         image: ghcr.io/openshift-pipelines/pipelines-as-code-watcher:v0.15.0
+2203c2181
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2223c2201
+<         app.kubernetes.io/version: v0.16.0
+---
+>         app.kubernetes.io/version: v0.15.0
+2237c2215
+<         image: ghcr.io/openshift-pipelines/pipelines-as-code-webhook:v0.16.0
+---
+>         image: ghcr.io/openshift-pipelines/pipelines-as-code-webhook:v0.15.0
+2380,2410d2357
+<         - name: LOGS_API
+<           value: "true"
+<         - name: LOGS_TYPE
+<           value: S3
+<         - name: S3_HOSTNAME_IMMUTABLE
+<           value: "true"
+<         - name: S3_ACCESS_KEY_ID
+<           valueFrom:
+<             secretKeyRef:
+<               key: aws_access_key_id
+<               name: tekton-results-s3
+<         - name: S3_SECRET_ACCESS_KEY
+<           valueFrom:
+<             secretKeyRef:
+<               key: aws_secret_access_key
+<               name: tekton-results-s3
+<         - name: S3_REGION
+<           valueFrom:
+<             secretKeyRef:
+<               key: aws_region
+<               name: tekton-results-s3
+<         - name: S3_BUCKET_NAME
+<           valueFrom:
+<             secretKeyRef:
+<               key: bucket
+<               name: tekton-results-s3
+<         - name: S3_ENDPOINT
+<           valueFrom:
+<             secretKeyRef:
+<               key: endpoint
+<               name: tekton-results-s3
+2431c2378
+<         image: quay.io/redhat-appstudio/tekton-results-api:c0e11ce68cacae1da6756713d0cb5f8b5a394b04
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:9a1f0cb73f3f3013a7f3770c78f715f5c337772c
+2503c2450
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:c0e11ce68cacae1da6756713d0cb5f8b5a394b04
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:9a1f0cb73f3f3013a7f3770c78f715f5c337772c
+2513,2514d2459
+<             add:
+<             - NET_BIND_SERVICE
+2701c2646
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2726,2729d2670
+<     enable-bundles-resolver: true
+<     enable-cluster-resolver: true
+<     enable-git-resolver: true
+<     enable-hub-resolver: true
+2765c2706
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cafc39e/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-3e6b681/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+1c1
+< 2023/03/17 08:04:41 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/17 08:05:21 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+44c44
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+191c191
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+203c203
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+215c215
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+292c292
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+313c313
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+355c355
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+388c388
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+523c523
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+579c579
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+611,617d610
+<   - tekton.dev
+<   resources:
+<   - taskruns
+<   verbs:
+<   - get
+<   - list
+< - apiGroups:
+646c639
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+765c758
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1093c1086
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1112c1105
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1150c1143
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1169c1162
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1295c1288
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1315c1308
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1335c1328
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1484,1498d1476
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: tekton-results-watcher-logs
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-admin
+< subjects:
+< - kind: ServiceAccount
+<   name: tekton-results-watcher
+<   namespace: tekton-results
+< ---
+1518c1496
+<   secret-github-app-token-scoped: "true"
+---
+>   secret-github-app-token-scopped: "true"
+1527c1505
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1569c1547
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1577c1555
+<   version: v0.16.0
+---
+>   version: v0.15.0
+1585c1563
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1846c1824
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1885c1863
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1909c1887
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+1932c1910
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2035c2013
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2055c2033
+<         app.kubernetes.io/version: v0.16.0
+---
+>         app.kubernetes.io/version: v0.15.0
+2075c2053
+<         image: ghcr.io/openshift-pipelines/pipelines-as-code-controller:v0.16.0
+---
+>         image: ghcr.io/openshift-pipelines/pipelines-as-code-controller:v0.15.0
+2127c2105
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2148c2126
+<         app.kubernetes.io/version: v0.16.0
+---
+>         app.kubernetes.io/version: v0.15.0
+2160c2138
+<         image: ghcr.io/openshift-pipelines/pipelines-as-code-watcher:v0.16.0
+---
+>         image: ghcr.io/openshift-pipelines/pipelines-as-code-watcher:v0.15.0
+2203c2181
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2223c2201
+<         app.kubernetes.io/version: v0.16.0
+---
+>         app.kubernetes.io/version: v0.15.0
+2237c2215
+<         image: ghcr.io/openshift-pipelines/pipelines-as-code-webhook:v0.16.0
+---
+>         image: ghcr.io/openshift-pipelines/pipelines-as-code-webhook:v0.15.0
+2380,2410d2357
+<         - name: LOGS_API
+<           value: "true"
+<         - name: LOGS_TYPE
+<           value: S3
+<         - name: S3_HOSTNAME_IMMUTABLE
+<           value: "true"
+<         - name: S3_ACCESS_KEY_ID
+<           valueFrom:
+<             secretKeyRef:
+<               key: aws_access_key_id
+<               name: tekton-results-s3
+<         - name: S3_SECRET_ACCESS_KEY
+<           valueFrom:
+<             secretKeyRef:
+<               key: aws_secret_access_key
+<               name: tekton-results-s3
+<         - name: S3_REGION
+<           valueFrom:
+<             secretKeyRef:
+<               key: aws_region
+<               name: tekton-results-s3
+<         - name: S3_BUCKET_NAME
+<           valueFrom:
+<             secretKeyRef:
+<               key: bucket
+<               name: tekton-results-s3
+<         - name: S3_ENDPOINT
+<           valueFrom:
+<             secretKeyRef:
+<               key: endpoint
+<               name: tekton-results-s3
+2431c2378
+<         image: quay.io/redhat-appstudio/tekton-results-api:c0e11ce68cacae1da6756713d0cb5f8b5a394b04
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:9a1f0cb73f3f3013a7f3770c78f715f5c337772c
+2503c2450
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:c0e11ce68cacae1da6756713d0cb5f8b5a394b04
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:9a1f0cb73f3f3013a7f3770c78f715f5c337772c
+2513,2514d2459
+<             add:
+<             - NET_BIND_SERVICE
+2701c2646
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0
+2726,2729d2670
+<     enable-bundles-resolver: true
+<     enable-cluster-resolver: true
+<     enable-git-resolver: true
+<     enable-hub-resolver: true
+2765c2706
+<     app.kubernetes.io/version: v0.16.0
+---
+>     app.kubernetes.io/version: v0.15.0

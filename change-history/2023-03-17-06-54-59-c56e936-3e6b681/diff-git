@@ -1,0 +1,13 @@
+diff --git a/hack/quicklab/templates/deployment.yaml b/hack/quicklab/templates/deployment.yaml
+index ba13e90..ab4d495 100644
+--- a/hack/quicklab/templates/deployment.yaml
++++ b/hack/quicklab/templates/deployment.yaml
+@@ -21,7 +21,7 @@ spec:
+       serviceAccountName: nfs-client-provisioner
+       containers:
+         - name: nfs-client-provisioner
+-          image: k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
++          image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
+           volumeMounts:
+             - name: nfs-client-root
+               mountPath: /persistentvolumes
