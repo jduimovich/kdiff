@@ -1,12 +1,214 @@
 # kustomize changes tracked by commits 
-### This file generated at Sat Mar 18 10:04:08 UTC 2023
+### This file generated at Sat Mar 18 12:05:27 UTC 2023
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: staging, development
 ## Showing last 20 commits
 
 
 <div>
-<h3>1: Staging changes from f436256 to cefa8a6 on Fri Mar 17 15:13:53 2023 </h3>  
+<h3>1: Staging changes from cefa8a6 to ee38c09 on Sat Mar 18 11:00:56 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (58 lines)</summary>  
+
+``` 
+diff --git a/components/quality-dashboard/staging/external-secrets/kustomization.yaml b/components/quality-dashboard/staging/external-secrets/kustomization.yaml
+index b4b759b..9e8ba6f 100644
+--- a/components/quality-dashboard/staging/external-secrets/kustomization.yaml
++++ b/components/quality-dashboard/staging/external-secrets/kustomization.yaml
+@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - quality-dashboard-secrets.yaml
++- quality-dashboard-auth.yaml
+ namespace: quality-dashboard
+diff --git a/components/quality-dashboard/staging/external-secrets/quality-dashboard-auth.yaml b/components/quality-dashboard/staging/external-secrets/quality-dashboard-auth.yaml
+new file mode 100644
+index 0000000..7cf1ff4
+--- /dev/null
++++ b/components/quality-dashboard/staging/external-secrets/quality-dashboard-auth.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: quality-dashboard-auth
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/qe/quality-dashboard-auth
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: quality-dashboard-auth
+diff --git a/hack/secret-creator/create-quality-dashboard-secrets.sh b/hack/secret-creator/create-quality-dashboard-secrets.sh
+index 13ea37f..0fa427b 100755
+--- a/hack/secret-creator/create-quality-dashboard-secrets.sh
++++ b/hack/secret-creator/create-quality-dashboard-secrets.sh
+@@ -1,5 +1,6 @@
+ #!/bin/bash -e
+ 
++
+ main() {
+     echo "Setting secrets for Quality Dashboard"
+     kubectl create namespace quality-dashboard -o yaml --dry-run=client | oc apply -f-
+@@ -13,6 +14,11 @@ main() {
+             --from-literal=github-token=REPLACE_GITHUB_TOKEN \
+             --from-literal=jira-token=REPLACE_JIRA_TOKEN
+     fi
++    if ! kubectl get secret -n quality-dashboard quality-dashboard-auth &>/dev/null; then
++        kubectl create secret generic quality-dashboard-auth \
++            --namespace=quality-dashboard \
++            --from-literal=users.htpasswd=NOUSER
++    fi
+ }
+ 
+ if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+
+``` 
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ee38c09/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cefa8a6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+1c1
+< 2023/03/18 12:04:51 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/17 16:04:25 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ee38c09/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cefa8a6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+1c1
+< 2023/03/18 12:04:55 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/17 16:04:30 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ee38c09/staging/components/quality-dashboard/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cefa8a6/staging/components/quality-dashboard/staging/kustomize.out
+276,296d275
+<   name: quality-dashboard-auth
+<   namespace: quality-dashboard
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: staging/qe/quality-dashboard-auth
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: quality-dashboard-auth
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1" 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from cefa8a6 to ee38c09 on Sat Mar 18 11:00:56 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (58 lines)</summary>  
+
+``` 
+diff --git a/components/quality-dashboard/staging/external-secrets/kustomization.yaml b/components/quality-dashboard/staging/external-secrets/kustomization.yaml
+index b4b759b..9e8ba6f 100644
+--- a/components/quality-dashboard/staging/external-secrets/kustomization.yaml
++++ b/components/quality-dashboard/staging/external-secrets/kustomization.yaml
+@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - quality-dashboard-secrets.yaml
++- quality-dashboard-auth.yaml
+ namespace: quality-dashboard
+diff --git a/components/quality-dashboard/staging/external-secrets/quality-dashboard-auth.yaml b/components/quality-dashboard/staging/external-secrets/quality-dashboard-auth.yaml
+new file mode 100644
+index 0000000..7cf1ff4
+--- /dev/null
++++ b/components/quality-dashboard/staging/external-secrets/quality-dashboard-auth.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: quality-dashboard-auth
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/qe/quality-dashboard-auth
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: quality-dashboard-auth
+diff --git a/hack/secret-creator/create-quality-dashboard-secrets.sh b/hack/secret-creator/create-quality-dashboard-secrets.sh
+index 13ea37f..0fa427b 100755
+--- a/hack/secret-creator/create-quality-dashboard-secrets.sh
++++ b/hack/secret-creator/create-quality-dashboard-secrets.sh
+@@ -1,5 +1,6 @@
+ #!/bin/bash -e
+ 
++
+ main() {
+     echo "Setting secrets for Quality Dashboard"
+     kubectl create namespace quality-dashboard -o yaml --dry-run=client | oc apply -f-
+@@ -13,6 +14,11 @@ main() {
+             --from-literal=github-token=REPLACE_GITHUB_TOKEN \
+             --from-literal=jira-token=REPLACE_JIRA_TOKEN
+     fi
++    if ! kubectl get secret -n quality-dashboard quality-dashboard-auth &>/dev/null; then
++        kubectl create secret generic quality-dashboard-auth \
++            --namespace=quality-dashboard \
++            --from-literal=users.htpasswd=NOUSER
++    fi
+ }
+ 
+ if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (7 lines)</summary>  
+
+``` 
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ee38c09/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cefa8a6/development/components/pipeline-service/development/kustomize.out
+1,2c1,2
+< 2023/03/18 12:05:14 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+< 2023/03/18 12:05:18 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/17 16:04:55 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+> 2023/03/17 16:05:00 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from f436256 to cefa8a6 on Fri Mar 17 15:13:53 2023 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -67,7 +269,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cefa8a6/staging/co
 </div>
 
 <div>
-<h3>1: Development changes from f436256 to cefa8a6 on Fri Mar 17 15:13:53 2023 </h3>  
+<h3>2: Development changes from f436256 to cefa8a6 on Fri Mar 17 15:13:53 2023 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -125,7 +327,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cefa8a6/developmen
 </div>
 
 <div>
-<h3>2: Staging changes from 84522ea to f436256 on Fri Mar 17 11:14:42 2023 </h3>  
+<h3>3: Staging changes from 84522ea to f436256 on Fri Mar 17 11:14:42 2023 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -180,7 +382,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f436256/staging/co
 </div>
 
 <div>
-<h3>2: Development changes from 84522ea to f436256 on Fri Mar 17 11:14:42 2023 </h3>  
+<h3>3: Development changes from 84522ea to f436256 on Fri Mar 17 11:14:42 2023 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -232,7 +434,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f436256/developmen
 </div>
 
 <div>
-<h3>3: Staging changes from cafc39e to 84522ea on Fri Mar 17 08:58:56 2023 </h3>  
+<h3>4: Staging changes from cafc39e to 84522ea on Fri Mar 17 08:58:56 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -308,7 +510,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-84522ea/staging/co
 </div>
 
 <div>
-<h3>3: Development changes from cafc39e to 84522ea on Fri Mar 17 08:58:56 2023 </h3>  
+<h3>4: Development changes from cafc39e to 84522ea on Fri Mar 17 08:58:56 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -381,7 +583,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-84522ea/developmen
 </div>
 
 <div>
-<h3>4: Staging changes from 3e6b681 to cafc39e on Fri Mar 17 07:30:29 2023 </h3>  
+<h3>5: Staging changes from 3e6b681 to cafc39e on Fri Mar 17 07:30:29 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -929,7 +1131,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cafc39e/staging/co
 </div>
 
 <div>
-<h3>4: Development changes from 3e6b681 to cafc39e on Fri Mar 17 07:30:29 2023 </h3>  
+<h3>5: Development changes from 3e6b681 to cafc39e on Fri Mar 17 07:30:29 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -1391,7 +1593,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cafc39e/developmen
 </div>
 
 <div>
-<h3>5: Staging changes from c56e936 to 3e6b681 on Fri Mar 17 06:54:59 2023 </h3>  
+<h3>6: Staging changes from c56e936 to 3e6b681 on Fri Mar 17 06:54:59 2023 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1437,7 +1639,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-3e6b681/staging/co
 </div>
 
 <div>
-<h3>5: Development changes from c56e936 to 3e6b681 on Fri Mar 17 06:54:59 2023 </h3>  
+<h3>6: Development changes from c56e936 to 3e6b681 on Fri Mar 17 06:54:59 2023 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1480,7 +1682,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-3e6b681/developmen
 </div>
 
 <div>
-<h3>6: Staging changes from 7012d1d to c56e936 on Fri Mar 17 06:54:11 2023 </h3>  
+<h3>7: Staging changes from 7012d1d to c56e936 on Fri Mar 17 06:54:11 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -1567,7 +1769,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c56e936/staging/co
 </div>
 
 <div>
-<h3>6: Development changes from 7012d1d to c56e936 on Fri Mar 17 06:54:11 2023 </h3>  
+<h3>7: Development changes from 7012d1d to c56e936 on Fri Mar 17 06:54:11 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -1651,7 +1853,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c56e936/developmen
 </div>
 
 <div>
-<h3>7: Staging changes from a188244 to 7012d1d on Thu Mar 16 19:05:49 2023 </h3>  
+<h3>8: Staging changes from a188244 to 7012d1d on Thu Mar 16 19:05:49 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -1764,7 +1966,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7012d1d/staging/co
 </div>
 
 <div>
-<h3>7: Development changes from a188244 to 7012d1d on Thu Mar 16 19:05:49 2023 </h3>  
+<h3>8: Development changes from a188244 to 7012d1d on Thu Mar 16 19:05:49 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -1874,7 +2076,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7012d1d/developmen
 </div>
 
 <div>
-<h3>8: Staging changes from b75b854 to a188244 on Thu Mar 16 13:36:13 2023 </h3>  
+<h3>9: Staging changes from b75b854 to a188244 on Thu Mar 16 13:36:13 2023 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -1938,7 +2140,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a188244/staging/co
 </div>
 
 <div>
-<h3>8: Development changes from b75b854 to a188244 on Thu Mar 16 13:36:13 2023 </h3>  
+<h3>9: Development changes from b75b854 to a188244 on Thu Mar 16 13:36:13 2023 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -1999,7 +2201,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a188244/developmen
 </div>
 
 <div>
-<h3>9: Staging changes from 62939f0 to b75b854 on Thu Mar 16 11:48:22 2023 </h3>  
+<h3>10: Staging changes from 62939f0 to b75b854 on Thu Mar 16 11:48:22 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -2094,7 +2296,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-b75b854/staging/co
 </div>
 
 <div>
-<h3>9: Development changes from 62939f0 to b75b854 on Thu Mar 16 11:48:22 2023 </h3>  
+<h3>10: Development changes from 62939f0 to b75b854 on Thu Mar 16 11:48:22 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -2186,7 +2388,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-b75b854/developmen
 </div>
 
 <div>
-<h3>10: Staging changes from f76378c to 62939f0 on Thu Mar 16 08:08:25 2023 </h3>  
+<h3>11: Staging changes from f76378c to 62939f0 on Thu Mar 16 08:08:25 2023 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -2318,7 +2520,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-62939f0/staging/co
 </div>
 
 <div>
-<h3>10: Development changes from f76378c to 62939f0 on Thu Mar 16 08:08:25 2023 </h3>  
+<h3>11: Development changes from f76378c to 62939f0 on Thu Mar 16 08:08:25 2023 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -2393,7 +2595,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-62939f0/developmen
 </div>
 
 <div>
-<h3>11: Staging changes from 9984034 to f76378c on Thu Mar 16 07:12:24 2023 </h3>  
+<h3>12: Staging changes from 9984034 to f76378c on Thu Mar 16 07:12:24 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -2519,7 +2721,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f76378c/staging/co
 </div>
 
 <div>
-<h3>11: Development changes from 9984034 to f76378c on Thu Mar 16 07:12:24 2023 </h3>  
+<h3>12: Development changes from 9984034 to f76378c on Thu Mar 16 07:12:24 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -2621,7 +2823,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f76378c/developmen
 </div>
 
 <div>
-<h3>12: Staging changes from 35c4c05 to 9984034 on Thu Mar 16 06:36:24 2023 </h3>  
+<h3>13: Staging changes from 35c4c05 to 9984034 on Thu Mar 16 06:36:24 2023 </h3>  
  
 <details> 
 <summary>Git Diff (33 lines)</summary>  
@@ -2704,7 +2906,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/staging/co
 </div>
 
 <div>
-<h3>12: Development changes from 35c4c05 to 9984034 on Thu Mar 16 06:36:24 2023 </h3>  
+<h3>13: Development changes from 35c4c05 to 9984034 on Thu Mar 16 06:36:24 2023 </h3>  
  
 <details> 
 <summary>Git Diff (33 lines)</summary>  
@@ -2784,7 +2986,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9984034/developmen
 </div>
 
 <div>
-<h3>13: Staging changes from 74871cf to 35c4c05 on Thu Mar 16 06:21:30 2023 </h3>  
+<h3>14: Staging changes from 74871cf to 35c4c05 on Thu Mar 16 06:21:30 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -2871,7 +3073,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-35c4c05/staging/co
 </div>
 
 <div>
-<h3>13: Development changes from 74871cf to 35c4c05 on Thu Mar 16 06:21:30 2023 </h3>  
+<h3>14: Development changes from 74871cf to 35c4c05 on Thu Mar 16 06:21:30 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -2955,7 +3157,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-35c4c05/developmen
 </div>
 
 <div>
-<h3>14: Staging changes from ccb4876 to 74871cf on Thu Mar 16 03:44:18 2023 </h3>  
+<h3>15: Staging changes from ccb4876 to 74871cf on Thu Mar 16 03:44:18 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -3081,7 +3283,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-74871cf/staging/co
 </div>
 
 <div>
-<h3>14: Development changes from ccb4876 to 74871cf on Thu Mar 16 03:44:18 2023 </h3>  
+<h3>15: Development changes from ccb4876 to 74871cf on Thu Mar 16 03:44:18 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -3183,7 +3385,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-74871cf/developmen
 </div>
 
 <div>
-<h3>15: Staging changes from 88ed7eb to ccb4876 on Wed Mar 15 19:59:26 2023 </h3>  
+<h3>16: Staging changes from 88ed7eb to ccb4876 on Wed Mar 15 19:59:26 2023 </h3>  
  
 <details> 
 <summary>Git Diff (99 lines)</summary>  
@@ -3350,7 +3552,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ccb4876/staging/co
 </div>
 
 <div>
-<h3>15: Development changes from 88ed7eb to ccb4876 on Wed Mar 15 19:59:26 2023 </h3>  
+<h3>16: Development changes from 88ed7eb to ccb4876 on Wed Mar 15 19:59:26 2023 </h3>  
  
 <details> 
 <summary>Git Diff (99 lines)</summary>  
@@ -3514,7 +3716,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ccb4876/developmen
 </div>
 
 <div>
-<h3>16: Staging changes from 6710c97 to 88ed7eb on Wed Mar 15 18:22:17 2023 </h3>  
+<h3>17: Staging changes from 6710c97 to 88ed7eb on Wed Mar 15 18:22:17 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -3590,7 +3792,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-88ed7eb/staging/co
 </div>
 
 <div>
-<h3>16: Development changes from 6710c97 to 88ed7eb on Wed Mar 15 18:22:17 2023 </h3>  
+<h3>17: Development changes from 6710c97 to 88ed7eb on Wed Mar 15 18:22:17 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -3663,7 +3865,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-88ed7eb/developmen
 </div>
 
 <div>
-<h3>17: Staging changes from 3f39a2e to 6710c97 on Wed Mar 15 16:56:44 2023 </h3>  
+<h3>18: Staging changes from 3f39a2e to 6710c97 on Wed Mar 15 16:56:44 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -3739,7 +3941,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-6710c97/staging/co
 </div>
 
 <div>
-<h3>17: Development changes from 3f39a2e to 6710c97 on Wed Mar 15 16:56:44 2023 </h3>  
+<h3>18: Development changes from 3f39a2e to 6710c97 on Wed Mar 15 16:56:44 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -3812,7 +4014,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-6710c97/developmen
 </div>
 
 <div>
-<h3>18: Staging changes from 2c591c8 to 3f39a2e on Wed Mar 15 14:43:07 2023 </h3>  
+<h3>19: Staging changes from 2c591c8 to 3f39a2e on Wed Mar 15 14:43:07 2023 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -3881,7 +4083,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-3f39a2e/staging/co
 </div>
 
 <div>
-<h3>18: Development changes from 2c591c8 to 3f39a2e on Wed Mar 15 14:43:07 2023 </h3>  
+<h3>19: Development changes from 2c591c8 to 3f39a2e on Wed Mar 15 14:43:07 2023 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -3947,7 +4149,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-3f39a2e/developmen
 </div>
 
 <div>
-<h3>19: Staging changes from 5d6914e to 2c591c8 on Wed Mar 15 14:41:15 2023 </h3>  
+<h3>20: Staging changes from 5d6914e to 2c591c8 on Wed Mar 15 14:41:15 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -4034,7 +4236,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2c591c8/staging/co
 </div>
 
 <div>
-<h3>19: Development changes from 5d6914e to 2c591c8 on Wed Mar 15 14:41:15 2023 </h3>  
+<h3>20: Development changes from 5d6914e to 2c591c8 on Wed Mar 15 14:41:15 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -4109,133 +4311,6 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-2c591c8/developmen
 ---
 > 2023/03/15 14:04:45 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
 > 2023/03/15 14:04:50 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>20: Staging changes from fbc5f3b to 5d6914e on Wed Mar 15 13:07:01 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (32 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/release-service/kustomization.yaml b/components/monitoring/grafana/base/release-service/kustomization.yaml
-index 842ff17..ac0959a 100644
---- a/components/monitoring/grafana/base/release-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/release-service/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/release-service/config/monitoring/?ref=913a02c3595a2457680bb6221ae17753e04a08cd
-+- https://github.com/redhat-appstudio/release-service/config/monitoring/?ref=21edb2dadc4e6031568689ab46ff78ad3a55de8c
-diff --git a/components/release/kustomization.yaml b/components/release/kustomization.yaml
-index 77fb71a..696345a 100644
---- a/components/release/kustomization.yaml
-+++ b/components/release/kustomization.yaml
-@@ -1,7 +1,7 @@
- resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
--- https://github.com/redhat-appstudio/release-service/config/default?ref=913a02c3595a2457680bb6221ae17753e04a08cd
-+- https://github.com/redhat-appstudio/release-service/config/default?ref=21edb2dadc4e6031568689ab46ff78ad3a55de8c
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-@@ -9,7 +9,7 @@ kind: Kustomization
- images:
- - name: quay.io/redhat-appstudio/release-service
-   newName: quay.io/redhat-appstudio/release-service
--  newTag: 913a02c3595a2457680bb6221ae17753e04a08cd
-+  newTag: 21edb2dadc4e6031568689ab46ff78ad3a55de8c
- 
- namespace: release-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-
-``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5d6914e/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-fbc5f3b/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
-1c1
-< 2023/03/15 14:04:17 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/15 14:05:10 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5d6914e/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-fbc5f3b/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
-1c1
-< 2023/03/15 14:04:22 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/15 14:05:15 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>20: Development changes from fbc5f3b to 5d6914e on Wed Mar 15 13:07:01 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (32 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/release-service/kustomization.yaml b/components/monitoring/grafana/base/release-service/kustomization.yaml
-index 842ff17..ac0959a 100644
---- a/components/monitoring/grafana/base/release-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/release-service/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/release-service/config/monitoring/?ref=913a02c3595a2457680bb6221ae17753e04a08cd
-+- https://github.com/redhat-appstudio/release-service/config/monitoring/?ref=21edb2dadc4e6031568689ab46ff78ad3a55de8c
-diff --git a/components/release/kustomization.yaml b/components/release/kustomization.yaml
-index 77fb71a..696345a 100644
---- a/components/release/kustomization.yaml
-+++ b/components/release/kustomization.yaml
-@@ -1,7 +1,7 @@
- resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
--- https://github.com/redhat-appstudio/release-service/config/default?ref=913a02c3595a2457680bb6221ae17753e04a08cd
-+- https://github.com/redhat-appstudio/release-service/config/default?ref=21edb2dadc4e6031568689ab46ff78ad3a55de8c
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-@@ -9,7 +9,7 @@ kind: Kustomization
- images:
- - name: quay.io/redhat-appstudio/release-service
-   newName: quay.io/redhat-appstudio/release-service
--  newTag: 913a02c3595a2457680bb6221ae17753e04a08cd
-+  newTag: 21edb2dadc4e6031568689ab46ff78ad3a55de8c
- 
- namespace: release-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (7 lines)</summary>  
-
-``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5d6914e/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-fbc5f3b/development/components/pipeline-service/development/kustomize.out
-1,2c1,2
-< 2023/03/15 14:04:45 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-< 2023/03/15 14:04:50 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/15 14:05:39 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-> 2023/03/15 14:05:44 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
 ```
  
 </details> 

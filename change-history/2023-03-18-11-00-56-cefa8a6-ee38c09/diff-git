@@ -1,0 +1,58 @@
+diff --git a/components/quality-dashboard/staging/external-secrets/kustomization.yaml b/components/quality-dashboard/staging/external-secrets/kustomization.yaml
+index b4b759b..9e8ba6f 100644
+--- a/components/quality-dashboard/staging/external-secrets/kustomization.yaml
++++ b/components/quality-dashboard/staging/external-secrets/kustomization.yaml
+@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - quality-dashboard-secrets.yaml
++- quality-dashboard-auth.yaml
+ namespace: quality-dashboard
+diff --git a/components/quality-dashboard/staging/external-secrets/quality-dashboard-auth.yaml b/components/quality-dashboard/staging/external-secrets/quality-dashboard-auth.yaml
+new file mode 100644
+index 0000000..7cf1ff4
+--- /dev/null
++++ b/components/quality-dashboard/staging/external-secrets/quality-dashboard-auth.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: quality-dashboard-auth
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/qe/quality-dashboard-auth
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: quality-dashboard-auth
+diff --git a/hack/secret-creator/create-quality-dashboard-secrets.sh b/hack/secret-creator/create-quality-dashboard-secrets.sh
+index 13ea37f..0fa427b 100755
+--- a/hack/secret-creator/create-quality-dashboard-secrets.sh
++++ b/hack/secret-creator/create-quality-dashboard-secrets.sh
+@@ -1,5 +1,6 @@
+ #!/bin/bash -e
+ 
++
+ main() {
+     echo "Setting secrets for Quality Dashboard"
+     kubectl create namespace quality-dashboard -o yaml --dry-run=client | oc apply -f-
+@@ -13,6 +14,11 @@ main() {
+             --from-literal=github-token=REPLACE_GITHUB_TOKEN \
+             --from-literal=jira-token=REPLACE_JIRA_TOKEN
+     fi
++    if ! kubectl get secret -n quality-dashboard quality-dashboard-auth &>/dev/null; then
++        kubectl create secret generic quality-dashboard-auth \
++            --namespace=quality-dashboard \
++            --from-literal=users.htpasswd=NOUSER
++    fi
+ }
+ 
+ if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
