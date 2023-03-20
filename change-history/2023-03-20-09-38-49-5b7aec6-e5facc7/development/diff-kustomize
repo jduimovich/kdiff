@@ -1,0 +1,20 @@
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-e5facc7/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5b7aec6/development/components/pipeline-service/development/kustomize.out
+1,2c1,2
+< 2023/03/20 10:05:01 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+< 2023/03/20 10:05:06 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/20 08:05:19 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+> 2023/03/20 08:05:23 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-e5facc7/development/components/quality-dashboard/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5b7aec6/development/components/quality-dashboard/development/kustomize.out
+11c11
+<   BACKEND_ROUTE: https://quality-backend-route-quality-dashboard.apps.stone-stg-rh01.l2vh.p1.openshiftapps.com
+---
+>   BACKEND_ROUTE: https://quality-backend-route-quality-dashboard.apps.appstudio-stage.x99m.p1.openshiftapps.com
+14c14
+<   name: quality-dashboard-configmap-24k76fhk4k
+---
+>   name: quality-dashboard-configmap-7bb46468bg
+204c204
+<               name: quality-dashboard-configmap-24k76fhk4k
+---
+>               name: quality-dashboard-configmap-7bb46468bg
