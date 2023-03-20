@@ -1,5 +1,5 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Mar 20 00:15:41 UTC 2023
+### This file generated at Mon Mar 20 02:25:04 UTC 2023
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: staging, development
 ## Showing last 20 commits
