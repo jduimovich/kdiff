@@ -1,0 +1,36 @@
+diff --git a/components/quality-dashboard/base/backend/kustomization.yaml b/components/quality-dashboard/base/backend/kustomization.yaml
+index 9c346ae..d336657 100644
+--- a/components/quality-dashboard/base/backend/kustomization.yaml
++++ b/components/quality-dashboard/base/backend/kustomization.yaml
+@@ -1,5 +1,5 @@
+ resources:
+-- https://github.com/redhat-appstudio/quality-dashboard/backend/deploy/base?ref=749fea11ac0919339b93b7cacf301446e365d2bd
++- https://github.com/redhat-appstudio/quality-dashboard/backend/deploy/base?ref=e5037d67c36c802f45fd333250a0733faa08cf89
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+@@ -8,4 +8,4 @@ kind: Kustomization
+ images:
+   - name: quay.io/redhat-appstudio/quality-dashboard-backend
+     newName: quay.io/redhat-appstudio/quality-dashboard-backend
+-    newTag: 749fea11ac0919339b93b7cacf301446e365d2bd
+\ No newline at end of file
++    newTag: e5037d67c36c802f45fd333250a0733faa08cf89
+\ No newline at end of file
+diff --git a/components/quality-dashboard/base/frontend/kustomization.yaml b/components/quality-dashboard/base/frontend/kustomization.yaml
+index 8d69594..ae5405d 100644
+--- a/components/quality-dashboard/base/frontend/kustomization.yaml
++++ b/components/quality-dashboard/base/frontend/kustomization.yaml
+@@ -1,5 +1,5 @@
+ resources:
+-- https://github.com/redhat-appstudio/quality-dashboard/frontend/deploy/base?ref=749fea11ac0919339b93b7cacf301446e365d2bd
++- https://github.com/redhat-appstudio/quality-dashboard/frontend/deploy/base?ref=e5037d67c36c802f45fd333250a0733faa08cf89
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+@@ -12,4 +12,4 @@ configMapGenerator:
+ images:
+   - name: quay.io/redhat-appstudio/quality-dashboard-frontend
+     newName: quay.io/redhat-appstudio/quality-dashboard-frontend
+-    newTag: 749fea11ac0919339b93b7cacf301446e365d2bd
++    newTag: e5037d67c36c802f45fd333250a0733faa08cf89
