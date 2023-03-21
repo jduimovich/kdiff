@@ -17,7 +17,7 @@ See `kustomized-cache/commit-4f5d17a/development.lint` for an example.
 
 # Reports 
 
-A prettyprint report appears in `docs/index.markdown` and is kept up to date in github actions. 
+A prettyprint report appears in `docs/index.html` and is kept up to date via a github action. 
  
 ## todo 
 - need to use Application Sets for precise diff for each app-of-apps. 
