@@ -25,13 +25,12 @@ OUT_COUNT=0
 for diff in $(ls change-history/ | sort -r)
 do
     let OUT_COUNT++
-    diff=$(realpath $COMPARE_DIR/$diff)  
+    diff=$COMPARE_DIR/$diff
     GIT=$(cat $diff/diff-git)
     GLINES=$(wc -l $diff/diff-git | cut -d ' ' -f 1)
     echo $diff
     for overlay in  staging  development
-    do 
-        diff=$(realpath $diff)
+    do  
         if [ -f $diff/title ]; then
             TITLE="${overlay^} $(cat $diff/title)"
         else

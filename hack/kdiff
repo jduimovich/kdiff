@@ -19,7 +19,7 @@ function ktry() {
         fi  
     fi
     if [ -f "$OUT_FILE" ]; then 
-        LINT_FILE=$(realpath $OUT_DIR/kustomize.out.lint) 
+        LINT_FILE=$OUT_DIR/kustomize.out.lint
         if [ ! -f "$LINT_FILE" ]; then
             echo "Running: Linting $OUT_FILE"
             $ROOT/bin/kube-linter lint $OUT_FILE  > $LINT_FILE 
@@ -34,7 +34,7 @@ function generateManifests()  {
     echo -n "Generating kustomize for Tag $COMMIT " 
     for overlay in $OVERLAYS
     do  
-        COMMIT_DIR=$(realpath $CACHE_DIR/commit-$COMMIT/$overlay)
+        COMMIT_DIR=$CACHE_DIR/commit-$COMMIT/$overlay
         mkdir -p $COMMIT_DIR
         APP_OF_APPS=$COMMIT_DIR/app-of-apps-$overlay.yaml 
         if [ -f "$APP_OF_APPS" ]; then 
@@ -89,7 +89,7 @@ generateManifests $COMMIT_PREV
 
 COMPARE_DIR=$COMPARE_ROOT/$FNAME_SORTED-$COMMIT_PREV-$COMMIT_CURRENT
 mkdir -p $COMPARE_DIR  
-GDIFF=$(realpath $COMPARE_DIR/diff-git)
+GDIFF=$COMPARE_DIR/diff-git
 git diff $COMMIT_PREV...$COMMIT_CURRENT > $GDIFF
 
 DATE=$(TZ=UTC0 git show --quiet --date='local' --format="%cd" $COMMIT_CURRENT) 
@@ -101,17 +101,17 @@ do
     COMMIT_DIR=$CACHE_DIR/commit-$COMMIT/$overlay  
 
     #compare between two revisions
-    DIR_CURRENT=$(realpath $CACHE_DIR/commit-$COMMIT_CURRENT/$overlay)
+    DIR_CURRENT=$CACHE_DIR/commit-$COMMIT_CURRENT/$overlay
     LINT_CURRENT=$DIR_CURRENT.lint
-    DIR_PREV=$(realpath $CACHE_DIR/commit-$COMMIT_PREV/$overlay)
+    DIR_PREV=$CACHE_DIR/commit-$COMMIT_PREV/$overlay
   
     echo "Commit $COMMIT_CURRENT in $DIR_CURRENT" 
     echo "Commit $COMMIT_PREV in $DIR_PREV"  
 
     K_DIR=$COMPARE_DIR/$overlay  
     mkdir -p $K_DIR  
-    KDIFF=$(realpath $K_DIR/diff-kustomize)  
-    LINT_COPY=$(realpath $K_DIR/lint)  
+    KDIFF=$K_DIR/diff-kustomize
+    LINT_COPY=$K_DIR/lint  
     diff -r $DIR_CURRENT $DIR_PREV >$KDIFF
     if [ -f "$LINT_CURRENT" ]; then 
         cp $LINT_CURRENT $LINT_COPY
