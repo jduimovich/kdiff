@@ -39,6 +39,12 @@ do
         fi 
         KLINES=$(wc -l $diff/$overlay/diff-kustomize | cut -d ' ' -f 1)
         DELTA=$(cat $diff/$overlay/diff-kustomize)
+
+        if [ -f $diff/$overlay/lint ]; then
+            LINT=$(cat $diff/$overlay/lint)
+        else
+            LINT="no lint"
+        fi  
         
 cat <<EOF >> $SUMMARY
 
@@ -59,6 +65,15 @@ $GIT
 
 \`\`\` 
 $DELTA 
+\`\`\`
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+\`\`\` 
+$LINT 
 \`\`\`
  
 </details> 

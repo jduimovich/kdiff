@@ -57,7 +57,7 @@ function generateManifests()  {
         LINT_FILE=$COMMIT_DIR.lint
         rm $LINT_FILE
         touch $LINT_FILE  
-        echo "Concontentate all the lint files for $COMMIT_DIR"
+        echo "Concatentate all the lint files for $COMMIT_DIR"
         find $COMMIT_DIR -name kustomize.out.lint -print | xargs -n1 cat >>$LINT_FILE
     done
     echo
@@ -102,6 +102,7 @@ do
 
     #compare between two revisions
     DIR_CURRENT=$(realpath $CACHE_DIR/commit-$COMMIT_CURRENT/$overlay)
+    LINT_CURRENT=$DIR_CURRENT.lint
     DIR_PREV=$(realpath $CACHE_DIR/commit-$COMMIT_PREV/$overlay)
   
     echo "Commit $COMMIT_CURRENT in $DIR_CURRENT" 
@@ -110,8 +111,11 @@ do
     K_DIR=$COMPARE_DIR/$overlay  
     mkdir -p $K_DIR  
     KDIFF=$(realpath $K_DIR/diff-kustomize)  
+    LINT_COPY=$(realpath $K_DIR/lint)  
     diff -r $DIR_CURRENT $DIR_PREV >$KDIFF
-
+    if [ -f "$LINT_CURRENT" ]; then 
+        cp $LINT_CURRENT $LINT_COPY
+    fi 
     echo "Diff size for kustomize: $(wc -l $KDIFF)"
     echo
 done
