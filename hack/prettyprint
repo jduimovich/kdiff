@@ -9,6 +9,7 @@ fi
 
 INFRA=$ROOT/infra-deployments 
 
+INDEX=$ROOT/index.md
 SUMMARY=$ROOT/docs/index.markdown
 COMPARE_DIR=$ROOT/change-history
  
@@ -89,4 +90,4 @@ EOF
         break
     fi
 done
- 
+cp $SUMMARY $INDEX  
