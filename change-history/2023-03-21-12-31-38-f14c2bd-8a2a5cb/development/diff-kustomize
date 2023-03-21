@@ -1,0 +1,24 @@
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/build-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/build-service/development/kustomize.out
+649c649
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+655c655
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:4863e3b605ff7114c90c447bfc43ea68def2a38a
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+661c661
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+667c667
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/pipeline-service/development/kustomize.out
+1,2c1,2
+< 2023/03/21 14:04:36 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+< 2023/03/21 14:04:40 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/21 12:06:05 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+> 2023/03/21 12:06:10 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.

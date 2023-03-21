@@ -1,12 +1,175 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Mar 21 12:08:16 UTC 2023
+### This file generated at Tue Mar 21 14:04:50 UTC 2023
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: staging, development
 ## Showing last 20 commits
 
 
 <div>
-<h3>1: Staging changes from cdeadc7 to f14c2bd on Tue Mar 21 12:04:17 2023 </h3>  
+<h3>1: Staging changes from f14c2bd to 8a2a5cb on Tue Mar 21 12:31:38 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (33 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selector.yaml
+index c395244..f43b231 100644
+--- a/components/build-service/base/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selector.yaml
+@@ -7,24 +7,24 @@ spec:
+     - name: FBC
+       pipelineRef:
+         name: fbc-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+       when:
+         language: fbc
+     - name: Docker build
+       pipelineRef:
+         name: docker-build
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:0d1d35af732ffe202e207dd0074acf5c4c48ef43
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:4863e3b605ff7114c90c447bfc43ea68def2a38a
+       when:
+         dockerfile: true
+     - name: Java
+       pipelineRef:
+         name: java-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+       when:
+         language: java
+     - name: NodeJS
+       pipelineRef:
+         name: nodejs-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+       when:
+         language: nodejs,node 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (27 lines)</summary>  
+
+``` 
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/build-service/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/build-service/staging/kustomize.out
+649c649
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+655c655
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:4863e3b605ff7114c90c447bfc43ea68def2a38a
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+661c661
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+667c667
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+1c1
+< 2023/03/21 14:04:07 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/21 12:05:35 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+1c1
+< 2023/03/21 14:04:12 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/21 12:05:40 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from f14c2bd to 8a2a5cb on Tue Mar 21 12:31:38 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (33 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selector.yaml
+index c395244..f43b231 100644
+--- a/components/build-service/base/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selector.yaml
+@@ -7,24 +7,24 @@ spec:
+     - name: FBC
+       pipelineRef:
+         name: fbc-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+       when:
+         language: fbc
+     - name: Docker build
+       pipelineRef:
+         name: docker-build
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:0d1d35af732ffe202e207dd0074acf5c4c48ef43
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:4863e3b605ff7114c90c447bfc43ea68def2a38a
+       when:
+         dockerfile: true
+     - name: Java
+       pipelineRef:
+         name: java-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+       when:
+         language: java
+     - name: NodeJS
+       pipelineRef:
+         name: nodejs-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+       when:
+         language: nodejs,node 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (24 lines)</summary>  
+
+``` 
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/build-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/build-service/development/kustomize.out
+649c649
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+655c655
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:4863e3b605ff7114c90c447bfc43ea68def2a38a
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+661c661
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+667c667
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/pipeline-service/development/kustomize.out
+1,2c1,2
+< 2023/03/21 14:04:36 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+< 2023/03/21 14:04:40 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/21 12:06:05 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+> 2023/03/21 12:06:10 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from cdeadc7 to f14c2bd on Tue Mar 21 12:04:17 2023 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -72,7 +235,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 </div>
 
 <div>
-<h3>1: Development changes from cdeadc7 to f14c2bd on Tue Mar 21 12:04:17 2023 </h3>  
+<h3>2: Development changes from cdeadc7 to f14c2bd on Tue Mar 21 12:04:17 2023 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -126,7 +289,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/developmen
 </div>
 
 <div>
-<h3>2: Staging changes from 7273fba to cdeadc7 on Tue Mar 21 10:41:28 2023 </h3>  
+<h3>3: Staging changes from 7273fba to cdeadc7 on Tue Mar 21 10:41:28 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -213,7 +376,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/co
 </div>
 
 <div>
-<h3>2: Development changes from 7273fba to cdeadc7 on Tue Mar 21 10:41:28 2023 </h3>  
+<h3>3: Development changes from 7273fba to cdeadc7 on Tue Mar 21 10:41:28 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -297,7 +460,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/developmen
 </div>
 
 <div>
-<h3>3: Staging changes from e12b1a3 to 7273fba on Tue Mar 21 10:41:15 2023 </h3>  
+<h3>4: Staging changes from e12b1a3 to 7273fba on Tue Mar 21 10:41:15 2023 </h3>  
  
 <details> 
 <summary>Git Diff (18 lines)</summary>  
@@ -348,7 +511,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7273fba/staging/co
 </div>
 
 <div>
-<h3>3: Development changes from e12b1a3 to 7273fba on Tue Mar 21 10:41:15 2023 </h3>  
+<h3>4: Development changes from e12b1a3 to 7273fba on Tue Mar 21 10:41:15 2023 </h3>  
  
 <details> 
 <summary>Git Diff (18 lines)</summary>  
@@ -396,7 +559,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7273fba/developmen
 </div>
 
 <div>
-<h3>4: Staging changes from 4f5d17a to e12b1a3 on Tue Mar 21 09:21:34 2023 </h3>  
+<h3>5: Staging changes from 4f5d17a to e12b1a3 on Tue Mar 21 09:21:34 2023 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -465,7 +628,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-e12b1a3/staging/co
 </div>
 
 <div>
-<h3>4: Development changes from 4f5d17a to e12b1a3 on Tue Mar 21 09:21:34 2023 </h3>  
+<h3>5: Development changes from 4f5d17a to e12b1a3 on Tue Mar 21 09:21:34 2023 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -531,7 +694,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-e12b1a3/developmen
 </div>
 
 <div>
-<h3>5: Staging changes from 6437ae6 to 4f5d17a on Tue Mar 21 09:19:06 2023 </h3>  
+<h3>6: Staging changes from 6437ae6 to 4f5d17a on Tue Mar 21 09:19:06 2023 </h3>  
  
 <details> 
 <summary>Git Diff (16 lines)</summary>  
@@ -580,7 +743,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-4f5d17a/staging/co
 </div>
 
 <div>
-<h3>5: Development changes from 6437ae6 to 4f5d17a on Tue Mar 21 09:19:06 2023 </h3>  
+<h3>6: Development changes from 6437ae6 to 4f5d17a on Tue Mar 21 09:19:06 2023 </h3>  
  
 <details> 
 <summary>Git Diff (16 lines)</summary>  
@@ -626,7 +789,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-4f5d17a/developmen
 </div>
 
 <div>
-<h3>6: Staging changes from 245c5fa to 6437ae6 on Tue Mar 21 08:46:32 2023 </h3>  
+<h3>7: Staging changes from 245c5fa to 6437ae6 on Tue Mar 21 08:46:32 2023 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -708,7 +871,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-6437ae6/staging/co
 </div>
 
 <div>
-<h3>6: Development changes from 245c5fa to 6437ae6 on Tue Mar 21 08:46:32 2023 </h3>  
+<h3>7: Development changes from 245c5fa to 6437ae6 on Tue Mar 21 08:46:32 2023 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -787,7 +950,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-6437ae6/developmen
 </div>
 
 <div>
-<h3>7: Staging changes from c87d791 to 245c5fa on Tue Mar 21 08:45:29 2023 </h3>  
+<h3>8: Staging changes from c87d791 to 245c5fa on Tue Mar 21 08:45:29 2023 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -835,7 +998,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-245c5fa/staging/co
 </div>
 
 <div>
-<h3>7: Development changes from c87d791 to 245c5fa on Tue Mar 21 08:45:29 2023 </h3>  
+<h3>8: Development changes from c87d791 to 245c5fa on Tue Mar 21 08:45:29 2023 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -880,7 +1043,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-245c5fa/developmen
 </div>
 
 <div>
-<h3>8: Staging changes from 94542f9 to c87d791 on Tue Mar 21 07:37:14 2023 </h3>  
+<h3>9: Staging changes from 94542f9 to c87d791 on Tue Mar 21 07:37:14 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -956,7 +1119,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c87d791/staging/co
 </div>
 
 <div>
-<h3>8: Development changes from 94542f9 to c87d791 on Tue Mar 21 07:37:14 2023 </h3>  
+<h3>9: Development changes from 94542f9 to c87d791 on Tue Mar 21 07:37:14 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -1029,7 +1192,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c87d791/developmen
 </div>
 
 <div>
-<h3>9: Staging changes from 5cc6b85 to 94542f9 on Mon Mar 20 14:49:28 2023 </h3>  
+<h3>10: Staging changes from 5cc6b85 to 94542f9 on Mon Mar 20 14:49:28 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -1116,7 +1279,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-94542f9/staging/co
 </div>
 
 <div>
-<h3>9: Development changes from 5cc6b85 to 94542f9 on Mon Mar 20 14:49:28 2023 </h3>  
+<h3>10: Development changes from 5cc6b85 to 94542f9 on Mon Mar 20 14:49:28 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -1200,7 +1363,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-94542f9/developmen
 </div>
 
 <div>
-<h3>10: Staging changes from e5facc7 to 5cc6b85 on Mon Mar 20 13:45:10 2023 </h3>  
+<h3>11: Staging changes from e5facc7 to 5cc6b85 on Mon Mar 20 13:45:10 2023 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -1278,7 +1441,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5cc6b85/staging/co
 </div>
 
 <div>
-<h3>10: Development changes from e5facc7 to 5cc6b85 on Mon Mar 20 13:45:10 2023 </h3>  
+<h3>11: Development changes from e5facc7 to 5cc6b85 on Mon Mar 20 13:45:10 2023 </h3>  
  
 <details> 
 <summary>Git Diff (36 lines)</summary>  
@@ -1353,7 +1516,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5cc6b85/developmen
 </div>
 
 <div>
-<h3>11: Staging changes from 5b7aec6 to e5facc7 on Mon Mar 20 09:38:49 2023 </h3>  
+<h3>12: Staging changes from 5b7aec6 to e5facc7 on Mon Mar 20 09:38:49 2023 </h3>  
  
 <details> 
 <summary>Git Diff (17 lines)</summary>  
@@ -1416,7 +1579,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-e5facc7/staging/co
 </div>
 
 <div>
-<h3>11: Development changes from 5b7aec6 to e5facc7 on Mon Mar 20 09:38:49 2023 </h3>  
+<h3>12: Development changes from 5b7aec6 to e5facc7 on Mon Mar 20 09:38:49 2023 </h3>  
  
 <details> 
 <summary>Git Diff (17 lines)</summary>  
@@ -1476,7 +1639,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-e5facc7/developmen
 </div>
 
 <div>
-<h3>12: Staging changes from ee38c09 to 5b7aec6 on Mon Mar 20 07:33:14 2023 </h3>  
+<h3>13: Staging changes from ee38c09 to 5b7aec6 on Mon Mar 20 07:33:14 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -1552,7 +1715,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5b7aec6/staging/co
 </div>
 
 <div>
-<h3>12: Development changes from ee38c09 to 5b7aec6 on Mon Mar 20 07:33:14 2023 </h3>  
+<h3>13: Development changes from ee38c09 to 5b7aec6 on Mon Mar 20 07:33:14 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -1625,7 +1788,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5b7aec6/developmen
 </div>
 
 <div>
-<h3>13: Staging changes from cefa8a6 to ee38c09 on Sat Mar 18 11:00:56 2023 </h3>  
+<h3>14: Staging changes from cefa8a6 to ee38c09 on Sat Mar 18 11:00:56 2023 </h3>  
  
 <details> 
 <summary>Git Diff (58 lines)</summary>  
@@ -1739,7 +1902,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ee38c09/staging/co
 </div>
 
 <div>
-<h3>13: Development changes from cefa8a6 to ee38c09 on Sat Mar 18 11:00:56 2023 </h3>  
+<h3>14: Development changes from cefa8a6 to ee38c09 on Sat Mar 18 11:00:56 2023 </h3>  
  
 <details> 
 <summary>Git Diff (58 lines)</summary>  
@@ -1827,7 +1990,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-ee38c09/developmen
 </div>
 
 <div>
-<h3>14: Staging changes from f436256 to cefa8a6 on Fri Mar 17 15:13:53 2023 </h3>  
+<h3>15: Staging changes from f436256 to cefa8a6 on Fri Mar 17 15:13:53 2023 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1888,7 +2051,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cefa8a6/staging/co
 </div>
 
 <div>
-<h3>14: Development changes from f436256 to cefa8a6 on Fri Mar 17 15:13:53 2023 </h3>  
+<h3>15: Development changes from f436256 to cefa8a6 on Fri Mar 17 15:13:53 2023 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1946,7 +2109,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cefa8a6/developmen
 </div>
 
 <div>
-<h3>15: Staging changes from 84522ea to f436256 on Fri Mar 17 11:14:42 2023 </h3>  
+<h3>16: Staging changes from 84522ea to f436256 on Fri Mar 17 11:14:42 2023 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -2001,7 +2164,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f436256/staging/co
 </div>
 
 <div>
-<h3>15: Development changes from 84522ea to f436256 on Fri Mar 17 11:14:42 2023 </h3>  
+<h3>16: Development changes from 84522ea to f436256 on Fri Mar 17 11:14:42 2023 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -2053,7 +2216,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f436256/developmen
 </div>
 
 <div>
-<h3>16: Staging changes from cafc39e to 84522ea on Fri Mar 17 08:58:56 2023 </h3>  
+<h3>17: Staging changes from cafc39e to 84522ea on Fri Mar 17 08:58:56 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -2129,7 +2292,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-84522ea/staging/co
 </div>
 
 <div>
-<h3>16: Development changes from cafc39e to 84522ea on Fri Mar 17 08:58:56 2023 </h3>  
+<h3>17: Development changes from cafc39e to 84522ea on Fri Mar 17 08:58:56 2023 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -2202,7 +2365,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-84522ea/developmen
 </div>
 
 <div>
-<h3>17: Staging changes from 3e6b681 to cafc39e on Fri Mar 17 07:30:29 2023 </h3>  
+<h3>18: Staging changes from 3e6b681 to cafc39e on Fri Mar 17 07:30:29 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -2750,7 +2913,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cafc39e/staging/co
 </div>
 
 <div>
-<h3>17: Development changes from 3e6b681 to cafc39e on Fri Mar 17 07:30:29 2023 </h3>  
+<h3>18: Development changes from 3e6b681 to cafc39e on Fri Mar 17 07:30:29 2023 </h3>  
  
 <details> 
 <summary>Git Diff (59 lines)</summary>  
@@ -3212,7 +3375,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cafc39e/developmen
 </div>
 
 <div>
-<h3>18: Staging changes from c56e936 to 3e6b681 on Fri Mar 17 06:54:59 2023 </h3>  
+<h3>19: Staging changes from c56e936 to 3e6b681 on Fri Mar 17 06:54:59 2023 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -3258,7 +3421,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-3e6b681/staging/co
 </div>
 
 <div>
-<h3>18: Development changes from c56e936 to 3e6b681 on Fri Mar 17 06:54:59 2023 </h3>  
+<h3>19: Development changes from c56e936 to 3e6b681 on Fri Mar 17 06:54:59 2023 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -3301,7 +3464,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-3e6b681/developmen
 </div>
 
 <div>
-<h3>19: Staging changes from 7012d1d to c56e936 on Fri Mar 17 06:54:11 2023 </h3>  
+<h3>20: Staging changes from 7012d1d to c56e936 on Fri Mar 17 06:54:11 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -3388,7 +3551,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c56e936/staging/co
 </div>
 
 <div>
-<h3>19: Development changes from 7012d1d to c56e936 on Fri Mar 17 06:54:11 2023 </h3>  
+<h3>20: Development changes from 7012d1d to c56e936 on Fri Mar 17 06:54:11 2023 </h3>  
  
 <details> 
 <summary>Git Diff (47 lines)</summary>  
@@ -3463,229 +3626,6 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c56e936/developmen
 ---
 > 2023/03/16 20:04:46 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
 > 2023/03/16 20:04:51 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>20: Staging changes from a188244 to 7012d1d on Thu Mar 16 19:05:49 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (59 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index 86d2a25..a642944 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -18,9 +18,9 @@ spec:
-   sources:
-     - name: Release Policies
-       data:
--        - oci::https://quay.io/hacbs-contract/ec-policy-data:latest@sha256:948877d0564c922d60dac24b4fce82ee2da74fa9bd1a4cdc6900b77dfd93af75
-+        - oci::https://quay.io/hacbs-contract/ec-policy-data:git-9c9b9ad@sha256:350298530cd57866aec60b01c88c25f98eae08002bdb77e209ef36a5f42d5924
-       policy:
--        - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:a41da88e27bab10dec2e61b1844a4053e73ea4a422fa2a4997a1a1366becd68d
-+        - oci::https://quay.io/hacbs-contract/ec-release-policy:git-deaf0d2@sha256:f83b14285753cde479ca972d5506f6352461b599c8b178739c16f069a6fb0844
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -37,6 +37,6 @@ spec:
-   sources:
-     - name: Release Policies
-       data:
--        - oci::https://quay.io/hacbs-contract/ec-policy-data:latest@sha256:948877d0564c922d60dac24b4fce82ee2da74fa9bd1a4cdc6900b77dfd93af75
-+        - oci::https://quay.io/hacbs-contract/ec-policy-data:git-9c9b9ad@sha256:350298530cd57866aec60b01c88c25f98eae08002bdb77e209ef36a5f42d5924
-       policy:
--        - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:a41da88e27bab10dec2e61b1844a4053e73ea4a422fa2a4997a1a1366becd68d
-+        - oci::https://quay.io/hacbs-contract/ec-release-policy:git-deaf0d2@sha256:f83b14285753cde479ca972d5506f6352461b599c8b178739c16f069a6fb0844
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index 8c9b61c..dd16771 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,13 +1,13 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/hacbs-contract/enterprise-contract-controller/config/crd?ref=1e971bd09081c287854ce44432b3a6de0ca7785f
-+  - https://github.com/hacbs-contract/enterprise-contract-controller/config/crd?ref=030be8a58953268dbe71cc42287e2820d65f6777
-   # Kustomize does not allow github.com urls that reference a single-file. They must always reference
-   # a directory that contains a kustomization.yaml file. The directory /config/rbac does include a
-   # kustomization.yaml file but it includes many other RBAC changes that are not desirable here. Use
-   # a URL to the "raw" version of the file instead.
--  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/1e971bd09081c287854ce44432b3a6de0ca7785f/config/rbac/enterprisecontractpolicy_viewer_role.yaml
--  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/1e971bd09081c287854ce44432b3a6de0ca7785f/config/rbac/enterprisecontractpolicy_editor_role.yaml
-+  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/030be8a58953268dbe71cc42287e2820d65f6777/config/rbac/enterprisecontractpolicy_viewer_role.yaml
-+  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/030be8a58953268dbe71cc42287e2820d65f6777/config/rbac/enterprisecontractpolicy_editor_role.yaml
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -17,10 +17,10 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:snapshot@sha256:6d28b973ea96c4d65b64244212b69f85030e7dbfa5f2363ac6470f825b3fa95f
-+      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:0fd4c7333ac560ab9cf93ab37a52019a5cfb3aa4@sha256:2dc90e46f14d3537946d39dae6e9c7057e14f4c9de794010f4f1f7c6bac328b7
-       - ec_policy_source=oci::https://quay.io/hacbs-contract/ec-release-policy:git-8ca675b@sha256:caf2a8991ca3feb80edfc8ff7c1930ed09481a7c8d934bb719007bffc1153ecc
-       - ec_data_source=oci::https://quay.io/hacbs-contract/ec-policy-data:git-a3ca9be@sha256:d548e0808348c017782ae87920c94d45ad7117e0e630b5b991c8df557c22a844
- images:
-   - name: quay.io/redhat-appstudio/enterprise-contract-controller
-     newName: quay.io/redhat-appstudio/enterprise-contract-controller
--    newTag: 1e971bd09081c287854ce44432b3a6de0ca7785f
-+    newTag: 030be8a58953268dbe71cc42287e2820d65f6777 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (31 lines)</summary>  
-
-``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7012d1d/staging/components/enterprise-contract/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a188244/staging/components/enterprise-contract/kustomize.out
-243c243
-<   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:0fd4c7333ac560ab9cf93ab37a52019a5cfb3aa4@sha256:2dc90e46f14d3537946d39dae6e9c7057e14f4c9de794010f4f1f7c6bac328b7
----
->   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:snapshot@sha256:6d28b973ea96c4d65b64244212b69f85030e7dbfa5f2363ac6470f825b3fa95f
-261c261
-<     - oci::https://quay.io/hacbs-contract/ec-policy-data:git-9c9b9ad@sha256:350298530cd57866aec60b01c88c25f98eae08002bdb77e209ef36a5f42d5924
----
->     - oci::https://quay.io/hacbs-contract/ec-policy-data:latest@sha256:948877d0564c922d60dac24b4fce82ee2da74fa9bd1a4cdc6900b77dfd93af75
-264c264
-<     - oci::https://quay.io/hacbs-contract/ec-release-policy:git-deaf0d2@sha256:f83b14285753cde479ca972d5506f6352461b599c8b178739c16f069a6fb0844
----
->     - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:a41da88e27bab10dec2e61b1844a4053e73ea4a422fa2a4997a1a1366becd68d
-282c282
-<     - oci::https://quay.io/hacbs-contract/ec-policy-data:git-9c9b9ad@sha256:350298530cd57866aec60b01c88c25f98eae08002bdb77e209ef36a5f42d5924
----
->     - oci::https://quay.io/hacbs-contract/ec-policy-data:latest@sha256:948877d0564c922d60dac24b4fce82ee2da74fa9bd1a4cdc6900b77dfd93af75
-285c285
-<     - oci::https://quay.io/hacbs-contract/ec-release-policy:git-deaf0d2@sha256:f83b14285753cde479ca972d5506f6352461b599c8b178739c16f069a6fb0844
----
->     - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:a41da88e27bab10dec2e61b1844a4053e73ea4a422fa2a4997a1a1366becd68d
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7012d1d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a188244/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
-1c1
-< 2023/03/16 20:04:18 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/16 14:04:23 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7012d1d/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a188244/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
-1c1
-< 2023/03/16 20:04:23 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/16 14:04:27 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>20: Development changes from a188244 to 7012d1d on Thu Mar 16 19:05:49 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (59 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index 86d2a25..a642944 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -18,9 +18,9 @@ spec:
-   sources:
-     - name: Release Policies
-       data:
--        - oci::https://quay.io/hacbs-contract/ec-policy-data:latest@sha256:948877d0564c922d60dac24b4fce82ee2da74fa9bd1a4cdc6900b77dfd93af75
-+        - oci::https://quay.io/hacbs-contract/ec-policy-data:git-9c9b9ad@sha256:350298530cd57866aec60b01c88c25f98eae08002bdb77e209ef36a5f42d5924
-       policy:
--        - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:a41da88e27bab10dec2e61b1844a4053e73ea4a422fa2a4997a1a1366becd68d
-+        - oci::https://quay.io/hacbs-contract/ec-release-policy:git-deaf0d2@sha256:f83b14285753cde479ca972d5506f6352461b599c8b178739c16f069a6fb0844
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -37,6 +37,6 @@ spec:
-   sources:
-     - name: Release Policies
-       data:
--        - oci::https://quay.io/hacbs-contract/ec-policy-data:latest@sha256:948877d0564c922d60dac24b4fce82ee2da74fa9bd1a4cdc6900b77dfd93af75
-+        - oci::https://quay.io/hacbs-contract/ec-policy-data:git-9c9b9ad@sha256:350298530cd57866aec60b01c88c25f98eae08002bdb77e209ef36a5f42d5924
-       policy:
--        - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:a41da88e27bab10dec2e61b1844a4053e73ea4a422fa2a4997a1a1366becd68d
-+        - oci::https://quay.io/hacbs-contract/ec-release-policy:git-deaf0d2@sha256:f83b14285753cde479ca972d5506f6352461b599c8b178739c16f069a6fb0844
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index 8c9b61c..dd16771 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,13 +1,13 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/hacbs-contract/enterprise-contract-controller/config/crd?ref=1e971bd09081c287854ce44432b3a6de0ca7785f
-+  - https://github.com/hacbs-contract/enterprise-contract-controller/config/crd?ref=030be8a58953268dbe71cc42287e2820d65f6777
-   # Kustomize does not allow github.com urls that reference a single-file. They must always reference
-   # a directory that contains a kustomization.yaml file. The directory /config/rbac does include a
-   # kustomization.yaml file but it includes many other RBAC changes that are not desirable here. Use
-   # a URL to the "raw" version of the file instead.
--  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/1e971bd09081c287854ce44432b3a6de0ca7785f/config/rbac/enterprisecontractpolicy_viewer_role.yaml
--  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/1e971bd09081c287854ce44432b3a6de0ca7785f/config/rbac/enterprisecontractpolicy_editor_role.yaml
-+  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/030be8a58953268dbe71cc42287e2820d65f6777/config/rbac/enterprisecontractpolicy_viewer_role.yaml
-+  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/030be8a58953268dbe71cc42287e2820d65f6777/config/rbac/enterprisecontractpolicy_editor_role.yaml
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -17,10 +17,10 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:snapshot@sha256:6d28b973ea96c4d65b64244212b69f85030e7dbfa5f2363ac6470f825b3fa95f
-+      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:0fd4c7333ac560ab9cf93ab37a52019a5cfb3aa4@sha256:2dc90e46f14d3537946d39dae6e9c7057e14f4c9de794010f4f1f7c6bac328b7
-       - ec_policy_source=oci::https://quay.io/hacbs-contract/ec-release-policy:git-8ca675b@sha256:caf2a8991ca3feb80edfc8ff7c1930ed09481a7c8d934bb719007bffc1153ecc
-       - ec_data_source=oci::https://quay.io/hacbs-contract/ec-policy-data:git-a3ca9be@sha256:d548e0808348c017782ae87920c94d45ad7117e0e630b5b991c8df557c22a844
- images:
-   - name: quay.io/redhat-appstudio/enterprise-contract-controller
-     newName: quay.io/redhat-appstudio/enterprise-contract-controller
--    newTag: 1e971bd09081c287854ce44432b3a6de0ca7785f
-+    newTag: 030be8a58953268dbe71cc42287e2820d65f6777 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (28 lines)</summary>  
-
-``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7012d1d/development/components/enterprise-contract/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a188244/development/components/enterprise-contract/kustomize.out
-243c243
-<   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:0fd4c7333ac560ab9cf93ab37a52019a5cfb3aa4@sha256:2dc90e46f14d3537946d39dae6e9c7057e14f4c9de794010f4f1f7c6bac328b7
----
->   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:snapshot@sha256:6d28b973ea96c4d65b64244212b69f85030e7dbfa5f2363ac6470f825b3fa95f
-261c261
-<     - oci::https://quay.io/hacbs-contract/ec-policy-data:git-9c9b9ad@sha256:350298530cd57866aec60b01c88c25f98eae08002bdb77e209ef36a5f42d5924
----
->     - oci::https://quay.io/hacbs-contract/ec-policy-data:latest@sha256:948877d0564c922d60dac24b4fce82ee2da74fa9bd1a4cdc6900b77dfd93af75
-264c264
-<     - oci::https://quay.io/hacbs-contract/ec-release-policy:git-deaf0d2@sha256:f83b14285753cde479ca972d5506f6352461b599c8b178739c16f069a6fb0844
----
->     - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:a41da88e27bab10dec2e61b1844a4053e73ea4a422fa2a4997a1a1366becd68d
-282c282
-<     - oci::https://quay.io/hacbs-contract/ec-policy-data:git-9c9b9ad@sha256:350298530cd57866aec60b01c88c25f98eae08002bdb77e209ef36a5f42d5924
----
->     - oci::https://quay.io/hacbs-contract/ec-policy-data:latest@sha256:948877d0564c922d60dac24b4fce82ee2da74fa9bd1a4cdc6900b77dfd93af75
-285c285
-<     - oci::https://quay.io/hacbs-contract/ec-release-policy:git-deaf0d2@sha256:f83b14285753cde479ca972d5506f6352461b599c8b178739c16f069a6fb0844
----
->     - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:a41da88e27bab10dec2e61b1844a4053e73ea4a422fa2a4997a1a1366becd68d
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7012d1d/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-a188244/development/components/pipeline-service/development/kustomize.out
-1,2c1,2
-< 2023/03/16 20:04:46 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-< 2023/03/16 20:04:51 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
----
-> 2023/03/16 14:04:48 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
-> 2023/03/16 14:04:51 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration. 
 ```
  
 </details> 
