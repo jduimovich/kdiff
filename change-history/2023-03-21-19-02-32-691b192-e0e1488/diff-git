@@ -1,0 +1,10 @@
+diff --git a/components/o11y/base/kustomization.yaml b/components/o11y/base/kustomization.yaml
+index 79bc5de..c5c8933 100644
+--- a/components/o11y/base/kustomization.yaml
++++ b/components/o11y/base/kustomization.yaml
+@@ -4,4 +4,4 @@ commonLabels:
+   openshift.io/workload-monitoring: "true"
+ 
+ resources:
+-- https://github.com/redhat-appstudio/o11y/prometheus/base?ref=6e3901c8971c94a3011691b7f6a7157d597630fc
++- https://github.com/redhat-appstudio/o11y/prometheus/base?ref=97d649795e045ff97d48a30aa7a61c91f878d322
