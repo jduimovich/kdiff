@@ -1,5 +1,5 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Mar 21 22:04:15 UTC 2023
+### This file generated at Tue Mar 21 19:03:04 EDT 2023
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: staging, development
 ## Showing last 4 commits
@@ -27,10 +27,902 @@ index 79bc5de..c5c8933 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
+<summary>Kustomize Generated Diff (893 lines)</summary>  
 
 ``` 
- 
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/build-service/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/build-service/staging/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/cluster-registration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/cluster-registration/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/dora-metrics/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+15c15
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+17c17
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+19c19
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+21c21
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+23c23
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+25c25
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+27c27
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+29c29
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+31c31
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+33c33
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+35c35
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+37c37
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+39c39
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+41c41
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+15c15
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+17c17
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+19c19
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+21c21
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+23c23
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+25c25
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+27c27
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+29c29
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+31c31
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+33c33
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+35c35
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+37c37
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+39c39
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+41c41
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+15c15
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+17c17
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
+19c19
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+21c21
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+23c23
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+25c25
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+27c27
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+29c29
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+31c31
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/has/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/image-controller/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/image-controller/staging/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/integration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/integration/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/jvm-build-service/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/jvm-build-service/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/o11y/staging/kustomize.out.yaml /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/o11y/staging/kustomize.out.yaml
+15c15
+<   name: o11y-rules
+---
+>   name: o11y-example-rule
+19,20c19
+<   - interval: 30s
+<     name: appstudio-container-labeling
+---
+>   - name: example
+22,40c21,22
+<     - expr: |
+<         container_network_transmit_bytes_total
+<         * on (namespace, pod)
+<         group_left (label_pipelines_appstudio_openshift_io_type)
+<         kube_pod_labels
+<       record: appstudio_container_network_transmit_bytes_total
+<     - expr: |
+<         {__name__=~"kube_pod_.*container_resource_limits"}
+<         * on (namespace, pod)
+<         group_left(label_pipelines_appstudio_openshift_io_type) kube_pod_labels
+<       record: appstudio_container_resource_limits
+<   - interval: 1m
+<     name: appstudio-resource-gauge
+<     rules:
+<     - expr: |
+<         last_over_time(appstudio_container_resource_limits[1m])
+<         * on (namespace, pod, container) group_left ()
+<         (sum by (namespace, pod, container) (increase(container_last_seen[1m] )) / 60)
+<       record: appstudio_container_resource_minutes_gauge
+---
+>     - expr: sum by (code) (prometheus_http_requests_total)
+>       record: o11y_prometheus_http_requests_total
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+15c15
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+17c17
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+19c19
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+21c21
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+23c23
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+25c25
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+27c27
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+29c29
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+31c31
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+33c33
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+35c35
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+37c37
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+39c39
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+41c41
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) The container "link-shared-secret" is using an invalid container image, "registry.redhat.io/ubi8:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) The container "link-shared-secret" is using an invalid container image, "registry.redhat.io/ubi8:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+43c43
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+45c45
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+47c47
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+49c49
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+51c51
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+53c53
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+55c55
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+57c57
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+59c59
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+61c61
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+63c63
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+65c65
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+67c67
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+69c69
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+71c71
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+73c73
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+75c75
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+77c77
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+79c79
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+81c81
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+83c83
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+85c85
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+87c87
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+89c89
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+91c91
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+93c93
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+95c95
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+97c97
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+99c99
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+101c101
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+103c103
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+105c105
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+107c107
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+109c109
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+15c15
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+17c17
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+19c19
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+21c21
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+23c23
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+25c25
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+27c27
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+29c29
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+31c31
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+33c33
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+35c35
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+37c37
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+39c39
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+41c41
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) The container "link-shared-secret" is using an invalid container image, "registry.redhat.io/ubi8:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) The container "link-shared-secret" is using an invalid container image, "registry.redhat.io/ubi8:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+43c43
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+45c45
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+47c47
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+49c49
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+51c51
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+53c53
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+55c55
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+57c57
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+59c59
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+61c61
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+63c63
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+65c65
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+67c67
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+69c69
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+71c71
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+73c73
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+75c75
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+77c77
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+79c79
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+81c81
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+83c83
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+85c85
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+87c87
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+89c89
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+91c91
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+93c93
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+95c95
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+97c97
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+99c99
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+101c101
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+103c103
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+105c105
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+107c107
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+109c109
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/quality-dashboard/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/release/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/release/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is Privileged and allows privilege escalation. (check: privilege-escalation-container, remediation: Ensure containers do not allow privilege escalation by setting allowPrivilegeEscalation=false." See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for more details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is Privileged and allows privilege escalation. (check: privilege-escalation-container, remediation: Ensure containers do not allow privilege escalation by setting allowPrivilegeEscalation=false." See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for more details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is Privileged and allows privilege escalation. (check: privilege-escalation-container, remediation: Ensure containers do not allow privilege escalation by setting allowPrivilegeEscalation=false." See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for more details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is Privileged and allows privilege escalation. (check: privilege-escalation-container, remediation: Ensure containers do not allow privilege escalation by setting allowPrivilegeEscalation=false." See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for more details.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is privileged (check: privileged-container, remediation: Do not run your container as privileged unless it is required.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is privileged (check: privileged-container, remediation: Do not run your container as privileged unless it is required.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is privileged (check: privileged-container, remediation: Do not run your container as privileged unless it is required.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is privileged (check: privileged-container, remediation: Do not run your container as privileged unless it is required.)
+15c15
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+17c17
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+19c19
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) host system directory "/dev" is mounted on container "hostpath" (check: sensitive-host-mounts, remediation: Ensure sensitive host system directories are not mounted in containers by removing those Volumes and VolumeMounts.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) host system directory "/dev" is mounted on container "hostpath" (check: sensitive-host-mounts, remediation: Ensure sensitive host system directories are not mounted in containers by removing those Volumes and VolumeMounts.)
+21c21
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+23c23
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+25c25
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+27c27
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/sprayproxy/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "kube-rbac-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "kube-rbac-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.) 
 ```
  
 </details>  
@@ -39,7 +931,484 @@ index 79bc5de..c5c8933 100644
 <summary>Lint</summary>  
 
 ``` 
- 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "init-container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is Privileged and allows privilege escalation. (check: privilege-escalation-container, remediation: Ensure containers do not allow privilege escalation by setting allowPrivilegeEscalation=false." See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for more details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is Privileged and allows privilege escalation. (check: privilege-escalation-container, remediation: Ensure containers do not allow privilege escalation by setting allowPrivilegeEscalation=false." See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for more details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is privileged (check: privileged-container, remediation: Do not run your container as privileged unless it is required.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is privileged (check: privileged-container, remediation: Do not run your container as privileged unless it is required.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) host system directory "/dev" is mounted on container "hostpath" (check: sensitive-host-mounts, remediation: Ensure sensitive host system directories are not mounted in containers by removing those Volumes and VolumeMounts.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "kube-rbac-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) The container "link-shared-secret" is using an invalid container image, "registry.redhat.io/ubi8:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) The container "link-shared-secret" is using an invalid container image, "registry.redhat.io/ubi8:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
 ```
  
 </details> 
@@ -70,10 +1439,590 @@ index 79bc5de..c5c8933 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
+<summary>Kustomize Generated Diff (581 lines)</summary>  
 
 ``` 
- 
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/build-service/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/build-service/development/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/cluster-registration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/cluster-registration/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/dora-metrics/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+15c15
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+17c17
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+19c19
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+21c21
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+23c23
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+25c25
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+27c27
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+29c29
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+31c31
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+33c33
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) The container "gitops-postgresql-staging" is using an invalid container image, "registry.redhat.io/rhel8/postgresql-13". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) The container "gitops-postgresql-staging" is using an invalid container image, "registry.redhat.io/rhel8/postgresql-13". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+35c35
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+37c37
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+39c39
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+41c41
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+15c15
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+17c17
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
+19c19
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+21c21
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+23c23
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+25c25
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+27c27
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+29c29
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+31c31
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/has/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/image-controller/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/image-controller/development/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/integration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/integration/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/jvm-build-service/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/jvm-build-service/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+15c15
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+17c17
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+19c19
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+21c21
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+23c23
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+25c25
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+27c27
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+29c29
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+31c31
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+33c33
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+35c35
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+37c37
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+39c39
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+41c41
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) The container "link-shared-secret" is using an invalid container image, "registry.redhat.io/ubi8:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) The container "link-shared-secret" is using an invalid container image, "registry.redhat.io/ubi8:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+43c43
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+45c45
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+47c47
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+49c49
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+51c51
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+53c53
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+55c55
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+57c57
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+59c59
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+61c61
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+63c63
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+65c65
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+67c67
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+69c69
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+71c71
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+73c73
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+75c75
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+77c77
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+79c79
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+81c81
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+83c83
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+85c85
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+87c87
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+89c89
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+91c91
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+93c93
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+95c95
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+97c97
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+99c99
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+101c101
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+103c103
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+105c105
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+107c107
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+109c109
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+111c111
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+113c113
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+115c115
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+117c117
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+119c119
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+121c121
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+123c123
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+125c125
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+127c127
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+129c129
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+131c131
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/quality-dashboard/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/release/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/release/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.lint
+3c3
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+5c5
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+7c7
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is Privileged and allows privilege escalation. (check: privilege-escalation-container, remediation: Ensure containers do not allow privilege escalation by setting allowPrivilegeEscalation=false." See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for more details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is Privileged and allows privilege escalation. (check: privilege-escalation-container, remediation: Ensure containers do not allow privilege escalation by setting allowPrivilegeEscalation=false." See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for more details.)
+9c9
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is Privileged and allows privilege escalation. (check: privilege-escalation-container, remediation: Ensure containers do not allow privilege escalation by setting allowPrivilegeEscalation=false." See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for more details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is Privileged and allows privilege escalation. (check: privilege-escalation-container, remediation: Ensure containers do not allow privilege escalation by setting allowPrivilegeEscalation=false." See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for more details.)
+11c11
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is privileged (check: privileged-container, remediation: Do not run your container as privileged unless it is required.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is privileged (check: privileged-container, remediation: Do not run your container as privileged unless it is required.)
+13c13
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is privileged (check: privileged-container, remediation: Do not run your container as privileged unless it is required.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is privileged (check: privileged-container, remediation: Do not run your container as privileged unless it is required.)
+15c15
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+17c17
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+19c19
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) host system directory "/dev" is mounted on container "hostpath" (check: sensitive-host-mounts, remediation: Ensure sensitive host system directories are not mounted in containers by removing those Volumes and VolumeMounts.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) host system directory "/dev" is mounted on container "hostpath" (check: sensitive-host-mounts, remediation: Ensure sensitive host system directories are not mounted in containers by removing those Volumes and VolumeMounts.)
+21c21
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+23c23
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+25c25
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+27c27
+< /home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+---
+> /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.) 
 ```
  
 </details>  
@@ -82,7 +2031,330 @@ index 79bc5de..c5c8933 100644
 <summary>Lint</summary>  
 
 ``` 
- 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) The container "gitops-postgresql-staging" is using an invalid container image, "registry.redhat.io/rhel8/postgresql-13". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is Privileged and allows privilege escalation. (check: privilege-escalation-container, remediation: Ensure containers do not allow privilege escalation by setting allowPrivilegeEscalation=false." See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for more details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is Privileged and allows privilege escalation. (check: privilege-escalation-container, remediation: Ensure containers do not allow privilege escalation by setting allowPrivilegeEscalation=false." See https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for more details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is privileged (check: privileged-container, remediation: Do not run your container as privileged unless it is required.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is privileged (check: privileged-container, remediation: Do not run your container as privileged unless it is required.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) host system directory "/dev" is mounted on container "hostpath" (check: sensitive-host-mounts, remediation: Ensure sensitive host system directories are not mounted in containers by removing those Volumes and VolumeMounts.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) The container "link-shared-secret" is using an invalid container image, "registry.redhat.io/ubi8:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "link-shared-secret" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-database apps/v1, Kind=StatefulSet) container "postgres" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/hack/../kustomized-cache/commit-e0e1488/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.) 
 ```
  
 </details> 
@@ -165,12 +2437,12 @@ index dd16771..f93dc72 100644
 <summary>Kustomize Generated Diff (881 lines)</summary>  
 
 ``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/build-service/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/build-service/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/build-service/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/build-service/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/cluster-registration/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/cluster-registration/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/cluster-registration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/cluster-registration/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -179,7 +2451,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -204,7 +2476,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/enterprise-contract/kustomize.out.yaml /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/enterprise-contract/kustomize.out.yaml
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/enterprise-contract/kustomize.out.yaml /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/enterprise-contract/kustomize.out.yaml
 244c244
 <   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:e29fe84b7a4f7cb5de07e2da17deb0e70dd5e5aa@sha256:484834a859bc72a6b9e0f4093897003929050e9c6a0e7500d2d363a6ecd4791f
 ---
@@ -225,7 +2497,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 <     - oci::quay.io/hacbs-contract/ec-release-policy:git-a2d0125@sha256:ddfa0fd1c813a69cfbc226517d89372ad7b30461708045c21962ac0ebbb930ec
 ---
 >     - oci::https://quay.io/hacbs-contract/ec-release-policy:git-deaf0d2@sha256:270894294050c27a6308ad53c08d14e0250aebbef351d20c0bff0a3a4023a192
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -306,7 +2578,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -387,7 +2659,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
 ---
@@ -448,7 +2720,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -473,7 +2745,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/image-controller/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/image-controller/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/image-controller/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/image-controller/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -482,7 +2754,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/integration/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/integration/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/integration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/integration/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -491,7 +2763,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/jvm-build-service/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/jvm-build-service/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/jvm-build-service/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/jvm-build-service/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -500,7 +2772,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -717,7 +2989,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -934,7 +3206,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -959,7 +3231,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/release/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/release/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/release/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/release/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -968,7 +3240,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/shared-resources/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/shared-resources/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -1021,7 +3293,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/sprayproxy/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/sprayproxy/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -1054,6 +3326,74 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/staging/co
 <summary>Lint</summary>  
 
 ``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
 /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
@@ -1168,6 +3508,38 @@ KubeLinter v0.6.1-0-gc6177366a3
 
 KubeLinter v0.6.1-0-gc6177366a3
 
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
 /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 
 /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
@@ -1179,6 +3551,35 @@ KubeLinter v0.6.1-0-gc6177366a3
 /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 
 /home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 
 KubeLinter v0.6.1-0-gc6177366a3
 
@@ -1402,135 +3803,6 @@ KubeLinter v0.6.1-0-gc6177366a3
 
 KubeLinter v0.6.1-0-gc6177366a3
 
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
 No lint errors found! 
 ```
  
@@ -1614,12 +3886,12 @@ index dd16771..f93dc72 100644
 <summary>Kustomize Generated Diff (602 lines)</summary>  
 
 ``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/build-service/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/build-service/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/build-service/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/build-service/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/cluster-registration/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/cluster-registration/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/cluster-registration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/cluster-registration/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -1628,7 +3900,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -1653,7 +3925,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/enterprise-contract/kustomize.out.yaml /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/enterprise-contract/kustomize.out.yaml
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/enterprise-contract/kustomize.out.yaml /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/enterprise-contract/kustomize.out.yaml
 244c244
 <   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:e29fe84b7a4f7cb5de07e2da17deb0e70dd5e5aa@sha256:484834a859bc72a6b9e0f4093897003929050e9c6a0e7500d2d363a6ecd4791f
 ---
@@ -1674,7 +3946,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/developmen
 <     - oci::quay.io/hacbs-contract/ec-release-policy:git-a2d0125@sha256:ddfa0fd1c813a69cfbc226517d89372ad7b30461708045c21962ac0ebbb930ec
 ---
 >     - oci::https://quay.io/hacbs-contract/ec-release-policy:git-deaf0d2@sha256:270894294050c27a6308ad53c08d14e0250aebbef351d20c0bff0a3a4023a192
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/gitops/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/gitops/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -1755,7 +4027,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
 ---
@@ -1816,7 +4088,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -1841,7 +4113,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/image-controller/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/image-controller/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/image-controller/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/image-controller/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -1850,7 +4122,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/integration/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/integration/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/integration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/integration/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -1859,7 +4131,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/jvm-build-service/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/jvm-build-service/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/jvm-build-service/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/jvm-build-service/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -1868,7 +4140,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/pipeline-service/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/pipeline-service/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -2129,7 +4401,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -2154,7 +4426,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/release/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/release/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/release/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/release/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -2163,7 +4435,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/shared-resources/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/shared-resources/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -2224,6 +4496,71 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-691b192/developmen
 <summary>Lint</summary>  
 
 ``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
 KubeLinter v0.6.1-0-gc6177366a3
 
 /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
@@ -2293,6 +4630,64 @@ KubeLinter v0.6.1-0-gc6177366a3
 /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 
 /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 
 KubeLinter v0.6.1-0-gc6177366a3
 
@@ -2424,130 +4819,7 @@ KubeLinter v0.6.1-0-gc6177366a3
 
 /home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.) 
+/home/john/dev/kdiff/kustomized-cache/commit-691b192/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.) 
 ```
  
 </details> 
@@ -2604,12 +4876,12 @@ index c395244..f43b231 100644
 <summary>Kustomize Generated Diff (877 lines)</summary>  
 
 ``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/build-service/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/build-service/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/build-service/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/build-service/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/build-service/staging/kustomize.out.yaml /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/build-service/staging/kustomize.out.yaml
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/build-service/staging/kustomize.out.yaml /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/build-service/staging/kustomize.out.yaml
 649c649
 <       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
 ---
@@ -2626,7 +4898,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 <       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
 ---
 >       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/cluster-registration/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/cluster-registration/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/cluster-registration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/cluster-registration/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -2635,7 +4907,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -2660,7 +4932,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -2741,7 +5013,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -2822,7 +5094,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
 ---
@@ -2883,7 +5155,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -2908,7 +5180,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/image-controller/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/image-controller/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/image-controller/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/image-controller/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -2917,7 +5189,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/integration/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/integration/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/integration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/integration/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -2926,7 +5198,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/jvm-build-service/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/jvm-build-service/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/jvm-build-service/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/jvm-build-service/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -2935,7 +5207,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -3152,7 +5424,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -3369,7 +5641,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -3394,7 +5666,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/release/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/release/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/release/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/release/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -3403,7 +5675,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/shared-resources/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/shared-resources/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/shared-resources/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/shared-resources/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -3456,7 +5728,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/sprayproxy/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/sprayproxy/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/staging/components/sprayproxy/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/sprayproxy/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -3489,6 +5761,74 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/staging/co
 <summary>Lint</summary>  
 
 ``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
 /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
@@ -3603,6 +5943,38 @@ KubeLinter v0.6.1-0-gc6177366a3
 
 KubeLinter v0.6.1-0-gc6177366a3
 
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
 /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 
 /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
@@ -3614,6 +5986,35 @@ KubeLinter v0.6.1-0-gc6177366a3
 /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 
 /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 
 KubeLinter v0.6.1-0-gc6177366a3
 
@@ -3837,135 +6238,6 @@ KubeLinter v0.6.1-0-gc6177366a3
 
 KubeLinter v0.6.1-0-gc6177366a3
 
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
 No lint errors found! 
 ```
  
@@ -4023,12 +6295,12 @@ index c395244..f43b231 100644
 <summary>Kustomize Generated Diff (598 lines)</summary>  
 
 ``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/build-service/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/build-service/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/build-service/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/build-service/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/build-service/development/kustomize.out.yaml /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/build-service/development/kustomize.out.yaml
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/build-service/development/kustomize.out.yaml /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/build-service/development/kustomize.out.yaml
 649c649
 <       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
 ---
@@ -4045,7 +6317,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/developmen
 <       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:4863e3b605ff7114c90c447bfc43ea68def2a38a
 ---
 >       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:0d1d35af732ffe202e207dd0074acf5c4c48ef43
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/cluster-registration/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/cluster-registration/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/cluster-registration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/cluster-registration/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -4054,7 +6326,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -4079,7 +6351,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/gitops/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/gitops/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/gitops/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/gitops/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -4160,7 +6432,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
 ---
@@ -4221,7 +6493,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -4246,7 +6518,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/image-controller/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/image-controller/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/image-controller/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/image-controller/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -4255,7 +6527,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/integration/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/integration/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/integration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/integration/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -4264,7 +6536,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/jvm-build-service/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/jvm-build-service/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/jvm-build-service/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/jvm-build-service/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -4273,7 +6545,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/pipeline-service/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/pipeline-service/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/pipeline-service/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/pipeline-service/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -4534,7 +6806,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -4559,7 +6831,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/release/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/release/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/release/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/release/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -4568,7 +6840,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/development/components/shared-resources/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/shared-resources/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-8a2a5cb/development/components/shared-resources/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/shared-resources/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -4629,6 +6901,71 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-8a2a5cb/developmen
 <summary>Lint</summary>  
 
 ``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
 KubeLinter v0.6.1-0-gc6177366a3
 
 /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
@@ -4698,6 +7035,64 @@ KubeLinter v0.6.1-0-gc6177366a3
 /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 
 /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 
 KubeLinter v0.6.1-0-gc6177366a3
 
@@ -4829,130 +7224,7 @@ KubeLinter v0.6.1-0-gc6177366a3
 
 /home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.) 
+/home/john/dev/kdiff/kustomized-cache/commit-8a2a5cb/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.) 
 ```
  
 </details> 
@@ -5000,7 +7272,7 @@ index 8cdfdcc..899feca 100644
 <summary>Kustomize Generated Diff (869 lines)</summary>  
 
 ``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/authentication/staging/kustomize.out.yaml /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/authentication/staging/kustomize.out.yaml
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/authentication/staging/kustomize.out.yaml /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/authentication/staging/kustomize.out.yaml
 447,449d446
 < - apiGroup: rbac.authorization.k8s.io
 <   kind: User
@@ -5009,12 +7281,12 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < - apiGroup: rbac.authorization.k8s.io
 <   kind: User
 <   name: jannfis
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/build-service/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/build-service/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/build-service/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/build-service/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/cluster-registration/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/cluster-registration/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/cluster-registration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/cluster-registration/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5023,7 +7295,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/dora-metrics/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/dora-metrics/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5048,7 +7320,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/gitops/staging/stone-stg-m01/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5129,7 +7401,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5210,7 +7482,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/hac-pact-broker/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/hac-pact-broker/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
 ---
@@ -5271,7 +7543,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/has/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/has/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5296,7 +7568,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/image-controller/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/image-controller/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/image-controller/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/image-controller/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5305,7 +7577,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/integration/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/integration/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/integration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/integration/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5314,7 +7586,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/jvm-build-service/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/jvm-build-service/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/jvm-build-service/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/jvm-build-service/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5323,7 +7595,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5540,7 +7812,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5757,7 +8029,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/quality-dashboard/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/quality-dashboard/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5782,7 +8054,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/release/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/release/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/release/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/release/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5791,7 +8063,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/shared-resources/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/shared-resources/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/shared-resources/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/shared-resources/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5844,7 +8116,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/staging/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/sprayproxy/staging/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/sprayproxy/staging/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/staging/components/sprayproxy/staging/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/staging/components/sprayproxy/staging/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -5877,6 +8149,74 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/co
 <summary>Lint</summary>  
 
 ``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
 /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
@@ -5991,6 +8331,38 @@ KubeLinter v0.6.1-0-gc6177366a3
 
 KubeLinter v0.6.1-0-gc6177366a3
 
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
 /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 
 /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
@@ -6002,6 +8374,35 @@ KubeLinter v0.6.1-0-gc6177366a3
 /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 
 /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 
 KubeLinter v0.6.1-0-gc6177366a3
 
@@ -6225,135 +8626,6 @@ KubeLinter v0.6.1-0-gc6177366a3
 
 KubeLinter v0.6.1-0-gc6177366a3
 
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/staging/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
 No lint errors found! 
 ```
  
@@ -6402,12 +8674,12 @@ index 8cdfdcc..899feca 100644
 <summary>Kustomize Generated Diff (581 lines)</summary>  
 
 ``` 
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/build-service/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/build-service/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/build-service/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/development/components/build-service/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/cluster-registration/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/cluster-registration/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/cluster-registration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/development/components/cluster-registration/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -6416,7 +8688,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/dora-metrics/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/development/components/dora-metrics/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -6441,7 +8713,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/gitops/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/gitops/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/gitops/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/development/components/gitops/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -6522,7 +8794,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/hac-pact-broker/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/development/components/hac-pact-broker/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
 ---
@@ -6583,7 +8855,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/has/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/development/components/has/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -6608,7 +8880,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/image-controller/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/image-controller/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/image-controller/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/development/components/image-controller/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -6617,7 +8889,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/integration/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/integration/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/integration/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/development/components/integration/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -6626,7 +8898,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/jvm-build-service/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/jvm-build-service/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/jvm-build-service/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/development/components/jvm-build-service/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -6635,7 +8907,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/pipeline-service/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/pipeline-service/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/pipeline-service/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/development/components/pipeline-service/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -6896,7 +9168,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/quality-dashboard/development/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/development/components/quality-dashboard/development/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -6921,7 +9193,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/release/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/release/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/release/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/development/components/release/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -6930,7 +9202,7 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/developmen
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
 > /home/john/dev/kdiff/kustomized-cache/commit-cdeadc7/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/development/components/shared-resources/kustomize.out.lint /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/shared-resources/kustomize.out.lint
+diff -r /home/john/dev/kdiff/hack/../kustomized-cache/commit-f14c2bd/development/components/shared-resources/kustomize.out.lint /home/john/dev/kdiff/hack/../kustomized-cache/commit-cdeadc7/development/components/shared-resources/kustomize.out.lint
 3c3
 < /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
 ---
@@ -6991,6 +9263,71 @@ diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/developmen
 <summary>Lint</summary>  
 
 ``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
 KubeLinter v0.6.1-0-gc6177366a3
 
 /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
@@ -7060,6 +9397,64 @@ KubeLinter v0.6.1-0-gc6177366a3
 /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "node-driver-registrar" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 
 /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/shared-resources/kustomize.out.yaml: (object: openshift-cluster-csi-drivers/shared-resource-csi-driver-node apps/v1, Kind=DaemonSet) container "hostpath" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 
 KubeLinter v0.6.1-0-gc6177366a3
 
@@ -7191,130 +9586,7 @@ KubeLinter v0.6.1-0-gc6177366a3
 
 /home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/release/kustomize.out.yaml: (object: release-service/release-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/has/development/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "pact-broker" is using an invalid container image, "pactfoundation/pact-broker:latest". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "pact-broker" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has DROP capabilities: [], but does not drop capability "NET_RAW" which is required (check: drop-net-raw-capability, remediation: NET_RAW makes it so that an application within the container is able to craft raw packets, use raw sockets, and bind to any address. Remove this capability in the containers under containers security contexts.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) The container "postgresql" is using an invalid container image, "". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/hac-pact-broker/kustomize.out.yaml: (object: <no namespace>/postgresql-pact-broker apps.openshift.io/v1, Kind=DeploymentConfig) container "postgresql" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/integration/kustomize.out.yaml: (object: integration-service/integration-service-integration-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.) 
+/home/john/dev/kdiff/kustomized-cache/commit-f14c2bd/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.) 
 ```
  
 </details> 
