@@ -1,0 +1,24 @@
+diff --git a/components/authentication/base/gitops.yaml b/components/authentication/base/gitops.yaml
+index 8cdfdcc..899feca 100644
+--- a/components/authentication/base/gitops.yaml
++++ b/components/authentication/base/gitops.yaml
+@@ -8,6 +8,9 @@ subjects:
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: jgwest
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: jannfis
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+@@ -22,6 +25,9 @@ subjects:
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: jgwest
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: jannfis
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: Role

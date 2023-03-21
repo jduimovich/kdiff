@@ -1,0 +1,19 @@
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/authentication/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/authentication/staging/kustomize.out
+447,449d446
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: jannfis
+737,739d733
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: jannfis
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out
+1c1
+< 2023/03/21 12:05:35 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/21 12:06:31 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-f14c2bd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out
+1c1
+< 2023/03/21 12:05:40 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/21 12:06:35 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.

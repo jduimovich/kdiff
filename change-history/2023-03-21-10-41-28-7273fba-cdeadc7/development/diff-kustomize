@@ -1,0 +1,14 @@
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/jvm-build-service/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7273fba/development/components/jvm-build-service/kustomize.out
+1088,1089c1088,1089
+<           value: 5acff37c17e610b4496da9dcba1c34bb72377edb
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:5acff37c17e610b4496da9dcba1c34bb72377edb
+---
+>           value: 0f323a67458f74c0e5b1db344474118f8fa17a42
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:0f323a67458f74c0e5b1db344474118f8fa17a42
+diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-cdeadc7/development/components/pipeline-service/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7273fba/development/components/pipeline-service/development/kustomize.out
+1,2c1,2
+< 2023/03/21 12:07:02 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+< 2023/03/21 12:07:07 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+---
+> 2023/03/21 12:08:00 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
+> 2023/03/21 12:08:05 Warning: Forcing the git protocol using the 'git::' URL prefix is not supported. Kustomize currently strips this invalid prefix, but will stop doing so in a future release. Please remove the 'git::' prefix from your configuration.
