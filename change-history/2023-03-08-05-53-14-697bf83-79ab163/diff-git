@@ -1,9 +1,0 @@
-diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
-index 2cce10b..78d54d9 100644
---- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
-+++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
-@@ -39,3 +39,4 @@ spec:
-         - build-service
-         - tekton-ci
-         - image-controller
-+        - openshift-logging

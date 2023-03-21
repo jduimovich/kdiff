@@ -1,5 +1,0 @@
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-3464c3b/staging/components/sprayproxy/staging/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-c426b69/staging/components/sprayproxy/staging/kustomize.out
-64c64
-<             https://pipelines-as-code-controller-pipelines-as-code.apps.stone-stg-m01.7ayg.p1.openshiftapps.com https://pipelines-as-code-controller-pipelines-as-code.apps.stone-stg-rh01.l2vh.p1.openshiftapps.com
----
->             https://pipelines-as-code-controller-pipelines-as-code.apps.stone-stg-m01.1ion.p1.openshiftapps.com https://pipelines-as-code-controller-pipelines-as-code.apps.stone-stg-rh01.0fk9.p1.openshiftapps.com

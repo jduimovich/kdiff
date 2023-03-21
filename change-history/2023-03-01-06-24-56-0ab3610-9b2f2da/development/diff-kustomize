@@ -1,5 +1,0 @@
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-9b2f2da/development/components/has/development/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-0ab3610/development/components/has/development/kustomize.out
-683c683
-<         image: quay.io/redhat-appstudio/application-service:86e2cdb03d7379474c2ba2f8a267ed97b48bac9b
----
->         image: quay.io/redhat-appstudio/application-service:7c9be3eb116b9a58b962142cf1efb8470c5ab77b

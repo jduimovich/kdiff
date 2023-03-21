@@ -1,0 +1,14 @@
+KubeLinter v0.6.1-0-gc6177366a3
+
+/home/john/dev/kdiff/kustomized-cache/commit-84522ea/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "manager" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-84522ea/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-84522ea/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-84522ea/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-84522ea/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+/home/john/dev/kdiff/kustomized-cache/commit-84522ea/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-application-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+

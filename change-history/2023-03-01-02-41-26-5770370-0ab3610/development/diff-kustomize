@@ -1,9 +1,0 @@
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-0ab3610/development/components/enterprise-contract/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-5770370/development/components/enterprise-contract/kustomize.out
-212c212
-<   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:snapshot@sha256:a634cec992e37014c232bf56c75f6b5004c142067fdbefa1b5509ca2e025cc89
----
->   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:snapshot@sha256:76c0adc3ea2e662f30d850243ab91df32c1d722a13e0b3f30a6431207323d7a6
-235c235
-<     - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:16703532b485c4edd3cbe47f62d44a51be4b7390b663e86eb5a7372ba9ecae52
----
->     - oci::https://quay.io/hacbs-contract/ec-release-policy:latest@sha256:7779b9074fd58693fda5657422be1b025b876a880c058a29360b8383a511f687

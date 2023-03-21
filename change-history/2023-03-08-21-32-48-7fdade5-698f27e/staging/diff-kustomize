@@ -1,4 +1,0 @@
-diff -r /home/runner/work/kdiff/kdiff/kustomized-cache/commit-698f27e/staging/components/enterprise-contract/kustomize.out /home/runner/work/kdiff/kdiff/kustomized-cache/commit-7fdade5/staging/components/enterprise-contract/kustomize.out
-244,245d243
-<     exclude:
-<     - step_image_registries

@@ -2,24 +2,29 @@ SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"/..
 
 CACHE_DIR=$ROOT/kustomized-cache
-COMPARE_ROOT=$ROOT/change-history
-
-
+COMPARE_ROOT=$ROOT/change-history 
 
 function ktry() {  
     COMPONENT_DIR=$1
     COMMIT_DIR=$2 
     OUT_DIR=$COMMIT_DIR/$COMPONENT_DIR 
-    OUT_FILE=$OUT_DIR/kustomize.out  
+    OUT_FILE=$OUT_DIR/kustomize.out.yaml 
     if [ ! -f "$OUT_FILE" ]; then 
         K1=$COMPONENT_DIR 
         if [ -f "$K1/kustomization.yaml" ]; then 
             echo -n . 
             mkdir -p $OUT_DIR   
             echo "Running: kustomize build $K1"
-            kustomize build $K1 | cat > $OUT_FILE 
+            kustomize build $K1 | cat > $OUT_FILE  
         fi  
-    fi     
+    fi
+    if [ -f "$OUT_FILE" ]; then 
+        LINT_FILE=$(realpath $OUT_DIR/kustomize.out.lint) 
+        if [ ! -f "$LINT_FILE" ]; then
+            echo "Running: Linting $OUT_FILE"
+            $ROOT/bin/kube-linter lint $OUT_FILE  > $LINT_FILE 
+        fi  
+    fi
 }
 
 OVERLAYS="staging development"
@@ -28,8 +33,8 @@ function generateManifests()  {
     COMMIT=$1
     echo -n "Generating kustomize for Tag $COMMIT " 
     for overlay in $OVERLAYS
-    do 
-        COMMIT_DIR=$CACHE_DIR/commit-$COMMIT/$overlay
+    do  
+        COMMIT_DIR=$(realpath $CACHE_DIR/commit-$COMMIT/$overlay)
         mkdir -p $COMMIT_DIR
         APP_OF_APPS=$COMMIT_DIR/app-of-apps-$overlay.yaml 
         if [ -f "$APP_OF_APPS" ]; then 
@@ -49,6 +54,11 @@ function generateManifests()  {
             done  
         done 
         wait  
+        LINT_FILE=$COMMIT_DIR.lint
+        rm $LINT_FILE
+        touch $LINT_FILE  
+        echo "Concontentate all the lint files for $COMMIT_DIR"
+        find $COMMIT_DIR -name kustomize.out.lint -print | xargs -n1 cat >>$LINT_FILE
     done
     echo
 }
@@ -88,7 +98,7 @@ echo "changes from $COMMIT_PREV to $COMMIT_CURRENT on $DATE" > $COMPARE_DIR/titl
 echo "Diff size for git: $(wc -l $GDIFF)" 
 for overlay in $OVERLAYS
 do 
-    COMMIT_DIR=$CACHE_DIR/commit-$COMMIT/$overlay 
+    COMMIT_DIR=$CACHE_DIR/commit-$COMMIT/$overlay  
 
     #compare between two revisions
     DIR_CURRENT=$(realpath $CACHE_DIR/commit-$COMMIT_CURRENT/$overlay)

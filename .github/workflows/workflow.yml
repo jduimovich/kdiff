@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v2 
       - name: Update
         run: |
-          bash  ./hack/bootstrap-last-100-commits      
+          bash  ./hack/bootstrap-commits 
           bash  ./hack/prettyprint   
       - name: Cleanup
         run: |
