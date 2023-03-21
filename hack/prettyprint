@@ -4,7 +4,7 @@ ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"/..
 
 MAX_LINES=$1
 if [ -z $MAX_LINES ]; then
-MAX_LINES=20
+MAX_LINES=4
 fi
 
 INFRA=$ROOT/infra-deployments 
