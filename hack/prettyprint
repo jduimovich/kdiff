@@ -8,9 +8,8 @@ MAX_LINES=4
 fi
 
 INFRA=$ROOT/infra-deployments 
-
-INDEX=$ROOT/index.md
-SUMMARY=$ROOT/docs/index.markdown
+ 
+SUMMARY=$ROOT/index.md
 COMPARE_DIR=$ROOT/change-history
  
 echo "# kustomize changes tracked by commits "> $SUMMARY 
@@ -89,4 +88,11 @@ EOF
         break
     fi
 done
-cp $SUMMARY $INDEX  
+git clone  https://github.com/KrauseFx/markdown-to-html-github-style
+cd markdown-to-html-github-style
+npm install
+cd ..
+rm -rf docs/index.html
+node markdown-to-html-github-style/convert.js Kustomize jduimovich index.md
+mv index.html docs/
+rm -rf markdown-to-html-github-style
