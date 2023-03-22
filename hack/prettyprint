@@ -88,11 +88,11 @@ EOF
         break
     fi
 done
-git clone  https://github.com/KrauseFx/markdown-to-html-github-style
-cd markdown-to-html-github-style
+git clone   https://github.com/jduimovich/markdown-to-html
+cd markdown-to-html
 npm install
 cd ..
 rm -rf docs/index.html
-node markdown-to-html-github-style/convert.js Kustomize jduimovich index.md
+node markdown-to-html/convert.js Kustomize jduimovich index.md
 mv index.html docs/
-rm -rf markdown-to-html-github-style
+rm -rf markdown-to-html
