@@ -18,6 +18,7 @@ See `kustomized-cache/commit-4f5d17a/development.lint` for an example.
 # Reports 
 
 A prettyprint report appears in `docs/index.html` and is kept up to date via a github action. 
+The report is visible here https://jduimovich.github.io/kdiff/ 
  
 ## todo 
 - need to use Application Sets for precise diff for each app-of-apps. 
