@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    openshift.io/workload-monitoring: "true"
+  name: o11y
+spec: {}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    openshift.io/prometheus-rule-evaluation-scope: leaf-prometheus
+    openshift.io/workload-monitoring: "true"
+  name: o11y-rules
+  namespace: o11y
+spec:
+  groups:
+  - interval: 30s
+    name: appstudio-container-labeling
+    rules:
+    - expr: |
+        container_network_transmit_bytes_total
+        * on (namespace, pod)
+        group_left (label_pipelines_appstudio_openshift_io_type)
+        kube_pod_labels
+      record: appstudio_container_network_transmit_bytes_total
+    - expr: |
+        {__name__=~"kube_pod_.*container_resource_limits"}
+        * on (namespace, pod)
+        group_left(label_pipelines_appstudio_openshift_io_type) kube_pod_labels
+      record: appstudio_container_resource_limits
+  - interval: 1m
+    name: appstudio-resource-gauge
+    rules:
+    - expr: |
+        last_over_time(appstudio_container_resource_limits[1m])
+        * on (namespace, pod, container) group_left ()
+        (sum by (namespace, pod, container) (increase(container_last_seen[1m] )) / 60)
+      record: appstudio_container_resource_minutes_gauge
