@@ -1,0 +1,63 @@
+diff --git a/components/has/production/gitops-org-patch.yaml b/components/has/production/gitops-org-patch.yaml
+new file mode 100644
+index 0000000..de96fae
+--- /dev/null
++++ b/components/has/production/gitops-org-patch.yaml
+@@ -0,0 +1,14 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++  namespace: system
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        env:
++          - name: GITOPS_ORG
++            value: "redhat-appstudio-appdata"
++
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index 2ce30e4..ea45165 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -4,6 +4,7 @@ resources:
+   - ../base
+   - ../base/external-secrets
+ patches:
++  - ./gitops-org-patch.yaml
+   - path: has-github-token-patch.yaml
+     target:
+       name: has-github-token
+diff --git a/components/has/staging/gitops-org-patch.yaml b/components/has/staging/gitops-org-patch.yaml
+new file mode 100644
+index 0000000..784242f
+--- /dev/null
++++ b/components/has/staging/gitops-org-patch.yaml
+@@ -0,0 +1,14 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++  namespace: system
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        env:
++          - name: GITOPS_ORG
++            value: "redhat-appstudio-appdata-staging"
++
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index 564d870..0bd8582 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -3,3 +3,6 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/external-secrets
++
++patches:
++  - ./gitops-org-patch.yaml
