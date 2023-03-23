@@ -1,0 +1,48 @@
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 8f25c62..2d3578d 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -22,3 +22,8 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: pac-app-name.yaml
++    target:
++      kind: ConfigMap
++      name: pipelines-as-code
++      namespace: pipelines-as-code
+diff --git a/components/pipeline-service/production/base/pac-app-name.yaml b/components/pipeline-service/production/base/pac-app-name.yaml
+new file mode 100644
+index 0000000..b488250
+--- /dev/null
++++ b/components/pipeline-service/production/base/pac-app-name.yaml
+@@ -0,0 +1,4 @@
++---
++- op: replace
++  path: /data/application-name
++  value: Red Hat Trusted App Pipeline
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 93b9653..f16f283 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -14,3 +14,10 @@ resources:
+ 
+ components:
+   - ../../components/tekton-chains
++
++patches:
++  - path: pac-app-name.yaml
++    target:
++      kind: ConfigMap
++      name: pipelines-as-code
++      namespace: pipelines-as-code
+diff --git a/components/pipeline-service/staging/base/pac-app-name.yaml b/components/pipeline-service/staging/base/pac-app-name.yaml
+new file mode 100644
+index 0000000..1853502
+--- /dev/null
++++ b/components/pipeline-service/staging/base/pac-app-name.yaml
+@@ -0,0 +1,4 @@
++---
++- op: replace
++  path: /data/application-name
++  value: RHTAP Staging
