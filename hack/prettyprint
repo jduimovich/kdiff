@@ -25,7 +25,7 @@ for diff in $(ls change-history/ | sort -r)
 do
     let OUT_COUNT++
     diff=$COMPARE_DIR/$diff
-    GIT=$(cat $diff/diff-git)
+    GIT=$(cat $diff/diff-git | sed s#.*kustomized-cache/#./#g)
     GLINES=$(wc -l $diff/diff-git | cut -d ' ' -f 1)
     echo $diff
     for overlay in  staging  development
@@ -37,10 +37,10 @@ do
             TITLE="${overlay^}"-$BASE 
         fi 
         KLINES=$(wc -l $diff/$overlay/diff-kustomize | cut -d ' ' -f 1)
-        DELTA=$(cat $diff/$overlay/diff-kustomize)
+        DELTA=$(cat $diff/$overlay/diff-kustomize | sed s#.*kustomized-cache/#./#g)
 
         if [ -f $diff/$overlay/lint ]; then
-            LINT=$(cat $diff/$overlay/lint)
+            LINT=$(cat $diff/$overlay/lint | sed s#.*kustomized-cache/#./#g)
         else
             LINT="no lint"
         fi  
