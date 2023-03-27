@@ -112,7 +112,7 @@ do
     mkdir -p $K_DIR  
     KDIFF=$K_DIR/diff-kustomize
     LINT_COPY=$K_DIR/lint  
-    diff -r $DIR_CURRENT $DIR_PREV >$KDIFF
+    diff -r $DIR_CURRENT $DIR_PREV --exclude=kustomize.out.lint >$KDIFF
     if [ -f "$LINT_CURRENT" ]; then 
         cp $LINT_CURRENT $LINT_COPY
     fi 
