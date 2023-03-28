@@ -1,0 +1,120 @@
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-1221d8b/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-e164629/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+836,877d835
+<   - deploymenttargetclaims
+<   verbs:
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - deploymenttargetclaims/finalizers
+<   verbs:
+<   - update
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - deploymenttargetclaims/status
+<   verbs:
+<   - get
+<   - patch
+<   - update
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - deploymenttargets
+<   verbs:
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - deploymenttargets/status
+<   verbs:
+<   - get
+<   - patch
+<   - update
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+1703c1661
+<         image: quay.io/redhat-appstudio/gitops-service:48492fbc7557ded90dbc538dcdebbf39878c332c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:43f159996c7b42f5b814be467f10dd29b0607122
+1808c1766
+<         image: quay.io/redhat-appstudio/gitops-service:48492fbc7557ded90dbc538dcdebbf39878c332c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:43f159996c7b42f5b814be467f10dd29b0607122
+1868c1826
+<         image: quay.io/redhat-appstudio/gitops-service:48492fbc7557ded90dbc538dcdebbf39878c332c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:43f159996c7b42f5b814be467f10dd29b0607122
+1921c1879
+<         image: quay.io/redhat-appstudio/gitops-service:48492fbc7557ded90dbc538dcdebbf39878c332c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:43f159996c7b42f5b814be467f10dd29b0607122
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-1221d8b/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-e164629/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml
+836,877d835
+<   - deploymenttargetclaims
+<   verbs:
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - deploymenttargetclaims/finalizers
+<   verbs:
+<   - update
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - deploymenttargetclaims/status
+<   verbs:
+<   - get
+<   - patch
+<   - update
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - deploymenttargets
+<   verbs:
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - deploymenttargets/status
+<   verbs:
+<   - get
+<   - patch
+<   - update
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+1703c1661
+<         image: quay.io/redhat-appstudio/gitops-service:48492fbc7557ded90dbc538dcdebbf39878c332c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:43f159996c7b42f5b814be467f10dd29b0607122
+1808c1766
+<         image: quay.io/redhat-appstudio/gitops-service:48492fbc7557ded90dbc538dcdebbf39878c332c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:43f159996c7b42f5b814be467f10dd29b0607122
+1868c1826
+<         image: quay.io/redhat-appstudio/gitops-service:48492fbc7557ded90dbc538dcdebbf39878c332c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:43f159996c7b42f5b814be467f10dd29b0607122
+1921c1879
+<         image: quay.io/redhat-appstudio/gitops-service:48492fbc7557ded90dbc538dcdebbf39878c332c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:43f159996c7b42f5b814be467f10dd29b0607122
