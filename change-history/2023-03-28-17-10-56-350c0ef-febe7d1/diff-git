@@ -1,0 +1,103 @@
+diff --git a/components/enterprise-contract/README.md b/components/enterprise-contract/README.md
+index f583c5f..5c5ad1c 100644
+--- a/components/enterprise-contract/README.md
++++ b/components/enterprise-contract/README.md
+@@ -20,6 +20,6 @@ failures.
+ For additional information about Enterprise Contract, see the following
+ resources:
+ 
+-* [Enterprise Contract Documentation](https://hacbs-contract.github.io/)
++* [Enterprise Contract Documentation](https://enterprise-contract.github.io/)
+ * [Book of Stonesoup](https://redhat-appstudio.github.io/book/book/enterprise-contract.html)
+-* [Enterprise Contract GitHub Organization](https://github.com/hacbs-contract)
++* [Enterprise Contract GitHub Organization](https://github.com/enterprise-contract)
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 5f82e4c..12bf05d 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -18,9 +18,9 @@ spec:
+   sources:
+     - name: Release Policies
+       data:
+-        - oci::quay.io/hacbs-contract/ec-policy-data:git-0ba79c3@sha256:6f55c7887f0ed449c23d681514f43d841ed5ccb58b538fa924665ec53de1a169
++        - oci::quay.io/hacbs-contract/ec-policy-data:git-d995f67@sha256:eb713f2c0d9c944cbbb298a2c8a0ca1e5a741d149f033b145296d6f550ebd10b
+       policy:
+-        - oci::quay.io/hacbs-contract/ec-release-policy:git-a2d0125@sha256:ddfa0fd1c813a69cfbc226517d89372ad7b30461708045c21962ac0ebbb930ec
++        - oci::quay.io/hacbs-contract/ec-release-policy:git-d995f67@sha256:9d2cffae5ed8a541b4bff1acbaa9bb0b42290214de969e515e78f97b8cf8ff51
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -37,6 +37,6 @@ spec:
+   sources:
+     - name: Release Policies
+       data:
+-        - oci::quay.io/hacbs-contract/ec-policy-data:git-0ba79c3@sha256:6f55c7887f0ed449c23d681514f43d841ed5ccb58b538fa924665ec53de1a169
++        - oci::quay.io/hacbs-contract/ec-policy-data:git-d995f67@sha256:eb713f2c0d9c944cbbb298a2c8a0ca1e5a741d149f033b145296d6f550ebd10b
+       policy:
+-        - oci::quay.io/hacbs-contract/ec-release-policy:git-a2d0125@sha256:ddfa0fd1c813a69cfbc226517d89372ad7b30461708045c21962ac0ebbb930ec
++        - oci::quay.io/hacbs-contract/ec-release-policy:git-d995f67@sha256:9d2cffae5ed8a541b4bff1acbaa9bb0b42290214de969e515e78f97b8cf8ff51
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index f93dc72..ff7765f 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,13 +1,13 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/hacbs-contract/enterprise-contract-controller/config/crd?ref=2844b6da6e72a6b25f6b2ed3702c6fda8a88adc9
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=2844b6da6e72a6b25f6b2ed3702c6fda8a88adc9
+   # Kustomize does not allow github.com urls that reference a single-file. They must always reference
+   # a directory that contains a kustomization.yaml file. The directory /config/rbac does include a
+   # kustomization.yaml file but it includes many other RBAC changes that are not desirable here. Use
+   # a URL to the "raw" version of the file instead.
+-  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/2844b6da6e72a6b25f6b2ed3702c6fda8a88adc9/config/rbac/enterprisecontractpolicy_viewer_role.yaml
+-  - https://raw.githubusercontent.com/hacbs-contract/enterprise-contract-controller/2844b6da6e72a6b25f6b2ed3702c6fda8a88adc9/config/rbac/enterprisecontractpolicy_editor_role.yaml
++  - https://raw.githubusercontent.com/enterprise-contract/enterprise-contract-controller/2844b6da6e72a6b25f6b2ed3702c6fda8a88adc9/config/rbac/enterprisecontractpolicy_viewer_role.yaml
++  - https://raw.githubusercontent.com/enterprise-contract/enterprise-contract-controller/2844b6da6e72a6b25f6b2ed3702c6fda8a88adc9/config/rbac/enterprisecontractpolicy_editor_role.yaml
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -17,10 +17,10 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:e29fe84b7a4f7cb5de07e2da17deb0e70dd5e5aa@sha256:484834a859bc72a6b9e0f4093897003929050e9c6a0e7500d2d363a6ecd4791f
++      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:f1d0eb8927f50ed285f6d517e48935dd9bb3e093@sha256:4116bec9c813d9d3b59c6488d5b0dc2a3d3cd57c8c329283c4313911e6d122ec
+       - ec_policy_source=oci::https://quay.io/hacbs-contract/ec-release-policy:git-8ca675b@sha256:caf2a8991ca3feb80edfc8ff7c1930ed09481a7c8d934bb719007bffc1153ecc
+       - ec_data_source=oci::https://quay.io/hacbs-contract/ec-policy-data:git-a3ca9be@sha256:d548e0808348c017782ae87920c94d45ad7117e0e630b5b991c8df557c22a844
+ images:
+   - name: quay.io/redhat-appstudio/enterprise-contract-controller
+     newName: quay.io/redhat-appstudio/enterprise-contract-controller
+-    newTag: 2844b6da6e72a6b25f6b2ed3702c6fda8a88adc9
++    newTag: 5befd172d5589ca2799ba60683e0879f972dd831
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index 2f113c5..41d5cf8 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -32,7 +32,7 @@ kind: Repository
+ metadata:
+   name: enterprise-contract
+ spec:
+-  url: "https://github.com/hacbs-contract/enterprise-contract-controller"
++  url: "https://github.com/enterprise-contract/enterprise-contract-controller"
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
+@@ -109,7 +109,7 @@ kind: Repository
+ metadata:
+   name: ec-golden-image
+ spec:
+-  url: "https://github.com/hacbs-contract/golden-container"
++  url: "https://github.com/enterprise-contract/golden-container"
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
+@@ -130,7 +130,7 @@ kind: Repository
+ metadata:
+   name: ec-cli
+ spec:
+-  url: "https://github.com/hacbs-contract/ec-cli"
++  url: "https://github.com/enterprise-contract/ec-cli"
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository

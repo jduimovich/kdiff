@@ -1,0 +1,34 @@
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-febe7d1/staging/components/enterprise-contract/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-350c0ef/staging/components/enterprise-contract/kustomize.out.yaml
+243c243
+<   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:f1d0eb8927f50ed285f6d517e48935dd9bb3e093@sha256:4116bec9c813d9d3b59c6488d5b0dc2a3d3cd57c8c329283c4313911e6d122ec
+---
+>   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:e29fe84b7a4f7cb5de07e2da17deb0e70dd5e5aa@sha256:484834a859bc72a6b9e0f4093897003929050e9c6a0e7500d2d363a6ecd4791f
+261c261
+<     - oci::quay.io/hacbs-contract/ec-policy-data:git-d995f67@sha256:eb713f2c0d9c944cbbb298a2c8a0ca1e5a741d149f033b145296d6f550ebd10b
+---
+>     - oci::quay.io/hacbs-contract/ec-policy-data:git-0ba79c3@sha256:6f55c7887f0ed449c23d681514f43d841ed5ccb58b538fa924665ec53de1a169
+264c264
+<     - oci::quay.io/hacbs-contract/ec-release-policy:git-d995f67@sha256:9d2cffae5ed8a541b4bff1acbaa9bb0b42290214de969e515e78f97b8cf8ff51
+---
+>     - oci::quay.io/hacbs-contract/ec-release-policy:git-a2d0125@sha256:ddfa0fd1c813a69cfbc226517d89372ad7b30461708045c21962ac0ebbb930ec
+282c282
+<     - oci::quay.io/hacbs-contract/ec-policy-data:git-d995f67@sha256:eb713f2c0d9c944cbbb298a2c8a0ca1e5a741d149f033b145296d6f550ebd10b
+---
+>     - oci::quay.io/hacbs-contract/ec-policy-data:git-0ba79c3@sha256:6f55c7887f0ed449c23d681514f43d841ed5ccb58b538fa924665ec53de1a169
+285c285
+<     - oci::quay.io/hacbs-contract/ec-release-policy:git-d995f67@sha256:9d2cffae5ed8a541b4bff1acbaa9bb0b42290214de969e515e78f97b8cf8ff51
+---
+>     - oci::quay.io/hacbs-contract/ec-release-policy:git-a2d0125@sha256:ddfa0fd1c813a69cfbc226517d89372ad7b30461708045c21962ac0ebbb930ec
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-febe7d1/staging/components/tekton-ci/staging/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-350c0ef/staging/components/tekton-ci/staging/kustomize.out.yaml
+153c153
+<   url: https://github.com/enterprise-contract/ec-cli
+---
+>   url: https://github.com/hacbs-contract/ec-cli
+162c162
+<   url: https://github.com/enterprise-contract/golden-container
+---
+>   url: https://github.com/hacbs-contract/golden-container
+171c171
+<   url: https://github.com/enterprise-contract/enterprise-contract-controller
+---
+>   url: https://github.com/hacbs-contract/enterprise-contract-controller
