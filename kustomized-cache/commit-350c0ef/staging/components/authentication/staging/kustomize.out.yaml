@@ -1,0 +1,930 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: group-sync-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: gitops-namespace-all-access
+  namespace: gitops
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - '*'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: vault-admin
+  namespace: spi-vault
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - pods/exec
+  verbs:
+  - create
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+  - delete
+  - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dora-metrics-maintainer
+  namespace: dora-metrics
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+  - delete
+  - edit
+  - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pact-broker-maintainer
+  namespace: hac-pact-broker
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+  - delete
+  - edit
+  - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cluster-registration-maintainer
+rules:
+- apiGroups:
+  - singapore.open-cluster-management.io
+  resources:
+  - clusterregistrars
+  - hubconfigs
+  - registeredclusters
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+  - delete
+  - list
+- apiGroups:
+  - tekton.dev
+  resources:
+  - pipelineruns
+  verbs:
+  - '*'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: component-maintainer
+rules:
+- apiGroups:
+  - ""
+  resourceNames:
+  - pipeline
+  resources:
+  - serviceaccounts
+  verbs:
+  - patch
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - delete
+- apiGroups:
+  - tekton.dev
+  resources:
+  - pipelineruns
+  verbs:
+  - '*'
+- apiGroups:
+  - results.tekton.dev
+  resources:
+  - results
+  - records
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - ""
+  resources:
+  - pods/exec
+  - pods/portforward
+  verbs:
+  - create
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - get
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: gitops-component-maintainer
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: impersonate-groups-and-users
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - groups
+  - users
+  verbs:
+  - impersonate
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pipeline-service-sre
+rules:
+- apiGroups:
+  - tekton.dev
+  resources:
+  - clustertasks
+  - conditions
+  - pipelineresources
+  - pipelineruns
+  - pipelines
+  - runs
+  - taskruns
+  - tasks
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+  - patch
+- apiGroups:
+  - triggers.tekton.dev
+  resources:
+  - clusterinterceptors
+  - clustertriggerbindings
+  - eventlisteners
+  - triggerbindings
+  - triggers
+  - triggertemplates
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+  - patch
+- apiGroups:
+  - pipelinesascode.tekton.dev
+  resources:
+  - repositories
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: view-appstudio
+rules:
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - applications
+  - buildpipelineselectors
+  - componentdetectionqueries
+  - components
+  - enterprisecontractpolicies
+  - environments
+  - integrationtestscenarios
+  - promotionruns
+  - releaseplanadmissions
+  - releaseplans
+  - releases
+  - releasestrategies
+  - snapshotenvironmentbindings
+  - snapshots
+  - spiaccesschecks
+  - spiaccesstokenbindings
+  - spifilecontentrequests
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - managed-gitops.redhat.com
+  resources:
+  - gitopsdeploymentmanagedenvironments
+  - gitopsdeployments
+  - gitopsdeploymentsyncruns
+  - operations
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - jvmbuildservice.io
+  resources:
+  - artifactbuilds
+  - dependencybuilds
+  - rebuiltartifacts
+  - systemconfigs
+  - tektonwrappers
+  - jbsconfigs
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - pipelinesascode.tekton.dev
+  resources:
+  - repositories
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: application-service-maintainers
+  namespace: application-service
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: sbose78
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: johnmcollier
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: jduimovich
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: kim-tsao
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: yangcao77
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: component-maintainers
+  namespace: build-service
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: sbose78
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: Michkov
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: build-templates-maintainers
+  namespace: build-templates-e2e
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: Michkov
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: psturc
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: build-templates-maintainers
+  namespace: build-templates
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: sbose78
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: jduimovich
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: Michkov
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: cluster-registration-service-component-maintainers
+  namespace: cluster-reg-config
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- kind: User
+  name: chrisahl
+- kind: User
+  name: leena-jawale
+- kind: User
+  name: itdove
+- kind: User
+  name: vidyanambiar
+- kind: User
+  name: tpouyer
+- kind: User
+  name: robinbobbit
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: dora-metrics-maintainers
+  namespace: dora-metrics
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: dora-metrics-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: rhopp
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: flacatus
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: jkopriva
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: sawood14012
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: albarbaro
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: gitops-service-maintainers-gitops-namespace-all-access
+  namespace: gitops
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: gitops-namespace-all-access
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: jgwest
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: jannfis
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: group-sync-operator-maintainers
+  namespace: group-sync-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- kind: User
+  name: Michkov
+- kind: User
+  name: sbose78
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pact-broker-maintainers
+  namespace: hac-pact-broker
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: pact-broker-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: Katka92
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: QE team
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pact-broker-read
+  namespace: hac-pact-broker
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: Katka92
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: QE team
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: integration-service-maintainers
+  namespace: integration-service
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: dirgim
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: Michkov
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: internal-services
+  namespace: internal-services
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: Release team
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: Michkov
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: component-maintainers
+  namespace: jvm-build-service
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: stuartwdouglas
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: gabemontero
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: Michkov
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pipeline-service-admin
+  namespace: openshift-pipelines
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: Pipeline Service
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pipeline-service-admin
+  namespace: pipelines-as-code
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: Pipeline Service
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pipelines-as-code-maintainers
+  namespace: pipelines-as-code
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: Pipeline Service
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: sbose78
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: jduimovich
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: chmouel
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: Michkov
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pipeline-service-admin
+  namespace: plnsvc-tests
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: Pipeline Service
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: release-service-maintainers
+  namespace: release-service
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: Release team
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: Michkov
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: spi-service-maintainers
+  namespace: spi-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- kind: User
+  name: skabashnyuk
+- kind: User
+  name: sbose78
+- kind: User
+  name: Michkov
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: vault-admin
+  namespace: spi-vault
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: vault-admin
+subjects:
+- kind: User
+  name: skabashnyuk
+- kind: User
+  name: sparkoo
+- kind: User
+  name: metlos
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: component-maintainers
+  namespace: tekton-chains
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: Pipeline Service
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: sbose78
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: jduimovich
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: Michkov
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pipeline-service-admin
+  namespace: tekton-chains
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: Pipeline Service
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pipeline-service-admin
+  namespace: tekton-results
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: Pipeline Service
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: gitops-service-gitops-component-maintainers
+  namespace: gitops
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: gitops-component-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: jgwest
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: jannfis
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-registration-maintainer-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-registration-maintainer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: chrisahl
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: robinbobbit
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: everyone-view
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: stage
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: everyone-view-appstudio
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view-appstudio
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: stage
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: internal-services
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: internal-service-request-role
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: Release team
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: Michkov
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: pipeline-service-sre
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: pipeline-service-sre
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: Pipeline Service
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sandbox-sre-admins-can-impersonate
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: impersonate-groups-and-users
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: MatousJobanek
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: alexeykazakov
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: xcoulon
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: github-redhat-appstudio
+  namespace: group-sync-operator
+spec:
+  dataFrom:
+  - extract:
+      conversionStrategy: Default
+      decodingStrategy: None
+      key: staging/group-sync/github-redhat-appstudio
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: github-redhat-appstudio
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: github-redhat-appstudio-sre
+  namespace: group-sync-operator
+spec:
+  dataFrom:
+  - extract:
+      conversionStrategy: Default
+      decodingStrategy: None
+      key: staging/group-sync/github-redhat-appstudio-sre
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: github-redhat-appstudio-sre
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: group-sync-operator
+  namespace: group-sync-operator
+spec:
+  targetNamespaces:
+  - group-sync-operator
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: group-sync-operator
+  namespace: group-sync-operator
+spec:
+  channel: alpha
+  installPlanApproval: Automatic
+  name: group-sync-operator
+  source: community-operators
+  sourceNamespace: openshift-marketplace
+---
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: GroupSync
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: github-redhat-appstudio
+  namespace: group-sync-operator
+spec:
+  providers:
+  - github:
+      credentialsSecret:
+        name: github-redhat-appstudio
+        namespace: group-sync-operator
+      organization: redhat-appstudio
+    name: github
+  schedule: '*/15 * * * *'
+---
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: GroupSync
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: github-redhat-appstudio-sre
+  namespace: group-sync-operator
+spec:
+  providers:
+  - github:
+      credentialsSecret:
+        name: github-redhat-appstudio-sre
+        namespace: group-sync-operator
+      organization: redhat-appstudio-sre
+    name: github
+  schedule: '*/15 * * * *'
