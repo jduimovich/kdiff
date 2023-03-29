@@ -1,0 +1,12 @@
+diff --git a/components/hac-pact-broker/imagestream.yaml b/components/hac-pact-broker/imagestream.yaml
+deleted file mode 100644
+index 3d4eb5b..0000000
+--- a/components/hac-pact-broker/imagestream.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: image.openshift.io/v1
+-kind: ImageStream
+-metadata:
+-  labels:
+-    app: pact-broker
+-  name: pact-broker
