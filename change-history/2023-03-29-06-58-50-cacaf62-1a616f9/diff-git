@@ -1,0 +1,152 @@
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index f14a3f9..6953030 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -4,6 +4,7 @@ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+   - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=82aa57131a3d2426f9c26595bc27908bf2249417
++  - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+ 
+diff --git a/components/spi/overlays/staging/base/spi-aws-credentials-external-secret.yaml b/components/spi/overlays/staging/base/spi-aws-credentials-external-secret.yaml
+new file mode 100644
+index 0000000..94f10c3
+--- /dev/null
++++ b/components/spi/overlays/staging/base/spi-aws-credentials-external-secret.yaml
+@@ -0,0 +1,37 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: spi-aws-secretsmanager-credentials
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  data:
++  - secretKey: config
++    remoteRef:
++      key: "" # TBD in overlays
++      property: config
++  - secretKey: aws_access_key_id
++    remoteRef:
++      key: "" # TBD in overlays
++      property: aws_access_key_id
++  - secretKey: aws_secret_access_key
++    remoteRef:
++      key: "" # TBD in overlays
++      property: aws_secret_access_key
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: aws-secretsmanager-credentials
++    template:
++      engineVersion: v2
++      data:
++        credentials: |
++          [default]
++          aws_access_key_id = {{ .aws_access_key_id }}
++          aws_secret_access_key = {{ .aws_secret_access_key }}
++        config: "{{ .config }}"
+diff --git a/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml b/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
+index 9c68a1a..aa6070a 100644
+--- a/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
++++ b/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
+@@ -3,7 +3,6 @@ kind: Kustomization
+ 
+ resources:
+   - ../base
+-  - spi-aws-credentials-external-secret.yaml
+ 
+ patches:
+   - target:
+@@ -32,3 +31,9 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: spi-aws-credentials-path-patch.yaml
++    target:
++      name: spi-aws-secretsmanager-credentials
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-external-secret.yaml b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-external-secret.yaml
+deleted file mode 100644
+index 994d0ec..0000000
+--- a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-external-secret.yaml
++++ /dev/null
+@@ -1,23 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: spi-aws-secretsmanager-credentials
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  data:
+-  - secretKey: config
+-    remoteRef:
+-      key: staging/spi/m01/aws-secretsmanager-config
+-  - secretKey: credentials
+-    remoteRef:
+-      key: staging/spi/m01/aws-secretsmanager-credentials
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: aws-secretsmanager-credentials
+diff --git a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
+new file mode 100644
+index 0000000..aecc3b3
+--- /dev/null
++++ b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
+@@ -0,0 +1,10 @@
++---
++- op: replace
++  path: /spec/data/0/remoteRef/key
++  value: staging/spi/m01/aws-secretsmanager-config
++- op: replace
++  path: /spec/data/1/remoteRef/key
++  value: staging/spi/m01/aws-secretsmanager-credentials
++- op: replace
++  path: /spec/data/2/remoteRef/key
++  value: staging/spi/m01/aws-secretsmanager-credentials
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml b/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
+index 13d72d7..aa6070a 100644
+--- a/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
++++ b/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
+@@ -31,3 +31,9 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: spi-aws-credentials-path-patch.yaml
++    target:
++      name: spi-aws-secretsmanager-credentials
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
+new file mode 100644
+index 0000000..b6dd46f
+--- /dev/null
++++ b/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
+@@ -0,0 +1,10 @@
++---
++- op: replace
++  path: /spec/data/0/remoteRef/key
++  value: staging/spi/rh01/aws-secretsmanager-config
++- op: replace
++  path: /spec/data/1/remoteRef/key
++  value: staging/spi/rh01/aws-secretsmanager-credentials
++- op: replace
++  path: /spec/data/2/remoteRef/key
++  value: staging/spi/rh01/aws-secretsmanager-credentials
