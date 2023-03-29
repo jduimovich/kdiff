@@ -1,0 +1,20 @@
+diff --git a/components/monitoring/prometheus/production/base/kustomization.yaml b/components/monitoring/prometheus/production/base/kustomization.yaml
+index fb91d82..2b87e6b 100644
+--- a/components/monitoring/prometheus/production/base/kustomization.yaml
++++ b/components/monitoring/prometheus/production/base/kustomization.yaml
+@@ -2,5 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- ../../base/external-secrets
+ - ../../base
+diff --git a/components/monitoring/prometheus/staging/base/kustomization.yaml b/components/monitoring/prometheus/staging/base/kustomization.yaml
+index fb91d82..2b87e6b 100644
+--- a/components/monitoring/prometheus/staging/base/kustomization.yaml
++++ b/components/monitoring/prometheus/staging/base/kustomization.yaml
+@@ -2,5 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- ../../base/external-secrets
+ - ../../base
