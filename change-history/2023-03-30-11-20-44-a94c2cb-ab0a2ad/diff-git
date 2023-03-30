@@ -1,0 +1,40 @@
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index d2b8509..3b533b4 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -40,9 +40,3 @@ kind: ApplicationSet
+ metadata:
+   name: cluster-secret-store
+ $patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: o11y
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index c46b58f..9e835d1 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -61,3 +61,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: monitoring-workload-prometheus
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: o11y
+diff --git a/components/o11y/development/kustomization.yaml b/components/o11y/development/kustomization.yaml
+new file mode 100644
+index 0000000..ffd7535
+--- /dev/null
++++ b/components/o11y/development/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++commonLabels:
++  openshift.io/workload-monitoring: "true"
++
++resources:
++- ../base

@@ -1,0 +1,10 @@
+diff --git a/components/hac-pact-broker/kustomization.yaml b/components/hac-pact-broker/kustomization.yaml
+index c8e6c25..0e24c1f 100644
+--- a/components/hac-pact-broker/kustomization.yaml
++++ b/components/hac-pact-broker/kustomization.yaml
+@@ -1,5 +1,4 @@
+ resources:
+-  - imagestream.yaml
+   - pactbroker.yaml
+   - postgre.yaml
+   - postgrepvc.yaml
