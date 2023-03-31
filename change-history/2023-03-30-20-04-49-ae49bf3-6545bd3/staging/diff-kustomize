@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-6545bd3/staging/components/authentication/staging/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-ae49bf3/staging/components/authentication/staging/kustomize.out.yaml
+191,204d190
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+<   - spacerequests/finalizers
+<   verbs:
+<   - update
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+<   - spacerequests/status
+<   verbs:
+<   - get
+<   - patch
+<   - update

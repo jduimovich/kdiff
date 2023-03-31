@@ -1,0 +1,25 @@
+diff --git a/components/authentication/base/sandbox-sre-admins.yaml b/components/authentication/base/sandbox-sre-admins.yaml
+index febbfa0..6a43056 100644
+--- a/components/authentication/base/sandbox-sre-admins.yaml
++++ b/components/authentication/base/sandbox-sre-admins.yaml
+@@ -11,6 +11,20 @@ rules:
+   - "users"
+   verbs:
+   - "impersonate"
++- apiGroups:
++  - "toolchain.dev.openshift.com"
++  resources:
++  - "spacerequests/finalizers"
++  verbs:
++  - "update"
++- apiGroups:
++  - "toolchain.dev.openshift.com"
++  resources:
++  - "spacerequests/status"
++  verbs:
++  - "get"
++  - "patch"
++  - "update"
+ ---
+ kind: ClusterRoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
