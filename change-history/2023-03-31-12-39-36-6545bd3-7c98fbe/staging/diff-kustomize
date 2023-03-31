@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-7c98fbe/staging/components/build-service/staging/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-6545bd3/staging/components/build-service/staging/kustomize.out.yaml
+585c585
+<         image: quay.io/redhat-appstudio/build-service:9787c15291e5d0c4f984c8a0cbd55c616e4d8ddf
+---
+>         image: quay.io/redhat-appstudio/build-service:6a8cc5c7674487219706782cb30f0916e5bb3ef1

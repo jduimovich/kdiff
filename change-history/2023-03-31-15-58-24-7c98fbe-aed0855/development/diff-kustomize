@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-aed0855/development/components/enterprise-contract/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-7c98fbe/development/components/enterprise-contract/kustomize.out.yaml
+272a273,274
+>     collections:
+>     - minimal
+275,276d276
+<     include:
+<     - '@minimal'
