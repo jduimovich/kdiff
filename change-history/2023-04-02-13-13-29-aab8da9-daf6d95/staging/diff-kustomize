@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-daf6d95/staging/app-of-apps-staging.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-aab8da9/staging/app-of-apps-staging.yaml
+0a1,16
+> apiVersion: v1
+> kind: Secret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: Prune=false
+>   labels:
+>     appstudio.redhat.com/host-cluster: "true"
+>     argocd.argoproj.io/secret-type: cluster
+>   name: cluster-kubernetes.default.svc
+>   namespace: argocd-staging
+> stringData:
+>   config: '{"tlsClientConfig":{"insecure":false}}'
+>   name: in-cluster-local
+>   server: https://kubernetes.default.svc
+> type: Opaque
+> ---

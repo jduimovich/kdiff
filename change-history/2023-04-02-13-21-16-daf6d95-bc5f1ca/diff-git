@@ -1,0 +1,34 @@
+diff --git a/argo-cd-apps/k-components/disable-auto-sync/disable-auto-sync.yaml b/argo-cd-apps/k-components/disable-auto-sync/disable-auto-sync.yaml
+new file mode 100644
+index 0000000..0c98158
+--- /dev/null
++++ b/argo-cd-apps/k-components/disable-auto-sync/disable-auto-sync.yaml
+@@ -0,0 +1,3 @@
++---
++- op: remove
++  path: /spec/template/spec/syncPolicy/automated
+diff --git a/argo-cd-apps/k-components/disable-auto-sync/kustomization.yaml b/argo-cd-apps/k-components/disable-auto-sync/kustomization.yaml
+new file mode 100644
+index 0000000..479723b
+--- /dev/null
++++ b/argo-cd-apps/k-components/disable-auto-sync/kustomization.yaml
+@@ -0,0 +1,9 @@
++---
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++patches:
++  - path: disable-auto-sync.yaml
++    target:
++      group: argoproj.io
++      version: v1alpha1
++      kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/staging/kustomization.yaml b/argo-cd-apps/overlays/staging/kustomization.yaml
+index e23fe3f..f3069fd 100644
+--- a/argo-cd-apps/overlays/staging/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging/kustomization.yaml
+@@ -5,3 +5,5 @@ resources:
+   - ../../base/member
+   - ../../base/all-clusters
+   - ../../base/quality-dashboard
++components:
++  - ../../k-components/disable-auto-sync

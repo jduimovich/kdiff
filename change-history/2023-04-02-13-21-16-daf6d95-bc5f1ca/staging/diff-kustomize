@@ -1,0 +1,105 @@
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-bc5f1ca/staging/app-of-apps-staging.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-daf6d95/staging/app-of-apps-staging.yaml
+24a25,27
+>         automated:
+>           prune: true
+>           selfHeal: true
+65a69,71
+>         automated:
+>           prune: true
+>           selfHeal: true
+106a113,115
+>         automated:
+>           prune: true
+>           selfHeal: true
+149a159,161
+>         automated:
+>           prune: true
+>           selfHeal: true
+182a195,197
+>         automated:
+>           prune: true
+>           selfHeal: true
+225a241,243
+>         automated:
+>           prune: true
+>           selfHeal: true
+273a292,294
+>         automated:
+>           prune: true
+>           selfHeal: true
+306a328,330
+>         automated:
+>           prune: true
+>           selfHeal: true
+337a362,364
+>         automated:
+>           prune: true
+>           selfHeal: true
+386a414,416
+>         automated:
+>           prune: true
+>           selfHeal: true
+429a460,462
+>         automated:
+>           prune: true
+>           selfHeal: true
+470a504,506
+>         automated:
+>           prune: true
+>           selfHeal: true
+503a540,542
+>         automated:
+>           prune: true
+>           selfHeal: true
+534a574,576
+>         automated:
+>           prune: true
+>           selfHeal: true
+565a608,610
+>         automated:
+>           prune: true
+>           selfHeal: true
+598a644,646
+>         automated:
+>           prune: true
+>           selfHeal: true
+639a688,690
+>         automated:
+>           prune: true
+>           selfHeal: true
+688a740,742
+>         automated:
+>           prune: true
+>           selfHeal: true
+729a784,786
+>         automated:
+>           prune: true
+>           selfHeal: true
+780a838,840
+>         automated:
+>           prune: true
+>           selfHeal: true
+813a874,876
+>         automated:
+>           prune: true
+>           selfHeal: true
+844a908,910
+>         automated:
+>           prune: true
+>           selfHeal: true
+895a962,964
+>         automated:
+>           prune: true
+>           selfHeal: true
+926a996,998
+>         automated:
+>           prune: true
+>           selfHeal: true
+967a1040,1042
+>         automated:
+>           prune: true
+>           selfHeal: true
+1009a1085,1087
+>         automated:
+>           prune: true
+>           selfHeal: true

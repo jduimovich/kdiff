@@ -1,0 +1,4 @@
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-aab8da9/staging/app-of-apps-staging.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-aed0855/staging/app-of-apps-staging.yaml
+4,5d3
+<   annotations:
+<     argocd.argoproj.io/sync-options: Prune=false

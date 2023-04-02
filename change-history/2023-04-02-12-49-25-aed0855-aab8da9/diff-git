@@ -1,0 +1,10 @@
+diff --git a/argo-cd-apps/base/local-cluster-secret/host-on-local-cluster/kustomization.yaml b/argo-cd-apps/base/local-cluster-secret/host-on-local-cluster/kustomization.yaml
+index 414dfbf..3dcbc38 100644
+--- a/argo-cd-apps/base/local-cluster-secret/host-on-local-cluster/kustomization.yaml
++++ b/argo-cd-apps/base/local-cluster-secret/host-on-local-cluster/kustomization.yaml
+@@ -5,3 +5,5 @@ resources:
+   - ../base
+ components:
+   - ../../../k-components/assign-host-role-to-local-cluster
++commonAnnotations:
++  argocd.argoproj.io/sync-options: Prune=false
