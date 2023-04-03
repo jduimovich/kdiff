@@ -1,0 +1,12 @@
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index ed1d732..d8c3f4c 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -1,7 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/local-cluster-secret/host-on-local-cluster
+   - ../../base/host
+   - ../../base/member
+   - ../../base/all-clusters
