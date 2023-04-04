@@ -1,0 +1,10 @@
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index d8c3f4c..b26ccf2 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -82,5 +82,3 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: monitoring-workload-prometheus
+-components:
+-  - ../../k-components/disable-auto-sync

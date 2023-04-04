@@ -1,0 +1,13 @@
+diff --git a/components/pipeline-service/OWNERS b/components/pipeline-service/OWNERS
+index 652208c..87852b0 100644
+--- a/components/pipeline-service/OWNERS
++++ b/components/pipeline-service/OWNERS
+@@ -3,6 +3,8 @@
+ approvers:
+   - Roming22
+   - adambkaplan
++  - Mo3m3n
++  - bnallapeta
+ 
+ reviewers:
+   - Roming22

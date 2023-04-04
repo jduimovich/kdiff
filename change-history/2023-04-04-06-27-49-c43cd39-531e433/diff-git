@@ -1,0 +1,13 @@
+diff --git a/argo-cd-apps/app-of-app-sets/base/all-application-sets.yaml b/argo-cd-apps/app-of-app-sets/base/all-application-sets.yaml
+index 15a80ad..41d66e4 100644
+--- a/argo-cd-apps/app-of-app-sets/base/all-application-sets.yaml
++++ b/argo-cd-apps/app-of-app-sets/base/all-application-sets.yaml
+@@ -2,8 +2,6 @@ apiVersion: argoproj.io/v1alpha1
+ kind: Application
+ metadata:
+   name: all-application-sets
+-  finalizers:
+-    - resources-finalizer.argocd.argoproj.io
+ spec:
+   project: default
+   source:
