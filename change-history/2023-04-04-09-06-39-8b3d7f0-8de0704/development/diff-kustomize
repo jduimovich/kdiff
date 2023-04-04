@@ -1,0 +1,42 @@
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-8de0704/development/components/pipeline-service/development/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-8b3d7f0/development/components/pipeline-service/development/kustomize.out.yaml
+1072,1077d1071
+<   - tekton.dev
+<   resources:
+<   - pipelines
+<   verbs:
+<   - get
+< - apiGroups:
+2470c2464
+<         image: quay.io/redhat-appstudio/tekton-results-api:7dcfa61702b9e978dcdafab4d63521f6e5193ce0
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:c0e11ce68cacae1da6756713d0cb5f8b5a394b04
+2483,2485d2476
+<         - mountPath: /etc/ssl/certs/s3-cert.crt
+<           name: ca-s3
+<           subPath: s3-cert.crt
+2496,2499c2487,2490
+<           mc --config-dir /tmp config host add minio "$S3_ENDPOINT" "$S3_ACCESS_KEY_ID" "$S3_SECRET_ACCESS_KEY" &&
+<           if [ -z "$(mc --config-dir /tmp ls minio | grep "$S3_BUCKET_NAME")" ]; then
+<             mc --config-dir /tmp mb --with-lock --region "$S3_REGION" minio/"$S3_BUCKET_NAME" &&
+<             echo "Minio bucket $S3_BUCKET_NAME successfully created."
+---
+>           mc --config-dir /tmp config host add minio "$S3_ENDPOINT" "$S3_ACCESS_KEY_ID" "$S3_SECRET_ACCESS_KEY";
+>           if [ -z "$(mc --config-dir /tmp ls minio | grep tekton-results)" ]; then
+>             mc --config-dir /tmp mb --with-lock --region "$S3_REGION" minio/"$S3_BUCKET_NAME";
+>             echo "Minio bucket $S3_BUCKET_NAME successfully created.";
+2532,2535d2522
+<         volumeMounts:
+<         - mountPath: /etc/ssl/certs/s3-cert.crt
+<           name: ca-s3
+<           subPath: s3-cert.crt
+2538,2543d2524
+<       - name: ca-s3
+<         secret:
+<           items:
+<           - key: public.crt
+<             path: s3-cert.crt
+<           secretName: storage-tls
+2595c2576
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:7dcfa61702b9e978dcdafab4d63521f6e5193ce0
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:c0e11ce68cacae1da6756713d0cb5f8b5a394b04

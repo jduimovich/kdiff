@@ -1,0 +1,35 @@
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-8b3d7f0/staging/app-of-apps-staging.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-30c9f50/staging/app-of-apps-staging.yaml
+627,640c627,630
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: staging
+<             sourceRoot: components/monitoring/grafana
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+---
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+646c636
+<         namespace: appstudio-grafana
+---
+>         namespace: appstudio-workload-monitoring
+650c640
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+---
+>         path: components/monitoring/grafana/base
+659,661c649
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+---
+>             duration: 15s
