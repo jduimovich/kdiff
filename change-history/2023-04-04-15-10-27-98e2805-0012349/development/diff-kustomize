@@ -1,0 +1,50 @@
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-0012349/development/components/enterprise-contract/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-98e2805/development/components/enterprise-contract/kustomize.out.yaml
+64c64
+<                   (exclusions and inclusions)
+---
+>                   (collections, exclusions, inclusions)
+67,68c67
+<                     description: 'Collections set of predefined rules.  DEPRECATED:
+<                       Collections can be listed in include with the "@" prefix.'
+---
+>                     description: Collections set of predefined rules.
+90a90,102
+>               exceptions:
+>                 description: 'Exceptions under which the policy is evaluated as successful
+>                   even if the listed policy checks have reported failure Deprecated:
+>                   This has been replaced by the configuration.'
+>                 properties:
+>                   nonBlocking:
+>                     description: NonBlocking set of policy exceptions that in case
+>                       of failure do not block the success of the outcome
+>                     items:
+>                       type: string
+>                     type: array
+>                     x-kubernetes-list-type: set
+>                 type: object
+119,123d130
+<                     ruleData:
+<                       description: Arbitrary rule data that will be visible to policy
+<                         rules
+<                       type: object
+<                       x-kubernetes-preserve-unknown-fields: true
+236c243
+<   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:e18a97905c6a9e9f96ce39575062084e2c57ea45@sha256:64cf61db656fc8b49e9d5ef966a672a943db47f27c9531deacc9ffe2b5e581b7
+---
+>   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:f1d0eb8927f50ed285f6d517e48935dd9bb3e093@sha256:4116bec9c813d9d3b59c6488d5b0dc2a3d3cd57c8c329283c4313911e6d122ec
+254c261
+<     - oci::quay.io/hacbs-contract/ec-policy-data:git-bca7d72@sha256:be3aa728acc3d8ae602e8c57e9cb3fece050bd120f17bde9de3225294a7f7c99
+---
+>     - oci::quay.io/hacbs-contract/ec-policy-data:git-d995f67@sha256:eb713f2c0d9c944cbbb298a2c8a0ca1e5a741d149f033b145296d6f550ebd10b
+257c264
+<     - oci::quay.io/hacbs-contract/ec-release-policy:git-76b0b9d@sha256:4c49ed849a3d979fe4f4c7cf8d2b3fc64a476836a05b2ee91441861a8eca3c5f
+---
+>     - oci::quay.io/hacbs-contract/ec-release-policy:git-d995f67@sha256:9d2cffae5ed8a541b4bff1acbaa9bb0b42290214de969e515e78f97b8cf8ff51
+275c282
+<     - oci::quay.io/hacbs-contract/ec-policy-data:git-bca7d72@sha256:be3aa728acc3d8ae602e8c57e9cb3fece050bd120f17bde9de3225294a7f7c99
+---
+>     - oci::quay.io/hacbs-contract/ec-policy-data:git-d995f67@sha256:eb713f2c0d9c944cbbb298a2c8a0ca1e5a741d149f033b145296d6f550ebd10b
+278c285
+<     - oci::quay.io/hacbs-contract/ec-release-policy:git-76b0b9d@sha256:4c49ed849a3d979fe4f4c7cf8d2b3fc64a476836a05b2ee91441861a8eca3c5f
+---
+>     - oci::quay.io/hacbs-contract/ec-release-policy:git-d995f67@sha256:9d2cffae5ed8a541b4bff1acbaa9bb0b42290214de969e515e78f97b8cf8ff51

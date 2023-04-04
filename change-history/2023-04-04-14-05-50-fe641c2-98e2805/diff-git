@@ -1,0 +1,26 @@
+diff --git a/components/spi/overlays/staging/base/spi-aws-credentials-external-secret-v2.yaml b/components/spi/overlays/staging/base/spi-aws-credentials-external-secret-v2.yaml
+index 5ada778..8af870d 100644
+--- a/components/spi/overlays/staging/base/spi-aws-credentials-external-secret-v2.yaml
++++ b/components/spi/overlays/staging/base/spi-aws-credentials-external-secret-v2.yaml
+@@ -9,7 +9,7 @@ spec:
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
++    name: appsre-vault
+   data:
+   - secretKey: aws_access_key_id
+     remoteRef:
+diff --git a/components/spi/overlays/staging/base/spi-aws-credentials-external-secret.yaml b/components/spi/overlays/staging/base/spi-aws-credentials-external-secret.yaml
+index 13fbc26..94f10c3 100644
+--- a/components/spi/overlays/staging/base/spi-aws-credentials-external-secret.yaml
++++ b/components/spi/overlays/staging/base/spi-aws-credentials-external-secret.yaml
+@@ -9,7 +9,7 @@ spec:
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+-    name: appsre-vault
++    name: appsre-stonesoup-vault
+   data:
+   - secretKey: config
+     remoteRef:

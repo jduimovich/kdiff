@@ -1,0 +1,15 @@
+diff --git a/components/pipeline-service/base/external-secrets/tekton-results/tekton-results-s3.yaml b/components/pipeline-service/base/external-secrets/tekton-results/tekton-results-s3.yaml
+index 2d23ce4..ff33364 100644
+--- a/components/pipeline-service/base/external-secrets/tekton-results/tekton-results-s3.yaml
++++ b/components/pipeline-service/base/external-secrets/tekton-results/tekton-results-s3.yaml
+@@ -17,3 +17,10 @@ spec:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+     name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: "{{ .aws_access_key_id }}"
++        aws_secret_access_key: "{{ .aws_secret_access_key }}"
++        aws_region: "{{ .aws_region }}"
++        bucket: "{{ .bucket }}"
++        endpoint: "https://{{ .endpoint }}"

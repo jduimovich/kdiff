@@ -1,0 +1,570 @@
+diff --git a/argo-cd-apps/base/host/optional/infra-deployments/hac-pact-broker/hac-pact-broker.yaml b/argo-cd-apps/base/host/optional/infra-deployments/hac-pact-broker/hac-pact-broker.yaml
+deleted file mode 100644
+index 6a00c9f..0000000
+--- a/argo-cd-apps/base/host/optional/infra-deployments/hac-pact-broker/hac-pact-broker.yaml
++++ /dev/null
+@@ -1,31 +0,0 @@
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: hac-pact-broker
+-spec:
+-  generators:
+-    - clusters: {}
+-  template:
+-    metadata:
+-      name: hac-pact-broker-{{nameNormalized}}
+-    spec:
+-      project: default
+-      source:
+-        path: components/hac-pact-broker
+-        repoURL: https://github.com/redhat-appstudio/infra-deployments.git    
+-        targetRevision: main
+-      destination:
+-        namespace: hac-pact-broker
+-        server: '{{server}}'
+-      syncPolicy:
+-        automated:
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-          - CreateNamespace=true
+-        retry:
+-          limit: -1
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m
+diff --git a/argo-cd-apps/base/host/optional/infra-deployments/hac-pact-broker/kustomization.yaml b/argo-cd-apps/base/host/optional/infra-deployments/hac-pact-broker/kustomization.yaml
+deleted file mode 100644
+index 16dbdd4..0000000
+--- a/argo-cd-apps/base/host/optional/infra-deployments/hac-pact-broker/kustomization.yaml
++++ /dev/null
+@@ -1,8 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- hac-pact-broker.yaml
+-components:
+-  - ../../../../../k-components/deploy-to-host-cluster
+-  - ../../../../../k-components/inject-argocd-namespace
+-  - ../../../../../k-components/inject-infra-deployments-repo-details
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index 862da26..eb8cae6 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -12,7 +12,6 @@ resources:
+ - cluster-registration-maintainer.yaml
+ - group-sync/
+ - dora-metrics.yaml
+-- pact-broker.yaml
+ - internal-services.yaml
+ - pipeline-service-sre.yaml
+ - sandbox-sre-admins.yaml
+diff --git a/components/authentication/base/pact-broker.yaml b/components/authentication/base/pact-broker.yaml
+deleted file mode 100644
+index 10e5e4e..0000000
+--- a/components/authentication/base/pact-broker.yaml
++++ /dev/null
+@@ -1,49 +0,0 @@
+-kind: ClusterRole
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pact-broker-maintainer
+-  namespace: hac-pact-broker
+-rules:
+-  - verbs:
+-      - create
+-      - delete
+-      - edit
+-      - list
+-    apiGroups:
+-      - ''
+-    resources:
+-      - secrets
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pact-broker-maintainers
+-  namespace: hac-pact-broker
+-subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Katka92
+-  - kind: Group 
+-    apiGroup: rbac.authorization.k8s.io
+-    name: QE team
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pact-broker-maintainer
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pact-broker-read
+-  namespace: hac-pact-broker
+-subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Katka92
+-  - kind: Group 
+-    apiGroup: rbac.authorization.k8s.io
+-    name: QE team
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: view
+diff --git a/components/hac-pact-broker/kustomization.yaml b/components/hac-pact-broker/kustomization.yaml
+deleted file mode 100644
+index 0e24c1f..0000000
+--- a/components/hac-pact-broker/kustomization.yaml
++++ /dev/null
+@@ -1,10 +0,0 @@
+-resources:
+-  - pactbroker.yaml
+-  - postgre.yaml
+-  - postgrepvc.yaml
+-  - postgreservice.yaml
+-  - route.yaml
+-  - service.yaml
+-
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+diff --git a/components/hac-pact-broker/pactbroker.yaml b/components/hac-pact-broker/pactbroker.yaml
+deleted file mode 100644
+index 17e3745..0000000
+--- a/components/hac-pact-broker/pactbroker.yaml
++++ /dev/null
+@@ -1,86 +0,0 @@
+-apiVersion: apps.openshift.io/v1
+-kind: DeploymentConfig
+-metadata:
+-  labels:
+-    app: pact-broker
+-  name: pact-broker
+-spec:
+-  replicas: 1
+-  selector:
+-    app: pact-broker
+-  strategy:
+-    activeDeadlineSeconds: 21600
+-    rollingParams:
+-      intervalSeconds: 1
+-      maxSurge: 25%
+-      maxUnavailable: 25%
+-      timeoutSeconds: 600
+-      updatePeriodSeconds: 1
+-    type: Rolling
+-  template:
+-    metadata:
+-      labels:
+-        app: pact-broker
+-        deploymentconfig: pact-broker
+-    spec:
+-      containers:
+-      - env:
+-        - name: PACT_BROKER_DATABASE_USERNAME
+-          valueFrom:
+-            secretKeyRef:
+-              key: username
+-              name: pact-broker-secrets
+-        - name: PACT_BROKER_DATABASE_PASSWORD
+-          valueFrom:
+-            secretKeyRef:
+-              key: password
+-              name: pact-broker-secrets
+-        - name: PACT_BROKER_BASIC_AUTH_USERNAME
+-          valueFrom:
+-            secretKeyRef:
+-              key: pact_broker_admin
+-              name: pact-broker-secrets
+-        - name: PACT_BROKER_BASIC_AUTH_PASSWORD
+-          valueFrom:
+-            secretKeyRef:
+-              key: pact_broker_admin_password
+-              name: pact-broker-secrets
+-        - name: PACT_BROKER_BASIC_AUTH_READ_ONLY_USERNAME
+-          valueFrom:
+-            secretKeyRef:
+-              key: pact_broker_user
+-              name: pact-broker-secrets
+-        - name: PACT_BROKER_BASIC_AUTH_READ_ONLY_PASSWORD
+-          valueFrom:
+-            secretKeyRef:
+-              key: pact_broker_user_password
+-              name: pact-broker-secrets
+-        - name: PACT_BROKER_DATABASE_HOST
+-          value: postgresql-pact-broker
+-        - name: PACT_BROKER_DATABASE_NAME
+-          value: pact_broker
+-        - name: PACT_BROKER_PORT
+-          value: "8080"
+-        - name: PACT_BROKER_PUBLIC_HEARTBEAT
+-          value: "true"
+-        image: pactfoundation/pact-broker:latest
+-        imagePullPolicy: Always
+-        livenessProbe:
+-          failureThreshold: 3
+-          httpGet:
+-            path: /diagnostic/status/heartbeat
+-            port: 8080
+-            scheme: HTTP
+-          periodSeconds: 10
+-          successThreshold: 1
+-          timeoutSeconds: 1
+-        name: pact-broker
+-        ports:
+-        - containerPort: 8080
+-          protocol: TCP
+-        terminationMessagePath: /dev/termination-log
+-        terminationMessagePolicy: File
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: Always
+-      schedulerName: default-scheduler
+-      terminationGracePeriodSeconds: 30
+diff --git a/components/hac-pact-broker/postgre.yaml b/components/hac-pact-broker/postgre.yaml
+deleted file mode 100644
+index f26ae58..0000000
+--- a/components/hac-pact-broker/postgre.yaml
++++ /dev/null
+@@ -1,88 +0,0 @@
+-apiVersion: apps.openshift.io/v1
+-kind: DeploymentConfig
+-metadata:
+-  labels:
+-    app: pact-broker
+-    deploymentconfig: postgresql-pact-broker
+-  name: postgresql-pact-broker
+-spec:
+-  replicas: 1
+-  selector:
+-    app: pact-broker
+-    deploymentconfig: postgresql-pact-broker
+-  strategy:
+-    recreateParams:
+-      timeoutSeconds: 600
+-    resources: {}
+-    type: Recreate
+-  template:
+-    metadata:
+-      labels:
+-        app: pact-broker
+-        deploymentconfig: postgresql-pact-broker
+-    spec:
+-      containers:
+-      - env:
+-        - name: POSTGRESQL_USER
+-          valueFrom:
+-            secretKeyRef:
+-              key: username
+-              name: pact-broker-secrets
+-        - name: POSTGRESQL_PASSWORD
+-          valueFrom:
+-            secretKeyRef:
+-              key: password
+-              name: pact-broker-secrets
+-        - name: POSTGRESQL_DATABASE
+-          value: pact_broker
+-        imagePullPolicy: Always
+-        livenessProbe:
+-          failureThreshold: 3
+-          initialDelaySeconds: 30
+-          periodSeconds: 10
+-          successThreshold: 1
+-          tcpSocket:
+-            port: 5432
+-          timeoutSeconds: 1
+-        name: postgresql
+-        ports:
+-        - containerPort: 5432
+-          protocol: TCP
+-        readinessProbe:
+-          exec:
+-            command:
+-            - /bin/sh
+-            - -i
+-            - -c
+-            - psql -h 127.0.0.1 -U $POSTGRESQL_USER -q -d $POSTGRESQL_DATABASE -c
+-              'SELECT 1'
+-          failureThreshold: 3
+-          initialDelaySeconds: 5
+-          periodSeconds: 10
+-          successThreshold: 1
+-          timeoutSeconds: 1
+-        securityContext:
+-          capabilities: {}
+-          privileged: false
+-        terminationMessagePath: /dev/termination-log
+-        volumeMounts:
+-        - mountPath: /var/lib/pgsql/data
+-          name: postgresql-pact-broker-data
+-      dnsPolicy: ClusterFirst
+-      restartPolicy: Always
+-      securityContext: {}
+-      terminationGracePeriodSeconds: 30
+-      volumes:
+-      - name: postgresql-pact-broker-data
+-        persistentVolumeClaim:
+-          claimName: postgresql-pact-broker-data
+-  triggers:
+-  - imageChangeParams:
+-      automatic: true
+-      containerNames:
+-      - postgresql
+-      from:
+-        kind: ImageStreamTag
+-        name: postgresql:13-el8
+-        namespace: openshift
+-    type: ImageChange
+diff --git a/components/hac-pact-broker/postgrepvc.yaml b/components/hac-pact-broker/postgrepvc.yaml
+deleted file mode 100644
+index 93fae0d..0000000
+--- a/components/hac-pact-broker/postgrepvc.yaml
++++ /dev/null
+@@ -1,14 +0,0 @@
+-apiVersion: v1
+-kind: PersistentVolumeClaim
+-metadata:
+-  labels:
+-    app: pact-broker
+-    deploymentconfig: postgresql-pact-broker
+-  name: postgresql-pact-broker-data
+-spec:
+-  accessModes:
+-  - ReadWriteOnce
+-  resources:
+-    requests:
+-      storage: 5Gi
+-      
+\ No newline at end of file
+diff --git a/components/hac-pact-broker/postgreservice.yaml b/components/hac-pact-broker/postgreservice.yaml
+deleted file mode 100644
+index de914d2..0000000
+--- a/components/hac-pact-broker/postgreservice.yaml
++++ /dev/null
+@@ -1,17 +0,0 @@
+-apiVersion: v1
+-kind: Service
+-metadata:
+-  labels:
+-    app: pact-broker
+-  name: postgresql-pact-broker
+-spec:
+-  ports:
+-  - name: postgresql
+-    port: 5432
+-    protocol: TCP
+-    targetPort: 5432
+-  selector:
+-    app: pact-broker
+-    deploymentconfig: postgresql-pact-broker
+-  sessionAffinity: None
+-  type: ClusterIP
+diff --git a/components/hac-pact-broker/route.yaml b/components/hac-pact-broker/route.yaml
+deleted file mode 100644
+index f9c5dfe..0000000
+--- a/components/hac-pact-broker/route.yaml
++++ /dev/null
+@@ -1,14 +0,0 @@
+-apiVersion: route.openshift.io/v1
+-kind: Route
+-metadata:
+-  labels:
+-    app: pact-broker
+-  name: pact-broker
+-spec:
+-  port:
+-    targetPort: 8080-tcp
+-  to:
+-    kind: Service
+-    name: pact-broker
+-    weight: 100
+-  wildcardPolicy: None
+diff --git a/components/hac-pact-broker/service.yaml b/components/hac-pact-broker/service.yaml
+deleted file mode 100644
+index 28d770a..0000000
+--- a/components/hac-pact-broker/service.yaml
++++ /dev/null
+@@ -1,16 +0,0 @@
+-apiVersion: v1
+-kind: Service
+-metadata:
+-  labels:
+-    app: pact-broker
+-  name: pact-broker
+-spec:
+-  ports:
+-  - name: 8080-tcp
+-    port: 8080
+-    protocol: TCP
+-    targetPort: 8080
+-  selector:
+-    app: pact-broker
+-  sessionAffinity: None
+-  type: ClusterIP
+diff --git a/hack/bootstrap-cluster.sh b/hack/bootstrap-cluster.sh
+index 5374bb4..7dca9a4 100755
+--- a/hack/bootstrap-cluster.sh
++++ b/hack/bootstrap-cluster.sh
+@@ -3,7 +3,7 @@
+ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"/..
+ 
+ main() {
+-    local mode keycloak toolchain broker
++    local mode keycloak toolchain
+     while [[ $# -gt 0 ]]; do
+         key=$1
+         case $key in
+@@ -15,10 +15,6 @@ main() {
+             keycloak="--keycloak"
+             shift
+             ;;
+-        --broker | -b)
+-            broker="--broker"
+-            shift
+-            ;;
+         preview | upstream)
+             mode=$1
+             shift
+@@ -56,20 +52,19 @@ main() {
+         fi
+         ;;
+     "preview")
+-        $ROOT/hack/preview.sh $toolchain $keycloak $broker
++        $ROOT/hack/preview.sh $toolchain $keycloak
+         ;;
+     esac
+ }
+ 
+ print_help() {
+-    echo "Usae: $0 MODE [-t|--toolchain] [-kc|--keycloak] [-b|--broker] [-h|--help]"
++    echo "Usae: $0 MODE [-t|--toolchain] [-kc|--keycloak] [-h|--help]"
+     echo "  MODE             upstream/preview (default: upstream)"
+     echo "  -t, --toolchain  (only in preview mode) Install toolchain operators"
+     echo "  -kc, --keycloak  (only in preview mode) Configure the toolchain operator to use keycloak deployed on the cluster"
+-    echo "  -b, --broker     (only in preview mode) Install Pact Broker"
+     echo "  -h, --help       Show this help message and exit"
+     echo
+-    echo "Example usage: \`$0 preview --toolchain --keycloak --broker"
++    echo "Example usage: \`$0 preview --toolchain --keycloak"
+ }
+ 
+ if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+diff --git a/hack/bootstrap-host-cluster.sh b/hack/bootstrap-host-cluster.sh
+index 5ba9530..24d1615 100755
+--- a/hack/bootstrap-host-cluster.sh
++++ b/hack/bootstrap-host-cluster.sh
+@@ -5,7 +5,6 @@ declare -r ROOT="${BASH_SOURCE[0]%/*}"
+ main() {
+     load_global_vars
+     "${ROOT}/secret-creator/create-quality-dashboard-secrets.sh"
+-    "${ROOT}/secret-creator/create-pact-broker-secret.sh"
+ }
+ 
+ load_global_vars() {
+diff --git a/hack/preview-template.env b/hack/preview-template.env
+index c74eeb5..4f8ee73 100644
+--- a/hack/preview-template.env
++++ b/hack/preview-template.env
+@@ -97,7 +97,3 @@ export IMAGE_CONTROLLER_IMAGE_TAG=
+ ### Quay secret
+ export IMAGE_CONTROLLER_QUAY_ORG=
+ export IMAGE_CONTROLLER_QUAY_TOKEN=
+-
+-## Pact Broker credentials 
+-export BROKER_USERNAME=
+-export BROKER_PASSWORD=
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 463c821..a06ff18 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -5,17 +5,15 @@ ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"/..
+ 
+ # Print help message
+ function print_help() {
+-  echo "Usae: $0 MODE [--toolchain] [--keycloak] [--broker] [-h|--help]"
++  echo "Usae: $0 MODE [--toolchain] [--keycloak] [-h|--help]"
+   echo "  MODE             upstream/preview (default: upstream)"
+   echo "  --toolchain  (only in preview mode) Install toolchain operators"
+   echo "  --keycloak  (only in preview mode) Configure the toolchain operator to use keycloak deployed on the cluster"
+-  echo " --broker (only in preview mode) Install Pact Broker"
+   echo
+-  echo "Example usage: \`$0 --toolchain --keycloak --broker"
++  echo "Example usage: \`$0 --toolchain --keycloak"
+ }
+ TOOLCHAIN=false
+ KEYCLOAK=false
+-BROKER=false
+ 
+ while [[ $# -gt 0 ]]; do
+   key=$1
+@@ -28,10 +26,6 @@ while [[ $# -gt 0 ]]; do
+       KEYCLOAK=true
+       shift
+       ;;
+-    --broker)
+-      BROKER=true
+-      shift
+-      ;;
+     -h|--help)
+       print_help
+       exit 0
+@@ -80,17 +74,6 @@ if [ -z "$MY_GIT_FORK_REMOTE" ]; then
+     exit 1
+ fi
+ 
+-if $BROKER; then
+-  if [ -z "$BROKER_USERNAME" ]; then
+-    echo "Please export BROKER_USERNAME" 
+-    exit 1
+-  fi
+-  if [ -z "$BROKER_PASSWORD" ]; then
+-    echo "Please export BROKER_PASSWORD" 
+-    exit 1
+-  fi
+-fi
+-
+ MY_GIT_REPO_URL=$(git ls-remote --get-url $MY_GIT_FORK_REMOTE | sed 's|^git@github.com:|https://github.com/|')
+ MY_GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+ trap "git checkout $MY_GIT_BRANCH" EXIT
+@@ -129,11 +112,6 @@ update_patch_file () {
+ update_patch_file "${ROOT}/argo-cd-apps/k-components/inject-infra-deployments-repo-details/application-patch.yaml"
+ update_patch_file "${ROOT}/argo-cd-apps/k-components/inject-infra-deployments-repo-details/application-set-patch.yaml"
+ 
+-# if broker should be deployed, add it to deployments
+-if $BROKER; then
+-  yq -i '.resources += "../../base/host/optional/infra-deployments/hac-pact-broker"' argo-cd-apps/overlays/development/kustomization.yaml
+-fi
+-
+ # delete argoCD applications which are not in DEPLOY_ONLY env var if it's set
+ if [ -n "$DEPLOY_ONLY" ]; then
+   APPLICATIONS=$(\
+diff --git a/hack/secret-creator/create-pact-broker-secret.sh b/hack/secret-creator/create-pact-broker-secret.sh
+deleted file mode 100755
+index 7b3f591..0000000
+--- a/hack/secret-creator/create-pact-broker-secret.sh
++++ /dev/null
+@@ -1,21 +0,0 @@
+-#!/bin/bash -e
+-
+-
+-main() {
+-    echo "Setting secrets for Pact Broker"
+-    kubectl create namespace hac-pact-broker -o yaml --dry-run=client | oc apply -f-
+-    if ! kubectl get secret -n hac-pact-broker pact-broker-secrets &>/dev/null; then
+-        kubectl create secret generic pact-broker-secrets \
+-            --namespace=hac-pact-broker \
+-            --from-literal=pact_broker_admin=$BROKER_USERNAME \
+-            --from-literal=pact_broker_admin_password=$BROKER_PASSWORD \
+-            --from-literal=pact_broker_user=$BROKER_USERNAME \
+-            --from-literal=pact_broker_user_password=$BROKER_PASSWORD \
+-            --from-literal=username=user \
+-            --from-literal=password=abc123
+-    fi
+-}
+-
+-if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+-    main "$@"
+-fi
