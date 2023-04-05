@@ -1,0 +1,84 @@
+diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-0df9ea5/staging/components/application-api/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-3ae1f7a/staging/components/application-api/kustomize.out.yaml
+988,991d987
+<               lastBuiltCommit:
+<                 description: 'The last built commit id (SHA-1 checksum) from the latest
+<                   component build. Example: 41fbdb124775323f58fd5ce93c70bb7d79c20650.'
+<                 type: string
+1172,1175d1167
+<                   allowInsecureSkipTLSVerify:
+<                     description: Indicates that a Service should not check the TLS
+<                       certificate when connecting to this target.
+<                     type: boolean
+1186d1177
+<                 - allowInsecureSkipTLSVerify
+1266,1283d1256
+<                   target:
+<                     description: Target is used to reference a DeploymentTargetClaim
+<                       for a target Environment. The Environment controller uses the
+<                       referenced DeploymentTargetClaim to access its bounded DeploymentTarget
+<                       with cluster credential secret.
+<                     properties:
+<                       deploymentTargetClaim:
+<                         description: DeploymentTargetClaimConfig specifies the DeploymentTargetClaim
+<                           details for a given Environment.
+<                         properties:
+<                           claimName:
+<                             type: string
+<                         required:
+<                         - claimName
+<                         type: object
+<                     required:
+<                     - deploymentTargetClaim
+<                     type: object
+1309d1281
+<                   - This field is deprecated, and should not be used.
+1559,1571c1531,1532
+<         description: "The `SnapshotEnvironmentBinding` resource specifies the deployment
+<           relationship between (a single application, a single environment, and a
+<           single snapshot) combination. \n It can be thought of as a 3-tuple that
+<           defines what Application should be deployed to what Environment, and which
+<           Snapshot should be deployed (Snapshot being the specific component container
+<           image versions of that Aplication that should be deployed to that Environment).
+<           \n **Note**: There should not exist multiple SnapshotEnvironmentBinding
+<           CRs in a Namespace that share the same Application and Environment value.
+<           For example: - Good: - SnapshotEnvironmentBinding A: (application=appA,
+<           environment=dev, snapshot=my-snapshot) - SnapshotEnvironmentBinding B: (application=appA,
+<           environment=staging, snapshot=my-snapshot) \n - Bad: - SnapshotEnvironmentBinding
+<           A: (application=*appA*, environment=*staging*, snapshot=my-snapshot) - SnapshotEnvironmentBinding
+<           B: (application=*appA*, environment=*staging*, snapshot=second-snapshot)"
+---
+>         description: SnapshotEnvironmentBinding is the Schema for the snapshotenvironmentbindings
+>           API
+1586,1588c1547,1548
+<             description: See 'SnapshotEnvironmentBinding' resource for details of
+<               this resource. SnapshotEnvironmentBindingSpec defines the desired state
+<               of SnapshotEnvironmentBinding.
+---
+>             description: SnapshotEnvironmentBindingSpec defines the desired state
+>               of SnapshotEnvironmentBinding
+1592,1593c1552
+<                   (defined in the same namespace) that we are deploying as part of
+<                   this SnapshotEnvironmentBinding. Required
+---
+>                   (defined in the namespace) involved in the binding. Required
+1596,1597c1555
+<                 description: Component-specific configuration information, used when
+<                   generating GitOps repository resources. Required.
+---
+>                 description: Components contains individual component data. Required.
+1668c1626
+<                 description: Environment is the environment resource (defined in the
+---
+>                 description: Environment is the Environment resource (defined in the
+1687,1688d1644
+<                 description: BindingConditions will contain user-oriented error messages
+<                   from the SnapshotEnvironmentBinding reconciler.
+1883,1886c1839,1841
+<                   resources that are owned by the SnapshotEnvironmentBinding, and
+<                   are deploying the Components of the Application to the target Environment.
+<                   To determine the health/sync status of a binding, you can look at
+<                   the GitOpsDeployments decribed here.
+---
+>                   resources that correspond to the binding. To determine the health/sync
+>                   status of a binding, you can look at the GitOpsDeployments decribed
+>                   here.
