@@ -1,0 +1,286 @@
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index dc7fec6..af5adde 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -5,7 +5,6 @@ resources:
+   - ../../../base/external-secrets
+   - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=6444c804324e550fdb5492e1d744a76558e7d623
+   - spi-aws-credentials-external-secret.yaml
+-  - spi-aws-credentials-external-secret-v2.yaml
+ 
+ namespace: spi-system
+ 
+diff --git a/components/spi/overlays/staging/base/spi-aws-credentials-external-secret-v2.yaml b/components/spi/overlays/staging/base/spi-aws-credentials-external-secret-v2.yaml
+deleted file mode 100644
+index 8af870d..0000000
+--- a/components/spi/overlays/staging/base/spi-aws-credentials-external-secret-v2.yaml
++++ /dev/null
+@@ -1,32 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: spi-aws-secretsmanager-credentials-v2
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-vault
+-  data:
+-  - secretKey: aws_access_key_id
+-    remoteRef:
+-      key: "" # TBD in overlays
+-      property: aws_access_key_id
+-  - secretKey: aws_secret_access_key
+-    remoteRef:
+-      key: "" # TBD in overlays
+-      property: aws_secret_access_key
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: aws-secretsmanager-credentials-v2
+-    template:
+-      engineVersion: v2
+-      data:
+-        credentials: |
+-          [default]
+-          aws_access_key_id = {{ .aws_access_key_id }}
+-          aws_secret_access_key = {{ .aws_secret_access_key }}
+diff --git a/components/spi/overlays/staging/base/spi-aws-credentials-external-secret.yaml b/components/spi/overlays/staging/base/spi-aws-credentials-external-secret.yaml
+index 94f10c3..cc4545b 100644
+--- a/components/spi/overlays/staging/base/spi-aws-credentials-external-secret.yaml
++++ b/components/spi/overlays/staging/base/spi-aws-credentials-external-secret.yaml
+@@ -9,12 +9,8 @@ spec:
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
++    name: appsre-vault
+   data:
+-  - secretKey: config
+-    remoteRef:
+-      key: "" # TBD in overlays
+-      property: config
+   - secretKey: aws_access_key_id
+     remoteRef:
+       key: "" # TBD in overlays
+@@ -34,4 +30,6 @@ spec:
+           [default]
+           aws_access_key_id = {{ .aws_access_key_id }}
+           aws_secret_access_key = {{ .aws_secret_access_key }}
+-        config: "{{ .config }}"
++        config: |
++          [default]
++          region = us-east-1
+diff --git a/components/spi/overlays/staging/stone-stg-m01/config-patch.json b/components/spi/overlays/staging/stone-stg-m01/config-patch.json
+index ee54226..096deaf 100644
+--- a/components/spi/overlays/staging/stone-stg-m01/config-patch.json
++++ b/components/spi/overlays/staging/stone-stg-m01/config-patch.json
+@@ -1,9 +1,4 @@
+ [
+-  {
+-    "op": "replace",
+-    "path": "/data/VAULTHOST",
+-    "value": "https://vault-spi-vault.apps.stone-stg-m01.7ayg.p1.openshiftapps.com"
+-  },
+   {
+     "op": "replace",
+     "path": "/data/BASEURL",
+@@ -12,6 +7,6 @@
+   {
+     "op": "add",
+     "path": "/data/SPIINSTANCEID",
+-    "value": "stg-m01"
++    "value": "spi-stage/m01"
+   }
+ ]
+diff --git a/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml b/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
+index 9a03a79..57e2e58 100644
+--- a/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
++++ b/components/spi/overlays/staging/stone-stg-m01/kustomization.yaml
+@@ -19,27 +19,9 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: spi-vault-approle-spi-oauth-config-path.yaml
+-    target:
+-      name: spi-vault-approle-spi-oauth
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: spi-vault-approle-spi-operator-config-path.yaml
+-    target:
+-      name: spi-vault-approle-spi-operator
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+   - path: spi-aws-credentials-path-patch.yaml
+     target:
+       name: spi-aws-secretsmanager-credentials
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: spi-aws-credentials-v2-path-patch.yaml
+-    target:
+-      name: spi-aws-secretsmanager-credentials-v2
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
+index aecc3b3..14321b3 100644
+--- a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
++++ b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
+@@ -1,10 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: staging/spi/m01/aws-secretsmanager-config
++  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: staging/spi/m01/aws-secretsmanager-credentials
+-- op: replace
+-  path: /spec/data/2/remoteRef/key
+-  value: staging/spi/m01/aws-secretsmanager-credentials
++  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
+diff --git a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-v2-path-patch.yaml b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-v2-path-patch.yaml
+deleted file mode 100644
+index 14321b3..0000000
+--- a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-v2-path-patch.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+----
+-- op: replace
+-  path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
+-- op: replace
+-  path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
+diff --git a/components/spi/overlays/staging/stone-stg-m01/spi-vault-approle-spi-oauth-config-path.yaml b/components/spi/overlays/staging/stone-stg-m01/spi-vault-approle-spi-oauth-config-path.yaml
+deleted file mode 100644
+index 483244f..0000000
+--- a/components/spi/overlays/staging/stone-stg-m01/spi-vault-approle-spi-oauth-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: staging/spi/m01/vault-approle-spi-oauth
+diff --git a/components/spi/overlays/staging/stone-stg-m01/spi-vault-approle-spi-operator-config-path.yaml b/components/spi/overlays/staging/stone-stg-m01/spi-vault-approle-spi-operator-config-path.yaml
+deleted file mode 100644
+index 4cc2cf5..0000000
+--- a/components/spi/overlays/staging/stone-stg-m01/spi-vault-approle-spi-operator-config-path.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: staging/spi/m01/vault-approle-spi-operator
+-
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/config-patch.json b/components/spi/overlays/staging/stone-stg-rh01/config-patch.json
+index b72abfc..9a72f67 100644
+--- a/components/spi/overlays/staging/stone-stg-rh01/config-patch.json
++++ b/components/spi/overlays/staging/stone-stg-rh01/config-patch.json
+@@ -1,9 +1,4 @@
+ [
+-  {
+-    "op": "replace",
+-    "path": "/data/VAULTHOST",
+-    "value": "https://vault-spi-vault.apps.stone-stg-rh01.l2vh.p1.openshiftapps.com"
+-  },
+   {
+     "op": "replace",
+     "path": "/data/BASEURL",
+@@ -12,6 +7,6 @@
+   {
+     "op": "add",
+     "path": "/data/SPIINSTANCEID",
+-    "value": "stg-rh01"
++    "value": "spi-stage/rh01"
+   }
+ ]
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml b/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
+index 9a03a79..57e2e58 100644
+--- a/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
++++ b/components/spi/overlays/staging/stone-stg-rh01/kustomization.yaml
+@@ -19,27 +19,9 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: spi-vault-approle-spi-oauth-config-path.yaml
+-    target:
+-      name: spi-vault-approle-spi-oauth
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: spi-vault-approle-spi-operator-config-path.yaml
+-    target:
+-      name: spi-vault-approle-spi-operator
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+   - path: spi-aws-credentials-path-patch.yaml
+     target:
+       name: spi-aws-secretsmanager-credentials
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: spi-aws-credentials-v2-path-patch.yaml
+-    target:
+-      name: spi-aws-secretsmanager-credentials-v2
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
+index b6dd46f..14321b3 100644
+--- a/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
++++ b/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
+@@ -1,10 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: staging/spi/rh01/aws-secretsmanager-config
++  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: staging/spi/rh01/aws-secretsmanager-credentials
+-- op: replace
+-  path: /spec/data/2/remoteRef/key
+-  value: staging/spi/rh01/aws-secretsmanager-credentials
++  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-v2-path-patch.yaml b/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-v2-path-patch.yaml
+deleted file mode 100644
+index 14321b3..0000000
+--- a/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-v2-path-patch.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+----
+-- op: replace
+-  path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
+-- op: replace
+-  path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/spi-vault-approle-spi-oauth-config-path.yaml b/components/spi/overlays/staging/stone-stg-rh01/spi-vault-approle-spi-oauth-config-path.yaml
+deleted file mode 100644
+index c6c1aea..0000000
+--- a/components/spi/overlays/staging/stone-stg-rh01/spi-vault-approle-spi-oauth-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: staging/spi/rh01/vault-approle-spi-oauth
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/spi-vault-approle-spi-operator-config-path.yaml b/components/spi/overlays/staging/stone-stg-rh01/spi-vault-approle-spi-operator-config-path.yaml
+deleted file mode 100644
+index 36f2f3a..0000000
+--- a/components/spi/overlays/staging/stone-stg-rh01/spi-vault-approle-spi-operator-config-path.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: staging/spi/rh01/vault-approle-spi-operator
+-

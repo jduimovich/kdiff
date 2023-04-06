@@ -1,0 +1,27 @@
+diff --git a/components/spi/overlays/staging/base/delete-vault-approle-secrets.yaml b/components/spi/overlays/staging/base/delete-vault-approle-secrets.yaml
+new file mode 100644
+index 0000000..ea64459
+--- /dev/null
++++ b/components/spi/overlays/staging/base/delete-vault-approle-secrets.yaml
+@@ -0,0 +1,12 @@
++---
++apiVersion: v1
++kind: ExternalSecret
++metadata:
++  name: spi-vault-approle-spi-oauth
++$patch: delete
++---
++apiVersion: v1
++kind: ExternalSecret
++metadata:
++  name: spi-vault-approle-spi-operator
++$patch: delete
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index af5adde..b4e8e48 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -22,3 +22,4 @@ patches:
+       name: spi-controller-manager
+     path: operator-limits-patch.json
+   - path: delete-shared-configuration-file.yaml
++  - path: delete-vault-approle-secrets.yaml
