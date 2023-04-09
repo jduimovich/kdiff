@@ -1,4 +1,4 @@
-./kustomized-cache/commit-7552c29/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-df573db/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-7552c29/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
 2696,2702d2695
 <     template:
 <       data:
@@ -7,7 +7,7 @@
 <         aws_secret_access_key: '{{ .aws_secret_access_key }}'
 <         bucket: '{{ .bucket }}'
 <         endpoint: https://{{ .endpoint }}
-./kustomized-cache/commit-7552c29/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-df573db/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-7552c29/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
 2696,2702d2695
 <     template:
 <       data:

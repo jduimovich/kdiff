@@ -1,4 +1,4 @@
-./kustomized-cache/commit-98e2805/staging/components/enterprise-contract/kustomize.out.yaml
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0012349/staging/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-98e2805/staging/components/enterprise-contract/kustomize.out.yaml
 64c64
 <                   (exclusions and inclusions)
 ---

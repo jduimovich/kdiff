@@ -1,4 +1,4 @@
-./kustomized-cache/commit-362af27/development/components/build-service/development/kustomize.out.yaml
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7552c29/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-362af27/development/components/build-service/development/kustomize.out.yaml
 649c649
 <       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:7bf0839b252b2aa2bed6d593f892ed931de58cb3
 ---

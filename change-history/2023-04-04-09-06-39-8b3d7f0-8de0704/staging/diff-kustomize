@@ -1,4 +1,4 @@
-./kustomized-cache/commit-8b3d7f0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8de0704/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-8b3d7f0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
 1056,1061d1055
 <   - tekton.dev
 <   resources:
@@ -14,7 +14,7 @@
 <         image: quay.io/redhat-appstudio/tekton-results-watcher:7dcfa61702b9e978dcdafab4d63521f6e5193ce0
 ---
 >         image: quay.io/redhat-appstudio/tekton-results-watcher:c0e11ce68cacae1da6756713d0cb5f8b5a394b04
-./kustomized-cache/commit-8b3d7f0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8de0704/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-8b3d7f0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
 1056,1061d1055
 <   - tekton.dev
 <   resources:
