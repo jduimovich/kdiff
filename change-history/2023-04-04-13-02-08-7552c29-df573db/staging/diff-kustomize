@@ -1,4 +1,4 @@
-diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-df573db/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-7552c29/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+./kustomized-cache/commit-7552c29/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
 2696,2702d2695
 <     template:
 <       data:
@@ -7,7 +7,7 @@ diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kus
 <         aws_secret_access_key: '{{ .aws_secret_access_key }}'
 <         bucket: '{{ .bucket }}'
 <         endpoint: https://{{ .endpoint }}
-diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-df573db/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-7552c29/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+./kustomized-cache/commit-7552c29/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
 2696,2702d2695
 <     template:
 <       data:

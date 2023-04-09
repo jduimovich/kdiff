@@ -1,4 +1,4 @@
-diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-0df9ea5/staging/components/application-api/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-3ae1f7a/staging/components/application-api/kustomize.out.yaml
+./kustomized-cache/commit-3ae1f7a/staging/components/application-api/kustomize.out.yaml
 988,991d987
 <               lastBuiltCommit:
 <                 description: 'The last built commit id (SHA-1 checksum) from the latest

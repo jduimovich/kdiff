@@ -1,4 +1,4 @@
-diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-8b3d7f0/development/app-of-apps-development.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-30c9f50/development/app-of-apps-development.yaml
+./kustomized-cache/commit-30c9f50/development/app-of-apps-development.yaml
 551,596d550
 <   name: monitoring-workload-grafana
 <   namespace: openshift-gitops

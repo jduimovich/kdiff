@@ -22,7 +22,7 @@ function ktry() {
         LINT_FILE=$OUT_DIR/kustomize.out.lint
         if [ ! -f "$LINT_FILE" ]; then
             echo "Running: Linting $OUT_FILE"
-            $ROOT/bin/kube-linter lint $OUT_FILE  > $LINT_FILE 
+            $ROOT/bin/kube-linter lint $OUT_FILE | sed s#$ROOT#./#g  > $LINT_FILE 
         fi  
     fi
 }
@@ -112,7 +112,7 @@ do
     mkdir -p $K_DIR  
     KDIFF=$K_DIR/diff-kustomize
     LINT_COPY=$K_DIR/lint  
-    diff -r $DIR_CURRENT $DIR_PREV --exclude=kustomize.out.lint >$KDIFF
+    diff -r $DIR_CURRENT $DIR_PREV --exclude=kustomize.out.lint | sed s#$ROOT/#./#g  >$KDIFF
     if [ -f "$LINT_CURRENT" ]; then 
         cp $LINT_CURRENT $LINT_COPY
     fi 

@@ -1,4 +1,4 @@
-diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-3ae1f7a/development/components/pipeline-service/development/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-0012349/development/components/pipeline-service/development/kustomize.out.yaml
+./kustomized-cache/commit-0012349/development/components/pipeline-service/development/kustomize.out.yaml
 1071a1072,1077
 >   - tekton.dev
 >   resources:

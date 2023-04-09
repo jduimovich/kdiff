@@ -1,4 +1,4 @@
-diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-8b3d7f0/staging/app-of-apps-staging.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-30c9f50/staging/app-of-apps-staging.yaml
+./kustomized-cache/commit-30c9f50/staging/app-of-apps-staging.yaml
 627,640c627,630
 <   - merge:
 <       generators:

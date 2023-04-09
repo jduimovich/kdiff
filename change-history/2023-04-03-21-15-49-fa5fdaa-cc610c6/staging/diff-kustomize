@@ -1,4 +1,4 @@
-diff -r '--exclude=kustomize.out.lint' /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-cc610c6/staging/components/quality-dashboard/staging/kustomize.out.yaml /home/runner/work/kdiff/kdiff/hack/../kustomized-cache/commit-fa5fdaa/staging/components/quality-dashboard/staging/kustomize.out.yaml
+./kustomized-cache/commit-fa5fdaa/staging/components/quality-dashboard/staging/kustomize.out.yaml
 160c160
 <         image: quay.io/redhat-appstudio/quality-dashboard-backend:6dcbe00f35b91fefc2f4948f438b7fa7bd97f155
 ---
