@@ -1,0 +1,107 @@
+diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml
+index 7833065..184920e 100644
+--- a/components/spi/overlays/production/base/kustomization.yaml
++++ b/components/spi/overlays/production/base/kustomization.yaml
+@@ -4,6 +4,7 @@ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+   - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=afd8266005fae6fd5a9d6ed2f98ffe15a6a9d021
++  - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+ 
+diff --git a/components/spi/overlays/production/base/spi-aws-credentials-external-secret.yaml b/components/spi/overlays/production/base/spi-aws-credentials-external-secret.yaml
+new file mode 100644
+index 0000000..cc4545b
+--- /dev/null
++++ b/components/spi/overlays/production/base/spi-aws-credentials-external-secret.yaml
+@@ -0,0 +1,35 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: spi-aws-secretsmanager-credentials
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  data:
++  - secretKey: aws_access_key_id
++    remoteRef:
++      key: "" # TBD in overlays
++      property: aws_access_key_id
++  - secretKey: aws_secret_access_key
++    remoteRef:
++      key: "" # TBD in overlays
++      property: aws_secret_access_key
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: aws-secretsmanager-credentials
++    template:
++      engineVersion: v2
++      data:
++        credentials: |
++          [default]
++          aws_access_key_id = {{ .aws_access_key_id }}
++          aws_secret_access_key = {{ .aws_secret_access_key }}
++        config: |
++          [default]
++          region = us-east-1
+diff --git a/components/spi/overlays/production/stone-prd-m01/kustomization.yaml b/components/spi/overlays/production/stone-prd-m01/kustomization.yaml
+index 13d72d7..aa6070a 100644
+--- a/components/spi/overlays/production/stone-prd-m01/kustomization.yaml
++++ b/components/spi/overlays/production/stone-prd-m01/kustomization.yaml
+@@ -31,3 +31,9 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: spi-aws-credentials-path-patch.yaml
++    target:
++      name: spi-aws-secretsmanager-credentials
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
+new file mode 100644
+index 0000000..494bcb8
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
+@@ -0,0 +1,7 @@
++---
++- op: replace
++  path: /spec/data/0/remoteRef/key
++  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-stage/spi-secrets-manager
++- op: replace
++  path: /spec/data/1/remoteRef/key
++  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-stage/spi-secrets-manager
+diff --git a/components/spi/overlays/production/stone-prd-rh01/kustomization.yaml b/components/spi/overlays/production/stone-prd-rh01/kustomization.yaml
+index 13d72d7..aa6070a 100644
+--- a/components/spi/overlays/production/stone-prd-rh01/kustomization.yaml
++++ b/components/spi/overlays/production/stone-prd-rh01/kustomization.yaml
+@@ -31,3 +31,9 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: spi-aws-credentials-path-patch.yaml
++    target:
++      name: spi-aws-secretsmanager-credentials
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
+new file mode 100644
+index 0000000..494bcb8
+--- /dev/null
++++ b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
+@@ -0,0 +1,7 @@
++---
++- op: replace
++  path: /spec/data/0/remoteRef/key
++  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-stage/spi-secrets-manager
++- op: replace
++  path: /spec/data/1/remoteRef/key
++  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-stage/spi-secrets-manager

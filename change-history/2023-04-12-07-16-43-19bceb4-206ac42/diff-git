@@ -1,0 +1,28 @@
+diff --git a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
+index 494bcb8..318087f 100644
+--- a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
++++ b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-stage/spi-secrets-manager
++  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-stage/spi-secrets-manager
++  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
+diff --git a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
+index 494bcb8..318087f 100644
+--- a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
++++ b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-stage/spi-secrets-manager
++  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-stage/spi-secrets-manager
++  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
