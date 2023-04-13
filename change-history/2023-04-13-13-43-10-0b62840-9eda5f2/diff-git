@@ -1,0 +1,24 @@
+diff --git a/components/spi/overlays/production/stone-prd-m01/config-patch.json b/components/spi/overlays/production/stone-prd-m01/config-patch.json
+index 70fcfc6..5dbb119 100644
+--- a/components/spi/overlays/production/stone-prd-m01/config-patch.json
++++ b/components/spi/overlays/production/stone-prd-m01/config-patch.json
+@@ -12,6 +12,6 @@
+   {
+     "op": "add",
+     "path": "/data/SPIINSTANCEID",
+-    "value": "prd-m01"
++    "value": "spi-prod/m01"
+   }
+ ]
+diff --git a/components/spi/overlays/production/stone-prd-rh01/config-patch.json b/components/spi/overlays/production/stone-prd-rh01/config-patch.json
+index 231b17e..bf55549 100644
+--- a/components/spi/overlays/production/stone-prd-rh01/config-patch.json
++++ b/components/spi/overlays/production/stone-prd-rh01/config-patch.json
+@@ -12,6 +12,6 @@
+   {
+     "op": "add",
+     "path": "/data/SPIINSTANCEID",
+-    "value": "prd-rh01"
++    "value": "spi-prod/rh01"
+   }
+ ]
