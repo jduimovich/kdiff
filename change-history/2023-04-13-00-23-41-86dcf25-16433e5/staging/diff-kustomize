@@ -1,0 +1,474 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-16433e5/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-86dcf25/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+58,61d57
+<               clusterResources:
+<                 type: boolean
+<               createNewServiceAccount:
+<                 type: boolean
+64,67d59
+<               namespaces:
+<                 items:
+<                   type: string
+<                 type: array
+1696,1711d1687
+<     service.beta.openshift.io/serving-cert-secret-name: core-webhook-server-cert
+<   name: gitops-core-service-webhook-service
+<   namespace: gitops
+< spec:
+<   ports:
+<   - port: 443
+<     protocol: TCP
+<     targetPort: 9443
+<   selector:
+<     control-plane: backend-controller-manager
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1763c1739
+<         image: quay.io/redhat-appstudio/gitops-service:c41ed8727351a05324e91308c1c2d6a433197807
+---
+>         image: quay.io/redhat-appstudio/gitops-service:cb9da99ef735c8a0942d8fe8ad6eced03b58a1d9
+1868c1844
+<         image: quay.io/redhat-appstudio/gitops-service:c41ed8727351a05324e91308c1c2d6a433197807
+---
+>         image: quay.io/redhat-appstudio/gitops-service:cb9da99ef735c8a0942d8fe8ad6eced03b58a1d9
+1895,1898d1870
+<         volumeMounts:
+<         - mountPath: /tmp/k8s-webhook-server/serving-certs
+<           name: cert
+<           readOnly: true
+1932c1904
+<         image: quay.io/redhat-appstudio/gitops-service:c41ed8727351a05324e91308c1c2d6a433197807
+---
+>         image: quay.io/redhat-appstudio/gitops-service:cb9da99ef735c8a0942d8fe8ad6eced03b58a1d9
+1938,1942d1909
+<       volumes:
+<       - name: cert
+<         secret:
+<           defaultMode: 420
+<           secretName: core-webhook-server-cert
+1990c1957
+<         image: quay.io/redhat-appstudio/gitops-service:c41ed8727351a05324e91308c1c2d6a433197807
+---
+>         image: quay.io/redhat-appstudio/gitops-service:cb9da99ef735c8a0942d8fe8ad6eced03b58a1d9
+2246,2335d2212
+< kind: MutatingWebhookConfiguration
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     service.beta.openshift.io/inject-cabundle: "true"
+<   creationTimestamp: null
+<   name: gitops-core-service-mutating-webhook-configuration
+< webhooks:
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /mutate-managed-gitops-redhat-com-v1alpha1-gitopsdeployment
+<   failurePolicy: Fail
+<   name: mgitopsdeployment.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeployments
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /mutate-managed-gitops-redhat-com-v1alpha1-gitopsdeploymentmanagedenvironment
+<   failurePolicy: Fail
+<   name: mgitopsdeploymentmanagedenvironment.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeploymentmanagedenvironments
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /mutate-managed-gitops-redhat-com-v1alpha1-gitopsdeploymentrepositorycredential
+<   failurePolicy: Fail
+<   name: mgitopsdeploymentrepositorycredential.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeploymentrepositorycredentials
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /mutate-managed-gitops-redhat-com-v1alpha1-gitopsdeploymentsyncrun
+<   failurePolicy: Fail
+<   name: mgitopsdeploymentsyncrun.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeploymentsyncruns
+<   sideEffects: None
+< ---
+< apiVersion: admissionregistration.k8s.io/v1
+2403,2492d2279
+<   sideEffects: None
+< ---
+< apiVersion: admissionregistration.k8s.io/v1
+< kind: ValidatingWebhookConfiguration
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     service.beta.openshift.io/inject-cabundle: "true"
+<   creationTimestamp: null
+<   name: gitops-core-service-validating-webhook-configuration
+< webhooks:
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /validate-managed-gitops-redhat-com-v1alpha1-gitopsdeployment
+<   failurePolicy: Fail
+<   name: vgitopsdeployment.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeployments
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /validate-managed-gitops-redhat-com-v1alpha1-gitopsdeploymentmanagedenvironment
+<   failurePolicy: Fail
+<   name: vgitopsdeploymentmanagedenvironment.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeploymentmanagedenvironments
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /validate-managed-gitops-redhat-com-v1alpha1-gitopsdeploymentrepositorycredential
+<   failurePolicy: Fail
+<   name: vgitopsdeploymentrepositorycredential.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeploymentrepositorycredentials
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /validate-managed-gitops-redhat-com-v1alpha1-gitopsdeploymentsyncrun
+<   failurePolicy: Fail
+<   name: vgitopsdeploymentsyncrun.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeploymentsyncruns
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-16433e5/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-86dcf25/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml
+58,61d57
+<               clusterResources:
+<                 type: boolean
+<               createNewServiceAccount:
+<                 type: boolean
+64,67d59
+<               namespaces:
+<                 items:
+<                   type: string
+<                 type: array
+1696,1711d1687
+<     service.beta.openshift.io/serving-cert-secret-name: core-webhook-server-cert
+<   name: gitops-core-service-webhook-service
+<   namespace: gitops
+< spec:
+<   ports:
+<   - port: 443
+<     protocol: TCP
+<     targetPort: 9443
+<   selector:
+<     control-plane: backend-controller-manager
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1763c1739
+<         image: quay.io/redhat-appstudio/gitops-service:c41ed8727351a05324e91308c1c2d6a433197807
+---
+>         image: quay.io/redhat-appstudio/gitops-service:cb9da99ef735c8a0942d8fe8ad6eced03b58a1d9
+1868c1844
+<         image: quay.io/redhat-appstudio/gitops-service:c41ed8727351a05324e91308c1c2d6a433197807
+---
+>         image: quay.io/redhat-appstudio/gitops-service:cb9da99ef735c8a0942d8fe8ad6eced03b58a1d9
+1895,1898d1870
+<         volumeMounts:
+<         - mountPath: /tmp/k8s-webhook-server/serving-certs
+<           name: cert
+<           readOnly: true
+1932c1904
+<         image: quay.io/redhat-appstudio/gitops-service:c41ed8727351a05324e91308c1c2d6a433197807
+---
+>         image: quay.io/redhat-appstudio/gitops-service:cb9da99ef735c8a0942d8fe8ad6eced03b58a1d9
+1938,1942d1909
+<       volumes:
+<       - name: cert
+<         secret:
+<           defaultMode: 420
+<           secretName: core-webhook-server-cert
+1990c1957
+<         image: quay.io/redhat-appstudio/gitops-service:c41ed8727351a05324e91308c1c2d6a433197807
+---
+>         image: quay.io/redhat-appstudio/gitops-service:cb9da99ef735c8a0942d8fe8ad6eced03b58a1d9
+2246,2335d2212
+< kind: MutatingWebhookConfiguration
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     service.beta.openshift.io/inject-cabundle: "true"
+<   creationTimestamp: null
+<   name: gitops-core-service-mutating-webhook-configuration
+< webhooks:
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /mutate-managed-gitops-redhat-com-v1alpha1-gitopsdeployment
+<   failurePolicy: Fail
+<   name: mgitopsdeployment.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeployments
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /mutate-managed-gitops-redhat-com-v1alpha1-gitopsdeploymentmanagedenvironment
+<   failurePolicy: Fail
+<   name: mgitopsdeploymentmanagedenvironment.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeploymentmanagedenvironments
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /mutate-managed-gitops-redhat-com-v1alpha1-gitopsdeploymentrepositorycredential
+<   failurePolicy: Fail
+<   name: mgitopsdeploymentrepositorycredential.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeploymentrepositorycredentials
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /mutate-managed-gitops-redhat-com-v1alpha1-gitopsdeploymentsyncrun
+<   failurePolicy: Fail
+<   name: mgitopsdeploymentsyncrun.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeploymentsyncruns
+<   sideEffects: None
+< ---
+< apiVersion: admissionregistration.k8s.io/v1
+2403,2492d2279
+<   sideEffects: None
+< ---
+< apiVersion: admissionregistration.k8s.io/v1
+< kind: ValidatingWebhookConfiguration
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     service.beta.openshift.io/inject-cabundle: "true"
+<   creationTimestamp: null
+<   name: gitops-core-service-validating-webhook-configuration
+< webhooks:
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /validate-managed-gitops-redhat-com-v1alpha1-gitopsdeployment
+<   failurePolicy: Fail
+<   name: vgitopsdeployment.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeployments
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /validate-managed-gitops-redhat-com-v1alpha1-gitopsdeploymentmanagedenvironment
+<   failurePolicy: Fail
+<   name: vgitopsdeploymentmanagedenvironment.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeploymentmanagedenvironments
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /validate-managed-gitops-redhat-com-v1alpha1-gitopsdeploymentrepositorycredential
+<   failurePolicy: Fail
+<   name: vgitopsdeploymentrepositorycredential.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeploymentrepositorycredentials
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-core-service-webhook-service
+<       namespace: gitops
+<       path: /validate-managed-gitops-redhat-com-v1alpha1-gitopsdeploymentsyncrun
+<   failurePolicy: Fail
+<   name: vgitopsdeploymentsyncrun.kb.io
+<   rules:
+<   - apiGroups:
+<     - managed-gitops.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - gitopsdeploymentsyncruns
