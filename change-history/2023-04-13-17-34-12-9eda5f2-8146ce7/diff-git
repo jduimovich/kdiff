@@ -1,0 +1,72 @@
+diff --git a/components/monitoring/prometheus/base/servicemonitors/pipeline-service.yaml b/components/monitoring/prometheus/base/servicemonitors/pipeline-service.yaml
+index 8d2b794..855d735 100644
+--- a/components/monitoring/prometheus/base/servicemonitors/pipeline-service.yaml
++++ b/components/monitoring/prometheus/base/servicemonitors/pipeline-service.yaml
+@@ -1,33 +1,44 @@
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
++---
++apiVersion: v1
++kind: ServiceAccount
+ metadata:
+-  name: pipeline-service
+-  namespace: appstudio-workload-monitoring
+-  labels:
+-    app: pipeline-metrics-exporter
+-    prometheus: appstudio-workload
+-spec:
+-  selector:
+-    matchLabels:
+-      app: pipeline-metrics-exporter
+-  endpoints:
+-    - path: /metrics
+-      port: metrics
+-      interval: 15s
+-      scheme: http
+-  namespaceSelector:
+-    matchNames:
+-      - openshift-pipelines
++  name: pipeline-service-metrics-reader-sa
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: pipeline-service-metrics-reader
++rules:
++  - nonResourceURLs:
++      - /metrics
++    verbs:
++      - get
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+ metadata:
+-  name: pipeline-service-exporter-reader-binding
++  name: prometheus-pipeline-service-metrics-reader
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+-  name: pipeline-service-exporter-reader
++  name: pipeline-service-metrics-reader
+ subjects:
+   - kind: ServiceAccount
+-    name: prometheus-k8s
+-    namespace: appstudio-workload-monitoring
++    name: pipeline-service-metrics-reader-sa
++    namespace: openshift-pipelines
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++    - path: /metrics
++      port: metrics
++      interval: 15s
++      scheme: http
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
