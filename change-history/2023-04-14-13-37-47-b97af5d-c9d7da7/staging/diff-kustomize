@@ -1,0 +1,122 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c9d7da7/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-b97af5d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1056,1061d1055
+<   - tekton.dev
+<   resources:
+<   - pipelines
+<   verbs:
+<   - get
+< - apiGroups:
+2018c2012
+<       - image: quay.io/redhat-appstudio/user-workload:9ff3255f3ca2b4a562be2d5f43f8dff2f7846bb1
+---
+>       - image: quay.io/redhat-pipeline-service/metrics-exporter:45db641
+2436c2430
+<         image: quay.io/redhat-appstudio/tekton-results-api:4c93d5c4f34d96d31ade787ee1856d144e342143
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:c0e11ce68cacae1da6756713d0cb5f8b5a394b04
+2455,2492d2448
+<       initContainers:
+<       - env:
+<         - name: DB_USER
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.user
+<               name: tekton-results-database
+<         - name: DB_PASSWORD
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.password
+<               name: tekton-results-database
+<         - name: DB_HOST
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.host
+<               name: tekton-results-database
+<         - name: DB_NAME
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.name
+<               name: tekton-results-database
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:4c93d5c4f34d96d31ade787ee1856d144e342143
+<         name: migrator
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             add:
+<             - NET_BIND_SERVICE
+<             drop:
+<             - ALL
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+<         volumeMounts:
+<         - mountPath: /etc/tekton/results
+<           name: config
+<           readOnly: true
+2546c2502
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:4c93d5c4f34d96d31ade787ee1856d144e342143
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:c0e11ce68cacae1da6756713d0cb5f8b5a394b04
+2836d2791
+<     haproxy.router.openshift.io/hsts_header: max-age=63072000
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c9d7da7/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-b97af5d/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1056,1061d1055
+<   - tekton.dev
+<   resources:
+<   - pipelines
+<   verbs:
+<   - get
+< - apiGroups:
+2018c2012
+<       - image: quay.io/redhat-appstudio/user-workload:9ff3255f3ca2b4a562be2d5f43f8dff2f7846bb1
+---
+>       - image: quay.io/redhat-pipeline-service/metrics-exporter:45db641
+2436c2430
+<         image: quay.io/redhat-appstudio/tekton-results-api:4c93d5c4f34d96d31ade787ee1856d144e342143
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:c0e11ce68cacae1da6756713d0cb5f8b5a394b04
+2455,2492d2448
+<       initContainers:
+<       - env:
+<         - name: DB_USER
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.user
+<               name: tekton-results-database
+<         - name: DB_PASSWORD
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.password
+<               name: tekton-results-database
+<         - name: DB_HOST
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.host
+<               name: tekton-results-database
+<         - name: DB_NAME
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.name
+<               name: tekton-results-database
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:4c93d5c4f34d96d31ade787ee1856d144e342143
+<         name: migrator
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             add:
+<             - NET_BIND_SERVICE
+<             drop:
+<             - ALL
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+<         volumeMounts:
+<         - mountPath: /etc/tekton/results
+<           name: config
+<           readOnly: true
+2546c2502
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:4c93d5c4f34d96d31ade787ee1856d144e342143
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:c0e11ce68cacae1da6756713d0cb5f8b5a394b04
+2836d2791
+<     haproxy.router.openshift.io/hsts_header: max-age=63072000
