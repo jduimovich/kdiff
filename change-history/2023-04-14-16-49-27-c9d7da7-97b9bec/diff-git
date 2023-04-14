@@ -1,0 +1,20 @@
+diff --git a/components/pipeline-service/staging/stone-stg-m01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/staging/stone-stg-m01/tekton-results-s3-secret-path.yaml
+index 0851839..43f9044 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/tekton-results-s3-secret-path.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/tekton-results-s3-secret-path.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-staging-plnsvc-s3
++  value: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-stg-plnsvc-s3
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/staging/stone-stg-rh01/tekton-results-s3-secret-path.yaml
+index 6f0c87d..3f69d93 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/tekton-results-s3-secret-path.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/tekton-results-s3-secret-path.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-staging-plnsvc-s3
++  value: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-stg-plnsvc-s3

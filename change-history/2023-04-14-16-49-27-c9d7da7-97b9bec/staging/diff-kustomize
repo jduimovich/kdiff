@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-97b9bec/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-c9d7da7/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+2725c2725
+<       key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-stg-plnsvc-s3
+---
+>       key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-staging-plnsvc-s3
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-97b9bec/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-c9d7da7/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+2725c2725
+<       key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-stg-plnsvc-s3
+---
+>       key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-staging-plnsvc-s3
