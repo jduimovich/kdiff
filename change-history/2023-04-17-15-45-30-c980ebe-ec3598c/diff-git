@@ -1,0 +1,222 @@
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index afc7322..e8a9993 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -70,4 +70,4 @@ patches:
+     target:
+       kind: ApplicationSet
+       version: v1alpha1
+-      name: grafana
+\ No newline at end of file
++      name: monitoring-workload-grafana
+diff --git a/components/monitoring/grafana/base/build-service/dashboard.yaml b/components/monitoring/grafana/base/build-service/dashboard.yaml
+new file mode 100644
+index 0000000..55b11f5
+--- /dev/null
++++ b/components/monitoring/grafana/base/build-service/dashboard.yaml
+@@ -0,0 +1,23 @@
++---
++apiVersion: integreatly.org/v1alpha1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-initial-build-pipeline
++  labels: 
++    app: appstudio-grafana
++spec:
++  configMapRef:
++    name: grafana-dashboard-initial-build-pipeline
++    key: grafana-dashboard-initial-build-pipeline.json
++---
++apiVersion: integreatly.org/v1alpha1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-pac-provision
++  labels: 
++    app: appstudio-grafana
++spec:
++  configMapRef:
++    name: grafana-dashboard-pac-provision
++    key: grafana-dashboard-pac-provision.json
++
+diff --git a/components/monitoring/grafana/base/build-service/kustomization.yaml b/components/monitoring/grafana/base/build-service/kustomization.yaml
+index f36b56d..7dc1011 100644
+--- a/components/monitoring/grafana/base/build-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/build-service/kustomization.yaml
+@@ -2,3 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - https://github.com/redhat-appstudio/build-service/config/monitoring/grafana-dashboards/?ref=36027b1048f2ee9913f4728e396c082dd3b5605e
++- dashboard.yaml
+diff --git a/components/monitoring/grafana/base/dora-metrics/dashboard.yaml b/components/monitoring/grafana/base/dora-metrics/dashboard.yaml
+new file mode 100644
+index 0000000..4e6388a
+--- /dev/null
++++ b/components/monitoring/grafana/base/dora-metrics/dashboard.yaml
+@@ -0,0 +1,10 @@
++apiVersion: integreatly.org/v1alpha1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-dora-metrics
++  labels: 
++    app: appstudio-grafana
++spec:
++  configMapRef:
++    name: grafana-dashboard-dora-metrics
++    key: dora-dashboard.json
+diff --git a/components/monitoring/grafana/base/dora-metrics/kustomization.yaml b/components/monitoring/grafana/base/dora-metrics/kustomization.yaml
+index fd63daf..0d9c67c 100644
+--- a/components/monitoring/grafana/base/dora-metrics/kustomization.yaml
++++ b/components/monitoring/grafana/base/dora-metrics/kustomization.yaml
+@@ -2,3 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - https://github.com/redhat-appstudio/dora-metrics/deploy/grafana/?ref=326417b0ffc4205fa3acaa675bfc0286f12b7682
++- dashboard.yaml
+diff --git a/components/monitoring/grafana/base/has/dashboard.yaml b/components/monitoring/grafana/base/has/dashboard.yaml
+new file mode 100644
+index 0000000..51e9d1f
+--- /dev/null
++++ b/components/monitoring/grafana/base/has/dashboard.yaml
+@@ -0,0 +1,10 @@
++apiVersion: integreatly.org/v1alpha1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-has-gitops-repo-metrics
++  labels: 
++    app: appstudio-grafana
++spec:
++  configMapRef:
++    name: grafana-dashboard-has-gitops-repo-metrics
++    key: has-gitops-repo-metrics.json
+diff --git a/components/monitoring/grafana/base/has/kustomization.yaml b/components/monitoring/grafana/base/has/kustomization.yaml
+index 442c240..7b92ec8 100644
+--- a/components/monitoring/grafana/base/has/kustomization.yaml
++++ b/components/monitoring/grafana/base/has/kustomization.yaml
+@@ -2,3 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=28a8f33e67cfcda61c82cf7d06c8820bc9d12305
++  - dashboard.yaml
+diff --git a/components/monitoring/grafana/base/jvm-build-service/dashboard.yaml b/components/monitoring/grafana/base/jvm-build-service/dashboard.yaml
+new file mode 100644
+index 0000000..4893ebd
+--- /dev/null
++++ b/components/monitoring/grafana/base/jvm-build-service/dashboard.yaml
+@@ -0,0 +1,10 @@
++apiVersion: integreatly.org/v1alpha1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-jvm-dependency-builds
++  labels: 
++    app: appstudio-grafana
++spec:
++  configMapRef:
++    name: grafana-dashboard-jvm-dependency-builds
++    key: grafana-dashboard-jvm-dependency-builds.json
+diff --git a/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml b/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
+index 94448d6..360f977 100644
+--- a/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
+@@ -2,3 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=e45fdb3f4634c592ba8c8ca554773345d9103600
++- dashboard.yaml
+diff --git a/components/monitoring/grafana/base/managed-gitops/dashboard.yaml b/components/monitoring/grafana/base/managed-gitops/dashboard.yaml
+new file mode 100644
+index 0000000..e6bedb2
+--- /dev/null
++++ b/components/monitoring/grafana/base/managed-gitops/dashboard.yaml
+@@ -0,0 +1,10 @@
++apiVersion: integreatly.org/v1alpha1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-gitops-service
++  labels: 
++    app: appstudio-grafana
++spec:
++  configMapRef:
++    name: grafana-dashboard-gitops-service
++    key: gitops-dashboard.json
+diff --git a/components/monitoring/grafana/base/managed-gitops/kustomization.yaml b/components/monitoring/grafana/base/managed-gitops/kustomization.yaml
+index 5562d2e..685f6b2 100644
+--- a/components/monitoring/grafana/base/managed-gitops/kustomization.yaml
++++ b/components/monitoring/grafana/base/managed-gitops/kustomization.yaml
+@@ -2,3 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - https://github.com/redhat-appstudio/managed-gitops/manifests/base/monitoring/grafana-dashboards/stonesoup?ref=d2480e7abbe50e4207b4ef9368e481a9329a3a46
++- dashboard.yaml
+diff --git a/components/monitoring/grafana/base/release-service/dashboard.yaml b/components/monitoring/grafana/base/release-service/dashboard.yaml
+new file mode 100644
+index 0000000..ebd3fa2
+--- /dev/null
++++ b/components/monitoring/grafana/base/release-service/dashboard.yaml
+@@ -0,0 +1,10 @@
++apiVersion: integreatly.org/v1alpha1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-release-release-attempts
++  labels: 
++    app: appstudio-grafana
++spec:
++  configMapRef:
++    name: grafana-dashboard-release-release-attempts
++    key: release-attempts.json
+diff --git a/components/monitoring/grafana/base/release-service/kustomization.yaml b/components/monitoring/grafana/base/release-service/kustomization.yaml
+index ac0959a..4f048e9 100644
+--- a/components/monitoring/grafana/base/release-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/release-service/kustomization.yaml
+@@ -2,3 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - https://github.com/redhat-appstudio/release-service/config/monitoring/?ref=21edb2dadc4e6031568689ab46ff78ad3a55de8c
++- dashboard.yaml
+diff --git a/components/monitoring/grafana/base/spi/dashboard.yaml b/components/monitoring/grafana/base/spi/dashboard.yaml
+new file mode 100644
+index 0000000..b1e8c7b
+--- /dev/null
++++ b/components/monitoring/grafana/base/spi/dashboard.yaml
+@@ -0,0 +1,33 @@
++---
++apiVersion: integreatly.org/v1alpha1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-spi-health
++  labels: 
++    app: appstudio-grafana
++spec:
++  configMapRef:
++    name: grafana-dashboard-spi-health
++    key: spi-health.json
++---
++apiVersion: integreatly.org/v1alpha1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-spi-outbound-traffic
++  labels: 
++    app: appstudio-grafana
++spec:
++  configMapRef:
++    name: grafana-dashboard-spi-outbound-traffic
++    key: spi-outbound-traffic.json
++---
++apiVersion: integreatly.org/v1alpha1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-spi-slo
++  labels: 
++    app: appstudio-grafana
++spec:
++  configMapRef:
++    name: grafana-dashboard-spi-slo
++    key: spi-slo.json
+diff --git a/components/monitoring/grafana/base/spi/kustomization.yaml b/components/monitoring/grafana/base/spi/kustomization.yaml
+index f4bf319..95e1fd9 100644
+--- a/components/monitoring/grafana/base/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/spi/kustomization.yaml
+@@ -2,3 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/base?ref=645b321aaa1e444b9b9adde5aa8bffb4315879ff
++- dashboard.yaml
