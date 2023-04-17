@@ -1,0 +1,17 @@
+diff --git a/components/monitoring/grafana/base/kustomization.yaml b/components/monitoring/grafana/base/kustomization.yaml
+index c6d6760..3e5ab7f 100644
+--- a/components/monitoring/grafana/base/kustomization.yaml
++++ b/components/monitoring/grafana/base/kustomization.yaml
+@@ -11,6 +11,12 @@ resources:
+ - has/
+ - jvm-build-service/
+ 
++# Skip applying the grafana operands (integreatly.org) while the grafana operator is being installed.
++# See more information about this option, here:
++# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++
+ namespace: "appstudio-grafana"
+ 
+ generatorOptions:
