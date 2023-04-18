@@ -1,0 +1,21 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4c51d64/development/components/application-api/kustomize.out.yaml ./kustomized-cache/commit-e11ce11/development/components/application-api/kustomize.out.yaml
+1308,1310c1308,1309
+<                 description: 'DEPRECATED: Type is whether the Environment is a POC
+<                   or non-POC environment - This field is deprecated, and should not
+<                   be used.'
+---
+>                 description: Type is whether the Environment is a POC or non-POC environment
+>                   - This field is deprecated, and should not be used.
+1317,1320d1315
+<                   clusterType:
+<                     description: ClusterType indicates whether the target environment
+<                       is Kubernetes or OpenShift
+<                     type: string
+1322,1323c1317,1320
+<                     description: KubernetesClusterCredentials contains cluster credentials
+<                       for a target Kubernetes/OpenShift cluster.
+---
+>                     description: "KubernetesClusterCredentials allows you to specify
+>                       cluster credentials for stanadard K8s cluster (e.g. non-KCP
+>                       workspace). \n See this temporary URL for details on what values
+>                       to provide for the APIURL and Secret: https://github.com/redhat-appstudio/managed-gitops/tree/main/examples/m6-demo#gitopsdeploymentmanagedenvironment-resource"
