@@ -1,0 +1,59 @@
+diff --git a/components/tekton-ci/base/external-secrets/kustomization.yaml b/components/tekton-ci/base/external-secrets/kustomization.yaml
+index fb84962..3bafa33 100644
+--- a/components/tekton-ci/base/external-secrets/kustomization.yaml
++++ b/components/tekton-ci/base/external-secrets/kustomization.yaml
+@@ -3,4 +3,5 @@ kind: Kustomization
+ resources:
+ - tekton-ci-push-secret.yaml
+ - infra-deployments-pr-creator.yaml
++- snyk-shared-token.yaml
+ namespace: tekton-ci
+diff --git a/components/tekton-ci/base/external-secrets/snyk-shared-token.yaml b/components/tekton-ci/base/external-secrets/snyk-shared-token.yaml
+new file mode 100644
+index 0000000..dd97f75
+--- /dev/null
++++ b/components/tekton-ci/base/external-secrets/snyk-shared-token.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: snyk-shared-token 
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: "staging/build/snyk-shared-secret" # will be added by the overlays
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: snyk-shared-token 
+diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
+index ce66f2a..c591582 100644
+--- a/components/tekton-ci/production/kustomization.yaml
++++ b/components/tekton-ci/production/kustomization.yaml
+@@ -17,3 +17,9 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
++  - path: snyk-shared-secret.yaml
++    target:
++      name: snyk-shared-secret
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
+diff --git a/components/tekton-ci/production/snyk-shared-token.yaml b/components/tekton-ci/production/snyk-shared-token.yaml
+new file mode 100644
+index 0000000..528cd20
+--- /dev/null
++++ b/components/tekton-ci/production/snyk-shared-token.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/build/snyk-shared-secret 
