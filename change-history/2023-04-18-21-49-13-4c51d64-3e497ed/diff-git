@@ -1,0 +1,158 @@
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+index af256ef..620f8ad 100644
+--- a/components/gitops/development/kustomization.yaml
++++ b/components/gitops/development/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ 
+ resources:
+ - https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=72f0bc24d009ca9acca4938993f2c6d774a3dbab
+-- ../openshift-gitops
++- ../openshift-gitops/overlays/production-and-dev
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+diff --git a/components/gitops/openshift-gitops/cluster-rbac/argocd-application-controller-clusterrole.yaml b/components/gitops/openshift-gitops/base/cluster-rbac/argocd-application-controller-clusterrole.yaml
+similarity index 100%
+rename from components/gitops/openshift-gitops/cluster-rbac/argocd-application-controller-clusterrole.yaml
+rename to components/gitops/openshift-gitops/base/cluster-rbac/argocd-application-controller-clusterrole.yaml
+diff --git a/components/gitops/openshift-gitops/cluster-rbac/argocd-application-controller-clusterrolebinding.yaml b/components/gitops/openshift-gitops/base/cluster-rbac/argocd-application-controller-clusterrolebinding.yaml
+similarity index 100%
+rename from components/gitops/openshift-gitops/cluster-rbac/argocd-application-controller-clusterrolebinding.yaml
+rename to components/gitops/openshift-gitops/base/cluster-rbac/argocd-application-controller-clusterrolebinding.yaml
+diff --git a/components/gitops/openshift-gitops/cluster-rbac/argocd-server-clusterrole.yaml b/components/gitops/openshift-gitops/base/cluster-rbac/argocd-server-clusterrole.yaml
+similarity index 100%
+rename from components/gitops/openshift-gitops/cluster-rbac/argocd-server-clusterrole.yaml
+rename to components/gitops/openshift-gitops/base/cluster-rbac/argocd-server-clusterrole.yaml
+diff --git a/components/gitops/openshift-gitops/cluster-rbac/argocd-server-clusterrolebinding.yaml b/components/gitops/openshift-gitops/base/cluster-rbac/argocd-server-clusterrolebinding.yaml
+similarity index 100%
+rename from components/gitops/openshift-gitops/cluster-rbac/argocd-server-clusterrolebinding.yaml
+rename to components/gitops/openshift-gitops/base/cluster-rbac/argocd-server-clusterrolebinding.yaml
+diff --git a/components/gitops/openshift-gitops/cluster-rbac/kustomization.yaml b/components/gitops/openshift-gitops/base/cluster-rbac/kustomization.yaml
+similarity index 100%
+rename from components/gitops/openshift-gitops/cluster-rbac/kustomization.yaml
+rename to components/gitops/openshift-gitops/base/cluster-rbac/kustomization.yaml
+diff --git a/components/gitops/openshift-gitops/base/kustomization.yaml b/components/gitops/openshift-gitops/base/kustomization.yaml
+new file mode 100644
+index 0000000..53dc6b6
+--- /dev/null
++++ b/components/gitops/openshift-gitops/base/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- cluster-rbac/
+diff --git a/components/gitops/openshift-gitops/kustomization.yaml b/components/gitops/openshift-gitops/overlays/production-and-dev/kustomization.yaml
+similarity index 89%
+rename from components/gitops/openshift-gitops/kustomization.yaml
+rename to components/gitops/openshift-gitops/overlays/production-and-dev/kustomization.yaml
+index 05bab13..00bb2fa 100644
+--- a/components/gitops/openshift-gitops/kustomization.yaml
++++ b/components/gitops/openshift-gitops/overlays/production-and-dev/kustomization.yaml
+@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
++- ../../base
+ - subscription-openshift-gitops.yaml
+diff --git a/components/gitops/openshift-gitops/subscription-openshift-gitops.yaml b/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml
+similarity index 100%
+rename from components/gitops/openshift-gitops/subscription-openshift-gitops.yaml
+rename to components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml
+diff --git a/components/gitops/openshift-gitops/overlays/staging/kustomization.yaml b/components/gitops/openshift-gitops/overlays/staging/kustomization.yaml
+new file mode 100644
+index 0000000..00bb2fa
+--- /dev/null
++++ b/components/gitops/openshift-gitops/overlays/staging/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- ../../base
++- subscription-openshift-gitops.yaml
+diff --git a/components/gitops/openshift-gitops/overlays/staging/subscription-openshift-gitops.yaml b/components/gitops/openshift-gitops/overlays/staging/subscription-openshift-gitops.yaml
+new file mode 100644
+index 0000000..370b790
+--- /dev/null
++++ b/components/gitops/openshift-gitops/overlays/staging/subscription-openshift-gitops.yaml
+@@ -0,0 +1,13 @@
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  name: openshift-gitops-operator
++  namespace: openshift-operators
++  annotations:
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  channel: gitops-1.8
++  installPlanApproval: Automatic
++  name: openshift-gitops-operator
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
+diff --git a/components/gitops/production/base/kustomization.yaml b/components/gitops/production/base/kustomization.yaml
+index 35fc3aa..f64ee4c 100644
+--- a/components/gitops/production/base/kustomization.yaml
++++ b/components/gitops/production/base/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ 
+ resources:
+ - https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=72f0bc24d009ca9acca4938993f2c6d774a3dbab
+-- ../../openshift-gitops
++- ../../openshift-gitops/overlays/production-and-dev
+ - ../../base/external-secrets
+ 
+ images:
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+index 35fc3aa..7edbfc9 100644
+--- a/components/gitops/staging/base/kustomization.yaml
++++ b/components/gitops/staging/base/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ 
+ resources:
+ - https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=72f0bc24d009ca9acca4938993f2c6d774a3dbab
+-- ../../openshift-gitops
++- ../../openshift-gitops/overlays/staging
+ - ../../base/external-secrets
+ 
+ images:
+diff --git a/hack/deploy-argocd.sh b/hack/deploy-argocd.sh
+index f6434ce..d671715 100755
+--- a/hack/deploy-argocd.sh
++++ b/hack/deploy-argocd.sh
+@@ -26,7 +26,7 @@ verify_permissions() {
+ create_subscription() {
+ 
+     echo "Installing the OpenShift GitOps operator subscription:"
+-    kubectl apply -k "$ROOT/components/gitops/openshift-gitops"
++    kubectl apply -k "$ROOT/components/gitops/openshift-gitops/overlays/production-and-dev"
+     echo -n "Waiting for default project (and namespace) to exist: "
+     while ! kubectl get appproject/default -n openshift-gitops &>/dev/null; do
+         echo -n .
+@@ -89,7 +89,7 @@ spec:
+ 
+ add_role_binding() {
+     echo "Add Role/RoleBindings for OpenShift GitOps:"
+-    kubectl apply --kustomize $ROOT/components/gitops/openshift-gitops/cluster-rbac
++    kubectl apply --kustomize $ROOT/components/gitops/openshift-gitops/base/cluster-rbac
+ }
+ 
+ print_url() {
+diff --git a/hack/destroy-cluster.sh b/hack/destroy-cluster.sh
+index 350c465..f153937 100755
+--- a/hack/destroy-cluster.sh
++++ b/hack/destroy-cluster.sh
+@@ -29,11 +29,11 @@ kubectl delete -f $ROOT/argo-cd-apps/app-of-apps/all-applications-staging.yaml
+ 
+ echo
+ echo "Remove RBAC for OpenShift GitOps:"
+-kubectl delete -k $ROOT/openshift-gitops/cluster-rbac
++kubectl delete -k $ROOT/openshift-gitops/base/cluster-rbac
+ 
+ echo 
+ echo "Remove the OpenShift GitOps operator subscription:"
+-kubectl delete -f $ROOT/openshift-gitops/subscription-openshift-gitops.yaml
++kubectl delete -f $ROOT/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml
+ 
+ echo 
+ echo "Removing operators and operands:"

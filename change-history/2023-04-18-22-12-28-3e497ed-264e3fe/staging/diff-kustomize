@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-264e3fe/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-3e497ed/staging/components/authentication/staging/kustomize.out.yaml
+162,170d161
+< - apiGroups:
+<   - operators.coreos.com
+<   resources:
+<   - installplans
+<   verbs:
+<   - get
+<   - list
+<   - update
+<   - patch
