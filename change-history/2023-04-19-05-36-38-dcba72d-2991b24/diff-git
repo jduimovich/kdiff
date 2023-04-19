@@ -1,0 +1,176 @@
+diff --git a/components/build-service/base/kustomization.yaml b/components/build-service/base/kustomization.yaml
+index 47012dc..e602970 100644
+--- a/components/build-service/base/kustomization.yaml
++++ b/components/build-service/base/kustomization.yaml
+@@ -2,6 +2,7 @@ resources:
+ - allow-argocd-to-manage.yaml
+ - https://github.com/redhat-appstudio/build-service/config/default?ref=36027b1048f2ee9913f4728e396c082dd3b5605e
+ - build-pipeline-selector.yaml
++- monitoring.yaml
+ 
+ # Skip applying the build-service operands (BuildPipelineSelector) while the build-service operator is being installed.
+ # See more information about this option, here:
+diff --git a/components/monitoring/prometheus/base/servicemonitors/build-service.yaml b/components/build-service/base/monitoring.yaml
+similarity index 66%
+rename from components/monitoring/prometheus/base/servicemonitors/build-service.yaml
+rename to components/build-service/base/monitoring.yaml
+index ce09048..b2a8eb2 100644
+--- a/components/monitoring/prometheus/base/servicemonitors/build-service.yaml
++++ b/components/build-service/base/monitoring.yaml
+@@ -1,11 +1,32 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: metrics-reader
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  name: metrics-reader
++  annotations:
++    kubernetes.io/service-account.name: metrics-reader
++type: kubernetes.io/service-account-token
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: prometheus-build-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: build-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++---
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+-  labels:
+-    control-plane: controller-manager
+-    prometheus: appstudio-workload
+   name: build-service
+-  namespace: appstudio-workload-monitoring
+ spec:
+   endpoints:
+   - path: /metrics
+@@ -13,26 +34,10 @@ spec:
+     port: https
+     scheme: https
+     bearerTokenSecret:
+-      name: "prometheus-k8s-token-xhrjb"
++      name: "metrics-reader"
+       key: token
+     tlsConfig:
+       insecureSkipVerify: true
+-  namespaceSelector:
+-    matchNames:
+-    - build-service
+   selector:
+     matchLabels:
+       control-plane: controller-manager
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-build-service-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: build-service-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: prometheus-k8s
+-  namespace: appstudio-workload-monitoring
+diff --git a/components/jvm-build-service/kustomization.yaml b/components/jvm-build-service/kustomization.yaml
+index 0eb555d..a9b3966 100644
+--- a/components/jvm-build-service/kustomization.yaml
++++ b/components/jvm-build-service/kustomization.yaml
+@@ -3,6 +3,7 @@ resources:
+ - https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=e45fdb3f4634c592ba8c8ca554773345d9103600
+ - https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=e45fdb3f4634c592ba8c8ca554773345d9103600
+ - https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=e45fdb3f4634c592ba8c8ca554773345d9103600
++- monitoring.yaml
+ 
+ # Skip applying the jvm-build-service operands (SystemConfig) while the jvm-build-service operator is being installed.
+ # See more information about this option, here:
+diff --git a/components/jvm-build-service/monitoring.yaml b/components/jvm-build-service/monitoring.yaml
+new file mode 100644
+index 0000000..0b3ca5f
+--- /dev/null
++++ b/components/jvm-build-service/monitoring.yaml
+@@ -0,0 +1,48 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: metrics-reader
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  name: metrics-reader
++  annotations:
++    kubernetes.io/service-account.name: metrics-reader
++type: kubernetes.io/service-account-token
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: jvm-build-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: prometheus-jvm-build-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: jvm-build-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  name: jvm-build-service
++spec:
++  endpoints:
++  - path: /metrics
++    interval: 15s
++    port: http-metrics
++    scheme: http
++  selector:
++    matchLabels:
++      app: hacbs-jvm-operator
+diff --git a/components/monitoring/prometheus/base/servicemonitors/jvm-build-service.yaml b/components/monitoring/prometheus/base/servicemonitors/jvm-build-service.yaml
+deleted file mode 100644
+index 2bd8537..0000000
+--- a/components/monitoring/prometheus/base/servicemonitors/jvm-build-service.yaml
++++ /dev/null
+@@ -1,20 +0,0 @@
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  labels:
+-    control-plane: controller-manager
+-    prometheus: appstudio-workload
+-  name: jvm-build-service
+-  namespace: appstudio-workload-monitoring
+-spec:
+-  endpoints:
+-  - path: /metrics
+-    interval: 15s
+-    port: http-metrics
+-    scheme: http
+-  namespaceSelector:
+-    matchNames:
+-    - jvm-build-service
+-  selector:
+-    matchLabels:
+-      app: hacbs-jvm-operator
