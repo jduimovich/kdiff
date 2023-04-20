@@ -1,0 +1,32 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6d513be/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-82e2016/staging/app-of-apps-staging.yaml
+345,363c345,348
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchExpressions:
+<             - key: app.kubernetes.io/name
+<               operator: NotIn
+<               values:
+<               - argocd-default-cluster-config
+<             matchLabels:
+<               argocd.argoproj.io/secret-type: cluster
+<           values:
+<             clusterDir: ""
+<             environment: staging
+<             sourceRoot: components/external-secrets-operator
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+---
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+373c358
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+---
+>         path: components/external-secrets-operator
+Only in ./kustomized-cache/commit-82e2016/staging/components/external-secrets-operator: kustomize.out.yaml
+Only in ./kustomized-cache/commit-6d513be/staging/components/external-secrets-operator: staging

@@ -1,0 +1,117 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/external-secrets-operator/external-secrets-operator.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/external-secrets-operator/external-secrets-operator.yaml
+similarity index 63%
+rename from argo-cd-apps/base/member/infra-deployments/external-secrets-operator/external-secrets-operator.yaml
+rename to argo-cd-apps/base/all-clusters/infra-deployments/external-secrets-operator/external-secrets-operator.yaml
+index 4471079..814f9e4 100644
+--- a/argo-cd-apps/base/member/infra-deployments/external-secrets-operator/external-secrets-operator.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/external-secrets-operator/external-secrets-operator.yaml
+@@ -5,14 +5,24 @@ metadata:
+   name: external-secrets-operator
+ spec:
+   generators:
+-    - clusters: {}
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/external-secrets-operator
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
+   template:
+     metadata:
+       name: external-secrets-operator-{{nameNormalized}}
+     spec:
+       project: default
+       source:
+-        path: components/external-secrets-operator
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
+diff --git a/argo-cd-apps/base/member/infra-deployments/external-secrets-operator/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/external-secrets-operator/kustomization.yaml
+similarity index 62%
+rename from argo-cd-apps/base/member/infra-deployments/external-secrets-operator/kustomization.yaml
+rename to argo-cd-apps/base/all-clusters/infra-deployments/external-secrets-operator/kustomization.yaml
+index cf0be1c..8630e11 100644
+--- a/argo-cd-apps/base/member/infra-deployments/external-secrets-operator/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/external-secrets-operator/kustomization.yaml
+@@ -2,5 +2,3 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - external-secrets-operator.yaml
+-components:
+-  - ../../../../k-components/deploy-to-member-cluster
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+index b3c2278..75a9370 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+@@ -2,5 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - dora-metrics
++  - external-secrets-operator
+ components:
+-  - ../../../k-components/inject-infra-deployments-repo-details
+\ No newline at end of file
++  - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 23cae1e..d073bf6 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -20,7 +20,6 @@ resources:
+   - monitoring-workload-prometheus
+   - monitoring-workload-grafana
+   - monitoring-workload-logging
+-  - external-secrets-operator
+   - cluster-secret-store
+   - image-controller
+   - o11y
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index b26ccf2..e29ebb4 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -82,3 +82,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: monitoring-workload-prometheus
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: external-secrets-operator
+diff --git a/components/external-secrets-operator/kustomization.yaml b/components/external-secrets-operator/base/kustomization.yaml
+similarity index 100%
+rename from components/external-secrets-operator/kustomization.yaml
+rename to components/external-secrets-operator/base/kustomization.yaml
+diff --git a/components/external-secrets-operator/operator-config.yaml b/components/external-secrets-operator/base/operator-config.yaml
+similarity index 100%
+rename from components/external-secrets-operator/operator-config.yaml
+rename to components/external-secrets-operator/base/operator-config.yaml
+diff --git a/components/external-secrets-operator/subscription.yaml b/components/external-secrets-operator/base/subscription.yaml
+similarity index 100%
+rename from components/external-secrets-operator/subscription.yaml
+rename to components/external-secrets-operator/base/subscription.yaml
+diff --git a/components/external-secrets-operator/production/kustomization.yaml b/components/external-secrets-operator/production/kustomization.yaml
+new file mode 100644
+index 0000000..27bb5cb
+--- /dev/null
++++ b/components/external-secrets-operator/production/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
+diff --git a/components/external-secrets-operator/staging/kustomization.yaml b/components/external-secrets-operator/staging/kustomization.yaml
+new file mode 100644
+index 0000000..27bb5cb
+--- /dev/null
++++ b/components/external-secrets-operator/staging/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
