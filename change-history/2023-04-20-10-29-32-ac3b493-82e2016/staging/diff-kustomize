@@ -1,0 +1,29 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-82e2016/staging/components/external-secrets-operator/kustomize.out.yaml ./kustomized-cache/commit-ac3b493/staging/components/external-secrets-operator/kustomize.out.yaml
+6c6
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "0"
+22,32d21
+< apiVersion: operators.coreos.com/v1
+< kind: OperatorGroup
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "-3"
+<   name: external-secrets-operator
+<   namespace: external-secrets-operator
+< spec:
+<   targetNamespaces:
+<   - external-secrets-operator
+< ---
+37c26
+<     argocd.argoproj.io/sync-wave: "-2"
+---
+>     argocd.argoproj.io/sync-wave: "-1"
+39c28
+<   namespace: external-secrets-operator
+---
+>   namespace: openshift-operators
+46c35
+<   startingCSV: external-secrets-operator.v0.8.1
+---
+>   startingCSV: external-secrets-operator.v0.7.2
