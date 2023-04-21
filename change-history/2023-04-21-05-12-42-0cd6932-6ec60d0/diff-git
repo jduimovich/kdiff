@@ -1,0 +1,40 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/cluster-secret-store/cluster-secret-store.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/cluster-secret-store/cluster-secret-store.yaml
+similarity index 100%
+rename from argo-cd-apps/base/member/infra-deployments/cluster-secret-store/cluster-secret-store.yaml
+rename to argo-cd-apps/base/all-clusters/infra-deployments/cluster-secret-store/cluster-secret-store.yaml
+diff --git a/argo-cd-apps/base/member/infra-deployments/cluster-secret-store/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/cluster-secret-store/kustomization.yaml
+similarity index 55%
+rename from argo-cd-apps/base/member/infra-deployments/cluster-secret-store/kustomization.yaml
+rename to argo-cd-apps/base/all-clusters/infra-deployments/cluster-secret-store/kustomization.yaml
+index 8de0b62..cdec870 100644
+--- a/argo-cd-apps/base/member/infra-deployments/cluster-secret-store/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/cluster-secret-store/kustomization.yaml
+@@ -2,5 +2,3 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - cluster-secret-store.yaml
+-components:
+-  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+index 75a9370..2f3b0f3 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+@@ -3,5 +3,6 @@ kind: Kustomization
+ resources:
+   - dora-metrics
+   - external-secrets-operator
++  - cluster-secret-store
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index d073bf6..476d672 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -20,7 +20,6 @@ resources:
+   - monitoring-workload-prometheus
+   - monitoring-workload-grafana
+   - monitoring-workload-logging
+-  - cluster-secret-store
+   - image-controller
+   - o11y
+ components:
