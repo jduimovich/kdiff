@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-731f997/staging/components/sprayproxy/staging/kustomize.out.yaml ./kustomized-cache/commit-550ba0f/staging/components/sprayproxy/staging/kustomize.out.yaml
+65c65
+<         image: quay.io/redhat-appstudio/sprayproxy:e7703f63751ee924dcbfcd081e3bc90d4d284961
+---
+>         image: quay.io/redhat-appstudio/sprayproxy:b488cf7dada7cdf4767fd32f041c6ea3507f0043
+97,98d96
+<   annotations:
+<     haproxy.router.openshift.io/hsts_header: max-age=63072000
+103d100
+<     insecureEdgeTerminationPolicy: Redirect
