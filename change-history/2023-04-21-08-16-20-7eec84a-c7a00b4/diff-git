@@ -1,0 +1,292 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml b/argo-cd-apps/base/member/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
+index 5ce8f5c..acbb891 100644
+--- a/argo-cd-apps/base/member/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
+@@ -14,15 +14,7 @@ spec:
+                 environment: staging
+                 clusterDir: ""
+           - list:
+-              elements:
+-                - nameNormalized: stone-stg-m01
+-                  values.clusterDir: stone-stg-m01
+-                - nameNormalized: stone-stg-rh01
+-                  values.clusterDir: stone-stg-rh01
+-                - nameNormalized: stone-prd-m01
+-                  values.clusterDir: stone-prd-m01
+-                - nameNormalized: stone-prd-rh01
+-                  values.clusterDir: stone-prd-rh01
++              elements: []
+   template:
+     metadata:
+       name: monitoring-workload-prometheus-{{nameNormalized}}
+diff --git a/components/monitoring/prometheus/README.md b/components/monitoring/prometheus/README.md
+index 80a4380..f47a0ab 100644
+--- a/components/monitoring/prometheus/README.md
++++ b/components/monitoring/prometheus/README.md
+@@ -1,45 +1,12 @@
+ ---
+-title: Installing and configuring Prometheus on the workload clusters
++title: Installing and configuring Prometheus on the data plane clusters
+ ---
+ 
+-Note:
+-This section uses the **Prometheus cluster** term to refer to the clusters on which Prometheus is deployed. 
+-In a multi-cluster topology, there will be a single cluster on which Grafana is deployed, whereas Prometheus will be deployed on all clusters where metrics need to be collected.
++We use the Openshift provided Prometheus deployments, platform and user-workload-monitoring (UWM).
++Custom metrics provided by the service deployed by the different teams should be scraped by the
++UWM Prom, while generic metrics (produced for example by cAdvisor, kube-state-metrics, etc...)
++will be scraped by the Platform Prom.
+ 
+-## Prerequisites
+ 
+-### `appstudio-workload-monitoring` Namespace
+-
+-Note: The steps below should be handled by Argo CD
+-
+-First, create the `appstudio-workload-monitoring` namespace on each Prometheus or Grafana cluster, if it does not exist yet:
+-
+-```
+-$ oc create namespace appstudio-workload-monitoring
+-```
+-
+-### OAuth2 proxy secrets
+-
+-Prometheus UI is protected by an OAuth2 proxy running as a sidecar container which delegates the authentication to GitHub. 
+-Users must belong to the [Red Hat Appstudio SRE organization](https://github.com/redhat-appstudio-sre) team to be allowed to access the UI.
+-
+-On each Prometheus cluster, create the secret with the following command:
+-
+-```
+-$ ./hack/setup-monitoring.sh oauth2-secret prometheus-oauth2-proxy $PROMETHEUS_GITHUB_CLIENT_ID $PROMETHEUS_GITHUB_CLIENT_SECRET $PROMETHEUS_GITHUB_COOKIE_SECRET
+-```
+-
+-The `PROMETHEUS_GITHUB_CLIENT_ID`/`PROMETHEUS_GITHUB_CLIENT_SECRET` value pair must match an existing "OAuth Application" on GitHub - see [OAuth apps](https://github.com/organizations/redhat-appstudio-sre/settings/applications) in the [Red Hat Appstudio SRE organization](https://github.com/organizations/redhat-appstudio-sre). 
+-The `PROMETHEUS_GITHUB_COOKIE_SECRET` can be generated using the [following instructions](https://oauth2-proxy.github.io/oauth2-proxy/docs/configuration/overview#generating-a-cookie-secret).
+-
+-Each Prometheus instance must have its own OAuth Application on GitHub and its own `prometheus-oauth2-proxy` secret.
+-
+-The `prometheus-oauth2-proxy` secret must be created before deploying Prometheus, otherwise pod creation will fail.
+-
+-## Installation and Configuration
+-
+-Create the resources by running the following command:
+-
+-```
+-$ kustomize build components/monitoring/prometheus/base | oc apply -f -   
+-```
+\ No newline at end of file
++In Production and Staging, UWM is enabled using OCM (since the Prom config is controlled by it).
++In Development it's enabled by deploying a configmap using ArgoCD.
+diff --git a/components/monitoring/prometheus/base/servicemonitors/kustomization.yaml b/components/monitoring/prometheus/base/servicemonitors/kustomization.yaml
+index dd3ed4a..3393334 100644
+--- a/components/monitoring/prometheus/base/servicemonitors/kustomization.yaml
++++ b/components/monitoring/prometheus/base/servicemonitors/kustomization.yaml
+@@ -2,13 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- build-service.yaml
+ - dora-service.yaml
+ - gitops-service.yaml
+ - integration-service.yaml
+-- jvm-build-service.yaml
+ - pipeline-service.yaml
+-- prometheus.yaml
+ - release-service.yaml
+ - sandbox-host-operator.yaml
+ - sandbox-member-operator.yaml
+diff --git a/components/monitoring/prometheus/base/servicemonitors/prometheus.yaml b/components/monitoring/prometheus/base/servicemonitors/prometheus.yaml
+deleted file mode 100644
+index 3623d32..0000000
+--- a/components/monitoring/prometheus/base/servicemonitors/prometheus.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  namespace: appstudio-workload-monitoring
+-  name: prometheus
+-  labels:
+-    prometheus: appstudio-workload
+-spec:
+-  endpoints:
+-  - bearerTokenSecret:
+-      key: ""
+-    interval: 15s
+-    path: /metrics
+-    port: oauth2-proxy
+-    scheme: HTTPS
+-    tlsConfig:
+-      caFile: /etc/prometheus/tls/tls.crt # volume mounted in the `prometheus` container of the prometheus pods
+-      serverName: "prometheus-oauth2.appstudio-workload-monitoring.svc"
+-  namespaceSelector:
+-    matchNames:
+-    - appstudio-workload-monitoring
+-  selector:
+-    matchLabels:
+-      app.kubernetes.io/instance: monitoring-workload-in-cluster
+diff --git a/components/monitoring/prometheus/staging/base/kustomization.yaml b/components/monitoring/prometheus/base/uwm-config/kustomization.yaml
+similarity index 80%
+rename from components/monitoring/prometheus/staging/base/kustomization.yaml
+rename to components/monitoring/prometheus/base/uwm-config/kustomization.yaml
+index 2b87e6b..fff5fec 100644
+--- a/components/monitoring/prometheus/staging/base/kustomization.yaml
++++ b/components/monitoring/prometheus/base/uwm-config/kustomization.yaml
+@@ -2,4 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- ../../base
++- uwm-config.yaml
+diff --git a/components/monitoring/prometheus/base/uwm-config/uwm-config.yaml b/components/monitoring/prometheus/base/uwm-config/uwm-config.yaml
+new file mode 100644
+index 0000000..d43970a
+--- /dev/null
++++ b/components/monitoring/prometheus/base/uwm-config/uwm-config.yaml
+@@ -0,0 +1,5 @@
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: user-workload-monitoring-config
++  namespace: openshift-user-workload-monitoring
+diff --git a/components/monitoring/prometheus/production/base/kustomization.yaml b/components/monitoring/prometheus/production/kustomization.yaml
+similarity index 78%
+rename from components/monitoring/prometheus/production/base/kustomization.yaml
+rename to components/monitoring/prometheus/production/kustomization.yaml
+index 2b87e6b..2753101 100644
+--- a/components/monitoring/prometheus/production/base/kustomization.yaml
++++ b/components/monitoring/prometheus/production/kustomization.yaml
+@@ -1,5 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+-
+ resources:
+-- ../../base
++- ../base/uwm-config
+diff --git a/components/monitoring/prometheus/production/stone-prd-m01/kustomization.yaml b/components/monitoring/prometheus/production/stone-prd-m01/kustomization.yaml
+deleted file mode 100644
+index ffe7b6b..0000000
+--- a/components/monitoring/prometheus/production/stone-prd-m01/kustomization.yaml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../base
+-patches:
+-  - path: monitoring-prometheus-oauth-config-path.yaml
+-    target:
+-      name: monitoring-prometheus-oauth-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/monitoring/prometheus/production/stone-prd-m01/monitoring-prometheus-oauth-config-path.yaml b/components/monitoring/prometheus/production/stone-prd-m01/monitoring-prometheus-oauth-config-path.yaml
+deleted file mode 100644
+index b1e9d72..0000000
+--- a/components/monitoring/prometheus/production/stone-prd-m01/monitoring-prometheus-oauth-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/monitoring/prd-m01/prometheus/monitoring-workload-prometheus/prometheus-oauth2-proxy
+\ No newline at end of file
+diff --git a/components/monitoring/prometheus/production/stone-prd-rh01/kustomization.yaml b/components/monitoring/prometheus/production/stone-prd-rh01/kustomization.yaml
+deleted file mode 100644
+index ffe7b6b..0000000
+--- a/components/monitoring/prometheus/production/stone-prd-rh01/kustomization.yaml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../base
+-patches:
+-  - path: monitoring-prometheus-oauth-config-path.yaml
+-    target:
+-      name: monitoring-prometheus-oauth-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/monitoring/prometheus/production/stone-prd-rh01/monitoring-prometheus-oauth-config-path.yaml b/components/monitoring/prometheus/production/stone-prd-rh01/monitoring-prometheus-oauth-config-path.yaml
+deleted file mode 100644
+index 02ffefe..0000000
+--- a/components/monitoring/prometheus/production/stone-prd-rh01/monitoring-prometheus-oauth-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/monitoring/prd-rh01/prometheus/monitoring-workload-prometheus/prometheus-oauth2-proxy
+\ No newline at end of file
+diff --git a/components/monitoring/prometheus/base/kustomization.yaml b/components/monitoring/prometheus/staging/kustomization.yaml
+similarity index 53%
+rename from components/monitoring/prometheus/base/kustomization.yaml
+rename to components/monitoring/prometheus/staging/kustomization.yaml
+index dc93625..2753101 100644
+--- a/components/monitoring/prometheus/base/kustomization.yaml
++++ b/components/monitoring/prometheus/staging/kustomization.yaml
+@@ -1,6 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ./servicemonitors/
+-
+-namespace: "appstudio-workload-monitoring"
++- ../base/uwm-config
+diff --git a/components/monitoring/prometheus/staging/stone-stg-m01/kustomization.yaml b/components/monitoring/prometheus/staging/stone-stg-m01/kustomization.yaml
+deleted file mode 100644
+index ffe7b6b..0000000
+--- a/components/monitoring/prometheus/staging/stone-stg-m01/kustomization.yaml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../base
+-patches:
+-  - path: monitoring-prometheus-oauth-config-path.yaml
+-    target:
+-      name: monitoring-prometheus-oauth-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/monitoring/prometheus/staging/stone-stg-m01/monitoring-prometheus-oauth-config-path.yaml b/components/monitoring/prometheus/staging/stone-stg-m01/monitoring-prometheus-oauth-config-path.yaml
+deleted file mode 100644
+index 5cd5972..0000000
+--- a/components/monitoring/prometheus/staging/stone-stg-m01/monitoring-prometheus-oauth-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: staging/monitoring/stg-m01/promtheus/monitoring-workload-prometheus/prometheus-oauth2-proxy
+\ No newline at end of file
+diff --git a/components/monitoring/prometheus/staging/stone-stg-rh01/kustomization.yaml b/components/monitoring/prometheus/staging/stone-stg-rh01/kustomization.yaml
+deleted file mode 100644
+index ffe7b6b..0000000
+--- a/components/monitoring/prometheus/staging/stone-stg-rh01/kustomization.yaml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../base
+-patches:
+-  - path: monitoring-prometheus-oauth-config-path.yaml
+-    target:
+-      name: monitoring-prometheus-oauth-config
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+diff --git a/components/monitoring/prometheus/staging/stone-stg-rh01/monitoring-prometheus-oauth-config-path.yaml b/components/monitoring/prometheus/staging/stone-stg-rh01/monitoring-prometheus-oauth-config-path.yaml
+deleted file mode 100644
+index 36ecef7..0000000
+--- a/components/monitoring/prometheus/staging/stone-stg-rh01/monitoring-prometheus-oauth-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: staging/monitoring/stg-rh01/promtheus/monitoring-workload-prometheus/prometheus-oauth2-proxy
+\ No newline at end of file
