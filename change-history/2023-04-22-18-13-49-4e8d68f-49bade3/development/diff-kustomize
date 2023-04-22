@@ -1,0 +1,32 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-49bade3/development/components/gitops/development/kustomize.out.yaml ./kustomized-cache/commit-4e8d68f/development/components/gitops/development/kustomize.out.yaml
+1020c1020
+<   - deploymenttargetclasses
+---
+>   - deploymenttargetclass
+1030,1031d1029
+<   - create
+<   - delete
+1206c1204
+<   - spacerequests
+---
+>   - spacerequest
+1218c1216
+<   - spacerequests/status
+---
+>   - spacerequest/status
+1936c1934
+<         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290
+---
+>         image: quay.io/redhat-appstudio/gitops-service:bb0b3700ceb90dd3799047bb9f93818cfe6465b8
+2030c2028
+<         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290
+---
+>         image: quay.io/redhat-appstudio/gitops-service:bb0b3700ceb90dd3799047bb9f93818cfe6465b8
+2121c2119
+<         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290
+---
+>         image: quay.io/redhat-appstudio/gitops-service:bb0b3700ceb90dd3799047bb9f93818cfe6465b8
+2219c2217
+<           value: postgres
+---
+>           value: ${POSTGRESQL_DATABASE}
