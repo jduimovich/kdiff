@@ -1,0 +1,48 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d0e6281/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-35c097d/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+1247,1252d1246
+<   - spacerequests/finalizers
+<   verbs:
+<   - update
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+1988c1982
+<         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290
+2093c2087
+<         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290
+2157c2151
+<         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290
+2215c2209
+<         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d0e6281/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-35c097d/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml
+1247,1252d1246
+<   - spacerequests/finalizers
+<   verbs:
+<   - update
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+1988c1982
+<         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290
+2093c2087
+<         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290
+2157c2151
+<         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290
+2215c2209
+<         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290

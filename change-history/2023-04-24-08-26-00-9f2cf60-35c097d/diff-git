@@ -1,0 +1,12 @@
+diff --git a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
+index 26f03e8..4b16bdc 100644
+--- a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
++++ b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
+@@ -10,7 +10,6 @@ spec:
+     - cloudwatch:
+         groupBy: namespaceName
+         region: us-east-1
+-        retention_in_days: 180
+       name: remote-cloudwatch
+       secret:
+         name: cloudwatch-forwarder

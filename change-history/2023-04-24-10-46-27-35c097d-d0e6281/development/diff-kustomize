@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d0e6281/development/components/gitops/development/kustomize.out.yaml ./kustomized-cache/commit-35c097d/development/components/gitops/development/kustomize.out.yaml
+1218,1223d1217
+<   - spacerequests/finalizers
+<   verbs:
+<   - update
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+1942c1936
+<         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290
+2036c2030
+<         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290
+2127c2121
+<         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f1fd0bd6061440390af8bedf91cd77af39ade290
