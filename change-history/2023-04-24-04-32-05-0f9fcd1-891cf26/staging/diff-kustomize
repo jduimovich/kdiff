@@ -1,0 +1,25 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-891cf26/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-0f9fcd1/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+23d22
+<     - sprayproxy
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-891cf26/staging/components/sprayproxy/staging/kustomize.out.yaml ./kustomized-cache/commit-0f9fcd1/staging/components/sprayproxy/staging/kustomize.out.yaml
+94,113d93
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: pipelines-as-code-secret
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: staging/pipeline-service/github-app
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: pipelines-as-code-secret
+< ---

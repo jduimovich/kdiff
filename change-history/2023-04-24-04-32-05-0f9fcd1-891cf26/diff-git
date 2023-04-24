@@ -1,0 +1,83 @@
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 78d54d9..deaa4fc 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -40,3 +40,4 @@ spec:
+         - tekton-ci
+         - image-controller
+         - openshift-logging
++        - sprayproxy
+diff --git a/components/sprayproxy/production/kustomization.yaml b/components/sprayproxy/production/kustomization.yaml
+index e72de2f..72993f0 100644
+--- a/components/sprayproxy/production/kustomization.yaml
++++ b/components/sprayproxy/production/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - https://github.com/redhat-appstudio/sprayproxy/config?ref=b488cf7dada7cdf4767fd32f041c6ea3507f0043
++  - pipelines-as-code-secret.yaml
+ 
+ images:
+   - name: ko://github.com/redhat-appstudio/sprayproxy
+diff --git a/components/sprayproxy/production/pipelines-as-code-secret.yaml b/components/sprayproxy/production/pipelines-as-code-secret.yaml
+new file mode 100644
+index 0000000..e58d37a
+--- /dev/null
++++ b/components/sprayproxy/production/pipelines-as-code-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: pipelines-as-code-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/pipeline-service/github-app
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
+diff --git a/components/sprayproxy/staging/kustomization.yaml b/components/sprayproxy/staging/kustomization.yaml
+index 2ffe731..fcc0b28 100644
+--- a/components/sprayproxy/staging/kustomization.yaml
++++ b/components/sprayproxy/staging/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - https://github.com/redhat-appstudio/sprayproxy/config?ref=e7703f63751ee924dcbfcd081e3bc90d4d284961
++  - pipelines-as-code-secret.yaml
+ 
+ images:
+   - name: ko://github.com/redhat-appstudio/sprayproxy
+diff --git a/components/sprayproxy/staging/pipelines-as-code-secret.yaml b/components/sprayproxy/staging/pipelines-as-code-secret.yaml
+new file mode 100644
+index 0000000..3aa1ec9
+--- /dev/null
++++ b/components/sprayproxy/staging/pipelines-as-code-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: pipelines-as-code-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/pipeline-service/github-app
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
