@@ -1,0 +1,18 @@
+diff --git a/components/pipeline-service/public/README.md b/components/pipeline-service/public/README.md
+deleted file mode 100644
+index b11c332..0000000
+--- a/components/pipeline-service/public/README.md
++++ /dev/null
+@@ -1 +0,0 @@
+-* tekton-chains-signing-secret.pub: temporary solution to store the public key somewhere accessible. The file has been manually uploaded.
+\ No newline at end of file
+diff --git a/components/pipeline-service/public/tekton-chains-signing-secret.pub b/components/pipeline-service/public/tekton-chains-signing-secret.pub
+deleted file mode 100644
+index 46ad9b9..0000000
+--- a/components/pipeline-service/public/tekton-chains-signing-secret.pub
++++ /dev/null
+@@ -1,4 +0,0 @@
+------BEGIN PUBLIC KEY-----
+-MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEODgxyIz09vBqJlXXzjp/X2h17WIt
+-jCVQhnDYVWHvXhw6rgqGeg6NTUxIEhRQqQZaF9mcBotHkuYGJfYZbai+FA==
+------END PUBLIC KEY-----
