@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f5d2d1e/staging/components/sprayproxy/staging/kustomize.out.yaml ./kustomized-cache/commit-df03609/staging/components/sprayproxy/staging/kustomize.out.yaml
+65,69d64
+<         - name: GH_APP_WEBHOOK_SECRET
+<           valueFrom:
+<             secretKeyRef:
+<               key: webhook.secret
+<               name: pipelines-as-code-secret

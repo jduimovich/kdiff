@@ -1,0 +1,30 @@
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index 0815c45..23a6252 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -4,6 +4,10 @@ resources:
+   - ../base
+   - ../base/external-secrets
+ 
++replicas:
++- name: controller-system
++  count: 3
++
+ configMapGenerator:
+ - literals:
+   - GITHUB_ORG="redhat-appstudio-appdata"
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index 2cd3729..3bf7f2b 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -4,6 +4,10 @@ resources:
+   - ../base
+   - ../base/external-secrets
+ 
++replicas:
++- name: controller-system
++  count: 3
++
+ configMapGenerator:
+ - literals:
+   - GITHUB_ORG="redhat-appstudio-appdata-staging"

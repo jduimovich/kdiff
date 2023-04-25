@@ -1,0 +1,23 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-df03609/development/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-ecb6887/development/components/enterprise-contract/kustomize.out.yaml
+3a4
+>   creationTimestamp: null
+235c236
+<   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:15a2444bf486bba5f36f59736c4ed2dcbbb811d7@sha256:c2e7eda64e39ba12bbd4bf64dcfad856fd31b8ee9f8f06ac49c15711ddcdacce
+---
+>   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:95220b28cc6283c2c08df98dd70a7f327d21120f@sha256:c1cb66d3307cbbe9e7f4bad8c81502a0212ca7702dd8b366d45ddd2bd7285ff9
+253c254
+<     - oci::quay.io/hacbs-contract/ec-policy-data:git-8629680@sha256:f49851f3ed4efe793b179094f652e6f80b4609dcf8fd267fbeab3d806337a8c1
+---
+>     - oci::quay.io/hacbs-contract/ec-policy-data:git-413352f@sha256:f042ee90cf63cd96173e9b59ce348e99bc595ca4eb27c95c0a42605ae5423afb
+256c257
+<     - oci::quay.io/hacbs-contract/ec-release-policy:git-3fa4b72@sha256:91693b5fed7df8f2e6ae179dcc8ad13a8ba69beb406e9c6eba09c5fee350606e
+---
+>     - oci::quay.io/hacbs-contract/ec-release-policy:git-413352f@sha256:adeade0c8793bce139bbd05fe03b87845e0bd8301d025e6ff57bc3880fa4aa37
+274c275
+<     - oci::quay.io/hacbs-contract/ec-policy-data:git-8629680@sha256:f49851f3ed4efe793b179094f652e6f80b4609dcf8fd267fbeab3d806337a8c1
+---
+>     - oci::quay.io/hacbs-contract/ec-policy-data:git-413352f@sha256:f042ee90cf63cd96173e9b59ce348e99bc595ca4eb27c95c0a42605ae5423afb
+277c278
+<     - oci::quay.io/hacbs-contract/ec-release-policy:git-3fa4b72@sha256:91693b5fed7df8f2e6ae179dcc8ad13a8ba69beb406e9c6eba09c5fee350606e
+---
+>     - oci::quay.io/hacbs-contract/ec-release-policy:git-413352f@sha256:adeade0c8793bce139bbd05fe03b87845e0bd8301d025e6ff57bc3880fa4aa37
