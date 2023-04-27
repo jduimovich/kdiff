@@ -1,0 +1,66 @@
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index 23a6252..de5ea0c 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -4,10 +4,6 @@ resources:
+   - ../base
+   - ../base/external-secrets
+ 
+-replicas:
+-- name: controller-system
+-  count: 3
+-
+ configMapGenerator:
+ - literals:
+   - GITHUB_ORG="redhat-appstudio-appdata"
+@@ -21,3 +17,4 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
++  - ./replicas_patch.yaml
+diff --git a/components/has/production/replicas_patch.yaml b/components/has/production/replicas_patch.yaml
+new file mode 100644
+index 0000000..9c46ac3
+--- /dev/null
++++ b/components/has/production/replicas_patch.yaml
+@@ -0,0 +1,7 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++  namespace: system
++spec:
++  replicas: 3
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index 3bf7f2b..c44bf80 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -4,12 +4,11 @@ resources:
+   - ../base
+   - ../base/external-secrets
+ 
+-replicas:
+-- name: controller-system
+-  count: 3
+-
+ configMapGenerator:
+ - literals:
+   - GITHUB_ORG="redhat-appstudio-appdata-staging"
+   name: github-config
+   behavior: replace
++
++patches:
++- ./replicas_patch.yaml
+diff --git a/components/has/staging/replicas_patch.yaml b/components/has/staging/replicas_patch.yaml
+new file mode 100644
+index 0000000..9c46ac3
+--- /dev/null
++++ b/components/has/staging/replicas_patch.yaml
+@@ -0,0 +1,7 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++  namespace: system
++spec:
++  replicas: 3
