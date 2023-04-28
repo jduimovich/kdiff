@@ -1,0 +1,20 @@
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index de5ea0c..6c7b328 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -17,4 +17,4 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
+-  - ./replicas_patch.yaml
++  - path: ./replicas_patch.yaml
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index c44bf80..a792fee 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -11,4 +11,4 @@ configMapGenerator:
+   behavior: replace
+ 
+ patches:
+-- ./replicas_patch.yaml
++- path: ./replicas_patch.yaml
