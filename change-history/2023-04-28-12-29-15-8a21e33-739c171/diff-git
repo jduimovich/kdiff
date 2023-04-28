@@ -1,0 +1,16 @@
+diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
+index c591582..e77616b 100644
+--- a/components/tekton-ci/production/kustomization.yaml
++++ b/components/tekton-ci/production/kustomization.yaml
+@@ -17,9 +17,9 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
+-  - path: snyk-shared-secret.yaml
++  - path: snyk-shared-token.yaml
+     target:
+-      name: snyk-shared-secret
++      name: snyk-shared-token
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
