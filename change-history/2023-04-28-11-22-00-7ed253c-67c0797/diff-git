@@ -1,0 +1,13 @@
+diff --git a/components/monitoring/prometheus/base/servicemonitors/release-service.yaml b/components/monitoring/prometheus/base/servicemonitors/release-service.yaml
+index 7488764..4f4d02a 100644
+--- a/components/monitoring/prometheus/base/servicemonitors/release-service.yaml
++++ b/components/monitoring/prometheus/base/servicemonitors/release-service.yaml
+@@ -21,7 +21,7 @@ spec:
+     - release-service
+   selector:
+     matchLabels:
+-    control-plane: controller-manager
++      control-plane: controller-manager
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding

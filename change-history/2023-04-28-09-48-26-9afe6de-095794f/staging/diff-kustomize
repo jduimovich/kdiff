@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-095794f/staging/components/jvm-build-service/kustomize.out.yaml ./kustomized-cache/commit-9afe6de/staging/components/jvm-build-service/kustomize.out.yaml
+983,991d982
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - spiaccesstokenbindings
+<   verbs:
+<   - create
+<   - get
+<   - list
+<   - watch
+1144,1145c1135,1136
+<           value: 4f3afba76a0bb271d827c3484dbfdfc2455c00a7
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:4f3afba76a0bb271d827c3484dbfdfc2455c00a7
+---
+>           value: 7005432c0797de77240b88038f784105a0013fac
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:7005432c0797de77240b88038f784105a0013fac

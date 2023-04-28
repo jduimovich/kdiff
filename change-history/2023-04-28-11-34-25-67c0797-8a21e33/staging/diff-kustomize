@@ -1,0 +1,40 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8a21e33/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-67c0797/staging/components/authentication/staging/kustomize.out.yaml
+9,28d8
+<   name: has-admin
+<   namespace: application-service
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods
+<   verbs:
+<   - get
+<   - delete
+< - apiGroups:
+<   - apps
+<   resources:
+<   - deployments/scale
+<   verbs:
+<   - patch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+357,373d336
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: has-admin
+<   namespace: application-service
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: has-admin
+< subjects:
+< - kind: User
+<   name: johnmcollier
+< - kind: User
+<   name: kim-tsao
+< - kind: User
+<   name: maysunfaisal
