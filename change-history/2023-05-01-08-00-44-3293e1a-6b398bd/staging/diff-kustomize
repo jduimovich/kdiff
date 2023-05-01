@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6b398bd/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-3293e1a/staging/app-of-apps-staging.yaml
+46,50d45
+<             matchExpressions:
+<             - key: app.kubernetes.io/name
+<               operator: NotIn
+<               values:
+<               - argocd-default-cluster-config
+52c47
+<               argocd.argoproj.io/secret-type: cluster
+---
+>               appstudio.redhat.com/member-cluster: "true"

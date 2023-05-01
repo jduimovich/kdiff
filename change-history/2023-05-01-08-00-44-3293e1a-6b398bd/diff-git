@@ -1,0 +1,40 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+similarity index 100%
+rename from argo-cd-apps/base/member/infra-deployments/authentication/authentication.yaml
+rename to argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+diff --git a/argo-cd-apps/base/member/infra-deployments/authentication/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/kustomization.yaml
+similarity index 54%
+rename from argo-cd-apps/base/member/infra-deployments/authentication/kustomization.yaml
+rename to argo-cd-apps/base/all-clusters/infra-deployments/authentication/kustomization.yaml
+index f91c369..88ce4e3 100644
+--- a/argo-cd-apps/base/member/infra-deployments/authentication/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/kustomization.yaml
+@@ -2,5 +2,3 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - authentication.yaml
+-components:
+-  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+index 0490ed3..78849cd 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+@@ -7,5 +7,6 @@ resources:
+   - monitoring-workload-prometheus
+   - monitoring-workload-grafana
+   - monitoring-workload-logging
++  - authentication
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 8b581e3..78bbbac 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -1,7 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - authentication
+   - gitops
+   - application-api
+   - has
