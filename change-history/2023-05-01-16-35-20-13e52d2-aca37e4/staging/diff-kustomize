@@ -1,0 +1,110 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aca37e4/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-13e52d2/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+1988c1988
+<         image: quay.io/redhat-appstudio/gitops-service:de8c84c581c628f31c84c01bcd4995fa837a11d2
+---
+>         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+2093c2093
+<         image: quay.io/redhat-appstudio/gitops-service:de8c84c581c628f31c84c01bcd4995fa837a11d2
+---
+>         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+2138a2139,2158
+>       initContainers:
+>       - command:
+>         - /init-container/init-container
+>         env:
+>         - name: ARGO_CD_NAMESPACE
+>           value: gitops-service-argocd
+>         - name: DB_ADDR
+>           value: ""
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: gitops-service-postgres-rds-config
+>         - name: DB_PASS
+>           value: ""
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: gitops-service-postgres-rds-config
+>         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+>         name: init-container
+2195c2215
+<         image: quay.io/redhat-appstudio/gitops-service:de8c84c581c628f31c84c01bcd4995fa837a11d2
+---
+>         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+2267,2269c2287
+<     env:
+<     - name: ARGOCD_RECONCILIATION_TIMEOUT
+<       value: 60s
+---
+>     appSync: 60s
+2274,2276d2291
+<         cpu: "2"
+<         memory: 6Gi
+<       requests:
+2278a2294,2296
+>       requests:
+>         cpu: 250m
+>         memory: 256Mi
+2321,2326d2338
+<     env:
+<     - name: ARGOCD_RECONCILIATION_TIMEOUT
+<       value: 60s
+<     extraRepoCommandArgs:
+<     - --max-combined-directory-manifests-size
+<     - 10M
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aca37e4/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-13e52d2/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml
+1988c1988
+<         image: quay.io/redhat-appstudio/gitops-service:de8c84c581c628f31c84c01bcd4995fa837a11d2
+---
+>         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+2093c2093
+<         image: quay.io/redhat-appstudio/gitops-service:de8c84c581c628f31c84c01bcd4995fa837a11d2
+---
+>         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+2138a2139,2158
+>       initContainers:
+>       - command:
+>         - /init-container/init-container
+>         env:
+>         - name: ARGO_CD_NAMESPACE
+>           value: gitops-service-argocd
+>         - name: DB_ADDR
+>           value: ""
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: gitops-service-postgres-rds-config
+>         - name: DB_PASS
+>           value: ""
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: gitops-service-postgres-rds-config
+>         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+>         name: init-container
+2195c2215
+<         image: quay.io/redhat-appstudio/gitops-service:de8c84c581c628f31c84c01bcd4995fa837a11d2
+---
+>         image: quay.io/redhat-appstudio/gitops-service:542620a8cb55833de718e192560cd8a59ba25bc0
+2267,2269c2287
+<     env:
+<     - name: ARGOCD_RECONCILIATION_TIMEOUT
+<       value: 60s
+---
+>     appSync: 60s
+2274,2276d2291
+<         cpu: "2"
+<         memory: 6Gi
+<       requests:
+2278a2294,2296
+>       requests:
+>         cpu: 250m
+>         memory: 256Mi
+2321,2326d2338
+<     env:
+<     - name: ARGOCD_RECONCILIATION_TIMEOUT
+<       value: 60s
+<     extraRepoCommandArgs:
+<     - --max-combined-directory-manifests-size
+<     - 10M
