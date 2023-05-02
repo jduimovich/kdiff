@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-842ede5/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-0a5034d/development/components/build-service/development/kustomize.out.yaml
+616d615
+<         - --zap-encoder=console

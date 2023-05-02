@@ -1,0 +1,52 @@
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index bdf7ce4..a22b7f7 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,3 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
++
++patches:
++  - target:
++      group: apps
++      version: v1
++      kind: Deployment
++      name: controller-manager
++    path: logs-in-console-format-cmd-arg-patch.yaml
+diff --git a/components/build-service/development/logs-in-console-format-cmd-arg-patch.yaml b/components/build-service/development/logs-in-console-format-cmd-arg-patch.yaml
+new file mode 100644
+index 0000000..020e2b9
+--- /dev/null
++++ b/components/build-service/development/logs-in-console-format-cmd-arg-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/template/spec/containers/0/args/-
++  value: '--zap-encoder=console'
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index bdf7ce4..a22b7f7 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,3 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
++
++patches:
++  - target:
++      group: apps
++      version: v1
++      kind: Deployment
++      name: controller-manager
++    path: logs-in-console-format-cmd-arg-patch.yaml
+diff --git a/components/image-controller/development/logs-in-console-format-cmd-arg-patch.yaml b/components/image-controller/development/logs-in-console-format-cmd-arg-patch.yaml
+new file mode 100644
+index 0000000..020e2b9
+--- /dev/null
++++ b/components/image-controller/development/logs-in-console-format-cmd-arg-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/template/spec/containers/0/args/-
++  value: '--zap-encoder=console'

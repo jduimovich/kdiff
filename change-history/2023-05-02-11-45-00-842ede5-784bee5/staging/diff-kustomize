@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-784bee5/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-842ede5/staging/components/authentication/staging/kustomize.out.yaml
+224,230d223
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   - serviceaccounts/token
+<   verbs:
+<   - '*'
