@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-de60362/development/components/gitops/development/kustomize.out.yaml ./kustomized-cache/commit-f237dc1/development/components/gitops/development/kustomize.out.yaml
+1942c1942
+<         image: quay.io/redhat-appstudio/gitops-service:8da486d9754b351acde4d06046dd22a7c57a1646
+---
+>         image: quay.io/redhat-appstudio/gitops-service:064cc29efc99e75ee904015ea9f7dfc387d89ec4
+2036c2036
+<         image: quay.io/redhat-appstudio/gitops-service:8da486d9754b351acde4d06046dd22a7c57a1646
+---
+>         image: quay.io/redhat-appstudio/gitops-service:064cc29efc99e75ee904015ea9f7dfc387d89ec4
+2127c2127
+<         image: quay.io/redhat-appstudio/gitops-service:8da486d9754b351acde4d06046dd22a7c57a1646
+---
+>         image: quay.io/redhat-appstudio/gitops-service:064cc29efc99e75ee904015ea9f7dfc387d89ec4

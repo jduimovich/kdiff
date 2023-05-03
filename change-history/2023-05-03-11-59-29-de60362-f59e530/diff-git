@@ -1,0 +1,33 @@
+diff --git a/components/build-service/base/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selector.yaml
+index 8cfa673..56658e6 100644
+--- a/components/build-service/base/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selector.yaml
+@@ -7,24 +7,24 @@ spec:
+     - name: FBC
+       pipelineRef:
+         name: fbc-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:13b9fefd7f086bb3d9e672d53bc5c8e7d0c5da19
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:b18bbcbd64df838fcf5cc62d9147087a763098bf
+       when:
+         language: fbc
+     - name: Docker build
+       pipelineRef:
+         name: docker-build
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:13b9fefd7f086bb3d9e672d53bc5c8e7d0c5da19
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:b18bbcbd64df838fcf5cc62d9147087a763098bf
+       when:
+         dockerfile: true
+     - name: Java
+       pipelineRef:
+         name: java-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:13b9fefd7f086bb3d9e672d53bc5c8e7d0c5da19
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:b18bbcbd64df838fcf5cc62d9147087a763098bf
+       when:
+         language: java
+     - name: NodeJS
+       pipelineRef:
+         name: nodejs-builder
+-        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:13b9fefd7f086bb3d9e672d53bc5c8e7d0c5da19
++        bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:b18bbcbd64df838fcf5cc62d9147087a763098bf
+       when:
+         language: nodejs,node
