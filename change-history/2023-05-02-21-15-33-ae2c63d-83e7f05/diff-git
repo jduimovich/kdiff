@@ -1,0 +1,14 @@
+diff --git a/components/authentication/base/has.yaml b/components/authentication/base/has.yaml
+index 4826eb0..2f4087d 100644
+--- a/components/authentication/base/has.yaml
++++ b/components/authentication/base/has.yaml
+@@ -19,6 +19,9 @@ subjects:
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: yangcao77
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: maysunfaisal
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole

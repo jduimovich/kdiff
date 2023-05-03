@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ae2c63d/staging/components/application-api/kustomize.out.yaml ./kustomized-cache/commit-b9b6814/staging/components/application-api/kustomize.out.yaml
+1350,1356d1349
+<                       ingressDomain:
+<                         description: IngressDomain is the cluster's ingress domain.
+<                           For example, in minikube it would be $(minikube ip).nip.io
+<                           and in OCP it would look like apps.xyz.rhcloud.com. If clusterType
+<                           == "Kubernetes", ingressDomain is mandatory and is enforced
+<                           by the webhook validation
+<                         type: string

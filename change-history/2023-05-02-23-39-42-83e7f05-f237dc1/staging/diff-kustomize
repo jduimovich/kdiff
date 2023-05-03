@@ -1,0 +1,170 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f237dc1/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-83e7f05/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1022d1021
+<   - logs
+1667c1666
+<   config: |
+---
+>   config: |-
+1673c1672
+<     DB_SSLMODE=require
+---
+>     DB_SSLMODE=disable
+1675c1674,1675
+<     SERVER_PORT=8080
+---
+>     GRPC_PORT=50051
+>     REST_PORT=8080
+1679,1680c1679
+<     AUTH_DISABLE=false
+<     AUTH_IMPERSONATE=true
+---
+>     NO_AUTH=false
+1747d1745
+<   loglevel.controller: info
+1751a1750,1766
+>       "development": false,
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "time",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+1941d1955
+<     argocd.argoproj.io/sync-wave: "1"
+1944d1957
+<     app.kubernetes.io/name: tekton-results-api
+1951c1964,1968
+<   - name: server
+---
+>   - name: grpc
+>     port: 50051
+>     protocol: TCP
+>     targetPort: 50051
+>   - name: rest
+1967d1983
+<     argocd.argoproj.io/sync-wave: "2"
+1969d1984
+<     app.kubernetes.io/name: tekton-results-watcher
+2348d2362
+<     argocd.argoproj.io/sync-wave: "1"
+2422c2436
+<         image: quay.io/redhat-appstudio/tekton-results-api:d384e7fec22bcd1b2c3e108a68cb32da4d4e6020
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:4c93d5c4f34d96d31ade787ee1856d144e342143
+2463c2477
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:d384e7fec22bcd1b2c3e108a68cb32da4d4e6020
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:4c93d5c4f34d96d31ade787ee1856d144e342143
+2493d2506
+<     argocd.argoproj.io/sync-wave: "2"
+2517c2530
+<         - tekton-results-api-service.tekton-results.svc.cluster.local:8080
+---
+>         - tekton-results-api-service.tekton-results.svc.cluster.local:50051
+2533c2546
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:d384e7fec22bcd1b2c3e108a68cb32da4d4e6020
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:4c93d5c4f34d96d31ade787ee1856d144e342143
+2788c2801
+<   channel: pipelines-1.10
+---
+>   channel: pipelines-1.9
+2831c2844
+<     targetPort: server
+---
+>     targetPort: rest
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f237dc1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-83e7f05/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1022d1021
+<   - logs
+1667c1666
+<   config: |
+---
+>   config: |-
+1673c1672
+<     DB_SSLMODE=require
+---
+>     DB_SSLMODE=disable
+1675c1674,1675
+<     SERVER_PORT=8080
+---
+>     GRPC_PORT=50051
+>     REST_PORT=8080
+1679,1680c1679
+<     AUTH_DISABLE=false
+<     AUTH_IMPERSONATE=true
+---
+>     NO_AUTH=false
+1747d1745
+<   loglevel.controller: info
+1751a1750,1766
+>       "development": false,
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "time",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+1941d1955
+<     argocd.argoproj.io/sync-wave: "1"
+1944d1957
+<     app.kubernetes.io/name: tekton-results-api
+1951c1964,1968
+<   - name: server
+---
+>   - name: grpc
+>     port: 50051
+>     protocol: TCP
+>     targetPort: 50051
+>   - name: rest
+1967d1983
+<     argocd.argoproj.io/sync-wave: "2"
+1969d1984
+<     app.kubernetes.io/name: tekton-results-watcher
+2348d2362
+<     argocd.argoproj.io/sync-wave: "1"
+2422c2436
+<         image: quay.io/redhat-appstudio/tekton-results-api:d384e7fec22bcd1b2c3e108a68cb32da4d4e6020
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:4c93d5c4f34d96d31ade787ee1856d144e342143
+2463c2477
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:d384e7fec22bcd1b2c3e108a68cb32da4d4e6020
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:4c93d5c4f34d96d31ade787ee1856d144e342143
+2493d2506
+<     argocd.argoproj.io/sync-wave: "2"
+2517c2530
+<         - tekton-results-api-service.tekton-results.svc.cluster.local:8080
+---
+>         - tekton-results-api-service.tekton-results.svc.cluster.local:50051
+2533c2546
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:d384e7fec22bcd1b2c3e108a68cb32da4d4e6020
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:4c93d5c4f34d96d31ade787ee1856d144e342143
+2788c2801
+<   channel: pipelines-1.10
+---
+>   channel: pipelines-1.9
+2831c2844
+<     targetPort: server
+---
+>     targetPort: rest

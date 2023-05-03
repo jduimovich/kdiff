@@ -1,0 +1,41 @@
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index d41d7c7..c05e5bf 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=062d00d304d6fba316085784f3b948217fc99d12
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=062d00d304d6fba316085784f3b948217fc99d12
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=709ba3afe1cb80b9a8181849b7eb174e0d50f458
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=709ba3afe1cb80b9a8181849b7eb174e0d50f458
+ 
+ components:
+   - ../components/tekton-chains
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 0f31fdc..87dee41 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=062d00d304d6fba316085784f3b948217fc99d12
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=709ba3afe1cb80b9a8181849b7eb174e0d50f458
+   - ../../base/external-secrets
+   - ../../base/testing
+ 
+diff --git a/hack/secret-creator/create-plnsvc-secrets.sh b/hack/secret-creator/create-plnsvc-secrets.sh
+index bbcc1fa..289e76d 100755
+--- a/hack/secret-creator/create-plnsvc-secrets.sh
++++ b/hack/secret-creator/create-plnsvc-secrets.sh
+@@ -24,7 +24,7 @@ create_db_secret() {
+     kubectl create secret generic -n tekton-results tekton-results-database \
+       --from-literal=db.user=tekton \
+       --from-literal=db.password="$(openssl rand -base64 20)" \
+-      --from-literal=db.host="tekton-results-database-service.tekton-results.svc.cluster.local" \
++      --from-literal=db.host="postgres-postgresql.tekton-results.svc.cluster.local" \
+       --from-literal=db.name="tekton_results"
+ }
+ 
