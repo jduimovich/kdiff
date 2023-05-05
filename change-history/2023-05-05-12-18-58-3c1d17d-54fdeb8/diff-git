@@ -1,0 +1,24 @@
+diff --git a/components/integration/OWNERS b/components/integration/OWNERS
+index a00e5b6..215befd 100644
+--- a/components/integration/OWNERS
++++ b/components/integration/OWNERS
+@@ -5,11 +5,17 @@ approvers:
+ - hongweiliu17
+ - jsztuka
+ - jinqi7
+-- srivickynesh
++- sonam1412
++- MartinBasti
++- Josh-Everett
++- 14rcole
+ 
+ reviewers:
+ - dirgim
+ - hongweiliu17
+ - jsztuka
+ - jinqi7
+-- srivickynesh
++- sonam1412
++- MartinBasti
++- Josh-Everett
++- 14rcole

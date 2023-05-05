@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9345fc8/development/components/dora-metrics/development/kustomize.out.yaml ./kustomized-cache/commit-54fdeb8/development/components/dora-metrics/development/kustomize.out.yaml
+105c105
+<         image: quay.io/redhat-appstudio/dora-metrics:d1527e9ad74c96bb7333f02a4b55695f4c88d92c
+---
+>         image: quay.io/redhat-appstudio/dora-metrics:b0b889ba5d95e759c184d483b57c4701e961214d

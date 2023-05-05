@@ -1,0 +1,133 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dora-metrics
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dora-metrics-exporter-sa
+  namespace: dora-metrics
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dora-metrics-reader
+rules:
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+  - patch
+  - update
+- apiGroups:
+  - apps
+  resources:
+  - replicasets
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+  - patch
+  - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dora-metrics-reader
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: dora-metrics-reader
+subjects:
+- kind: ServiceAccount
+  name: dora-metrics-exporter-sa
+  namespace: dora-metrics
+---
+apiVersion: v1
+data:
+  imageExclude: '["quay.io/redhat-appstudio/gitopsdepl", "quay.io/redhat-appstudio/user-workload"]'
+  imageFilters: '["quay.io/redhat-appstudio/", "quay.io/redhat-appstudio-qe/", "quay.io/stolostron/"]'
+  searchLabel: app.kubernetes.io/instance
+  verbosity: "1"
+kind: ConfigMap
+metadata:
+  name: exporters-config
+  namespace: dora-metrics
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: exporter
+  name: exporters-svc
+  namespace: dora-metrics
+spec:
+  ports:
+  - name: metrics-port
+    port: 9101
+    protocol: TCP
+    targetPort: 9101
+  selector:
+    app: exporter
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exporter
+  namespace: dora-metrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exporter
+  template:
+    metadata:
+      labels:
+        app: exporter
+    spec:
+      containers:
+      - env:
+        - name: GITHUB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: github
+              name: exporters-secret
+              optional: false
+        image: quay.io/redhat-appstudio/dora-metrics:d1527e9ad74c96bb7333f02a4b55695f4c88d92c
+        name: container
+        ports:
+        - containerPort: 9101
+          name: metrics-port
+          protocol: TCP
+      serviceAccount: dora-metrics-exporter-sa
+      serviceAccountName: dora-metrics-exporter-sa
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: exporters-secret
+  namespace: dora-metrics
+spec:
+  dataFrom:
+  - extract:
+      key: staging/qe/exporters-secret
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: exporters-secret

@@ -1,0 +1,36 @@
+diff --git a/components/dora-metrics/base/kustomization.yaml b/components/dora-metrics/base/kustomization.yaml
+index 2caf0d4..bf34a12 100644
+--- a/components/dora-metrics/base/kustomization.yaml
++++ b/components/dora-metrics/base/kustomization.yaml
+@@ -1,5 +1,5 @@
+ resources:
+-- https://github.com/redhat-appstudio/dora-metrics/deploy/base?ref=b0b889ba5d95e759c184d483b57c4701e961214d
++- https://github.com/redhat-appstudio/dora-metrics/deploy/base?ref=d1527e9ad74c96bb7333f02a4b55695f4c88d92c
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+@@ -7,4 +7,4 @@ kind: Kustomization
+ images:
+   - name: quay.io/redhat-appstudio/dora-metrics
+     newName: quay.io/redhat-appstudio/dora-metrics
+-    newTag: b0b889ba5d95e759c184d483b57c4701e961214d
++    newTag: d1527e9ad74c96bb7333f02a4b55695f4c88d92c
+diff --git a/components/monitoring/prometheus/base/servicemonitors/dora-service.yaml b/components/monitoring/prometheus/base/servicemonitors/dora-service.yaml
+index f351e20..2d088de 100644
+--- a/components/monitoring/prometheus/base/servicemonitors/dora-service.yaml
++++ b/components/monitoring/prometheus/base/servicemonitors/dora-service.yaml
+@@ -2,7 +2,7 @@ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+   name: dora-service
+-  namespace: appstudio-workload-monitoring
++  namespace: dora-metrics
+   labels:
+     control-plane: controller-manager
+     prometheus: appstudio-workload
+@@ -33,4 +33,4 @@ roleRef:
+ subjects:
+ - kind: ServiceAccount
+   name: prometheus-k8s
+-  namespace: appstudio-workload-monitoring
++  namespace: dora-metrics
