@@ -1,0 +1,89 @@
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/disable-csvcopy-for-all-cluster/disable-csvcopy.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/disable-csvcopy-for-all-cluster/disable-csvcopy.yaml
+new file mode 100644
+index 0000000..1c00c8e
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/disable-csvcopy-for-all-cluster/disable-csvcopy.yaml
+@@ -0,0 +1,38 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: disable-csvcopy
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: configs/disable-csvcopy-for-all-cluster
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: disable-csvcopy-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: configs/disable-csvcopy-for-all-cluster
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/disable-csvcopy-for-all-cluster/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/disable-csvcopy-for-all-cluster/kustomization.yaml
+new file mode 100644
+index 0000000..bd0465f
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/disable-csvcopy-for-all-cluster/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - disable-csvcopy.yaml
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+index 78849cd..9d6d38e 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+@@ -8,5 +8,7 @@ resources:
+   - monitoring-workload-grafana
+   - monitoring-workload-logging
+   - authentication
++  - disable-csvcopy-for-all-cluster
++
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/configs/disable-csvcopy-for-all-cluster/cluster.yaml b/configs/disable-csvcopy-for-all-cluster/cluster.yaml
+new file mode 100644
+index 0000000..1e0684c
+--- /dev/null
++++ b/configs/disable-csvcopy-for-all-cluster/cluster.yaml
+@@ -0,0 +1,7 @@
++apiVersion: operators.coreos.com/v1
++kind: OLMConfig
++metadata:
++  name: cluster
++spec:
++  features:
++    disableCopiedCSVs: true
+diff --git a/configs/disable-csvcopy-for-all-cluster/kustomization.yaml b/configs/disable-csvcopy-for-all-cluster/kustomization.yaml
+new file mode 100644
+index 0000000..993fbde
+--- /dev/null
++++ b/configs/disable-csvcopy-for-all-cluster/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - cluster.yaml

@@ -1,0 +1,59 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-df125d7/staging/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-14e6ee7/staging/components/enterprise-contract/kustomize.out.yaml
+235c235
+<   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:c0defc42e6917afa6d5b1924ead4a86325daf907@sha256:1114a9c2f7fe92c2fed41cb56d05cfc6a56f8775d051d9a949ab44227c5e62ed
+---
+>   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:15a2444bf486bba5f36f59736c4ed2dcbbb811d7@sha256:c2e7eda64e39ba12bbd4bf64dcfad856fd31b8ee9f8f06ac49c15711ddcdacce
+253c253
+<     - oci::quay.io/hacbs-contract/ec-policy-data:git-0192abe@sha256:3fcc083ff763ba060373761a6bf13518a044ac333f51df5e78414b9ff630babf
+---
+>     - oci::quay.io/hacbs-contract/ec-policy-data:git-8629680@sha256:ee5708dda57216647f63032dd3e63375e70e2353cb1ad10c9ab5493b9236c23e
+256c256
+<     - oci::quay.io/hacbs-contract/ec-release-policy:git-2ed7b8e@sha256:ba75e1a0e41f3b645c6084f978b4bc42b4d1a91ec44646ce3522059bf97b1592
+---
+>     - oci::quay.io/hacbs-contract/ec-release-policy:git-086f871@sha256:373a5c4c1d34123836cbfc11826f6bbf6fdf8f0dfae333a2686bbe941c4f79ef
+274c274
+<     - oci::quay.io/hacbs-contract/ec-policy-data:git-0192abe@sha256:3fcc083ff763ba060373761a6bf13518a044ac333f51df5e78414b9ff630babf
+---
+>     - oci::quay.io/hacbs-contract/ec-policy-data:git-8629680@sha256:ee5708dda57216647f63032dd3e63375e70e2353cb1ad10c9ab5493b9236c23e
+277,315c277
+<     - oci::quay.io/hacbs-contract/ec-release-policy:git-2ed7b8e@sha256:ba75e1a0e41f3b645c6084f978b4bc42b4d1a91ec44646ce3522059bf97b1592
+< ---
+< apiVersion: console.openshift.io/v1
+< kind: ConsoleYAMLSample
+< metadata:
+<   name: ecp-example
+< spec:
+<   description: Example of custom Enterprise Contract Policy
+<   targetResource:
+<     apiVersion: appstudio.redhat.com/v1alpha1
+<     kind: EnterpriseContractPolicy
+<   title: Example Enterprise Contract Policy
+<   yaml: |
+<     apiVersion: appstudio.redhat.com/v1alpha1
+<     kind: EnterpriseContractPolicy
+<     metadata:
+<       name: acme-policy
+<     spec:
+<       description: ACME Enterprise Contract Policy configuration
+<       configuration:
+<         include:
+<           - "@slsa1"
+<           - "@slsa2"
+<           - "@acme"
+<       publicKey: k8s://tekton-chains/public-key
+<       sources:
+<         - name: Default EC Policies
+<           data:
+<             - oci::quay.io/hacbs-contract/ec-policy-data:latest
+<           policy:
+<             - oci::quay.io/hacbs-contract/ec-release-policy:latest
+<           ruleData:
+<             allowed_registry_prefixes:
+<             - registry.access.redhat.com/
+<             - registry.redhat.io/
+<             - registry.io/acme/
+<         - name: ACME Policies
+<           policy:
+<             - oci::registry.io/acme/enterprise-rules:latest
+---
+>     - oci::quay.io/hacbs-contract/ec-release-policy:git-086f871@sha256:373a5c4c1d34123836cbfc11826f6bbf6fdf8f0dfae333a2686bbe941c4f79ef

@@ -1,0 +1,13 @@
+diff --git a/components/integration/manager_resources_patch.yaml b/components/integration/manager_resources_patch.yaml
+index dbfda65..5d3aa16 100644
+--- a/components/integration/manager_resources_patch.yaml
++++ b/components/integration/manager_resources_patch.yaml
+@@ -11,7 +11,7 @@ spec:
+         resources:
+           limits:
+             cpu: 500m
+-            memory: 512Mi
++            memory: 1Gi
+           requests:
+             cpu: 100m
+             memory: 20Mi

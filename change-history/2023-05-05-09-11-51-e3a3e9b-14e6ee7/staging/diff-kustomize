@@ -1,0 +1,50 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-14e6ee7/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-e3a3e9b/staging/app-of-apps-staging.yaml
+266,313d265
+<   name: disable-csvcopy
+<   namespace: argocd-staging
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchExpressions:
+<             - key: app.kubernetes.io/name
+<               operator: NotIn
+<               values:
+<               - argocd-default-cluster-config
+<             matchLabels:
+<               argocd.argoproj.io/secret-type: cluster
+<           values:
+<             clusterDir: ""
+<             environment: staging
+<             sourceRoot: configs/disable-csvcopy-for-all-cluster
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: disable-csvcopy-{{nameNormalized}}
+<     spec:
+<       destination:
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: configs/disable-csvcopy-for-all-cluster
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: -1
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
