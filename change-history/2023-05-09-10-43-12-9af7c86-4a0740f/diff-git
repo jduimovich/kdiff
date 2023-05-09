@@ -1,0 +1,67 @@
+diff --git a/components/monitoring/logging/staging/configure-logforwarder-patch.yaml b/components/monitoring/logging/staging/configure-logforwarder-patch.yaml
+new file mode 100644
+index 0000000..fe89de9
+--- /dev/null
++++ b/components/monitoring/logging/staging/configure-logforwarder-patch.yaml
+@@ -0,0 +1,20 @@
++---
++- op: add
++  path: /spec/outputs/-
++  value:
++    name: splunk-receiver
++    secret:
++      name: splunk-forwarder-secret
++    type: splunk 
++    url: https://http-inputs-rhcorporate.splunkcloud.com
++- op: add
++  path: /spec/pipelines/-
++  value:
++    name: fluentd-splunk-logforward
++    inputRefs:
++      - application
++      - infrastructure
++      - audit
++    outputRefs:
++      - splunk-receiver
++    parse: json
+diff --git a/components/monitoring/logging/staging/kustomization.yaml b/components/monitoring/logging/staging/kustomization.yaml
+index 258f5ec..a18317a 100644
+--- a/components/monitoring/logging/staging/kustomization.yaml
++++ b/components/monitoring/logging/staging/kustomization.yaml
+@@ -9,4 +9,10 @@ patches:
+       name: monitoring-logging-cloudwatch-forwarder
+       group: external-secrets.io
+       version: v1beta1
+-      kind: ExternalSecret
+\ No newline at end of file
++      kind: ExternalSecret
++  - path: configure-logforwarder-patch.yaml
++    target:
++      name: instance
++      group: logging.openshift.io
++      version: v1
++      kind: ClusterLogForwarder
+diff --git a/components/monitoring/logging/staging/monitoring-logging-splunk-log-forwarder-external-secret.yaml b/components/monitoring/logging/staging/monitoring-logging-splunk-log-forwarder-external-secret.yaml
+new file mode 100644
+index 0000000..626d026
+--- /dev/null
++++ b/components/monitoring/logging/staging/monitoring-logging-splunk-log-forwarder-external-secret.yaml
+@@ -0,0 +1,18 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: monitoring-logging-splunk-forwarder
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++  - extract:
++      key: staging/monitoring/logging/fluentd/splunk-forwarder/token
++  refreshInterval: 1h
++  secretStoreRef:
++    name: appsre-stonesoup-vault
++    kind: ClusterSecretStore    
++  target:
++    name: splunk-forwarder-secret    
++    deletionPolicy: Delete    
