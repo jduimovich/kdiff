@@ -1,0 +1,149 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dora-metrics
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dora-metrics-exporter-sa
+  namespace: dora-metrics
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dora-metrics-reader
+rules:
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+  - patch
+  - update
+- apiGroups:
+  - apps
+  resources:
+  - replicasets
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - delete
+  - patch
+  - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dora-metrics-reader
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: dora-metrics-reader
+subjects:
+- kind: ServiceAccount
+  name: dora-metrics-exporter-sa
+  namespace: dora-metrics
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus-dora-metrics-reader
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: dora-metrics-reader
+subjects:
+- kind: ServiceAccount
+  name: prometheus-k8s
+  namespace: dora-metrics
+---
+apiVersion: v1
+data:
+  imageExclude: '["quay.io/redhat-appstudio/gitopsdepl", "quay.io/redhat-appstudio/user-workload"]'
+  imageFilters: '["quay.io/redhat-appstudio/", "quay.io/redhat-appstudio-qe/", "quay.io/stolostron/"]'
+  searchLabel: app.kubernetes.io/instance
+  verbosity: "1"
+kind: ConfigMap
+metadata:
+  name: exporters-config
+  namespace: dora-metrics
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: exporter
+  name: exporters-svc
+  namespace: dora-metrics
+spec:
+  ports:
+  - name: metrics-port
+    port: 9101
+    protocol: TCP
+    targetPort: 9101
+  selector:
+    app: exporter
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exporter
+  namespace: dora-metrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exporter
+  template:
+    metadata:
+      labels:
+        app: exporter
+    spec:
+      containers:
+      - env:
+        - name: GITHUB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: github
+              name: exporters-secret
+              optional: false
+        image: quay.io/redhat-appstudio/dora-metrics:0781bca02657aa785740ed6e374ec5def7c9a0a5
+        name: container
+        ports:
+        - containerPort: 9101
+          name: metrics-port
+          protocol: TCP
+      serviceAccount: dora-metrics-exporter-sa
+      serviceAccountName: dora-metrics-exporter-sa
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: exporter
+    control-plane: controller-manager
+    prometheus: appstudio-workload
+  name: dora-service
+  namespace: dora-metrics
+spec:
+  endpoints:
+  - interval: 120s
+    path: /metrics
+    port: metrics-port
+    scrapeTimeout: 30s
+    tlsConfig:
+      insecureSkipVerify: true
+  namespaceSelector:
+    matchNames:
+    - dora-metrics
+  selector:
+    matchLabels:
+      app: exporter

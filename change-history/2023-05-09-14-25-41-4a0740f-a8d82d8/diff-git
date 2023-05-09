@@ -1,0 +1,50 @@
+diff --git a/components/sprayproxy/base/kustomization.yaml b/components/sprayproxy/base/kustomization.yaml
+index d62401a..c214982 100644
+--- a/components/sprayproxy/base/kustomization.yaml
++++ b/components/sprayproxy/base/kustomization.yaml
+@@ -2,3 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ namespace: sprayproxy
++
++resources:
++  - team-support-rbac.yaml
+\ No newline at end of file
+diff --git a/components/sprayproxy/base/team-support-rbac.yaml b/components/sprayproxy/base/team-support-rbac.yaml
+new file mode 100644
+index 0000000..4e5156d
+--- /dev/null
++++ b/components/sprayproxy/base/team-support-rbac.yaml
+@@ -0,0 +1,31 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: sprayproxy-rbac-for-support
++  namespace: sprayproxy
++subjects:
++  - kind: User
++    name: adambkaplan
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: Roming22
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: gabemontero
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: avinal
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: sayan-biswas
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: enarha
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: AndrienkoAleksandr
++    apiGroup: rbac.authorization.k8s.io
++roleRef:
++  kind: ClusterRole
++  name: view
++  apiGroup: rbac.authorization.k8s.io
+\ No newline at end of file
