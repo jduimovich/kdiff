@@ -1,0 +1,94 @@
+diff --git a/components/monitoring/logging/staging/configure-logforwarder-patch.yaml b/components/monitoring/logging/staging/configure-logging/cluster-log-forwarder-patch.yaml
+similarity index 95%
+rename from components/monitoring/logging/staging/configure-logforwarder-patch.yaml
+rename to components/monitoring/logging/staging/configure-logging/cluster-log-forwarder-patch.yaml
+index fe89de9..fae26f4 100644
+--- a/components/monitoring/logging/staging/configure-logforwarder-patch.yaml
++++ b/components/monitoring/logging/staging/configure-logging/cluster-log-forwarder-patch.yaml
+@@ -5,7 +5,7 @@
+     name: splunk-receiver
+     secret:
+       name: splunk-forwarder-secret
+-    type: splunk 
++    type: splunk
+     url: https://http-inputs-rhcorporate.splunkcloud.com
+ - op: add
+   path: /spec/pipelines/-
+diff --git a/components/monitoring/logging/staging/configure-logging/kustomization.yaml b/components/monitoring/logging/staging/configure-logging/kustomization.yaml
+new file mode 100644
+index 0000000..4ea1bcc
+--- /dev/null
++++ b/components/monitoring/logging/staging/configure-logging/kustomization.yaml
+@@ -0,0 +1,2 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
+diff --git a/components/monitoring/logging/staging/external-secrets/kustomization.yaml b/components/monitoring/logging/staging/external-secrets/kustomization.yaml
+new file mode 100644
+index 0000000..302ae9e
+--- /dev/null
++++ b/components/monitoring/logging/staging/external-secrets/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- monitoring-logging-splunk-log-forwarder.yaml
++namespace: openshift-logging
+diff --git a/components/monitoring/logging/staging/monitoring-logging-splunk-log-forwarder-external-secret.yaml b/components/monitoring/logging/staging/external-secrets/monitoring-logging-splunk-log-forwarder.yaml
+similarity index 58%
+rename from components/monitoring/logging/staging/monitoring-logging-splunk-log-forwarder-external-secret.yaml
+rename to components/monitoring/logging/staging/external-secrets/monitoring-logging-splunk-log-forwarder.yaml
+index 626d026..a32aaf9 100644
+--- a/components/monitoring/logging/staging/monitoring-logging-splunk-log-forwarder-external-secret.yaml
++++ b/components/monitoring/logging/staging/external-secrets/monitoring-logging-splunk-log-forwarder.yaml
+@@ -1,18 +1,18 @@
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+-  name: monitoring-logging-splunk-forwarder
++  name: monitoring-logging-splunk-log-forwarder
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+   - extract:
+-      key: staging/monitoring/logging/fluentd/splunk-forwarder/token
++      key: staging/monitoring/logging/fluentd/splunk-forwarder
+   refreshInterval: 1h
+   secretStoreRef:
+     name: appsre-stonesoup-vault
+-    kind: ClusterSecretStore    
++    kind: ClusterSecretStore
+   target:
+-    name: splunk-forwarder-secret    
+-    deletionPolicy: Delete    
++    name: splunk-forwarder-secret
++    deletionPolicy: Delete
+diff --git a/components/monitoring/logging/staging/kustomization.yaml b/components/monitoring/logging/staging/kustomization.yaml
+index a18317a..81ac59d 100644
+--- a/components/monitoring/logging/staging/kustomization.yaml
++++ b/components/monitoring/logging/staging/kustomization.yaml
+@@ -1,8 +1,10 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base/external-secrets
+ - ../base
++- ../base/external-secrets
++- configure-logging
++- external-secrets
+ patches:
+   - path: monitoring-logging-cloudwatch-forwarder-path.yaml
+     target:
+@@ -10,9 +12,9 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: configure-logforwarder-patch.yaml
++  - path: configure-logging/cluster-log-forwarder-patch.yaml
+     target:
+-      name: instance
+       group: logging.openshift.io
+       version: v1
+       kind: ClusterLogForwarder
++      name: instance

@@ -1,0 +1,15 @@
+diff --git a/components/spi/overlays/development/config-patch.json b/components/spi/overlays/development/config-patch.json
+index 90a1dbd..a177ddc 100644
+--- a/components/spi/overlays/development/config-patch.json
++++ b/components/spi/overlays/development/config-patch.json
+@@ -13,5 +13,10 @@
+     "op": "add",
+     "path": "/data/SPIINSTANCEID",
+     "value": "spi-dev"
++  },
++  {
++    "op": "add",
++    "path": "/data/ENABLEREMOTESECRETS",
++    "value": "true"
+   }
+ ]
