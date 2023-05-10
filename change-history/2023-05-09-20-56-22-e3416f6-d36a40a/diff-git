@@ -1,0 +1,41 @@
+diff --git a/components/dora-metrics/base/kustomization.yaml b/components/dora-metrics/base/kustomization.yaml
+index 5493f4e..0bff264 100644
+--- a/components/dora-metrics/base/kustomization.yaml
++++ b/components/dora-metrics/base/kustomization.yaml
+@@ -1,5 +1,5 @@
+ resources:
+-- https://github.com/redhat-appstudio/dora-metrics/deploy/base?ref=0781bca02657aa785740ed6e374ec5def7c9a0a5
++- https://github.com/redhat-appstudio/dora-metrics/deploy/base?ref=dadd13a75d0fd0e4337fd90ddba3d3e47fb6199f
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+@@ -7,4 +7,4 @@ kind: Kustomization
+ images:
+   - name: quay.io/redhat-appstudio/dora-metrics
+     newName: quay.io/redhat-appstudio/dora-metrics
+-    newTag: 0781bca02657aa785740ed6e374ec5def7c9a0a5
++    newTag: dadd13a75d0fd0e4337fd90ddba3d3e47fb6199f
+diff --git a/components/monitoring/grafana/base/dora-metrics/kustomization.yaml b/components/monitoring/grafana/base/dora-metrics/kustomization.yaml
+index 381fedf..437b150 100644
+--- a/components/monitoring/grafana/base/dora-metrics/kustomization.yaml
++++ b/components/monitoring/grafana/base/dora-metrics/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/dora-metrics/deploy/grafana/?ref=0781bca02657aa785740ed6e374ec5def7c9a0a5
++- https://github.com/redhat-appstudio/dora-metrics/deploy/grafana/?ref=dadd13a75d0fd0e4337fd90ddba3d3e47fb6199f
+ - dashboard.yaml
+diff --git a/hack/bootstrap-cluster-common.sh b/hack/bootstrap-cluster-common.sh
+index 8a7cb94..7646008 100755
+--- a/hack/bootstrap-cluster-common.sh
++++ b/hack/bootstrap-cluster-common.sh
+@@ -9,7 +9,7 @@ main() {
+     [[ -z "$DOCKER_IO_AUTH" ]] || \
+         "${ROOT}/secret-creator/set-docker-hub-pull-secret.sh" "$DOCKER_IO_AUTH"
+     "${ROOT}/secret-creator/create-dora-metrics-exporter-secrets.sh" \
+-        "$MY_GITHUB_TOKEN"
++        "$GITHUB_TOKEN"
+ }
+ 
+ 

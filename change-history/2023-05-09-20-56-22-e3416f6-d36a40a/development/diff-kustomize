@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d36a40a/development/components/dora-metrics/development/kustomize.out.yaml ./kustomized-cache/commit-e3416f6/development/components/dora-metrics/development/kustomize.out.yaml
+68a69,79
+> data:
+>   imageExclude: '["quay.io/redhat-appstudio/gitopsdepl", "quay.io/redhat-appstudio/user-workload"]'
+>   imageFilters: '["quay.io/redhat-appstudio/", "quay.io/redhat-appstudio-qe/", "quay.io/stolostron/"]'
+>   searchLabel: app.kubernetes.io/instance
+>   verbosity: "1"
+> kind: ConfigMap
+> metadata:
+>   name: exporters-config
+>   namespace: dora-metrics
+> ---
+> apiVersion: v1
+107c118
+<         image: quay.io/redhat-appstudio/dora-metrics:dadd13a75d0fd0e4337fd90ddba3d3e47fb6199f
+---
+>         image: quay.io/redhat-appstudio/dora-metrics:0781bca02657aa785740ed6e374ec5def7c9a0a5
