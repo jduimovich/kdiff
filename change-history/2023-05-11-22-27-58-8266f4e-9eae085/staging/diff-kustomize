@@ -1,0 +1,124 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9eae085/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-8266f4e/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+124,131c124,130
+<                     \n \ttype FooStatus struct{ \t    // Represents the observations
+<                     of a foo's current state. \t    // Known .status.conditions.type
+<                     are: \"Available\", \"Progressing\", and \"Degraded\" \t    //
+<                     +patchMergeKey=type \t    // +patchStrategy=merge \t    // +listType=map
+<                     \t    // +listMapKey=type \t    Conditions []metav1.Condition
+<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
+<                     protobuf:\"bytes,1,rep,name=conditions\"` \n \t    // other fields
+<                     \t}"
+---
+>                     type FooStatus struct{     // Represents the observations of a
+>                     foo's current state.     // Known .status.conditions.type are:
+>                     \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
+>                     \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
+>                     \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
+>                     patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
+>                     \n     // other fields }"
+264,271c263,269
+<                     \n \ttype FooStatus struct{ \t    // Represents the observations
+<                     of a foo's current state. \t    // Known .status.conditions.type
+<                     are: \"Available\", \"Progressing\", and \"Degraded\" \t    //
+<                     +patchMergeKey=type \t    // +patchStrategy=merge \t    // +listType=map
+<                     \t    // +listMapKey=type \t    Conditions []metav1.Condition
+<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
+<                     protobuf:\"bytes,1,rep,name=conditions\"` \n \t    // other fields
+<                     \t}"
+---
+>                     type FooStatus struct{     // Represents the observations of a
+>                     foo's current state.     // Known .status.conditions.type are:
+>                     \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
+>                     \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
+>                     \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
+>                     patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
+>                     \n     // other fields }"
+1071,1076d1068
+<   - deploymenttargets/finalizers
+<   verbs:
+<   - update
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+1996c1988
+<         image: quay.io/redhat-appstudio/gitops-service:bd7630f8576acfb3ff3f78b1005f86945cdc4766
+---
+>         image: quay.io/redhat-appstudio/gitops-service:4fe437c42f42868947e1b924570677f3711ecc9f
+2019,2021d2010
+<             memory: 3172Mi
+<           requests:
+<             cpu: 200m
+2022a2012,2014
+>           requests:
+>             cpu: 50m
+>             memory: 256Mi
+2101c2093
+<         image: quay.io/redhat-appstudio/gitops-service:bd7630f8576acfb3ff3f78b1005f86945cdc4766
+---
+>         image: quay.io/redhat-appstudio/gitops-service:4fe437c42f42868947e1b924570677f3711ecc9f
+2203c2195
+<         image: quay.io/redhat-appstudio/gitops-service:bd7630f8576acfb3ff3f78b1005f86945cdc4766
+---
+>         image: quay.io/redhat-appstudio/gitops-service:4fe437c42f42868947e1b924570677f3711ecc9f
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9eae085/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-8266f4e/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml
+124,131c124,130
+<                     \n \ttype FooStatus struct{ \t    // Represents the observations
+<                     of a foo's current state. \t    // Known .status.conditions.type
+<                     are: \"Available\", \"Progressing\", and \"Degraded\" \t    //
+<                     +patchMergeKey=type \t    // +patchStrategy=merge \t    // +listType=map
+<                     \t    // +listMapKey=type \t    Conditions []metav1.Condition
+<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
+<                     protobuf:\"bytes,1,rep,name=conditions\"` \n \t    // other fields
+<                     \t}"
+---
+>                     type FooStatus struct{     // Represents the observations of a
+>                     foo's current state.     // Known .status.conditions.type are:
+>                     \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
+>                     \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
+>                     \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
+>                     patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
+>                     \n     // other fields }"
+264,271c263,269
+<                     \n \ttype FooStatus struct{ \t    // Represents the observations
+<                     of a foo's current state. \t    // Known .status.conditions.type
+<                     are: \"Available\", \"Progressing\", and \"Degraded\" \t    //
+<                     +patchMergeKey=type \t    // +patchStrategy=merge \t    // +listType=map
+<                     \t    // +listMapKey=type \t    Conditions []metav1.Condition
+<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
+<                     protobuf:\"bytes,1,rep,name=conditions\"` \n \t    // other fields
+<                     \t}"
+---
+>                     type FooStatus struct{     // Represents the observations of a
+>                     foo's current state.     // Known .status.conditions.type are:
+>                     \"Available\", \"Progressing\", and \"Degraded\"     // +patchMergeKey=type
+>                     \    // +patchStrategy=merge     // +listType=map     // +listMapKey=type
+>                     \    Conditions []metav1.Condition `json:\"conditions,omitempty\"
+>                     patchStrategy:\"merge\" patchMergeKey:\"type\" protobuf:\"bytes,1,rep,name=conditions\"`
+>                     \n     // other fields }"
+1071,1076d1068
+<   - deploymenttargets/finalizers
+<   verbs:
+<   - update
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+1996c1988
+<         image: quay.io/redhat-appstudio/gitops-service:bd7630f8576acfb3ff3f78b1005f86945cdc4766
+---
+>         image: quay.io/redhat-appstudio/gitops-service:4fe437c42f42868947e1b924570677f3711ecc9f
+2019,2021d2010
+<             memory: 3172Mi
+<           requests:
+<             cpu: 200m
+2022a2012,2014
+>           requests:
+>             cpu: 50m
+>             memory: 256Mi
+2101c2093
+<         image: quay.io/redhat-appstudio/gitops-service:bd7630f8576acfb3ff3f78b1005f86945cdc4766
+---
+>         image: quay.io/redhat-appstudio/gitops-service:4fe437c42f42868947e1b924570677f3711ecc9f
+2203c2195
+<         image: quay.io/redhat-appstudio/gitops-service:bd7630f8576acfb3ff3f78b1005f86945cdc4766
+---
+>         image: quay.io/redhat-appstudio/gitops-service:4fe437c42f42868947e1b924570677f3711ecc9f
