@@ -1,0 +1,23 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-60d0b86/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-fbe4eb5/development/components/pipeline-service/development/kustomize.out.yaml
+1767,1783d1766
+<       "development": false,
+<       "outputPaths": ["stdout"],
+<       "errorOutputPaths": ["stderr"],
+<       "encoding": "json",
+<       "encoderConfig": {
+<         "timeKey": "ts",
+<         "levelKey": "level",
+<         "nameKey": "logger",
+<         "callerKey": "caller",
+<         "messageKey": "msg",
+<         "stacktraceKey": "stacktrace",
+<         "lineEnding": "",
+<         "levelEncoder": "",
+<         "timeEncoder": "iso8601",
+<         "durationEncoder": "string",
+<         "callerEncoder": ""
+<       }
+2907c2890
+<     default-service-account: appstudio-pipeline
+---
+>     default-service-account: pipeline

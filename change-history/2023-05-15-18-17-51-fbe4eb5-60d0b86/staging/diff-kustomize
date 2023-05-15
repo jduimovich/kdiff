@@ -1,0 +1,46 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-60d0b86/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-fbe4eb5/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1752,1768d1751
+<       "development": false,
+<       "outputPaths": ["stdout"],
+<       "errorOutputPaths": ["stderr"],
+<       "encoding": "json",
+<       "encoderConfig": {
+<         "timeKey": "ts",
+<         "levelKey": "level",
+<         "nameKey": "logger",
+<         "callerKey": "caller",
+<         "messageKey": "msg",
+<         "stacktraceKey": "stacktrace",
+<         "lineEnding": "",
+<         "levelEncoder": "",
+<         "timeEncoder": "iso8601",
+<         "durationEncoder": "string",
+<         "callerEncoder": ""
+<       }
+2778c2761
+<     default-service-account: appstudio-pipeline
+---
+>     default-service-account: pipeline
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-60d0b86/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-fbe4eb5/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1752,1768d1751
+<       "development": false,
+<       "outputPaths": ["stdout"],
+<       "errorOutputPaths": ["stderr"],
+<       "encoding": "json",
+<       "encoderConfig": {
+<         "timeKey": "ts",
+<         "levelKey": "level",
+<         "nameKey": "logger",
+<         "callerKey": "caller",
+<         "messageKey": "msg",
+<         "stacktraceKey": "stacktrace",
+<         "lineEnding": "",
+<         "levelEncoder": "",
+<         "timeEncoder": "iso8601",
+<         "durationEncoder": "string",
+<         "callerEncoder": ""
+<       }
+2778c2761
+<     default-service-account: appstudio-pipeline
+---
+>     default-service-account: pipeline
