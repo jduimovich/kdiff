@@ -1,0 +1,78 @@
+diff --git a/components/sprayproxy/base/kustomization.yaml b/components/sprayproxy/base/kustomization.yaml
+index c214982..d62401a 100644
+--- a/components/sprayproxy/base/kustomization.yaml
++++ b/components/sprayproxy/base/kustomization.yaml
+@@ -2,6 +2,3 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ namespace: sprayproxy
+-
+-resources:
+-  - team-support-rbac.yaml
+\ No newline at end of file
+diff --git a/components/sprayproxy/production/kustomization.yaml b/components/sprayproxy/production/kustomization.yaml
+index 99a611a..a72cb65 100644
+--- a/components/sprayproxy/production/kustomization.yaml
++++ b/components/sprayproxy/production/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ resources:
+   - https://github.com/redhat-appstudio/sprayproxy/config?ref=00571eee2e5ca7c143406820a41a181ed5d1dfc6
+   - pipelines-as-code-secret.yaml
++  - team-support-rbac.yaml
+ 
+ images:
+   - name: ko://github.com/redhat-appstudio/sprayproxy
+diff --git a/components/sprayproxy/base/team-support-rbac.yaml b/components/sprayproxy/production/team-support-rbac.yaml
+similarity index 100%
+rename from components/sprayproxy/base/team-support-rbac.yaml
+rename to components/sprayproxy/production/team-support-rbac.yaml
+diff --git a/components/sprayproxy/staging/kustomization.yaml b/components/sprayproxy/staging/kustomization.yaml
+index ae1bc3e..ec480cf 100644
+--- a/components/sprayproxy/staging/kustomization.yaml
++++ b/components/sprayproxy/staging/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ resources:
+   - https://github.com/redhat-appstudio/sprayproxy/config?ref=94d5165db684a31a347162363ec9ab1c801d946f
+   - pipelines-as-code-secret.yaml
++  - team-support-rbac.yaml
+ 
+ images:
+   - name: ko://github.com/redhat-appstudio/sprayproxy
+diff --git a/components/sprayproxy/staging/team-support-rbac.yaml b/components/sprayproxy/staging/team-support-rbac.yaml
+new file mode 100644
+index 0000000..4e5156d
+--- /dev/null
++++ b/components/sprayproxy/staging/team-support-rbac.yaml
+@@ -0,0 +1,31 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: sprayproxy-rbac-for-support
++  namespace: sprayproxy
++subjects:
++  - kind: User
++    name: adambkaplan
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: Roming22
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: gabemontero
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: avinal
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: sayan-biswas
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: enarha
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: AndrienkoAleksandr
++    apiGroup: rbac.authorization.k8s.io
++roleRef:
++  kind: ClusterRole
++  name: view
++  apiGroup: rbac.authorization.k8s.io
+\ No newline at end of file
