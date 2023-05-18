@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-36adae7/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-93b34e4/staging/components/tekton-ci/staging/kustomize.out.yaml
+199,207d198
+<   name: external-secrets
+< spec:
+<   url: https://github.com/redhat-appstudio/external-secrets
+< ---
+< apiVersion: pipelinesascode.tekton.dev/v1alpha1
+< kind: Repository
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

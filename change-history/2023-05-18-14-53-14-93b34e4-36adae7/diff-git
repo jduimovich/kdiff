@@ -1,0 +1,15 @@
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index 41d5cf8..9c86f7e 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -152,3 +152,10 @@ metadata:
+   name: cachi2
+ spec:
+   url: "https://github.com/containerbuildsystem/cachi2"
++---
++apiVersion: pipelinesascode.tekton.dev/v1alpha1
++kind: Repository
++metadata:
++  name: external-secrets
++spec:
++  url: "https://github.com/redhat-appstudio/external-secrets"
