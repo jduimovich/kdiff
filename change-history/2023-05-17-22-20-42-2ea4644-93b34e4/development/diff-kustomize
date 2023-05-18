@@ -1,0 +1,93 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-93b34e4/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-2ea4644/development/components/pipeline-service/development/kustomize.out.yaml
+677,686d676
+< - apiGroups:
+<   - security.openshift.io
+<   resources:
+<   - securitycontextconstraints
+<   verbs:
+<   - get
+<   - list
+<   - patch
+<   - create
+<   - delete
+2822,2857d2811
+< apiVersion: batch/v1
+< kind: Job
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "1"
+<   name: tekton-chains-trusted-cabundle
+<   namespace: tekton-chains
+< spec:
+<   template:
+<     metadata:
+<       annotations:
+<         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     spec:
+<       containers:
+<       - command:
+<         - /bin/bash
+<         - -c
+<         - |
+<           if oc get cm config-trusted-cabundle -n tekton-chains; then
+<             echo "ConfigMap config-trusted-cabundle found"
+<           else
+<             echo "Create ConfigMap config-trusted-cabundle"
+<             oc create configmap config-trusted-cabundle --namespace tekton-chains
+<             oc label configmap config-trusted-cabundle config.openshift.io/inject-trusted-cabundle="true"
+<           fi
+<           echo "Done"
+<         image: registry.redhat.io/openshift4/ose-cli:v4.12@sha256:9f0cdc00b1b1a3c17411e50653253b9f6bb5329ea4fb82ad983790a6dbf2d9ad
+<         imagePullPolicy: Always
+<         name: config-trusted-cabundle-generation
+<       dnsPolicy: ClusterFirst
+<       restartPolicy: OnFailure
+<       serviceAccount: chains-secrets-admin
+<       serviceAccountName: chains-secrets-admin
+<       terminationGracePeriodSeconds: 30
+< ---
+2952,2954d2905
+<   params:
+<   - name: createRbacResource
+<     value: "false"
+3049,3087d2999
+< ---
+< allowHostDirVolumePlugin: false
+< allowHostIPC: false
+< allowHostNetwork: false
+< allowHostPID: false
+< allowHostPorts: false
+< allowPrivilegeEscalation: false
+< allowPrivilegedContainer: false
+< allowedCapabilities:
+< - SETFCAP
+< apiVersion: security.openshift.io/v1
+< defaultAddCapabilities: null
+< fsGroup:
+<   type: MustRunAs
+< groups:
+< - system:cluster-admins
+< kind: SecurityContextConstraints
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipelines-scc
+< priority: 10
+< readOnlyRootFilesystem: false
+< requiredDropCapabilities:
+< - MKNOD
+< runAsUser:
+<   type: RunAsAny
+< seLinuxContext:
+<   type: MustRunAs
+< supplementalGroups:
+<   type: RunAsAny
+< users: []
+< volumes:
+< - configMap
+< - downwardAPI
+< - emptyDir
+< - persistentVolumeClaim
+< - projected
+< - secret
