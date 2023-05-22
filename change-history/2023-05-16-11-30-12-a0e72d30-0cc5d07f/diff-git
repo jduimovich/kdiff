@@ -1,0 +1,23 @@
+diff --git a/components/monitoring/grafana/development/auto-assign-role-patch.yaml b/components/monitoring/grafana/development/auto-assign-role-patch.yaml
+new file mode 100644
+index 00000000..9f2ec26d
+--- /dev/null
++++ b/components/monitoring/grafana/development/auto-assign-role-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/config/users/auto_assign_org_role
++  value: Editor
+diff --git a/components/monitoring/grafana/development/kustomization.yaml b/components/monitoring/grafana/development/kustomization.yaml
+index 27bb5cb0..cc94de3b 100644
+--- a/components/monitoring/grafana/development/kustomization.yaml
++++ b/components/monitoring/grafana/development/kustomization.yaml
+@@ -2,3 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
++patches:
++  - path: auto-assign-role-patch.yaml
++    target:
++      name: grafana-oauth
++      kind: Grafana

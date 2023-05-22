@@ -1,0 +1,43 @@
+diff --git a/components/tekton-ci/base/appstudio-pipelines-runner-rolebinding.yaml b/components/tekton-ci/base/appstudio-pipelines-runner-rolebinding.yaml
+new file mode 100644
+index 00000000..0813213b
+--- /dev/null
++++ b/components/tekton-ci/base/appstudio-pipelines-runner-rolebinding.yaml
+@@ -0,0 +1,12 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: appstudio-pipelines-runner-rolebinding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: appstudio-pipelines-runner
++subjects:
++- kind: ServiceAccount
++  name: appstudio-pipeline
++  namespace: tekton-ci
+diff --git a/components/tekton-ci/base/kustomization.yaml b/components/tekton-ci/base/kustomization.yaml
+index 7d5e2167..0a51df5b 100644
+--- a/components/tekton-ci/base/kustomization.yaml
++++ b/components/tekton-ci/base/kustomization.yaml
+@@ -3,6 +3,7 @@ resources:
+ - serviceaccount.yaml
+ - repository.yaml
+ - tekton-ci-maintainers-rb.yaml
++- appstudio-pipelines-runner-rolebinding.yaml
+ 
+ # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
+ # See more information about this option, here: 
+diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml
+index 7bed9040..02245f42 100644
+--- a/components/tekton-ci/base/serviceaccount.yaml
++++ b/components/tekton-ci/base/serviceaccount.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: v1
+ kind: ServiceAccount
+ metadata:
+-  name: pipeline
++  name: appstudio-pipeline
+ secrets:
+   - name: tekton-ci-push-secret
+ imagePullSecrets:

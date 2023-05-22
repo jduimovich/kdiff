@@ -1,0 +1,21 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-565c61ae/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-ef1023b3/staging/components/tekton-ci/staging/kustomize.out.yaml
+16c16
+<   name: appstudio-pipeline
+---
+>   name: pipeline
+44,58d43
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: appstudio-pipelines-runner-rolebinding
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: appstudio-pipelines-runner
+< subjects:
+< - kind: ServiceAccount
+<   name: appstudio-pipeline
+<   namespace: tekton-ci

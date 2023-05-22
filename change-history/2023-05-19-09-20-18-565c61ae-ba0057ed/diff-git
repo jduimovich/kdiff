@@ -1,0 +1,71 @@
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 0be4edcd..eacfa7ea 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -13,3 +13,10 @@ resources:
+ 
+ components:
+   - ../components/tekton-chains
++
++patches:
++  - path: scale-down-exporter.yaml
++    target:
++      kind: Deployment
++      name: pipeline-metrics-exporter
++      namespace: openshift-pipelines
+diff --git a/components/pipeline-service/development/scale-down-exporter.yaml b/components/pipeline-service/development/scale-down-exporter.yaml
+new file mode 100644
+index 00000000..1ba73837
+--- /dev/null
++++ b/components/pipeline-service/development/scale-down-exporter.yaml
+@@ -0,0 +1,4 @@
++---
++- op: replace
++  path: /spec/replicas
++  value: 0
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index d59bc8cc..c1e6fe63 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -27,3 +27,8 @@ patches:
+       kind: ConfigMap
+       name: pipelines-as-code
+       namespace: pipelines-as-code
++  - path: scale-down-exporter.yaml
++    target:
++      kind: Deployment
++      name: pipeline-metrics-exporter
++      namespace: openshift-pipelines
+diff --git a/components/pipeline-service/production/base/scale-down-exporter.yaml b/components/pipeline-service/production/base/scale-down-exporter.yaml
+new file mode 100644
+index 00000000..1ba73837
+--- /dev/null
++++ b/components/pipeline-service/production/base/scale-down-exporter.yaml
+@@ -0,0 +1,4 @@
++---
++- op: replace
++  path: /spec/replicas
++  value: 0
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 2f178481..eab17192 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -21,3 +21,8 @@ patches:
+       kind: ConfigMap
+       name: pipelines-as-code
+       namespace: pipelines-as-code
++  - path: scale-down-exporter.yaml
++    target:
++      kind: Deployment
++      name: pipeline-metrics-exporter
++      namespace: openshift-pipelines
+diff --git a/components/pipeline-service/staging/base/scale-down-exporter.yaml b/components/pipeline-service/staging/base/scale-down-exporter.yaml
+new file mode 100644
+index 00000000..1ba73837
+--- /dev/null
++++ b/components/pipeline-service/staging/base/scale-down-exporter.yaml
+@@ -0,0 +1,4 @@
++---
++- op: replace
++  path: /spec/replicas
++  value: 0

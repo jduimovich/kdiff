@@ -1,0 +1,48 @@
+diff --git a/components/jvm-build-service/kustomization.yaml b/components/jvm-build-service/kustomization.yaml
+index b8238359..b6faefab 100644
+--- a/components/jvm-build-service/kustomization.yaml
++++ b/components/jvm-build-service/kustomization.yaml
+@@ -1,8 +1,8 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=67ec31813635e6dd5f039ce05560bc37e2228355
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=67ec31813635e6dd5f039ce05560bc37e2228355
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=67ec31813635e6dd5f039ce05560bc37e2228355
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=b8afec0f187cafba550f87f4032e0699566d43fe
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=b8afec0f187cafba550f87f4032e0699566d43fe
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=b8afec0f187cafba550f87f4032e0699566d43fe
+ - monitoring.yaml
+ 
+ # Skip applying the jvm-build-service operands (SystemConfig) while the jvm-build-service operator is being installed.
+@@ -16,7 +16,7 @@ namespace: jvm-build-service
+ images:
+ - name: hacbs-jvm-operator
+   newName: quay.io/redhat-appstudio/hacbs-jvm-controller
+-  newTag: 67ec31813635e6dd5f039ce05560bc37e2228355
++  newTag: b8afec0f187cafba550f87f4032e0699566d43fe
+ 
+ patches:
+ - path: ./operator_env_patch.yaml
+diff --git a/components/jvm-build-service/operator_env_patch.yaml b/components/jvm-build-service/operator_env_patch.yaml
+index c387eb94..cd1d4593 100644
+--- a/components/jvm-build-service/operator_env_patch.yaml
++++ b/components/jvm-build-service/operator_env_patch.yaml
+@@ -3,4 +3,4 @@
+   path: /spec/template/spec/containers/0/env
+   value:
+   - name: IMAGE_TAG
+-    value: 67ec31813635e6dd5f039ce05560bc37e2228355
+\ No newline at end of file
++    value: b8afec0f187cafba550f87f4032e0699566d43fe
+\ No newline at end of file
+diff --git a/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml b/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
+index 4d6f6c10..89d59a0e 100644
+--- a/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=67ec31813635e6dd5f039ce05560bc37e2228355
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=b8afec0f187cafba550f87f4032e0699566d43fe
+ - dashboard.yaml

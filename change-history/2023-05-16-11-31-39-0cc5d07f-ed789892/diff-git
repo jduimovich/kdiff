@@ -1,0 +1,30 @@
+diff --git a/hack/build/build-via-appstudio.sh b/hack/build/build-via-appstudio.sh
+index 6c19dbb0..f316298f 100755
+--- a/hack/build/build-via-appstudio.sh
++++ b/hack/build/build-via-appstudio.sh
+@@ -25,8 +25,8 @@ if [ -z "$GENERATE_IMAGE" ]; then
+   oc secret link pipeline redhat-appstudio-registry-pull-secret
+ fi
+ 
+-# Label namespace to be managed by gitops-service-argocd
+-oc label namespace $(oc config view --minify -o 'jsonpath={..namespace}') --overwrite argocd.argoproj.io/managed-by=gitops-service-argocd
++# Configure namespace
++$SCRIPTDIR/setup-namespace.sh
+ 
+ oc delete --ignore-not-found -f $SCRIPTDIR/templates/application.yaml
+ oc create -f $SCRIPTDIR/templates/application.yaml
+diff --git a/hack/build/setup-namespace.sh b/hack/build/setup-namespace.sh
+new file mode 100755
+index 00000000..428a5da4
+--- /dev/null
++++ b/hack/build/setup-namespace.sh
+@@ -0,0 +1,9 @@
++#!/bin/bash
++
++# Script for setting namespace which is not managed by toolchain host operator
++
++CURRENT_NAMESPACE=$(oc config view --minify -o 'jsonpath={..namespace}')
++oc label namespace $CURRENT_NAMESPACE --overwrite argocd.argoproj.io/managed-by=gitops-service-argocd
++oc apply -f https://raw.githubusercontent.com/codeready-toolchain/member-operator/master/config/appstudio-pipelines-runner/base/appstudio_pipelines_runner_role.yaml
++oc create --dry-run=client -o yaml serviceaccount appstudio-pipeline | oc apply -f-
++oc create --dry-run=client -o yaml rolebinding appstudio-pipelines-runner-rolebinding --clusterrole=appstudio-pipelines-runner --serviceaccount=$CURRENT_NAMESPACE:appstudio-pipeline | oc apply -f-

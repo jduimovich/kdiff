@@ -1,0 +1,13 @@
+diff --git a/argo-cd-apps/base/tekton-ci/tekton-ci.yaml b/argo-cd-apps/base/tekton-ci/tekton-ci.yaml
+index f9e8335d..933f590b 100644
+--- a/argo-cd-apps/base/tekton-ci/tekton-ci.yaml
++++ b/argo-cd-apps/base/tekton-ci/tekton-ci.yaml
+@@ -33,7 +33,7 @@ spec:
+       ignoreDifferences:
+       - group: ""
+         kind: "ServiceAccount"
+-        name: pipeline
++        name: appstudio-pipeline
+         jqPathExpressions:
+         - .imagePullSecrets[] | select(.name | startswith("appstudio-pipeline-dockercfg"))
+       syncPolicy:

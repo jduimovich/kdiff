@@ -1,0 +1,59 @@
+diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
+index ceac05b8..4c0726a1 100644
+--- a/components/has/base/kustomization.yaml
++++ b/components/has/base/kustomization.yaml
+@@ -1,7 +1,7 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+ - argocd-permissions.yaml
+-- https://github.com/redhat-appstudio/application-service/config/default?ref=b425bc93bdc8cfc16a5a82a6c8099553913c73a5
++- https://github.com/redhat-appstudio/application-service/config/default?ref=4b1e3ecd4bee94b7b05df6ce451fba27f1acf5c8
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+@@ -9,7 +9,7 @@ kind: Kustomization
+ images:
+ - name: quay.io/redhat-appstudio/application-service
+   newName: quay.io/redhat-appstudio/application-service
+-  newTag: b425bc93bdc8cfc16a5a82a6c8099553913c73a5
++  newTag: 4b1e3ecd4bee94b7b05df6ce451fba27f1acf5c8
+ 
+ configMapGenerator:
+ - literals:
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index eec303fc..792a8233 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/external-secrets
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=b425bc93bdc8cfc16a5a82a6c8099553913c73a5
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4b1e3ecd4bee94b7b05df6ce451fba27f1acf5c8
+ 
+ configMapGenerator:
+ - literals:
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index d7353a88..746dba7f 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/external-secrets
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=b425bc93bdc8cfc16a5a82a6c8099553913c73a5
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4b1e3ecd4bee94b7b05df6ce451fba27f1acf5c8
+ 
+ configMapGenerator:
+ - literals:
+diff --git a/components/monitoring/grafana/base/has/kustomization.yaml b/components/monitoring/grafana/base/has/kustomization.yaml
+index 1ddbe60c..2ea90141 100644
+--- a/components/monitoring/grafana/base/has/kustomization.yaml
++++ b/components/monitoring/grafana/base/has/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=b425bc93bdc8cfc16a5a82a6c8099553913c73a5
++  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=4b1e3ecd4bee94b7b05df6ce451fba27f1acf5c8
+   - dashboard.yaml
