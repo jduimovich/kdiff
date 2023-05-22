@@ -1,0 +1,31 @@
+diff --git a/components/build-templates/base/e2e/rolebinding.yaml b/components/build-templates/base/e2e/rolebinding.yaml
+index 3b020d63..18a6ed70 100644
+--- a/components/build-templates/base/e2e/rolebinding.yaml
++++ b/components/build-templates/base/e2e/rolebinding.yaml
+@@ -9,7 +9,7 @@ roleRef:
+   name:  edit
+ subjects:
+ - kind: ServiceAccount
+-  name: pipeline
++  name: appstudio-pipeline
+   namespace: tekton-ci
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+@@ -22,7 +22,7 @@ roleRef:
+   name:  edit-namespace
+ subjects:
+ - kind: ServiceAccount
+-  name: pipeline
++  name: appstudio-pipeline
+   namespace: tekton-ci
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+@@ -35,5 +35,5 @@ roleRef:
+   name:  admin-buildpipelineselectors
+ subjects:
+ - kind: ServiceAccount
+-  name: pipeline
+-  namespace: tekton-ci
+\ No newline at end of file
++  name: appstudio-pipeline
++  namespace: tekton-ci

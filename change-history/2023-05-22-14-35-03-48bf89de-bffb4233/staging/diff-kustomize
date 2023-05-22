@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bffb4233/staging/components/build-templates/staging/kustomize.out.yaml ./kustomized-cache/commit-48bf89de/staging/components/build-templates/staging/kustomize.out.yaml
+60c60
+<   name: appstudio-pipeline
+---
+>   name: pipeline
+74c74
+<   name: appstudio-pipeline
+---
+>   name: pipeline
+88c88
+<   name: appstudio-pipeline
+---
+>   name: pipeline
