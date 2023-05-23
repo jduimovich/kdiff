@@ -1,0 +1,13 @@
+diff --git a/components/authentication/base/has-admin.yaml b/components/authentication/base/has-admin.yaml
+index a3500725..0e291016 100644
+--- a/components/authentication/base/has-admin.yaml
++++ b/components/authentication/base/has-admin.yaml
+@@ -30,6 +30,8 @@ subjects:
+     name: kim-tsao
+   - kind: User
+     name: maysunfaisal
++  - kind: User
++    name: yangcao77
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: Role

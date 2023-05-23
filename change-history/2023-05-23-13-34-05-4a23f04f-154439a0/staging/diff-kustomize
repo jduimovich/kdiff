@@ -1,0 +1,4 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-154439a0/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-4a23f04f/staging/components/authentication/staging/kustomize.out.yaml
+410,411d409
+< - kind: User
+<   name: yangcao77
