@@ -1,0 +1,8 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1e02676d/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-154439a0/staging/components/authentication/staging/kustomize.out.yaml
+393,395d392
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: thepetk
+415,416d411
+< - kind: User
+<   name: thepetk

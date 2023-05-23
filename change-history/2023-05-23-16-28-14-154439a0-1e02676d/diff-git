@@ -1,0 +1,27 @@
+diff --git a/components/authentication/base/has-admin.yaml b/components/authentication/base/has-admin.yaml
+index 0e291016..7d65022b 100644
+--- a/components/authentication/base/has-admin.yaml
++++ b/components/authentication/base/has-admin.yaml
+@@ -32,6 +32,8 @@ subjects:
+     name: maysunfaisal
+   - kind: User
+     name: yangcao77
++  - kind: User
++    name: thepetk
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: Role
+diff --git a/components/authentication/base/has.yaml b/components/authentication/base/has.yaml
+index 2f4087d3..f802701b 100644
+--- a/components/authentication/base/has.yaml
++++ b/components/authentication/base/has.yaml
+@@ -22,6 +22,9 @@ subjects:
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: maysunfaisal
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: thepetk
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
