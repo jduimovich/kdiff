@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bfc9018d/development/components/jvm-build-service/kustomize.out.yaml ./kustomized-cache/commit-25b7704c/development/components/jvm-build-service/kustomize.out.yaml
+712,713d711
+<               maxAdditionalMemory:
+<                 type: integer
+1146,1147c1144,1145
+<           value: a478108194aa2c526afc312677eaf63e8ccd335d
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:a478108194aa2c526afc312677eaf63e8ccd335d
+---
+>           value: b8afec0f187cafba550f87f4032e0699566d43fe
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:b8afec0f187cafba550f87f4032e0699566d43fe
