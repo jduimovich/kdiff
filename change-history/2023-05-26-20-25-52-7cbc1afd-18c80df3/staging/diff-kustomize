@@ -1,0 +1,144 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18c80df3/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-7cbc1afd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+754,759d753
+<   - apiextensions.k8s.io
+<   resources:
+<   - customresourcedefinitions
+<   verbs:
+<   - get
+< - apiGroups:
+767d760
+<   - watch
+1524,1565d1516
+<   loglevel.controller: info
+<   loglevel.webhook: info
+<   zap-logger-config: |
+<     {
+<       "level": "info",
+<       "development": false,
+<       "sampling": {
+<         "initial": 100,
+<         "thereafter": 100
+<       },
+<       "outputPaths": ["stdout"],
+<       "errorOutputPaths": ["stderr"],
+<       "encoding": "json",
+<       "encoderConfig": {
+<         "timeKey": "ts",
+<         "levelKey": "level",
+<         "nameKey": "logger",
+<         "callerKey": "caller",
+<         "messageKey": "msg",
+<         "stacktraceKey": "stacktrace",
+<         "lineEnding": "",
+<         "levelEncoder": "",
+<         "timeEncoder": "iso8601",
+<         "durationEncoder": "string",
+<         "callerEncoder": ""
+<       }
+<     }
+< kind: ConfigMap
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "2"
+<   labels:
+<     app.kubernetes.io/component: resolvers
+<     app.kubernetes.io/instance: default
+<     app.kubernetes.io/part-of: tekton-pipelines
+<     operator.tekton.dev/operand-name: tektoncd-pipelines
+<   name: config-logging
+<   namespace: openshift-pipelines
+< ---
+< apiVersion: v1
+< data:
+2098d2048
+<     argocd.argoproj.io/sync-wave: "1"
+2191d2140
+<     argocd.argoproj.io/sync-wave: "2"
+2368c2317
+<         image: registry.redhat.io/openshift-pipelines/pipelines-chains-controller-rhel8:v1.10.2-1
+---
+>         image: gcr.io/tekton-releases/github.com/tektoncd/chains/cmd/controller:v0.14.0@sha256:b10b5a6298fe78ffeb72b7ed69794b0e7315a952482b9bff80858bc6746cbe4f
+2880d2828
+<     enable-api-fields: beta
+2886,2889d2833
+<     performance:
+<       kube-api-burst: 50
+<       kube-api-qps: 50
+<       threads-per-controller: 32
+2982c2926
+<   name: appstudio-pipelines-scc
+---
+>   name: pipelines-scc
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18c80df3/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-7cbc1afd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+754,759d753
+<   - apiextensions.k8s.io
+<   resources:
+<   - customresourcedefinitions
+<   verbs:
+<   - get
+< - apiGroups:
+767d760
+<   - watch
+1524,1565d1516
+<   loglevel.controller: info
+<   loglevel.webhook: info
+<   zap-logger-config: |
+<     {
+<       "level": "info",
+<       "development": false,
+<       "sampling": {
+<         "initial": 100,
+<         "thereafter": 100
+<       },
+<       "outputPaths": ["stdout"],
+<       "errorOutputPaths": ["stderr"],
+<       "encoding": "json",
+<       "encoderConfig": {
+<         "timeKey": "ts",
+<         "levelKey": "level",
+<         "nameKey": "logger",
+<         "callerKey": "caller",
+<         "messageKey": "msg",
+<         "stacktraceKey": "stacktrace",
+<         "lineEnding": "",
+<         "levelEncoder": "",
+<         "timeEncoder": "iso8601",
+<         "durationEncoder": "string",
+<         "callerEncoder": ""
+<       }
+<     }
+< kind: ConfigMap
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "2"
+<   labels:
+<     app.kubernetes.io/component: resolvers
+<     app.kubernetes.io/instance: default
+<     app.kubernetes.io/part-of: tekton-pipelines
+<     operator.tekton.dev/operand-name: tektoncd-pipelines
+<   name: config-logging
+<   namespace: openshift-pipelines
+< ---
+< apiVersion: v1
+< data:
+2098d2048
+<     argocd.argoproj.io/sync-wave: "1"
+2191d2140
+<     argocd.argoproj.io/sync-wave: "2"
+2368c2317
+<         image: registry.redhat.io/openshift-pipelines/pipelines-chains-controller-rhel8:v1.10.2-1
+---
+>         image: gcr.io/tekton-releases/github.com/tektoncd/chains/cmd/controller:v0.14.0@sha256:b10b5a6298fe78ffeb72b7ed69794b0e7315a952482b9bff80858bc6746cbe4f
+2880d2828
+<     enable-api-fields: beta
+2886,2889d2833
+<     performance:
+<       kube-api-burst: 50
+<       kube-api-qps: 50
+<       threads-per-controller: 32
+2982c2926
+<   name: appstudio-pipelines-scc
+---
+>   name: pipelines-scc

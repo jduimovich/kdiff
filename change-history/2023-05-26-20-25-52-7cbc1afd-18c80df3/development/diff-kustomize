@@ -1,0 +1,74 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18c80df3/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-7cbc1afd/development/components/pipeline-service/development/kustomize.out.yaml
+770,775d769
+<   - apiextensions.k8s.io
+<   resources:
+<   - customresourcedefinitions
+<   verbs:
+<   - get
+< - apiGroups:
+783d776
+<   - watch
+1539,1580d1531
+<   loglevel.controller: info
+<   loglevel.webhook: info
+<   zap-logger-config: |
+<     {
+<       "level": "info",
+<       "development": false,
+<       "sampling": {
+<         "initial": 100,
+<         "thereafter": 100
+<       },
+<       "outputPaths": ["stdout"],
+<       "errorOutputPaths": ["stderr"],
+<       "encoding": "json",
+<       "encoderConfig": {
+<         "timeKey": "ts",
+<         "levelKey": "level",
+<         "nameKey": "logger",
+<         "callerKey": "caller",
+<         "messageKey": "msg",
+<         "stacktraceKey": "stacktrace",
+<         "lineEnding": "",
+<         "levelEncoder": "",
+<         "timeEncoder": "iso8601",
+<         "durationEncoder": "string",
+<         "callerEncoder": ""
+<       }
+<     }
+< kind: ConfigMap
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "2"
+<   labels:
+<     app.kubernetes.io/component: resolvers
+<     app.kubernetes.io/instance: default
+<     app.kubernetes.io/part-of: tekton-pipelines
+<     operator.tekton.dev/operand-name: tektoncd-pipelines
+<   name: config-logging
+<   namespace: openshift-pipelines
+< ---
+< apiVersion: v1
+< data:
+2113d2063
+<     argocd.argoproj.io/sync-wave: "1"
+2206d2155
+<     argocd.argoproj.io/sync-wave: "2"
+2383c2332
+<         image: registry.redhat.io/openshift-pipelines/pipelines-chains-controller-rhel8:v1.10.2-1
+---
+>         image: gcr.io/tekton-releases/github.com/tektoncd/chains/cmd/controller:v0.14.0@sha256:b10b5a6298fe78ffeb72b7ed69794b0e7315a952482b9bff80858bc6746cbe4f
+2926a2876
+>     console: true
+3008d2957
+<     enable-api-fields: beta
+3014,3017d2962
+<     performance:
+<       kube-api-burst: 50
+<       kube-api-qps: 50
+<       threads-per-controller: 32
+3124c3069
+<   name: appstudio-pipelines-scc
+---
+>   name: pipelines-scc
