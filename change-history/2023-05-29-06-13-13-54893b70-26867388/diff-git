@@ -1,0 +1,30 @@
+diff --git a/components/monitoring/OWNERS b/components/monitoring/OWNERS
+new file mode 100644
+index 00000000..0856565c
+--- /dev/null
++++ b/components/monitoring/OWNERS
+@@ -0,0 +1,9 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- gbenhaim
++- avi-biton
++- amisstea
++- yftacherzog
++- eisraeli
++- ifireball
+diff --git a/components/o11y/OWNERS b/components/o11y/OWNERS
+new file mode 100644
+index 00000000..0856565c
+--- /dev/null
++++ b/components/o11y/OWNERS
+@@ -0,0 +1,9 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- gbenhaim
++- avi-biton
++- amisstea
++- yftacherzog
++- eisraeli
++- ifireball

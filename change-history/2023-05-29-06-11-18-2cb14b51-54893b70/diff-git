@@ -1,0 +1,20 @@
+diff --git a/docs/_data/navigation.yml b/docs/_data/navigation.yml
+index f2797dfe..eec61118 100644
+--- a/docs/_data/navigation.yml
++++ b/docs/_data/navigation.yml
+@@ -39,6 +39,8 @@ docs-en:
+     children:
+       - title: Build Service
+         url: /components/build-service/README.html
++      - title: Image Controller
++        url: /components/image-controller/README.html
+       - title: Gitops
+         url: /components/gitops/README.html
+       - title: Enterprise Contract
+@@ -54,4 +56,4 @@ docs-en:
+       - title: Quality Dashboard
+         url: /docs/misc/quality-dashboard.html
+       - title: FAQs/Troubleshooting
+-        url: /docs/misc/faq.html
+\ No newline at end of file
++        url: /docs/misc/faq.html
