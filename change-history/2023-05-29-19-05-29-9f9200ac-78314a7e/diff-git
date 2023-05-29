@@ -1,0 +1,32 @@
+diff --git a/components/monitoring/grafana/base/release/kustomization.yaml b/components/monitoring/grafana/base/release/kustomization.yaml
+index dd8016b5..e7775bea 100644
+--- a/components/monitoring/grafana/base/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=34d39adf5da1104b10be11aec99f90e9956dfba8
++- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=f870adcd34610c6b39a8ae88535f2c0abff5ea0b
+diff --git a/components/release/kustomization.yaml b/components/release/kustomization.yaml
+index ae327c57..ff2a2c36 100644
+--- a/components/release/kustomization.yaml
++++ b/components/release/kustomization.yaml
+@@ -1,7 +1,7 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+ - argocd-permissions.yaml
+-- https://github.com/redhat-appstudio/release-service/config/default?ref=672d819a55adc8e4cfa1b1ad692d89341604472b
++- https://github.com/redhat-appstudio/release-service/config/default?ref=f870adcd34610c6b39a8ae88535f2c0abff5ea0b
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+@@ -9,7 +9,7 @@ kind: Kustomization
+ images:
+ - name: quay.io/redhat-appstudio/release-service
+   newName: quay.io/redhat-appstudio/release-service
+-  newTag: 672d819a55adc8e4cfa1b1ad692d89341604472b
++  newTag: f870adcd34610c6b39a8ae88535f2c0abff5ea0b
+ 
+ namespace: release-service
+ 

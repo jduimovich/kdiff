@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ea72cee1/development/components/quality-dashboard/development/kustomize.out.yaml ./kustomized-cache/commit-78314a7e/development/components/quality-dashboard/development/kustomize.out.yaml
+121c121
+<         image: quay.io/redhat-appstudio/quality-dashboard-backend:07815f9c9d562d3325f60a6f0aa2964f4685c721
+---
+>         image: quay.io/redhat-appstudio/quality-dashboard-backend:ec3370b0e30af3ffc4d150c1b31bda7e9d96180b
+205c205
+<         image: quay.io/redhat-appstudio/quality-dashboard-frontend:07815f9c9d562d3325f60a6f0aa2964f4685c721
+---
+>         image: quay.io/redhat-appstudio/quality-dashboard-frontend:ec3370b0e30af3ffc4d150c1b31bda7e9d96180b
