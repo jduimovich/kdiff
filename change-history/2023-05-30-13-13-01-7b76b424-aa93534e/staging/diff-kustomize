@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aa93534e/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-7b76b424/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+24d23
+<     - openshift-user-workload-monitoring
