@@ -1,0 +1,339 @@
+diff --git a/components/monitoring/prometheus/README.md b/components/monitoring/prometheus/README.md
+index f47a0abb..fd794ece 100644
+--- a/components/monitoring/prometheus/README.md
++++ b/components/monitoring/prometheus/README.md
+@@ -1,12 +1,34 @@
+----
+-title: Installing and configuring Prometheus on the data plane clusters
+----
++## Data Plane Clusters Prometheus Instances
++We use the Openshift-provided Prometheus deployments, platform and
++user-workload-monitoring (UWM), alongside a Prometheus instance deployed by the RHOBS
++[Observability Operator](https://github.com/rhobs/observability-operator).
+ 
+-We use the Openshift provided Prometheus deployments, platform and user-workload-monitoring (UWM).
+-Custom metrics provided by the service deployed by the different teams should be scraped by the
+-UWM Prom, while generic metrics (produced for example by cAdvisor, kube-state-metrics, etc...)
+-will be scraped by the Platform Prom.
++### Platform Prometheus
++Scrapes generic metrics produced by cAdvisor, kube-state-metrics, etc.
+ 
++### User Workload Monitoring (UWM) Prometheus
++Scrapes custom metrics provided by services deployed by the different teams.
+ 
+-In Production and Staging, UWM is enabled using OCM (since the Prom config is controlled by it).
++In Production and Staging, UWM Prometheus is enabled using OCM (since it maintains the
++Prometheus configurations).
+ In Development it's enabled by deploying a configmap using ArgoCD.
++
++### Observability Operator (OBO) Prometheus
++Federates the Platform Prometheus instance.
++
++There are limitations for both built-in Prometheus instances that do no allow us to
++use them to write metrics to RHOBS:
++
++- The configurations of the Platform Prometheus instance are owned by SRE Platform, thus
++we cannot configure this instance to remote-write.
++- Service Monitors for The UWM Prometheus instance are limited for scraping metrics
++from the same namespace in which the service monitor is defined. it means that this
++instance cannot federate the Platform Prometheus instance.
++
++For those reasons, another instance is needed that will federate the other
++instances, and will later on write metrics to RHOBS.
++
++At the moment, only the Platform Prometheus instance is being federated.
++
++The Observability Operator is installed by default in production and staging clusters.
++In Development it's installed and configured using ArgoCD.
+diff --git a/components/monitoring/prometheus/base/monitoringstack/kustomization.yaml b/components/monitoring/prometheus/base/monitoringstack/kustomization.yaml
+new file mode 100644
+index 00000000..5c84d075
+--- /dev/null
++++ b/components/monitoring/prometheus/base/monitoringstack/kustomization.yaml
+@@ -0,0 +1,9 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- monitoringstack.yaml
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++
+diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+new file mode 100644
+index 00000000..9ce33ecb
+--- /dev/null
++++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+@@ -0,0 +1,101 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: appstudio-monitoring
++spec: {}
++---
++# Deploy Monitoring Stack
++apiVersion: monitoring.rhobs/v1alpha1
++kind: MonitoringStack
++metadata:
++  name: appstudio-federate-ms
++  namespace: appstudio-monitoring
++spec:
++  # Used to select the ServiceMonitor in the appstudio-monitoring namespace
++  # NOTE: there isn't a need for namespaceSelector
++  resourceSelector:
++    matchLabels:
++      monitoring.rhobs/stack: appstudio-federate-ms
++  logLevel: info # use debug for verbose logs
++  retention: 3h
++  prometheusConfig:
++    replicas: 2  # ensures that at least one prometheus is running during upgrade
++  alertmanagerConfig:
++    disabled: true
++  resources: # ensure that you provide sufficient amount of resources
++    requests:
++      cpu: 500m
++      memory: 1Gi
++---
++# Grant permission to Federate In-Cluster Prometheus
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: appstudio-federate-ms-view
++  labels:
++    kubernetes.io/part-of: appstudio-federate-ms
++    monitoring.rhobs/stack: appstudio-federate-ms
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: cluster-monitoring-view
++subjects:
++- kind: ServiceAccount
++  # ServiceAccount used in the prometheus deployed by ObO.
++  # SA name follows <monitoring stack name>-prometheus nomenclature
++  name: appstudio-federate-ms-prometheus
++  namespace: appstudio-monitoring
++---
++# Create ServiceMonitor for Federation
++apiVersion: monitoring.rhobs/v1
++kind: ServiceMonitor
++metadata:
++  name: appstudio-federate-smon
++  namespace: appstudio-monitoring
++  labels:
++    kubernetes.io/part-of: appstudio-federate-ms
++    monitoring.rhobs/stack: appstudio-federate-ms
++spec:
++  selector: # use the prometheus service to create a "dummy" target.
++    matchLabels:
++      app.kubernetes.io/managed-by: observability-operator
++      app.kubernetes.io/name: appstudio-federate-ms-prometheus
++  endpoints:
++  - params:
++      'match[]': # scrape only required metrics from in-cluster prometheus
++        - '{__name__="container_network_transmit_bytes_total", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++        - '{__name__=~"kube_pod_.*container_resource_limits", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++        - '{__name__="kube_pod_labels", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++        - '{__name__="container_last_seen", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++        - '{__name__="argocd_app_info", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++        - '{__name__="controller_runtime_reconcile_errors_total", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++        - '{__name__="controller_runtime_reconcile_total", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++        - '{__name__="kube_pod_status_unschedulable", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++        - '{__name__="kube_pod_container_status_waiting_reason", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++        - '{__name__="kube_pod_status_phase", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++        - '{__name__="kube_pod_status_unschedulable", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++        - '{__name__="kube_persistentvolume_status_phase", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++        - '{__name__="kube_resourcequota", namespace!~".*-tenant|openshift-.*|kube-.*"}'
++    relabelings:
++    # override the target's address by the prometheus-k8s service name.
++    - action: replace
++      targetLabel: __address__
++      replacement: prometheus-k8s.openshift-monitoring.svc:9091
++    # remove the default target labels as they aren't relevant in case of federation.
++    - action: labeldrop
++      regex: pod|namespace|service|endpoint|container
++    # 30s interval creates 4 scrapes per minute
++    # prometheus-k8s.svc x 2 ms-prometheus x (60s/ 30s) = 4
++    interval: 30s
++    # ensure that the scraped labels are preferred over target's labels.
++    honorLabels: true
++    port: web
++    scheme: https
++    path: "/federate"
++    bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
++    tlsConfig:
++      serverName: prometheus-k8s.openshift-monitoring.svc
++      ca:
++        configMap: # automatically created by serving-ca operator
++          key: service-ca.crt
++          name: openshift-service-ca.crt
+diff --git a/components/monitoring/prometheus/development/kustomization.yaml b/components/monitoring/prometheus/development/kustomization.yaml
+index e48d0975..826eda58 100644
+--- a/components/monitoring/prometheus/development/kustomization.yaml
++++ b/components/monitoring/prometheus/development/kustomization.yaml
+@@ -4,3 +4,7 @@ resources:
+ - cluster-monitoring-config.yaml
+ - dummy-service-service-monitor.yaml
+ - dummy-service.yaml
++- monitoringstack/
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/monitoring/prometheus/development/monitoringstack/cluster-type-patch.yaml b/components/monitoring/prometheus/development/monitoringstack/cluster-type-patch.yaml
+new file mode 100644
+index 00000000..b1bd0a71
+--- /dev/null
++++ b/components/monitoring/prometheus/development/monitoringstack/cluster-type-patch.yaml
+@@ -0,0 +1,6 @@
++---
++- op: add
++  path: /spec/endpoints/0/relabelings/0
++  value:
++    targetLabel: source_environment
++    replacement: development-cluster
+diff --git a/components/monitoring/prometheus/development/monitoringstack/kustomization.yaml b/components/monitoring/prometheus/development/monitoringstack/kustomization.yaml
+new file mode 100644
+index 00000000..5ff70ee3
+--- /dev/null
++++ b/components/monitoring/prometheus/development/monitoringstack/kustomization.yaml
+@@ -0,0 +1,14 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - observability-operator.yaml
++  - ../../base/monitoringstack
++patches:
++  - path: cluster-type-patch.yaml
++    target:
++      name: appstudio-federate-smon
++      kind: ServiceMonitor
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++
+diff --git a/components/monitoring/prometheus/development/monitoringstack/observability-operator.yaml b/components/monitoring/prometheus/development/monitoringstack/observability-operator.yaml
+new file mode 100644
+index 00000000..8b653f19
+--- /dev/null
++++ b/components/monitoring/prometheus/development/monitoringstack/observability-operator.yaml
+@@ -0,0 +1,34 @@
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: CatalogSource
++metadata:
++  name: observability-operator-catalog
++  namespace: openshift-marketplace
++spec:
++  displayName: Red Hat Observability Operator
++  image: >-
++    quay.io/rhobs/observability-operator-catalog@sha256:86f808d1fbd10af986628916902faf2b250ffad1dd63b662c0e10de968a97445
++  publisher: OSD Red Hat Addons
++  sourceType: grpc
++---
++apiVersion: operators.coreos.com/v1
++kind: OperatorGroup
++metadata:
++  name: appstudio-monitoring
++  namespace: appstudio-monitoring
++spec:
++  upgradeStrategy: Default
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  labels:
++    operators.coreos.com/observability-operator.appstudio-monitoring: ""
++  name: observability-operator
++  namespace: appstudio-monitoring
++spec:
++  channel: stable
++  installPlanApproval: Automatic
++  name: observability-operator
++  source: observability-operator-catalog
++  sourceNamespace: openshift-marketplace
+diff --git a/components/monitoring/prometheus/production/kustomization.yaml b/components/monitoring/prometheus/production/kustomization.yaml
+index 0897ca00..9b9b2eeb 100644
+--- a/components/monitoring/prometheus/production/kustomization.yaml
++++ b/components/monitoring/prometheus/production/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ resources:
+ - ../base/uwm-config
+ - ../base/external-secrets
++- monitoringstack/
+ patches:
+   - path: rhobs-secret-path.yaml
+     target:
+diff --git a/components/monitoring/prometheus/production/monitoringstack/cluster-type-patch.yaml b/components/monitoring/prometheus/production/monitoringstack/cluster-type-patch.yaml
+new file mode 100644
+index 00000000..b77f8a14
+--- /dev/null
++++ b/components/monitoring/prometheus/production/monitoringstack/cluster-type-patch.yaml
+@@ -0,0 +1,6 @@
++---
++- op: add
++  path: /spec/endpoints/0/relabelings/0
++  value:
++    targetLabel: source_environment
++    replacement: production-cluster
+diff --git a/components/monitoring/prometheus/production/monitoringstack/kustomization.yaml b/components/monitoring/prometheus/production/monitoringstack/kustomization.yaml
+new file mode 100644
+index 00000000..ae50e169
+--- /dev/null
++++ b/components/monitoring/prometheus/production/monitoringstack/kustomization.yaml
+@@ -0,0 +1,13 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/monitoringstack
++patches:
++  - path: cluster-type-patch.yaml
++    target:
++      name: appstudio-federate-smon
++      kind: ServiceMonitor
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++
+diff --git a/components/monitoring/prometheus/staging/kustomization.yaml b/components/monitoring/prometheus/staging/kustomization.yaml
+index 0897ca00..9b9b2eeb 100644
+--- a/components/monitoring/prometheus/staging/kustomization.yaml
++++ b/components/monitoring/prometheus/staging/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ resources:
+ - ../base/uwm-config
+ - ../base/external-secrets
++- monitoringstack/
+ patches:
+   - path: rhobs-secret-path.yaml
+     target:
+diff --git a/components/monitoring/prometheus/staging/monitoringstack/cluster-type-patch.yaml b/components/monitoring/prometheus/staging/monitoringstack/cluster-type-patch.yaml
+new file mode 100644
+index 00000000..1895565d
+--- /dev/null
++++ b/components/monitoring/prometheus/staging/monitoringstack/cluster-type-patch.yaml
+@@ -0,0 +1,6 @@
++---
++- op: add
++  path: /spec/endpoints/0/relabelings/0
++  value:
++    targetLabel: source_environment
++    replacement: staging-cluster
+diff --git a/components/monitoring/prometheus/staging/monitoringstack/kustomization.yaml b/components/monitoring/prometheus/staging/monitoringstack/kustomization.yaml
+new file mode 100644
+index 00000000..ae50e169
+--- /dev/null
++++ b/components/monitoring/prometheus/staging/monitoringstack/kustomization.yaml
+@@ -0,0 +1,13 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/monitoringstack
++patches:
++  - path: cluster-type-patch.yaml
++    target:
++      name: appstudio-federate-smon
++      kind: ServiceMonitor
++
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++

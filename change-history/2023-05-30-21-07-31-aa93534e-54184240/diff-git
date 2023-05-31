@@ -1,0 +1,22 @@
+diff --git a/components/monitoring/grafana/base/grafana-app.yaml b/components/monitoring/grafana/base/grafana-app.yaml
+index 63089cea..1ad7c43e 100644
+--- a/components/monitoring/grafana/base/grafana-app.yaml
++++ b/components/monitoring/grafana/base/grafana-app.yaml
+@@ -210,7 +210,7 @@ kind: GrafanaDataSource
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: prometheus-grafanadatasource
++  name: prometheus-appstudio-ds
+   namespace: appstudio-grafana
+ spec:
+   name: prometheus-thanos-grafanadatasource.yaml
+@@ -222,7 +222,7 @@ spec:
+         httpHeaderName1: Authorization
+         timeInterval: 5s
+         tlsSkipVerify: true
+-      name: Prometheus
++      name: prometheus-appstudio-ds
+       secureJsonData:
+         httpHeaderValue1: 'Bearer ${thanostoken}'
+       type: prometheus
