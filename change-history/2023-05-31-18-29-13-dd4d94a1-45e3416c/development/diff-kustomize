@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-45e3416c/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-dd4d94a1/development/components/pipeline-service/development/kustomize.out.yaml
+2978,2980c2978,2980
+<       kube-api-burst: 10
+<       kube-api-qps: 5
+<       threads-per-controller: 2
+---
+>       kube-api-burst: 50
+>       kube-api-qps: 50
+>       threads-per-controller: 32

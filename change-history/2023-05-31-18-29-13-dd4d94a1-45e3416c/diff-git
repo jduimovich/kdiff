@@ -1,0 +1,78 @@
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index b563e3ca..c4bdc5ad 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -17,3 +17,7 @@ patches:
+       kind: Deployment
+       name: pipeline-metrics-exporter
+       namespace: openshift-pipelines
++  - path: update-tekton-config-performance.yaml
++    target:
++      kind: TektonConfig
++      name: config
+\ No newline at end of file
+diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml
+new file mode 100644
+index 00000000..4da96f46
+--- /dev/null
++++ b/components/pipeline-service/development/update-tekton-config-performance.yaml
+@@ -0,0 +1,19 @@
++---
++- op: replace
++  path: /spec/pipeline/performance/threads-per-controller
++  # default upstream setting
++  value: 2
++  # upstream large scale env recommendation
++  # value: 32
++- op: replace
++  path: /spec/pipeline/performance/kube-api-qps
++  # default upstream setting
++  value: 5.0
++  # upstream large scale env recommendation
++  # value: 50
++- op: replace
++  path: /spec/pipeline/performance/kube-api-burst
++  # default upstream setting
++  value: 10
++  # upstream large scale env recommendation
++  # value: 50
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 789d2c8b..1037b08e 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -23,3 +23,7 @@ patches:
+       kind: Deployment
+       name: pipeline-metrics-exporter
+       namespace: openshift-pipelines
++  - path: update-tekton-config-performance.yaml
++    target:
++      kind: TektonConfig
++      name: config
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
+new file mode 100644
+index 00000000..4da96f46
+--- /dev/null
++++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
+@@ -0,0 +1,19 @@
++---
++- op: replace
++  path: /spec/pipeline/performance/threads-per-controller
++  # default upstream setting
++  value: 2
++  # upstream large scale env recommendation
++  # value: 32
++- op: replace
++  path: /spec/pipeline/performance/kube-api-qps
++  # default upstream setting
++  value: 5.0
++  # upstream large scale env recommendation
++  # value: 50
++- op: replace
++  path: /spec/pipeline/performance/kube-api-burst
++  # default upstream setting
++  value: 10
++  # upstream large scale env recommendation
++  # value: 50
+\ No newline at end of file

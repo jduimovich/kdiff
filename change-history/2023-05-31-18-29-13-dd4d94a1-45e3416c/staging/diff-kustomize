@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-45e3416c/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-dd4d94a1/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+2850,2852c2850,2852
+<       kube-api-burst: 10
+<       kube-api-qps: 5
+<       threads-per-controller: 2
+---
+>       kube-api-burst: 50
+>       kube-api-qps: 50
+>       threads-per-controller: 32
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-45e3416c/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-dd4d94a1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+2850,2852c2850,2852
+<       kube-api-burst: 10
+<       kube-api-qps: 5
+<       threads-per-controller: 2
+---
+>       kube-api-burst: 50
+>       kube-api-qps: 50
+>       threads-per-controller: 32
