@@ -1,0 +1,97 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b12cafdd/development/app-of-apps-development.yaml ./kustomized-cache/commit-dfcac58c/development/app-of-apps-development.yaml
+832a833,868
+>   name: shared-resources
+>   namespace: openshift-gitops
+> spec:
+>   generators:
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+>   template:
+>     metadata:
+>       name: shared-resources-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: default
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: components/shared-resources
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b12cafdd/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-dfcac58c/development/components/pipeline-service/development/kustomize.out.yaml
+1259a1260,1275
+>   name: tekton-chains-controller-shared-secrets
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: globally-shared-secrets-clusterrole
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-chains-controller
+>   namespace: tekton-chains
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2358a2375,2376
+>         - name: DOCKER_CONFIG
+>           value: /secret/docker-config
+2369,2375d2386
+<           capabilities:
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+2376a2388,2391
+>         - mountPath: /secret/default-push-secret
+>           name: default-push-secret
+>         - mountPath: /secret/docker-config
+>           name: docker-config
+2382a2398,2411
+>       initContainers:
+>       - command:
+>         - ln
+>         - -s
+>         - -f
+>         - /secret/default-push-secret/.dockerconfigjson
+>         - /secret/docker-config/config.json
+>         image: registry.redhat.io/ubi8:latest
+>         name: link-shared-secret
+>         volumeMounts:
+>         - mountPath: /secret/default-push-secret
+>           name: default-push-secret
+>         - mountPath: /secret/docker-config
+>           name: docker-config
+2384a2414,2421
+>       - csi:
+>           driver: csi.sharedresource.openshift.io
+>           readOnly: true
+>           volumeAttributes:
+>             sharedSecret: redhat-appstudio-user-workload
+>         name: default-push-secret
+>       - emptyDir: {}
+>         name: docker-config
+Only in ./kustomized-cache/commit-dfcac58c/development/components: shared-resources

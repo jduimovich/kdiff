@@ -1,0 +1,183 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b12cafdd/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-dfcac58c/staging/app-of-apps-staging.yaml
+978a979,1014
+>   name: shared-resources
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+>   template:
+>     metadata:
+>       name: shared-resources-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: default
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: components/shared-resources
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b12cafdd/staging/components/build-templates/staging/kustomize.out.yaml ./kustomized-cache/commit-dfcac58c/staging/components/build-templates/staging/kustomize.out.yaml
+103a104,129
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   name: redhat-appstudio-user-workload
+>   namespace: build-templates
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: staging/build/redhat-appstudio-user-workload
+>   refreshInterval: 1h
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: redhat-appstudio-user-workload
+>     template:
+>       data:
+>         .dockerconfigjson: '{{ .config }}'
+>       engineVersion: v2
+>       type: kubernetes.io/dockerconfigjson
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b12cafdd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-dfcac58c/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1243a1244,1259
+>   name: tekton-chains-controller-shared-secrets
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: globally-shared-secrets-clusterrole
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-chains-controller
+>   namespace: tekton-chains
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2343a2360,2361
+>         - name: DOCKER_CONFIG
+>           value: /secret/docker-config
+2354,2360d2371
+<           capabilities:
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+2361a2373,2376
+>         - mountPath: /secret/default-push-secret
+>           name: default-push-secret
+>         - mountPath: /secret/docker-config
+>           name: docker-config
+2367a2383,2396
+>       initContainers:
+>       - command:
+>         - ln
+>         - -s
+>         - -f
+>         - /secret/default-push-secret/.dockerconfigjson
+>         - /secret/docker-config/config.json
+>         image: registry.redhat.io/ubi8:latest
+>         name: link-shared-secret
+>         volumeMounts:
+>         - mountPath: /secret/default-push-secret
+>           name: default-push-secret
+>         - mountPath: /secret/docker-config
+>           name: docker-config
+2369a2399,2406
+>       - csi:
+>           driver: csi.sharedresource.openshift.io
+>           readOnly: true
+>           volumeAttributes:
+>             sharedSecret: redhat-appstudio-user-workload
+>         name: default-push-secret
+>       - emptyDir: {}
+>         name: docker-config
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b12cafdd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-dfcac58c/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1243a1244,1259
+>   name: tekton-chains-controller-shared-secrets
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: globally-shared-secrets-clusterrole
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-chains-controller
+>   namespace: tekton-chains
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2343a2360,2361
+>         - name: DOCKER_CONFIG
+>           value: /secret/docker-config
+2354,2360d2371
+<           capabilities:
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+2361a2373,2376
+>         - mountPath: /secret/default-push-secret
+>           name: default-push-secret
+>         - mountPath: /secret/docker-config
+>           name: docker-config
+2367a2383,2396
+>       initContainers:
+>       - command:
+>         - ln
+>         - -s
+>         - -f
+>         - /secret/default-push-secret/.dockerconfigjson
+>         - /secret/docker-config/config.json
+>         image: registry.redhat.io/ubi8:latest
+>         name: link-shared-secret
+>         volumeMounts:
+>         - mountPath: /secret/default-push-secret
+>           name: default-push-secret
+>         - mountPath: /secret/docker-config
+>           name: docker-config
+2369a2399,2406
+>       - csi:
+>           driver: csi.sharedresource.openshift.io
+>           readOnly: true
+>           volumeAttributes:
+>             sharedSecret: redhat-appstudio-user-workload
+>         name: default-push-secret
+>       - emptyDir: {}
+>         name: docker-config
+Only in ./kustomized-cache/commit-dfcac58c/staging/components: shared-resources

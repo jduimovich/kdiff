@@ -1,0 +1,533 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 78bbbac5..12856b47 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -14,7 +14,6 @@ resources:
+   - jvm-build-service
+   - pipeline-service
+   - build-templates
+-  - shared-resources
+   - internal-services
+   - image-controller
+   - o11y
+diff --git a/argo-cd-apps/base/member/infra-deployments/shared-resources/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/shared-resources/kustomization.yaml
+deleted file mode 100644
+index bd7428d0..00000000
+--- a/argo-cd-apps/base/member/infra-deployments/shared-resources/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- shared-resources.yaml
+-components:
+-  - ../../../../k-components/deploy-to-member-cluster
+diff --git a/argo-cd-apps/base/member/infra-deployments/shared-resources/shared-resources.yaml b/argo-cd-apps/base/member/infra-deployments/shared-resources/shared-resources.yaml
+deleted file mode 100644
+index 9cebd49d..00000000
+--- a/argo-cd-apps/base/member/infra-deployments/shared-resources/shared-resources.yaml
++++ /dev/null
+@@ -1,31 +0,0 @@
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: shared-resources
+-spec:
+-  generators:
+-    - clusters: {}
+-  template:
+-    metadata:
+-      name: shared-resources-{{nameNormalized}}
+-    spec:
+-      project: default
+-      source:
+-        path: components/shared-resources
+-        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+-        targetRevision: main
+-      destination:
+-        namespace: default
+-        server: '{{server}}'
+-      syncPolicy:
+-        automated: 
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-        - CreateNamespace=true
+-        retry:
+-          limit: -1
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m
+diff --git a/components/build-service/README.md b/components/build-service/README.md
+index 6d9b75a9..f179d085 100644
+--- a/components/build-service/README.md
++++ b/components/build-service/README.md
+@@ -8,7 +8,6 @@ The StoneSoup Build System is composed of the following components:
+ - [Tekton Chains](https://github.com/tektoncd/chains)
+ - [Tekton Results](https://github.com/tektoncd/results)
+ - [Pipelines as Code](https://pipelinesascode.com/)
+-- [Shared Resources](https://github.com/openshift/csi-driver-shared-resource)
+ - [App Studio Build Service](https://github.com/redhat-appstudio/build-service/)
+ - [HACBS JVM Build Service](https://github.com/redhat-appstudio/jvm-build-service)
+ - [PVC Cleaner](https://github.com/redhat-appstudio/pvc-cleaner/)
+@@ -54,35 +53,9 @@ By default, the bundle is defined in `components/build-service/build-pipeline-se
+ 
+ Before creating component in Stage cluster it's necessary install GitHub application [AppStudio Staging CI](https://github.com/apps/appstudio-staging-ci) into managed repository or into whole GitHub organization.
+ 
+-## Shared Resources
+-
+-Shared Secrets are provided to be used by projects, secrets is defined in one project but can be used by other projects.
+-
+-Available secrets:
+-
+-| Name | Source | Description | Access |
+-| -- | -- | -- | -- |
+-| redhat-appstudio-user-workload | redhat-appstudio-user-workload secret in build-templates namespace | Quay secret allowing to push into default AppStudio repository | users/serviceaccounts with edit role |
+-
+ ### Repository secrets
+ 
+-There are three ways to provide repository secret into PipelineRun.
+-
+-By priority (1. is highest):
+-
+-1. `redhat-appstudio-registry-pull-secret` secret in the execution namespace
+-2. linked secret to `pipeline` service account in the execution namespace
+-3. shared secret `redhat-appstudio-user-workload`
+-
+-### Use SharedSecret with Tekton Chains
+-
+-During the build pipeline, it is possible to use the `redhat-appstudio-user-workload`
+-[SharedSecret](https://github.com/openshift/csi-driver-shared-resource) to specify the credentials
+-for pushing container images. If this is used, Tekton Chains must also be configured to use the
+-same `SharedSecret`. This is done by default. However, the `Secret` referred to by the
+-`SharedSecret` may not exist at bootstrap time. This is ok. The underlying `Secret` can be created
+-at a later time, and/or updated as needed. The changes should be reflected automatically within the
+-Tekton Chains Controller without requiring a Pod restart.
++The secret must be linked secret to `appstudio-pipeline` service account in the execution namespace
+ 
+ ## Build Service secrets
+ 
+@@ -110,4 +83,4 @@ Process for stage instance:
+ 1. Go to https://github.com/organizations/redhat-appstudio/settings/apps/rhtap-staging
+ 2. In section 'Webhook secret (optional)' - click on Change Secret
+ 3. In section 'Private Keys' - generate new private key and remove the old one.
+-4. Put new secrets from step 2. and 3. to app-sre vault to `stonesoup/staging/pipeline-service/github-app` and `stonesoup/staging/build/build-service`
+\ No newline at end of file
++4. Put new secrets from step 2. and 3. to app-sre vault to `stonesoup/staging/pipeline-service/github-app` and `stonesoup/staging/build/build-service`
+diff --git a/components/build-templates/base/external-secrets/kustomization.yaml b/components/build-templates/base/external-secrets/kustomization.yaml
+deleted file mode 100644
+index dcc90c58..00000000
+--- a/components/build-templates/base/external-secrets/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - redhat-appstudio-user-workload.yaml
+-namespace: build-templates
+diff --git a/components/build-templates/base/external-secrets/redhat-appstudio-user-workload.yaml b/components/build-templates/base/external-secrets/redhat-appstudio-user-workload.yaml
+deleted file mode 100644
+index 2dd9aea1..00000000
+--- a/components/build-templates/base/external-secrets/redhat-appstudio-user-workload.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: redhat-appstudio-user-workload
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        key: staging/build/redhat-appstudio-user-workload
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    name: redhat-appstudio-user-workload
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    template:
+-      engineVersion: v2
+-      type: kubernetes.io/dockerconfigjson
+-      data:
+-        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml
+index 0f36cad6..27bb5cb0 100644
+--- a/components/build-templates/production/kustomization.yaml
++++ b/components/build-templates/production/kustomization.yaml
+@@ -2,11 +2,3 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - ../base/external-secrets
+-patches:
+-  - path: redhat-appstudio-user-workload.yaml
+-    target:
+-      name: redhat-appstudio-user-workload
+-      kind: ExternalSecret
+-      group: external-secrets.io
+-      version: v1beta1
+diff --git a/components/build-templates/production/redhat-appstudio-user-workload.yaml b/components/build-templates/production/redhat-appstudio-user-workload.yaml
+deleted file mode 100644
+index 009163bb..00000000
+--- a/components/build-templates/production/redhat-appstudio-user-workload.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/build/redhat-appstudio-user-workload
+diff --git a/components/build-templates/staging/kustomization.yaml b/components/build-templates/staging/kustomization.yaml
+index 564d8708..27bb5cb0 100644
+--- a/components/build-templates/staging/kustomization.yaml
++++ b/components/build-templates/staging/kustomization.yaml
+@@ -2,4 +2,3 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - ../base/external-secrets
+diff --git a/components/pipeline-service/components/tekton-chains/kustomization.yaml b/components/pipeline-service/components/tekton-chains/kustomization.yaml
+deleted file mode 100644
+index 5c1e6450..00000000
+--- a/components/pipeline-service/components/tekton-chains/kustomization.yaml
++++ /dev/null
+@@ -1,12 +0,0 @@
+----
+-apiVersion: kustomize.config.k8s.io/v1alpha1
+-kind: Component
+-
+-resources:
+-  - tekton-chains-controller-shared-secrets-rolebinding.yaml
+-
+-patchesStrategicMerge:
+-  # Mount the shared secret in tekton Chains
+-  - tekton-chains-controller-shared-secret.yaml
+-  # Reset securityContext in order to be able to mount csi content
+-  - tekton-chains-controller-deployment.yaml
+diff --git a/components/pipeline-service/components/tekton-chains/tekton-chains-controller-deployment.yaml b/components/pipeline-service/components/tekton-chains/tekton-chains-controller-deployment.yaml
+deleted file mode 100644
+index 3b9f8406..00000000
+--- a/components/pipeline-service/components/tekton-chains/tekton-chains-controller-deployment.yaml
++++ /dev/null
+@@ -1,16 +0,0 @@
+-# Dropping privileges for tekton-chains-controller seems to prevent
+-# mounting the csi volume.
+----
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: tekton-chains-controller
+-  namespace: tekton-chains
+-spec:
+-  template:
+-    spec:
+-      containers:
+-        - name: tekton-chains-controller
+-          securityContext:
+-            allowPrivilegeEscalation: false
+-            $patch: replace
+diff --git a/components/pipeline-service/components/tekton-chains/tekton-chains-controller-shared-secret.yaml b/components/pipeline-service/components/tekton-chains/tekton-chains-controller-shared-secret.yaml
+deleted file mode 100644
+index 32678991..00000000
+--- a/components/pipeline-service/components/tekton-chains/tekton-chains-controller-shared-secret.yaml
++++ /dev/null
+@@ -1,58 +0,0 @@
+----
+-# Mount the contents of the SharedSecret named redhat-appstudio-user-workload
+-# on the Tekton Chains controller at $DOCKER_CONFIG/config.json. This makes
+-# Chains consider those credentials when pushing content to an OCI repo.
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: tekton-chains-controller
+-  namespace: tekton-chains
+-spec:
+-  template:
+-    spec:
+-      # Chains expects a file named config.json under the DOCKER_CONFIG dir.
+-      # Since the underlying Secret defines the key .dockerconfigjson, that's
+-      # also the name of the file that is mounted on the container.
+-      #
+-      # We could use subPath to "rename" the file. However, that causes two
+-      # issues. First, updates to the Secret are not reflected on the container,
+-      # see https://github.com/kubernetes/kubernetes/issues/50345. Second, if
+-      # the underlying Secret does not exist, config.json is mounted as a dir
+-      # instead of a file which breaks the k8schain library used by Tekton
+-      # Chains.
+-      #
+-      # By using a init container, we can mount the volume as is and ensure that
+-      # config.json (the symlink) is a file.
+-      initContainers:
+-      - name: link-shared-secret
+-        image: registry.redhat.io/ubi8:latest
+-        volumeMounts:
+-        - name: default-push-secret
+-          mountPath: /secret/default-push-secret
+-        - name: docker-config
+-          mountPath: /secret/docker-config
+-        command:
+-        - ln
+-        - -s
+-        - -f
+-        - /secret/default-push-secret/.dockerconfigjson
+-        - /secret/docker-config/config.json
+-      containers:
+-      - name: tekton-chains-controller
+-        env:
+-        - name: DOCKER_CONFIG
+-          value: /secret/docker-config
+-        volumeMounts:
+-        - name: default-push-secret
+-          mountPath: /secret/default-push-secret
+-        - name: docker-config
+-          mountPath: /secret/docker-config
+-      volumes:
+-      - name: default-push-secret
+-        csi:
+-          driver: csi.sharedresource.openshift.io
+-          readOnly: true
+-          volumeAttributes:
+-            sharedSecret: redhat-appstudio-user-workload
+-      - name: docker-config
+-        emptyDir: {}
+diff --git a/components/pipeline-service/components/tekton-chains/tekton-chains-controller-shared-secrets-rolebinding.yaml b/components/pipeline-service/components/tekton-chains/tekton-chains-controller-shared-secrets-rolebinding.yaml
+deleted file mode 100644
+index 3d7de573..00000000
+--- a/components/pipeline-service/components/tekton-chains/tekton-chains-controller-shared-secrets-rolebinding.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+-metadata:
+-  name: tekton-chains-controller-shared-secrets
+-  namespace: tekton-chains
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: globally-shared-secrets-clusterrole
+-subjects:
+-- kind: ServiceAccount
+-  name: tekton-chains-controller
+-  namespace: tekton-chains
+-
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 58f77837..b563e3ca 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -11,9 +11,6 @@ resources:
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=303c19d55e2ae90f737ce3a245755eff34684099
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=303c19d55e2ae90f737ce3a245755eff34684099
+ 
+-components:
+-  - ../components/tekton-chains
+-
+ patches:
+   - path: scale-down-exporter.yaml
+     target:
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index c1e6fe63..b011415f 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -12,9 +12,6 @@ resources:
+   - ../../base/external-secrets
+   - ../../base/testing
+ 
+-components:
+-  - ../../components/tekton-chains
+-
+ patches:
+   - path: pipelines-as-code-secret-path.yaml
+     target:
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index aa817e78..789d2c8b 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -12,9 +12,6 @@ resources:
+   - ../../base/external-secrets
+   - ../../base/testing
+ 
+-components:
+-  - ../../components/tekton-chains
+-
+ patches:
+   - path: pac-app-name.yaml
+     target:
+diff --git a/components/shared-resources/globally-shared-secrets-clusterrole.yaml b/components/shared-resources/globally-shared-secrets-clusterrole.yaml
+deleted file mode 100644
+index 604b71a0..00000000
+--- a/components/shared-resources/globally-shared-secrets-clusterrole.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+-metadata:
+-  name: globally-shared-secrets-clusterrole
+-  labels:
+-    rbac.authorization.k8s.io/aggregate-to-edit: "true"
+-rules:
+-  - apiGroups:
+-      - sharedresource.openshift.io
+-    resources:
+-      - sharedsecrets
+-    resourceNames:
+-      - redhat-appstudio-user-workload
+-    verbs:
+-      - use
+-# the rule to use the csi-scc can be removed when we move to 4.13 OCP
+-  - verbs:
+-      - use
+-    apiGroups:
+-      - security.openshift.io
+-    resources:
+-      - securitycontextconstraints
+-    resourceNames:
+-      - csi-scc
+diff --git a/components/shared-resources/kustomization.yaml b/components/shared-resources/kustomization.yaml
+deleted file mode 100644
+index f8ed5598..00000000
+--- a/components/shared-resources/kustomization.yaml
++++ /dev/null
+@@ -1,46 +0,0 @@
+-resources:
+-# when stonesoup rebases on OCP 4.14, shared resources will be part of the GA install; as such, if we are still using shared resources,
+-# all these raw.githubusercontent refs to install shared resources can go away
+-
+-# Prior to 4.14 GA of OCP, which will include shared resources, we still installing shared resources manually here at the 4.12 level
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/config_configmap.yaml
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/csidriver.yaml
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/metrics_service.yaml
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/node_sa.yaml
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/node.yaml
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/servicemonitor.yaml
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/service.yaml
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/sharedconfigmaplist_configmap.yaml
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/sharedsecretlist_configmap.yaml
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/rbac/node_binding.yaml
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/rbac/node_privileged_binding.yaml
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/rbac/node_role.yaml
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/rbac/privileged_role.yaml
+-- https://raw.githubusercontent.com/openshift/csi-driver-shared-resource-operator/e2363205aacfcc2dad711b32e24e73e11471652d/assets/rbac/prometheus_rolebinding.yaml
+-# NOTE, with stonesoup's move toward hypershift, the shared resource admission webhooks will not successfully launch via manual application for the same reasons we needed to
+-# back out shared resources as GA for 4.13.  Shared-resources on hypershift, along with shared resources as GA level OCP, is on tap for 4.14 of OCP.
+-# The same restrictions enforced by the webhooks are also enforced by the driver
+-- https://raw.githubusercontent.com/openshift/api/9d91c1f6cfd40449bd2af8a6b697a3bf7baf933b/sharedresource/v1alpha1/0000_10_sharedconfigmap.crd.yaml
+-- https://raw.githubusercontent.com/openshift/api/9d91c1f6cfd40449bd2af8a6b697a3bf7baf933b/sharedresource/v1alpha1/0000_10_sharedsecret.crd.yaml
+-# the scc.yaml can be removed when we move to 4.13 OCP, as the storage team's CSI in-line security 
+-- scc.yaml
+-- redhat-appstudio-user-workload-sharedsecret.yaml
+-- globally-shared-secrets-clusterrole.yaml
+-
+-# the images section can be removed when we move to 4.14 OCP
+-images:
+-- name: \${NODE_DRIVER_REGISTRAR_IMAGE}
+-  newName: registry.redhat.io/openshift4/ose-csi-node-driver-registrar
+-  newTag: v4.12.0-202302061702.p0.g805d5ac.assembly.stream
+-- name: \${DRIVER_IMAGE}
+-  newName: registry.redhat.io/openshift4/ose-csi-driver-shared-resource-rhel8
+-  newTag: v4.12.0-202302061702.p0.g20cffc0.assembly.stream
+-
+-# Skip applying the Tekton operands while the Tekton operator is being installed.
+-# See more information about this option, here:
+-# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types
+-commonAnnotations:
+-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+diff --git a/components/shared-resources/redhat-appstudio-user-workload-sharedsecret.yaml b/components/shared-resources/redhat-appstudio-user-workload-sharedsecret.yaml
+deleted file mode 100644
+index 7f8ba2f9..00000000
+--- a/components/shared-resources/redhat-appstudio-user-workload-sharedsecret.yaml
++++ /dev/null
+@@ -1,8 +0,0 @@
+-apiVersion: sharedresource.openshift.io/v1alpha1
+-kind: SharedSecret
+-metadata:
+-  name: redhat-appstudio-user-workload
+-spec:
+-  secretRef:
+-    name: redhat-appstudio-user-workload
+-    namespace: build-templates
+diff --git a/components/shared-resources/scc.yaml b/components/shared-resources/scc.yaml
+deleted file mode 100644
+index 821e863d..00000000
+--- a/components/shared-resources/scc.yaml
++++ /dev/null
+@@ -1,46 +0,0 @@
+-# this file can be deleted when we rebase on top of OCP 4.13
+-allowHostDirVolumePlugin: false
+-allowHostIPC: false
+-allowHostNetwork: false
+-allowHostPID: false
+-allowHostPorts: false
+-allowPrivilegeEscalation: true
+-allowPrivilegedContainer: false
+-allowedCapabilities: null
+-apiVersion: security.openshift.io/v1
+-defaultAddCapabilities: null
+-fsGroup:
+-  type: MustRunAs
+-groups: []
+-kind: SecurityContextConstraints
+-metadata:
+-  annotations:
+-    include.release.openshift.io/ibm-cloud-managed: "true"
+-    include.release.openshift.io/self-managed-high-availability: "true"
+-    include.release.openshift.io/single-node-developer: "true"
+-    kubernetes.io/description: restricted denies access to all host features and requires
+-      pods to be run with a UID, and SELinux context that are allocated to the namespace.
+-    release.openshift.io/create-only: "true"
+-  name: csi-scc
+-priority: null
+-readOnlyRootFilesystem: false
+-requiredDropCapabilities:
+-- KILL
+-- MKNOD
+-- SETUID
+-- SETGID
+-runAsUser:
+-  type: RunAsAny
+-seLinuxContext:
+-  type: MustRunAs
+-supplementalGroups:
+-  type: RunAsAny
+-users: []
+-volumes:
+-- configMap
+-- csi
+-- downwardAPI
+-- emptyDir
+-- persistentVolumeClaim
+-- projected
+-- secret
+diff --git a/hack/preview-template.env b/hack/preview-template.env
+index c007f693..e0faf5b7 100644
+--- a/hack/preview-template.env
++++ b/hack/preview-template.env
+@@ -13,8 +13,6 @@ export MY_GITHUB_TOKEN=
+ # Optional
+ 
+ ## HAS enable github integration
+-### Override default Application service "image push" repository
+-export HAS_DEFAULT_IMAGE_REPOSITORY=
+ ### Override Application service image
+ export HAS_IMAGE_REPO=
+ export HAS_IMAGE_TAG=
+diff --git a/hack/preview.sh b/hack/preview.sh
+index c1e30783..f485a679 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -170,7 +170,6 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [ -n "${HAS_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/application-service\")) |=.newName=\"${HAS_IMAGE_REPO}\"" $ROOT/components/has/base/kustomization.yaml
+ [ -n "${HAS_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/application-service\")) |=.newTag=\"${HAS_IMAGE_TAG}\"" $ROOT/components/has/base/kustomization.yaml
+ [[ -n "${HAS_PR_OWNER}" && "${HAS_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/application-service*\")) |= \"https://github.com/${HAS_PR_OWNER}/application-service/config/default?ref=${HAS_PR_SHA}\"" $ROOT/components/has/base/kustomization.yaml
+-[ -n "${HAS_DEFAULT_IMAGE_REPOSITORY}" ] && yq -i e "(.spec.template.spec.containers[].env[] | select(.name ==\"IMAGE_REPOSITORY\").value) |= \"${HAS_DEFAULT_IMAGE_REPOSITORY}\"" $ROOT/components/has/base/manager_resources_patch.yaml
+ 
+ [ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/kustomization.yaml
+ [ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/kustomization.yaml
