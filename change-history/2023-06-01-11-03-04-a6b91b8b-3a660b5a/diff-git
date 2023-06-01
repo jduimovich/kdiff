@@ -1,0 +1,311 @@
+diff --git a/hack/quickcluster/README.md b/hack/quickcluster/README.md
+new file mode 100644
+index 00000000..072e5fcd
+--- /dev/null
++++ b/hack/quickcluster/README.md
+@@ -0,0 +1,57 @@
++---
++title: Configuring NFS storage provisioner on Quickcluster clusters
++---
++
++This document and script are based on the following documents:
++
++- https://two-oes.medium.com/openshift-4-8-and-above-with-nfs-subdir-external-provisioner-9b6b614194b7
++- https://source.redhat.com/groups/public/api-management-sbr/cee_sd_api_management_wiki/configuring_nfs_for_persistent_volumes
++
++This procedure will essentially deploy a new storage provisioner to your cluster.
++
++###### Requirements 
++
++This script can only be executed once:
++ 
++- your cluster has been provisioned.
++- openshift has been installed.
++
++###### Input
++
++This script takes 1 mandatory parameter - the UPI hostname in a Resource Hub Quickcluster.
++It can be found in the Cluster Information section.
++It takes another optional parameter - a path to an SSH private key to be used for authenticating with
++the host. When not provided, the script will instead use the private key at `~/.ssh/id_rsa`.
++
++```
++Cluster Information
++Username: quickcluster
++Hosts:
++ - upi-0.shebertquick.lab.upshift.rdu2.redhat.com ( 10.0.91.104 )
++``` 
++
++The script uses this info to obtain credentials in order to configure the storage on your cluster
++
++###### Usage
++
++`# setup-nfs-quickcluster.sh upi-0.shebertquick.lab.upshift.rdu2.redhat.com`
++
++###### Testing
++
++Once the scripts executes, run the following command to test the setup:
++
++```
++% export KUBECONFIG=/tmp/kubeconfig
++% oc new-project test-pvc
++% oc create -f templates/test-pvc.yaml
++% oc get pvc
++```
++
++The status should be *Bound*
++
++```
++NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS          AGE
++test-claim   Bound    pvc-1392e83f-60ec-4caf-b71b-8d040b8becd5   100Mi      RWX            managed-nfs-storage   6s
++```
++
++You may now run the bootstrap scripts.
+diff --git a/hack/quickcluster/setup-nfs-quickcluster.sh b/hack/quickcluster/setup-nfs-quickcluster.sh
+new file mode 100755
+index 00000000..15660689
+--- /dev/null
++++ b/hack/quickcluster/setup-nfs-quickcluster.sh
+@@ -0,0 +1,90 @@
++#!/bin/bash
++
++set -e
++
++trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
++trap 'echo "\"${last_command}\" command completed with exit code $?."' EXIT
++
++ROOT="$(realpath -mq ${BASH_SOURCE[0]}/../../..)"
++
++export QUICKCLUSTERKEY=${2:-~/.ssh/id_rsa}
++export NAMESPACE=openshift-nfs-storage
++PORT=2049
++
++if [ -z "$1" ]; then
++    echo "usage: setup-nfs-quickcluster.sh <upi host name>"
++    exit 1
++fi
++
++export REMOTE=$1
++QOCP="https://$(echo ${REMOTE} |sed s/upi-0/api/):6443"
++
++scp -o StrictHostKeyChecking=no -i $QUICKCLUSTERKEY quickcluster@$REMOTE:/home/quickcluster/oc4/auth/kubeconfig /tmp/kubeconfig
++export KUBECONFIG=/tmp/kubeconfig
++
++if ! oc whoami > /dev/null 2>&1;
++then
++  echo "Please login to your openshift cluster: ${QOCP}";
++  if ! oc login --server=${QOCP};
++    then
++      exit 1;
++  fi
++else
++  OCP=$(oc whoami --show-server=true)
++  if [ "${OCP}" != "${QOCP}" ];
++  then
++    echo "It seems you are logged in to the wrong OCP cluster (${OCP}). Please login to ${QOCP} and retry the script";
++    exit 1;
++  fi;
++fi
++
++PORT=2049
++
++SSH="ssh -o StrictHostKeyChecking=no -i $QUICKCLUSTERKEY quickcluster@$REMOTE"
++
++echo -e Adding nfs folder on $REMOTE using $QUICKCLUSTERKEY
++
++#ENABLE NFS PORTS ON DEFAULT FIREWALL
++export DZONE=$($SSH -C 'sudo firewall-cmd --get-default-zone')
++export ip=$($SSH -C 'hostname -i')
++echo -e default firewall zone: $DZONE
++echo -e upi-0 IP: $ip
++$SSH -C sudo firewall-cmd --zone=$DZONE --add-port=$PORT/tcp --permanent
++$SSH -C sudo firewall-cmd --reload
++
++if $SSH -C "sudo firewall-cmd --info-zone=$DZONE"|grep $PORT > /dev/null; then
++  echo "port $PORT/tcp successfully added to firewall";
++else 
++  echo "Cannot add port $PORT/tcp exiting";
++  exit 1;
++fi
++
++#CREATE DIRS AND ADD IT TO /etc/exports
++$SSH -C 'sudo mkdir -p /opt/nfs ; sudo mkdir -p /opt/nfs/pv0001 > /dev/null 2>&1;'
++$SSH -C 'sudo chmod -R 0777 /opt/nfs/*'
++$SSH -C 'cp /etc/exports ./exports; echo "/opt/nfs/pv0001 *(no_root_squash,rw,sync)" >> ./exports ; sudo cp ./exports /etc/exports ; rm ./exports'
++
++#START AND ENABLE RPCBIND AND NFS SERVICES
++$SSH -C "sudo systemctl restart rpcbind && sudo systemctl restart nfs"
++
++set +e
++oc create namespace $NAMESPACE
++oc label namespace $NAMESPACE "openshift.io/cluster-monitoring=true" --overwrite=true
++oc project $NAMESPACE
++
++oc apply -f $ROOT/hack/quickcluster/templates/rbac.yaml
++oc adm policy add-scc-to-user hostmount-anyuid system:serviceaccount:$NAMESPACE:nfs-client-provisioner
++export REMOTE
++envsubst < $ROOT/hack/quickcluster/templates/deployment.yaml | oc apply -f -
++oc -n $NAMESPACE wait --for=condition=ready pod --all
++oc apply -f $ROOT/hack/quickcluster/templates/storageClass.yaml
++
++unset NAMESPACE
++unset QUICKCLUSTERKEY
++unset REMOTE
++unset DZONE
++unset ip
++unset SSH
++unset PORT
++
++exit 0
+diff --git a/hack/quickcluster/templates/deployment.yaml b/hack/quickcluster/templates/deployment.yaml
+new file mode 100644
+index 00000000..ab4d495d
+--- /dev/null
++++ b/hack/quickcluster/templates/deployment.yaml
+@@ -0,0 +1,39 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: nfs-client-provisioner
++  labels:
++    app: nfs-client-provisioner
++  # replace with namespace where provisioner is deployed
++  namespace: openshift-nfs-storage
++spec:
++  replicas: 1
++  strategy:
++    type: Recreate
++  selector:
++    matchLabels:
++      app: nfs-client-provisioner
++  template:
++    metadata:
++      labels:
++        app: nfs-client-provisioner
++    spec:
++      serviceAccountName: nfs-client-provisioner
++      containers:
++        - name: nfs-client-provisioner
++          image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
++          volumeMounts:
++            - name: nfs-client-root
++              mountPath: /persistentvolumes
++          env:
++            - name: PROVISIONER_NAME
++              value: storage.io/nfs
++            - name: NFS_SERVER
++              value: $REMOTE
++            - name: NFS_PATH
++              value: /opt/nfs/pv0001
++      volumes:
++        - name: nfs-client-root
++          nfs:
++            server: $REMOTE
++            path: /opt/nfs/pv0001
+diff --git a/hack/quickcluster/templates/rbac.yaml b/hack/quickcluster/templates/rbac.yaml
+new file mode 100644
+index 00000000..688229ca
+--- /dev/null
++++ b/hack/quickcluster/templates/rbac.yaml
+@@ -0,0 +1,68 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: nfs-client-provisioner
++  # replace with namespace where provisioner is deployed
++  namespace: openshift-nfs-storage
++---
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: nfs-client-provisioner-runner
++rules:
++  - apiGroups: [""]
++    resources: ["nodes"]
++    verbs: ["get", "list", "watch"]
++  - apiGroups: [""]
++    resources: ["persistentvolumes"]
++    verbs: ["get", "list", "watch", "create", "delete"]
++  - apiGroups: [""]
++    resources: ["persistentvolumeclaims"]
++    verbs: ["get", "list", "watch", "update"]
++  - apiGroups: ["storage.k8s.io"]
++    resources: ["storageclasses"]
++    verbs: ["get", "list", "watch"]
++  - apiGroups: [""]
++    resources: ["events"]
++    verbs: ["create", "update", "patch"]
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: run-nfs-client-provisioner
++subjects:
++  - kind: ServiceAccount
++    name: nfs-client-provisioner
++    # replace with namespace where provisioner is deployed
++    namespace: openshift-nfs-storage
++roleRef:
++  kind: ClusterRole
++  name: nfs-client-provisioner-runner
++  apiGroup: rbac.authorization.k8s.io
++---
++kind: Role
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: leader-locking-nfs-client-provisioner
++  # replace with namespace where provisioner is deployed
++  namespace: openshift-nfs-storage
++rules:
++  - apiGroups: [""]
++    resources: ["endpoints"]
++    verbs: ["get", "list", "watch", "create", "update", "patch"]
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: leader-locking-nfs-client-provisioner
++  # replace with namespace where provisioner is deployed
++  namespace: openshift-nfs-storage
++subjects:
++  - kind: ServiceAccount
++    name: nfs-client-provisioner
++    # replace with namespace where provisioner is deployed
++    namespace: openshift-nfs-storage
++roleRef:
++  kind: Role
++  name: leader-locking-nfs-client-provisioner
++  apiGroup: rbac.authorization.k8s.io
+diff --git a/hack/quickcluster/templates/storageClass.yaml b/hack/quickcluster/templates/storageClass.yaml
+new file mode 100644
+index 00000000..4adb30de
+--- /dev/null
++++ b/hack/quickcluster/templates/storageClass.yaml
+@@ -0,0 +1,10 @@
++apiVersion: storage.k8s.io/v1
++kind: StorageClass
++metadata:
++  name: managed-nfs-storage
++  annotations:
++    storageclass.kubernetes.io/is-default-class: 'true'
++provisioner: storage.io/nfs
++parameters:
++  pathPattern: "${.PVC.namespace}/${.PVC.name}"
++  onDelete: delete'
+diff --git a/hack/quickcluster/templates/test-pvc.yaml b/hack/quickcluster/templates/test-pvc.yaml
+new file mode 100644
+index 00000000..33ee9a8c
+--- /dev/null
++++ b/hack/quickcluster/templates/test-pvc.yaml
+@@ -0,0 +1,11 @@
++kind: PersistentVolumeClaim
++apiVersion: v1
++metadata:
++  name: test-claim
++spec:
++  storageClassName: managed-nfs-storage
++  accessModes:
++    - ReadWriteMany
++  resources:
++    requests:
++      storage: 100Mi

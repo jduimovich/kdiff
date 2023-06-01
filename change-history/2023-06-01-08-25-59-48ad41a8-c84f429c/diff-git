@@ -1,0 +1,15 @@
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index 9c86f7ec..5c5cd43f 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -159,3 +159,10 @@ metadata:
+   name: external-secrets
+ spec:
+   url: "https://github.com/redhat-appstudio/external-secrets"
++---
++apiVersion: pipelinesascode.tekton.dev/v1alpha1
++kind: Repository
++metadata:
++  name: remote-secrets
++spec:
++  url: "https://github.com/redhat-appstudio/remote-secret"
