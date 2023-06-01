@@ -1,0 +1,122 @@
+diff --git a/components/monitoring/logging/staging/configure-logging/cluster-log-forwarder-patch.yaml b/components/monitoring/logging/staging/configure-logging/cluster-log-forwarder-patch.yaml
+index fae26f4f..b2ee41c0 100644
+--- a/components/monitoring/logging/staging/configure-logging/cluster-log-forwarder-patch.yaml
++++ b/components/monitoring/logging/staging/configure-logging/cluster-log-forwarder-patch.yaml
+@@ -2,19 +2,35 @@
+ - op: add
+   path: /spec/outputs/-
+   value:
+-    name: splunk-receiver
++    name: splunk-receiver-application
+     secret:
+-      name: splunk-forwarder-secret
++      name: log-forwarder-splunk-rhtap-staging-application-secret
++    type: splunk
++    url: https://http-inputs-rhcorporate.splunkcloud.com
++- op: add
++  path: /spec/outputs/-
++  value:
++    name: splunk-receiver-audit
++    secret:
++      name: log-forwarder-splunk-rhtap-staging-audit-secret
+     type: splunk
+     url: https://http-inputs-rhcorporate.splunkcloud.com
+ - op: add
+   path: /spec/pipelines/-
+   value:
+-    name: fluentd-splunk-logforward
++    name: fluentd-forward-logs-to-splunk-rhtap-stage-app-index
+     inputRefs:
+       - application
++    outputRefs:
++      - splunk-receiver-application
++    parse: json
++- op: add
++  path: /spec/pipelines/-
++  value:
++    name: fluentd-forward-logs-to-splunk-rhtap-stage-audit-index
++    inputRefs:      
+       - infrastructure
+       - audit
+     outputRefs:
+-      - splunk-receiver
++      - splunk-receiver-audit
+     parse: json
+diff --git a/components/monitoring/logging/staging/external-secrets/kustomization.yaml b/components/monitoring/logging/staging/external-secrets/kustomization.yaml
+index 302ae9ee..071e6006 100644
+--- a/components/monitoring/logging/staging/external-secrets/kustomization.yaml
++++ b/components/monitoring/logging/staging/external-secrets/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- monitoring-logging-splunk-log-forwarder.yaml
++- splunk-log-forwarders-external-secrets.yaml
+ namespace: openshift-logging
+diff --git a/components/monitoring/logging/staging/external-secrets/monitoring-logging-splunk-log-forwarder.yaml b/components/monitoring/logging/staging/external-secrets/monitoring-logging-splunk-log-forwarder.yaml
+deleted file mode 100644
+index a32aaf9c..00000000
+--- a/components/monitoring/logging/staging/external-secrets/monitoring-logging-splunk-log-forwarder.yaml
++++ /dev/null
+@@ -1,18 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: monitoring-logging-splunk-log-forwarder
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-  - extract:
+-      key: staging/monitoring/logging/fluentd/splunk-forwarder
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    name: appsre-stonesoup-vault
+-    kind: ClusterSecretStore
+-  target:
+-    name: splunk-forwarder-secret
+-    deletionPolicy: Delete
+diff --git a/components/monitoring/logging/staging/external-secrets/splunk-log-forwarders-external-secrets.yaml b/components/monitoring/logging/staging/external-secrets/splunk-log-forwarders-external-secrets.yaml
+new file mode 100644
+index 00000000..55a02dd7
+--- /dev/null
++++ b/components/monitoring/logging/staging/external-secrets/splunk-log-forwarders-external-secrets.yaml
+@@ -0,0 +1,37 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: log-forwarder-splunk-rhtap-staging-application-external-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++  - extract:
++      key: staging/monitoring/logging/fluentd/splunk-forwarder-rhtap-staging-application
++  refreshInterval: 1h
++  secretStoreRef:
++    name: appsre-stonesoup-vault
++    kind: ClusterSecretStore
++  target:
++    name: log-forwarder-splunk-rhtap-staging-application-secret
++    deletionPolicy: Delete
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: log-forwarder-splunk-rhtap-staging-audit-external-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++  - extract:
++      key: staging/monitoring/logging/fluentd/splunk-forwarder-rhtap-staging-audit
++  refreshInterval: 1h
++  secretStoreRef:
++    name: appsre-stonesoup-vault
++    kind: ClusterSecretStore
++  target:
++    name: log-forwarder-splunk-rhtap-staging-audit-secret
++    deletionPolicy: Delete
