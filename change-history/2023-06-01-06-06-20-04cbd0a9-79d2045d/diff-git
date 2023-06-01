@@ -1,0 +1,12 @@
+diff --git a/components/authentication/base/component-maintainer.yaml b/components/authentication/base/component-maintainer.yaml
+index bde99ec9..4470656d 100644
+--- a/components/authentication/base/component-maintainer.yaml
++++ b/components/authentication/base/component-maintainer.yaml
+@@ -39,7 +39,6 @@ rules:
+   - apiGroups:
+     - ''
+     resources:
+-    - pods/exec
+     - pods/portforward
+     verbs:
+     - create

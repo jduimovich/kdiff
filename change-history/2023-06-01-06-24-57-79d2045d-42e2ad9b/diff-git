@@ -1,0 +1,40 @@
+diff --git a/components/authentication/base/component-maintainer.yaml b/components/authentication/base/component-maintainer.yaml
+index 4470656d..ef94477a 100644
+--- a/components/authentication/base/component-maintainer.yaml
++++ b/components/authentication/base/component-maintainer.yaml
+@@ -3,6 +3,15 @@ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   name: component-maintainer
+ rules:
++  - apiGroups:
++      - operators.coreos.com
++    resources:
++      - installplans
++    verbs:
++      - get
++      - list
++      - update
++      - patch
+   - verbs:
+       - patch
+       - get
+diff --git a/components/authentication/base/pipeline-service-sre.yaml b/components/authentication/base/pipeline-service-sre.yaml
+index 75189efc..ad4c55e0 100644
+--- a/components/authentication/base/pipeline-service-sre.yaml
++++ b/components/authentication/base/pipeline-service-sre.yaml
+@@ -3,6 +3,15 @@ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   name: pipeline-service-sre
+ rules:
++- apiGroups:
++  - operators.coreos.com
++  resources:
++  - installplans
++  verbs:
++  - get
++  - list
++  - update
++  - patch
+ - apiGroups:
+   - tekton.dev
+   resources:

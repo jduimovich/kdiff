@@ -1,0 +1,23 @@
+diff --git a/components/monitoring/grafana/base/integration/kustomization.yaml b/components/monitoring/grafana/base/integration/kustomization.yaml
+new file mode 100644
+index 00000000..000e864d
+--- /dev/null
++++ b/components/monitoring/grafana/base/integration/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - https://github.com/redhat-appstudio/integration-service/config/grafana/?ref=624d58cd38b060e73ce0ddcb1d1be8cc5ce13c8f
++
+diff --git a/components/monitoring/grafana/base/kustomization.yaml b/components/monitoring/grafana/base/kustomization.yaml
+index 91e49de4..72c40c29 100644
+--- a/components/monitoring/grafana/base/kustomization.yaml
++++ b/components/monitoring/grafana/base/kustomization.yaml
+@@ -9,6 +9,7 @@ resources:
+ - dora-metrics/
+ - has/
+ - jvm-build-service/
++- integration/
+ - migration/
+ - o11y/
+ - release/
