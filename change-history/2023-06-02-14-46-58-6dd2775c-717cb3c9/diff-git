@@ -1,0 +1,27 @@
+diff --git a/components/authentication/base/has-admin.yaml b/components/authentication/base/has-admin.yaml
+index 09f2bcd1..10a0fc7c 100644
+--- a/components/authentication/base/has-admin.yaml
++++ b/components/authentication/base/has-admin.yaml
+@@ -36,6 +36,8 @@ subjects:
+     name: thepetk
+   - kind: User
+     name: mike-hoang
++  - kind: User
++    name: michael-valdron
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: Role
+diff --git a/components/authentication/base/has.yaml b/components/authentication/base/has.yaml
+index fdcf2eb2..dc2eb2b1 100644
+--- a/components/authentication/base/has.yaml
++++ b/components/authentication/base/has.yaml
+@@ -28,6 +28,9 @@ subjects:
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: mike-hoang
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: michael-valdron
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole

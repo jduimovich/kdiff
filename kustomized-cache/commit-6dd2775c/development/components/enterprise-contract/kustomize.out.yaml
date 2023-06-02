@@ -1,0 +1,315 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: enterprisecontractpolicies.appstudio.redhat.com
+spec:
+  group: appstudio.redhat.com
+  names:
+    kind: EnterpriseContractPolicy
+    listKind: EnterpriseContractPolicyList
+    plural: enterprisecontractpolicies
+    shortNames:
+    - ecp
+    singular: enterprisecontractpolicy
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: EnterpriseContractPolicy is the Schema for the enterprisecontractpolicies
+          API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: EnterpriseContractPolicySpec is used to configure the Enterprise
+              Contract Policy
+            properties:
+              authorization:
+                description: Authorization for per component release approvals
+                properties:
+                  components:
+                    description: Components based authorization
+                    items:
+                      description: Authorization defines a release approval on a component
+                        basis
+                      properties:
+                        authorizer:
+                          description: Authorizer is the email address of the person
+                            authorizing the release
+                          type: string
+                        changeId:
+                          description: ChangeID is the identifier of the change, e.g.
+                            git commit id
+                          type: string
+                        repository:
+                          description: Repository of the component sources
+                          type: string
+                      type: object
+                    type: array
+                type: object
+              configuration:
+                description: Configuration handles policy modification configuration
+                  (exclusions and inclusions)
+                properties:
+                  collections:
+                    description: 'Collections set of predefined rules.  DEPRECATED:
+                      Collections can be listed in include with the "@" prefix.'
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                  exclude:
+                    description: Exclude set of policy exclusions that, in case of
+                      failure, do not block the success of the outcome.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                  include:
+                    description: Include set of policy inclusions that are added to
+                      the policy evaluation. These override excluded rules.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                type: object
+              description:
+                description: Description of the policy or its intended use
+                type: string
+              publicKey:
+                description: Public key used to validate the signature of images and
+                  attestations
+                type: string
+              rekorUrl:
+                description: URL of the Rekor instance. Empty string disables Rekor
+                  integration
+                type: string
+              sources:
+                description: One or more groups of policy rules
+                items:
+                  description: Source defines policies and data that are evaluated
+                    together
+                  properties:
+                    data:
+                      description: List of go-getter style policy data source urls
+                      items:
+                        type: string
+                      type: array
+                    name:
+                      description: Optional name for the source
+                      type: string
+                    policy:
+                      description: List of go-getter style policy source urls
+                      items:
+                        type: string
+                      minItems: 1
+                      type: array
+                    ruleData:
+                      description: Arbitrary rule data that will be visible to policy
+                        rules
+                      type: object
+                      x-kubernetes-preserve-unknown-fields: true
+                  type: object
+                minItems: 1
+                type: array
+            type: object
+          status:
+            description: EnterpriseContractPolicyStatus defines the observed state
+              of EnterpriseContractPolicy
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-view: "true"
+  name: enterprisecontract-configmap-viewer-role
+rules:
+- apiGroups:
+  - ""
+  resourceNames:
+  - ec-defaults
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-edit: "true"
+  name: enterprisecontractpolicy-editor-role
+rules:
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - enterprisecontractpolicies
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - enterprisecontractpolicies/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-view: "true"
+  name: enterprisecontractpolicy-viewer-role
+rules:
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - enterprisecontractpolicies
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - enterprisecontractpolicies/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: public-ec-cm
+  namespace: enterprise-contract-service
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: enterprisecontract-configmap-viewer-role
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:authenticated
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: public-ecp
+  namespace: enterprise-contract-service
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: enterprisecontractpolicy-viewer-role
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:authenticated
+---
+apiVersion: v1
+data:
+  ec_data_source: oci::https://quay.io/hacbs-contract/ec-policy-data:git-a3ca9be@sha256:d548e0808348c017782ae87920c94d45ad7117e0e630b5b991c8df557c22a844
+  ec_policy_source: oci::https://quay.io/hacbs-contract/ec-release-policy:git-8ca675b@sha256:caf2a8991ca3feb80edfc8ff7c1930ed09481a7c8d934bb719007bffc1153ecc
+  verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:ce22795f264794be269c2b220c870d0593e6c914@sha256:4e30b9e2936d9890205dfab658aae7179d5dbdf60ceaf4e9f983b6e2570240b0
+kind: ConfigMap
+metadata:
+  name: ec-defaults
+  namespace: enterprise-contract-service
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: EnterpriseContractPolicy
+metadata:
+  name: all
+  namespace: enterprise-contract-service
+spec:
+  configuration: {}
+  description: |
+    Evaluate components with all of the available policy rules. The policy rules are described in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html
+  publicKey: k8s://tekton-chains/public-key
+  sources:
+  - data:
+    - oci::quay.io/hacbs-contract/ec-policy-data:git-931e35a@sha256:0adb2fcf51a18f48533505c6f823578427063b5729c0845fbbb60d9bd39386ee
+    name: Release Policies
+    policy:
+    - oci::quay.io/hacbs-contract/ec-release-policy:git-cf63f30@sha256:4d85d2659ad96ab8e6b487a034eb3f6689466e09588759d93e44d405a063482c
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: EnterpriseContractPolicy
+metadata:
+  name: default
+  namespace: enterprise-contract-service
+spec:
+  configuration:
+    exclude:
+    - step_image_registries
+    include:
+    - '@minimal'
+  description: |
+    Use the policy rules from the "minimal" collection. This and other collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections The minimal collection is a small set of policy rules that should be easy to pass for brand new Stonesoup users. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules
+  publicKey: k8s://tekton-chains/public-key
+  sources:
+  - data:
+    - oci::quay.io/hacbs-contract/ec-policy-data:git-931e35a@sha256:0adb2fcf51a18f48533505c6f823578427063b5729c0845fbbb60d9bd39386ee
+    name: Release Policies
+    policy:
+    - oci::quay.io/hacbs-contract/ec-release-policy:git-cf63f30@sha256:4d85d2659ad96ab8e6b487a034eb3f6689466e09588759d93e44d405a063482c
+---
+apiVersion: console.openshift.io/v1
+kind: ConsoleYAMLSample
+metadata:
+  name: ecp-example
+spec:
+  description: Example of custom Enterprise Contract Policy
+  targetResource:
+    apiVersion: appstudio.redhat.com/v1alpha1
+    kind: EnterpriseContractPolicy
+  title: Example Enterprise Contract Policy
+  yaml: |
+    apiVersion: appstudio.redhat.com/v1alpha1
+    kind: EnterpriseContractPolicy
+    metadata:
+      name: acme-policy
+    spec:
+      description: ACME Enterprise Contract Policy configuration
+      configuration:
+        include:
+          - "@slsa1"
+          - "@slsa2"
+          - "@acme"
+      publicKey: k8s://tekton-chains/public-key
+      sources:
+        - name: Default EC Policies
+          data:
+            - oci::quay.io/hacbs-contract/ec-policy-data:latest
+          policy:
+            - oci::quay.io/hacbs-contract/ec-release-policy:latest
+          ruleData:
+            allowed_registry_prefixes:
+            - registry.access.redhat.com/
+            - registry.redhat.io/
+            - registry.io/acme/
+        - name: ACME Policies
+          policy:
+            - oci::registry.io/acme/enterprise-rules:latest
