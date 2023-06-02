@@ -1,0 +1,47 @@
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index b011415f..294a7591 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=9644d47a6cc62016af1b350aa8feb0e31cd7dd8b
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=303c19d55e2ae90f737ce3a245755eff34684099
+   - ../../base/external-secrets
+   - ../../base/testing
+ 
+@@ -29,3 +29,7 @@ patches:
+       kind: Deployment
+       name: pipeline-metrics-exporter
+       namespace: openshift-pipelines
++  - path: update-tekton-config-performance.yaml
++    target:
++      kind: TektonConfig
++      name: config
+diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+new file mode 100644
+index 00000000..4da96f46
+--- /dev/null
++++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+@@ -0,0 +1,19 @@
++---
++- op: replace
++  path: /spec/pipeline/performance/threads-per-controller
++  # default upstream setting
++  value: 2
++  # upstream large scale env recommendation
++  # value: 32
++- op: replace
++  path: /spec/pipeline/performance/kube-api-qps
++  # default upstream setting
++  value: 5.0
++  # upstream large scale env recommendation
++  # value: 50
++- op: replace
++  path: /spec/pipeline/performance/kube-api-burst
++  # default upstream setting
++  value: 10
++  # upstream large scale env recommendation
++  # value: 50
+\ No newline at end of file
