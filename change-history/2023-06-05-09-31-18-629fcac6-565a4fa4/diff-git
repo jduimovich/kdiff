@@ -1,0 +1,19 @@
+diff --git a/components/monitoring/grafana/base/performance/dashboard.yaml b/components/monitoring/grafana/base/performance/dashboard.yaml
+index 209afcdb..5ba8004c 100644
+--- a/components/monitoring/grafana/base/performance/dashboard.yaml
++++ b/components/monitoring/grafana/base/performance/dashboard.yaml
+@@ -1,12 +1,12 @@
+ apiVersion: integreatly.org/v1alpha1
+ kind: GrafanaDashboard
+ metadata:
+-  name: performance-team-dashboard-cluster-monitoring
++  name: kubernetes-cluster-monitoring
+   labels: 
+     app: appstudio-grafana
+ spec:
+   configMapRef:
+-    name: performance-team-dashboard-cluster-monitoring
++    name: kubernetes-cluster-monitoring
+     key: kubernetes-cluster-monitoring.json
+ ---
+ apiVersion: integreatly.org/v1alpha1
