@@ -1,0 +1,122 @@
+diff --git a/components/pipeline-service/base/servicemonitors/kustomization.yaml b/components/pipeline-service/base/servicemonitors/kustomization.yaml
+new file mode 100644
+index 00000000..bac11a17
+--- /dev/null
++++ b/components/pipeline-service/base/servicemonitors/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - tekton-results-service-monitor.yaml
+diff --git a/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml b/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml
+new file mode 100644
+index 00000000..b9d9270f
+--- /dev/null
++++ b/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml
+@@ -0,0 +1,75 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  name: metrics-reader
++  namespace: tekton-results
++  annotations:
++    kubernetes.io/service-account.name: metrics-reader
++type: kubernetes.io/service-account-token
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - path: /metrics
++    port: prometheus
++    scheme: https
++    bearerTokenSecret:
++      name: "metrics-reader"
++      key: token
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - path: /metrics
++    port: metrics
++    scheme: https
++    bearerTokenSecret:
++      name: "metrics-reader"
++      key: token
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index c4bdc5ad..147e252d 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -10,6 +10,7 @@ commonAnnotations:
+ resources:
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=303c19d55e2ae90f737ce3a245755eff34684099
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=303c19d55e2ae90f737ce3a245755eff34684099
++  - ../base/servicemonitors
+ 
+ patches:
+   - path: scale-down-exporter.yaml
+@@ -20,4 +21,4 @@ patches:
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+-      name: config
+\ No newline at end of file
++      name: config
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 1037b08e..797a3a42 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -11,6 +11,7 @@ resources:
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=303c19d55e2ae90f737ce3a245755eff34684099
+   - ../../base/external-secrets
+   - ../../base/testing
++  - ../../base/servicemonitors
+ 
+ patches:
+   - path: pac-app-name.yaml

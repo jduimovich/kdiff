@@ -1,0 +1,93 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-b88cc0c7/development/components/pipeline-service/development/kustomize.out.yaml
+236,243d235
+<   name: metrics-reader
+<   namespace: tekton-results
+< ---
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1055,1066d1046
+<   name: tekton-results-service-metrics-reader
+< rules:
+< - nonResourceURLs:
+<   - /metrics
+<   verbs:
+<   - get
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1457,1471d1436
+<   name: prometheus-tekton-results-service-metrics-reader
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-service-metrics-reader
+< subjects:
+< - kind: ServiceAccount
+<   name: metrics-reader
+<   namespace: tekton-results
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1960,1969d1924
+< kind: Secret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     kubernetes.io/service-account.name: metrics-reader
+<   name: metrics-reader
+<   namespace: tekton-results
+< type: kubernetes.io/service-account-token
+< ---
+< apiVersion: v1
+3002,3043d2956
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: tekton-results-api
+<   namespace: tekton-results
+< spec:
+<   endpoints:
+<   - bearerTokenSecret:
+<       key: token
+<       name: metrics-reader
+<     path: /metrics
+<     port: prometheus
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+<   selector:
+<     matchLabels:
+<       app.kubernetes.io/name: tekton-results-api
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: tekton-results-watcher
+<   namespace: tekton-results
+< spec:
+<   endpoints:
+<   - bearerTokenSecret:
+<       key: token
+<       name: metrics-reader
+<     path: /metrics
+<     port: metrics
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+<   selector:
+<     matchLabels:
+<       app.kubernetes.io/name: tekton-results-watcher
