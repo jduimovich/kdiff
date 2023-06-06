@@ -1,0 +1,18 @@
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index 5c5cd43f..cc415fbc 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -127,6 +127,13 @@ spec:
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
++metadata:
++  name: pipeline-service-exporter
++spec:
++  url: "https://github.com/openshift-pipelines/pipeline-service-exporter"
++---
++apiVersion: pipelinesascode.tekton.dev/v1alpha1
++kind: Repository
+ metadata:
+   name: ec-cli
+ spec:

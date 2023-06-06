@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4cd3fca4/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-062bde43/staging/components/tekton-ci/staging/kustomize.out.yaml
+295,303d294
+<   name: pipeline-service-exporter
+< spec:
+<   url: https://github.com/openshift-pipelines/pipeline-service-exporter
+< ---
+< apiVersion: pipelinesascode.tekton.dev/v1alpha1
+< kind: Repository
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
