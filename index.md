@@ -1,12 +1,5117 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Jun  5 20:03:43 UTC 2023
+### This file generated at Tue Jun  6 00:07:37 UTC 2023
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: staging, development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Staging changes from 7904cd4b to 2d6c221c on Mon Jun 5 19:33:57 2023 </h3>  
+<h3>1: Staging changes from 2d6c221c to ad58400a on Mon Jun 5 23:13:17 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (21 lines)</summary>  
+
+``` 
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+index 248096c0..19fa8e7e 100644
+--- a/components/gitops/staging/base/kustomization.yaml
++++ b/components/gitops/staging/base/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=b646f96364e2e2d62f4c4f0f49b4405a695e4877
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+ - ../../openshift-gitops/overlays/staging
+ - ../../base/external-secrets
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: b646f96364e2e2d62f4c4f0f49b4405a695e4877
++    newTag: acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (116 lines)</summary>  
+
+``` 
+./commit-2d6c221c/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+1996c1996
+<         image: quay.io/redhat-appstudio/gitops-service:acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+---
+>         image: quay.io/redhat-appstudio/gitops-service:b646f96364e2e2d62f4c4f0f49b4405a695e4877
+2101c2101
+<         image: quay.io/redhat-appstudio/gitops-service:acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+---
+>         image: quay.io/redhat-appstudio/gitops-service:b646f96364e2e2d62f4c4f0f49b4405a695e4877
+2203c2203
+<         image: quay.io/redhat-appstudio/gitops-service:acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+---
+>         image: quay.io/redhat-appstudio/gitops-service:b646f96364e2e2d62f4c4f0f49b4405a695e4877
+2256,2266d2255
+< apiVersion: appstudio.redhat.com/v1alpha1
+< kind: DeploymentTargetClass
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: isolation-level-namespace
+< spec:
+<   parameters: {}
+<   provisioner: appstudio.redhat.com/devsandbox
+<   reclaimPolicy: Delete
+< ---
+2289c2278
+<     logLevel: info
+---
+>     logLevel: debug
+2346c2335
+<     logLevel: info
+---
+>     logLevel: debug
+2424c2413
+<     logLevel: info
+---
+>     logLevel: debug
+2635,2654d2623
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-appstudio-service-webhook-service
+<       namespace: gitops
+<       path: /validate-appstudio-redhat-com-v1alpha1-environment
+<   failurePolicy: Fail
+<   name: venvironment.kb.io
+<   rules:
+<   - apiGroups:
+<     - appstudio.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - environments
+./commit-2d6c221c/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml
+1996c1996
+<         image: quay.io/redhat-appstudio/gitops-service:acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+---
+>         image: quay.io/redhat-appstudio/gitops-service:b646f96364e2e2d62f4c4f0f49b4405a695e4877
+2101c2101
+<         image: quay.io/redhat-appstudio/gitops-service:acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+---
+>         image: quay.io/redhat-appstudio/gitops-service:b646f96364e2e2d62f4c4f0f49b4405a695e4877
+2203c2203
+<         image: quay.io/redhat-appstudio/gitops-service:acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+---
+>         image: quay.io/redhat-appstudio/gitops-service:b646f96364e2e2d62f4c4f0f49b4405a695e4877
+2256,2266d2255
+< apiVersion: appstudio.redhat.com/v1alpha1
+< kind: DeploymentTargetClass
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: isolation-level-namespace
+< spec:
+<   parameters: {}
+<   provisioner: appstudio.redhat.com/devsandbox
+<   reclaimPolicy: Delete
+< ---
+2289c2278
+<     logLevel: info
+---
+>     logLevel: debug
+2346c2335
+<     logLevel: info
+---
+>     logLevel: debug
+2424c2413
+<     logLevel: info
+---
+>     logLevel: debug
+2635,2654d2623
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-appstudio-service-webhook-service
+<       namespace: gitops
+<       path: /validate-appstudio-redhat-com-v1alpha1-environment
+<   failurePolicy: Fail
+<   name: venvironment.kb.io
+<   rules:
+<   - apiGroups:
+<     - appstudio.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - environments 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "kube-rbac-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.) 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 2d6c221c to ad58400a on Mon Jun 5 23:13:17 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (21 lines)</summary>  
+
+``` 
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+index 248096c0..19fa8e7e 100644
+--- a/components/gitops/staging/base/kustomization.yaml
++++ b/components/gitops/staging/base/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=b646f96364e2e2d62f4c4f0f49b4405a695e4877
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+ - ../../openshift-gitops/overlays/staging
+ - ../../base/external-secrets
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: b646f96364e2e2d62f4c4f0f49b4405a695e4877
++    newTag: acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (4415 lines)</summary>  
+
+``` 
+./commit-2d6c221c/development/components/jvm-build-service/kustomize.out.yaml
+0a1,1219
+> apiVersion: v1
+> kind: Namespace
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>   name: jvm-build-service
+> ---
+> apiVersion: apiextensions.k8s.io/v1
+> kind: CustomResourceDefinition
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     controller-gen.kubebuilder.io/version: v0.6.2
+>   creationTimestamp: null
+>   name: artifactbuilds.jvmbuildservice.io
+> spec:
+>   group: jvmbuildservice.io
+>   names:
+>     kind: ArtifactBuild
+>     listKind: ArtifactBuildList
+>     plural: artifactbuilds
+>     singular: artifactbuild
+>   scope: Namespaced
+>   versions:
+>   - additionalPrinterColumns:
+>     - jsonPath: .spec.gav
+>       name: GAV
+>       type: string
+>     - jsonPath: .status.state
+>       name: State
+>       type: string
+>     name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: ArtifactBuild TODO provide godoc description
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             properties:
+>               gav:
+>                 description: GAV is the groupID:artifactID:version tuple seen in maven
+>                   pom.xml files
+>                 type: string
+>             type: object
+>           status:
+>             properties:
+>               message:
+>                 type: string
+>               scm:
+>                 properties:
+>                   commitHash:
+>                     type: string
+>                   path:
+>                     type: string
+>                   private:
+>                     type: boolean
+>                   scmType:
+>                     type: string
+>                   scmURL:
+>                     type: string
+>                   tag:
+>                     type: string
+>                 type: object
+>               state:
+>                 description: 'TODO: conditions?'
+>                 type: string
+>             type: object
+>         required:
+>         - spec
+>         type: object
+>     served: true
+>     storage: true
+>     subresources:
+>       status: {}
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+> ---
+> apiVersion: apiextensions.k8s.io/v1
+> kind: CustomResourceDefinition
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     controller-gen.kubebuilder.io/version: v0.6.2
+>   creationTimestamp: null
+>   name: dependencybuilds.jvmbuildservice.io
+> spec:
+>   group: jvmbuildservice.io
+>   names:
+>     kind: DependencyBuild
+>     listKind: DependencyBuildList
+>     plural: dependencybuilds
+>     singular: dependencybuild
+>   scope: Namespaced
+>   versions:
+>   - additionalPrinterColumns:
+>     - jsonPath: .spec.scm.scmURL
+>       name: URL
+>       type: string
+>     - jsonPath: .spec.scm.tag
+>       name: Tag
+>       type: string
+>     - jsonPath: .status.state
+>       name: State
+>       type: string
+>     - jsonPath: .status.message
+>       name: Message
+>       type: string
+>     name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: DependencyBuild TODO provide godoc description
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             properties:
+>               scm:
+>                 properties:
+>                   commitHash:
+>                     type: string
+>                   path:
+>                     type: string
+>                   private:
+>                     type: boolean
+>                   scmType:
+>                     type: string
+>                   scmURL:
+>                     type: string
+>                   tag:
+>                     type: string
+>                 type: object
+>               version:
+>                 type: string
+>             type: object
+>           status:
+>             properties:
+>               commitTime:
+>                 format: int64
+>                 type: integer
+>               conditions:
+>                 description: 'Conditions for capturing generic status NOTE: inspecting
+>                   the fabric8 Status class, it looked analogous to k8s Condition,
+>                   and then I took the liberty of making it an array, given best practices
+>                   in the k8s/ocp ecosystems'
+>                 items:
+>                   description: "Condition contains details for one aspect of the current
+>                     state of this API Resource. --- This struct is intended for direct
+>                     use as an array at the field path .status.conditions.  For example,
+>                     \n \ttype FooStatus struct{ \t    // Represents the observations
+>                     of a foo's current state. \t    // Known .status.conditions.type
+>                     are: \"Available\", \"Progressing\", and \"Degraded\" \t    //
+>                     +patchMergeKey=type \t    // +patchStrategy=merge \t    // +listType=map
+>                     \t    // +listMapKey=type \t    Conditions []metav1.Condition
+>                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
+>                     protobuf:\"bytes,1,rep,name=conditions\"` \n \t    // other fields
+>                     \t}"
+>                   properties:
+>                     lastTransitionTime:
+>                       description: lastTransitionTime is the last time the condition
+>                         transitioned from one status to another. This should be when
+>                         the underlying condition changed.  If that is not known, then
+>                         using the time when the API field changed is acceptable.
+>                       format: date-time
+>                       type: string
+>                     message:
+>                       description: message is a human readable message indicating
+>                         details about the transition. This may be an empty string.
+>                       maxLength: 32768
+>                       type: string
+>                     observedGeneration:
+>                       description: observedGeneration represents the .metadata.generation
+>                         that the condition was set based upon. For instance, if .metadata.generation
+>                         is currently 12, but the .status.conditions[x].observedGeneration
+>                         is 9, the condition is out of date with respect to the current
+>                         state of the instance.
+>                       format: int64
+>                       minimum: 0
+>                       type: integer
+>                     reason:
+>                       description: reason contains a programmatic identifier indicating
+>                         the reason for the condition's last transition. Producers
+>                         of specific condition types may define expected values and
+>                         meanings for this field, and whether the values are considered
+>                         a guaranteed API. The value should be a CamelCase string.
+>                         This field may not be empty.
+>                       maxLength: 1024
+>                       minLength: 1
+>                       pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+>                       type: string
+>                     status:
+>                       description: status of the condition, one of True, False, Unknown.
+>                       enum:
+>                       - "True"
+>                       - "False"
+>                       - Unknown
+>                       type: string
+>                     type:
+>                       description: type of condition in CamelCase or in foo.example.com/CamelCase.
+>                         --- Many .condition.type values are consistent across resources
+>                         like Available, but because arbitrary conditions can be useful
+>                         (see .node.status.conditions), the ability to deconflict is
+>                         important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+>                       maxLength: 316
+>                       pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+>                       type: string
+>                   required:
+>                   - lastTransitionTime
+>                   - message
+>                   - reason
+>                   - status
+>                   - type
+>                   type: object
+>                 type: array
+>               contaminates:
+>                 items:
+>                   properties:
+>                     contaminatedArtifacts:
+>                       items:
+>                         type: string
+>                       type: array
+>                     gav:
+>                       type: string
+>                   type: object
+>                 type: array
+>               currentBuildRecipe:
+>                 description: BuildRecipe the current build recipe. If build is done
+>                   then this recipe was used to get to the current state
+>                 properties:
+>                   additionalDownloads:
+>                     items:
+>                       properties:
+>                         binaryPath:
+>                           type: string
+>                         fileName:
+>                           type: string
+>                         packageName:
+>                           type: string
+>                         sha256:
+>                           type: string
+>                         type:
+>                           type: string
+>                         uri:
+>                           type: string
+>                       required:
+>                       - type
+>                       type: object
+>                     type: array
+>                   additionalMemory:
+>                     type: integer
+>                   commandLine:
+>                     items:
+>                       type: string
+>                     type: array
+>                   disableSubmodules:
+>                     type: boolean
+>                   enforceVersion:
+>                     type: string
+>                   image:
+>                     type: string
+>                   javaVersion:
+>                     type: string
+>                   pipeline:
+>                     type: string
+>                   postBuildScript:
+>                     type: string
+>                   preBuildScript:
+>                     type: string
+>                   repositories:
+>                     items:
+>                       type: string
+>                     type: array
+>                   tool:
+>                     type: string
+>                   toolVersion:
+>                     type: string
+>                 type: object
+>               deployedArtifacts:
+>                 items:
+>                   type: string
+>                 type: array
+>               diagnosticDockerFiles:
+>                 items:
+>                   type: string
+>                 type: array
+>               failedBuildRecipes:
+>                 description: FailedBuildRecipes recipes that resulted in a failure
+>                   if the current state is failed this may include the current BuildRecipe
+>                 items:
+>                   properties:
+>                     additionalDownloads:
+>                       items:
+>                         properties:
+>                           binaryPath:
+>                             type: string
+>                           fileName:
+>                             type: string
+>                           packageName:
+>                             type: string
+>                           sha256:
+>                             type: string
+>                           type:
+>                             type: string
+>                           uri:
+>                             type: string
+>                         required:
+>                         - type
+>                         type: object
+>                       type: array
+>                     additionalMemory:
+>                       type: integer
+>                     commandLine:
+>                       items:
+>                         type: string
+>                       type: array
+>                     disableSubmodules:
+>                       type: boolean
+>                     enforceVersion:
+>                       type: string
+>                     image:
+>                       type: string
+>                     javaVersion:
+>                       type: string
+>                     pipeline:
+>                       type: string
+>                     postBuildScript:
+>                       type: string
+>                     preBuildScript:
+>                       type: string
+>                     repositories:
+>                       items:
+>                         type: string
+>                       type: array
+>                     tool:
+>                       type: string
+>                     toolVersion:
+>                       type: string
+>                   type: object
+>                 type: array
+>               failedVerification:
+>                 type: boolean
+>               lastCompletedBuildPipelineRun:
+>                 type: string
+>               message:
+>                 type: string
+>               pipelineRetries:
+>                 type: integer
+>               potentialBuildRecipes:
+>                 description: PotentialBuildRecipes additional recipes to try if the
+>                   current recipe fails
+>                 items:
+>                   properties:
+>                     additionalDownloads:
+>                       items:
+>                         properties:
+>                           binaryPath:
+>                             type: string
+>                           fileName:
+>                             type: string
+>                           packageName:
+>                             type: string
+>                           sha256:
+>                             type: string
+>                           type:
+>                             type: string
+>                           uri:
+>                             type: string
+>                         required:
+>                         - type
+>                         type: object
+>                       type: array
+>                     additionalMemory:
+>                       type: integer
+>                     commandLine:
+>                       items:
+>                         type: string
+>                       type: array
+>                     disableSubmodules:
+>                       type: boolean
+>                     enforceVersion:
+>                       type: string
+>                     image:
+>                       type: string
+>                     javaVersion:
+>                       type: string
+>                     pipeline:
+>                       type: string
+>                     postBuildScript:
+>                       type: string
+>                     preBuildScript:
+>                       type: string
+>                     repositories:
+>                       items:
+>                         type: string
+>                       type: array
+>                     tool:
+>                       type: string
+>                     toolVersion:
+>                       type: string
+>                   type: object
+>                 type: array
+>               state:
+>                 type: string
+>             type: object
+>         required:
+>         - spec
+>         type: object
+>     served: true
+>     storage: true
+>     subresources:
+>       status: {}
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+> ---
+> apiVersion: apiextensions.k8s.io/v1
+> kind: CustomResourceDefinition
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     controller-gen.kubebuilder.io/version: v0.6.2
+>   creationTimestamp: null
+>   name: jbsconfigs.jvmbuildservice.io
+> spec:
+>   group: jvmbuildservice.io
+>   names:
+>     kind: JBSConfig
+>     listKind: JBSConfigList
+>     plural: jbsconfigs
+>     singular: jbsconfig
+>   scope: Namespaced
+>   versions:
+>   - additionalPrinterColumns:
+>     - jsonPath: .status.message
+>       name: Message
+>       type: string
+>     name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: JBSConfig TODO provide godoc description
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             properties:
+>               additionalRecipes:
+>                 items:
+>                   type: string
+>                 type: array
+>               buildSettings:
+>                 properties:
+>                   buildRequestCPU:
+>                     description: The requested CPU for the build and deploy steps
+>                       of a pipeline
+>                     type: string
+>                   buildRequestMemory:
+>                     description: The requested memory for the build and deploy steps
+>                       of a pipeline
+>                     type: string
+>                   taskLimitCPU:
+>                     description: The CPU limit for all other steps of a pipeline
+>                     type: string
+>                   taskLimitMemory:
+>                     description: The memory limit for all other steps of a pipeline
+>                     type: string
+>                   taskRequestCPU:
+>                     description: The requested CPU for all other steps of a pipeline
+>                     type: string
+>                   taskRequestMemory:
+>                     description: The requested memory for all other steps of a pipeline
+>                     type: string
+>                 type: object
+>               cacheSettings:
+>                 properties:
+>                   disableTLS:
+>                     type: boolean
+>                   ioThreads:
+>                     type: string
+>                   limitCPU:
+>                     type: string
+>                   limitMemory:
+>                     type: string
+>                   requestCPU:
+>                     type: string
+>                   requestMemory:
+>                     type: string
+>                   storage:
+>                     type: string
+>                   workerThreads:
+>                     type: string
+>                 type: object
+>               enableRebuilds:
+>                 type: boolean
+>               host:
+>                 type: string
+>               insecure:
+>                 type: boolean
+>               mavenBaseLocations:
+>                 additionalProperties:
+>                   type: string
+>                 type: object
+>               owner:
+>                 type: string
+>               port:
+>                 type: string
+>               prependTag:
+>                 type: string
+>               relocationPatterns:
+>                 items:
+>                   properties:
+>                     relocationPattern:
+>                       properties:
+>                         buildPolicy:
+>                           type: string
+>                         patterns:
+>                           items:
+>                             properties:
+>                               pattern:
+>                                 properties:
+>                                   from:
+>                                     type: string
+>                                   to:
+>                                     type: string
+>                                 required:
+>                                 - from
+>                                 - to
+>                                 type: object
+>                             required:
+>                             - pattern
+>                             type: object
+>                           type: array
+>                       type: object
+>                   required:
+>                   - relocationPattern
+>                   type: object
+>                 type: array
+>               repository:
+>                 type: string
+>               requireArtifactVerification:
+>                 description: If this is true then the build will fail if artifact
+>                   verification fails otherwise deploy will happen as normal, but a
+>                   field will be set on the DependencyBuild
+>                 type: boolean
+>             type: object
+>           status:
+>             properties:
+>               message:
+>                 type: string
+>             type: object
+>         required:
+>         - spec
+>         type: object
+>     served: true
+>     storage: true
+>     subresources:
+>       status: {}
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+> ---
+> apiVersion: apiextensions.k8s.io/v1
+> kind: CustomResourceDefinition
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     controller-gen.kubebuilder.io/version: v0.6.2
+>   creationTimestamp: null
+>   name: rebuiltartifacts.jvmbuildservice.io
+> spec:
+>   group: jvmbuildservice.io
+>   names:
+>     kind: RebuiltArtifact
+>     listKind: RebuiltArtifactList
+>     plural: rebuiltartifacts
+>     singular: rebuiltartifact
+>   scope: Namespaced
+>   versions:
+>   - additionalPrinterColumns:
+>     - jsonPath: .spec.gav
+>       name: GAV
+>       type: string
+>     name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: RebuiltArtifact An artifact that has been rebuilt and deployed
+>           to S3 or a Container registry
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             properties:
+>               gav:
+>                 description: The GAV of the rebuilt artifact
+>                 type: string
+>               image:
+>                 type: string
+>             type: object
+>           status:
+>             type: object
+>         required:
+>         - spec
+>         type: object
+>     served: true
+>     storage: true
+>     subresources: {}
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+> ---
+> apiVersion: apiextensions.k8s.io/v1
+> kind: CustomResourceDefinition
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     controller-gen.kubebuilder.io/version: v0.6.2
+>   creationTimestamp: null
+>   name: systemconfigs.jvmbuildservice.io
+> spec:
+>   group: jvmbuildservice.io
+>   names:
+>     kind: SystemConfig
+>     listKind: SystemConfigList
+>     plural: systemconfigs
+>     singular: systemconfig
+>   scope: Cluster
+>   versions:
+>   - name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: SystemConfig TODO provide godoc description
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             properties:
+>               builders:
+>                 additionalProperties:
+>                   properties:
+>                     image:
+>                       type: string
+>                     priority:
+>                       type: integer
+>                     tag:
+>                       type: string
+>                   type: object
+>                 type: object
+>               maxAdditionalMemory:
+>                 type: integer
+>               quota:
+>                 description: DEPRECATED
+>                 type: string
+>               recipeDatabase:
+>                 type: string
+>             type: object
+>           status:
+>             type: object
+>         required:
+>         - spec
+>         type: object
+>     served: true
+>     storage: true
+>     subresources:
+>       status: {}
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>   name: hacbs-jvm-operator
+>   namespace: jvm-build-service
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: metrics-reader
+>   namespace: jvm-build-service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+>   name: hacbs-jvm-cache
+> rules:
+> - apiGroups:
+>   - jvmbuildservice.io
+>   resources:
+>   - rebuiltartifacts
+>   - artifactbuilds
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - jvmbuildservice.io
+>   resources:
+>   - artifactbuilds/status
+>   verbs:
+>   - patch
+>   - update
+> - apiGroups:
+>   - jvmbuildservice.io
+>   resources:
+>   - artifactbuilds
+>   verbs:
+>   - patch
+>   - update
+> - apiGroups:
+>   - jvmbuildservice.io
+>   resources:
+>   - jbsconfigs
+>   verbs:
+>   - get
+>   - list
+>   - watch
+>   - patch
+>   - update
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+>   name: hacbs-jvm-operator
+> rules:
+> - apiGroups:
+>   - jvmbuildservice.io
+>   resources:
+>   - artifactbuilds
+>   - artifactbuilds/status
+>   - dependencybuilds
+>   - dependencybuilds/status
+>   - rebuiltartifacts
+>   - rebuiltartifacts/status
+>   - systemconfigs
+>   - systemconfigs/status
+>   - jbsconfigs
+>   - jbsconfigs/status
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - quota.openshift.io
+>   resources:
+>   - clusterresourcequotas
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - pipelineruns
+>   - pipelineruns/status
+>   - taskruns
+>   - taskruns/status
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - events.k8s.io
+>   resources:
+>   - events
+>   verbs:
+>   - create
+>   - patch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - persistentvolumeclaims
+>   verbs:
+>   - get
+>   - create
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - jvm-build-workspace-artifact-cache
+>   resources:
+>   - persistentvolumeclaims
+>   verbs:
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - jvm-build-image-secrets
+>   - jvm-build-git-secrets
+>   resources:
+>   - secrets
+>   verbs:
+>   - get
+> - apiGroups:
+>   - apps
+>   resources:
+>   - deployments
+>   verbs:
+>   - get
+>   - list
+>   - watch
+>   - create
+> - apiGroups:
+>   - apps
+>   resourceNames:
+>   - jvm-build-workspace-artifact-cache
+>   resources:
+>   - deployments
+>   verbs:
+>   - delete
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - jvm-build-tls-ca
+>   resources:
+>   - configmaps
+>   verbs:
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   verbs:
+>   - get
+>   - create
+> - apiGroups:
+>   - ""
+>   resources:
+>   - services
+>   verbs:
+>   - get
+>   - create
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - jvm-build-workspace-artifact-cache
+>   resources:
+>   - services
+>   verbs:
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - get
+>   - create
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - jvm-build-workspace-artifact-cache
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - resourcequotas
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - rbac.authorization.k8s.io
+>   resources:
+>   - rolebindings
+>   verbs:
+>   - get
+>   - create
+>   - list
+>   - watch
+> - apiGroups:
+>   - rbac.authorization.k8s.io
+>   resourceNames:
+>   - jvm-build-workspace-artifact-cache
+>   resources:
+>   - rolebindings
+>   verbs:
+>   - patch
+>   - delete
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - spiaccesstokenbindings
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>     rbac.authorization.k8s.io/aggregate-to-view: "true"
+>   name: hacbs-jvm-operator-view
+> rules:
+> - apiGroups:
+>   - jvmbuildservice.io
+>   resources:
+>   - artifactbuilds
+>   - artifactbuilds/status
+>   - dependencybuilds
+>   - dependencybuilds/status
+>   - systemconfigs
+>   - systemconfigs/status
+>   - jbsconfigs
+>   - jbsconfigs/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: jvm-build-service-metrics-reader
+> rules:
+> - nonResourceURLs:
+>   - /metrics
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: grant-argocd
+>   namespace: jvm-build-service
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: admin
+> subjects:
+> - kind: ServiceAccount
+>   name: openshift-gitops-argocd-application-controller
+>   namespace: openshift-gitops
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>   name: hacbs-jvm-operator
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: hacbs-jvm-operator
+> subjects:
+> - kind: ServiceAccount
+>   name: hacbs-jvm-operator
+>   namespace: jvm-build-service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: prometheus-jvm-build-service-metrics-reader
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: jvm-build-service-metrics-reader
+> subjects:
+> - kind: ServiceAccount
+>   name: metrics-reader
+>   namespace: jvm-build-service
+> ---
+> apiVersion: v1
+> kind: Secret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     kubernetes.io/service-account.name: metrics-reader
+>   name: metrics-reader
+>   namespace: jvm-build-service
+> type: kubernetes.io/service-account-token
+> ---
+> apiVersion: v1
+> kind: Service
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>   name: hacbs-jvm-operator-monitor
+>   namespace: jvm-build-service
+> spec:
+>   internalTrafficPolicy: Cluster
+>   ipFamilies:
+>   - IPv4
+>   ipFamilyPolicy: SingleStack
+>   ports:
+>   - name: http-metrics
+>     port: 8080
+>     protocol: TCP
+>     targetPort: 8080
+>   - name: probes
+>     port: 8081
+>     protocol: TCP
+>     targetPort: 8081
+>   selector:
+>     app: hacbs-jvm-operator
+>   sessionAffinity: None
+>   type: ClusterIP
+> ---
+> apiVersion: apps/v1
+> kind: Deployment
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>   name: hacbs-jvm-operator
+>   namespace: jvm-build-service
+> spec:
+>   replicas: 1
+>   selector:
+>     matchLabels:
+>       app: hacbs-jvm-operator
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>       labels:
+>         app: hacbs-jvm-operator
+>     spec:
+>       containers:
+>       - args:
+>         - --v=4
+>         - --zap-log-level=info
+>         env:
+>         - name: IMAGE_TAG
+>           value: e3a3da514ff44636f435c23ae54e920efd3febbe
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:e3a3da514ff44636f435c23ae54e920efd3febbe
+>         imagePullPolicy: IfNotPresent
+>         name: hacbs-jvm-operator
+>         ports:
+>         - containerPort: 8080
+>           name: http-metrics
+>         resources:
+>           limits:
+>             cpu: 500m
+>             memory: 512Mi
+>           requests:
+>             cpu: 50m
+>             memory: 512Mi
+>       serviceAccountName: hacbs-jvm-operator
+> ---
+> apiVersion: jvmbuildservice.io/v1alpha1
+> kind: SystemConfig
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: hacbs-jvm-operator
+>   name: cluster
+>   namespace: jvm-build-service
+> spec:
+>   builders:
+>     jdk7:
+>       image: quay.io/redhat-appstudio/hacbs-jdk7-builder:13f1e4ed67a29061e033e251c9f38e7905279649
+>       priority: 500
+>       tag: jdk:7,maven:3.8,ant:1.9.16
+>     jdk8:
+>       image: quay.io/redhat-appstudio/hacbs-jdk8-builder:13f1e4ed67a29061e033e251c9f38e7905279649
+>       priority: 3000
+>       tag: jdk:8,maven:3.8,gradle:8.0.2;7.4.2;6.9.2;5.6.4;4.10.3,sbt:1.8.0,ant:1.10.13
+>     jdk11:
+>       image: quay.io/redhat-appstudio/hacbs-jdk11-builder:13f1e4ed67a29061e033e251c9f38e7905279649
+>       priority: 2000
+>       tag: jdk:11,maven:3.8,gradle:8.0.2;7.4.2;6.9.2;5.6.4;4.10.3,sbt:1.8.0,ant:1.10.13
+>     jdk17:
+>       image: quay.io/redhat-appstudio/hacbs-jdk17-builder:13f1e4ed67a29061e033e251c9f38e7905279649
+>       priority: 1000
+>       tag: jdk:17,maven:3.8,gradle:8.0.2;7.4.2;6.9.2,sbt:1.8.0,ant:1.10.13
+> ---
+> apiVersion: monitoring.coreos.com/v1
+> kind: ServiceMonitor
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: jvm-build-service
+>   namespace: jvm-build-service
+> spec:
+>   endpoints:
+>   - interval: 15s
+>     path: /metrics
+>     port: http-metrics
+>     scheme: http
+>   selector:
+>     matchLabels:
+>       app: hacbs-jvm-operator
+./commit-2d6c221c/development/components/pipeline-service/development/kustomize.out.yaml
+0a1,3192
+> apiVersion: v1
+> kind: Namespace
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     argocd.argoproj.io/managed-by: openshift-gitops
+>   name: pipelines-as-code
+> ---
+> apiVersion: v1
+> kind: Namespace
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     argocd.argoproj.io/managed-by: openshift-gitops
+>   name: tekton-chains
+> ---
+> apiVersion: v1
+> kind: Namespace
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     argocd.argoproj.io/managed-by: openshift-gitops
+>   name: tekton-results
+> ---
+> apiVersion: apiextensions.k8s.io/v1
+> kind: CustomResourceDefinition
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: repositories.pipelinesascode.tekton.dev
+> spec:
+>   group: pipelinesascode.tekton.dev
+>   names:
+>     kind: Repository
+>     plural: repositories
+>     shortNames:
+>     - repo
+>     singular: repository
+>   scope: Namespaced
+>   versions:
+>   - additionalPrinterColumns:
+>     - jsonPath: .spec.url
+>       name: URL
+>       type: string
+>     - jsonPath: .pipelinerun_status[-1].conditions[?(@.type=="Succeeded")].status
+>       name: Succeeded
+>       type: string
+>     - jsonPath: .pipelinerun_status[-1].conditions[?(@.type=="Succeeded")].reason
+>       name: Reason
+>       type: string
+>     - jsonPath: .pipelinerun_status[-1].startTime
+>       name: StartTime
+>       type: date
+>     - jsonPath: .pipelinerun_status[-1].completionTime
+>       name: CompletionTime
+>       type: date
+>     name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: Schema for the repository API
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/  api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             description: Spec defines the desired state of Repository
+>             properties:
+>               concurrency_limit:
+>                 description: Number of maximum pipelinerun running at any moment
+>                 type: integer
+>               git_provider:
+>                 properties:
+>                   secret:
+>                     properties:
+>                       key:
+>                         default: provider.token
+>                         description: Key inside the secret
+>                         type: string
+>                       name:
+>                         description: The secret name
+>                         type: string
+>                     type: object
+>                   type:
+>                     description: The Git provider type
+>                     type: string
+>                   url:
+>                     description: The Git provider api url
+>                     type: string
+>                   user:
+>                     description: The Git provider api user
+>                     type: string
+>                   webhook_secret:
+>                     properties:
+>                       key:
+>                         default: webhook.secret
+>                         description: Key inside the secret
+>                         type: string
+>                       name:
+>                         description: The secret name
+>                         type: string
+>                     type: object
+>                 type: object
+>               incoming:
+>                 items:
+>                   properties:
+>                     secret:
+>                       description: Secret to use for the webhook
+>                       properties:
+>                         key:
+>                           default: secret
+>                           description: Key of the secret
+>                           type: string
+>                         name:
+>                           description: Name of the secret
+>                           type: string
+>                       type: object
+>                     targets:
+>                       description: List of target branches or ref to trigger webhooks
+>                         on
+>                       items:
+>                         description: Branch name
+>                         type: string
+>                       type: array
+>                     type:
+>                       description: Type of webhook
+>                       enum:
+>                       - webhook-url
+>                       type: string
+>                   type: object
+>                 type: array
+>               type:
+>                 description: Git repository provider
+>                 enum:
+>                 - github
+>                 - gitea
+>                 - bitbucket
+>                 - gitlab
+>                 - bitbucket-enteprise
+>                 type: string
+>               url:
+>                 description: Repository URL
+>                 type: string
+>             type: object
+>         type: object
+>         x-kubernetes-preserve-unknown-fields: true
+>     served: true
+>     storage: true
+>     subresources:
+>       status: {}
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: pipeline-service-exporter
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-controller
+>   namespace: pipelines-as-code
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-watcher
+>   namespace: pipelines-as-code
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-webhook
+>   namespace: pipelines-as-code
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: chains-secrets-admin
+>   namespace: tekton-chains
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/component: controller
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-chains
+>   name: tekton-chains-controller
+>   namespace: tekton-chains
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: metrics-reader
+>   namespace: tekton-results
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-api
+>   namespace: tekton-results
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-watcher
+>   namespace: tekton-results
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: secret-reader
+>   namespace: openshift-ingress-operator
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-controller-role
+>   namespace: pipelines-as-code
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-info
+>   namespace: pipelines-as-code
+> rules:
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - pipelines-as-code-info
+>   resources:
+>   - configmaps
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>   name: pipelines-as-code-monitoring
+>   namespace: pipelines-as-code
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - services
+>   - endpoints
+>   - pods
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-watcher-role
+>   namespace: pipelines-as-code
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - coordination.k8s.io
+>   resources:
+>   - leases
+>   verbs:
+>   - get
+>   - list
+>   - create
+>   - update
+>   - delete
+>   - patch
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-webhook-role
+>   namespace: pipelines-as-code
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - pipelines-as-code-webhook-certs
+>   resources:
+>   - secrets
+>   verbs:
+>   - get
+>   - update
+> - apiGroups:
+>   - coordination.k8s.io
+>   resources:
+>   - leases
+>   verbs:
+>   - get
+>   - list
+>   - create
+>   - update
+>   - delete
+>   - patch
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: chains-secret-admin
+>   namespace: tekton-chains
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   - configmaps
+>   verbs:
+>   - list
+>   - create
+>   - get
+>   - update
+>   - patch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-chains
+>   name: tekton-chains-info
+>   namespace: tekton-chains
+> rules:
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - chains-info
+>   resources:
+>   - configmaps
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-chains
+>   name: tekton-chains-leader-election
+>   namespace: tekton-chains
+> rules:
+> - apiGroups:
+>   - coordination.k8s.io
+>   resources:
+>   - leases
+>   verbs:
+>   - get
+>   - list
+>   - create
+>   - update
+>   - delete
+>   - patch
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/name: tekton-results-info
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-info
+>   namespace: tekton-results
+> rules:
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - tekton-results-info
+>   resources:
+>   - configmaps
+>   verbs:
+>   - get
+>   - describe
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipeline-as-code-controller-clusterrole
+>   namespace: pipelines-as-code
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - get
+>   - create
+>   - update
+>   - delete
+> - apiGroups:
+>   - pipelinesascode.tekton.dev
+>   resources:
+>   - repositories
+>   verbs:
+>   - create
+>   - list
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - pipelineruns
+>   verbs:
+>   - get
+>   - list
+>   - create
+>   - patch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - events
+>   verbs:
+>   - create
+> - apiGroups:
+>   - route.openshift.io
+>   resources:
+>   - routes
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipeline-as-code-watcher-clusterrole
+>   namespace: pipelines-as-code
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - get
+>   - delete
+> - apiGroups:
+>   - pipelinesascode.tekton.dev
+>   resources:
+>   - repositories
+>   verbs:
+>   - get
+>   - list
+>   - update
+>   - watch
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - pipelineruns
+>   verbs:
+>   - get
+>   - delete
+>   - list
+>   - watch
+>   - update
+>   - patch
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - taskruns
+>   verbs:
+>   - get
+>   - list
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/log
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   resources:
+>   - events
+>   verbs:
+>   - create
+>   - update
+>   - patch
+> - apiGroups:
+>   - route.openshift.io
+>   resources:
+>   - routes
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipeline-as-code-webhook-clusterrole
+>   namespace: pipelines-as-code
+> rules:
+> - apiGroups:
+>   - pipelinesascode.tekton.dev
+>   resources:
+>   - repositories
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - admissionregistration.k8s.io
+>   resources:
+>   - validatingwebhookconfigurations
+>   verbs:
+>   - list
+>   - watch
+> - apiGroups:
+>   - admissionregistration.k8s.io
+>   resourceNames:
+>   - validation.pipelinesascode.tekton.dev
+>   resources:
+>   - validatingwebhookconfigurations
+>   verbs:
+>   - get
+>   - update
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: openshift-gitops-apply-tekton-config-parameters
+> rules:
+> - apiGroups:
+>   - operator.tekton.dev
+>   resources:
+>   - tektonconfigs
+>   verbs:
+>   - get
+>   - list
+>   - patch
+>   - create
+>   - delete
+> - apiGroups:
+>   - security.openshift.io
+>   resources:
+>   - securitycontextconstraints
+>   verbs:
+>   - get
+>   - list
+>   - patch
+>   - create
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>   name: openshift-gitops-pipelines-as-code
+> rules:
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - patch
+>   - get
+>   - list
+>   - create
+> - apiGroups:
+>   - admissionregistration.k8s.io
+>   resources:
+>   - validatingwebhookconfigurations
+>   verbs:
+>   - create
+>   - delete
+> - apiGroups:
+>   - monitoring.coreos.com
+>   resources:
+>   - servicemonitors
+>   verbs:
+>   - create
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: openshift-minio-apply-tenants
+> rules:
+> - apiGroups:
+>   - minio.min.io
+>   resources:
+>   - tenants
+>   verbs:
+>   - get
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - apps
+>   resources:
+>   - deployments
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - ""
+>   resources:
+>   - serviceaccounts
+>   - services
+>   verbs:
+>   - create
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: pipeline-service-exporter-reader
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   - services
+>   - namespaces
+>   - endpoints
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - pipelineruns
+>   - taskruns
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - nonResourceURLs:
+>   - /metrics
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>     rbac.authorization.k8s.io/aggregate-to-admin: "true"
+>     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+>   name: pipelines-as-code-aggregate
+> rules:
+> - apiGroups:
+>   - pipelinesascode.tekton.dev
+>   resources:
+>   - repositories
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/component: controller
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-chains
+>   name: tekton-chains-controller-cluster-access
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   verbs:
+>   - list
+>   - watch
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - tasks
+>   - clustertasks
+>   - taskruns
+>   - pipelines
+>   - pipelineruns
+>   - pipelineresources
+>   - conditions
+>   - runs
+>   verbs:
+>   - get
+>   - list
+>   - create
+>   - update
+>   - delete
+>   - patch
+>   - watch
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - taskruns/finalizers
+>   - pipelineruns/finalizers
+>   - runs/finalizers
+>   verbs:
+>   - get
+>   - list
+>   - create
+>   - update
+>   - delete
+>   - patch
+>   - watch
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - tasks/status
+>   - clustertasks/status
+>   - taskruns/status
+>   - pipelines/status
+>   - pipelineruns/status
+>   - pipelineresources/status
+>   - runs/status
+>   verbs:
+>   - get
+>   - list
+>   - create
+>   - update
+>   - delete
+>   - patch
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/component: controller
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-chains
+>   name: tekton-chains-controller-tenant-access
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   - pods/log
+>   - events
+>   - persistentvolumeclaims
+>   verbs:
+>   - get
+>   - list
+>   - create
+>   - update
+>   - delete
+>   - patch
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   - limitranges
+>   - secrets
+>   - serviceaccounts
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apps
+>   resources:
+>   - statefulsets
+>   verbs:
+>   - get
+>   - list
+>   - create
+>   - update
+>   - delete
+>   - patch
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: tekton-chains-public-key-viewer
+> rules:
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - public-key
+>   resources:
+>   - secrets
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-admin
+> rules:
+> - apiGroups:
+>   - results.tekton.dev
+>   resources:
+>   - results
+>   - records
+>   - logs
+>   verbs:
+>   - create
+>   - update
+>   - get
+>   - list
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-api
+> rules:
+> - apiGroups:
+>   - authentication.k8s.io
+>   resources:
+>   - tokenreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - authorization.k8s.io
+>   resources:
+>   - subjectaccessreviews
+>   verbs:
+>   - create
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-readonly
+> rules:
+> - apiGroups:
+>   - results.tekton.dev
+>   resources:
+>   - results
+>   - records
+>   - logs
+>   verbs:
+>   - get
+>   - list
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-readwrite
+> rules:
+> - apiGroups:
+>   - results.tekton.dev
+>   resources:
+>   - results
+>   - records
+>   - logs
+>   verbs:
+>   - create
+>   - update
+>   - get
+>   - list
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: tekton-results-service-metrics-reader
+> rules:
+> - nonResourceURLs:
+>   - /metrics
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-watcher
+> rules:
+> - apiGroups:
+>   - results.tekton.dev
+>   resources:
+>   - logs
+>   - results
+>   - records
+>   verbs:
+>   - create
+>   - get
+>   - update
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - pipelineruns
+>   - taskruns
+>   verbs:
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   - pods
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/log
+>   verbs:
+>   - get
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - pipelines
+>   verbs:
+>   - get
+> - apiGroups:
+>   - coordination.k8s.io
+>   resources:
+>   - leases
+>   verbs:
+>   - get
+>   - list
+>   - create
+>   - update
+>   - delete
+>   - patch
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: chains-secret-reader
+>   namespace: openshift-ingress-operator
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: secret-reader
+> subjects:
+> - kind: ServiceAccount
+>   name: chains-secrets-admin
+>   namespace: tekton-chains
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-controller-binding
+>   namespace: pipelines-as-code
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: pipelines-as-code-controller-role
+> subjects:
+> - kind: ServiceAccount
+>   name: pipelines-as-code-controller
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-info
+>   namespace: pipelines-as-code
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: pipelines-as-code-info
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: system:authenticated
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>   name: pipelines-as-code-monitoring
+>   namespace: pipelines-as-code
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: pipelines-as-code-monitoring
+> subjects:
+> - kind: ServiceAccount
+>   name: prometheus-k8s
+>   namespace: pipelines-as-code
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-watcher-binding
+>   namespace: pipelines-as-code
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: pipelines-as-code-watcher-role
+> subjects:
+> - kind: ServiceAccount
+>   name: pipelines-as-code-watcher
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-webhook-binding
+>   namespace: pipelines-as-code
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: pipelines-as-code-webhook-role
+> subjects:
+> - kind: ServiceAccount
+>   name: pipelines-as-code-webhook
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: chains-secret-admin
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: chains-secret-admin
+> subjects:
+> - kind: ServiceAccount
+>   name: chains-secrets-admin
+>   namespace: tekton-chains
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/component: controller
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-chains
+>   name: tekton-chains-controller-leaderelection
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: tekton-chains-leader-election
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-chains-controller
+>   namespace: tekton-chains
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-chains
+>   name: tekton-chains-info
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: tekton-chains-info
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: system:authenticated
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: tekton-chains-public-key-viewer
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-chains-public-key-viewer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: system:authenticated
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/name: tekton-results-info
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-info
+>   namespace: tekton-results
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: tekton-results-info
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: system:authenticated
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-controller-clusterbinding
+>   namespace: pipelines-as-code
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: pipeline-as-code-controller-clusterrole
+> subjects:
+> - kind: ServiceAccount
+>   name: pipelines-as-code-controller
+>   namespace: pipelines-as-code
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-watcher-clusterbinding
+>   namespace: pipelines-as-code
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: pipeline-as-code-watcher-clusterrole
+> subjects:
+> - kind: ServiceAccount
+>   name: pipelines-as-code-watcher
+>   namespace: pipelines-as-code
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-webhook-clusterbinding
+>   namespace: pipelines-as-code
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: pipeline-as-code-webhook-clusterrole
+> subjects:
+> - kind: ServiceAccount
+>   name: pipelines-as-code-webhook
+>   namespace: pipelines-as-code
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: openshift-gitops-apply-tekton-config-parameters
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: openshift-gitops-apply-tekton-config-parameters
+> subjects:
+> - kind: ServiceAccount
+>   name: openshift-gitops-argocd-application-controller
+>   namespace: openshift-gitops
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>   name: openshift-gitops-pipelines-as-code
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: openshift-gitops-pipelines-as-code
+> subjects:
+> - kind: ServiceAccount
+>   name: openshift-gitops-argocd-application-controller
+>   namespace: openshift-gitops
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: openshift-minio-apply-tenants
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: openshift-minio-apply-tenants
+> subjects:
+> - kind: ServiceAccount
+>   name: openshift-gitops-argocd-application-controller
+>   namespace: openshift-gitops
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: pipeline-service-exporter-reader-binding
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: pipeline-service-exporter-reader
+> subjects:
+> - kind: ServiceAccount
+>   name: pipeline-service-exporter
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: prometheus-tekton-results-service-metrics-reader
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-results-service-metrics-reader
+> subjects:
+> - kind: ServiceAccount
+>   name: metrics-reader
+>   namespace: tekton-results
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/component: controller
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-chains
+>   name: tekton-chains-controller-cluster-access
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-chains-controller-cluster-access
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-chains-controller
+>   namespace: tekton-chains
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/component: controller
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-chains
+>   name: tekton-chains-controller-tenant-access
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-chains-controller-tenant-access
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-chains-controller
+>   namespace: tekton-chains
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-api
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-results-api
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-results-api
+>   namespace: tekton-results
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-watcher
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-results-watcher
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-results-watcher
+>   namespace: tekton-results
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: tekton-results-watcher-logs
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-results-admin
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-results-watcher
+>   namespace: tekton-results
+> ---
+> apiVersion: v1
+> data:
+>   loglevel.controller: info
+>   loglevel.webhook: info
+>   zap-logger-config: |
+>     {
+>       "level": "info",
+>       "development": false,
+>       "sampling": {
+>         "initial": 100,
+>         "thereafter": 100
+>       },
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "ts",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+>     }
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "2"
+>   labels:
+>     app.kubernetes.io/component: resolvers
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-pipelines
+>     operator.tekton.dev/operand-name: tektoncd-pipelines
+>   name: config-logging
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+>   application-name: Pipelines as Code CI
+>   auto-configure-new-github-repo: "false"
+>   auto-configure-repo-namespace-template: ""
+>   bitbucket-cloud-additional-source-ip: ""
+>   bitbucket-cloud-check-source-ip: "true"
+>   default-max-keep-runs: ""
+>   error-detection-from-container-logs: "false"
+>   error-detection-max-number-of-lines: "50"
+>   error-detection-simple-regexp: |
+>     ^(?P<filename>[^:]*):(?P<line>[0-9]+):(?P<column>[0-9]+):([ ]*)?(?P<error>.*)
+>   error-log-snippet: "true"
+>   hub-catalog-name: tekton
+>   hub-url: https://api.hub.tekton.dev/v1
+>   max-keep-run-upper-limit: ""
+>   remote-tasks: "true"
+>   secret-auto-create: "true"
+>   secret-github-app-scope-extra-repos: ""
+>   secret-github-app-token-scoped: "true"
+>   tekton-dashboard-url: ""
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code
+>   namespace: pipelines-as-code
+> ---
+> apiVersion: v1
+> data:
+>   _example: |
+>     ################################
+>     #                              #
+>     #    EXAMPLE CONFIGURATION     #
+>     #                              #
+>     ################################
+>     # This block is not actually functional configuration,
+>     # but serves to illustrate the available configuration
+>     # options and document them in a way that is accessible
+>     # to users that `kubectl edit` this config map.
+>     #
+>     # These sample configuration options may be copied out of
+>     # this example block and unindented to be in the data block
+>     # to actually change the configuration.
+>     # metrics.backend-destination field specifies the system metrics destination.
+>     # It supports either prometheus (the default) or stackdriver.
+>     # Note: Using Stackdriver will incur additional charges.
+>     metrics.backend-destination: prometheus
+>     # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
+>     # field is optional. When running on GCE, application default credentials will be
+>     # used and metrics will be sent to the cluster's project if this field is
+>     # not provided.
+>     metrics.stackdriver-project-id: "<your stackdriver project id>"
+>     # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
+>     # to send metrics to Stackdriver using "global" resource type and custom
+>     # metric type. Setting this flag to "true" could cause extra Stackdriver
+>     # charge.  If metrics.backend-destination is not Stackdriver, this is
+>     # ignored.
+>     metrics.allow-stackdriver-custom-metrics: "false"
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-config-observability
+>   namespace: pipelines-as-code
+> ---
+> apiVersion: v1
+> data:
+>   controller-url: ""
+>   provider: ""
+>   version: v0.16.0
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-info
+>   namespace: pipelines-as-code
+> ---
+> apiVersion: v1
+> data:
+>   artifacts.oci.storage: oci
+>   artifacts.pipelinerun.format: in-toto
+>   artifacts.pipelinerun.storage: oci
+>   artifacts.taskrun.format: in-toto
+>   artifacts.taskrun.storage: oci
+>   transparency.enabled: "false"
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-chains
+>   name: chains-config
+>   namespace: tekton-chains
+> ---
+> apiVersion: v1
+> data:
+>   version: v0.14.0
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-chains
+>   name: chains-info
+>   namespace: tekton-chains
+> ---
+> apiVersion: v1
+> data:
+>   loglevel.controller: info
+>   loglevel.webhook: info
+>   zap-logger-config: |
+>     {
+>       "level": "info",
+>       "development": false,
+>       "sampling": {
+>         "initial": 100,
+>         "thereafter": 100
+>       },
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "ts",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "",
+>         "callerEncoder": ""
+>       }
+>     }
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-chains
+>   name: config-logging
+>   namespace: tekton-chains
+> ---
+> apiVersion: v1
+> data:
+>   config: |
+>     DB_USER=
+>     DB_PASSWORD=
+>     DB_HOST=
+>     DB_PORT=5432
+>     DB_NAME=
+>     DB_SSLMODE=require
+>     DB_ENABLE_AUTO_MIGRATION=true
+>     SERVER_PORT=8080
+>     PROMETHEUS_PORT=9090
+>     TLS_HOSTNAME_OVERRIDE=tekton-results-api-service.tekton-results.svc.cluster.local
+>     TLS_PATH=/etc/tls
+>     AUTH_DISABLE=false
+>     AUTH_IMPERSONATE=true
+>     LOG_LEVEL=info
+>     LOGS_API=false
+>     LOGS_TYPE=File
+>     LOGS_BUFFER_SIZE=32768
+>     LOGS_PATH=/logs
+>     S3_BUCKET_NAME=
+>     S3_ENDPOINT=
+>     S3_HOSTNAME_IMMUTABLE=false
+>     S3_REGION=
+>     S3_ACCESS_KEY_ID=
+>     S3_SECRET_ACCESS_KEY=
+>     S3_MULTI_PART_SIZE=5242880
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-api-config
+>   namespace: tekton-results
+> ---
+> apiVersion: v1
+> data:
+>   _example: |
+>     ################################
+>     #                              #
+>     #    EXAMPLE CONFIGURATION     #
+>     #                              #
+>     ################################
+>     # This block is not actually functional configuration,
+>     # but serves to illustrate the available configuration
+>     # options and document them in a way that is accessible
+>     # to users that `kubectl edit` this config map.
+>     #
+>     # These sample configuration options may be copied out of
+>     # this example block and unindented to be in the data block
+>     # to actually change the configuration.
+>     # lease-duration is how long non-leaders will wait to try to acquire the
+>     # lock; 15 seconds is the value used by core kubernetes controllers.
+>     lease-duration: "60s"
+>     # renew-deadline is how long a leader will try to renew the lease before
+>     # giving up; 10 seconds is the value used by core kubernetes controllers.
+>     renew-deadline: "40s"
+>     # retry-period is how long the leader election client waits between tries of
+>     # actions; 2 seconds is the value used by core kubernetes controllers.
+>     retry-period: "10s"
+>     # buckets is the number of buckets used to partition key space of each
+>     # Reconciler. If this number is M and the replica number of the controller
+>     # is N, the N replicas will compete for the M buckets. The owner of a
+>     # bucket will take care of the reconciling for the keys partitioned into
+>     # that bucket.
+>     buckets: "1"
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/name: tekton-results-leader-election
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-config-leader-election
+>   namespace: tekton-results
+> ---
+> apiVersion: v1
+> data:
+>   loglevel.controller: info
+>   loglevel.watcher: info
+>   zap-logger-config: |
+>     {
+>       "level": "info",
+>       "development": false,
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "ts",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+>     }
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/name: tekton-results-logging
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-config-logging
+>   namespace: tekton-results
+> ---
+> apiVersion: v1
+> data:
+>   _example: |
+>     ################################
+>     #                              #
+>     #    EXAMPLE CONFIGURATION     #
+>     #                              #
+>     ################################
+> 
+>     # This block is not actually functional configuration,
+>     # but serves to illustrate the available configuration
+>     # options and document them in a way that is accessible
+>     # to users that `kubectl edit` this config map.
+>     #
+>     # These sample configuration options may be copied out of
+>     # this example block and unindented to be in the data block
+>     # to actually change the configuration.
+> 
+>     # metrics.backend-destination field specifies the system metrics destination.
+>     # It supports either prometheus (the default) or stackdriver.
+>     # Note: Using Stackdriver will incur additional charges.
+>     metrics.backend-destination: prometheus
+> 
+>     # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
+>     # field is optional. When running on GCE, application default credentials will be
+>     # used and metrics will be sent to the cluster's project if this field is
+>     # not provided.
+>     metrics.stackdriver-project-id: "<your stackdriver project id>"
+> 
+>     # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
+>     # to send metrics to Stackdriver using "global" resource type and custom
+>     # metric type. Setting this flag to "true" could cause extra Stackdriver
+>     # charge.  If metrics.backend-destination is not Stackdriver, this is
+>     # ignored.
+>     metrics.allow-stackdriver-custom-metrics: "false"
+>     metrics.taskrun.level: "task"
+>     metrics.taskrun.duration-type: "histogram"
+>     metrics.pipelinerun.level: "pipeline"
+>     metrics.pipelinerun.duration-type: "histogram"
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/name: tekton-results-observability
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-config-observability
+>   namespace: tekton-results
+> ---
+> apiVersion: v1
+> data:
+>   version: devel
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/name: tekton-results-info
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-info
+>   namespace: tekton-results
+> ---
+> apiVersion: v1
+> kind: Secret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-webhook-certs
+>   namespace: pipelines-as-code
+> ---
+> apiVersion: v1
+> kind: Secret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: chains-ca-cert
+>   namespace: tekton-chains
+> type: Opaque
+> ---
+> apiVersion: v1
+> kind: Secret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     kubernetes.io/service-account.name: metrics-reader
+>   name: metrics-reader
+>   namespace: tekton-results
+> type: kubernetes.io/service-account-token
+> ---
+> apiVersion: v1
+> kind: Service
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: pipeline-metrics-exporter
+>   name: pipeline-metrics-exporter-service
+>   namespace: openshift-pipelines
+> spec:
+>   ports:
+>   - name: metrics
+>     port: 9117
+>     protocol: TCP
+>     targetPort: 9117
+>   selector:
+>     app: pipeline-metrics-exporter
+> ---
+> apiVersion: v1
+> kind: Service
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-controller
+>   namespace: pipelines-as-code
+> spec:
+>   ports:
+>   - name: http-listener
+>     port: 8080
+>     protocol: TCP
+>     targetPort: 8080
+>   selector:
+>     app.kubernetes.io/component: controller
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/name: controller
+>     app.kubernetes.io/part-of: pipelines-as-code
+> ---
+> apiVersion: v1
+> kind: Service
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app: pipelines-as-code-watcher
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-watcher
+>   namespace: pipelines-as-code
+> spec:
+>   ports:
+>   - name: http-metrics
+>     port: 9090
+>     protocol: TCP
+>     targetPort: 9090
+>   selector:
+>     app.kubernetes.io/component: watcher
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/name: watcher
+>     app.kubernetes.io/part-of: pipelines-as-code
+> ---
+> apiVersion: v1
+> kind: Service
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-webhook
+>   namespace: pipelines-as-code
+> spec:
+>   ports:
+>   - name: https-webhook
+>     port: 443
+>     targetPort: 8443
+>   selector:
+>     app.kubernetes.io/component: webhook
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/name: webhook
+>     app.kubernetes.io/part-of: pipelines-as-code
+> ---
+> apiVersion: v1
+> kind: Service
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>     service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
+>   labels:
+>     app.kubernetes.io/name: tekton-results-api
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-api-service
+>   namespace: tekton-results
+> spec:
+>   ports:
+>   - name: server
+>     port: 8080
+>     protocol: TCP
+>     targetPort: 8080
+>   - name: prometheus
+>     port: 9090
+>     protocol: TCP
+>     targetPort: 9090
+>   selector:
+>     app.kubernetes.io/name: tekton-results-api
+> ---
+> apiVersion: v1
+> kind: Service
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "2"
+>   labels:
+>     app.kubernetes.io/name: tekton-results-watcher
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-watcher
+>   namespace: tekton-results
+> spec:
+>   ports:
+>   - name: metrics
+>     port: 9090
+>   - name: profiling
+>     port: 8008
+>   selector:
+>     app.kubernetes.io/name: tekton-results-watcher
+> ---
+> apiVersion: apps/v1
+> kind: Deployment
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: pipeline-metrics-exporter
+>   namespace: openshift-pipelines
+> spec:
+>   replicas: 0
+>   selector:
+>     matchLabels:
+>       app: pipeline-metrics-exporter
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>       labels:
+>         app: pipeline-metrics-exporter
+>     spec:
+>       containers:
+>       - image: quay.io/redhat-appstudio/user-workload:9ff3255f3ca2b4a562be2d5f43f8dff2f7846bb1
+>         name: pipeline-metrics-exporter
+>         ports:
+>         - containerPort: 9117
+>         resources:
+>           limits:
+>             cpu: 500m
+>             memory: 256Mi
+>           requests:
+>             cpu: 250m
+>             memory: 128Mi
+>       restartPolicy: Always
+>       serviceAccountName: pipeline-service-exporter
+> ---
+> apiVersion: apps/v1
+> kind: Deployment
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-controller
+>   namespace: pipelines-as-code
+> spec:
+>   replicas: 1
+>   selector:
+>     matchLabels:
+>       app.kubernetes.io/component: controller
+>       app.kubernetes.io/instance: build
+>       app.kubernetes.io/name: controller
+>       app.kubernetes.io/part-of: pipelines-as-code
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>       labels:
+>         app.kubernetes.io/component: controller
+>         app.kubernetes.io/instance: build
+>         app.kubernetes.io/name: controller
+>         app.kubernetes.io/part-of: pipelines-as-code
+>         app.kubernetes.io/version: v0.16.0
+>     spec:
+>       containers:
+>       - env:
+>         - name: TLS_KEY
+>           value: key
+>         - name: TLS_CERT
+>           value: cert
+>         - name: TLS_SECRET_NAME
+>           value: pipelines-as-code-tls-secret
+>         - name: SYSTEM_NAMESPACE
+>           valueFrom:
+>             fieldRef:
+>               fieldPath: metadata.namespace
+>         - name: K_METRICS_CONFIG
+>           value: '{"Domain":"pipelinesascode.tekton.dev/controller","Component":"controller","PrometheusPort":0,"PrometheusHost":"","ConfigMap":{}}'
+>         - name: K_TRACING_CONFIG
+>           value: '{"backend":"","debug":"false","sample-rate":"0"}'
+>         - name: K_SINK_TIMEOUT
+>           value: "30"
+>         image: ghcr.io/openshift-pipelines/pipelines-as-code-controller:v0.16.0
+>         imagePullPolicy: Always
+>         livenessProbe:
+>           failureThreshold: 3
+>           httpGet:
+>             path: /live
+>             port: api
+>             scheme: HTTP
+>           periodSeconds: 15
+>           successThreshold: 1
+>           timeoutSeconds: 1
+>         name: pac-controller
+>         ports:
+>         - containerPort: 8080
+>           name: api
+>         readinessProbe:
+>           failureThreshold: 3
+>           httpGet:
+>             path: /live
+>             port: api
+>             scheme: HTTP
+>           periodSeconds: 15
+>           successThreshold: 1
+>           timeoutSeconds: 1
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             drop:
+>             - ALL
+>         volumeMounts:
+>         - mountPath: /etc/pipelines-as-code/tls
+>           name: tls
+>           readOnly: true
+>       securityContext:
+>         runAsNonRoot: true
+>         seccompProfile:
+>           type: RuntimeDefault
+>       serviceAccountName: pipelines-as-code-controller
+>       volumes:
+>       - name: tls
+>         secret:
+>           optional: true
+>           secretName: pipelines-as-code-tls-secret
+> ---
+> apiVersion: apps/v1
+> kind: Deployment
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "2"
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-watcher
+>   namespace: pipelines-as-code
+> spec:
+>   replicas: 1
+>   selector:
+>     matchLabels:
+>       app.kubernetes.io/component: watcher
+>       app.kubernetes.io/instance: build
+>       app.kubernetes.io/name: watcher
+>       app.kubernetes.io/part-of: pipelines-as-code
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>       labels:
+>         app: pipelines-as-code-watcher
+>         app.kubernetes.io/component: watcher
+>         app.kubernetes.io/instance: build
+>         app.kubernetes.io/name: watcher
+>         app.kubernetes.io/part-of: pipelines-as-code
+>         app.kubernetes.io/version: v0.16.0
+>     spec:
+>       containers:
+>       - env:
+>         - name: SYSTEM_NAMESPACE
+>           valueFrom:
+>             fieldRef:
+>               fieldPath: metadata.namespace
+>         - name: METRICS_DOMAIN
+>           value: tekton.dev/pipelinesascode
+>         - name: CONFIG_OBSERVABILITY_NAME
+>           value: pipelines-as-code-config-observability
+>         image: ghcr.io/openshift-pipelines/pipelines-as-code-watcher:v0.16.0
+>         imagePullPolicy: Always
+>         livenessProbe:
+>           httpGet:
+>             path: /live
+>             port: probes
+>             scheme: HTTP
+>           initialDelaySeconds: 5
+>           periodSeconds: 10
+>           timeoutSeconds: 5
+>         name: pac-watcher
+>         ports:
+>         - containerPort: 8080
+>           name: probes
+>         - containerPort: 9090
+>           name: metrics
+>         readinessProbe:
+>           httpGet:
+>             path: /live
+>             port: probes
+>             scheme: HTTP
+>           initialDelaySeconds: 5
+>           periodSeconds: 10
+>           timeoutSeconds: 5
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             drop:
+>             - ALL
+>       securityContext:
+>         runAsNonRoot: true
+>         seccompProfile:
+>           type: RuntimeDefault
+>       serviceAccountName: pipelines-as-code-watcher
+> ---
+> apiVersion: apps/v1
+> kind: Deployment
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-webhook
+>   namespace: pipelines-as-code
+> spec:
+>   replicas: 0
+>   selector:
+>     matchLabels:
+>       app.kubernetes.io/component: webhook
+>       app.kubernetes.io/instance: build
+>       app.kubernetes.io/name: webhook
+>       app.kubernetes.io/part-of: pipelines-as-code
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>       labels:
+>         app.kubernetes.io/component: webhook
+>         app.kubernetes.io/instance: build
+>         app.kubernetes.io/name: webhook
+>         app.kubernetes.io/part-of: pipelines-as-code
+>         app.kubernetes.io/version: v0.16.0
+>     spec:
+>       containers:
+>       - env:
+>         - name: SYSTEM_NAMESPACE
+>           valueFrom:
+>             fieldRef:
+>               fieldPath: metadata.namespace
+>         - name: WEBHOOK_SERVICE_NAME
+>           value: pipelines-as-code-webhook
+>         - name: WEBHOOK_SECRET_NAME
+>           value: pipelines-as-code-webhook-certs
+>         - name: METRICS_DOMAIN
+>           value: tekton.dev/pipelinesascode
+>         image: ghcr.io/openshift-pipelines/pipelines-as-code-webhook:v0.16.0
+>         name: pac-webhook
+>         ports:
+>         - containerPort: 8443
+>           name: https-webhook
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             drop:
+>             - ALL
+>       securityContext:
+>         runAsNonRoot: true
+>         seccompProfile:
+>           type: RuntimeDefault
+>       serviceAccountName: pipelines-as-code-webhook
+> ---
+> apiVersion: apps/v1
+> kind: Deployment
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "3"
+>   labels:
+>     app.kubernetes.io/component: controller
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/name: controller
+>     app.kubernetes.io/part-of: tekton-chains
+>     pipeline.tekton.dev/release: devel
+>     version: v0.14.0
+>   name: tekton-chains-controller
+>   namespace: tekton-chains
+> spec:
+>   replicas: 1
+>   selector:
+>     matchLabels:
+>       app.kubernetes.io/component: controller
+>       app.kubernetes.io/instance: default
+>       app.kubernetes.io/name: controller
+>       app.kubernetes.io/part-of: tekton-chains
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>         cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+>       labels:
+>         app: tekton-chains-controller
+>         app.kubernetes.io/component: controller
+>         app.kubernetes.io/instance: default
+>         app.kubernetes.io/name: controller
+>         app.kubernetes.io/part-of: tekton-chains
+>         pipeline.tekton.dev/release: devel
+>         version: v0.14.0
+>     spec:
+>       containers:
+>       - env:
+>         - name: SYSTEM_NAMESPACE
+>           valueFrom:
+>             fieldRef:
+>               fieldPath: metadata.namespace
+>         - name: METRICS_DOMAIN
+>           value: tekton.dev/chains
+>         image: registry.redhat.io/openshift-pipelines/pipelines-chains-controller-rhel8:v1.10.2-1
+>         name: tekton-chains-controller
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/ssl/certs
+>           name: chains-ca-cert
+>         - mountPath: /etc/signing-secrets
+>           name: signing-secrets
+>         - mountPath: /var/run/sigstore/cosign
+>           name: oidc-info
+>       serviceAccountName: tekton-chains-controller
+>       volumes:
+>       - name: chains-ca-cert
+>         secret:
+>           secretName: chains-ca-cert
+>       - name: signing-secrets
+>         secret:
+>           secretName: signing-secrets
+>       - name: oidc-info
+>         projected:
+>           sources:
+>           - serviceAccountToken:
+>               audience: sigstore
+>               expirationSeconds: 600
+>               path: oidc-token
+> ---
+> apiVersion: apps/v1
+> kind: Deployment
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   labels:
+>     app.kubernetes.io/name: tekton-results-api
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-api
+>   namespace: tekton-results
+> spec:
+>   replicas: 1
+>   selector:
+>     matchLabels:
+>       app.kubernetes.io/name: tekton-results-api
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>         cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+>       labels:
+>         app.kubernetes.io/name: tekton-results-api
+>         app.kubernetes.io/version: devel
+>     spec:
+>       containers:
+>       - env:
+>         - name: LOGS_API
+>           value: "true"
+>         - name: LOGS_TYPE
+>           value: S3
+>         - name: S3_HOSTNAME_IMMUTABLE
+>           value: "true"
+>         - name: S3_ACCESS_KEY_ID
+>           valueFrom:
+>             secretKeyRef:
+>               key: aws_access_key_id
+>               name: tekton-results-s3
+>         - name: S3_SECRET_ACCESS_KEY
+>           valueFrom:
+>             secretKeyRef:
+>               key: aws_secret_access_key
+>               name: tekton-results-s3
+>         - name: S3_REGION
+>           valueFrom:
+>             secretKeyRef:
+>               key: aws_region
+>               name: tekton-results-s3
+>         - name: S3_BUCKET_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: bucket
+>               name: tekton-results-s3
+>         - name: S3_ENDPOINT
+>           valueFrom:
+>             secretKeyRef:
+>               key: endpoint
+>               name: tekton-results-s3
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-api:d384e7fec22bcd1b2c3e108a68cb32da4d4e6020
+>         name: api
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/ssl/certs/s3-cert.crt
+>           name: ca-s3
+>           subPath: s3-cert.crt
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+>         - mountPath: /etc/tls
+>           name: tls
+>           readOnly: true
+>       initContainers:
+>       - args:
+>         - -c
+>         - |
+>           mc --config-dir /tmp config host add minio "$S3_ENDPOINT" "$S3_ACCESS_KEY_ID" "$S3_SECRET_ACCESS_KEY" &&
+>           if [ -z "$(mc --config-dir /tmp ls minio | grep "$S3_BUCKET_NAME")" ]; then
+>             mc --config-dir /tmp mb --with-lock --region "$S3_REGION" minio/"$S3_BUCKET_NAME" &&
+>             echo "Minio bucket $S3_BUCKET_NAME successfully created."
+>           fi
+>         command:
+>         - /bin/bash
+>         env:
+>         - name: S3_ACCESS_KEY_ID
+>           valueFrom:
+>             secretKeyRef:
+>               key: aws_access_key_id
+>               name: tekton-results-s3
+>         - name: S3_SECRET_ACCESS_KEY
+>           valueFrom:
+>             secretKeyRef:
+>               key: aws_secret_access_key
+>               name: tekton-results-s3
+>         - name: S3_REGION
+>           valueFrom:
+>             secretKeyRef:
+>               key: aws_region
+>               name: tekton-results-s3
+>         - name: S3_BUCKET_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: bucket
+>               name: tekton-results-s3
+>         - name: S3_ENDPOINT
+>           valueFrom:
+>             secretKeyRef:
+>               key: endpoint
+>               name: tekton-results-s3
+>         image: quay.io/minio/mc:RELEASE.2023-01-28T20-29-38Z
+>         imagePullPolicy: Always
+>         name: mc
+>         volumeMounts:
+>         - mountPath: /etc/ssl/certs/s3-cert.crt
+>           name: ca-s3
+>           subPath: s3-cert.crt
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:d384e7fec22bcd1b2c3e108a68cb32da4d4e6020
+>         name: migrator
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+>       serviceAccountName: tekton-results-api
+>       volumes:
+>       - name: ca-s3
+>         secret:
+>           items:
+>           - key: public.crt
+>             path: s3-cert.crt
+>           secretName: storage-tls
+>       - configMap:
+>           name: tekton-results-api-config
+>         name: config
+>       - name: tls
+>         secret:
+>           secretName: tekton-results-tls
+> ---
+> apiVersion: apps/v1
+> kind: Deployment
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "2"
+>   labels:
+>     app.kubernetes.io/name: tekton-results-watcher
+>     app.kubernetes.io/part-of: tekton-results
+>     app.kubernetes.io/version: devel
+>   name: tekton-results-watcher
+>   namespace: tekton-results
+> spec:
+>   replicas: 1
+>   selector:
+>     matchLabels:
+>       app.kubernetes.io/name: tekton-results-watcher
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>         cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+>       labels:
+>         app.kubernetes.io/name: tekton-results-watcher
+>         app.kubernetes.io/version: devel
+>     spec:
+>       containers:
+>       - args:
+>         - -api_addr
+>         - tekton-results-api-service.tekton-results.svc.cluster.local:8080
+>         - -auth_mode
+>         - token
+>         env:
+>         - name: SYSTEM_NAMESPACE
+>           valueFrom:
+>             fieldRef:
+>               fieldPath: metadata.namespace
+>         - name: CONFIG_LOGGING_NAME
+>           value: tekton-results-config-logging
+>         - name: CONFIG_LEADERELECTION_NAME
+>           value: tekton-results-config-leader-election
+>         - name: CONFIG_OBSERVABILITY_NAME
+>           value: tekton-results-config-observability
+>         - name: METRICS_DOMAIN
+>           value: tekton.dev/results
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:d384e7fec22bcd1b2c3e108a68cb32da4d4e6020
+>         name: watcher
+>         ports:
+>         - containerPort: 9090
+>           name: metrics
+>         - containerPort: 8008
+>           name: profiling
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tls
+>           name: tls
+>           readOnly: true
+>       serviceAccountName: tekton-results-watcher
+>       volumes:
+>       - name: tls
+>         secret:
+>           secretName: tekton-results-tls
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: Application
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: postgres
+>   namespace: openshift-gitops
+> spec:
+>   destination:
+>     namespace: tekton-results
+>     server: https://kubernetes.default.svc
+>   project: default
+>   source:
+>     chart: postgresql
+>     helm:
+>       parameters:
+>       - name: image.tag
+>         value: 13.10.0
+>       - name: tls.enabled
+>         value: "true"
+>       - name: tls.autoGenerated
+>         value: "true"
+>       - name: auth.database
+>         value: tekton_results
+>       - name: auth.username
+>         value: tekton
+>       - name: auth.existingSecret
+>         value: tekton-results-database
+>       - name: auth.secretKeys.userPasswordKey
+>         value: db.password
+>       - name: auth.secretKeys.adminPasswordKey
+>         value: db.password
+>       - name: primary.resources.requests
+>         value: "null"
+>       - name: primary.podSecurityContext.fsGroup
+>         value: "null"
+>       - name: primary.podSecurityContext.seccompProfile.type
+>         value: RuntimeDefault
+>       - name: primary.containerSecurityContext.runAsUser
+>         value: "null"
+>       - name: primary.containerSecurityContext.allowPrivilegeEscalation
+>         value: "false"
+>       - name: primary.containerSecurityContext.runAsNonRoot
+>         value: "true"
+>       - name: primary.containerSecurityContext.seccompProfile.type
+>         value: RuntimeDefault
+>       - name: primary.containerSecurityContext.capabilities.drop[0]
+>         value: ALL
+>       - name: volumePermissions.enabled
+>         value: "false"
+>       - name: shmVolume.enabled
+>         value: "false"
+>       releaseName: postgres
+>     repoURL: https://charts.bitnami.com/bitnami
+>     targetRevision: 12.2.7
+>   syncPolicy:
+>     automated:
+>       prune: true
+>       selfHeal: true
+>     retry:
+>       backoff:
+>         duration: 10s
+>         factor: 2
+>         maxDuration: 3m
+>       limit: -1
+>     syncOptions:
+>     - CreateNamespace=true
+>     - Validate=false
+> ---
+> apiVersion: batch/v1
+> kind: Job
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "2"
+>   name: chains-certs-configuration
+>   namespace: tekton-chains
+> spec:
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       containers:
+>       - command:
+>         - /bin/bash
+>         - -c
+>         - |
+>           echo "Waiting for secret and configmaps to be present"
+>           until oc get secret chains-ca-cert -n tekton-chains &&\
+>             oc get cm config-trusted-cabundle -n tekton-chains &&\
+>             oc get cm kube-root-ca.crt -n tekton-chains
+>           do
+>             sleep 5;
+>           done
+> 
+>           # Update the chains-ca-cert secret with cluster certs, trusted-ca's and ingress cert.
+>           # The configmaps are injected by the Cluster Network Operator.
+>           # Once https://github.com/tektoncd/operator/pull/648 changes are released, we can remove/review this hook.
+>           echo "Build the certificate and replace secret/chains-ca-cert"
+>           TRUSTED_CA=$(mktemp)
+>           KUBE_CA=$(mktemp)
+>           INGRESS_CA=$(mktemp)
+>           oc get cm config-trusted-cabundle -n tekton-chains -o jsonpath="{.data.ca-bundle\.crt}" > $TRUSTED_CA
+>           oc get cm kube-root-ca.crt -n tekton-chains -o jsonpath="{.data.ca\.crt}" > $KUBE_CA
+>           oc get secret router-ca -n openshift-ingress-operator -o jsonpath="{.data.tls\.crt}" | base64 -d > $INGRESS_CA
+>           SERVICE_CA=/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt
+>           cat $TRUSTED_CA $KUBE_CA $INGRESS_CA $SERVICE_CA > /tmp/ca-certificates.crt
+>           oc create secret generic chains-ca-cert --from-file=/tmp/ca-certificates.crt --dry-run=client -o yaml -n tekton-chains | oc apply --force-conflicts --server-side=true -f -
+>         image: registry.redhat.io/openshift4/ose-cli:v4.12@sha256:9f0cdc00b1b1a3c17411e50653253b9f6bb5329ea4fb82ad983790a6dbf2d9ad
+>         imagePullPolicy: Always
+>         name: patch-chains-certs
+>       dnsPolicy: ClusterFirst
+>       restartPolicy: OnFailure
+>       serviceAccount: chains-secrets-admin
+>       serviceAccountName: chains-secrets-admin
+>       terminationGracePeriodSeconds: 30
+> ---
+> apiVersion: batch/v1
+> kind: Job
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   name: tekton-chains-signing-secret
+>   namespace: tekton-chains
+> spec:
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       containers:
+>       - command:
+>         - /bin/bash
+>         - -c
+>         - |
+>           cd /tmp
+>           # Once the key-pair has been set it's marked as immutable so it can't be updated.
+>           # Try to handle that nicely. The object is expected to always exist so check the data.
+>           SIG_KEY_DATA=$(kubectl get secret signing-secrets -n tekton-chains -o jsonpath='{.data}')
+>           if [[ -n $SIG_KEY_DATA ]]; then
+>             echo "Signing secret exists."
+>           else
+>             # To make this run conveniently without user input let's create a random password
+>             RANDOM_PASS=$( head -c 12 /dev/urandom | base64 )
+> 
+>             # Generate the key pair secret directly in the cluster.
+>             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair k8s://tekton-chains/signing-secrets
+>           fi
+> 
+>           # Generate/update the secret with the public key
+>           kubectl create secret generic public-key \
+>             --namespace tekton-chains \
+>             --from-literal=cosign.pub="$(
+>               cosign public-key --key k8s://tekton-chains/signing-secrets
+>             )" \
+>             --dry-run=client \
+>             -o yaml | kubectl apply -f -
+>         image: quay.io/redhat-appstudio/appstudio-utils:eb94f28fe2d7c182f15e659d0fdb66f87b0b3b6b
+>         imagePullPolicy: Always
+>         name: chains-secret-generation
+>       dnsPolicy: ClusterFirst
+>       restartPolicy: OnFailure
+>       serviceAccount: chains-secrets-admin
+>       serviceAccountName: chains-secrets-admin
+>       terminationGracePeriodSeconds: 30
+> ---
+> apiVersion: batch/v1
+> kind: Job
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   name: tekton-chains-trusted-cabundle
+>   namespace: tekton-chains
+> spec:
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       containers:
+>       - command:
+>         - /bin/bash
+>         - -c
+>         - |
+>           if oc get cm config-trusted-cabundle -n tekton-chains; then
+>             echo "ConfigMap config-trusted-cabundle found"
+>           else
+>             echo "Create ConfigMap config-trusted-cabundle"
+>             oc create configmap config-trusted-cabundle --namespace tekton-chains
+>             oc label configmap config-trusted-cabundle config.openshift.io/inject-trusted-cabundle="true"
+>           fi
+>           echo "Done"
+>         image: registry.redhat.io/openshift4/ose-cli:v4.12@sha256:9f0cdc00b1b1a3c17411e50653253b9f6bb5329ea4fb82ad983790a6dbf2d9ad
+>         imagePullPolicy: Always
+>         name: config-trusted-cabundle-generation
+>       dnsPolicy: ClusterFirst
+>       restartPolicy: OnFailure
+>       serviceAccount: chains-secrets-admin
+>       serviceAccountName: chains-secrets-admin
+>       terminationGracePeriodSeconds: 30
+> ---
+> apiVersion: minio.min.io/v2
+> kind: Tenant
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     prometheus.io/path: /minio/v2/metrics/cluster
+>     prometheus.io/port: "9000"
+>     prometheus.io/scrape: "true"
+>   labels:
+>     app: minio
+>   name: storage
+>   namespace: tekton-results
+> spec:
+>   certConfig: {}
+>   configuration:
+>     name: minio-storage-configuration
+>   env: []
+>   exposeServices:
+>     minio: true
+>   externalCaCertSecret: []
+>   externalCertSecret: []
+>   externalClientCertSecrets: []
+>   features:
+>     bucketDNS: false
+>     domains: {}
+>   image: quay.io/minio/minio:RELEASE.2022-09-17T00-09-45Z
+>   imagePullSecret: {}
+>   mountPath: /export
+>   podManagementPolicy: Parallel
+>   pools:
+>   - affinity:
+>       nodeAffinity: {}
+>       podAffinity: {}
+>       podAntiAffinity: {}
+>     containerSecurityContext: {}
+>     name: pool-0
+>     nodeSelector: {}
+>     resources: {}
+>     securityContext: {}
+>     servers: 1
+>     tolerations: []
+>     volumeClaimTemplate:
+>       apiVersion: v1
+>       kind: persistentvolumeclaims
+>       metadata: {}
+>       spec:
+>         accessModes:
+>         - ReadWriteOnce
+>         resources:
+>           requests:
+>             storage: 1Gi
+>       status: {}
+>     volumesPerServer: 2
+>   priorityClassName: ""
+>   requestAutoCert: true
+>   serviceMetadata:
+>     consoleServiceAnnotations: {}
+>     consoleServiceLabels: {}
+>     minioServiceAnnotations: {}
+>     minioServiceLabels: {}
+>   subPath: ""
+> ---
+> apiVersion: monitoring.coreos.com/v1
+> kind: ServiceMonitor
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     networkoperator.openshift.io/ignore-errors: ""
+>   labels:
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>   name: pipelines-as-code-monitor
+>   namespace: pipelines-as-code
+> spec:
+>   endpoints:
+>   - interval: 10s
+>     port: http-metrics
+>   jobLabel: app
+>   namespaceSelector:
+>     matchNames:
+>     - pipelines-as-code
+>   selector:
+>     matchLabels:
+>       app: pipelines-as-code-watcher
+> ---
+> apiVersion: monitoring.coreos.com/v1
+> kind: ServiceMonitor
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: tekton-results-api
+>   namespace: tekton-results
+> spec:
+>   endpoints:
+>   - bearerTokenSecret:
+>       key: token
+>       name: metrics-reader
+>     path: /metrics
+>     port: prometheus
+>     scheme: https
+>     tlsConfig:
+>       insecureSkipVerify: true
+>   selector:
+>     matchLabels:
+>       app.kubernetes.io/name: tekton-results-api
+> ---
+> apiVersion: monitoring.coreos.com/v1
+> kind: ServiceMonitor
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: tekton-results-watcher
+>   namespace: tekton-results
+> spec:
+>   endpoints:
+>   - bearerTokenSecret:
+>       key: token
+>       name: metrics-reader
+>     path: /metrics
+>     port: metrics
+>     scheme: https
+>     tlsConfig:
+>       insecureSkipVerify: true
+>   selector:
+>     matchLabels:
+>       app.kubernetes.io/name: tekton-results-watcher
+> ---
+> apiVersion: operator.tekton.dev/v1alpha1
+> kind: TektonConfig
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: config
+> spec:
+>   params:
+>   - name: createRbacResource
+>     value: "false"
+>   pipeline:
+>     default-service-account: appstudio-pipeline
+>     embedded-status: both
+>     enable-api-fields: beta
+>     enable-bundles-resolver: true
+>     enable-cluster-resolver: true
+>     enable-git-resolver: true
+>     enable-hub-resolver: true
+>     enable-tekton-oci-bundles: true
+>     performance:
+>       kube-api-burst: 10
+>       kube-api-qps: 5
+>       threads-per-controller: 2
+>   platforms:
+>     openshift:
+>       pipelinesAsCode:
+>         enable: false
+>   profile: all
+>   pruner:
+>     keep: 10
+>     resources:
+>     - pipelinerun
+>     schedule: 0/2 * * * *
+>   targetNamespace: openshift-pipelines
+> ---
+> apiVersion: operators.coreos.com/v1alpha1
+> kind: Subscription
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: minio-operator
+>   namespace: openshift-operators
+> spec:
+>   channel: stable
+>   installPlanApproval: Automatic
+>   name: minio-operator
+>   source: certified-operators
+>   sourceNamespace: openshift-marketplace
+> ---
+> apiVersion: operators.coreos.com/v1alpha1
+> kind: Subscription
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: openshift-pipelines-operator
+>   namespace: openshift-operators
+> spec:
+>   channel: pipelines-1.10
+>   name: openshift-pipelines-operator-rh
+>   source: redhat-operators
+>   sourceNamespace: openshift-marketplace
+> ---
+> apiVersion: route.openshift.io/v1
+> kind: Route
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   labels:
+>     app.kubernetes.io/component: controller
+>     app.kubernetes.io/instance: build
+>     app.kubernetes.io/part-of: pipelines-as-code
+>     app.kubernetes.io/version: v0.16.0
+>     pipelines-as-code/route: controller
+>   name: pipelines-as-code-controller
+>   namespace: pipelines-as-code
+> spec:
+>   port:
+>     targetPort: http-listener
+>   tls:
+>     insecureEdgeTerminationPolicy: Redirect
+>     termination: edge
+>   to:
+>     kind: Service
+>     name: pipelines-as-code-controller
+>     weight: 100
+>   wildcardPolicy: None
+> ---
+> apiVersion: route.openshift.io/v1
+> kind: Route
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     haproxy.router.openshift.io/hsts_header: max-age=63072000
+>     openshift.io/host.generated: "true"
+>   labels:
+>     app.kubernetes.io/part-of: tekton-results
+>   name: tekton-results
+>   namespace: tekton-results
+> spec:
+>   port:
+>     targetPort: server
+>   tls:
+>     insecureEdgeTerminationPolicy: Redirect
+>     termination: reencrypt
+>   to:
+>     kind: Service
+>     name: tekton-results-api-service
+>     weight: 100
+>   wildcardPolicy: None
+> ---
+> allowHostDirVolumePlugin: false
+> allowHostIPC: false
+> allowHostNetwork: false
+> allowHostPID: false
+> allowHostPorts: false
+> allowPrivilegeEscalation: false
+> allowPrivilegedContainer: false
+> allowedCapabilities:
+> - SETFCAP
+> apiVersion: security.openshift.io/v1
+> defaultAddCapabilities: null
+> fsGroup:
+>   type: MustRunAs
+> groups:
+> - system:cluster-admins
+> kind: SecurityContextConstraints
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: appstudio-pipelines-scc
+> priority: 10
+> readOnlyRootFilesystem: false
+> requiredDropCapabilities:
+> - MKNOD
+> runAsUser:
+>   type: RunAsAny
+> seLinuxContext:
+>   type: MustRunAs
+> supplementalGroups:
+>   type: RunAsAny
+> users: []
+> volumes:
+> - configMap
+> - downwardAPI
+> - emptyDir
+> - persistentVolumeClaim
+> - projected
+> - secret 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) The container "gitops-postgresql-staging" is using an invalid container image, "registry.redhat.io/rhel8/postgresql-13". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-ad58400a/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-ad58400a/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-ad58400a/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
+
+./commit-ad58400a/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.) 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 7904cd4b to 2d6c221c on Mon Jun 5 19:33:57 2023 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -434,7 +5539,7 @@ KubeLinter v0.6.1-0-gc6177366a3
 </div>
 
 <div>
-<h3>1: Development changes from 7904cd4b to 2d6c221c on Mon Jun 5 19:33:57 2023 </h3>  
+<h3>2: Development changes from 7904cd4b to 2d6c221c on Mon Jun 5 19:33:57 2023 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -718,7 +5823,7 @@ KubeLinter v0.6.1-0-gc6177366a3
 </div>
 
 <div>
-<h3>2: Staging changes from 3a1a874d to 7904cd4b on Mon Jun 5 16:39:17 2023 </h3>  
+<h3>3: Staging changes from 3a1a874d to 7904cd4b on Mon Jun 5 16:39:17 2023 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1149,7 +6254,7 @@ KubeLinter v0.6.1-0-gc6177366a3
 </div>
 
 <div>
-<h3>2: Development changes from 3a1a874d to 7904cd4b on Mon Jun 5 16:39:17 2023 </h3>  
+<h3>3: Development changes from 3a1a874d to 7904cd4b on Mon Jun 5 16:39:17 2023 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1436,7 +6541,7 @@ KubeLinter v0.6.1-0-gc6177366a3
 </div>
 
 <div>
-<h3>3: Staging changes from 8cdf3a85 to 3a1a874d on Mon Jun 5 14:12:05 2023 </h3>  
+<h3>4: Staging changes from 8cdf3a85 to 3a1a874d on Mon Jun 5 14:12:05 2023 </h3>  
  
 <details> 
 <summary>Git Diff (33 lines)</summary>  
@@ -1890,7 +6995,7 @@ KubeLinter v0.6.1-0-gc6177366a3
 </div>
 
 <div>
-<h3>3: Development changes from 8cdf3a85 to 3a1a874d on Mon Jun 5 14:12:05 2023 </h3>  
+<h3>4: Development changes from 8cdf3a85 to 3a1a874d on Mon Jun 5 14:12:05 2023 </h3>  
  
 <details> 
 <summary>Git Diff (33 lines)</summary>  
@@ -2191,1193 +7296,6 @@ KubeLinter v0.6.1-0-gc6177366a3
 ./commit-3a1a874d/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
 
 ./commit-3a1a874d/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.) 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from b88cc0c7 to 8cdf3a85 on Mon Jun 5 13:46:01 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (122 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/base/servicemonitors/kustomization.yaml b/components/pipeline-service/base/servicemonitors/kustomization.yaml
-new file mode 100644
-index 00000000..bac11a17
---- /dev/null
-+++ b/components/pipeline-service/base/servicemonitors/kustomization.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - tekton-results-service-monitor.yaml
-diff --git a/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml b/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml
-new file mode 100644
-index 00000000..b9d9270f
---- /dev/null
-+++ b/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml
-@@ -0,0 +1,75 @@
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  name: metrics-reader
-+  namespace: tekton-results
-+---
-+apiVersion: v1
-+kind: Secret
-+metadata:
-+  name: metrics-reader
-+  namespace: tekton-results
-+  annotations:
-+    kubernetes.io/service-account.name: metrics-reader
-+type: kubernetes.io/service-account-token
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRole
-+metadata:
-+  name: tekton-results-service-metrics-reader
-+rules:
-+- nonResourceURLs:
-+  - /metrics
-+  verbs:
-+  - get
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRoleBinding
-+metadata:
-+  name: prometheus-tekton-results-service-metrics-reader
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: tekton-results-service-metrics-reader
-+subjects:
-+- kind: ServiceAccount
-+  name: metrics-reader
-+  namespace: tekton-results
-+---
-+apiVersion: monitoring.coreos.com/v1
-+kind: ServiceMonitor
-+metadata:
-+  name: tekton-results-api
-+  namespace: tekton-results
-+spec:
-+  endpoints:
-+  - path: /metrics
-+    port: prometheus
-+    scheme: https
-+    bearerTokenSecret:
-+      name: "metrics-reader"
-+      key: token
-+    tlsConfig:
-+      insecureSkipVerify: true
-+  selector:
-+    matchLabels:
-+      app.kubernetes.io/name: tekton-results-api
-+---
-+apiVersion: monitoring.coreos.com/v1
-+kind: ServiceMonitor
-+metadata:
-+  name: tekton-results-watcher
-+  namespace: tekton-results
-+spec:
-+  endpoints:
-+  - path: /metrics
-+    port: metrics
-+    scheme: https
-+    bearerTokenSecret:
-+      name: "metrics-reader"
-+      key: token
-+    tlsConfig:
-+      insecureSkipVerify: true
-+  selector:
-+    matchLabels:
-+      app.kubernetes.io/name: tekton-results-watcher
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index c4bdc5ad..147e252d 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -10,6 +10,7 @@ commonAnnotations:
- resources:
-   - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=303c19d55e2ae90f737ce3a245755eff34684099
-   - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=303c19d55e2ae90f737ce3a245755eff34684099
-+  - ../base/servicemonitors
- 
- patches:
-   - path: scale-down-exporter.yaml
-@@ -20,4 +21,4 @@ patches:
-   - path: update-tekton-config-performance.yaml
-     target:
-       kind: TektonConfig
--      name: config
-\ No newline at end of file
-+      name: config
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 1037b08e..797a3a42 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -11,6 +11,7 @@ resources:
-   - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=303c19d55e2ae90f737ce3a245755eff34684099
-   - ../../base/external-secrets
-   - ../../base/testing
-+  - ../../base/servicemonitors
- 
- patches:
-   - path: pac-app-name.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (186 lines)</summary>  
-
-``` 
-./commit-b88cc0c7/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-251,258d250
-<   name: metrics-reader
-<   namespace: tekton-results
-< ---
-< apiVersion: v1
-< kind: ServiceAccount
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-1039,1050d1030
-<   name: tekton-results-service-metrics-reader
-< rules:
-< - nonResourceURLs:
-<   - /metrics
-<   verbs:
-<   - get
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRole
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-1442,1456d1421
-<   name: prometheus-tekton-results-service-metrics-reader
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: tekton-results-service-metrics-reader
-< subjects:
-< - kind: ServiceAccount
-<   name: metrics-reader
-<   namespace: tekton-results
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-1945,1954d1909
-< kind: Secret
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<     kubernetes.io/service-account.name: metrics-reader
-<   name: metrics-reader
-<   namespace: tekton-results
-< type: kubernetes.io/service-account-token
-< ---
-< apiVersion: v1
-2874,2915d2828
-< ---
-< apiVersion: monitoring.coreos.com/v1
-< kind: ServiceMonitor
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<   name: tekton-results-api
-<   namespace: tekton-results
-< spec:
-<   endpoints:
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     path: /metrics
-<     port: prometheus
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
-<   selector:
-<     matchLabels:
-<       app.kubernetes.io/name: tekton-results-api
-< ---
-< apiVersion: monitoring.coreos.com/v1
-< kind: ServiceMonitor
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<   name: tekton-results-watcher
-<   namespace: tekton-results
-< spec:
-<   endpoints:
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     path: /metrics
-<     port: metrics
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
-<   selector:
-<     matchLabels:
-<       app.kubernetes.io/name: tekton-results-watcher
-./commit-b88cc0c7/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-251,258d250
-<   name: metrics-reader
-<   namespace: tekton-results
-< ---
-< apiVersion: v1
-< kind: ServiceAccount
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-1039,1050d1030
-<   name: tekton-results-service-metrics-reader
-< rules:
-< - nonResourceURLs:
-<   - /metrics
-<   verbs:
-<   - get
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRole
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-1442,1456d1421
-<   name: prometheus-tekton-results-service-metrics-reader
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: tekton-results-service-metrics-reader
-< subjects:
-< - kind: ServiceAccount
-<   name: metrics-reader
-<   namespace: tekton-results
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-1945,1954d1909
-< kind: Secret
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<     kubernetes.io/service-account.name: metrics-reader
-<   name: metrics-reader
-<   namespace: tekton-results
-< type: kubernetes.io/service-account-token
-< ---
-< apiVersion: v1
-2874,2915d2828
-< ---
-< apiVersion: monitoring.coreos.com/v1
-< kind: ServiceMonitor
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<   name: tekton-results-api
-<   namespace: tekton-results
-< spec:
-<   endpoints:
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     path: /metrics
-<     port: prometheus
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
-<   selector:
-<     matchLabels:
-<       app.kubernetes.io/name: tekton-results-api
-< ---
-< apiVersion: monitoring.coreos.com/v1
-< kind: ServiceMonitor
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<   name: tekton-results-watcher
-<   namespace: tekton-results
-< spec:
-<   endpoints:
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     path: /metrics
-<     port: metrics
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
-<   selector:
-<     matchLabels:
-<       app.kubernetes.io/name: tekton-results-watcher 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "kube-rbac-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/sprayproxy/staging/kustomize.out.yaml: (object: sprayproxy/sprayproxy apps/v1, Kind=Deployment) container "sprayproxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/staging/components/build-service/staging/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/dora-metrics/staging/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/staging/components/quality-dashboard/staging/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.) 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from b88cc0c7 to 8cdf3a85 on Mon Jun 5 13:46:01 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (122 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/base/servicemonitors/kustomization.yaml b/components/pipeline-service/base/servicemonitors/kustomization.yaml
-new file mode 100644
-index 00000000..bac11a17
---- /dev/null
-+++ b/components/pipeline-service/base/servicemonitors/kustomization.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - tekton-results-service-monitor.yaml
-diff --git a/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml b/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml
-new file mode 100644
-index 00000000..b9d9270f
---- /dev/null
-+++ b/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml
-@@ -0,0 +1,75 @@
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  name: metrics-reader
-+  namespace: tekton-results
-+---
-+apiVersion: v1
-+kind: Secret
-+metadata:
-+  name: metrics-reader
-+  namespace: tekton-results
-+  annotations:
-+    kubernetes.io/service-account.name: metrics-reader
-+type: kubernetes.io/service-account-token
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRole
-+metadata:
-+  name: tekton-results-service-metrics-reader
-+rules:
-+- nonResourceURLs:
-+  - /metrics
-+  verbs:
-+  - get
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRoleBinding
-+metadata:
-+  name: prometheus-tekton-results-service-metrics-reader
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: tekton-results-service-metrics-reader
-+subjects:
-+- kind: ServiceAccount
-+  name: metrics-reader
-+  namespace: tekton-results
-+---
-+apiVersion: monitoring.coreos.com/v1
-+kind: ServiceMonitor
-+metadata:
-+  name: tekton-results-api
-+  namespace: tekton-results
-+spec:
-+  endpoints:
-+  - path: /metrics
-+    port: prometheus
-+    scheme: https
-+    bearerTokenSecret:
-+      name: "metrics-reader"
-+      key: token
-+    tlsConfig:
-+      insecureSkipVerify: true
-+  selector:
-+    matchLabels:
-+      app.kubernetes.io/name: tekton-results-api
-+---
-+apiVersion: monitoring.coreos.com/v1
-+kind: ServiceMonitor
-+metadata:
-+  name: tekton-results-watcher
-+  namespace: tekton-results
-+spec:
-+  endpoints:
-+  - path: /metrics
-+    port: metrics
-+    scheme: https
-+    bearerTokenSecret:
-+      name: "metrics-reader"
-+      key: token
-+    tlsConfig:
-+      insecureSkipVerify: true
-+  selector:
-+    matchLabels:
-+      app.kubernetes.io/name: tekton-results-watcher
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index c4bdc5ad..147e252d 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -10,6 +10,7 @@ commonAnnotations:
- resources:
-   - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=303c19d55e2ae90f737ce3a245755eff34684099
-   - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=303c19d55e2ae90f737ce3a245755eff34684099
-+  - ../base/servicemonitors
- 
- patches:
-   - path: scale-down-exporter.yaml
-@@ -20,4 +21,4 @@ patches:
-   - path: update-tekton-config-performance.yaml
-     target:
-       kind: TektonConfig
--      name: config
-\ No newline at end of file
-+      name: config
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 1037b08e..797a3a42 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -11,6 +11,7 @@ resources:
-   - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=303c19d55e2ae90f737ce3a245755eff34684099
-   - ../../base/external-secrets
-   - ../../base/testing
-+  - ../../base/servicemonitors
- 
- patches:
-   - path: pac-app-name.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (93 lines)</summary>  
-
-``` 
-./commit-b88cc0c7/development/components/pipeline-service/development/kustomize.out.yaml
-236,243d235
-<   name: metrics-reader
-<   namespace: tekton-results
-< ---
-< apiVersion: v1
-< kind: ServiceAccount
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-1055,1066d1046
-<   name: tekton-results-service-metrics-reader
-< rules:
-< - nonResourceURLs:
-<   - /metrics
-<   verbs:
-<   - get
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRole
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-1457,1471d1436
-<   name: prometheus-tekton-results-service-metrics-reader
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: tekton-results-service-metrics-reader
-< subjects:
-< - kind: ServiceAccount
-<   name: metrics-reader
-<   namespace: tekton-results
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-1960,1969d1924
-< kind: Secret
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<     kubernetes.io/service-account.name: metrics-reader
-<   name: metrics-reader
-<   namespace: tekton-results
-< type: kubernetes.io/service-account-token
-< ---
-< apiVersion: v1
-3002,3043d2956
-< ---
-< apiVersion: monitoring.coreos.com/v1
-< kind: ServiceMonitor
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<   name: tekton-results-api
-<   namespace: tekton-results
-< spec:
-<   endpoints:
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     path: /metrics
-<     port: prometheus
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
-<   selector:
-<     matchLabels:
-<       app.kubernetes.io/name: tekton-results-api
-< ---
-< apiVersion: monitoring.coreos.com/v1
-< kind: ServiceMonitor
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<   name: tekton-results-watcher
-<   namespace: tekton-results
-< spec:
-<   endpoints:
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     path: /metrics
-<     port: metrics
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
-<   selector:
-<     matchLabels:
-<       app.kubernetes.io/name: tekton-results-watcher 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pipeline-metrics-exporter apps/v1, Kind=Deployment) container "pipeline-metrics-exporter" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) environment variable TLS_SECRET_NAME in container "pac-controller" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-controller apps/v1, Kind=Deployment) container "pac-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-watcher apps/v1, Kind=Deployment) container "pac-watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) environment variable WEBHOOK_SECRET_NAME in container "pac-webhook" found (check: env-var-secret, remediation: Do not use raw secrets in environment variables. Instead, either mount the secret as a file or use a secretKeyRef. Refer to https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: pipelines-as-code/pipelines-as-code-webhook apps/v1, Kind=Deployment) container "pac-webhook" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-controller apps/v1, Kind=Deployment) container "tekton-chains-controller" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "mc" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "migrator" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-api apps/v1, Kind=Deployment) container "api" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/chains-certs-configuration batch/v1, Kind=Job) container "patch-chains-certs" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-signing-secret batch/v1, Kind=Job) container "chains-secret-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-chains/tekton-chains-trusted-cabundle batch/v1, Kind=Job) container "config-trusted-cabundle-generation" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/cluster-registration/kustomize.out.yaml: (object: cluster-reg-config/cluster-registration-installer-controller-manager apps/v1, Kind=Deployment) container "installer" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/development/components/build-service/development/kustomize.out.yaml: (object: build-service/build-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/dora-metrics/development/kustomize.out.yaml: (object: dora-metrics/exporter apps/v1, Kind=Deployment) container "container" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-appstudio-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-core-service-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-service-agent-controller-manager apps/v1, Kind=Deployment) container "kube-rbac-proxy" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) The container "gitops-postgresql-staging" is using an invalid container image, "registry.redhat.io/rhel8/postgresql-13". Please use images that are not blocked by the `BlockList` criteria : [".*:(latest)$" "^[^:]*$" "(.*/[^:]+)$"] (check: latest-tag, remediation: Use a container image with a specific tag other than latest.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-8cdf3a85/development/components/gitops/development/kustomize.out.yaml: (object: gitops/gitops-postgresql-staging-postgresql apps/v1, Kind=StatefulSet) container "gitops-postgresql-staging" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/jvm-build-service/kustomize.out.yaml: (object: jvm-build-service/hacbs-jvm-operator apps/v1, Kind=Deployment) container "hacbs-jvm-operator" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-8cdf3a85/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-backend-dashboard apps/v1, Kind=Deployment) container "quality-backend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-8cdf3a85/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "dashboard-proxy" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.)
-
-./commit-8cdf3a85/development/components/quality-dashboard/development/kustomize.out.yaml: (object: <no namespace>/quality-frontend-dashboard apps/v1, Kind=Deployment) container "quality-frontend-dashboard" is not set to runAsNonRoot (check: run-as-non-root, remediation: Set runAsUser to a non-zero number and runAsNonRoot to true in your pod or container securityContext. Refer to https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ for details.) 
 ```
  
 </details> 

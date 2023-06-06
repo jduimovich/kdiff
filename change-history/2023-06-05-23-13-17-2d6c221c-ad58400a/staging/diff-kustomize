@@ -1,0 +1,116 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ad58400a/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-2d6c221c/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+1996c1996
+<         image: quay.io/redhat-appstudio/gitops-service:acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+---
+>         image: quay.io/redhat-appstudio/gitops-service:b646f96364e2e2d62f4c4f0f49b4405a695e4877
+2101c2101
+<         image: quay.io/redhat-appstudio/gitops-service:acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+---
+>         image: quay.io/redhat-appstudio/gitops-service:b646f96364e2e2d62f4c4f0f49b4405a695e4877
+2203c2203
+<         image: quay.io/redhat-appstudio/gitops-service:acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+---
+>         image: quay.io/redhat-appstudio/gitops-service:b646f96364e2e2d62f4c4f0f49b4405a695e4877
+2256,2266d2255
+< apiVersion: appstudio.redhat.com/v1alpha1
+< kind: DeploymentTargetClass
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: isolation-level-namespace
+< spec:
+<   parameters: {}
+<   provisioner: appstudio.redhat.com/devsandbox
+<   reclaimPolicy: Delete
+< ---
+2289c2278
+<     logLevel: info
+---
+>     logLevel: debug
+2346c2335
+<     logLevel: info
+---
+>     logLevel: debug
+2424c2413
+<     logLevel: info
+---
+>     logLevel: debug
+2635,2654d2623
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-appstudio-service-webhook-service
+<       namespace: gitops
+<       path: /validate-appstudio-redhat-com-v1alpha1-environment
+<   failurePolicy: Fail
+<   name: venvironment.kb.io
+<   rules:
+<   - apiGroups:
+<     - appstudio.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - environments
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ad58400a/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-2d6c221c/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml
+1996c1996
+<         image: quay.io/redhat-appstudio/gitops-service:acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+---
+>         image: quay.io/redhat-appstudio/gitops-service:b646f96364e2e2d62f4c4f0f49b4405a695e4877
+2101c2101
+<         image: quay.io/redhat-appstudio/gitops-service:acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+---
+>         image: quay.io/redhat-appstudio/gitops-service:b646f96364e2e2d62f4c4f0f49b4405a695e4877
+2203c2203
+<         image: quay.io/redhat-appstudio/gitops-service:acd7b9c47234bf33fbd5a785f11b668cba33fa8a
+---
+>         image: quay.io/redhat-appstudio/gitops-service:b646f96364e2e2d62f4c4f0f49b4405a695e4877
+2256,2266d2255
+< apiVersion: appstudio.redhat.com/v1alpha1
+< kind: DeploymentTargetClass
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: isolation-level-namespace
+< spec:
+<   parameters: {}
+<   provisioner: appstudio.redhat.com/devsandbox
+<   reclaimPolicy: Delete
+< ---
+2289c2278
+<     logLevel: info
+---
+>     logLevel: debug
+2346c2335
+<     logLevel: info
+---
+>     logLevel: debug
+2424c2413
+<     logLevel: info
+---
+>     logLevel: debug
+2635,2654d2623
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-appstudio-service-webhook-service
+<       namespace: gitops
+<       path: /validate-appstudio-redhat-com-v1alpha1-environment
+<   failurePolicy: Fail
+<   name: venvironment.kb.io
+<   rules:
+<   - apiGroups:
+<     - appstudio.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - environments
