@@ -1,0 +1,38 @@
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 15ef5480..25207f7b 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -18,9 +18,9 @@ spec:
+   sources:
+     - name: Release Policies
+       data:
+-        - oci::quay.io/hacbs-contract/ec-policy-data:git-931e35a@sha256:0adb2fcf51a18f48533505c6f823578427063b5729c0845fbbb60d9bd39386ee
++        - oci::quay.io/hacbs-contract/ec-policy-data:git-fc2f6a5@sha256:863c17a71fa33ef47be39ad738e6205c91dfebca393cf6de8225f0ef44424710
+       policy:
+-        - oci::quay.io/hacbs-contract/ec-release-policy:git-cf63f30@sha256:4d85d2659ad96ab8e6b487a034eb3f6689466e09588759d93e44d405a063482c
++        - oci::quay.io/hacbs-contract/ec-release-policy:git-e8db01a@sha256:224187aca8ae7d2ba49b2c9bf46365f7d5467788fc32c5808198fa29a45a1d3c
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -37,6 +37,6 @@ spec:
+   sources:
+     - name: Release Policies
+       data:
+-        - oci::quay.io/hacbs-contract/ec-policy-data:git-931e35a@sha256:0adb2fcf51a18f48533505c6f823578427063b5729c0845fbbb60d9bd39386ee
++        - oci::quay.io/hacbs-contract/ec-policy-data:git-fc2f6a5@sha256:863c17a71fa33ef47be39ad738e6205c91dfebca393cf6de8225f0ef44424710
+       policy:
+-        - oci::quay.io/hacbs-contract/ec-release-policy:git-cf63f30@sha256:4d85d2659ad96ab8e6b487a034eb3f6689466e09588759d93e44d405a063482c
++        - oci::quay.io/hacbs-contract/ec-release-policy:git-e8db01a@sha256:224187aca8ae7d2ba49b2c9bf46365f7d5467788fc32c5808198fa29a45a1d3c
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 44f6325b..831c9538 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -11,7 +11,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:ce22795f264794be269c2b220c870d0593e6c914@sha256:4e30b9e2936d9890205dfab658aae7179d5dbdf60ceaf4e9f983b6e2570240b0
++      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:345b81df96aee25b6df0bd581cba46daf8bd3aa0@sha256:619840abb3412ff9544fb2d8db4e41bd705b190b242102789aba35aaeceb0923
+       - ec_policy_source=oci::https://quay.io/hacbs-contract/ec-release-policy:git-8ca675b@sha256:caf2a8991ca3feb80edfc8ff7c1930ed09481a7c8d934bb719007bffc1153ecc
+       - ec_data_source=oci::https://quay.io/hacbs-contract/ec-policy-data:git-a3ca9be@sha256:d548e0808348c017782ae87920c94d45ad7117e0e630b5b991c8df557c22a844
+ images:
