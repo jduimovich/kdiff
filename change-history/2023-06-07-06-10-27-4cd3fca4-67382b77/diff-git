@@ -1,0 +1,237 @@
+diff --git a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
+index 4b16bdc4..f3705244 100644
+--- a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
++++ b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
+@@ -14,6 +14,16 @@ spec:
+       secret:
+         name: cloudwatch-forwarder
+       type: cloudwatch
++    - name: splunk-receiver-application
++      secret:
++        name: log-forwarder-splunk-rhtap-application-secret
++      type: splunk
++      url: https://http-inputs-rhcorporate.splunkcloud.com
++    - name: splunk-receiver-audit
++      secret:
++        name: log-forwarder-splunk-rhtap-audit-secret
++      type: splunk
++      url: https://http-inputs-rhcorporate.splunkcloud.com
+   pipelines:
+     - inputRefs:
+         - application
+@@ -21,3 +31,16 @@ spec:
+       outputRefs:
+         - remote-cloudwatch
+       parse: json
++    - name: fluentd-forward-logs-to-splunk-rhtap-app-index
++      inputRefs:
++        - application
++      outputRefs:
++        - splunk-receiver-application
++      parse: json
++    - name: fluentd-forward-logs-to-splunk-rhtap-audit-index
++      inputRefs:      
++        - infrastructure
++        - audit
++      outputRefs:
++        - splunk-receiver-audit
++      parse: json
+diff --git a/components/monitoring/logging/base/external-secrets/kustomization.yaml b/components/monitoring/logging/base/external-secrets/kustomization.yaml
+index ad429d31..2c74e47d 100644
+--- a/components/monitoring/logging/base/external-secrets/kustomization.yaml
++++ b/components/monitoring/logging/base/external-secrets/kustomization.yaml
+@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - monitoring-logging-cloudwatch-forwarder.yaml
+-namespace: openshift-logging
+\ No newline at end of file
++- splunk-log-forwarder-external-secrets.yaml
++namespace: openshift-logging
+diff --git a/components/monitoring/logging/staging/external-secrets/splunk-log-forwarders-external-secrets.yaml b/components/monitoring/logging/base/external-secrets/splunk-log-forwarder-external-secrets.yaml
+similarity index 63%
+rename from components/monitoring/logging/staging/external-secrets/splunk-log-forwarders-external-secrets.yaml
+rename to components/monitoring/logging/base/external-secrets/splunk-log-forwarder-external-secrets.yaml
+index 55a02dd7..b241727c 100644
+--- a/components/monitoring/logging/staging/external-secrets/splunk-log-forwarders-external-secrets.yaml
++++ b/components/monitoring/logging/base/external-secrets/splunk-log-forwarder-external-secrets.yaml
+@@ -1,37 +1,37 @@
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+-  name: log-forwarder-splunk-rhtap-staging-application-external-secret
++  name: log-forwarder-splunk-rhtap-application-external-secret
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+   - extract:
+-      key: staging/monitoring/logging/fluentd/splunk-forwarder-rhtap-staging-application
++      key: "" # will be added by the overlays
+   refreshInterval: 1h
+   secretStoreRef:
+     name: appsre-stonesoup-vault
+     kind: ClusterSecretStore
+   target:
+-    name: log-forwarder-splunk-rhtap-staging-application-secret
++    name: log-forwarder-splunk-rhtap-application-secret
+     deletionPolicy: Delete
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+-  name: log-forwarder-splunk-rhtap-staging-audit-external-secret
++  name: log-forwarder-splunk-rhtap-audit-external-secret
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+   - extract:
+-      key: staging/monitoring/logging/fluentd/splunk-forwarder-rhtap-staging-audit
++      key: "" # will be added by the overlays
+   refreshInterval: 1h
+   secretStoreRef:
+     name: appsre-stonesoup-vault
+     kind: ClusterSecretStore
+   target:
+-    name: log-forwarder-splunk-rhtap-staging-audit-secret
++    name: log-forwarder-splunk-rhtap-audit-secret
+     deletionPolicy: Delete
+diff --git a/components/monitoring/logging/staging/configure-logging/kustomization.yaml b/components/monitoring/logging/development/kustomization.yaml
+similarity index 100%
+rename from components/monitoring/logging/staging/configure-logging/kustomization.yaml
+rename to components/monitoring/logging/development/kustomization.yaml
+diff --git a/components/monitoring/logging/production/kustomization.yaml b/components/monitoring/logging/production/kustomization.yaml
+index 258f5ec7..dc846a65 100644
+--- a/components/monitoring/logging/production/kustomization.yaml
++++ b/components/monitoring/logging/production/kustomization.yaml
+@@ -1,12 +1,30 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base/external-secrets
+ - ../base
++- ../base/external-secrets
+ patches:
+   - path: monitoring-logging-cloudwatch-forwarder-path.yaml
+     target:
+       name: monitoring-logging-cloudwatch-forwarder
+       group: external-secrets.io
+       version: v1beta1
+-      kind: ExternalSecret
+\ No newline at end of file
++      kind: ExternalSecret
++  - target:
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++      name: log-forwarder-splunk-rhtap-application-external-secret
++    patch: |
++      - op: replace
++        path: /spec/dataFrom/0/extract/key
++        value: production/monitoring/logging/fluentd/splunk-forwarder-rhtap-production-application
++  - target:
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++      name: log-forwarder-splunk-rhtap-audit-external-secret
++    patch: |
++      - op: replace
++        path: /spec/dataFrom/0/extract/key
++        value: production/monitoring/logging/fluentd/splunk-forwarder-rhtap-production-audit
+diff --git a/components/monitoring/logging/staging/configure-logging/cluster-log-forwarder-patch.yaml b/components/monitoring/logging/staging/configure-logging/cluster-log-forwarder-patch.yaml
+deleted file mode 100644
+index b2ee41c0..00000000
+--- a/components/monitoring/logging/staging/configure-logging/cluster-log-forwarder-patch.yaml
++++ /dev/null
+@@ -1,36 +0,0 @@
+----
+-- op: add
+-  path: /spec/outputs/-
+-  value:
+-    name: splunk-receiver-application
+-    secret:
+-      name: log-forwarder-splunk-rhtap-staging-application-secret
+-    type: splunk
+-    url: https://http-inputs-rhcorporate.splunkcloud.com
+-- op: add
+-  path: /spec/outputs/-
+-  value:
+-    name: splunk-receiver-audit
+-    secret:
+-      name: log-forwarder-splunk-rhtap-staging-audit-secret
+-    type: splunk
+-    url: https://http-inputs-rhcorporate.splunkcloud.com
+-- op: add
+-  path: /spec/pipelines/-
+-  value:
+-    name: fluentd-forward-logs-to-splunk-rhtap-stage-app-index
+-    inputRefs:
+-      - application
+-    outputRefs:
+-      - splunk-receiver-application
+-    parse: json
+-- op: add
+-  path: /spec/pipelines/-
+-  value:
+-    name: fluentd-forward-logs-to-splunk-rhtap-stage-audit-index
+-    inputRefs:      
+-      - infrastructure
+-      - audit
+-    outputRefs:
+-      - splunk-receiver-audit
+-    parse: json
+diff --git a/components/monitoring/logging/staging/external-secrets/kustomization.yaml b/components/monitoring/logging/staging/external-secrets/kustomization.yaml
+deleted file mode 100644
+index 071e6006..00000000
+--- a/components/monitoring/logging/staging/external-secrets/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- splunk-log-forwarders-external-secrets.yaml
+-namespace: openshift-logging
+diff --git a/components/monitoring/logging/staging/kustomization.yaml b/components/monitoring/logging/staging/kustomization.yaml
+index 81ac59d7..264cfd65 100644
+--- a/components/monitoring/logging/staging/kustomization.yaml
++++ b/components/monitoring/logging/staging/kustomization.yaml
+@@ -3,8 +3,6 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- configure-logging
+-- external-secrets
+ patches:
+   - path: monitoring-logging-cloudwatch-forwarder-path.yaml
+     target:
+@@ -12,9 +10,21 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: configure-logging/cluster-log-forwarder-patch.yaml
+-    target:
+-      group: logging.openshift.io
+-      version: v1
+-      kind: ClusterLogForwarder
+-      name: instance
++  - target:
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++      name: log-forwarder-splunk-rhtap-application-external-secret
++    patch: |
++      - op: replace
++        path: /spec/dataFrom/0/extract/key
++        value: production/monitoring/logging/fluentd/splunk-forwarder-rhtap-staging-application
++  - target:
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++      name: log-forwarder-splunk-rhtap-audit-external-secret
++    patch: |
++      - op: replace
++        path: /spec/dataFrom/0/extract/key
++        value: production/monitoring/logging/fluentd/splunk-forwarder-rhtap-staging-audit
