@@ -1,0 +1,28 @@
+diff --git a/components/spi/overlays/staging/base/config-patch.json b/components/spi/overlays/staging/base/config-patch.json
+new file mode 100644
+index 00000000..064269a6
+--- /dev/null
++++ b/components/spi/overlays/staging/base/config-patch.json
+@@ -0,0 +1,7 @@
++[
++  {
++    "op": "add",
++    "path": "/data/ENABLEREMOTESECRETS",
++    "value": "true"
++  }
++]
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index a6ed6056..416f9dba 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -21,6 +21,10 @@ patches:
+       kind: Deployment
+       name: spi-controller-manager
+     path: operator-limits-patch.json
++  - target:
++      kind: ConfigMap
++      name: shared-environment-config
++    path: config-patch.json
+   - path: delete-shared-configuration-file.yaml
+   - path: delete-vault-approle-operator-secret.yaml
+   - path: delete-vault-approle-oauth-secret.yaml
