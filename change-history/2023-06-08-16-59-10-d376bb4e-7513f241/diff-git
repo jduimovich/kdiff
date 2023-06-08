@@ -1,0 +1,432 @@
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
+index acbb891f..c42f4073 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus.yaml
+@@ -12,9 +12,21 @@ spec:
+               values:
+                 sourceRoot: components/monitoring/prometheus
+                 environment: staging
+-                clusterDir: ""
++                clusterDir: base
+           - list:
+-              elements: []
++              elements:
++                - nameNormalized: stone-stg-host
++                  values.clusterDir: stone-stg-host
++                - nameNormalized: stone-stg-m01
++                  values.clusterDir: stone-stg-m01
++                - nameNormalized: stone-stg-rh01
++                  values.clusterDir: stone-stg-rh01
++                - nameNormalized: stone-prd-host1
++                  values.clusterDir: stone-prd-host1
++                - nameNormalized: stone-prd-m01
++                  values.clusterDir: stone-prd-m01
++                - nameNormalized: stone-prd-rh01
++                  values.clusterDir: stone-prd-rh01
+   template:
+     metadata:
+       name: monitoring-workload-prometheus-{{nameNormalized}}
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index a2efbec4..669baac5 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -41,4 +41,4 @@ spec:
+         - image-controller
+         - openshift-logging
+         - sprayproxy
+-        - openshift-user-workload-monitoring
++        - appstudio-monitoring
+diff --git a/components/monitoring/prometheus/base/external-secrets/kustomization.yaml b/components/monitoring/prometheus/base/external-secrets/kustomization.yaml
+index 398e7d46..d962e54a 100644
+--- a/components/monitoring/prometheus/base/external-secrets/kustomization.yaml
++++ b/components/monitoring/prometheus/base/external-secrets/kustomization.yaml
+@@ -2,4 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - rhobs.yaml
+-namespace: openshift-user-workload-monitoring
++namespace: appstudio-monitoring
+diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+index d4fbcd32..7d1d8f75 100644
+--- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
++++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+@@ -18,14 +18,37 @@ spec:
+       monitoring.rhobs/stack: appstudio-federate-ms
+   logLevel: info # use debug for verbose logs
+   retention: 3h
+-  prometheusConfig:
+-    replicas: 2  # ensures that at least one prometheus is running during upgrade
+   alertmanagerConfig:
+     disabled: true
+   resources: # ensure that you provide sufficient amount of resources
+     requests:
+       cpu: 500m
+       memory: 1Gi
++  prometheusConfig:
++    externalLabels: {} # added by overlays
++    replicas: 2  # ensures that at least one prometheus is running during upgrade
++    remoteWrite:
++    - oauth2:
++        clientId:
++          secret:
++            key: client-id
++            name: rhobs
++        clientSecret:
++          key: client-secret
++          name: rhobs
++        endpointParams:
++          audience: # added by overlays
++        tokenUrl: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
++      url: # added by overlays
++      writeRelabelConfigs:
++      - action: LabelKeep
++        regex: "__name__|source_environment|source_cluster|namespace|pod|container|\
++          label_pipelines_appstudio_openshift_io_type|health_status|dest_namespace|\
++          controller|service|reason|phase|type|resource|resourcequota|le|app|image|\
++          commit_hash|job|operation|tokenName|rateLimited|state|persistentvolumeclaim|\
++          storageclass|volumename|release_reason|instance|result|deployment_reason|\
++          validation_reason|strategy|succeeded|target|name|method|code|sp|\
++          unexpected_status|failure|hostname"
+ ---
+ # Grant permission to Federate In-Cluster Prometheus
+ apiVersion: rbac.authorization.k8s.io/v1
+@@ -73,7 +96,6 @@ spec:
+         - '{__name__="kube_pod_status_unschedulable", namespace!~".*-tenant|openshift-.*|kube-.*"}'
+         - '{__name__="kube_pod_container_status_waiting_reason", namespace!~".*-tenant|openshift-.*|kube-.*"}'
+         - '{__name__="kube_pod_status_phase", namespace!~".*-tenant|openshift-.*|kube-.*"}'
+-        - '{__name__="kube_pod_status_unschedulable", namespace!~".*-tenant|openshift-.*|kube-.*"}'
+         - '{__name__="kube_persistentvolume_status_phase", namespace!~".*-tenant|openshift-.*|kube-.*"}'
+         - '{__name__="kube_resourcequota", namespace!~".*-tenant|openshift-.*|kube-.*"}'
+     relabelings:
+diff --git a/components/monitoring/prometheus/development/monitoringstack/kustomization.yaml b/components/monitoring/prometheus/development/monitoringstack/kustomization.yaml
+index 2903ae87..1ef8dd8a 100644
+--- a/components/monitoring/prometheus/development/monitoringstack/kustomization.yaml
++++ b/components/monitoring/prometheus/development/monitoringstack/kustomization.yaml
+@@ -12,6 +12,10 @@ patches:
+     target:
+       name: appstudio-federate-uwm-smon
+       kind: ServiceMonitor
++  - path: remote-write-env-details.yaml
++    target:
++      name: appstudio-federate-ms
++      kind: MonitoringStack
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/monitoring/prometheus/development/monitoringstack/remote-write-env-details.yaml b/components/monitoring/prometheus/development/monitoringstack/remote-write-env-details.yaml
+new file mode 100644
+index 00000000..2c67643e
+--- /dev/null
++++ b/components/monitoring/prometheus/development/monitoringstack/remote-write-env-details.yaml
+@@ -0,0 +1,3 @@
++---
++- op: remove
++  path: /spec/prometheusConfig/remoteWrite
+diff --git a/components/monitoring/prometheus/production/kustomization.yaml b/components/monitoring/prometheus/production/base/kustomization.yaml
+similarity index 82%
+rename from components/monitoring/prometheus/production/kustomization.yaml
+rename to components/monitoring/prometheus/production/base/kustomization.yaml
+index 9b9b2eeb..9d595783 100644
+--- a/components/monitoring/prometheus/production/kustomization.yaml
++++ b/components/monitoring/prometheus/production/base/kustomization.yaml
+@@ -1,8 +1,8 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base/uwm-config
+-- ../base/external-secrets
++- ../../base/uwm-config
++- ../../base/external-secrets
+ - monitoringstack/
+ patches:
+   - path: rhobs-secret-path.yaml
+diff --git a/components/monitoring/prometheus/production/monitoringstack/cluster-type-patch.yaml b/components/monitoring/prometheus/production/base/monitoringstack/cluster-type-patch.yaml
+similarity index 100%
+rename from components/monitoring/prometheus/production/monitoringstack/cluster-type-patch.yaml
+rename to components/monitoring/prometheus/production/base/monitoringstack/cluster-type-patch.yaml
+diff --git a/components/monitoring/prometheus/production/monitoringstack/kustomization.yaml b/components/monitoring/prometheus/production/base/monitoringstack/kustomization.yaml
+similarity index 72%
+rename from components/monitoring/prometheus/production/monitoringstack/kustomization.yaml
+rename to components/monitoring/prometheus/production/base/monitoringstack/kustomization.yaml
+index 4f39f4aa..43dbb53e 100644
+--- a/components/monitoring/prometheus/production/monitoringstack/kustomization.yaml
++++ b/components/monitoring/prometheus/production/base/monitoringstack/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/monitoringstack
++  - ../../../base/monitoringstack
+ patches:
+   - path: cluster-type-patch.yaml
+     target:
+@@ -11,7 +11,10 @@ patches:
+     target:
+       name: appstudio-federate-uwm-smon
+       kind: ServiceMonitor
++  - path: remote-write-env-details.yaml
++    target:
++      name: appstudio-federate-ms
++      kind: MonitoringStack
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-
+diff --git a/components/monitoring/prometheus/production/base/monitoringstack/remote-write-env-details.yaml b/components/monitoring/prometheus/production/base/monitoringstack/remote-write-env-details.yaml
+new file mode 100644
+index 00000000..cc7e20eb
+--- /dev/null
++++ b/components/monitoring/prometheus/production/base/monitoringstack/remote-write-env-details.yaml
+@@ -0,0 +1,7 @@
++---
++- op: add
++  path: /spec/prometheusConfig/remoteWrite/0/url
++  value: https://observatorium-mst.api.openshift.com/api/metrics/v1/rhtap/api/v1/receive
++- op: add
++  path: /spec/prometheusConfig/remoteWrite/0/oauth2/endpointParams/audience
++  value: observatorium-osd
+diff --git a/components/monitoring/prometheus/production/rhobs-secret-path.yaml b/components/monitoring/prometheus/production/base/rhobs-secret-path.yaml
+similarity index 100%
+rename from components/monitoring/prometheus/production/rhobs-secret-path.yaml
+rename to components/monitoring/prometheus/production/base/rhobs-secret-path.yaml
+diff --git a/components/monitoring/prometheus/production/stone-prd-host1/cluster-id-label.yaml b/components/monitoring/prometheus/production/stone-prd-host1/cluster-id-label.yaml
+new file mode 100644
+index 00000000..1df2aa8e
+--- /dev/null
++++ b/components/monitoring/prometheus/production/stone-prd-host1/cluster-id-label.yaml
+@@ -0,0 +1,5 @@
++---
++- op: add
++  path: /spec/prometheusConfig/externalLabels/source_cluster
++  value:
++    stone-prd-host1
+diff --git a/components/monitoring/prometheus/production/stone-prd-host1/kustomization.yaml b/components/monitoring/prometheus/production/stone-prd-host1/kustomization.yaml
+new file mode 100644
+index 00000000..37731611
+--- /dev/null
++++ b/components/monitoring/prometheus/production/stone-prd-host1/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++
++patches:
++  - path: cluster-id-label.yaml
++    target:
++      name: appstudio-federate-ms
++      kind: MonitoringStack
++      group: monitoring.rhobs
++      version: v1alpha1
+diff --git a/components/monitoring/prometheus/production/stone-prd-m01/cluster-id-label.yaml b/components/monitoring/prometheus/production/stone-prd-m01/cluster-id-label.yaml
+new file mode 100644
+index 00000000..2f53f175
+--- /dev/null
++++ b/components/monitoring/prometheus/production/stone-prd-m01/cluster-id-label.yaml
+@@ -0,0 +1,5 @@
++---
++- op: add
++  path: /spec/prometheusConfig/externalLabels/source_cluster
++  value:
++    stone-prd-m01
+diff --git a/components/monitoring/prometheus/production/stone-prd-m01/kustomization.yaml b/components/monitoring/prometheus/production/stone-prd-m01/kustomization.yaml
+new file mode 100644
+index 00000000..37731611
+--- /dev/null
++++ b/components/monitoring/prometheus/production/stone-prd-m01/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++
++patches:
++  - path: cluster-id-label.yaml
++    target:
++      name: appstudio-federate-ms
++      kind: MonitoringStack
++      group: monitoring.rhobs
++      version: v1alpha1
+diff --git a/components/monitoring/prometheus/production/stone-prd-rh01/cluster-id-label.yaml b/components/monitoring/prometheus/production/stone-prd-rh01/cluster-id-label.yaml
+new file mode 100644
+index 00000000..4e177e89
+--- /dev/null
++++ b/components/monitoring/prometheus/production/stone-prd-rh01/cluster-id-label.yaml
+@@ -0,0 +1,5 @@
++---
++- op: add
++  path: /spec/prometheusConfig/externalLabels/source_cluster
++  value:
++    stone-prd-rh01
+diff --git a/components/monitoring/prometheus/production/stone-prd-rh01/kustomization.yaml b/components/monitoring/prometheus/production/stone-prd-rh01/kustomization.yaml
+new file mode 100644
+index 00000000..37731611
+--- /dev/null
++++ b/components/monitoring/prometheus/production/stone-prd-rh01/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++
++patches:
++  - path: cluster-id-label.yaml
++    target:
++      name: appstudio-federate-ms
++      kind: MonitoringStack
++      group: monitoring.rhobs
++      version: v1alpha1
+diff --git a/components/monitoring/prometheus/staging/kustomization.yaml b/components/monitoring/prometheus/staging/base/kustomization.yaml
+similarity index 82%
+rename from components/monitoring/prometheus/staging/kustomization.yaml
+rename to components/monitoring/prometheus/staging/base/kustomization.yaml
+index 9b9b2eeb..9d595783 100644
+--- a/components/monitoring/prometheus/staging/kustomization.yaml
++++ b/components/monitoring/prometheus/staging/base/kustomization.yaml
+@@ -1,8 +1,8 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base/uwm-config
+-- ../base/external-secrets
++- ../../base/uwm-config
++- ../../base/external-secrets
+ - monitoringstack/
+ patches:
+   - path: rhobs-secret-path.yaml
+diff --git a/components/monitoring/prometheus/staging/monitoringstack/cluster-type-patch.yaml b/components/monitoring/prometheus/staging/base/monitoringstack/cluster-type-patch.yaml
+similarity index 100%
+rename from components/monitoring/prometheus/staging/monitoringstack/cluster-type-patch.yaml
+rename to components/monitoring/prometheus/staging/base/monitoringstack/cluster-type-patch.yaml
+diff --git a/components/monitoring/prometheus/staging/monitoringstack/kustomization.yaml b/components/monitoring/prometheus/staging/base/monitoringstack/kustomization.yaml
+similarity index 72%
+rename from components/monitoring/prometheus/staging/monitoringstack/kustomization.yaml
+rename to components/monitoring/prometheus/staging/base/monitoringstack/kustomization.yaml
+index 4f39f4aa..43dbb53e 100644
+--- a/components/monitoring/prometheus/staging/monitoringstack/kustomization.yaml
++++ b/components/monitoring/prometheus/staging/base/monitoringstack/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/monitoringstack
++  - ../../../base/monitoringstack
+ patches:
+   - path: cluster-type-patch.yaml
+     target:
+@@ -11,7 +11,10 @@ patches:
+     target:
+       name: appstudio-federate-uwm-smon
+       kind: ServiceMonitor
++  - path: remote-write-env-details.yaml
++    target:
++      name: appstudio-federate-ms
++      kind: MonitoringStack
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-
+diff --git a/components/monitoring/prometheus/staging/base/monitoringstack/remote-write-env-details.yaml b/components/monitoring/prometheus/staging/base/monitoringstack/remote-write-env-details.yaml
+new file mode 100644
+index 00000000..c6b734c5
+--- /dev/null
++++ b/components/monitoring/prometheus/staging/base/monitoringstack/remote-write-env-details.yaml
+@@ -0,0 +1,7 @@
++---
++- op: add
++  path: /spec/prometheusConfig/remoteWrite/0/url
++  value: https://observatorium-mst.api.stage.openshift.com/api/metrics/v1/rhtap/api/v1/receive
++- op: add
++  path: /spec/prometheusConfig/remoteWrite/0/oauth2/endpointParams/audience
++  value: observatorium-osd-staging
+diff --git a/components/monitoring/prometheus/staging/rhobs-secret-path.yaml b/components/monitoring/prometheus/staging/base/rhobs-secret-path.yaml
+similarity index 100%
+rename from components/monitoring/prometheus/staging/rhobs-secret-path.yaml
+rename to components/monitoring/prometheus/staging/base/rhobs-secret-path.yaml
+diff --git a/components/monitoring/prometheus/staging/stone-stg-host/cluster-id-label.yaml b/components/monitoring/prometheus/staging/stone-stg-host/cluster-id-label.yaml
+new file mode 100644
+index 00000000..afa3c9ab
+--- /dev/null
++++ b/components/monitoring/prometheus/staging/stone-stg-host/cluster-id-label.yaml
+@@ -0,0 +1,5 @@
++---
++- op: add
++  path: /spec/prometheusConfig/externalLabels/source_cluster
++  value:
++    stone-stg-host
+diff --git a/components/monitoring/prometheus/staging/stone-stg-host/kustomization.yaml b/components/monitoring/prometheus/staging/stone-stg-host/kustomization.yaml
+new file mode 100644
+index 00000000..37731611
+--- /dev/null
++++ b/components/monitoring/prometheus/staging/stone-stg-host/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++
++patches:
++  - path: cluster-id-label.yaml
++    target:
++      name: appstudio-federate-ms
++      kind: MonitoringStack
++      group: monitoring.rhobs
++      version: v1alpha1
+diff --git a/components/monitoring/prometheus/staging/stone-stg-m01/cluster-id-label.yaml b/components/monitoring/prometheus/staging/stone-stg-m01/cluster-id-label.yaml
+new file mode 100644
+index 00000000..50be69bd
+--- /dev/null
++++ b/components/monitoring/prometheus/staging/stone-stg-m01/cluster-id-label.yaml
+@@ -0,0 +1,5 @@
++---
++- op: add
++  path: /spec/prometheusConfig/externalLabels/source_cluster
++  value:
++    stone-stg-m01
+diff --git a/components/monitoring/prometheus/staging/stone-stg-m01/kustomization.yaml b/components/monitoring/prometheus/staging/stone-stg-m01/kustomization.yaml
+new file mode 100644
+index 00000000..37731611
+--- /dev/null
++++ b/components/monitoring/prometheus/staging/stone-stg-m01/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++
++patches:
++  - path: cluster-id-label.yaml
++    target:
++      name: appstudio-federate-ms
++      kind: MonitoringStack
++      group: monitoring.rhobs
++      version: v1alpha1
+diff --git a/components/monitoring/prometheus/staging/stone-stg-rh01/cluster-id-label.yaml b/components/monitoring/prometheus/staging/stone-stg-rh01/cluster-id-label.yaml
+new file mode 100644
+index 00000000..9605b9b9
+--- /dev/null
++++ b/components/monitoring/prometheus/staging/stone-stg-rh01/cluster-id-label.yaml
+@@ -0,0 +1,5 @@
++---
++- op: add
++  path: /spec/prometheusConfig/externalLabels/source_cluster
++  value:
++    stone-stg-rh01
+diff --git a/components/monitoring/prometheus/staging/stone-stg-rh01/kustomization.yaml b/components/monitoring/prometheus/staging/stone-stg-rh01/kustomization.yaml
+new file mode 100644
+index 00000000..37731611
+--- /dev/null
++++ b/components/monitoring/prometheus/staging/stone-stg-rh01/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++
++patches:
++  - path: cluster-id-label.yaml
++    target:
++      name: appstudio-federate-ms
++      kind: MonitoringStack
++      group: monitoring.rhobs
++      version: v1alpha1
