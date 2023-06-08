@@ -1,0 +1,18 @@
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index cc415fbc..727394cd 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -57,6 +57,13 @@ spec:
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
++metadata:
++  name: hacbs-test
++spec:
++  url: "https://github.com/redhat-appstudio/hacbs-test"
++---
++apiVersion: pipelinesascode.tekton.dev/v1alpha1
++kind: Repository
+ metadata:
+   name: release-service
+ spec:

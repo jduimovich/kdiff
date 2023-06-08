@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d376bb4e/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-f392f21b/staging/components/tekton-ci/staging/kustomize.out.yaml
+241,249d240
+<   name: hacbs-test
+< spec:
+<   url: https://github.com/redhat-appstudio/hacbs-test
+< ---
+< apiVersion: pipelinesascode.tekton.dev/v1alpha1
+< kind: Repository
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
