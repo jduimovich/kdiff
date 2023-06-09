@@ -1,0 +1,19 @@
+diff --git a/components/monitoring/logging/staging/kustomization.yaml b/components/monitoring/logging/staging/kustomization.yaml
+index 264cfd65..f0114934 100644
+--- a/components/monitoring/logging/staging/kustomization.yaml
++++ b/components/monitoring/logging/staging/kustomization.yaml
+@@ -18,7 +18,7 @@ patches:
+     patch: |
+       - op: replace
+         path: /spec/dataFrom/0/extract/key
+-        value: production/monitoring/logging/fluentd/splunk-forwarder-rhtap-staging-application
++        value: staging/monitoring/logging/fluentd/splunk-forwarder-rhtap-staging-application
+   - target:
+       group: external-secrets.io
+       version: v1beta1
+@@ -27,4 +27,4 @@ patches:
+     patch: |
+       - op: replace
+         path: /spec/dataFrom/0/extract/key
+-        value: production/monitoring/logging/fluentd/splunk-forwarder-rhtap-staging-audit
++        value: staging/monitoring/logging/fluentd/splunk-forwarder-rhtap-staging-audit
