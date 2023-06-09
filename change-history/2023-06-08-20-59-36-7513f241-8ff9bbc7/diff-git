@@ -1,0 +1,60 @@
+diff --git a/components/has/OWNERS b/components/has/OWNERS
+index d9f9fff3..9eb9055a 100644
+--- a/components/has/OWNERS
++++ b/components/has/OWNERS
+@@ -1,16 +1,21 @@
+ # See the OWNERS docs: https://go.k8s.io/owners
+ 
+ approvers:
++- elsony
+ - johnmcollier
+-- yangcao77
+-- maysunfaisal
+ - kim-tsao
+-- elsony
+-
++- maysunfaisal
++- michael-valdron
++- mike-hoang
++- thepetk
++- yangcao77
+ 
+ reviewers:
++- elsony
+ - johnmcollier
+-- yangcao77
+-- maysunfaisal
+ - kim-tsao
+-- elsony
++- maysunfaisal
++- michael-valdron
++- mike-hoang
++- thepetk
++- yangcao77
+diff --git a/components/monitoring/grafana/base/has/OWNERS b/components/monitoring/grafana/base/has/OWNERS
+new file mode 100644
+index 00000000..9eb9055a
+--- /dev/null
++++ b/components/monitoring/grafana/base/has/OWNERS
+@@ -0,0 +1,21 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- elsony
++- johnmcollier
++- kim-tsao
++- maysunfaisal
++- michael-valdron
++- mike-hoang
++- thepetk
++- yangcao77
++
++reviewers:
++- elsony
++- johnmcollier
++- kim-tsao
++- maysunfaisal
++- michael-valdron
++- mike-hoang
++- thepetk
++- yangcao77
