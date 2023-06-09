@@ -1,0 +1,48 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-00d4d627/staging/components/jvm-build-service/kustomize.out.yaml ./kustomized-cache/commit-30b70ff4/staging/components/jvm-build-service/kustomize.out.yaml
+586,600d585
+<               imageRegistry:
+<                 properties:
+<                   host:
+<                     type: string
+<                   insecure:
+<                     type: boolean
+<                   owner:
+<                     type: string
+<                   port:
+<                     type: string
+<                   prependTag:
+<                     type: string
+<                   repository:
+<                     type: string
+<                 type: object
+659,660d643
+<               digest:
+<                 type: string
+919,926d901
+<   - update
+<   - patch
+<   - delete
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+928d902
+<   - create
+1186,1187c1160,1161
+<           value: c09832a13714feb4df1aac650aec248c8f7373ed
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:c09832a13714feb4df1aac650aec248c8f7373ed
+---
+>           value: e3a3da514ff44636f435c23ae54e920efd3febbe
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:e3a3da514ff44636f435c23ae54e920efd3febbe
+1200,1203d1173
+<         volumeMounts:
+<         - mountPath: /workspace
+<           name: quaytoken
+<           readOnly: true
+1205,1209d1174
+<       volumes:
+<       - name: quaytoken
+<         secret:
+<           optional: true
+<           secretName: quaytoken

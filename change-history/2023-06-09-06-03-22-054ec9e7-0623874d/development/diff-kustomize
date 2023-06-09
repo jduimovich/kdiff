@@ -1,0 +1,45 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0623874d/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-054ec9e7/development/components/pipeline-service/development/kustomize.out.yaml
+1777c1777
+<     LOGS_BUFFER_SIZE=5242880
+---
+>     LOGS_BUFFER_SIZE=32768
+2123c2123
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:450708aa46088d8b7e9e1915b8489ccbf8dbe47f
+---
+>       - image: quay.io/redhat-appstudio/user-workload:9ff3255f3ca2b4a562be2d5f43f8dff2f7846bb1
+2523,2530c2523
+<         image: quay.io/redhat-appstudio/tekton-results-api:4e0f90b46c4f6709ea768dd77d7d58651dbf0bec
+<         livenessProbe:
+<           httpGet:
+<             path: /healthz
+<             port: 8080
+<             scheme: HTTPS
+<           initialDelaySeconds: 5
+<           periodSeconds: 10
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:d384e7fec22bcd1b2c3e108a68cb32da4d4e6020
+2532,2538d2524
+<         readinessProbe:
+<           httpGet:
+<             path: /healthz
+<             port: 8080
+<             scheme: HTTPS
+<           initialDelaySeconds: 5
+<           periodSeconds: 10
+2549,2556d2534
+<         startupProbe:
+<           failureThreshold: 10
+<           httpGet:
+<             path: /healthz
+<             port: 8080
+<             scheme: HTTPS
+<           initialDelaySeconds: 5
+<           periodSeconds: 10
+2632c2610
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:4e0f90b46c4f6709ea768dd77d7d58651dbf0bec
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:d384e7fec22bcd1b2c3e108a68cb32da4d4e6020
+2708c2686
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:4e0f90b46c4f6709ea768dd77d7d58651dbf0bec
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:d384e7fec22bcd1b2c3e108a68cb32da4d4e6020
