@@ -1,0 +1,21 @@
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 294a7591..efc9d0d4 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -24,11 +24,11 @@ patches:
+       kind: ConfigMap
+       name: pipelines-as-code
+       namespace: pipelines-as-code
+-  - path: scale-down-exporter.yaml
+-    target:
+-      kind: Deployment
+-      name: pipeline-metrics-exporter
+-      namespace: openshift-pipelines
++#  - path: scale-down-exporter.yaml
++#    target:
++#      kind: Deployment
++#      name: pipeline-metrics-exporter
++#      namespace: openshift-pipelines
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
