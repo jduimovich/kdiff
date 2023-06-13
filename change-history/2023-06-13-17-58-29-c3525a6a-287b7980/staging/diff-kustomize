@@ -1,0 +1,230 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-287b7980/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-c3525a6a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+447a448
+>   - configmaps
+1938a1940,1948
+>   name: chains-ca-cert
+>   namespace: tekton-chains
+> type: Opaque
+> ---
+> apiVersion: v1
+> kind: Secret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2105c2115
+<             memory: 512Mi
+---
+>             memory: 256Mi
+2345c2355
+<     argocd.argoproj.io/sync-wave: "2"
+---
+>     argocd.argoproj.io/sync-wave: "3"
+2396a2407,2408
+>         - mountPath: /etc/ssl/certs
+>           name: chains-ca-cert
+2402a2415,2417
+>       - name: chains-ca-cert
+>         secret:
+>           secretName: chains-ca-cert
+2657a2673,2721
+>     argocd.argoproj.io/sync-wave: "2"
+>   name: chains-certs-configuration
+>   namespace: tekton-chains
+> spec:
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       containers:
+>       - command:
+>         - /bin/bash
+>         - -c
+>         - |
+>           echo "Waiting for secret and configmaps to be present"
+>           until oc get secret chains-ca-cert -n tekton-chains &&\
+>             oc get cm config-trusted-cabundle -n tekton-chains &&\
+>             oc get cm kube-root-ca.crt -n tekton-chains
+>           do
+>             sleep 5;
+>           done
+> 
+>           # Update the chains-ca-cert secret with cluster certs, trusted-ca's and ingress cert.
+>           # The configmaps are injected by the Cluster Network Operator.
+>           # Once https://github.com/tektoncd/operator/pull/648 changes are released, we can remove/review this hook.
+>           echo "Build the certificate and replace secret/chains-ca-cert"
+>           TRUSTED_CA=$(mktemp)
+>           KUBE_CA=$(mktemp)
+>           INGRESS_CA=$(mktemp)
+>           oc get cm config-trusted-cabundle -n tekton-chains -o jsonpath="{.data.ca-bundle\.crt}" > $TRUSTED_CA
+>           oc get cm kube-root-ca.crt -n tekton-chains -o jsonpath="{.data.ca\.crt}" > $KUBE_CA
+>           oc get secret router-ca -n openshift-ingress-operator -o jsonpath="{.data.tls\.crt}" | base64 -d > $INGRESS_CA
+>           SERVICE_CA=/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt
+>           cat $TRUSTED_CA $KUBE_CA $INGRESS_CA $SERVICE_CA > /tmp/ca-certificates.crt
+>           oc create secret generic chains-ca-cert --from-file=/tmp/ca-certificates.crt --dry-run=client -o yaml -n tekton-chains | oc apply --force-conflicts --server-side=true -f -
+>         image: registry.redhat.io/openshift4/ose-cli:v4.12@sha256:9f0cdc00b1b1a3c17411e50653253b9f6bb5329ea4fb82ad983790a6dbf2d9ad
+>         imagePullPolicy: Always
+>         name: patch-chains-certs
+>       dnsPolicy: ClusterFirst
+>       restartPolicy: OnFailure
+>       serviceAccount: chains-secrets-admin
+>       serviceAccountName: chains-secrets-admin
+>       terminationGracePeriodSeconds: 30
+> ---
+> apiVersion: batch/v1
+> kind: Job
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2696a2761,2796
+>       dnsPolicy: ClusterFirst
+>       restartPolicy: OnFailure
+>       serviceAccount: chains-secrets-admin
+>       serviceAccountName: chains-secrets-admin
+>       terminationGracePeriodSeconds: 30
+> ---
+> apiVersion: batch/v1
+> kind: Job
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   name: tekton-chains-trusted-cabundle
+>   namespace: tekton-chains
+> spec:
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       containers:
+>       - command:
+>         - /bin/bash
+>         - -c
+>         - |
+>           if oc get cm config-trusted-cabundle -n tekton-chains; then
+>             echo "ConfigMap config-trusted-cabundle found"
+>           else
+>             echo "Create ConfigMap config-trusted-cabundle"
+>             oc create configmap config-trusted-cabundle --namespace tekton-chains
+>             oc label configmap config-trusted-cabundle config.openshift.io/inject-trusted-cabundle="true"
+>           fi
+>           echo "Done"
+>         image: registry.redhat.io/openshift4/ose-cli:v4.12@sha256:9f0cdc00b1b1a3c17411e50653253b9f6bb5329ea4fb82ad983790a6dbf2d9ad
+>         imagePullPolicy: Always
+>         name: config-trusted-cabundle-generation
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-287b7980/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-c3525a6a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+447a448
+>   - configmaps
+1938a1940,1948
+>   name: chains-ca-cert
+>   namespace: tekton-chains
+> type: Opaque
+> ---
+> apiVersion: v1
+> kind: Secret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2105c2115
+<             memory: 512Mi
+---
+>             memory: 256Mi
+2345c2355
+<     argocd.argoproj.io/sync-wave: "2"
+---
+>     argocd.argoproj.io/sync-wave: "3"
+2396a2407,2408
+>         - mountPath: /etc/ssl/certs
+>           name: chains-ca-cert
+2402a2415,2417
+>       - name: chains-ca-cert
+>         secret:
+>           secretName: chains-ca-cert
+2657a2673,2721
+>     argocd.argoproj.io/sync-wave: "2"
+>   name: chains-certs-configuration
+>   namespace: tekton-chains
+> spec:
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       containers:
+>       - command:
+>         - /bin/bash
+>         - -c
+>         - |
+>           echo "Waiting for secret and configmaps to be present"
+>           until oc get secret chains-ca-cert -n tekton-chains &&\
+>             oc get cm config-trusted-cabundle -n tekton-chains &&\
+>             oc get cm kube-root-ca.crt -n tekton-chains
+>           do
+>             sleep 5;
+>           done
+> 
+>           # Update the chains-ca-cert secret with cluster certs, trusted-ca's and ingress cert.
+>           # The configmaps are injected by the Cluster Network Operator.
+>           # Once https://github.com/tektoncd/operator/pull/648 changes are released, we can remove/review this hook.
+>           echo "Build the certificate and replace secret/chains-ca-cert"
+>           TRUSTED_CA=$(mktemp)
+>           KUBE_CA=$(mktemp)
+>           INGRESS_CA=$(mktemp)
+>           oc get cm config-trusted-cabundle -n tekton-chains -o jsonpath="{.data.ca-bundle\.crt}" > $TRUSTED_CA
+>           oc get cm kube-root-ca.crt -n tekton-chains -o jsonpath="{.data.ca\.crt}" > $KUBE_CA
+>           oc get secret router-ca -n openshift-ingress-operator -o jsonpath="{.data.tls\.crt}" | base64 -d > $INGRESS_CA
+>           SERVICE_CA=/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt
+>           cat $TRUSTED_CA $KUBE_CA $INGRESS_CA $SERVICE_CA > /tmp/ca-certificates.crt
+>           oc create secret generic chains-ca-cert --from-file=/tmp/ca-certificates.crt --dry-run=client -o yaml -n tekton-chains | oc apply --force-conflicts --server-side=true -f -
+>         image: registry.redhat.io/openshift4/ose-cli:v4.12@sha256:9f0cdc00b1b1a3c17411e50653253b9f6bb5329ea4fb82ad983790a6dbf2d9ad
+>         imagePullPolicy: Always
+>         name: patch-chains-certs
+>       dnsPolicy: ClusterFirst
+>       restartPolicy: OnFailure
+>       serviceAccount: chains-secrets-admin
+>       serviceAccountName: chains-secrets-admin
+>       terminationGracePeriodSeconds: 30
+> ---
+> apiVersion: batch/v1
+> kind: Job
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2696a2761,2796
+>       dnsPolicy: ClusterFirst
+>       restartPolicy: OnFailure
+>       serviceAccount: chains-secrets-admin
+>       serviceAccountName: chains-secrets-admin
+>       terminationGracePeriodSeconds: 30
+> ---
+> apiVersion: batch/v1
+> kind: Job
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   name: tekton-chains-trusted-cabundle
+>   namespace: tekton-chains
+> spec:
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       containers:
+>       - command:
+>         - /bin/bash
+>         - -c
+>         - |
+>           if oc get cm config-trusted-cabundle -n tekton-chains; then
+>             echo "ConfigMap config-trusted-cabundle found"
+>           else
+>             echo "Create ConfigMap config-trusted-cabundle"
+>             oc create configmap config-trusted-cabundle --namespace tekton-chains
+>             oc label configmap config-trusted-cabundle config.openshift.io/inject-trusted-cabundle="true"
+>           fi
+>           echo "Done"
+>         image: registry.redhat.io/openshift4/ose-cli:v4.12@sha256:9f0cdc00b1b1a3c17411e50653253b9f6bb5329ea4fb82ad983790a6dbf2d9ad
+>         imagePullPolicy: Always
+>         name: config-trusted-cabundle-generation

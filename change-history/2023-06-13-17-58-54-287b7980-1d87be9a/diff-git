@@ -1,0 +1,198 @@
+diff --git a/components/has/base/allow-argocd-to-manage.yaml b/components/has/base/argocd-roles/allow-argocd-to-manage.yaml
+similarity index 100%
+rename from components/has/base/allow-argocd-to-manage.yaml
+rename to components/has/base/argocd-roles/allow-argocd-to-manage.yaml
+diff --git a/components/has/base/argocd-permissions.yaml b/components/has/base/argocd-roles/argocd-permissions.yaml
+similarity index 100%
+rename from components/has/base/argocd-permissions.yaml
+rename to components/has/base/argocd-roles/argocd-permissions.yaml
+diff --git a/components/has/base/argocd-roles/kustomization.yaml b/components/has/base/argocd-roles/kustomization.yaml
+new file mode 100644
+index 00000000..ae322189
+--- /dev/null
++++ b/components/has/base/argocd-roles/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - allow-argocd-to-manage.yaml
++  - argocd-permissions.yaml
+\ No newline at end of file
+diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
+index ad2518c9..00ef11c8 100644
+--- a/components/has/base/kustomization.yaml
++++ b/components/has/base/kustomization.yaml
+@@ -1,24 +1,24 @@
+-resources:
+-- allow-argocd-to-manage.yaml
+-- argocd-permissions.yaml
+-- https://github.com/redhat-appstudio/application-service/config/default?ref=7eebefbff59b5937f0036b5158fcc9cf3221f06a
+-
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++resources:
++  - ./argocd-roles
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=7eebefbff59b5937f0036b5158fcc9cf3221f06a
++
++
++components:
++  - ../k-components/manager-resources
++  - ../k-components/enable-profiling
+ 
+ images:
+-- name: quay.io/redhat-appstudio/application-service
+-  newName: quay.io/redhat-appstudio/application-service
+-  newTag: 7eebefbff59b5937f0036b5158fcc9cf3221f06a
++  - name: quay.io/redhat-appstudio/application-service
++    newName: quay.io/redhat-appstudio/application-service
++    newTag: 7eebefbff59b5937f0036b5158fcc9cf3221f06a
+ 
+ configMapGenerator:
+-- literals:
+-  - GITHUB_ORG=""
+-  name: github-config
+-  behavior: replace
++  - literals:
++      - GITHUB_ORG=""
++    name: github-config
++    behavior: replace
+ 
+-namespace: application-service
+ 
+-patches:
+-  - ./manager_resources_patch.yaml
+-  - ./pprof_patch.yaml
++namespace: application-service
+\ No newline at end of file
+diff --git a/components/has/development/kustomization.yaml b/components/has/development/kustomization.yaml
+index 27bb5cb0..5e01c04a 100644
+--- a/components/has/development/kustomization.yaml
++++ b/components/has/development/kustomization.yaml
+@@ -2,3 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
++
++namespace: application-service
+\ No newline at end of file
+diff --git a/components/has/k-components/enable-profiling/kustomization.yaml b/components/has/k-components/enable-profiling/kustomization.yaml
+new file mode 100644
+index 00000000..23982f87
+--- /dev/null
++++ b/components/has/k-components/enable-profiling/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++
++patches:
++  - path: ./pprof_patch.yaml
+\ No newline at end of file
+diff --git a/components/has/base/pprof_patch.yaml b/components/has/k-components/enable-profiling/pprof_patch.yaml
+similarity index 100%
+rename from components/has/base/pprof_patch.yaml
+rename to components/has/k-components/enable-profiling/pprof_patch.yaml
+diff --git a/components/has/k-components/manager-resources/kustomization.yaml b/components/has/k-components/manager-resources/kustomization.yaml
+new file mode 100644
+index 00000000..1f36c27b
+--- /dev/null
++++ b/components/has/k-components/manager-resources/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++
++patches:
++  - path: ./manager_resources_patch.yaml
+\ No newline at end of file
+diff --git a/components/has/base/manager_resources_patch.yaml b/components/has/k-components/manager-resources/manager_resources_patch.yaml
+similarity index 100%
+rename from components/has/base/manager_resources_patch.yaml
+rename to components/has/k-components/manager-resources/manager_resources_patch.yaml
+diff --git a/components/has/k-components/replicas-patch/kustomization.yaml b/components/has/k-components/replicas-patch/kustomization.yaml
+new file mode 100644
+index 00000000..570fc00d
+--- /dev/null
++++ b/components/has/k-components/replicas-patch/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++
++patches:
++  - path: ./replicas_patch.yaml
+\ No newline at end of file
+diff --git a/components/has/production/replicas_patch.yaml b/components/has/k-components/replicas-patch/replicas_patch.yaml
+similarity index 100%
+rename from components/has/production/replicas_patch.yaml
+rename to components/has/k-components/replicas-patch/replicas_patch.yaml
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index 2dcad443..5e9a4127 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -1,10 +1,21 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
++  - ../base/argocd-roles
+   - ../base/external-secrets
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=7eebefbff59b5937f0036b5158fcc9cf3221f06a
+   - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=7eebefbff59b5937f0036b5158fcc9cf3221f06a
+ 
++components:
++  - ../k-components/manager-resources
++  - ../k-components/enable-profiling
++  - ../k-components/replicas-patch
++
++images:
++  - name: quay.io/redhat-appstudio/application-service
++    newName: quay.io/redhat-appstudio/application-service
++    newTag: 7eebefbff59b5937f0036b5158fcc9cf3221f06a
++
+ configMapGenerator:
+ - literals:
+   - GITHUB_ORG="redhat-appstudio-appdata"
+@@ -18,4 +29,4 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
+-  - path: ./replicas_patch.yaml
++namespace: application-service
+\ No newline at end of file
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index 5f754d41..6ff09bc3 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -5,11 +5,14 @@ resources:
+   - ../base/external-secrets
+   - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=7eebefbff59b5937f0036b5158fcc9cf3221f06a
+ 
++
++components:
++  - ../k-components/replicas-patch
++
+ configMapGenerator:
+-- literals:
+-  - GITHUB_ORG="redhat-appstudio-appdata-staging"
+-  name: github-config
+-  behavior: replace
++  - literals:
++      - GITHUB_ORG="redhat-appstudio-appdata-staging"
++    name: github-config
++    behavior: replace
+ 
+-patches:
+-- path: ./replicas_patch.yaml
++namespace: application-service
+diff --git a/components/has/staging/replicas_patch.yaml b/components/has/staging/replicas_patch.yaml
+deleted file mode 100644
+index 9c46ac36..00000000
+--- a/components/has/staging/replicas_patch.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: controller-manager
+-  namespace: system
+-spec:
+-  replicas: 3
