@@ -1,0 +1,22 @@
+diff --git a/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml b/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml
+index b9d9270f..1b40ec7b 100644
+--- a/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml
++++ b/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml
+@@ -45,7 +45,7 @@ spec:
+   endpoints:
+   - path: /metrics
+     port: prometheus
+-    scheme: https
++    scheme: http
+     bearerTokenSecret:
+       name: "metrics-reader"
+       key: token
+@@ -64,7 +64,7 @@ spec:
+   endpoints:
+   - path: /metrics
+     port: metrics
+-    scheme: https
++    scheme: http
+     bearerTokenSecret:
+       name: "metrics-reader"
+       key: token

@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3a9d95aa/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-1e0eeac5/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+2911c2911
+<     scheme: http
+---
+>     scheme: https
+2932c2932
+<     scheme: http
+---
+>     scheme: https
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3a9d95aa/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-1e0eeac5/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+2911c2911
+<     scheme: http
+---
+>     scheme: https
+2932c2932
+<     scheme: http
+---
+>     scheme: https
