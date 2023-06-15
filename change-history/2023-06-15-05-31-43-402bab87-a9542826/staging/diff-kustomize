@@ -1,0 +1,30 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a9542826/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-402bab87/staging/app-of-apps-staging.yaml
+664,677c664,667
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: staging
+<             sourceRoot: components/jvm-build-service
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+---
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+687c677
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+---
+>         path: components/jvm-build-service
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a9542826/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-402bab87/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+22d21
+<     - jvm-build-service
+Only in ./kustomized-cache/commit-402bab87/staging/components/jvm-build-service: kustomize.out.yaml
+Only in ./kustomized-cache/commit-a9542826/staging/components/jvm-build-service: staging

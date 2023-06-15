@@ -1,0 +1,231 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/jvm-build-service/jvm-build-service.yaml b/argo-cd-apps/base/member/infra-deployments/jvm-build-service/jvm-build-service.yaml
+index 31082a79..1f93091c 100644
+--- a/argo-cd-apps/base/member/infra-deployments/jvm-build-service/jvm-build-service.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/jvm-build-service/jvm-build-service.yaml
+@@ -4,14 +4,24 @@ metadata:
+   name: jvm-build-service
+ spec:
+   generators:
+-    - clusters: {}
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/jvm-build-service
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
+   template:
+     metadata:
+       name: jvm-build-service-{{nameNormalized}}
+     spec:
+       project: default
+       source:
+-        path: components/jvm-build-service
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
+diff --git a/argo-cd-apps/base/member/infra-deployments/jvm-build-service/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/jvm-build-service/kustomization.yaml
+index 8a123ef3..9951d81d 100644
+--- a/argo-cd-apps/base/member/infra-deployments/jvm-build-service/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/jvm-build-service/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ resources:
+ - jvm-build-service.yaml
+ components:
+-  - ../../../../k-components/deploy-to-member-cluster
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index e8a99930..ce8fef80 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -56,6 +56,11 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: image-controller
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: jvm-build-service
+   - path: development-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 669baac5..8dff8dcd 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -39,6 +39,7 @@ spec:
+         - build-service
+         - tekton-ci
+         - image-controller
++        - jvm-build-service
+         - openshift-logging
+         - sprayproxy
+         - appstudio-monitoring
+diff --git a/components/jvm-build-service/allow-argocd-to-manage.yaml b/components/jvm-build-service/base/allow-argocd-to-manage.yaml
+similarity index 100%
+rename from components/jvm-build-service/allow-argocd-to-manage.yaml
+rename to components/jvm-build-service/base/allow-argocd-to-manage.yaml
+diff --git a/components/jvm-build-service/base/external-secrets/kustomization.yaml b/components/jvm-build-service/base/external-secrets/kustomization.yaml
+new file mode 100644
+index 00000000..204f0861
+--- /dev/null
++++ b/components/jvm-build-service/base/external-secrets/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- quaytoken.yaml
++namespace: jvm-build-service
+diff --git a/components/jvm-build-service/base/external-secrets/quaytoken.yaml b/components/jvm-build-service/base/external-secrets/quaytoken.yaml
+new file mode 100644
+index 00000000..f63da8dc
+--- /dev/null
++++ b/components/jvm-build-service/base/external-secrets/quaytoken.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: quaytoken
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/build/image-controller #use the same secret as the image controller for now
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: quaytoken
+diff --git a/components/jvm-build-service/kustomization.yaml b/components/jvm-build-service/base/kustomization.yaml
+similarity index 80%
+rename from components/jvm-build-service/kustomization.yaml
+rename to components/jvm-build-service/base/kustomization.yaml
+index 23d8537c..e1f82f32 100644
+--- a/components/jvm-build-service/kustomization.yaml
++++ b/components/jvm-build-service/base/kustomization.yaml
+@@ -1,8 +1,8 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=c09832a13714feb4df1aac650aec248c8f7373ed
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=c09832a13714feb4df1aac650aec248c8f7373ed
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=c09832a13714feb4df1aac650aec248c8f7373ed
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=8da5d744ab70ece7dd993c9e1ff113db51d18470
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=8da5d744ab70ece7dd993c9e1ff113db51d18470
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=8da5d744ab70ece7dd993c9e1ff113db51d18470
+ - monitoring.yaml
+ 
+ # Skip applying the jvm-build-service operands (SystemConfig) while the jvm-build-service operator is being installed.
+@@ -16,7 +16,7 @@ namespace: jvm-build-service
+ images:
+ - name: hacbs-jvm-operator
+   newName: quay.io/redhat-appstudio/hacbs-jvm-controller
+-  newTag: c09832a13714feb4df1aac650aec248c8f7373ed
++  newTag: 8da5d744ab70ece7dd993c9e1ff113db51d18470
+ 
+ patches:
+ - path: ./operator_env_patch.yaml
+diff --git a/components/jvm-build-service/monitoring.yaml b/components/jvm-build-service/base/monitoring.yaml
+similarity index 100%
+rename from components/jvm-build-service/monitoring.yaml
+rename to components/jvm-build-service/base/monitoring.yaml
+diff --git a/components/jvm-build-service/operator_env_patch.yaml b/components/jvm-build-service/base/operator_env_patch.yaml
+similarity index 63%
+rename from components/jvm-build-service/operator_env_patch.yaml
+rename to components/jvm-build-service/base/operator_env_patch.yaml
+index 2efdcc97..5fa2f642 100644
+--- a/components/jvm-build-service/operator_env_patch.yaml
++++ b/components/jvm-build-service/base/operator_env_patch.yaml
+@@ -3,4 +3,4 @@
+   path: /spec/template/spec/containers/0/env
+   value:
+   - name: IMAGE_TAG
+-    value: c09832a13714feb4df1aac650aec248c8f7373ed
+\ No newline at end of file
++    value: 8da5d744ab70ece7dd993c9e1ff113db51d18470
+\ No newline at end of file
+diff --git a/components/jvm-build-service/development/kustomization.yaml b/components/jvm-build-service/development/kustomization.yaml
+new file mode 100644
+index 00000000..bdf7ce4f
+--- /dev/null
++++ b/components/jvm-build-service/development/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
+diff --git a/components/jvm-build-service/production/kustomization.yaml b/components/jvm-build-service/production/kustomization.yaml
+new file mode 100644
+index 00000000..81fb17a5
+--- /dev/null
++++ b/components/jvm-build-service/production/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- ../base/external-secrets
++patches:
++  - path: quaytoken.yaml
++    target:
++      name: quaytoken
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
+diff --git a/components/jvm-build-service/production/quaytoken.yaml b/components/jvm-build-service/production/quaytoken.yaml
+new file mode 100644
+index 00000000..bdeb524f
+--- /dev/null
++++ b/components/jvm-build-service/production/quaytoken.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/build/image-controller
+diff --git a/components/jvm-build-service/staging/kustomization.yaml b/components/jvm-build-service/staging/kustomization.yaml
+new file mode 100644
+index 00000000..479bc600
+--- /dev/null
++++ b/components/jvm-build-service/staging/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- ../base/external-secrets
+diff --git a/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml b/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
+index 7ee87cac..40b0238a 100644
+--- a/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=c09832a13714feb4df1aac650aec248c8f7373ed
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=8da5d744ab70ece7dd993c9e1ff113db51d18470
+ - dashboard.yaml
+diff --git a/hack/secret-creator/create-image-controller-secret.sh b/hack/secret-creator/create-image-controller-secret.sh
+index 0141e86f..5383a634 100755
+--- a/hack/secret-creator/create-image-controller-secret.sh
++++ b/hack/secret-creator/create-image-controller-secret.sh
+@@ -7,6 +7,10 @@ main() {
+     echo "Creating a secret with a token for Image Controller"
+     oc create namespace image-controller --dry-run=client -o yaml | oc apply -f -
+     oc create -n image-controller secret generic quaytoken --from-literal=organization="$organization" --from-literal=quaytoken="$quay_token" --dry-run=client -o yaml | oc apply -f -
++
++    echo "Creating a secret with a token for JVM Build Service"
++    oc create namespace jvm-build-service --dry-run=client -o yaml | oc apply -f -
++    oc create -n jvm-build-service secret generic quaytoken --from-literal=organization="$organization" --from-literal=quaytoken="$quay_token" --dry-run=client -o yaml | oc apply -f -
+ }
+ 
+ if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then

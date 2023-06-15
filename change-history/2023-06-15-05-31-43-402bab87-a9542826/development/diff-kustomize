@@ -1,0 +1,27 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a9542826/development/app-of-apps-development.yaml ./kustomized-cache/commit-402bab87/development/app-of-apps-development.yaml
+567,580c567,570
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: development
+<             sourceRoot: components/jvm-build-service
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+---
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+590c580
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+---
+>         path: components/jvm-build-service
+Only in ./kustomized-cache/commit-a9542826/development/components/jvm-build-service: development
+Only in ./kustomized-cache/commit-402bab87/development/components/jvm-build-service: kustomize.out.yaml
