@@ -1,0 +1,12 @@
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index afd15e51..55db8f35 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -11,6 +11,7 @@ resources:
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=12862f674f40f65cf94d48691e3fe1a2d3bf95a6
+   - ../../base/external-secrets
+   - ../../base/testing
++  - ../../base/servicemonitors
+ 
+ patches:
+   - path: pipelines-as-code-secret-path.yaml
