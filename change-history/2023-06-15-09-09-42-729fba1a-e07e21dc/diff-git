@@ -1,0 +1,55 @@
+diff --git a/components/monitoring/prometheus/base/servicemonitors/integration-service.yaml b/components/monitoring/prometheus/base/servicemonitors/integration-service.yaml
+deleted file mode 100644
+index f0787c16..00000000
+--- a/components/monitoring/prometheus/base/servicemonitors/integration-service.yaml
++++ /dev/null
+@@ -1,37 +0,0 @@
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  labels:
+-    control-plane: controller-manager
+-    prometheus: appstudio-workload
+-  name: integration-service
+-  namespace: appstudio-workload-monitoring
+-spec:
+-  endpoints:
+-  - path: /metrics
+-    port: https
+-    scheme: https
+-    bearerTokenSecret:
+-      name: "prometheus-k8s-token-xhrjb"
+-      key: token
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  namespaceSelector:
+-    matchNames:
+-    - integration-service
+-  selector:
+-    matchLabels:
+-      control-plane: controller-manager
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-integration-service-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: integration-service-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: prometheus-k8s
+-  namespace: appstudio-workload-monitoring
+diff --git a/components/monitoring/prometheus/base/servicemonitors/kustomization.yaml b/components/monitoring/prometheus/base/servicemonitors/kustomization.yaml
+index 33933343..5f2d16d4 100644
+--- a/components/monitoring/prometheus/base/servicemonitors/kustomization.yaml
++++ b/components/monitoring/prometheus/base/servicemonitors/kustomization.yaml
+@@ -4,7 +4,6 @@ kind: Kustomization
+ resources:
+ - dora-service.yaml
+ - gitops-service.yaml
+-- integration-service.yaml
+ - pipeline-service.yaml
+ - release-service.yaml
+ - sandbox-host-operator.yaml
