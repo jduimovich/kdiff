@@ -1,0 +1,53 @@
+diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
+index dc14b827..bf8e4e1b 100644
+--- a/components/has/base/kustomization.yaml
++++ b/components/has/base/kustomization.yaml
+@@ -19,6 +19,10 @@ configMapGenerator:
+       - GITHUB_ORG=""
+     name: github-config
+     behavior: replace
++  - literals:
++      - ENVIRONMENT="development"
++    name: feature-flag-config
++    behavior: replace
+ 
+ 
+ namespace: application-service
+\ No newline at end of file
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index 6e6777cb..7e7a6ead 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -17,10 +17,14 @@ images:
+     newTag: 7147e9827cb1faab1ee54bbed7ec0d420647d03c
+ 
+ configMapGenerator:
+-- literals:
+-  - GITHUB_ORG="redhat-appstudio-appdata"
+-  name: github-config
+-  behavior: replace
++  - literals:
++    - GITHUB_ORG="redhat-appstudio-appdata"
++    name: github-config
++    behavior: replace
++  - literals:
++    - ENVIRONMENT="production"
++    name: feature-flag-config
++    behavior: replace
+ 
+ patches:
+   - path: has-github-token-patch.yaml
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index 4610b711..bcdf9212 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -14,5 +14,9 @@ configMapGenerator:
+       - GITHUB_ORG="redhat-appstudio-appdata-staging"
+     name: github-config
+     behavior: replace
++  - literals:
++      - ENVIRONMENT="staging"
++    name: feature-flag-config
++    behavior: replace
+ 
+ namespace: application-service
