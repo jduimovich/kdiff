@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bb17c39a/development/components/has/development/kustomize.out.yaml ./kustomized-cache/commit-ea3e5381/development/components/has/development/kustomize.out.yaml
+566,573d565
+<   ENVIRONMENT: ""
+< kind: ConfigMap
+< metadata:
+<   name: application-service-feature-flag-config
+<   namespace: application-service
+< ---
+< apiVersion: v1
+< data:
+689c681
+<         image: quay.io/redhat-appstudio/application-service:7147e9827cb1faab1ee54bbed7ec0d420647d03c
+---
+>         image: quay.io/redhat-appstudio/application-service:7eebefbff59b5937f0036b5158fcc9cf3221f06a
