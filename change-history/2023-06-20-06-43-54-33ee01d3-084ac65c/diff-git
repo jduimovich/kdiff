@@ -1,0 +1,16 @@
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index acceacae..04cd21d4 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -37,6 +37,11 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: spi
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: remote-secret-controller
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
