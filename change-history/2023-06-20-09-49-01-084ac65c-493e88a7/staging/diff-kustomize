@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-493e88a7/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-084ac65c/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+52d51
+<     - remotesecret
