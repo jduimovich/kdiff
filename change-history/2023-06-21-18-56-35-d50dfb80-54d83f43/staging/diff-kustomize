@@ -1,0 +1,15 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-54d83f43/staging/components/has/staging/kustomize.out.yaml ./kustomized-cache/commit-d50dfb80/staging/components/has/staging/kustomize.out.yaml
+681c681
+<         - entrypoint.sh
+---
+>         - /manager
+717,723c717
+<         - name: ENVIRONMENT
+<           valueFrom:
+<             configMapKeyRef:
+<               key: ENVIRONMENT
+<               name: application-service-feature-flag-config
+<               optional: true
+<         image: quay.io/redhat-appstudio/application-service:9c4666e6b34a42df4b97efd423edab175dc5c1e0
+---
+>         image: quay.io/redhat-appstudio/application-service:7147e9827cb1faab1ee54bbed7ec0d420647d03c
