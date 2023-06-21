@@ -1,0 +1,25 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86857203/development/components/jvm-build-service/development/kustomize.out.yaml ./kustomized-cache/commit-fc1fabbb/development/components/jvm-build-service/development/kustomize.out.yaml
+277,280d276
+<                   allowedDifferences:
+<                     items:
+<                       type: string
+<                     type: array
+342,345d337
+<                     allowedDifferences:
+<                       items:
+<                         type: string
+<                       type: array
+408,411d399
+<                     allowedDifferences:
+<                       items:
+<                         type: string
+<                       type: array
+615,616d602
+<               rebuildsPossible:
+<                 type: boolean
+1200,1201c1186,1187
+<           value: 6158a2c40fc8d2b62bfe6577716aa32cd7523661
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:6158a2c40fc8d2b62bfe6577716aa32cd7523661
+---
+>           value: 840e7767d7b78e5d9223e34dd5172e13e44ee4aa
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:840e7767d7b78e5d9223e34dd5172e13e44ee4aa
