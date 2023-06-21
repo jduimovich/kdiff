@@ -1,0 +1,41 @@
+diff --git a/components/remote-secret-controller/overlays/development/kustomization.yaml b/components/remote-secret-controller/overlays/development/kustomization.yaml
+index 520d6033..cd137fdc 100644
+--- a/components/remote-secret-controller/overlays/development/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=95500047e48a3fbadc269924106b3adebd88e833
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=db472c66fb29caf9cad0e079e71bf1d9f99c45a4
+ 
+ namespace: remotesecret
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: 95500047e48a3fbadc269924106b3adebd88e833
++    newTag: db472c66fb29caf9cad0e079e71bf1d9f99c45a4
+ 
+ patches:
+   - target:
+diff --git a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+index 00a04456..795faf71 100644
+--- a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=95500047e48a3fbadc269924106b3adebd88e833
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=db472c66fb29caf9cad0e079e71bf1d9f99c45a4
+   - aws-credentials-external-secret.yaml
+ 
+ namespace: remotesecret
+@@ -10,5 +10,5 @@ namespace: remotesecret
+ images:
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: 95500047e48a3fbadc269924106b3adebd88e833
++    newTag: db472c66fb29caf9cad0e079e71bf1d9f99c45a4
+ 

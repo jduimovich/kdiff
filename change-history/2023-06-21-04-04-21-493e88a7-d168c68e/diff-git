@@ -1,0 +1,21 @@
+diff --git a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
+index 93dbfe8c..72f7299a 100644
+--- a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
++++ b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
+@@ -2,11 +2,12 @@
+ apiVersion: "logging.openshift.io/v1"
+ kind: "ClusterLogging"
+ metadata:
++  name: "instance"
+   annotations:
++    logging.openshift.io/preview-vector-collector: enabled
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-  name: "instance"
+ spec:
+   collection:
+     logs:
+-      fluentd: {}
+-      type: fluentd
+\ No newline at end of file
++      type: vector
++      vector: {}
