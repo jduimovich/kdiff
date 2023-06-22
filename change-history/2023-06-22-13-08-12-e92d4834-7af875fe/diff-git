@@ -1,0 +1,52 @@
+diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
+index 8a0db6eb..14321b34 100644
+--- a/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
++++ b/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/remotesecret-secrets-manager
++  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/remotesecret-secrets-manager
++  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
+diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-m01/config-patch.json b/components/remote-secret-controller/overlays/staging/stone-stg-m01/config-patch.json
+index 51d3535b..cdd47923 100644
+--- a/components/remote-secret-controller/overlays/staging/stone-stg-m01/config-patch.json
++++ b/components/remote-secret-controller/overlays/staging/stone-stg-m01/config-patch.json
+@@ -2,6 +2,6 @@
+   {
+     "op": "add",
+     "path": "/data/INSTANCEID",
+-    "value": "remotesecret-stage/m01"
++    "value": "spi-stage/rs-m01"
+   }
+ ]
+diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
+index 8a0db6eb..14321b34 100644
+--- a/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
++++ b/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/remotesecret-secrets-manager
++  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/remotesecret-secrets-manager
++  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
+diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-rh01/config-patch.json b/components/remote-secret-controller/overlays/staging/stone-stg-rh01/config-patch.json
+index e4db2ac6..46bfe180 100644
+--- a/components/remote-secret-controller/overlays/staging/stone-stg-rh01/config-patch.json
++++ b/components/remote-secret-controller/overlays/staging/stone-stg-rh01/config-patch.json
+@@ -2,6 +2,6 @@
+   {
+     "op": "add",
+     "path": "/data/INSTANCEID",
+-    "value": "remotesecret-stage/rh01"
++    "value": "spi-stage/rs-rh01"
+   }
+ ]
