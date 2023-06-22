@@ -1,0 +1,31 @@
+diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+index 4da96f46..46346f71 100644
+--- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+@@ -2,18 +2,18 @@
+ - op: replace
+   path: /spec/pipeline/performance/threads-per-controller
+   # default upstream setting
+-  value: 2
++  # value: 2
+   # upstream large scale env recommendation
+-  # value: 32
++  value: 32
+ - op: replace
+   path: /spec/pipeline/performance/kube-api-qps
+   # default upstream setting
+-  value: 5.0
++  # value: 5.0
+   # upstream large scale env recommendation
+-  # value: 50
++  value: 50
+ - op: replace
+   path: /spec/pipeline/performance/kube-api-burst
+   # default upstream setting
+-  value: 10
++  # value: 10
+   # upstream large scale env recommendation
+-  # value: 50
+\ No newline at end of file
++  value: 50
+\ No newline at end of file
