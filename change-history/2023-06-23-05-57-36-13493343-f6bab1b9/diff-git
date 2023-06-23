@@ -1,0 +1,12 @@
+diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/everyone-can-view.yaml
+index 269ac9c2..788c5b00 100644
+--- a/components/authentication/base/everyone-can-view.yaml
++++ b/components/authentication/base/everyone-can-view.yaml
+@@ -23,6 +23,7 @@ rules:
+   - spiaccesschecks
+   - spiaccesstokenbindings
+   - spifilecontentrequests
++  - remotesecrets
+   verbs:
+   - get
+   - list

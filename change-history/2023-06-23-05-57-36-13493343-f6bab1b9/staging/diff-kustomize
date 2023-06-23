@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f6bab1b9/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-13493343/staging/components/authentication/staging/kustomize.out.yaml
+345d344
+<   - remotesecrets
