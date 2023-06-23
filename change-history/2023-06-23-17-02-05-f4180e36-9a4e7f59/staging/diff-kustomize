@@ -1,0 +1,29 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a4e7f59/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-f4180e36/staging/components/authentication/staging/kustomize.out.yaml
+35,47d34
+<   name: has-exec
+<   namespace: application-service
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods/exec
+<   verbs:
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+458,470d444
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: has-exec
+<   namespace: application-service
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: has-exec
+< subjects:
+< - kind: User
+<   name: johnmcollier

@@ -1,0 +1,40 @@
+diff --git a/components/authentication/staging/has-exec.yaml b/components/authentication/staging/has-exec.yaml
+new file mode 100644
+index 00000000..41f5039e
+--- /dev/null
++++ b/components/authentication/staging/has-exec.yaml
+@@ -0,0 +1,25 @@
++kind: Role
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: has-exec
++  namespace: application-service
++rules:
++  - apiGroups:
++    - ''
++    resources:
++    - pods/exec
++    verbs:
++    - create
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: has-exec
++  namespace: application-service
++subjects:
++  - kind: User
++    name: johnmcollier
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: has-exec
+diff --git a/components/authentication/staging/kustomization.yaml b/components/authentication/staging/kustomization.yaml
+index 27bb5cb0..e47e2d22 100644
+--- a/components/authentication/staging/kustomization.yaml
++++ b/components/authentication/staging/kustomization.yaml
+@@ -2,3 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
++  - ./has-exec.yaml
