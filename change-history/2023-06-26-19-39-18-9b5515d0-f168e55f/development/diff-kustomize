@@ -1,0 +1,26 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f168e55f/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-9b5515d0/development/components/pipeline-service/development/kustomize.out.yaml
+2117d2116
+<           name: metrics
+2901,2922d2899
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service
+<   namespace: openshift-pipelines
+< spec:
+<   endpoints:
+<   - honorLabels: true
+<     interval: 15s
+<     path: /metrics
+<     port: metrics
+<     scheme: http
+<   jobLabel: app
+<   namespaceSelector:
+<     matchNames:
+<     - openshift-pipelines
+<   selector:
+<     matchLabels:
+<       app: pipeline-metrics-exporter

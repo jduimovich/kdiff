@@ -1,0 +1,23 @@
+diff --git a/components/monitoring/prometheus/base/servicemonitors/pipeline-service.yaml b/components/monitoring/prometheus/base/servicemonitors/pipeline-service.yaml
+index 855d7355..2afe3e2e 100644
+--- a/components/monitoring/prometheus/base/servicemonitors/pipeline-service.yaml
++++ b/components/monitoring/prometheus/base/servicemonitors/pipeline-service.yaml
+@@ -27,18 +27,3 @@ subjects:
+   - kind: ServiceAccount
+     name: pipeline-service-metrics-reader-sa
+     namespace: openshift-pipelines
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: pipeline-service
+-  namespace: openshift-pipelines
+-spec:
+-  endpoints:
+-    - path: /metrics
+-      port: metrics
+-      interval: 15s
+-      scheme: http
+-  selector:
+-    matchLabels:
+-      app: pipeline-metrics-exporter
