@@ -1,0 +1,52 @@
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index 727394cd..ee5b33b6 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -180,3 +180,10 @@ metadata:
+   name: remote-secrets
+ spec:
+   url: "https://github.com/redhat-appstudio/remote-secret"
++---
++apiVersion: pipelinesascode.tekton.dev/v1alpha1
++kind: Repository
++metadata:
++  name: pipeline-service
++spec:
++  url: "https://github.com/openshift-pipelines/pipeline-service"
+diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
+index e77616b7..876e8c7f 100644
+--- a/components/tekton-ci/production/kustomization.yaml
++++ b/components/tekton-ci/production/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
++- plnsvc-ci-secret.yaml
+ 
+ patches:
+   - path: tekton-ci-push-secret.yaml
+diff --git a/components/tekton-ci/production/plnsvc-ci-secret.yaml b/components/tekton-ci/production/plnsvc-ci-secret.yaml
+new file mode 100644
+index 00000000..e4adb330
+--- /dev/null
++++ b/components/tekton-ci/production/plnsvc-ci-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: plnsvc-ci-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/pipeline-service/plnsvc-ci
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: plnsvc-ci-secret
