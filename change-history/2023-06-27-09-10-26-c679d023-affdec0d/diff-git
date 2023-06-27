@@ -1,0 +1,291 @@
+diff --git a/.gitignore b/.gitignore
+index 73c8e014..0d0404fc 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -4,3 +4,4 @@ cosign.pub
+ components/spi/base/config.yaml
+ .tmp/
+ tmp
++.idea/*
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index bc04c847..5bebc3ce 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -7,7 +7,6 @@ resources:
+   - release
+   - integration
+   - spi
+-  - spi-vault
+   - remote-secret-controller
+   - cluster-registration
+   - enterprise-contract
+diff --git a/argo-cd-apps/base/member/infra-deployments/spi-vault/kustomization.yaml b/argo-cd-apps/base/member/optional/infra-deployments/spi-vault/kustomization.yaml
+similarity index 64%
+rename from argo-cd-apps/base/member/infra-deployments/spi-vault/kustomization.yaml
+rename to argo-cd-apps/base/member/optional/infra-deployments/spi-vault/kustomization.yaml
+index bae631e6..3bf78b5f 100644
+--- a/argo-cd-apps/base/member/infra-deployments/spi-vault/kustomization.yaml
++++ b/argo-cd-apps/base/member/optional/infra-deployments/spi-vault/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ resources:
+ - spi-vault.yaml
+ components:
+-  - ../../../../k-components/deploy-to-member-cluster
++  - ../../../../../k-components/deploy-to-member-cluster
+diff --git a/argo-cd-apps/base/member/infra-deployments/spi-vault/spi-vault.yaml b/argo-cd-apps/base/member/optional/infra-deployments/spi-vault/spi-vault.yaml
+similarity index 100%
+rename from argo-cd-apps/base/member/infra-deployments/spi-vault/spi-vault.yaml
+rename to argo-cd-apps/base/member/optional/infra-deployments/spi-vault/spi-vault.yaml
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index ca76efca..e4550660 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -5,8 +5,10 @@ resources:
+   - ../../base/host
+   - ../../base/host/optional/infra-deployments/dev-sso
+   - ../../base/member
++  - ../../base/member/optional/infra-deployments/spi-vault
+   - ../../base/all-clusters
+   - ../../base/quality-dashboard
++
+ patchesStrategicMerge:
+   - delete-applications.yaml
+ namespace: openshift-gitops
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index 578c19a5..a42bd970 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -2,7 +2,6 @@ resources:
+ - everyone-can-view.yaml
+ - component-maintainer.yaml
+ - spi.yaml
+-- spi-vault-admin.yaml
+ - gitops.yaml
+ - gitops-component-maintainer.yaml
+ - release-team.yaml
+diff --git a/components/authentication/development/kustomization.yaml b/components/authentication/development/kustomization.yaml
+new file mode 100644
+index 00000000..d823e3dd
+--- /dev/null
++++ b/components/authentication/development/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - spi-vault-admin.yaml
+diff --git a/components/authentication/base/spi-vault-admin.yaml b/components/authentication/development/spi-vault-admin.yaml
+similarity index 100%
+rename from components/authentication/base/spi-vault-admin.yaml
+rename to components/authentication/development/spi-vault-admin.yaml
+diff --git a/components/spi/base/external-secrets/kustomization.yaml b/components/spi/base/external-secrets/kustomization.yaml
+index 5724905e..6b26a57b 100644
+--- a/components/spi/base/external-secrets/kustomization.yaml
++++ b/components/spi/base/external-secrets/kustomization.yaml
+@@ -2,6 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - spi-shared-configuration-file.yaml
+-  - spi-vault-approle-spi-oauth.yaml
+-  - spi-vault-approle-spi-operator.yaml
+ namespace: spi-system
+diff --git a/components/spi/base/external-secrets/spi-vault-approle-spi-oauth.yaml b/components/spi/base/external-secrets/spi-vault-approle-spi-oauth.yaml
+deleted file mode 100644
+index 4a7a6417..00000000
+--- a/components/spi/base/external-secrets/spi-vault-approle-spi-oauth.yaml
++++ /dev/null
+@@ -1,19 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: spi-vault-approle-spi-oauth
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        key: "" # will be added by the overlays
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: vault-approle-spi-oauth
+diff --git a/components/spi/base/external-secrets/spi-vault-approle-spi-operator.yaml b/components/spi/base/external-secrets/spi-vault-approle-spi-operator.yaml
+deleted file mode 100644
+index 3e3bc1c2..00000000
+--- a/components/spi/base/external-secrets/spi-vault-approle-spi-operator.yaml
++++ /dev/null
+@@ -1,19 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: spi-vault-approle-spi-operator
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        key: "" # will be added by the overlays
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: vault-approle-spi-operator
+diff --git a/components/spi/overlays/production/stone-prd-m01/config-patch.json b/components/spi/overlays/production/stone-prd-m01/config-patch.json
+index 3e078f8d..da5af03b 100644
+--- a/components/spi/overlays/production/stone-prd-m01/config-patch.json
++++ b/components/spi/overlays/production/stone-prd-m01/config-patch.json
+@@ -1,9 +1,4 @@
+ [
+-  {
+-    "op": "replace",
+-    "path": "/data/VAULTHOST",
+-    "value": "https://vault-spi-vault.apps.stone-prd-m01.84db.p1.openshiftapps.com"
+-  },
+   {
+     "op": "replace",
+     "path": "/data/BASEURL",
+diff --git a/components/spi/overlays/production/stone-prd-m01/kustomization.yaml b/components/spi/overlays/production/stone-prd-m01/kustomization.yaml
+index aa6070aa..57e2e586 100644
+--- a/components/spi/overlays/production/stone-prd-m01/kustomization.yaml
++++ b/components/spi/overlays/production/stone-prd-m01/kustomization.yaml
+@@ -19,18 +19,6 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: spi-vault-approle-spi-oauth-config-path.yaml
+-    target:
+-      name: spi-vault-approle-spi-oauth
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: spi-vault-approle-spi-operator-config-path.yaml
+-    target:
+-      name: spi-vault-approle-spi-operator
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+   - path: spi-aws-credentials-path-patch.yaml
+     target:
+       name: spi-aws-secretsmanager-credentials
+diff --git a/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-oauth-config-path.yaml b/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-oauth-config-path.yaml
+deleted file mode 100644
+index 07eff4e1..00000000
+--- a/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-oauth-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/spi/m01/vault-approle-spi-oauth
+diff --git a/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-operator-config-path.yaml b/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-operator-config-path.yaml
+deleted file mode 100644
+index 09a49464..00000000
+--- a/components/spi/overlays/production/stone-prd-m01/spi-vault-approle-spi-operator-config-path.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/spi/m01/vault-approle-spi-operator
+-
+diff --git a/components/spi/overlays/production/stone-prd-rh01/config-patch.json b/components/spi/overlays/production/stone-prd-rh01/config-patch.json
+index 0adb27d4..90175b56 100644
+--- a/components/spi/overlays/production/stone-prd-rh01/config-patch.json
++++ b/components/spi/overlays/production/stone-prd-rh01/config-patch.json
+@@ -1,9 +1,4 @@
+ [
+-  {
+-    "op": "replace",
+-    "path": "/data/VAULTHOST",
+-    "value": "https://vault-spi-vault.apps.stone-prd-rh01.pg1f.p1.openshiftapps.com"
+-  },
+   {
+     "op": "replace",
+     "path": "/data/BASEURL",
+diff --git a/components/spi/overlays/production/stone-prd-rh01/kustomization.yaml b/components/spi/overlays/production/stone-prd-rh01/kustomization.yaml
+index aa6070aa..57e2e586 100644
+--- a/components/spi/overlays/production/stone-prd-rh01/kustomization.yaml
++++ b/components/spi/overlays/production/stone-prd-rh01/kustomization.yaml
+@@ -19,18 +19,6 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: spi-vault-approle-spi-oauth-config-path.yaml
+-    target:
+-      name: spi-vault-approle-spi-oauth
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: spi-vault-approle-spi-operator-config-path.yaml
+-    target:
+-      name: spi-vault-approle-spi-operator
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+   - path: spi-aws-credentials-path-patch.yaml
+     target:
+       name: spi-aws-secretsmanager-credentials
+diff --git a/components/spi/overlays/production/stone-prd-rh01/spi-vault-approle-spi-oauth-config-path.yaml b/components/spi/overlays/production/stone-prd-rh01/spi-vault-approle-spi-oauth-config-path.yaml
+deleted file mode 100644
+index 6f441036..00000000
+--- a/components/spi/overlays/production/stone-prd-rh01/spi-vault-approle-spi-oauth-config-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/spi/rh01/vault-approle-spi-oauth
+diff --git a/components/spi/overlays/production/stone-prd-rh01/spi-vault-approle-spi-operator-config-path.yaml b/components/spi/overlays/production/stone-prd-rh01/spi-vault-approle-spi-operator-config-path.yaml
+deleted file mode 100644
+index 50a04bbd..00000000
+--- a/components/spi/overlays/production/stone-prd-rh01/spi-vault-approle-spi-operator-config-path.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/spi/rh01/vault-approle-spi-operator
+-
+diff --git a/components/spi/overlays/staging/base/delete-vault-approle-oauth-secret.yaml b/components/spi/overlays/staging/base/delete-vault-approle-oauth-secret.yaml
+deleted file mode 100644
+index 0f2c2b21..00000000
+--- a/components/spi/overlays/staging/base/delete-vault-approle-oauth-secret.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+----
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: spi-vault-approle-spi-oauth
+-$patch: delete
+diff --git a/components/spi/overlays/staging/base/delete-vault-approle-operator-secret.yaml b/components/spi/overlays/staging/base/delete-vault-approle-operator-secret.yaml
+deleted file mode 100644
+index 168b779f..00000000
+--- a/components/spi/overlays/staging/base/delete-vault-approle-operator-secret.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+----
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: spi-vault-approle-spi-operator
+-$patch: delete
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index 0cff75ac..4c993a3d 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -26,5 +26,3 @@ patches:
+       name: shared-environment-config
+     path: config-patch.json
+   - path: delete-shared-configuration-file.yaml
+-  - path: delete-vault-approle-operator-secret.yaml
+-  - path: delete-vault-approle-oauth-secret.yaml

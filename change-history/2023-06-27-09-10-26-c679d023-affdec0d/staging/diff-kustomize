@@ -1,0 +1,84 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-affdec0d/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-c679d023/staging/app-of-apps-staging.yaml
+1104a1105,1138
+>   name: spi-vault
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+>   template:
+>     metadata:
+>       name: spi-vault-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: spi-vault
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: components/spi-vault
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-affdec0d/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-c679d023/staging/components/authentication/staging/kustomize.out.yaml
+58a59,86
+> kind: Role
+> metadata:
+>   name: vault-admin
+>   namespace: spi-vault
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   verbs:
+>   - get
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/exec
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - get
+>   - delete
+>   - create
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+733a762,778
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: vault-admin
+>   namespace: spi-vault
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: vault-admin
+> subjects:
+> - kind: User
+>   name: skabashnyuk
+> - kind: User
+>   name: mshaposhnik
+> - kind: User
+>   name: metlos
