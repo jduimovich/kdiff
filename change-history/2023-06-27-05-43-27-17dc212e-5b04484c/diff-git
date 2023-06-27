@@ -1,0 +1,54 @@
+diff --git a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
+index bd91bedb..318087fd 100644
+--- a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
++++ b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/remotesecret-secrets-manager
++  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/remotesecret-secrets-manager
++  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
+diff --git a/components/remote-secret-controller/overlays/production/stone-prd-m01/config-patch.json b/components/remote-secret-controller/overlays/production/stone-prd-m01/config-patch.json
+index 9ee6c40e..49eb3194 100644
+--- a/components/remote-secret-controller/overlays/production/stone-prd-m01/config-patch.json
++++ b/components/remote-secret-controller/overlays/production/stone-prd-m01/config-patch.json
+@@ -2,7 +2,7 @@
+   {
+     "op": "add",
+     "path": "/data/INSTANCEID",
+-    "value": "remotesecret-prod/m01"
++    "value": "spi-prod/rs-m01"
+   },
+   {
+     "op": "add",
+diff --git a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
+index bd91bedb..318087fd 100644
+--- a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
++++ b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/remotesecret-secrets-manager
++  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/remotesecret-secrets-manager
++  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
+diff --git a/components/remote-secret-controller/overlays/production/stone-prd-rh01/config-patch.json b/components/remote-secret-controller/overlays/production/stone-prd-rh01/config-patch.json
+index b795d3a6..50ae870a 100644
+--- a/components/remote-secret-controller/overlays/production/stone-prd-rh01/config-patch.json
++++ b/components/remote-secret-controller/overlays/production/stone-prd-rh01/config-patch.json
+@@ -2,7 +2,7 @@
+   {
+     "op": "add",
+     "path": "/data/INSTANCEID",
+-    "value": "remotesecret-prod/rh01"
++    "value": "spi-prod/rs-rh01"
+   },
+   {
+     "op": "add",

@@ -1,0 +1,102 @@
+diff --git a/components/build-service/README.md b/components/build-service/README.md
+index f179d085..2331a0a4 100644
+--- a/components/build-service/README.md
++++ b/components/build-service/README.md
+@@ -21,15 +21,15 @@ To try out a pre-configured, follow these steps.
+ | Steps    |    |
+ | ----------- | ----------- |
+ | 1.  Create project for your pipelines execution. This can be run as any non-admin user (or admin)  and is needed to hold your execution pipelines.  |  oc new-project demo     |
+-| 2.  Run build-deploy example with a quarkus app. | MY_QUAY_USER=mkovarik ./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-code-with-quarkus
++| 2.  Run build-deploy example with a quarkus app. | ./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-code-with-quarkus
+ | 3.  View your build on the OpenShift Console under the pipelines page or view the logs via CLI. | `tkn pipelinerun logs`      |
+ 
+-## Tests via StoneSoup
++## Tests via RHTAP
+ 
+-To validate execution via StoneSoup you can run `./hack/build/build-via-appstudio.sh` script which sets credentials and StoneSoup application and components. Without parameters it creates example components.
++To validate execution via RHTAP you can run `./hack/build/build-via-appstudio.sh` script which sets credentials and RHTAP application and components. Without parameters it creates example components.
++To build specific repository, pass its URL as argument as shown below:
+ 
+ ```
+-export MY_QUAY_USER=mkovarik
+ ./hack/build/build-via-appstudio.sh https://github.com/devfile-samples/devfile-sample-java-springboot-basic
+ ```
+ 
+@@ -40,7 +40,7 @@ Alternatively, to use GitHub webhook set `PAC_GITHUB_TOKEN` with [required permi
+ Then run:
+ 
+ ```
+-MY_QUAY_USER=mkovarik PIPELINESASCODE=1 ./hack/build/build-via-appstudio.sh https://github.com/Michkov/devfile-sample-go-basic
++PIPELINESASCODE=1 ./hack/build/build-via-appstudio.sh https://github.com/Michkov/devfile-sample-go-basic
+ ```
+ 
+ ### Change of default pipeline bundle
+diff --git a/hack/build/build-via-appstudio.sh b/hack/build/build-via-appstudio.sh
+index f316298f..1d00ac11 100755
+--- a/hack/build/build-via-appstudio.sh
++++ b/hack/build/build-via-appstudio.sh
+@@ -1,30 +1,8 @@
+ #!/bin/bash
+-SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" 
++SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+ 
+ COMPONENT=$1
+ 
+-if [ -z "$GENERATE_IMAGE" ]; then
+-  if [ -z "$MY_QUAY_USER" ]; then
+-    echo "Missing MY_QUAY_USER variable"
+-    exit 1
+-  fi
+-
+-  AUTH_FILE="${XDG_RUNTIME_DIR}/containers/auth.json"
+-  if [ ! -f $AUTH_FILE ]; then
+-    AUTH_FILE=~/.docker/config.json
+-  fi
+-  if ! grep -q quay.io $AUTH_FILE; then
+-    echo "No token for quay.io registry, please login using docker/podman command"
+-    exit 1
+-  fi
+-
+-  SECRET=$(mktemp)
+-  echo '{"auths": {' $(yq eval '.auths | with_entries(select(.key == "quay.io"))' $AUTH_FILE) '}}' > $SECRET
+-  oc create secret docker-registry redhat-appstudio-registry-pull-secret --from-file=.dockerconfigjson=$SECRET --dry-run=client -o yaml | oc apply -f-
+-  rm $SECRET
+-  oc secret link pipeline redhat-appstudio-registry-pull-secret
+-fi
+-
+ # Configure namespace
+ $SCRIPTDIR/setup-namespace.sh
+ 
+@@ -40,12 +18,10 @@ function create-component {
+   GIT_URL=$1
+   REPO=$(echo $GIT_URL | grep -o '[^/]*$')
+   NAME=${REPO%%.git}
+-  [ -z "$SKIP_OUTPUT_IMAGE" ] && IMAGE=quay.io/$MY_QUAY_USER/$NAME
+   oc delete --ignore-not-found component $NAME
+-  [ -n "$GENERATE_IMAGE" ] && ANNOTATE_IMAGE_GENERATE='| (.metadata.annotations."image.redhat.com/generate"="true")'
+   [ -n "$SKIP_INITIAL_CHECKS" ] && ANNOTATE_SKIP_INITIAL_CHECKS='| (.metadata.annotations.skip-initial-checks="true")'
+-  [ -n "$ENABLE_PAC" ] && ANNOTATE_PAC_PROVISION='| (.metadata.annotations."appstudio.openshift.io/pac-provision"="request")'
+-  yq e "(.metadata.name=\"$NAME\") | (.spec.componentName=\"$NAME\") | (.spec.source.git.url=\"$GIT_URL\") | (.spec.containerImage=\"$IMAGE\") $ANNOTATE_IMAGE_GENERATE $ANNOTATE_PAC_PROVISION $ANNOTATE_SKIP_INITIAL_CHECKS" $SCRIPTDIR/templates/component.yaml | oc apply -f-
++  [ -n "$ENABLE_PAC" ] && ANNOTATE_PAC_PROVISION='| (.metadata.annotations."appstudio.openshift.io/request"="configure-pac")'
++  yq e "(.metadata.name=\"$NAME\") | (.spec.componentName=\"$NAME\") | (.spec.source.git.url=\"$GIT_URL\") | (.spec.containerImage=\"$IMAGE\") $ANNOTATE_PAC_PROVISION $ANNOTATE_SKIP_INITIAL_CHECKS" $SCRIPTDIR/templates/component.yaml | oc apply -f-
+ }
+ 
+ echo Git Repo created:
+diff --git a/hack/build/templates/component.yaml b/hack/build/templates/component.yaml
+index adf009e0..f5a11724 100644
+--- a/hack/build/templates/component.yaml
++++ b/hack/build/templates/component.yaml
+@@ -3,10 +3,11 @@ kind: Component
+ metadata:
+   name:
+   annotations:
++    image.redhat.com/generate: '{"visibility":"public"}'
+ spec:
+-  componentName: 
++  componentName:
+   application: test-application
+   source:
+     git:
+-      url: 
++      url:
+   containerImage:
