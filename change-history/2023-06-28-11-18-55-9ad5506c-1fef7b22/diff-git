@@ -1,0 +1,30 @@
+diff --git a/components/remote-secret-controller/overlays/production/stone-prd-m01/config-patch.json b/components/remote-secret-controller/overlays/production/stone-prd-m01/config-patch.json
+index 49eb3194..e1ff2fb0 100644
+--- a/components/remote-secret-controller/overlays/production/stone-prd-m01/config-patch.json
++++ b/components/remote-secret-controller/overlays/production/stone-prd-m01/config-patch.json
+@@ -3,10 +3,5 @@
+     "op": "add",
+     "path": "/data/INSTANCEID",
+     "value": "spi-prod/rs-m01"
+-  },
+-  {
+-    "op": "add",
+-    "path": "/data/ENABLEREMOTESECRETS",
+-    "value": "false"
+   }
+ ]
+diff --git a/components/remote-secret-controller/overlays/production/stone-prd-rh01/config-patch.json b/components/remote-secret-controller/overlays/production/stone-prd-rh01/config-patch.json
+index 50ae870a..37414488 100644
+--- a/components/remote-secret-controller/overlays/production/stone-prd-rh01/config-patch.json
++++ b/components/remote-secret-controller/overlays/production/stone-prd-rh01/config-patch.json
+@@ -3,10 +3,5 @@
+     "op": "add",
+     "path": "/data/INSTANCEID",
+     "value": "spi-prod/rs-rh01"
+-  },
+-  {
+-    "op": "add",
+-    "path": "/data/ENABLEREMOTESECRETS",
+-    "value": "false"
+   }
+ ]
