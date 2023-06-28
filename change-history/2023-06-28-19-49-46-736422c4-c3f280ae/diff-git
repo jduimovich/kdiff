@@ -1,0 +1,12 @@
+diff --git a/components/release/release-pipeline-resources-clusterrole.yaml b/components/release/release-pipeline-resources-clusterrole.yaml
+index 28f4e81e..4a700c64 100644
+--- a/components/release/release-pipeline-resources-clusterrole.yaml
++++ b/components/release/release-pipeline-resources-clusterrole.yaml
+@@ -11,6 +11,7 @@ rules:
+   - releaseplans
+   - releaseplanadmissions
+   - releasestrategies
++  - snapshots
+   verbs:
+   - get
+   - list

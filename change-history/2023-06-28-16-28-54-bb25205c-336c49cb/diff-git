@@ -1,0 +1,18 @@
+diff --git a/components/pipeline-service/OWNERS b/components/pipeline-service/OWNERS
+index 75e95bbb..6b634eda 100644
+--- a/components/pipeline-service/OWNERS
++++ b/components/pipeline-service/OWNERS
+@@ -9,3 +9,4 @@ reviewers:
+   - adambkaplan
+   - ramessesii2
+   - xinredhat
++  - enarha
+diff --git a/components/sprayproxy/OWNERS b/components/sprayproxy/OWNERS
+index ace0f908..7464403e 100644
+--- a/components/sprayproxy/OWNERS
++++ b/components/sprayproxy/OWNERS
+@@ -15,3 +15,4 @@ reviewers:
+   - ramessesii2
+   - avinal
+   - gabemontero
++  - enarha
