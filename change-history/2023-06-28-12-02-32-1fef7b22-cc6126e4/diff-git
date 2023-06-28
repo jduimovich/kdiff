@@ -1,0 +1,26 @@
+diff --git a/components/spi/overlays/production/base/config-patch.json b/components/spi/overlays/production/base/config-patch.json
+new file mode 100644
+index 00000000..064269a6
+--- /dev/null
++++ b/components/spi/overlays/production/base/config-patch.json
+@@ -0,0 +1,7 @@
++[
++  {
++    "op": "add",
++    "path": "/data/ENABLEREMOTESECRETS",
++    "value": "true"
++  }
++]
+diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml
+index 2cebf208..4c993a3d 100644
+--- a/components/spi/overlays/production/base/kustomization.yaml
++++ b/components/spi/overlays/production/base/kustomization.yaml
+@@ -21,4 +21,8 @@ patches:
+       kind: Deployment
+       name: spi-controller-manager
+     path: operator-limits-patch.json
++  - target:
++      kind: ConfigMap
++      name: shared-environment-config
++    path: config-patch.json
+   - path: delete-shared-configuration-file.yaml
