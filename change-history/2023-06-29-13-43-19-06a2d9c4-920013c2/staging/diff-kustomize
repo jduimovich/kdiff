@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-920013c2/staging/components/dora-metrics/staging/kustomize.out.yaml ./kustomized-cache/commit-06a2d9c4/staging/components/dora-metrics/staging/kustomize.out.yaml
+107,113c107
+<         - name: PAGERDUTY_API_KEY
+<           valueFrom:
+<             secretKeyRef:
+<               key: pager-duty-token
+<               name: exporters-secret
+<               optional: false
+<         image: quay.io/redhat-appstudio/dora-metrics:c52bfe1a88fde0bc63a30eb4a662f6bc8b925f3c
+---
+>         image: quay.io/redhat-appstudio/dora-metrics:dadd13a75d0fd0e4337fd90ddba3d3e47fb6199f

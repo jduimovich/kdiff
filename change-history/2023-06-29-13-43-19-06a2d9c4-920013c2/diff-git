@@ -1,0 +1,41 @@
+diff --git a/components/dora-metrics/staging/kustomization.yaml b/components/dora-metrics/staging/kustomization.yaml
+index 479bc600..ea1a373d 100644
+--- a/components/dora-metrics/staging/kustomization.yaml
++++ b/components/dora-metrics/staging/kustomization.yaml
+@@ -1,5 +1,10 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base
++- https://github.com/redhat-appstudio/dora-metrics/deploy/base?ref=c52bfe1a88fde0bc63a30eb4a662f6bc8b925f3c
+ - ../base/external-secrets
++
++images:
++  - name: quay.io/redhat-appstudio/dora-metrics
++    newName: quay.io/redhat-appstudio/dora-metrics
++    newTag: c52bfe1a88fde0bc63a30eb4a662f6bc8b925f3c
+\ No newline at end of file
+diff --git a/components/monitoring/grafana/base/dora-metrics/kustomization.yaml b/components/monitoring/grafana/base/dora-metrics/kustomization.yaml
+index 437b1508..9183bc07 100644
+--- a/components/monitoring/grafana/base/dora-metrics/kustomization.yaml
++++ b/components/monitoring/grafana/base/dora-metrics/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/dora-metrics/deploy/grafana/?ref=dadd13a75d0fd0e4337fd90ddba3d3e47fb6199f
++- https://github.com/redhat-appstudio/dora-metrics/deploy/grafana/?ref=c52bfe1a88fde0bc63a30eb4a662f6bc8b925f3c
+ - dashboard.yaml
+diff --git a/hack/secret-creator/create-dora-metrics-exporter-secrets.sh b/hack/secret-creator/create-dora-metrics-exporter-secrets.sh
+index 4b81ab2c..08feb065 100755
+--- a/hack/secret-creator/create-dora-metrics-exporter-secrets.sh
++++ b/hack/secret-creator/create-dora-metrics-exporter-secrets.sh
+@@ -5,7 +5,7 @@ main() {
+     kubectl create namespace dora-metrics -o yaml --dry-run=client | oc apply -f-
+     if ! kubectl get secret -n dora-metrics exporters-secret &>/dev/null; then
+         kubectl create secret generic exporters-secret -n dora-metrics \
+-            --from-literal=github=${github_token:-""}
++            --from-literal=github=${github_token:-""} --from-literal=pager-duty-token=${pager-duty-token:-""}
+     fi
+ }
+ 
