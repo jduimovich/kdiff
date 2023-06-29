@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-60ded5d3/staging/components/dev-sso/kustomize.out.yaml ./kustomized-cache/commit-8c5916ba/staging/components/dev-sso/kustomize.out.yaml
+676,681d675
+<         display.on.consent.screen: "true"
+<         include.in.token.scope: "true"
+<       id: 672455b2-1e92-44f6-9fb6-fe2017995aed
+<       name: profile_level.name_and_dev_terms
+<       protocol: openid-connect
+<     - attributes:
+1028d1021
+<       - profile_level.name_and_dev_terms
