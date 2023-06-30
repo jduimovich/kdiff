@@ -1,0 +1,298 @@
+diff --git a/components/gitops/base/monitoring/kustomization.yaml b/components/gitops/base/monitoring/kustomization.yaml
+new file mode 100644
+index 00000000..a8e188ff
+--- /dev/null
++++ b/components/gitops/base/monitoring/kustomization.yaml
+@@ -0,0 +1,11 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- monitoring-all.yaml
++- monitoring-agent.yaml
++- monitoring-appstudio.yaml
++- monitoring-core.yaml
++
++namespace: gitops
++
+diff --git a/components/gitops/base/monitoring/monitoring-agent.yaml b/components/gitops/base/monitoring/monitoring-agent.yaml
+new file mode 100644
+index 00000000..2d3c540c
+--- /dev/null
++++ b/components/gitops/base/monitoring/monitoring-agent.yaml
+@@ -0,0 +1,30 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: prometheus-gitops-service-agent-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: gitops-service-agent-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  name: gitops-service-agent
++spec:
++  endpoints:
++  - path: /metrics
++    interval: 15s
++    port: metrics
++    scheme: https
++    bearerTokenSecret:
++      name: "metrics-reader"
++      key: token
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      control-plane: cluster-agent-controller-manager
+diff --git a/components/gitops/base/monitoring/monitoring-all.yaml b/components/gitops/base/monitoring/monitoring-all.yaml
+new file mode 100644
+index 00000000..999b5020
+--- /dev/null
++++ b/components/gitops/base/monitoring/monitoring-all.yaml
+@@ -0,0 +1,12 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: metrics-reader
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  name: metrics-reader
++  annotations:
++    kubernetes.io/service-account.name: metrics-reader
++type: kubernetes.io/service-account-token
+diff --git a/components/gitops/base/monitoring/monitoring-appstudio.yaml b/components/gitops/base/monitoring/monitoring-appstudio.yaml
+new file mode 100644
+index 00000000..2c5d16ca
+--- /dev/null
++++ b/components/gitops/base/monitoring/monitoring-appstudio.yaml
+@@ -0,0 +1,30 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: prometheus-gitops-appstudio-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: gitops-appstudio-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  name: gitops-appstudio-service
++spec:
++  endpoints:
++  - path: /metrics
++    interval: 15s
++    port: metrics
++    scheme: https
++    bearerTokenSecret:
++      name: "metrics-reader"
++      key: token
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      control-plane: appstudio-controller-manager
+diff --git a/components/gitops/base/monitoring/monitoring-core.yaml b/components/gitops/base/monitoring/monitoring-core.yaml
+new file mode 100644
+index 00000000..7c0eb1d3
+--- /dev/null
++++ b/components/gitops/base/monitoring/monitoring-core.yaml
+@@ -0,0 +1,30 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: prometheus-gitops-core-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: gitops-core-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  name: gitops-core-service
++spec:
++  endpoints:
++  - path: /metrics
++    interval: 15s
++    port: metrics
++    scheme: https
++    bearerTokenSecret:
++      name: "metrics-reader"
++      key: token
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      control-plane: backend-controller-manager
+diff --git a/components/gitops/production/base/kustomization.yaml b/components/gitops/production/base/kustomization.yaml
+index 493d3944..06d99beb 100644
+--- a/components/gitops/production/base/kustomization.yaml
++++ b/components/gitops/production/base/kustomization.yaml
+@@ -5,6 +5,7 @@ resources:
+ - https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=ec13722babb0e6d386161ac5b38272cde6c9eadf
+ - ../../openshift-gitops/overlays/production-and-dev
+ - ../../base/external-secrets
++- ../../base/monitoring
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+index 5c9cc892..c1db8de9 100644
+--- a/components/gitops/staging/base/kustomization.yaml
++++ b/components/gitops/staging/base/kustomization.yaml
+@@ -5,6 +5,7 @@ resources:
+ - https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=ec13722babb0e6d386161ac5b38272cde6c9eadf
+ - ../../openshift-gitops/overlays/staging
+ - ../../base/external-secrets
++- ../../base/monitoring
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+diff --git a/components/monitoring/prometheus/base/servicemonitors/gitops-service.yaml b/components/monitoring/prometheus/base/servicemonitors/gitops-service.yaml
+deleted file mode 100644
+index d0554461..00000000
+--- a/components/monitoring/prometheus/base/servicemonitors/gitops-service.yaml
++++ /dev/null
+@@ -1,113 +0,0 @@
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: gitops-appstudio-service-controller
+-  namespace: appstudio-workload-monitoring
+-  labels:
+-    prometheus: appstudio-workload
+-spec:
+-  endpoints:
+-  - bearerTokenSecret:
+-      key: token
+-      name: prometheus-k8s-token-xhrjb
+-    interval: 15s
+-    path: /metrics
+-    port: metrics
+-    scheme: https
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  namespaceSelector:
+-    matchNames:
+-    - gitops
+-  selector:
+-    matchLabels:
+-      control-plane: appstudio-controller-manager
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-gitops-appstudio-service-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-appstudio-service-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: prometheus-k8s
+-  namespace: appstudio-workload-monitoring
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: gitops-backend-controller
+-  namespace: appstudio-workload-monitoring
+-  labels:
+-    prometheus: appstudio-workload
+-spec:
+-  endpoints:
+-  - bearerTokenSecret:
+-      key: token
+-      name: prometheus-k8s-token-xhrjb
+-    interval: 15s
+-    path: /metrics
+-    port: metrics
+-    scheme: https
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  namespaceSelector:
+-    matchNames:
+-    - gitops
+-  selector:
+-    matchLabels:
+-      control-plane: backend-controller-manager
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-gitops-core-service-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-core-service-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: prometheus-k8s
+-  namespace: appstudio-workload-monitoring
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: gitops-cluster-agent-controller
+-  namespace: appstudio-workload-monitoring
+-  labels:
+-    prometheus: appstudio-workload
+-spec:
+-  endpoints:
+-  - bearerTokenSecret:
+-      key: token
+-      name: prometheus-k8s-token-xhrjb
+-    interval: 15s
+-    path: /metrics
+-    port: metrics
+-    scheme: https
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  namespaceSelector:
+-    matchNames:
+-    - gitops
+-  selector:
+-    matchLabels:
+-      control-plane: cluster-agent-controller-manager
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-gitops-service-agent-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-service-agent-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: prometheus-k8s
+-  namespace: appstudio-workload-monitoring
+diff --git a/components/monitoring/prometheus/base/servicemonitors/kustomization.yaml b/components/monitoring/prometheus/base/servicemonitors/kustomization.yaml
+index 5f2d16d4..630fd857 100644
+--- a/components/monitoring/prometheus/base/servicemonitors/kustomization.yaml
++++ b/components/monitoring/prometheus/base/servicemonitors/kustomization.yaml
+@@ -3,7 +3,6 @@ kind: Kustomization
+ 
+ resources:
+ - dora-service.yaml
+-- gitops-service.yaml
+ - pipeline-service.yaml
+ - release-service.yaml
+ - sandbox-host-operator.yaml
