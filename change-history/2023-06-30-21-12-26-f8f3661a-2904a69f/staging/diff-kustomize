@@ -1,0 +1,4 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2904a69f/staging/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-f8f3661a/staging/components/enterprise-contract/kustomize.out.yaml
+253a254,255
+>   ec_data_source: oci::https://quay.io/hacbs-contract/ec-policy-data:git-a3ca9be@sha256:d548e0808348c017782ae87920c94d45ad7117e0e630b5b991c8df557c22a844
+>   ec_policy_source: oci::https://quay.io/hacbs-contract/ec-release-policy:git-8ca675b@sha256:caf2a8991ca3feb80edfc8ff7c1930ed09481a7c8d934bb719007bffc1153ecc
