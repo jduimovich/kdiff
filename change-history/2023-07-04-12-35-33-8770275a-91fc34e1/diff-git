@@ -1,0 +1,133 @@
+diff --git a/components/monitoring/prometheus/README.md b/components/monitoring/prometheus/README.md
+index ee0fb66d..b80a3429 100644
+--- a/components/monitoring/prometheus/README.md
++++ b/components/monitoring/prometheus/README.md
+@@ -112,5 +112,9 @@ remote-writes selected labels for those metrics to RHOBS, which in turn, makes t
+ metrics accessible to AppSRE Grafana.
+ 
+ This Prometheus instance is deployed using a MonitoringStack custom resource provided
+-by the Observability Operator. This operator is installed by default in Production and
+-Staging clusters. In Development clusters, it's installed and configured using ArgoCD.
++by the Observability Operator. This operator is installed by default in Production and Staging clusters.  
++In Development clusters, it's not installed by default to prevent conflicts with other deployments. 
++It can be installed and configured in development by using the `--obo/-o` flags.  
++For example:  
++`./hack/bootstrap-cluster.sh preview --obo`  
++`./hack/bootstrap-cluster.sh preview -o`
+diff --git a/components/monitoring/prometheus/development/kustomization.yaml b/components/monitoring/prometheus/development/kustomization.yaml
+index 689a72d8..9219777b 100644
+--- a/components/monitoring/prometheus/development/kustomization.yaml
++++ b/components/monitoring/prometheus/development/kustomization.yaml
+@@ -5,7 +5,6 @@ resources:
+ - dummy-service-namespace.yaml
+ - dummy-service-service-monitor.yaml
+ - dummy-service.yaml
+-- monitoringstack/
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/hack/bootstrap-cluster.sh b/hack/bootstrap-cluster.sh
+index 7dca9a48..95979e42 100755
+--- a/hack/bootstrap-cluster.sh
++++ b/hack/bootstrap-cluster.sh
+@@ -3,7 +3,7 @@
+ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"/..
+ 
+ main() {
+-    local mode keycloak toolchain
++    local mode keycloak toolchain obo
+     while [[ $# -gt 0 ]]; do
+         key=$1
+         case $key in
+@@ -15,6 +15,10 @@ main() {
+             keycloak="--keycloak"
+             shift
+             ;;
++        --obo | -o)
++            obo="--obo"
++            shift
++            ;;
+         preview | upstream)
+             mode=$1
+             shift
+@@ -52,19 +56,20 @@ main() {
+         fi
+         ;;
+     "preview")
+-        $ROOT/hack/preview.sh $toolchain $keycloak
++        $ROOT/hack/preview.sh $toolchain $keycloak $obo
+         ;;
+     esac
+ }
+ 
+ print_help() {
+-    echo "Usae: $0 MODE [-t|--toolchain] [-kc|--keycloak] [-h|--help]"
++    echo "Usae: $0 MODE [-t|--toolchain] [-kc|--keycloak] [-o|--obo] [-h|--help]"
+     echo "  MODE             upstream/preview (default: upstream)"
+     echo "  -t, --toolchain  (only in preview mode) Install toolchain operators"
+     echo "  -kc, --keycloak  (only in preview mode) Configure the toolchain operator to use keycloak deployed on the cluster"
++    echo "  -o, --obo        (only in preview mode) Install Observability operator and Prometheus instance for federation"
+     echo "  -h, --help       Show this help message and exit"
+     echo
+-    echo "Example usage: \`$0 preview --toolchain --keycloak"
++    echo "Example usage: \`$0 preview --toolchain --keycloak --obo"
+ }
+ 
+ if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 082858f6..1e1db6ac 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -5,15 +5,17 @@ ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"/..
+ 
+ # Print help message
+ function print_help() {
+-  echo "Usage: $0 MODE [--toolchain] [--keycloak] [-h|--help]"
++  echo "Usage: $0 MODE [--toolchain] [--keycloak] [--obo] [-h|--help]"
+   echo "  MODE             upstream/preview (default: upstream)"
+   echo "  --toolchain  (only in preview mode) Install toolchain operators"
+-  echo "  --keycloak  (only in preview mode) Configure the toolchain operator to use keycloak deployed on the cluster"
++  echo "  --keycloak   (only in preview mode) Configure the toolchain operator to use keycloak deployed on the cluster"
++  echo "  --obo        (only in preview mode) Install Observability operator and Prometheus instance for federation"
+   echo
+-  echo "Example usage: \`$0 --toolchain --keycloak"
++  echo "Example usage: \`$0 --toolchain --keycloak --obo"
+ }
+ TOOLCHAIN=false
+ KEYCLOAK=false
++OBO=false
+ 
+ while [[ $# -gt 0 ]]; do
+   key=$1
+@@ -26,6 +28,10 @@ while [[ $# -gt 0 ]]; do
+       KEYCLOAK=true
+       shift
+       ;;
++    --obo)
++      OBO=true
++      shift
++      ;;
+     -h|--help)
+       print_help
+       exit 0
+@@ -36,6 +42,8 @@ while [[ $# -gt 0 ]]; do
+   esac
+ done
+ 
++
++
+ if $TOOLCHAIN ; then
+   echo "Deploying toolchain"
+   "$ROOT/hack/sandbox-development-mode.sh"
+@@ -112,6 +120,11 @@ update_patch_file () {
+ update_patch_file "${ROOT}/argo-cd-apps/k-components/inject-infra-deployments-repo-details/application-patch.yaml"
+ update_patch_file "${ROOT}/argo-cd-apps/k-components/inject-infra-deployments-repo-details/application-set-patch.yaml"
+ 
++if $OBO ; then
++  echo "Adding Observability operator and Prometheus for federation"
++  yq -i '.resources += ["monitoringstack/"]' $ROOT/components/monitoring/prometheus/development/kustomization.yaml
++fi
++
+ # delete argoCD applications which are not in DEPLOY_ONLY env var if it's set
+ if [ -n "$DEPLOY_ONLY" ]; then
+   APPLICATIONS=$(\

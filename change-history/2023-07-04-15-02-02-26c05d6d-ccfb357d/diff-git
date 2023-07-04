@@ -1,0 +1,35 @@
+diff --git a/components/image-controller/base/kustomization.yaml b/components/image-controller/base/kustomization.yaml
+index 6d84f8d9..f5b05328 100644
+--- a/components/image-controller/base/kustomization.yaml
++++ b/components/image-controller/base/kustomization.yaml
+@@ -10,8 +10,8 @@ images:
+ namespace: image-controller
+ 
+ patches:
+-  - ./manager_resources_patch.yaml
+-  
++  - path: ./manager_resources_patch.yaml
++
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+diff --git a/components/integration/kustomization.yaml b/components/integration/kustomization.yaml
+index cfd12fc6..ee11cf76 100644
+--- a/components/integration/kustomization.yaml
++++ b/components/integration/kustomization.yaml
+@@ -14,4 +14,4 @@ images:
+ namespace: integration-service
+ 
+ patches:
+-  - ./manager_resources_patch.yaml
++  - path: ./manager_resources_patch.yaml
+diff --git a/components/release/kustomization.yaml b/components/release/kustomization.yaml
+index 07515237..f5b1f0cc 100644
+--- a/components/release/kustomization.yaml
++++ b/components/release/kustomization.yaml
+@@ -15,4 +15,4 @@ images:
+ namespace: release-service
+ 
+ patches:
+-  - ./manager_resources_patch.yaml
++  - path: ./manager_resources_patch.yaml
