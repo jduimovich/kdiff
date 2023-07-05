@@ -1,0 +1,11 @@
+diff --git a/components/tekton-ci/base/namespace.yaml b/components/tekton-ci/base/namespace.yaml
+index dcfa3c9e..e0e532bd 100644
+--- a/components/tekton-ci/base/namespace.yaml
++++ b/components/tekton-ci/base/namespace.yaml
+@@ -3,4 +3,5 @@ kind: Namespace
+ metadata:
+   name: tekton-ci
+   annotations:
+-    operator.tekton.dev/prune.skip: "true"
++    # Keeps PipelineRuns for 24h.
++    operator.tekton.dev/prune.keep-since: 1440

@@ -1,0 +1,26 @@
+diff --git a/components/pipeline-service/staging/base/greedy-pruner.yaml b/components/pipeline-service/staging/base/greedy-pruner.yaml
+new file mode 100644
+index 00000000..0ecfb3e4
+--- /dev/null
++++ b/components/pipeline-service/staging/base/greedy-pruner.yaml
+@@ -0,0 +1,4 @@
++---
++- op: replace
++  path: /spec/pruner/keep
++  value: 1
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index f16bdd3e..d4b569ce 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -14,6 +14,10 @@ resources:
+   - ../../base/servicemonitors
+ 
+ patches:
++  - path: greedy-pruner.yaml
++    target:
++      kind: TektonConfig
++      name: config
+   - path: pac-app-name.yaml
+     target:
+       kind: ConfigMap
