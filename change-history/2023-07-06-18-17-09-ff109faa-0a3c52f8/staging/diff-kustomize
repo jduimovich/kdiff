@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0a3c52f8/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-ff109faa/staging/components/tekton-ci/staging/kustomize.out.yaml
+261a262,270
+>   name: image-controller
+> spec:
+>   url: https://github.com/redhat-appstudio/image-controller
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

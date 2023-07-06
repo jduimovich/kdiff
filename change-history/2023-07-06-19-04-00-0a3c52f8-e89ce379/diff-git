@@ -1,0 +1,11 @@
+diff --git a/components/pipeline-service/staging/base/greedy-pruner.yaml b/components/pipeline-service/staging/base/greedy-pruner.yaml
+index 0ecfb3e4..802c8c85 100644
+--- a/components/pipeline-service/staging/base/greedy-pruner.yaml
++++ b/components/pipeline-service/staging/base/greedy-pruner.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: replace
+   path: /spec/pruner/keep
+-  value: 1
+\ No newline at end of file
++  value: 2
