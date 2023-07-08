@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5c7ddf5a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-e89ce379/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1678c1678
+<   artifacts.taskrun.storage: ""
+---
+>   artifacts.taskrun.storage: oci
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5c7ddf5a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-e89ce379/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1678c1678
+<   artifacts.taskrun.storage: ""
+---
+>   artifacts.taskrun.storage: oci

@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5c7ddf5a/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-e89ce379/development/components/pipeline-service/development/kustomize.out.yaml
+1693c1693
+<   artifacts.taskrun.storage: ""
+---
+>   artifacts.taskrun.storage: oci
