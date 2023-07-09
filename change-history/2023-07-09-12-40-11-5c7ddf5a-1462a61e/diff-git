@@ -1,0 +1,25 @@
+diff --git a/components/external-secrets-operator/staging/kustomization.yaml b/components/external-secrets-operator/staging/kustomization.yaml
+index 27bb5cb0..2a079584 100644
+--- a/components/external-secrets-operator/staging/kustomization.yaml
++++ b/components/external-secrets-operator/staging/kustomization.yaml
+@@ -2,3 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
++patches:
++  - path: starting-csv-patch.yaml
++    target:
++      name: external-secrets-operator
++      group: operators.coreos.com
++      version: v1alpha1
++      kind: Subscription
+diff --git a/components/external-secrets-operator/staging/starting-csv-patch.yaml b/components/external-secrets-operator/staging/starting-csv-patch.yaml
+new file mode 100644
+index 00000000..844c9d2a
+--- /dev/null
++++ b/components/external-secrets-operator/staging/starting-csv-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/startingCSV
++  value: external-secrets-operator.v0.8.5
