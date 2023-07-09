@@ -1,0 +1,10 @@
+diff --git a/components/external-secrets-operator/staging/starting-csv-patch.yaml b/components/external-secrets-operator/staging/starting-csv-patch.yaml
+index 844c9d2a..a62bd41d 100644
+--- a/components/external-secrets-operator/staging/starting-csv-patch.yaml
++++ b/components/external-secrets-operator/staging/starting-csv-patch.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/startingCSV
+-  value: external-secrets-operator.v0.8.5
++  value: external-secrets-operator.v0.9.1

@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b5fe7556/staging/components/external-secrets-operator/staging/kustomize.out.yaml ./kustomized-cache/commit-1462a61e/staging/components/external-secrets-operator/staging/kustomize.out.yaml
+46c46
+<   startingCSV: external-secrets-operator.v0.9.1
+---
+>   startingCSV: external-secrets-operator.v0.8.5
