@@ -1,0 +1,61 @@
+diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
+index 7f45617c..8e7f69eb 100644
+--- a/components/spi-vault/kustomization.yaml
++++ b/components/spi-vault/kustomization.yaml
+@@ -4,4 +4,4 @@ kind: Kustomization
+ namespace: spi-vault
+ 
+ resources:
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=90c6d553e8d963e32c8a949998ee2974e97a6bac
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=cfebcdeec452f00ce9392050f606994de4ec8f8e
+diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
+index 417e3318..8fc39cb2 100644
+--- a/components/spi/overlays/development/kustomization.yaml
++++ b/components/spi/overlays/development/kustomization.yaml
+@@ -2,17 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=90c6d553e8d963e32c8a949998ee2974e97a6bac
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=cfebcdeec452f00ce9392050f606994de4ec8f8e
+ 
+ namespace: spi-system
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 90c6d553e8d963e32c8a949998ee2974e97a6bac
++    newTag: cfebcdeec452f00ce9392050f606994de4ec8f8e
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 90c6d553e8d963e32c8a949998ee2974e97a6bac
++    newTag: cfebcdeec452f00ce9392050f606994de4ec8f8e
+ 
+ patches:
+   - target:
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index 5a59e4f8..3356ab1c 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=90c6d553e8d963e32c8a949998ee2974e97a6bac
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=cfebcdeec452f00ce9392050f606994de4ec8f8e
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -11,10 +11,10 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 90c6d553e8d963e32c8a949998ee2974e97a6bac
++    newTag: cfebcdeec452f00ce9392050f606994de4ec8f8e
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 90c6d553e8d963e32c8a949998ee2974e97a6bac
++    newTag: cfebcdeec452f00ce9392050f606994de4ec8f8e
+ 
+ patches:
+   - target:

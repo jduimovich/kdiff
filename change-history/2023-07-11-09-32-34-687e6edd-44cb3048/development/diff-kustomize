@@ -1,0 +1,479 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-44cb3048/development/components/integration/kustomize.out.yaml ./kustomized-cache/commit-687e6edd/development/components/integration/kustomize.out.yaml
+562,563c562,564
+<   creationTimestamp: null
+<   name: integration-service-manager-role
+---
+>   labels:
+>     rbac.authorization.k8s.io/aggregate-to-view: "true"
+>   name: integration-service-application-viewer-role
+566c567
+<   - ""
+---
+>   - appstudio.redhat.com
+568c569
+<   - secrets
+---
+>   - applications
+576c577,592
+<   - applications
+---
+>   - applications/status
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   labels:
+>     rbac.authorization.k8s.io/aggregate-to-admin: "true"
+>     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+>   name: integration-service-component-editor-role
+> rules:
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - components
+588,594c604
+<   - applications/finalizers
+<   verbs:
+<   - update
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - applications/status
+---
+>   - components/status
+596a607,614
+>   - patch
+>   - update
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: integration-service-environment-editor-role
+> rules:
+600c618
+<   - components
+---
+>   - environments
+601a620,621
+>   - create
+>   - delete
+610c630
+<   - components/status
+---
+>   - environments/status
+613,614c633,638
+<   - patch
+<   - update
+---
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: integration-service-integrationtestscenario-editor-role
+> rules:
+618c642
+<   - deploymenttargetclaims
+---
+>   - integrationtestscenarios
+630c654,666
+<   - deploymenttargetclasses
+---
+>   - integrationtestscenarios/status
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: integration-service-integrationtestscenario-viewer-role
+> rules:
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - integrationtestscenarios
+638c674,687
+<   - deploymenttargets
+---
+>   - integrationtestscenarios/status
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   creationTimestamp: null
+>   name: integration-service-manager-role
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+640,641d688
+<   - create
+<   - delete
+644,645d690
+<   - patch
+<   - update
+650c695
+<   - environments
+---
+>   - applications
+662c707
+<   - environments/finalizers
+---
+>   - applications/finalizers
+668c713
+<   - environments/status
+---
+>   - components
+670a716
+>   - list
+672a719
+>   - watch
+676c723
+<   - integrationtestscenarios
+---
+>   - components/status
+678,679d724
+<   - create
+<   - delete
+681d725
+<   - list
+684d727
+<   - watch
+688c731
+<   - integrationtestscenarios/status
+---
+>   - deploymenttargetclaims
+689a733,734
+>   - create
+>   - delete
+690a736
+>   - list
+692a739
+>   - watch
+696c743
+<   - releaseplans
+---
+>   - deploymenttargetclasses
+704c751
+<   - releaseplans/status
+---
+>   - deploymenttargets
+705a753,754
+>   - create
+>   - delete
+706a756
+>   - list
+708a759
+>   - watch
+712c763
+<   - releases
+---
+>   - environments
+724c775
+<   - releases/status
+---
+>   - integrationtestscenarios
+725a777,778
+>   - create
+>   - delete
+726a780
+>   - list
+728a783
+>   - watch
+732c787
+<   - snapshotenvironmentbindings
+---
+>   - integrationtestscenarios/status
+734,735d788
+<   - create
+<   - delete
+737d789
+<   - list
+740d791
+<   - watch
+744c795
+<   - snapshotenvironmentbindings/status
+---
+>   - releases/status
+746a798,799
+>   - patch
+>   - update
+788d840
+<   - deletecollection
+863a916,1049
+>   name: integration-service-release-editor-role
+> rules:
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - releases
+>   verbs:
+>   - create
+>   - delete
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - releases/status
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: integration-service-release-viewer-role
+> rules:
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - releases
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - releases/status
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: integration-service-releaseplan-viewer-role
+> rules:
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - releaseplans
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - releaseplans/status
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: integration-service-snapshot-editor-role
+> rules:
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - snapshots
+>   verbs:
+>   - create
+>   - delete
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - snapshots/status
+>   verbs:
+>   - get
+>   - patch
+>   - update
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: integration-service-snapshot-viewer-role
+> rules:
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - snapshots
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - snapshots/status
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: integration-service-snapshotenvironmentbinding-editor-role
+> rules:
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - snapshotenvironmentbindings
+>   verbs:
+>   - create
+>   - delete
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - snapshotenvironmentbindings/status
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+866a1053,1079
+>   - tekton.dev
+>   resources:
+>   - pipelineruns
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - pipelineruns/status
+>   verbs:
+>   - get
+>   - patch
+>   - update
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - pipelineruns/finalizers
+>   verbs:
+>   - update
+> - apiGroups:
+942a1156,1207
+>   name: integration-service-application-role-binding
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: integration-service-application-viewer-role
+> subjects:
+> - kind: ServiceAccount
+>   name: integration-service-controller-manager
+>   namespace: integration-service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   name: integration-service-component-role-binding
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: integration-service-component-editor-role
+> subjects:
+> - kind: ServiceAccount
+>   name: integration-service-controller-manager
+>   namespace: integration-service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   name: integration-service-environment-role-binding
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: integration-service-environment-editor-role
+> subjects:
+> - kind: ServiceAccount
+>   name: integration-service-controller-manager
+>   namespace: integration-service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   name: integration-service-integrationtestscenario-role-binding
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: integration-service-integrationtestscenario-editor-role
+> subjects:
+> - kind: ServiceAccount
+>   name: integration-service-controller-manager
+>   namespace: integration-service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+981a1247,1298
+>   name: integration-service-release-role-binding
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: integration-service-release-editor-role
+> subjects:
+> - kind: ServiceAccount
+>   name: integration-service-controller-manager
+>   namespace: integration-service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   name: integration-service-releaseplan-role-binding
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: integration-service-releaseplan-viewer-role
+> subjects:
+> - kind: ServiceAccount
+>   name: integration-service-controller-manager
+>   namespace: integration-service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   name: integration-service-snapshot-role-binding
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: integration-service-snapshot-editor-role
+> subjects:
+> - kind: ServiceAccount
+>   name: integration-service-controller-manager
+>   namespace: integration-service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   name: integration-service-snapshotenvironmentbinding-role-binding
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: integration-service-snapshotenvironmentbinding-editor-role
+> subjects:
+> - kind: ServiceAccount
+>   name: integration-service-controller-manager
+>   namespace: integration-service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+1084c1401
+<         image: quay.io/redhat-appstudio/integration-service:ac97af520b8dd9b2ef1bb418212b32f04816830e
+---
+>         image: quay.io/redhat-appstudio/integration-service:c3828f452f3d80f65806265ee80cf291f504272b
