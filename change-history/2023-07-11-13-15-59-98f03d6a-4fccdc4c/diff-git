@@ -1,0 +1,80 @@
+diff --git a/components/monitoring/grafana/base/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/pipeline-service/kustomization.yaml
+index bc5ce193..83f59922 100644
+--- a/components/monitoring/grafana/base/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=1f64281aeaf44cb99372f456740499ce9b40929f
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=5bfee7ea5b973bcd504ff4fe03b6bf444f6dffcb
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 68078320..56391c69 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=1f64281aeaf44cb99372f456740499ce9b40929f
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=1f64281aeaf44cb99372f456740499ce9b40929f
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=5bfee7ea5b973bcd504ff4fe03b6bf444f6dffcb
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=5bfee7ea5b973bcd504ff4fe03b6bf444f6dffcb
+   - ../base/servicemonitors
+ 
+ patches:
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 6dc54441..e71c04ee 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=1f64281aeaf44cb99372f456740499ce9b40929f
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=5bfee7ea5b973bcd504ff4fe03b6bf444f6dffcb
+   - ../../base/external-secrets
+   - ../../base/testing
+   - ../../base/servicemonitors
+diff --git a/hack/build/setup-pac-integration.sh b/hack/build/setup-pac-integration.sh
+index 2a79d16f..cfdf2d66 100755
+--- a/hack/build/setup-pac-integration.sh
++++ b/hack/build/setup-pac-integration.sh
+@@ -1,5 +1,8 @@
+ #!/usr/bin/env bash
+ 
++PAC_NAMESPACE='openshift-pipelines'
++PAC_SECRET_NAME='pipelines-as-code-secret'
++
+ setup-pac-app() (
+         # Inspired by implementation by Will Haley at:
+         #   http://willhaley.com/blog/generate-jwt-with-bash/
+@@ -46,15 +49,15 @@ setup-pac-app() (
+ 
+         webhook_secret=$(openssl rand -hex 20)
+ 
+-        if ! oc get -n pipelines-as-code secret pipelines-as-code-secret &>/dev/null; then         
++        if ! oc get -n $PAC_NAMESPACE secret $PAC_SECRET_NAME &>/dev/null; then
+                 token=$(sign rs256 "$payload" "$(echo "$PAC_GITHUB_APP_PRIVATE_KEY" | base64 -d)")
+-                webhook_url=$(oc whoami --show-console | sed 's/console-openshift-console/pipelines-as-code-controller-pipelines-as-code/')
++                pac_host=$(oc get -n $PAC_NAMESPACE route pipelines-as-code-controller -o go-template="{{ .spec.host }}")
+                 curl \
+                 -X PATCH \
+                 -H "Accept: application/vnd.github.v3+json" \
+                 -H "Authorization: Bearer $token" \
+                 https://api.github.com/app/hook/config \
+-                -d "{\"content_type\":\"json\",\"insecure_ssl\":\"1\",\"secret\":\"$webhook_secret\",\"url\":\"$webhook_url\"}" &>/dev/null
++                -d "{\"content_type\":\"json\",\"insecure_ssl\":\"1\",\"secret\":\"$webhook_secret\",\"url\":\"https://$pac_host\"}" &>/dev/null
+         fi
+ 
+         echo $webhook_secret
+@@ -78,9 +81,6 @@ if [ -n "${PAC_GITLAB_TOKEN}" ]; then
+         GITLAB_WEBHOOK_DATA="--from-literal gitlab.token='${PAC_GITLAB_TOKEN}'"
+ fi
+ 
+-PAC_NAMESPACE='pipelines-as-code'
+-PAC_SECRET_NAME='pipelines-as-code-secret'
+-
+ oc create namespace -o yaml --dry-run=client ${PAC_NAMESPACE} | oc apply -f-
+ oc create namespace -o yaml --dry-run=client build-service | oc apply -f-
+ 
