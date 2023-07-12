@@ -1,0 +1,59 @@
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index e71c04ee..72a50c5b 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -9,6 +9,8 @@ commonAnnotations:
+ 
+ resources:
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=5bfee7ea5b973bcd504ff4fe03b6bf444f6dffcb
++  - pipelines-as-code-namespace.yaml
++  - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+   - ../../base/servicemonitors
+@@ -22,7 +24,7 @@ patches:
+     target:
+       kind: ConfigMap
+       name: pipelines-as-code
+-      namespace: pipelines-as-code
++      namespace: openshift-pipelines
+ #  - path: scale-down-exporter.yaml
+ #    target:
+ #      kind: Deployment
+diff --git a/components/pipeline-service/staging/base/pipelines-as-code-namespace.yaml b/components/pipeline-service/staging/base/pipelines-as-code-namespace.yaml
+new file mode 100644
+index 00000000..92eca1cf
+--- /dev/null
++++ b/components/pipeline-service/staging/base/pipelines-as-code-namespace.yaml
+@@ -0,0 +1,5 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: pipelines-as-code
+diff --git a/components/pipeline-service/staging/base/pipelines-as-code-secret.yaml b/components/pipeline-service/staging/base/pipelines-as-code-secret.yaml
+new file mode 100644
+index 00000000..c40ce73e
+--- /dev/null
++++ b/components/pipeline-service/staging/base/pipelines-as-code-secret.yaml
+@@ -0,0 +1,20 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/pipeline-service/github-app
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret

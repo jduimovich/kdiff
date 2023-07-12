@@ -1,0 +1,18 @@
+diff --git a/components/image-controller/base/kustomization.yaml b/components/image-controller/base/kustomization.yaml
+index f5b05328..7da63a8c 100644
+--- a/components/image-controller/base/kustomization.yaml
++++ b/components/image-controller/base/kustomization.yaml
+@@ -1,11 +1,11 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=9a582283d152bbc95dff5034ac5c04895edd4b46
++- https://github.com/redhat-appstudio/image-controller/config/default?ref=f7e2e7dac4e29db444953fd2bafad127fe2eb3dc
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 9a582283d152bbc95dff5034ac5c04895edd4b46
++  newTag: f7e2e7d
+ 
+ namespace: image-controller
+ 

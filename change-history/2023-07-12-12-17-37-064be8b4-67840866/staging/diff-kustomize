@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-67840866/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-064be8b4/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+26d25
+<     - openshift-pipelines

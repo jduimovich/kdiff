@@ -1,0 +1,9 @@
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 8dff8dcd..7511a2f9 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -43,3 +43,4 @@ spec:
+         - openshift-logging
+         - sprayproxy
+         - appstudio-monitoring
++        - openshift-pipelines

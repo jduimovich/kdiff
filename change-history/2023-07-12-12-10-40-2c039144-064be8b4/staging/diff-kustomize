@@ -1,0 +1,62 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-064be8b4/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-2c039144/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+6,12d5
+<   name: pipelines-as-code
+< ---
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1397,1417d1389
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: pipelines-as-code-secret
+<   namespace: openshift-pipelines
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: staging/pipeline-service/github-app
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: pipelines-as-code-secret
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-064be8b4/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-2c039144/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+6,12d5
+<   name: pipelines-as-code
+< ---
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1397,1417d1389
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: pipelines-as-code-secret
+<   namespace: openshift-pipelines
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: staging/pipeline-service/github-app
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: pipelines-as-code-secret
