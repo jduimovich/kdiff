@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4bb266ac/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-3c8ba16d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+753c753
+<   config.env: |
+---
+>   config: |
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4bb266ac/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-3c8ba16d/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+753c753
+<   config.env: |
+---
+>   config: |

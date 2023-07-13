@@ -1,0 +1,137 @@
+diff --git a/components/pipeline-service/base/servicemonitors/kustomization.yaml b/components/pipeline-service/base/servicemonitors/kustomization.yaml
+deleted file mode 100644
+index bac11a17..00000000
+--- a/components/pipeline-service/base/servicemonitors/kustomization.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - tekton-results-service-monitor.yaml
+diff --git a/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml b/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml
+deleted file mode 100644
+index 1b40ec7b..00000000
+--- a/components/pipeline-service/base/servicemonitors/tekton-results-service-monitor.yaml
++++ /dev/null
+@@ -1,75 +0,0 @@
+-apiVersion: v1
+-kind: ServiceAccount
+-metadata:
+-  name: metrics-reader
+-  namespace: tekton-results
+----
+-apiVersion: v1
+-kind: Secret
+-metadata:
+-  name: metrics-reader
+-  namespace: tekton-results
+-  annotations:
+-    kubernetes.io/service-account.name: metrics-reader
+-type: kubernetes.io/service-account-token
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+-metadata:
+-  name: tekton-results-service-metrics-reader
+-rules:
+-- nonResourceURLs:
+-  - /metrics
+-  verbs:
+-  - get
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: prometheus-tekton-results-service-metrics-reader
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: tekton-results-service-metrics-reader
+-subjects:
+-- kind: ServiceAccount
+-  name: metrics-reader
+-  namespace: tekton-results
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: tekton-results-api
+-  namespace: tekton-results
+-spec:
+-  endpoints:
+-  - path: /metrics
+-    port: prometheus
+-    scheme: http
+-    bearerTokenSecret:
+-      name: "metrics-reader"
+-      key: token
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  selector:
+-    matchLabels:
+-      app.kubernetes.io/name: tekton-results-api
+----
+-apiVersion: monitoring.coreos.com/v1
+-kind: ServiceMonitor
+-metadata:
+-  name: tekton-results-watcher
+-  namespace: tekton-results
+-spec:
+-  endpoints:
+-  - path: /metrics
+-    port: metrics
+-    scheme: http
+-    bearerTokenSecret:
+-      name: "metrics-reader"
+-      key: token
+-    tlsConfig:
+-      insecureSkipVerify: true
+-  selector:
+-    matchLabels:
+-      app.kubernetes.io/name: tekton-results-watcher
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 56391c69..ad4020e3 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,9 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=5bfee7ea5b973bcd504ff4fe03b6bf444f6dffcb
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=5bfee7ea5b973bcd504ff4fe03b6bf444f6dffcb
+-  - ../base/servicemonitors
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=fe53355021d1d48fe3a6c75d16440568da1fc9b1
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=fe53355021d1d48fe3a6c75d16440568da1fc9b1
+ 
+ patches:
+ #  - path: scale-down-exporter.yaml
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index f0886d2e..fc0d4e87 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -11,7 +11,6 @@ resources:
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=1f64281aeaf44cb99372f456740499ce9b40929f
+   - ../../base/external-secrets
+   - ../../base/testing
+-  - ../../base/servicemonitors
+ 
+ patches:
+   - path: pipelines-as-code-secret-path.yaml
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 72a50c5b..0a980e96 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,12 +8,11 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=5bfee7ea5b973bcd504ff4fe03b6bf444f6dffcb
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=fe53355021d1d48fe3a6c75d16440568da1fc9b1
+   - pipelines-as-code-namespace.yaml
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+-  - ../../base/servicemonitors
+ 
+ patches:
+   - path: greedy-pruner.yaml

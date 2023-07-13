@@ -1,0 +1,12 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-38c3530b/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-4bb266ac/development/components/pipeline-service/development/kustomize.out.yaml
+761,770d760
+<   application-name: Pipelines as Code CI
+< kind: ConfigMap
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipelines-as-code
+<   namespace: openshift-pipelines
+< ---
+< apiVersion: v1
+< data:

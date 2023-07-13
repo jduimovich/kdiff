@@ -1,0 +1,24 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-38c3530b/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-4bb266ac/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+753,762d752
+<   application-name: RHTAP Staging
+< kind: ConfigMap
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipelines-as-code
+<   namespace: openshift-pipelines
+< ---
+< apiVersion: v1
+< data:
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-38c3530b/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-4bb266ac/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+753,762d752
+<   application-name: RHTAP Staging
+< kind: ConfigMap
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipelines-as-code
+<   namespace: openshift-pipelines
+< ---
+< apiVersion: v1
+< data:
