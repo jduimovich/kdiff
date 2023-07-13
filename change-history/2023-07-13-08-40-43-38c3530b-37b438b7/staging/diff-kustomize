@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37b438b7/staging/components/sprayproxy/staging/kustomize.out.yaml ./kustomized-cache/commit-38c3530b/staging/components/sprayproxy/staging/kustomize.out.yaml
+96c96
+<             https://pipelines-as-code-controller-openshift-pipelines.apps.stone-stg-m01.7ayg.p1.openshiftapps.com https://pipelines-as-code-controller-openshift-pipelines.apps.stone-stg-rh01.l2vh.p1.openshiftapps.com
+---
+>             https://pipelines-as-code-controller-pipelines-as-code.apps.stone-stg-m01.7ayg.p1.openshiftapps.com https://pipelines-as-code-controller-pipelines-as-code.apps.stone-stg-rh01.l2vh.p1.openshiftapps.com
