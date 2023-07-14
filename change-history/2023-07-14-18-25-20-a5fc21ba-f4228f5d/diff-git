@@ -1,0 +1,14 @@
+diff --git a/ci/teams/kustomization.yaml b/ci/teams/kustomization.yaml
+new file mode 100644
+index 00000000..5efc469a
+--- /dev/null
++++ b/ci/teams/kustomization.yaml
+@@ -0,0 +1,7 @@
++resources:
++- rhtap-build
++- rhtap-gitops
++- rhtap-servicerelease
++
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
+\ No newline at end of file
