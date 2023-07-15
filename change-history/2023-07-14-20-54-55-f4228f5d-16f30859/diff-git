@@ -1,0 +1,23 @@
+diff --git a/components/monitoring/grafana/base/kustomization.yaml b/components/monitoring/grafana/base/kustomization.yaml
+index fce0ed81..bb4e5e86 100644
+--- a/components/monitoring/grafana/base/kustomization.yaml
++++ b/components/monitoring/grafana/base/kustomization.yaml
+@@ -11,7 +11,6 @@ resources:
+ - jvm-build-service/
+ - integration/
+ - migration/
+-- o11y/
+ - release/
+ - performance/
+ - pipeline-service/
+diff --git a/components/monitoring/grafana/base/o11y/kustomization.yaml b/components/monitoring/grafana/base/o11y/kustomization.yaml
+deleted file mode 100644
+index e894ea06..00000000
+--- a/components/monitoring/grafana/base/o11y/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- https://github.com/redhat-appstudio/o11y/grafana/?ref=82bec1c488250ae32d458c77755e432329be1b45
+-
