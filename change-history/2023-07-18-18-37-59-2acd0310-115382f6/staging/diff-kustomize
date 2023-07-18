@@ -1,0 +1,23 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-115382f6/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-2acd0310/staging/components/tekton-ci/staging/kustomize.out.yaml
+66,86d65
+<   name: github
+<   namespace: tekton-ci
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/github-read-only
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: github
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"

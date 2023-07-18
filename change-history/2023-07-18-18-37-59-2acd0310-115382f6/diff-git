@@ -1,0 +1,35 @@
+diff --git a/components/tekton-ci/base/external-secrets/github-secret.yaml b/components/tekton-ci/base/external-secrets/github-secret.yaml
+new file mode 100644
+index 00000000..d3495465
+--- /dev/null
++++ b/components/tekton-ci/base/external-secrets/github-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: github
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: "production/build/github-read-only"
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: github
+diff --git a/components/tekton-ci/base/external-secrets/kustomization.yaml b/components/tekton-ci/base/external-secrets/kustomization.yaml
+index 13ccf06c..5bc57ae1 100644
+--- a/components/tekton-ci/base/external-secrets/kustomization.yaml
++++ b/components/tekton-ci/base/external-secrets/kustomization.yaml
+@@ -5,4 +5,5 @@ resources:
+ - infra-deployments-pr-creator.yaml
+ - snyk-shared-token.yaml
+ - slack-webhook-notification-secret.yaml
++- github-secret.yaml
+ namespace: tekton-ci
