@@ -1,0 +1,384 @@
+diff --git a/components/authentication/base/gitops-component-maintainer.yaml b/components/authentication/base/gitops-component-maintainer.yaml
+deleted file mode 100644
+index e5b37326..00000000
+--- a/components/authentication/base/gitops-component-maintainer.yaml
++++ /dev/null
+@@ -1,35 +0,0 @@
+-kind: ClusterRole
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-component-maintainer
+-rules:
+-  - apiGroups:
+-      - '*'
+-    resources:
+-      - '*'
+-    verbs:
+-      - get
+-      - list
+-      - watch
+-  - apiGroups:
+-      - operators.coreos.com
+-    resources:
+-      - installplans
+-    verbs:
+-      - get
+-      - list
+-      - update
+-      - patch
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: Role
+-metadata:
+-  name: gitops-namespace-all-access
+-  namespace: gitops
+-rules:
+-  - apiGroups:
+-      - '*'
+-    resources:
+-      - '*'
+-    verbs:
+-      - '*'
+diff --git a/components/authentication/base/gitops.yaml b/components/authentication/base/gitops.yaml
+deleted file mode 100644
+index 899fecac..00000000
+--- a/components/authentication/base/gitops.yaml
++++ /dev/null
+@@ -1,34 +0,0 @@
+----
+-kind: ClusterRoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-gitops-component-maintainers
+-  namespace: gitops
+-subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jgwest
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jannfis
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: gitops-component-maintainer
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: gitops-service-maintainers-gitops-namespace-all-access
+-  namespace: gitops
+-subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jgwest
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jannfis
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: gitops-namespace-all-access
+diff --git a/components/gitops/base/authentication/gitops-clusterrolebindings.yaml b/components/gitops/base/authentication/gitops-clusterrolebindings.yaml
+new file mode 100644
+index 00000000..aae9cc3a
+--- /dev/null
++++ b/components/gitops/base/authentication/gitops-clusterrolebindings.yaml
+@@ -0,0 +1,14 @@
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: gitops-service-gitops-component-maintainers
++  namespace: gitops
++subjects:
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: jgwest
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: gitops-component-maintainer
+diff --git a/components/gitops/base/authentication/gitops-clusterroles.yaml b/components/gitops/base/authentication/gitops-clusterroles.yaml
+new file mode 100644
+index 00000000..b5d39263
+--- /dev/null
++++ b/components/gitops/base/authentication/gitops-clusterroles.yaml
+@@ -0,0 +1,83 @@
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: gitops-component-maintainer
++rules:
++  - apiGroups:
++      - '*'
++    resources:
++      - '*'
++    verbs:
++      - get
++      - list
++      - watch
++  - apiGroups:
++      - operators.coreos.com
++    resources:
++      - installplans
++    verbs:
++      - get
++      - list
++      - update
++      - patch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: gitops-namespaces-all-access
++rules:
++  - apiGroups:
++      - '*'
++    resources:
++      - '*'
++    verbs:
++      - '*'
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: gitops-namespaces-read-all-access
++rules:
++  - apiGroups:
++      - '*'
++    resources:
++      - '*'
++    verbs:
++      - 'get'
++      - 'list'
++      - 'watch'
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: gitops-namespaces-read-access
++rules:
++  - apiGroups:
++      - ''
++      - 'apps'
++    resources:
++      - 'pods'
++      - 'pods/log'
++      - 'deployments'
++      - 'events'
++      - 'bindings'
++      - 'replicas'
++      - 'configmaps'
++      - 'namespaces'
++    verbs:
++      - 'get'
++      - 'list'
++      - 'watch'
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: gitops-namespaces-delete-pods-access
++rules:
++  - apiGroups:
++      - ''
++      - 'apps'
++    resources:
++      - 'pods'
++    verbs:
++      - 'delete'
+diff --git a/components/gitops/base/authentication/kustomization.yaml b/components/gitops/base/authentication/kustomization.yaml
+new file mode 100644
+index 00000000..5126a16c
+--- /dev/null
++++ b/components/gitops/base/authentication/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- gitops-clusterroles.yaml
++- gitops-clusterrolebindings.yaml
+\ No newline at end of file
+diff --git a/components/gitops/production/base/authentication/gitops-rolebindings.yaml b/components/gitops/production/base/authentication/gitops-rolebindings.yaml
+new file mode 100644
+index 00000000..c64208e8
+--- /dev/null
++++ b/components/gitops/production/base/authentication/gitops-rolebindings.yaml
+@@ -0,0 +1,62 @@
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: gitops-namespace-read-access
++  namespace: gitops
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: GitOps Service Team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: gitops-namespaces-read-access
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: gitops-service-argocd-namespace-read-access
++  namespace: gitops-service-argocd
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: GitOps Service Team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: gitops-namespaces-read-access
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: gitops-namespace-all-access
++  namespace: gitops
++subjects:
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: jgwest
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: jannfis
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: gitops-namespaces-all-access
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: gitops-service-argocd-namespace-all-access
++  namespace: gitops-service-argocd
++subjects:
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: jgwest
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: jannfis
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: gitops-namespaces-all-access
+diff --git a/components/gitops/production/base/authentication/kustomization.yaml b/components/gitops/production/base/authentication/kustomization.yaml
+new file mode 100644
+index 00000000..9c91d96c
+--- /dev/null
++++ b/components/gitops/production/base/authentication/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - gitops-rolebindings.yaml
++  - ../../../base/authentication
+\ No newline at end of file
+diff --git a/components/gitops/production/base/kustomization.yaml b/components/gitops/production/base/kustomization.yaml
+index 20c51745..27d4aca8 100644
+--- a/components/gitops/production/base/kustomization.yaml
++++ b/components/gitops/production/base/kustomization.yaml
+@@ -6,6 +6,7 @@ resources:
+ - ../../openshift-gitops/overlays/production-and-dev
+ - ../../base/external-secrets
+ - ../../base/monitoring
++- authentication
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+diff --git a/components/gitops/staging/base/authentication/gitops-rolebindings.yaml b/components/gitops/staging/base/authentication/gitops-rolebindings.yaml
+new file mode 100644
+index 00000000..df9ba1d1
+--- /dev/null
++++ b/components/gitops/staging/base/authentication/gitops-rolebindings.yaml
+@@ -0,0 +1,56 @@
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: gitops-namespace-read-access
++  namespace: gitops
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: GitOps Service Team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: gitops-namespaces-read-all-access
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: gitops-service-argocd-namespace-read-access
++  namespace: gitops-service-argocd
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: GitOps Service Team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: gitops-namespaces-read-all-access
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: gitops-namespace-delete-pods-access
++  namespace: gitops
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: GitOps Service Team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: gitops-namespaces-delete-pods-access
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: gitops-service-argocd-namespace-delete-pods-access
++  namespace: gitops-service-argocd
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: GitOps Service Team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: gitops-namespaces-delete-pods-access
+\ No newline at end of file
+diff --git a/components/gitops/staging/base/authentication/kustomization.yaml b/components/gitops/staging/base/authentication/kustomization.yaml
+new file mode 100644
+index 00000000..7105d7d5
+--- /dev/null
++++ b/components/gitops/staging/base/authentication/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- gitops-rolebindings.yaml
++- ../../../base/authentication
+\ No newline at end of file
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+index 789bbfe2..5c6f343d 100644
+--- a/components/gitops/staging/base/kustomization.yaml
++++ b/components/gitops/staging/base/kustomization.yaml
+@@ -6,6 +6,7 @@ resources:
+ - ../../openshift-gitops/overlays/staging
+ - ../../base/external-secrets
+ - ../../base/monitoring
++- authentication
+ 
+ images:
+   - name: \${COMMON_IMAGE}
