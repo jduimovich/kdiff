@@ -1,0 +1,34 @@
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 635a5ceb..a45f7570 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -18,7 +18,7 @@ spec:
+   sources:
+     - name: Release Policies
+       data:
+-        - oci::quay.io/hacbs-contract/ec-policy-data:git-2f5d68b@sha256:cf65f3dfad319c26d0bb1d37a04d9aa71bc7ec9f73dacb31a6f27f1a87c1366b
++        - oci::quay.io/hacbs-contract/ec-policy-data:git-b4062eb@sha256:8dcb4b022645dc17c500f4926c9757d8c47953265dbd8665728f255058e5067f
+       policy:
+         - oci::quay.io/hacbs-contract/ec-release-policy:git-e908e45@sha256:e90f160c60acd9ef18f503556d635bb3c6b17b75c65d39efb7462a4d4950086a
+ ---
+@@ -37,6 +37,6 @@ spec:
+   sources:
+     - name: Release Policies
+       data:
+-        - oci::quay.io/hacbs-contract/ec-policy-data:git-2f5d68b@sha256:cf65f3dfad319c26d0bb1d37a04d9aa71bc7ec9f73dacb31a6f27f1a87c1366b
++        - oci::quay.io/hacbs-contract/ec-policy-data:git-b4062eb@sha256:8dcb4b022645dc17c500f4926c9757d8c47953265dbd8665728f255058e5067f
+       policy:
+         - oci::quay.io/hacbs-contract/ec-release-policy:git-e908e45@sha256:e90f160c60acd9ef18f503556d635bb3c6b17b75c65d39efb7462a4d4950086a
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index b6b520e3..07219b3a 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -11,7 +11,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:9215bb3e6a02335f7105d3193ebd46283a7188f5@sha256:a01274b5735ba9712df025fdebd46ad0f8ce2639300ffa1755c85052b4264111
++      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:44467e1733049c315b0c7f80728d6c6cee784925@sha256:f7d49c55e4489b642396eeb876e50d814e781100f46804b3a4f0877cfb68a224
+ images:
+   - name: quay.io/redhat-appstudio/enterprise-contract-controller
+     newName: quay.io/redhat-appstudio/enterprise-contract-controller
