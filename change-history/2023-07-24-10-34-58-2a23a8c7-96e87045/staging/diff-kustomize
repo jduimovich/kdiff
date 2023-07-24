@@ -1,0 +1,58 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-96e87045/staging/components/sprayproxy/staging/kustomize.out.yaml ./kustomized-cache/commit-2a23a8c7/staging/components/sprayproxy/staging/kustomize.out.yaml
+63,64d62
+<   annotations:
+<     service.beta.openshift.io/serving-cert-secret-name: sprayproxy-tls
+69,70c67,68
+<   - name: proxy-https
+<     port: 9443
+---
+>   - name: server
+>     port: 8080
+104c102
+<         image: quay.io/redhat-appstudio/sprayproxy:8546fcd393d79ffbb70b2818df123d549c181fc4
+---
+>         image: quay.io/redhat-appstudio/sprayproxy:89addb463d3073b42a01636d6b9870d8aeb9f6d4
+114,138d111
+<         - --secure-listen-address=0.0.0.0:9443
+<         - --upstream=http://127.0.0.1:8080/
+<         - --ignore-paths=/proxy,/healthz
+<         - --logtostderr=true
+<         - --v=10
+<         - --tls-cert-file=/etc/tls/tls.crt
+<         - --tls-private-key-file=/etc/tls/tls.key
+<         image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
+<         name: kube-rbac-proxy
+<         ports:
+<         - containerPort: 9443
+<           name: proxy-https
+<           protocol: TCP
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         volumeMounts:
+<         - mountPath: /etc/tls
+<           name: tls
+<           readOnly: true
+<       - args:
+142c115
+<         - --v=10
+---
+>         - --v=0
+144c117
+<         name: kube-rbac-metrics
+---
+>         name: kube-rbac-proxy
+157,161d129
+<       volumes:
+<       - name: tls
+<         secret:
+<           defaultMode: 420
+<           secretName: sprayproxy-tls
+193c161
+<     termination: reencrypt
+---
+>     termination: edge
