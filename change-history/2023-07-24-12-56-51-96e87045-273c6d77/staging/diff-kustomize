@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-273c6d77/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-96e87045/staging/components/tekton-ci/staging/kustomize.out.yaml
+241,249d240
+<   name: clair-in-ci-db
+< spec:
+<   url: https://github.com/redhat-appstudio/clair-in-ci-db
+< ---
+< apiVersion: pipelinesascode.tekton.dev/v1alpha1
+< kind: Repository
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

@@ -1,0 +1,10 @@
+diff --git a/components/tekton-ci/base/external-secrets/snyk-shared-token.yaml b/components/tekton-ci/base/external-secrets/snyk-shared-token.yaml
+index cc7b774c..cc001c74 100644
+--- a/components/tekton-ci/base/external-secrets/snyk-shared-token.yaml
++++ b/components/tekton-ci/base/external-secrets/snyk-shared-token.yaml
+@@ -16,4 +16,4 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: snyk-shared-secret
++    name: snyk-secret
