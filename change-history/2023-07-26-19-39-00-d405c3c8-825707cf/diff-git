@@ -1,0 +1,44 @@
+diff --git a/components/authentication/staging/kustomization.yaml b/components/authentication/staging/kustomization.yaml
+index e47e2d22..a8f4021f 100644
+--- a/components/authentication/staging/kustomization.yaml
++++ b/components/authentication/staging/kustomization.yaml
+@@ -3,3 +3,4 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ./has-exec.yaml
++  - ./results-cluster-viewer.yaml
+diff --git a/components/authentication/staging/results-cluster-viewer.yaml b/components/authentication/staging/results-cluster-viewer.yaml
+new file mode 100644
+index 00000000..836d442e
+--- /dev/null
++++ b/components/authentication/staging/results-cluster-viewer.yaml
+@@ -0,0 +1,29 @@
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: results-cluster-viewer
++rules:
++  - apiGroups:
++      - results.tekton.dev
++    resources:
++      - results
++      - records
++    verbs:
++      - get
++      - list
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: results-cluster-viewer
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: results-cluster-viewer
++subjects:
++  - kind: User
++    name: gabemontero
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: sayan-biswas
++    apiGroup: rbac.authorization.k8s.io
