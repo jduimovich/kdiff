@@ -1,0 +1,194 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8021dd76/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-825707cf/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+20d19
+<     argocd.argoproj.io/sync-wave: "0"
+30d28
+<     argocd.argoproj.io/sync-wave: "0"
+40d37
+<     argocd.argoproj.io/sync-wave: "0"
+49d45
+<     argocd.argoproj.io/sync-wave: "0"
+66d61
+<     argocd.argoproj.io/sync-wave: "0"
+75d69
+<     argocd.argoproj.io/sync-wave: "0"
+106d99
+<     argocd.argoproj.io/sync-wave: "0"
+122d114
+<     argocd.argoproj.io/sync-wave: "0"
+143d134
+<     argocd.argoproj.io/sync-wave: "0"
+185d175
+<     argocd.argoproj.io/sync-wave: "0"
+224d213
+<     argocd.argoproj.io/sync-wave: "0"
+243d231
+<     argocd.argoproj.io/sync-wave: "0"
+282d269
+<     argocd.argoproj.io/sync-wave: "0"
+301d287
+<     argocd.argoproj.io/sync-wave: "0"
+407d392
+<     argocd.argoproj.io/sync-wave: "0"
+486d470
+<     argocd.argoproj.io/sync-wave: "0"
+503d486
+<     argocd.argoproj.io/sync-wave: "0"
+520d502
+<     argocd.argoproj.io/sync-wave: "0"
+537d518
+<     argocd.argoproj.io/sync-wave: "0"
+554d534
+<     argocd.argoproj.io/sync-wave: "0"
+571d550
+<     argocd.argoproj.io/sync-wave: "0"
+624d602
+<     argocd.argoproj.io/sync-wave: "0"
+640d617
+<     argocd.argoproj.io/sync-wave: "0"
+656d632
+<     argocd.argoproj.io/sync-wave: "0"
+672d647
+<     argocd.argoproj.io/sync-wave: "0"
+724d698
+<     argocd.argoproj.io/sync-wave: "0"
+768c742
+<     argocd.argoproj.io/sync-wave: "1"
+---
+>     argocd.argoproj.io/sync-wave: "2"
+784d757
+<     argocd.argoproj.io/sync-wave: "0"
+898d870
+<     argocd.argoproj.io/sync-wave: "0"
+975d946
+<     argocd.argoproj.io/sync-wave: "0"
+986d956
+<     argocd.argoproj.io/sync-wave: "0"
+1005c975
+<     argocd.argoproj.io/sync-wave: "0"
+---
+>     argocd.argoproj.io/sync-wave: "1"
+1052d1021
+<     argocd.argoproj.io/sync-wave: "0"
+1162c1131
+<         image: quay.io/redhat-appstudio/tekton-results-api:d84c26a2032af75b50f9ae4ee8a09af4a1cb2eaf
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:f1cb34e6b5f5688ceca3acdf3258848cacb287e8
+1225c1194
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:d84c26a2032af75b50f9ae4ee8a09af4a1cb2eaf
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:f1cb34e6b5f5688ceca3acdf3258848cacb287e8
+1295c1264
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:d84c26a2032af75b50f9ae4ee8a09af4a1cb2eaf
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:f1cb34e6b5f5688ceca3acdf3258848cacb287e8
+1536d1504
+<     argocd.argoproj.io/sync-wave: "0"
+1559d1526
+<     argocd.argoproj.io/sync-wave: "0"
+1581d1547
+<     argocd.argoproj.io/sync-wave: "0"
+1603d1568
+<     argocd.argoproj.io/sync-wave: "0"
+1646d1610
+<     argocd.argoproj.io/sync-wave: "0"
+1660d1623
+<     argocd.argoproj.io/sync-wave: "0"
+1698d1660
+<     argocd.argoproj.io/sync-wave: "0"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8021dd76/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-825707cf/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+20d19
+<     argocd.argoproj.io/sync-wave: "0"
+30d28
+<     argocd.argoproj.io/sync-wave: "0"
+40d37
+<     argocd.argoproj.io/sync-wave: "0"
+49d45
+<     argocd.argoproj.io/sync-wave: "0"
+66d61
+<     argocd.argoproj.io/sync-wave: "0"
+75d69
+<     argocd.argoproj.io/sync-wave: "0"
+106d99
+<     argocd.argoproj.io/sync-wave: "0"
+122d114
+<     argocd.argoproj.io/sync-wave: "0"
+143d134
+<     argocd.argoproj.io/sync-wave: "0"
+185d175
+<     argocd.argoproj.io/sync-wave: "0"
+224d213
+<     argocd.argoproj.io/sync-wave: "0"
+243d231
+<     argocd.argoproj.io/sync-wave: "0"
+282d269
+<     argocd.argoproj.io/sync-wave: "0"
+301d287
+<     argocd.argoproj.io/sync-wave: "0"
+407d392
+<     argocd.argoproj.io/sync-wave: "0"
+486d470
+<     argocd.argoproj.io/sync-wave: "0"
+503d486
+<     argocd.argoproj.io/sync-wave: "0"
+520d502
+<     argocd.argoproj.io/sync-wave: "0"
+537d518
+<     argocd.argoproj.io/sync-wave: "0"
+554d534
+<     argocd.argoproj.io/sync-wave: "0"
+571d550
+<     argocd.argoproj.io/sync-wave: "0"
+624d602
+<     argocd.argoproj.io/sync-wave: "0"
+640d617
+<     argocd.argoproj.io/sync-wave: "0"
+656d632
+<     argocd.argoproj.io/sync-wave: "0"
+672d647
+<     argocd.argoproj.io/sync-wave: "0"
+724d698
+<     argocd.argoproj.io/sync-wave: "0"
+768c742
+<     argocd.argoproj.io/sync-wave: "1"
+---
+>     argocd.argoproj.io/sync-wave: "2"
+784d757
+<     argocd.argoproj.io/sync-wave: "0"
+898d870
+<     argocd.argoproj.io/sync-wave: "0"
+975d946
+<     argocd.argoproj.io/sync-wave: "0"
+986d956
+<     argocd.argoproj.io/sync-wave: "0"
+1005c975
+<     argocd.argoproj.io/sync-wave: "0"
+---
+>     argocd.argoproj.io/sync-wave: "1"
+1052d1021
+<     argocd.argoproj.io/sync-wave: "0"
+1162c1131
+<         image: quay.io/redhat-appstudio/tekton-results-api:d84c26a2032af75b50f9ae4ee8a09af4a1cb2eaf
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:f1cb34e6b5f5688ceca3acdf3258848cacb287e8
+1225c1194
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:d84c26a2032af75b50f9ae4ee8a09af4a1cb2eaf
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:f1cb34e6b5f5688ceca3acdf3258848cacb287e8
+1295c1264
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:d84c26a2032af75b50f9ae4ee8a09af4a1cb2eaf
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:f1cb34e6b5f5688ceca3acdf3258848cacb287e8
+1536d1504
+<     argocd.argoproj.io/sync-wave: "0"
+1559d1526
+<     argocd.argoproj.io/sync-wave: "0"
+1581d1547
+<     argocd.argoproj.io/sync-wave: "0"
+1603d1568
+<     argocd.argoproj.io/sync-wave: "0"
+1646d1610
+<     argocd.argoproj.io/sync-wave: "0"
+1660d1623
+<     argocd.argoproj.io/sync-wave: "0"
+1698d1660
+<     argocd.argoproj.io/sync-wave: "0"
