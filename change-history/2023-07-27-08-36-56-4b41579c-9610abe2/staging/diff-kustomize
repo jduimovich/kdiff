@@ -1,0 +1,176 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9610abe2/staging/components/sprayproxy/staging/kustomize.out.yaml ./kustomized-cache/commit-4b41579c/staging/components/sprayproxy/staging/kustomize.out.yaml
+3a4,5
+>   labels:
+>     openshift.io/cluster-monitoring: "true"
+9,14d10
+<   name: metrics-reader
+<   namespace: sprayproxy
+< ---
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+19,58d14
+< kind: ClusterRole
+< metadata:
+<   name: sprayproxy-backend-register
+< rules:
+< - nonResourceURLs:
+<   - /backends
+<   verbs:
+<   - get
+<   - create
+<   - delete
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   name: sprayproxy-kube-rbac-proxy
+< rules:
+< - apiGroups:
+<   - authentication.k8s.io
+<   resources:
+<   - tokenreviews
+<   verbs:
+<   - create
+< - apiGroups:
+<   - authorization.k8s.io
+<   resources:
+<   - subjectaccessreviews
+<   verbs:
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   name: sprayproxy-metrics-reader
+< rules:
+< - nonResourceURLs:
+<   - /metrics
+<   verbs:
+<   - get
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+90,128d45
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: sprayproxy-backend-register
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: sprayproxy-backend-register
+< subjects:
+< - kind: ServiceAccount
+<   name: sprayproxy
+<   namespace: sprayproxy
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: sprayproxy-kube-rbac-proxy
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: sprayproxy-kube-rbac-proxy
+< subjects:
+< - kind: ServiceAccount
+<   name: sprayproxy
+<   namespace: sprayproxy
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: sprayproxy-metrics-reader
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: sprayproxy-metrics-reader
+< subjects:
+< - kind: ServiceAccount
+<   name: metrics-reader
+<   namespace: sprayproxy
+< ---
+130c47
+< kind: Secret
+---
+> kind: Service
+132,134c49
+<   annotations:
+<     kubernetes.io/service-account.name: metrics-reader
+<   name: metrics-reader
+---
+>   name: sprayproxy-metrics-service
+136c51,58
+< type: kubernetes.io/service-account-token
+---
+> spec:
+>   ports:
+>   - name: https
+>     port: 8443
+>     protocol: TCP
+>     targetPort: https
+>   selector:
+>     app.kubernetes.io/name: sprayproxy
+143,145c65
+<   labels:
+<     app.kubernetes.io/name: sprayproxy
+<   name: sprayproxy
+---
+>   name: sprayproxy-service
+149,153c69
+<   - name: server
+<     port: 8443
+<     protocol: TCP
+<     targetPort: server
+<   - name: metrics
+---
+>   - name: proxy-https
+156d71
+<     targetPort: metrics
+185d99
+<         - name: GH_APP_WEBHOOK_SECRET
+190c104
+<         image: quay.io/redhat-appstudio/sprayproxy:7dc6731e58f4a53ebc5f2f694110ee0fbbe5196e
+---
+>         image: quay.io/redhat-appstudio/sprayproxy:8546fcd393d79ffbb70b2818df123d549c181fc4
+200c114
+<         - --secure-listen-address=0.0.0.0:8443
+---
+>         - --secure-listen-address=0.0.0.0:9443
+225c139
+<         - --secure-listen-address=0.0.0.0:9443
+---
+>         - --secure-listen-address=0.0.0.0:8443
+232,233c146,147
+<         - containerPort: 9443
+<           name: metrics
+---
+>         - containerPort: 8443
+>           name: https
+269,287d182
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   name: sprayproxy
+<   namespace: sprayproxy
+< spec:
+<   endpoints:
+<   - bearerTokenSecret:
+<       key: token
+<       name: metrics-reader
+<     path: /metrics
+<     port: metrics
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+<   selector:
+<     matchLabels:
+<       app.kubernetes.io/name: sprayproxy
+< ---
+296,297d190
+<   port:
+<     targetPort: server
+303c196
+<     name: sprayproxy
+---
+>     name: sprayproxy-service
