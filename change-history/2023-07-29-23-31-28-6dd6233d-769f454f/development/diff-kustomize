@@ -1,0 +1,49 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-769f454f/development/app-of-apps-development.yaml ./kustomized-cache/commit-6dd6233d/development/app-of-apps-development.yaml
+720a721,766
+>   name: o11y
+>   namespace: openshift-gitops
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: development
+>             sourceRoot: components/o11y
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: o11y-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: o11y
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+Only in ./kustomized-cache/commit-6dd6233d/development/components: o11y

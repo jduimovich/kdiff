@@ -1,0 +1,60 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-769f454f/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-6dd6233d/staging/app-of-apps-staging.yaml
+866a867,912
+>   name: o11y
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/o11y
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: o11y-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: o11y
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+Only in ./kustomized-cache/commit-6dd6233d/staging/components: o11y
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-769f454f/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-6dd6233d/staging/components/tekton-ci/staging/kustomize.out.yaml
+348a349,357
+>   name: o11y
+> spec:
+>   url: https://github.com/redhat-appstudio/o11y
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
