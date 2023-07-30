@@ -1,0 +1,12 @@
+diff --git a/components/monitoring/grafana/base/grafana-operator.yaml b/components/monitoring/grafana/base/grafana-operator.yaml
+index 6ad9877e..c3a0c882 100644
+--- a/components/monitoring/grafana/base/grafana-operator.yaml
++++ b/components/monitoring/grafana/base/grafana-operator.yaml
+@@ -4,6 +4,7 @@ kind: Subscription
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: Replace=true
++    argocd.argoproj.io/sync-wave: "-1"
+   labels:
+     operators.coreos.com/grafana-operator.appstudio-grafana: ""
+   name: grafana-operator
