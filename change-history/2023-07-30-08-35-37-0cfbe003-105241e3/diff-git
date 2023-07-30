@@ -1,0 +1,51 @@
+diff --git a/components/monitoring/grafana/base/external-secrets/kustomization.yaml b/components/monitoring/grafana/base/external-secrets/kustomization.yaml
+deleted file mode 100644
+index 1ac0488c..00000000
+--- a/components/monitoring/grafana/base/external-secrets/kustomization.yaml
++++ /dev/null
+@@ -1,7 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- monitoring-grafana-oauth-config.yaml
+-namespace: appstudio-workload-monitoring
+-commonAnnotations:
+-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/monitoring/grafana/base/external-secrets/monitoring-grafana-oauth-config.yaml b/components/monitoring/grafana/base/external-secrets/monitoring-grafana-oauth-config.yaml
+deleted file mode 100644
+index 1f427a78..00000000
+--- a/components/monitoring/grafana/base/external-secrets/monitoring-grafana-oauth-config.yaml
++++ /dev/null
+@@ -1,20 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: monitoring-grafana-oauth-config
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-  - extract:
+-      key: "" # will be added by the overlays
+-      decodingStrategy: Base64
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: grafana-oauth2-proxy
+\ No newline at end of file
+diff --git a/components/monitoring/grafana/base/kustomization.yaml b/components/monitoring/grafana/base/kustomization.yaml
+index 2113de51..1ec89713 100644
+--- a/components/monitoring/grafana/base/kustomization.yaml
++++ b/components/monitoring/grafana/base/kustomization.yaml
+@@ -4,6 +4,5 @@ resources:
+ - grafana-operator.yaml
+ - grafana-app.yaml
+ - dashboards
+-- external-secrets
+ 
+ namespace: "appstudio-grafana"

@@ -1,0 +1,13 @@
+diff --git a/components/monitoring/grafana/base/grafana-app.yaml b/components/monitoring/grafana/base/grafana-app.yaml
+index 9af32fe2..df3b183f 100644
+--- a/components/monitoring/grafana/base/grafana-app.yaml
++++ b/components/monitoring/grafana/base/grafana-app.yaml
+@@ -103,6 +103,8 @@ metadata:
+   name: grafana-oauth
+   labels: 
+     dashboards: "appstudio-grafana"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ spec:
+   config:
+     users:

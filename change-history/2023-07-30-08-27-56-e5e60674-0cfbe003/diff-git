@@ -1,0 +1,235 @@
+diff --git a/components/monitoring/grafana/base/build-service/dashboard.yaml b/components/monitoring/grafana/base/dashboards/build-service/dashboard.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/build-service/dashboard.yaml
+rename to components/monitoring/grafana/base/dashboards/build-service/dashboard.yaml
+diff --git a/components/monitoring/grafana/base/build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/build-service/kustomization.yaml
+rename to components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/cm-dashboard.yaml b/components/monitoring/grafana/base/dashboards/cm-dashboard.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/cm-dashboard.yaml
+rename to components/monitoring/grafana/base/dashboards/cm-dashboard.yaml
+diff --git a/components/monitoring/grafana/base/dora-metrics/dashboard.yaml b/components/monitoring/grafana/base/dashboards/dora-metrics/dashboard.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/dora-metrics/dashboard.yaml
+rename to components/monitoring/grafana/base/dashboards/dora-metrics/dashboard.yaml
+diff --git a/components/monitoring/grafana/base/dora-metrics/kustomization.yaml b/components/monitoring/grafana/base/dashboards/dora-metrics/kustomization.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/dora-metrics/kustomization.yaml
+rename to components/monitoring/grafana/base/dashboards/dora-metrics/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/generic-dashboards/controller-runtime-controllers-detail_rev1.json b/components/monitoring/grafana/base/dashboards/generic-dashboards/controller-runtime-controllers-detail_rev1.json
+similarity index 100%
+rename from components/monitoring/grafana/base/generic-dashboards/controller-runtime-controllers-detail_rev1.json
+rename to components/monitoring/grafana/base/dashboards/generic-dashboards/controller-runtime-controllers-detail_rev1.json
+diff --git a/components/monitoring/grafana/base/generic-dashboards/dashboard.yaml b/components/monitoring/grafana/base/dashboards/generic-dashboards/dashboard.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/generic-dashboards/dashboard.yaml
+rename to components/monitoring/grafana/base/dashboards/generic-dashboards/dashboard.yaml
+diff --git a/components/monitoring/grafana/base/generic-dashboards/example.json b/components/monitoring/grafana/base/dashboards/generic-dashboards/example.json
+similarity index 100%
+rename from components/monitoring/grafana/base/generic-dashboards/example.json
+rename to components/monitoring/grafana/base/dashboards/generic-dashboards/example.json
+diff --git a/components/monitoring/grafana/base/generic-dashboards/go-processes_rev1.json b/components/monitoring/grafana/base/dashboards/generic-dashboards/go-processes_rev1.json
+similarity index 100%
+rename from components/monitoring/grafana/base/generic-dashboards/go-processes_rev1.json
+rename to components/monitoring/grafana/base/dashboards/generic-dashboards/go-processes_rev1.json
+diff --git a/components/monitoring/grafana/base/generic-dashboards/kustomization.yaml b/components/monitoring/grafana/base/dashboards/generic-dashboards/kustomization.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/generic-dashboards/kustomization.yaml
+rename to components/monitoring/grafana/base/dashboards/generic-dashboards/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/has/OWNERS b/components/monitoring/grafana/base/dashboards/has/OWNERS
+similarity index 100%
+rename from components/monitoring/grafana/base/has/OWNERS
+rename to components/monitoring/grafana/base/dashboards/has/OWNERS
+diff --git a/components/monitoring/grafana/base/has/dashboard.yaml b/components/monitoring/grafana/base/dashboards/has/dashboard.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/has/dashboard.yaml
+rename to components/monitoring/grafana/base/dashboards/has/dashboard.yaml
+diff --git a/components/monitoring/grafana/base/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/has/kustomization.yaml
+rename to components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/integration/kustomization.yaml b/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/integration/kustomization.yaml
+rename to components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/jvm-build-service/dashboard.yaml b/components/monitoring/grafana/base/dashboards/jvm-build-service/dashboard.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/jvm-build-service/dashboard.yaml
+rename to components/monitoring/grafana/base/dashboards/jvm-build-service/dashboard.yaml
+diff --git a/components/monitoring/grafana/base/jvm-build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/jvm-build-service/kustomization.yaml
+rename to components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/dashboards/kustomization.yaml b/components/monitoring/grafana/base/dashboards/kustomization.yaml
+new file mode 100644
+index 00000000..c6c6b9f7
+--- /dev/null
++++ b/components/monitoring/grafana/base/dashboards/kustomization.yaml
+@@ -0,0 +1,41 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- spi/
++- build-service/
++- managed-gitops/
++- dora-metrics/
++- has/
++- jvm-build-service/
++- integration/
++- migration/
++- release/
++- performance/
++- pipeline-service/
++- generic-dashboards/
++
++# Skip applying the grafana operands (integreatly.org) while the grafana operator is being installed.
++# See more information about this option, here:
++# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++
++configurations:
++  - cm-dashboard.yaml
++
++# Migration patch from Grafana v4 to v5, should be removed when all projects are migrated
++patchesJson6902:
++  - target:
++      group: integreatly.org
++      version: v1alpha1
++      kind: GrafanaDashboard
++      name: '.*'
++    patch: |-
++      - op: replace
++        path: "/apiVersion"
++        value: grafana.integreatly.org/v1beta1
++      - op: add
++        path: /spec/instanceSelector
++        value:
++          matchLabels:
++            dashboards: "appstudio-grafana"
+diff --git a/components/monitoring/grafana/base/managed-gitops/dashboard.yaml b/components/monitoring/grafana/base/dashboards/managed-gitops/dashboard.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/managed-gitops/dashboard.yaml
+rename to components/monitoring/grafana/base/dashboards/managed-gitops/dashboard.yaml
+diff --git a/components/monitoring/grafana/base/managed-gitops/gitops-service-argocd-dashboard.yaml b/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/managed-gitops/gitops-service-argocd-dashboard.yaml
+rename to components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml
+diff --git a/components/monitoring/grafana/base/managed-gitops/kustomization.yaml b/components/monitoring/grafana/base/dashboards/managed-gitops/kustomization.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/managed-gitops/kustomization.yaml
+rename to components/monitoring/grafana/base/dashboards/managed-gitops/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/migration/OWNERS b/components/monitoring/grafana/base/dashboards/migration/OWNERS
+similarity index 100%
+rename from components/monitoring/grafana/base/migration/OWNERS
+rename to components/monitoring/grafana/base/dashboards/migration/OWNERS
+diff --git a/components/monitoring/grafana/base/migration/dashboard.yaml b/components/monitoring/grafana/base/dashboards/migration/dashboard.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/migration/dashboard.yaml
+rename to components/monitoring/grafana/base/dashboards/migration/dashboard.yaml
+diff --git a/components/monitoring/grafana/base/migration/kustomization.yaml b/components/monitoring/grafana/base/dashboards/migration/kustomization.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/migration/kustomization.yaml
+rename to components/monitoring/grafana/base/dashboards/migration/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/migration/migration-team-dashboard.json b/components/monitoring/grafana/base/dashboards/migration/migration-team-dashboard.json
+similarity index 100%
+rename from components/monitoring/grafana/base/migration/migration-team-dashboard.json
+rename to components/monitoring/grafana/base/dashboards/migration/migration-team-dashboard.json
+diff --git a/components/monitoring/grafana/base/performance/kustomization.yaml b/components/monitoring/grafana/base/dashboards/performance/kustomization.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/performance/kustomization.yaml
+rename to components/monitoring/grafana/base/dashboards/performance/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/pipeline-service/kustomization.yaml
+rename to components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/release/kustomization.yaml
+rename to components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/spi/dashboard.yaml b/components/monitoring/grafana/base/dashboards/spi/dashboard.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/spi/dashboard.yaml
+rename to components/monitoring/grafana/base/dashboards/spi/dashboard.yaml
+diff --git a/components/monitoring/grafana/base/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+similarity index 100%
+rename from components/monitoring/grafana/base/spi/kustomization.yaml
+rename to components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/external-secrets/kustomization.yaml b/components/monitoring/grafana/base/external-secrets/kustomization.yaml
+index ebcfa076..1ac0488c 100644
+--- a/components/monitoring/grafana/base/external-secrets/kustomization.yaml
++++ b/components/monitoring/grafana/base/external-secrets/kustomization.yaml
+@@ -2,4 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - monitoring-grafana-oauth-config.yaml
+-namespace: appstudio-workload-monitoring
+\ No newline at end of file
++namespace: appstudio-workload-monitoring
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/monitoring/grafana/base/grafana-app.yaml b/components/monitoring/grafana/base/grafana-app.yaml
+index cbdd9d05..9af32fe2 100644
+--- a/components/monitoring/grafana/base/grafana-app.yaml
++++ b/components/monitoring/grafana/base/grafana-app.yaml
+@@ -248,6 +248,8 @@ metadata:
+   name: example-dashboard
+   labels: 
+     app: appstudio-grafana
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ spec:
+   url: https://raw.githubusercontent.com/redhat-appstudio/infra-deployments/main/components/monitoring/grafana/base/generic-dashboards/example.json
+   instanceSelector:
+diff --git a/components/monitoring/grafana/base/kustomization.yaml b/components/monitoring/grafana/base/kustomization.yaml
+index 42a041b4..2113de51 100644
+--- a/components/monitoring/grafana/base/kustomization.yaml
++++ b/components/monitoring/grafana/base/kustomization.yaml
+@@ -3,43 +3,7 @@ kind: Kustomization
+ resources:
+ - grafana-operator.yaml
+ - grafana-app.yaml
+-- spi/
+-- build-service/
+-- managed-gitops/
+-- dora-metrics/
+-- has/
+-- jvm-build-service/
+-- integration/
+-- migration/
+-- release/
+-- performance/
+-- pipeline-service/
+-- generic-dashboards/
+-
+-# Skip applying the grafana operands (integreatly.org) while the grafana operator is being installed.
+-# See more information about this option, here:
+-# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types
+-commonAnnotations:
+-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++- dashboards
++- external-secrets
+ 
+ namespace: "appstudio-grafana"
+-
+-configurations:
+-  - cm-dashboard.yaml
+-
+-# Migration patch from Grafana v4 to v5, should be removed when all projects are migrated
+-patchesJson6902:
+-  - target:
+-      group: integreatly.org
+-      version: v1alpha1
+-      kind: GrafanaDashboard
+-      name: '.*'
+-    patch: |-
+-      - op: replace
+-        path: "/apiVersion"
+-        value: grafana.integreatly.org/v1beta1
+-      - op: add
+-        path: /spec/instanceSelector
+-        value:
+-          matchLabels:
+-            dashboards: "appstudio-grafana"
