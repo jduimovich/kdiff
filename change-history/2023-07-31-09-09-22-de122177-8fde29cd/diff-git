@@ -1,0 +1,12 @@
+diff --git a/components/authentication/staging/results-cluster-viewer.yaml b/components/authentication/staging/results-cluster-viewer.yaml
+index 836d442e..6f28405b 100644
+--- a/components/authentication/staging/results-cluster-viewer.yaml
++++ b/components/authentication/staging/results-cluster-viewer.yaml
+@@ -8,6 +8,7 @@ rules:
+     resources:
+       - results
+       - records
++      - logs
+     verbs:
+       - get
+       - list

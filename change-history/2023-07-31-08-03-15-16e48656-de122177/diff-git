@@ -1,0 +1,13 @@
+diff --git a/components/monitoring/grafana/base/grafana-operator.yaml b/components/monitoring/grafana/base/grafana-operator.yaml
+index c3a0c882..41a849d9 100644
+--- a/components/monitoring/grafana/base/grafana-operator.yaml
++++ b/components/monitoring/grafana/base/grafana-operator.yaml
+@@ -21,6 +21,8 @@ kind: OperatorGroup
+ metadata:
+   name: appstudio-grafana
+   namespace: appstudio-grafana
++  annotations:
++    argocd.argoproj.io/sync-wave: "-2"
+ spec:
+   targetNamespaces:
+   - appstudio-grafana
