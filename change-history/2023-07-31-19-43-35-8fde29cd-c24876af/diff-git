@@ -1,0 +1,19 @@
+diff --git a/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml b/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml
+index 2facf04f..1bf16dc1 100644
+--- a/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml
++++ b/components/monitoring/grafana/base/dashboards/managed-gitops/gitops-service-argocd-dashboard.yaml
+@@ -1,10 +1,13 @@
+-apiVersion: integreatly.org/v1alpha1
++apiVersion: grafana.integreatly.org/v1beta1
+ kind: GrafanaDashboard
+ metadata:
+   name: grafana-dashboard-gitops-service-argocd
+   labels: 
+     app: appstudio-grafana
+ spec:
++  instanceSelector:
++    matchLabels:
++      dashboards: "appstudio-grafana"
+   configMapRef:
+     name: grafana-dashboard-gitops-service
+     key: gitops-argocd-dashboard.json
