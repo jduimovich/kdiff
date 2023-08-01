@@ -1,0 +1,154 @@
+diff --git a/components/tekton-ci/base/external-secrets/github-secret.yaml b/components/tekton-ci/base/external-secrets/github-secret.yaml
+index d3495465..4644ab0f 100644
+--- a/components/tekton-ci/base/external-secrets/github-secret.yaml
++++ b/components/tekton-ci/base/external-secrets/github-secret.yaml
+@@ -8,7 +8,7 @@ metadata:
+ spec:
+   dataFrom:
+     - extract:
+-        key: "production/build/github-read-only"
++        key: "production/build/tekton-ci/github-read-only"
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+diff --git a/components/tekton-ci/base/external-secrets/infra-deployments-pr-creator.yaml b/components/tekton-ci/base/external-secrets/infra-deployments-pr-creator.yaml
+index ab6aae2f..c5ac1dc1 100644
+--- a/components/tekton-ci/base/external-secrets/infra-deployments-pr-creator.yaml
++++ b/components/tekton-ci/base/external-secrets/infra-deployments-pr-creator.yaml
+@@ -8,7 +8,7 @@ metadata:
+ spec:
+   dataFrom:
+     - extract:
+-        key: staging/build/infra-deployments-pr-creator
++        key: staging/build/tekton-ci/infra-deployments-pr-creator
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+diff --git a/components/tekton-ci/base/external-secrets/kustomization.yaml b/components/tekton-ci/base/external-secrets/kustomization.yaml
+index 15aef10e..885c1218 100644
+--- a/components/tekton-ci/base/external-secrets/kustomization.yaml
++++ b/components/tekton-ci/base/external-secrets/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- tekton-ci-push-secret.yaml
++- quay-push-secret.yaml
+ - infra-deployments-pr-creator.yaml
+ - snyk-shared-token.yaml
+ - slack-webhook-notification-secret.yaml
+diff --git a/components/tekton-ci/base/external-secrets/tekton-ci-push-secret.yaml b/components/tekton-ci/base/external-secrets/quay-push-secret.yaml
+similarity index 83%
+rename from components/tekton-ci/base/external-secrets/tekton-ci-push-secret.yaml
+rename to components/tekton-ci/base/external-secrets/quay-push-secret.yaml
+index bce98859..fcb1f119 100644
+--- a/components/tekton-ci/base/external-secrets/tekton-ci-push-secret.yaml
++++ b/components/tekton-ci/base/external-secrets/quay-push-secret.yaml
+@@ -1,14 +1,14 @@
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+-  name: tekton-ci-push-secret
++  name: quay-push-secret
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+-        key: staging/build/tekton-ci
++        key: staging/build/tekton-ci/quay-push-secret
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+@@ -16,7 +16,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: tekton-ci-push-secret
++    name: quay-push-secret
+     template:
+       engineVersion: v2
+       type: kubernetes.io/dockerconfigjson
+diff --git a/components/tekton-ci/base/external-secrets/slack-webhook-notification-secret.yaml b/components/tekton-ci/base/external-secrets/slack-webhook-notification-secret.yaml
+index 5a212ed2..5a7b755e 100644
+--- a/components/tekton-ci/base/external-secrets/slack-webhook-notification-secret.yaml
++++ b/components/tekton-ci/base/external-secrets/slack-webhook-notification-secret.yaml
+@@ -8,7 +8,7 @@ metadata:
+ spec:
+   dataFrom:
+     - extract:
+-        key: "production/build/slack-webhook-notification-secret"
++        key: "production/build/tekton-ci/slack-webhook-notification-secret"
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+diff --git a/components/tekton-ci/base/external-secrets/snyk-shared-token.yaml b/components/tekton-ci/base/external-secrets/snyk-shared-token.yaml
+index cc001c74..c8a98f3d 100644
+--- a/components/tekton-ci/base/external-secrets/snyk-shared-token.yaml
++++ b/components/tekton-ci/base/external-secrets/snyk-shared-token.yaml
+@@ -8,7 +8,7 @@ metadata:
+ spec:
+   dataFrom:
+     - extract:
+-        key: "staging/build/snyk-shared-secret" # will be added by the overlays
++        key: "staging/build/tekton-ci/snyk-shared-secret" # will be added by the overlays
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+diff --git a/components/tekton-ci/production/infra-deployments-pr-creator.yaml b/components/tekton-ci/production/infra-deployments-pr-creator.yaml
+index 9d6104f2..1ec17021 100644
+--- a/components/tekton-ci/production/infra-deployments-pr-creator.yaml
++++ b/components/tekton-ci/production/infra-deployments-pr-creator.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: production/build/infra-deployments-pr-creator
++  value: production/build/tekton-ci/infra-deployments-pr-creator
+diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
+index 876e8c7f..79913a06 100644
+--- a/components/tekton-ci/production/kustomization.yaml
++++ b/components/tekton-ci/production/kustomization.yaml
+@@ -6,9 +6,9 @@ resources:
+ - plnsvc-ci-secret.yaml
+ 
+ patches:
+-  - path: tekton-ci-push-secret.yaml
++  - path: quay-push-secret.yaml
+     target:
+-      name: tekton-ci-push-secret
++      name: quay-push-secret
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
+diff --git a/components/tekton-ci/production/quay-push-secret.yaml b/components/tekton-ci/production/quay-push-secret.yaml
+new file mode 100644
+index 00000000..b4fdd4c0
+--- /dev/null
++++ b/components/tekton-ci/production/quay-push-secret.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/build/tekton-ci/quay-push-secret
+diff --git a/components/tekton-ci/production/snyk-shared-token.yaml b/components/tekton-ci/production/snyk-shared-token.yaml
+index 528cd20c..900fddd6 100644
+--- a/components/tekton-ci/production/snyk-shared-token.yaml
++++ b/components/tekton-ci/production/snyk-shared-token.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: production/build/snyk-shared-secret 
++  value: production/build/tekton-ci/snyk-shared-secret 
+diff --git a/components/tekton-ci/production/tekton-ci-push-secret.yaml b/components/tekton-ci/production/tekton-ci-push-secret.yaml
+deleted file mode 100644
+index 821c07e2..00000000
+--- a/components/tekton-ci/production/tekton-ci-push-secret.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/build/tekton-ci

@@ -1,0 +1,55 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-65f335f0/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-90ed2007/staging/components/tekton-ci/staging/kustomize.out.yaml
+71c71
+<       key: production/build/tekton-ci/github-read-only
+---
+>       key: production/build/github-read-only
+92c92
+<       key: staging/build/tekton-ci/infra-deployments-pr-creator
+---
+>       key: staging/build/infra-deployments-pr-creator
+129c129
+<   name: quay-push-secret
+---
+>   name: slack-webhook-notification-secret
+134c134
+<       key: staging/build/tekton-ci/quay-push-secret
+---
+>       key: production/build/slack-webhook-notification-secret
+142,147c142
+<     name: quay-push-secret
+<     template:
+<       data:
+<         .dockerconfigjson: '{{ .config }}'
+<       engineVersion: v2
+<       type: kubernetes.io/dockerconfigjson
+---
+>     name: slack-webhook-notification-secret
+155c150
+<   name: slack-webhook-notification-secret
+---
+>   name: snyk-shared-token
+160c155
+<       key: production/build/tekton-ci/slack-webhook-notification-secret
+---
+>       key: staging/build/snyk-shared-secret
+168c163
+<     name: slack-webhook-notification-secret
+---
+>     name: snyk-secret
+176c171
+<   name: snyk-shared-token
+---
+>   name: tekton-ci-push-secret
+181c176
+<       key: staging/build/tekton-ci/snyk-shared-secret
+---
+>       key: staging/build/tekton-ci
+189c184,189
+<     name: snyk-secret
+---
+>     name: tekton-ci-push-secret
+>     template:
+>       data:
+>         .dockerconfigjson: '{{ .config }}'
+>       engineVersion: v2
+>       type: kubernetes.io/dockerconfigjson

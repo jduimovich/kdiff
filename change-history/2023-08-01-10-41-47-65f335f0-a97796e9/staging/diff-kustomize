@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a97796e9/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-65f335f0/staging/components/tekton-ci/staging/kustomize.out.yaml
+11c11
+< - name: quay-push-secret
+---
+> - name: tekton-ci-push-secret
+18c18
+< - name: quay-push-secret
+---
+> - name: tekton-ci-push-secret
