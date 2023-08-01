@@ -1,0 +1,194 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e34062a4/staging/components/sprayproxy/staging/kustomize.out.yaml ./kustomized-cache/commit-631036cb/staging/components/sprayproxy/staging/kustomize.out.yaml
+3a4,5
+>   labels:
+>     openshift.io/cluster-monitoring: "true"
+9,14d10
+<   name: metrics-reader
+<   namespace: sprayproxy
+< ---
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+19,58d14
+< kind: ClusterRole
+< metadata:
+<   name: sprayproxy-backend-register
+< rules:
+< - nonResourceURLs:
+<   - /backends
+<   verbs:
+<   - get
+<   - create
+<   - delete
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   name: sprayproxy-kube-rbac-proxy
+< rules:
+< - apiGroups:
+<   - authentication.k8s.io
+<   resources:
+<   - tokenreviews
+<   verbs:
+<   - create
+< - apiGroups:
+<   - authorization.k8s.io
+<   resources:
+<   - subjectaccessreviews
+<   verbs:
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   name: sprayproxy-metrics-reader
+< rules:
+< - nonResourceURLs:
+<   - /metrics
+<   verbs:
+<   - get
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+90,137d45
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: sprayproxy-backend-register
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: sprayproxy-backend-register
+< subjects:
+< - kind: ServiceAccount
+<   name: sprayproxy
+<   namespace: sprayproxy
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: sprayproxy-kube-rbac-proxy
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: sprayproxy-kube-rbac-proxy
+< subjects:
+< - kind: ServiceAccount
+<   name: sprayproxy
+<   namespace: sprayproxy
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: sprayproxy-metrics-reader
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: sprayproxy-metrics-reader
+< subjects:
+< - kind: ServiceAccount
+<   name: metrics-reader
+<   namespace: sprayproxy
+< ---
+< apiVersion: v1
+< kind: Secret
+< metadata:
+<   annotations:
+<     kubernetes.io/service-account.name: metrics-reader
+<   name: metrics-reader
+<   namespace: sprayproxy
+< type: kubernetes.io/service-account-token
+< ---
+141,144c49
+<   labels:
+<     app.kubernetes.io/name: metrics
+<     app.kubernetes.io/part-of: sprayproxy
+<   name: metrics
+---
+>   name: sprayproxy-metrics-service
+148,149c53,54
+<   - name: metrics
+<     port: 9443
+---
+>   - name: https
+>     port: 8443
+151c56
+<     targetPort: metrics
+---
+>     targetPort: https
+160,162c65
+<   labels:
+<     app.kubernetes.io/name: sprayproxy
+<   name: sprayproxy
+---
+>   name: sprayproxy-service
+166,167c69,70
+<   - name: proxy
+<     port: 8443
+---
+>   - name: proxy-https
+>     port: 9443
+169d71
+<     targetPort: proxy
+198d99
+<         - name: GH_APP_WEBHOOK_SECRET
+203c104
+<         image: quay.io/redhat-appstudio/sprayproxy:4854a5b2b0664c42978ac4529d7ab28dfddff7b4
+---
+>         image: quay.io/redhat-appstudio/sprayproxy:8546fcd393d79ffbb70b2818df123d549c181fc4
+213c114
+<         - --secure-listen-address=0.0.0.0:8443
+---
+>         - --secure-listen-address=0.0.0.0:9443
+217c118
+<         - --v=4
+---
+>         - --v=10
+223,224c124,125
+<         - containerPort: 8443
+<           name: proxy
+---
+>         - containerPort: 9443
+>           name: proxy-https
+238c139
+<         - --secure-listen-address=0.0.0.0:9443
+---
+>         - --secure-listen-address=0.0.0.0:8443
+241c142
+<         - --v=4
+---
+>         - --v=10
+245,246c146,147
+<         - containerPort: 9443
+<           name: metrics
+---
+>         - containerPort: 8443
+>           name: https
+282,301d182
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   name: sprayproxy
+<   namespace: sprayproxy
+< spec:
+<   endpoints:
+<   - bearerTokenSecret:
+<       key: token
+<       name: metrics-reader
+<     path: /metrics
+<     port: metrics
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+<   selector:
+<     matchLabels:
+<       app.kubernetes.io/name: metrics
+<       app.kubernetes.io/part-of: sprayproxy
+< ---
+310,311d190
+<   port:
+<     targetPort: proxy
+317c196
+<     name: sprayproxy
+---
+>     name: sprayproxy-service

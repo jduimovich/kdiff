@@ -1,0 +1,66 @@
+diff --git a/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml b/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
+index 9b5770a0..2508b04c 100644
+--- a/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/redhat-appstudio/integration-service/config/grafana/?ref=13a6402c2f76c3aa51dd889dc86844ecc4465870
++  - https://github.com/redhat-appstudio/integration-service/config/grafana/?ref=5c5a7276bdaad34b39aac2005733f143cd2d0fac
+ 
+diff --git a/components/monitoring/grafana/base/dashboards/kustomization.yaml b/components/monitoring/grafana/base/dashboards/kustomization.yaml
+index c6c6b9f7..e15e3ef2 100644
+--- a/components/monitoring/grafana/base/dashboards/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/kustomization.yaml
+@@ -22,20 +22,3 @@ commonAnnotations:
+ 
+ configurations:
+   - cm-dashboard.yaml
+-
+-# Migration patch from Grafana v4 to v5, should be removed when all projects are migrated
+-patchesJson6902:
+-  - target:
+-      group: integreatly.org
+-      version: v1alpha1
+-      kind: GrafanaDashboard
+-      name: '.*'
+-    patch: |-
+-      - op: replace
+-        path: "/apiVersion"
+-        value: grafana.integreatly.org/v1beta1
+-      - op: add
+-        path: /spec/instanceSelector
+-        value:
+-          matchLabels:
+-            dashboards: "appstudio-grafana"
+diff --git a/components/monitoring/grafana/base/dashboards/performance/kustomization.yaml b/components/monitoring/grafana/base/dashboards/performance/kustomization.yaml
+index a697f9b7..123245ab 100644
+--- a/components/monitoring/grafana/base/dashboards/performance/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/performance/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/redhat-appstudio/perfscale/grafana/?ref=adb4f4229f6583710efc70199e3d89d20e041bf4
++  - https://github.com/redhat-appstudio/perfscale/grafana/?ref=45efd7c574bc46a6f0ab92416f7ec54954dbedb6
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index 722f5c63..d37b819b 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=d0abddfa7f3ca89a09d3c0f59f59ca676c2a3bd3
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=8c91aec7e84f0ea69abeca95a7835a5ac791611b
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index a77cb09d..643af747 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=31e2b24471baa20a1290cfdf4bf58f0fcb62cda2
++- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=e5a581027f9694916addfad899dbce1d78edddd1
