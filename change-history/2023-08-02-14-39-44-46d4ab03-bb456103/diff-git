@@ -1,0 +1,74 @@
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index fc0d4e87..7c41f182 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,14 +8,18 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=1f64281aeaf44cb99372f456740499ce9b40929f
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=d0abddfa7f3ca89a09d3c0f59f59ca676c2a3bd3
++  - pipelines-as-code-namespace.yaml # preserve old PAC namespace until 1.11 rolled out through production
++  - pipelines-as-code-secret.yaml # create extenrnal secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+ 
+ patches:
++  # still do this patch for the external secret kept in the pipelines-as-code namespace per components/pipeline-service/base/external-secrets/pipelines-as-code
+   - path: pipelines-as-code-secret-path.yaml
+     target:
+       name: pipelines-as-code-secret
++      namespace: pipelines-as-code
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+diff --git a/components/pipeline-service/production/base/pipelines-as-code-namespace.yaml b/components/pipeline-service/production/base/pipelines-as-code-namespace.yaml
+new file mode 100644
+index 00000000..20b3a325
+--- /dev/null
++++ b/components/pipeline-service/production/base/pipelines-as-code-namespace.yaml
+@@ -0,0 +1,5 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: pipelines-as-code
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/base/pipelines-as-code-secret.yaml b/components/pipeline-service/production/base/pipelines-as-code-secret.yaml
+new file mode 100644
+index 00000000..90c2c582
+--- /dev/null
++++ b/components/pipeline-service/production/base/pipelines-as-code-secret.yaml
+@@ -0,0 +1,20 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/pipeline-service/github-app
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
+diff --git a/components/sprayproxy/production/add-backends.yml b/components/sprayproxy/production/add-backends.yml
+index ce5ded15..d8df869b 100644
+--- a/components/sprayproxy/production/add-backends.yml
++++ b/components/sprayproxy/production/add-backends.yml
+@@ -2,5 +2,5 @@
+ - op: add
+   path: /spec/template/spec/containers/0/env/0/value
+   value: >
+-      https://pipelines-as-code-controller-pipelines-as-code.apps.stone-prd-m01.84db.p1.openshiftapps.com
+-      https://pipelines-as-code-controller-pipelines-as-code.apps.stone-prd-rh01.pg1f.p1.openshiftapps.com
++      https://pipelines-as-code-controller-openshift-pipelines.apps.stone-prd-m01.84db.p1.openshiftapps.com
++      https://pipelines-as-code-controller-openshift-pipelines.apps.stone-prd-rh01.pg1f.p1.openshiftapps.com
