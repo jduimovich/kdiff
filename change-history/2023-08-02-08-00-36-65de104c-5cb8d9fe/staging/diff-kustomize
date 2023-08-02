@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5cb8d9fe/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-65de104c/staging/components/tekton-ci/staging/kustomize.out.yaml
+349,357d348
+<   name: o11y
+< spec:
+<   url: https://github.com/redhat-appstudio/o11y
+< ---
+< apiVersion: pipelinesascode.tekton.dev/v1alpha1
+< kind: Repository
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

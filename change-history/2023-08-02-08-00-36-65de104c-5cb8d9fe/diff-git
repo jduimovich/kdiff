@@ -1,0 +1,18 @@
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index ee735331..e90fd058 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -155,6 +155,13 @@ spec:
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
++metadata:
++  name: o11y
++spec:
++  url: "https://github.com/redhat-appstudio/o11y"
++---
++apiVersion: pipelinesascode.tekton.dev/v1alpha1
++kind: Repository
+ metadata:
+   name: cachi2
+ spec:
