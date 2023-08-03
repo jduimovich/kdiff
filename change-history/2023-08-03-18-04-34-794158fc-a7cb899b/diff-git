@@ -1,0 +1,46 @@
+diff --git a/components/internal-services/OWNERS b/components/internal-services/OWNERS
+index 8825b3e7..11f0f231 100644
+--- a/components/internal-services/OWNERS
++++ b/components/internal-services/OWNERS
+@@ -3,14 +3,16 @@
+ approvers:
+ - davidmogar
+ - johnbieren
+-- parasense
+ - scoheb
+ - theflockers
++- mmalina
++- happybhati
+ 
+ 
+ reviewers:
+ - davidmogar
+ - johnbieren
+-- parasense
+ - scoheb
+ - theflockers
++- mmalina
++- happybhati
+diff --git a/components/release/OWNERS b/components/release/OWNERS
+index 8825b3e7..11f0f231 100644
+--- a/components/release/OWNERS
++++ b/components/release/OWNERS
+@@ -3,14 +3,16 @@
+ approvers:
+ - davidmogar
+ - johnbieren
+-- parasense
+ - scoheb
+ - theflockers
++- mmalina
++- happybhati
+ 
+ 
+ reviewers:
+ - davidmogar
+ - johnbieren
+-- parasense
+ - scoheb
+ - theflockers
++- mmalina
++- happybhati
