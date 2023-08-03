@@ -1,0 +1,8 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c97cab95/development/components/release/kustomize.out.yaml ./kustomized-cache/commit-bb456103/development/components/release/kustomize.out.yaml
+1434c1434
+<         image: quay.io/redhat-appstudio/release-service:a7130c97499cd5ad33f5d6966007576063585ca6
+---
+>         image: quay.io/redhat-appstudio/release-service:31e2b24471baa20a1290cfdf4bf58f0fcb62cda2
+1538,1539d1537
+<       protocol: TCP
+<     - port: 443
