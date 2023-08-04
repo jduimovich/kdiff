@@ -1,0 +1,133 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-28afb848/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-03a20612/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+282,309d281
+<   name: pipeline-service-rbac-for-support
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+<   - delete
+<   - list
+< - apiGroups:
+<   - ""
+<   resources:
+<   - serviceaccounts
+<   verbs:
+<   - get
+<   - list
+< - apiGroups:
+<   - tekton.dev
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+694,726d665
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service-rbac-for-support
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: pipeline-service-rbac-for-support
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: adambkaplan
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: Roming22
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: gabemontero
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: avinal
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: sayan-biswas
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: enarha
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: ramessesii2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-28afb848/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-03a20612/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+282,309d281
+<   name: pipeline-service-rbac-for-support
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+<   - delete
+<   - list
+< - apiGroups:
+<   - ""
+<   resources:
+<   - serviceaccounts
+<   verbs:
+<   - get
+<   - list
+< - apiGroups:
+<   - tekton.dev
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+694,726d665
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service-rbac-for-support
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: pipeline-service-rbac-for-support
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: adambkaplan
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: Roming22
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: gabemontero
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: avinal
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: sayan-biswas
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: enarha
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: ramessesii2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-28afb848/staging/components/sprayproxy/staging/kustomize.out.yaml ./kustomized-cache/commit-03a20612/staging/components/sprayproxy/staging/kustomize.out.yaml
+88c88
+<   name: ramessesii2
+---
+>   name: AndrienkoAleksandr

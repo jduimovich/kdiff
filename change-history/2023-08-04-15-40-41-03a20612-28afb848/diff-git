@@ -1,0 +1,166 @@
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 475cf6be..7cef0ec0 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -13,6 +13,7 @@ resources:
+   - pipelines-as-code-secret.yaml # create extenrnal secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
++  - team-support-rbac.yaml
+ 
+ patches:
+   # still do this patch for the external secret kept in the pipelines-as-code namespace per components/pipeline-service/base/external-secrets/pipelines-as-code
+diff --git a/components/pipeline-service/production/base/team-support-rbac.yaml b/components/pipeline-service/production/base/team-support-rbac.yaml
+new file mode 100644
+index 00000000..7307f875
+--- /dev/null
++++ b/components/pipeline-service/production/base/team-support-rbac.yaml
+@@ -0,0 +1,47 @@
++---
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-rbac-for-support
++rules:
++  - verbs:
++      - delete # allow deletion to help with pac-git-auth issues
++      - list
++    apiGroups:
++      - ''
++    resources:
++      - secrets
++  - verbs:
++      - get
++      - list
++    apiGroups:
++      - ''
++    resources:
++      - serviceaccounts
++  - verbs: # full administration right on all tekton resources
++      - '*'
++    apiGroups:
++      - 'tekton.dev'
++    resources:
++      - '*'
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: pipeline-service-rbac-for-support
++roleRef:
++  kind: ClusterRole
++  name: pipeline-service-rbac-for-support
++  apiGroup: rbac.authorization.k8s.io
++subjects:
++  - kind: User
++    name: adambkaplan
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: Roming22
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: gabemontero
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: enarha
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 9c9cd58c..3c916b18 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -13,6 +13,7 @@ resources:
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
++  - team-support-rbac.yaml
+ 
+ patches:
+   - path: greedy-pruner.yaml
+diff --git a/components/pipeline-service/staging/base/team-support-rbac.yaml b/components/pipeline-service/staging/base/team-support-rbac.yaml
+new file mode 100644
+index 00000000..18ac8c04
+--- /dev/null
++++ b/components/pipeline-service/staging/base/team-support-rbac.yaml
+@@ -0,0 +1,57 @@
++---
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-rbac-for-support
++rules:
++  - verbs:
++      - delete # allow deletion to help with pac-git-auth issues
++      - list
++    apiGroups:
++      - ''
++    resources:
++      - secrets
++  - verbs:
++      - get
++      - list
++    apiGroups:
++      - ''
++    resources:
++      - serviceaccounts
++  - verbs: # full administration right on all tekton resources
++      - '*'
++    apiGroups:
++      - 'tekton.dev'
++    resources:
++      - '*'
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: pipeline-service-rbac-for-support
++roleRef:
++  kind: ClusterRole
++  name: pipeline-service-rbac-for-support
++  apiGroup: rbac.authorization.k8s.io
++subjects:
++  - kind: User
++    name: adambkaplan
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: Roming22
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: gabemontero
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: avinal
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: sayan-biswas
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: enarha
++    apiGroup: rbac.authorization.k8s.io
++  - kind: User
++    name: ramessesii2
++    apiGroup: rbac.authorization.k8s.io
+diff --git a/components/sprayproxy/production/team-support-rbac.yaml b/components/sprayproxy/production/team-support-rbac.yaml
+index 4e5156d4..301e3b8e 100644
+--- a/components/sprayproxy/production/team-support-rbac.yaml
++++ b/components/sprayproxy/production/team-support-rbac.yaml
+@@ -23,7 +23,7 @@ subjects:
+     name: enarha
+     apiGroup: rbac.authorization.k8s.io
+   - kind: User
+-    name: AndrienkoAleksandr
++    name: ramessesii2
+     apiGroup: rbac.authorization.k8s.io
+ roleRef:
+   kind: ClusterRole
+diff --git a/components/sprayproxy/staging/team-support-rbac.yaml b/components/sprayproxy/staging/team-support-rbac.yaml
+index 4e5156d4..301e3b8e 100644
+--- a/components/sprayproxy/staging/team-support-rbac.yaml
++++ b/components/sprayproxy/staging/team-support-rbac.yaml
+@@ -23,7 +23,7 @@ subjects:
+     name: enarha
+     apiGroup: rbac.authorization.k8s.io
+   - kind: User
+-    name: AndrienkoAleksandr
++    name: ramessesii2
+     apiGroup: rbac.authorization.k8s.io
+ roleRef:
+   kind: ClusterRole
