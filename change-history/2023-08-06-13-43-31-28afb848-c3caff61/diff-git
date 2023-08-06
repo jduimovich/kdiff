@@ -1,0 +1,212 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 7484ed70..8b155343 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -16,5 +16,6 @@ resources:
+   - build-templates
+   - internal-services
+   - image-controller
++  - segment-bridge
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/segment-bridge/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/segment-bridge/kustomization.yaml
+new file mode 100644
+index 00000000..e066a05f
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/segment-bridge/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- segment-bridge.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
++
+diff --git a/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge.yaml b/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge.yaml
+new file mode 100644
+index 00000000..bf195c13
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge.yaml
+@@ -0,0 +1,42 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: segment-bridge
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/segment-bridge
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: segment-bridge-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: segment-bridge
++        server: '{{server}}'
++      syncPolicy:
++        automated: 
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
++
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index d8fccd24..1561b54e 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -34,3 +34,9 @@ kind: ApplicationSet
+ metadata:
+   name: cluster-secret-store
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: segment-bridge
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index d814049e..c977a488 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -93,3 +93,9 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: monitoring-workload-grafana
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: segment-bridge
++
+diff --git a/components/segment-bridge/OWNERS b/components/segment-bridge/OWNERS
+new file mode 100644
+index 00000000..4f2e0a9b
+--- /dev/null
++++ b/components/segment-bridge/OWNERS
+@@ -0,0 +1,6 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- Omeramsc
++- ifireball
++
+diff --git a/components/segment-bridge/README.md b/components/segment-bridge/README.md
+new file mode 100644
+index 00000000..ff71aae2
+--- /dev/null
++++ b/components/segment-bridge/README.md
+@@ -0,0 +1,7 @@
++# SEGMENT-BRIDGE
++
++Component used to allow reading resources from the host and member clusters
++
++Serves as part of the User Journey effort,
++related information can be found at the [segment-bridge repository](https://github.com/redhat-appstudio/segment-bridge)
++
+diff --git a/components/segment-bridge/base/kustomization.yaml b/components/segment-bridge/base/kustomization.yaml
+new file mode 100644
+index 00000000..3e27f432
+--- /dev/null
++++ b/components/segment-bridge/base/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- serviceaccount.yaml
++
+diff --git a/components/segment-bridge/base/serviceaccount.yaml b/components/segment-bridge/base/serviceaccount.yaml
+new file mode 100644
+index 00000000..cfee98ad
+--- /dev/null
++++ b/components/segment-bridge/base/serviceaccount.yaml
+@@ -0,0 +1,37 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: segment-bridge-read-access-all-namespaces
++rules:
++- apiGroups: [""]
++  resources: ["namespaces"]
++  verbs: ["get", "list", "watch"]
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: segment-bridge-cluster-sa
++  namespace: segment-bridge
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: sa-read-permissions-all-namespaces
++subjects:
++  - kind: ServiceAccount
++    name: segment-bridge-cluster-sa
++    namespace: segment-bridge
++roleRef:
++  kind: ClusterRole
++  name: segment-bridge-read-access-all-namespaces
++  apiGroup: rbac.authorization.k8s.io
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  name: segment-bridge
++  namespace: segment-bridge
++  annotations:
++    kubernetes.io/service-account.name: segment-bridge
++type: kubernetes.io/service-account-token
++
+diff --git a/components/segment-bridge/development/kustomization.yaml b/components/segment-bridge/development/kustomization.yaml
+new file mode 100644
+index 00000000..8a762793
+--- /dev/null
++++ b/components/segment-bridge/development/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++
+diff --git a/components/segment-bridge/production/kustomization.yaml b/components/segment-bridge/production/kustomization.yaml
+new file mode 100644
+index 00000000..8a762793
+--- /dev/null
++++ b/components/segment-bridge/production/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++
+diff --git a/components/segment-bridge/staging/kustomization.yaml b/components/segment-bridge/staging/kustomization.yaml
+new file mode 100644
+index 00000000..8a762793
+--- /dev/null
++++ b/components/segment-bridge/staging/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++
