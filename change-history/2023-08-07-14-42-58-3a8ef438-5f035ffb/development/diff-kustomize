@@ -1,0 +1,156 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5f035ffb/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-3a8ef438/development/components/pipeline-service/development/kustomize.out.yaml
+492,512d491
+< kind: ClusterRole
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "0"
+<   name: tekton-results-watcher-rbac
+< rules:
+< - apiGroups:
+<   - authentication.k8s.io
+<   resources:
+<   - tokenreviews
+<   verbs:
+<   - create
+< - apiGroups:
+<   - authorization.k8s.io
+<   resources:
+<   - subjectaccessreviews
+<   verbs:
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+766,781d744
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "0"
+<   name: tekton-results-watcher-rbac
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-watcher-rbac
+< subjects:
+< - kind: ServiceAccount
+<   name: tekton-results-watcher
+<   namespace: tekton-results
+< ---
+1052,1073d1014
+<   labels:
+<     app.kubernetes.io/instance: default
+<     app.kubernetes.io/part-of: tekton-chains
+<   name: tekton-chains
+<   namespace: openshift-pipelines
+< spec:
+<   ports:
+<   - name: metrics
+<     port: 9090
+<     protocol: TCP
+<     targetPort: 9090
+<   selector:
+<     app.kubernetes.io/component: controller
+<     app.kubernetes.io/instance: default
+<     app.kubernetes.io/name: controller
+<     app.kubernetes.io/part-of: tekton-chains
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1088,1089c1029,1030
+<   - name: metrics
+<     port: 9443
+---
+>   - name: prometheus
+>     port: 9090
+1091c1032
+<     targetPort: metrics
+---
+>     targetPort: 9090
+1109,1111c1050,1051
+<   - name: watchermetrics
+<     port: 8443
+<     targetPort: watchermetrics
+---
+>   - name: metrics
+>     port: 9090
+1232c1172
+<         image: quay.io/redhat-appstudio/tekton-results-api:fbaeeb6a43a09d95076f4d3cb7798c7350810858
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:d84c26a2032af75b50f9ae4ee8a09af4a1cb2eaf
+1276,1300d1215
+<       - args:
+<         - --secure-listen-address=0.0.0.0:9443
+<         - --upstream=http://127.0.0.1:9090/
+<         - --logtostderr=true
+<         - --v=6
+<         image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
+<         name: kube-rbac-proxy
+<         ports:
+<         - containerPort: 9443
+<           name: metrics
+<           protocol: TCP
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+<           seccompProfile:
+<             type: RuntimeDefault
+1366c1281
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:fbaeeb6a43a09d95076f4d3cb7798c7350810858
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:d84c26a2032af75b50f9ae4ee8a09af4a1cb2eaf
+1425,1449d1339
+<         - --secure-listen-address=0.0.0.0:8443
+<         - --upstream=http://127.0.0.1:9090/
+<         - --logtostderr=true
+<         - --v=6
+<         image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
+<         name: kube-rbac-proxy
+<         ports:
+<         - containerPort: 8443
+<           name: watchermetrics
+<           protocol: TCP
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             drop:
+<             - ALL
+<           seccompProfile:
+<             type: RuntimeDefault
+<       - args:
+1467c1357
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:fbaeeb6a43a09d95076f4d3cb7798c7350810858
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:d84c26a2032af75b50f9ae4ee8a09af4a1cb2eaf
+1782,1783c1672,1673
+<     port: metrics
+<     scheme: https
+---
+>     port: prometheus
+>     scheme: http
+1804,1805c1694,1695
+<     port: watchermetrics
+<     scheme: https
+---
+>     port: metrics
+>     scheme: http
