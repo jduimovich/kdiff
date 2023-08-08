@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-609e8caa/staging/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-73b010aa/staging/components/enterprise-contract/kustomize.out.yaml
+269c269
+<   publicKey: k8s://openshift-pipelines/public-key
+---
+>   publicKey: k8s://tekton-chains/public-key
+290c290
+<   publicKey: k8s://openshift-pipelines/public-key
+---
+>   publicKey: k8s://tekton-chains/public-key

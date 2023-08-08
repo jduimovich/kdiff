@@ -1,0 +1,277 @@
+diff --git a/argo-cd-apps/base/host/kustomization.yaml b/argo-cd-apps/base/host/kustomization.yaml
+index 5f85d3aa..1c903cb7 100644
+--- a/argo-cd-apps/base/host/kustomization.yaml
++++ b/argo-cd-apps/base/host/kustomization.yaml
+@@ -2,6 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - sprayproxy
++  - segment-bridge
+ components:
+   - ../../k-components/deploy-to-host-cluster-merge-generator
+   - ../../k-components/inject-argocd-namespace
++
+diff --git a/argo-cd-apps/base/host/segment-bridge/kustomization.yaml b/argo-cd-apps/base/host/segment-bridge/kustomization.yaml
+new file mode 100644
+index 00000000..edea222d
+--- /dev/null
++++ b/argo-cd-apps/base/host/segment-bridge/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - segment-bridge-host.yaml
++components:
++  - ../../../k-components/inject-infra-deployments-repo-details
++
+diff --git a/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml b/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml
+new file mode 100644
+index 00000000..59d0703f
+--- /dev/null
++++ b/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml
+@@ -0,0 +1,42 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: segment-bridge-host
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/segment-bridge
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: segment-bridge-host-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: segment-bridge
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
++
+diff --git a/argo-cd-apps/base/member/infra-deployments/segment-bridge/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/segment-bridge/kustomization.yaml
+index e066a05f..3c0d1c85 100644
+--- a/argo-cd-apps/base/member/infra-deployments/segment-bridge/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/segment-bridge/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- segment-bridge.yaml
++- segment-bridge-member.yaml
+ components:
+   - ../../../../k-components/deploy-to-member-cluster-merge-generator
+ 
+diff --git a/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge.yaml b/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml
+similarity index 92%
+rename from argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge.yaml
+rename to argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml
+index bf195c13..8911abdd 100644
+--- a/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+ metadata:
+-  name: segment-bridge
++  name: segment-bridge-member
+ spec:
+   generators:
+     - merge:
+@@ -17,7 +17,7 @@ spec:
+               elements: []
+   template:
+     metadata:
+-      name: segment-bridge-{{nameNormalized}}
++      name: segment-bridge-member-{{nameNormalized}}
+     spec:
+       project: default
+       source:
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index 1561b54e..28b6a850 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -38,5 +38,11 @@ $patch: delete
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+ metadata:
+-  name: segment-bridge
++  name: segment-bridge-member
++$patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: segment-bridge-host
+ $patch: delete
+diff --git a/components/authentication/base/segment-bridge.yaml b/components/authentication/base/segment-bridge.yaml
+new file mode 100644
+index 00000000..7fe03fc3
+--- /dev/null
++++ b/components/authentication/base/segment-bridge.yaml
+@@ -0,0 +1,64 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: segment-bridge-read-access
++  namespace: toolchain-host-operator
++rules:
++- apiGroups: [""]
++  resources: ["UserSignup"]
++  verbs: ["get", "list", "watch"]
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: segment-bridge-host-sa
++  namespace: toolchain-host-operator
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: sa-read-permissions
++  namespace: toolchain-host-operator
++subjects:
++  - kind: ServiceAccount
++    name: segment-bridge-host-sa
++    namespace: toolchain-host-operator
++roleRef:
++  kind: Role
++  name: segment-bridge-read-access
++  apiGroup: rbac.authorization.k8s.io
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  name: segment-bridge-host
++  namespace: toolchain-host-operator
++  annotations:
++    kubernetes.io/service-account.name: segment-bridge-host-sa
++type: kubernetes.io/service-account-token
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: segment-bridge-read-host-sa-secret
++  namespace: toolchain-host-operator
++rules:
++- apiGroups: [""]
++  resources: ["secrets"]
++  resourceNames: ["segment-bridge-host"]
++  verbs: ["get"]
++--- 
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: segment-bridge-read-host-sa-secret-binding
++  namespace: toolchain-host-operator
++subjects:
++  - kind: User
++    name: Omeramsc
++  - kind: User
++    name: ifireball
++roleRef:
++  kind: Role
++  name: segment-bridge-read-host-sa-secret
++  apiGroup: rbac.authorization.k8s.io
+diff --git a/components/segment-bridge/README.md b/components/segment-bridge/README.md
+index ff71aae2..a098f028 100644
+--- a/components/segment-bridge/README.md
++++ b/components/segment-bridge/README.md
+@@ -4,4 +4,3 @@ Component used to allow reading resources from the host and member clusters
+ 
+ Serves as part of the User Journey effort,
+ related information can be found at the [segment-bridge repository](https://github.com/redhat-appstudio/segment-bridge)
+-
+diff --git a/components/segment-bridge/base/kustomization.yaml b/components/segment-bridge/base/kustomization.yaml
+index 3e27f432..e206552d 100644
+--- a/components/segment-bridge/base/kustomization.yaml
++++ b/components/segment-bridge/base/kustomization.yaml
+@@ -2,4 +2,3 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - serviceaccount.yaml
+-
+diff --git a/components/segment-bridge/base/serviceaccount.yaml b/components/segment-bridge/base/serviceaccount.yaml
+index cfee98ad..a87c3bb5 100644
+--- a/components/segment-bridge/base/serviceaccount.yaml
++++ b/components/segment-bridge/base/serviceaccount.yaml
+@@ -10,7 +10,7 @@ rules:
+ apiVersion: v1
+ kind: ServiceAccount
+ metadata:
+-  name: segment-bridge-cluster-sa
++  name: segment-bridge-member-sa
+   namespace: segment-bridge
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+@@ -19,7 +19,7 @@ metadata:
+   name: sa-read-permissions-all-namespaces
+ subjects:
+   - kind: ServiceAccount
+-    name: segment-bridge-cluster-sa
++    name: segment-bridge-member-sa
+     namespace: segment-bridge
+ roleRef:
+   kind: ClusterRole
+@@ -29,9 +29,34 @@ roleRef:
+ apiVersion: v1
+ kind: Secret
+ metadata:
+-  name: segment-bridge
++  name: segment-bridge-member
+   namespace: segment-bridge
+   annotations:
+-    kubernetes.io/service-account.name: segment-bridge
++    kubernetes.io/service-account.name: segment-bridge-member-sa
+ type: kubernetes.io/service-account-token
+-
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: segment-bridge-read-member-sa-secret
++  namespace: segment-bridge
++rules:
++- apiGroups: [""]
++  resources: ["secrets"]
++  resourceNames: ["segment-bridge-member"]
++  verbs: ["get"]
++--- 
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: segment-bridge-read-member-sa-secret-binding
++  namespace: segment-bridge
++subjects:
++  - kind: User
++    name: Omeramsc
++  - kind: User
++    name: ifireball
++roleRef:
++  kind: Role
++  name: segment-bridge-read-member-sa-secret
++  apiGroup: rbac.authorization.k8s.io

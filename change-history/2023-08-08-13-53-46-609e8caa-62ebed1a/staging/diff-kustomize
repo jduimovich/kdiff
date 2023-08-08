@@ -1,0 +1,102 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-62ebed1a/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-609e8caa/staging/app-of-apps-staging.yaml
+1007,1053c1007
+<   name: segment-bridge-host
+<   namespace: argocd-staging
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/host-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: staging
+<             sourceRoot: components/segment-bridge
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: segment-bridge-host-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: segment-bridge
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: -1
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+<   name: segment-bridge-member
+---
+>   name: segment-bridge
+1073c1027
+<       name: segment-bridge-member-{{nameNormalized}}
+---
+>       name: segment-bridge-{{nameNormalized}}
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-62ebed1a/staging/components/segment-bridge/staging/kustomize.out.yaml ./kustomized-cache/commit-609e8caa/staging/components/segment-bridge/staging/kustomize.out.yaml
+4c4
+<   name: segment-bridge-member-sa
+---
+>   name: segment-bridge-cluster-sa
+8,22d7
+< kind: Role
+< metadata:
+<   name: segment-bridge-read-member-sa-secret
+<   namespace: segment-bridge
+< rules:
+< - apiGroups:
+<   - ""
+<   resourceNames:
+<   - segment-bridge-member
+<   resources:
+<   - secrets
+<   verbs:
+<   - get
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+37,51d21
+< kind: RoleBinding
+< metadata:
+<   name: segment-bridge-read-member-sa-secret-binding
+<   namespace: segment-bridge
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: segment-bridge-read-member-sa-secret
+< subjects:
+< - kind: User
+<   name: Omeramsc
+< - kind: User
+<   name: ifireball
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+61c31
+<   name: segment-bridge-member-sa
+---
+>   name: segment-bridge-cluster-sa
+68,69c38,39
+<     kubernetes.io/service-account.name: segment-bridge-member-sa
+<   name: segment-bridge-member
+---
+>     kubernetes.io/service-account.name: segment-bridge
+>   name: segment-bridge
