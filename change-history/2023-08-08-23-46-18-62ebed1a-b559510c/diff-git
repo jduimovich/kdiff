@@ -1,0 +1,49 @@
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 622b1f4d..aeab9d22 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -18,9 +18,9 @@ spec:
+   sources:
+     - name: Release Policies
+       data:
+-        - oci::quay.io/hacbs-contract/ec-policy-data:git-b4062eb@sha256:8dcb4b022645dc17c500f4926c9757d8c47953265dbd8665728f255058e5067f
++        - oci::quay.io/hacbs-contract/ec-policy-data:git-e1e4102@sha256:08835082ab736f9b71332166731cb49ed5e9956f190fc06cb96014edd1dfda1e
+       policy:
+-        - oci::quay.io/hacbs-contract/ec-release-policy:git-e908e45@sha256:e90f160c60acd9ef18f503556d635bb3c6b17b75c65d39efb7462a4d4950086a
++        - oci::quay.io/hacbs-contract/ec-release-policy:git-12be85e@sha256:774be30d20e3182620591980796a100818878b51928752d3c5dfcc89167a642b
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -37,6 +37,6 @@ spec:
+   sources:
+     - name: Release Policies
+       data:
+-        - oci::quay.io/hacbs-contract/ec-policy-data:git-b4062eb@sha256:8dcb4b022645dc17c500f4926c9757d8c47953265dbd8665728f255058e5067f
++        - oci::quay.io/hacbs-contract/ec-policy-data:git-e1e4102@sha256:08835082ab736f9b71332166731cb49ed5e9956f190fc06cb96014edd1dfda1e
+       policy:
+-        - oci::quay.io/hacbs-contract/ec-release-policy:git-e908e45@sha256:e90f160c60acd9ef18f503556d635bb3c6b17b75c65d39efb7462a4d4950086a
++        - oci::quay.io/hacbs-contract/ec-release-policy:git-12be85e@sha256:774be30d20e3182620591980796a100818878b51928752d3c5dfcc89167a642b
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 17aed500..293d4f57 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=e530516490628fb72f0f2dfda0cf9223791fc044
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=f44889e6b1075838af927fc858b75c9922059af1
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -11,8 +11,8 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:084b0ee30df73482142a20f07f731432f03036c7@sha256:186dfea62534ef7c2121f612648e9c5e3ade8ab3bd869f93334e984786633c0a
++      - verify_ec_task_bundle=quay.io/hacbs-contract/ec-task-bundle:7d4cbd53487c6f35b203d44c656cd43a652313d3@sha256:e659ee22f29654f5db31c09249bd0fbf877898f89f203498515c5dfe9024c0f8
+ images:
+   - name: quay.io/redhat-appstudio/enterprise-contract-controller
+     newName: quay.io/redhat-appstudio/enterprise-contract-controller
+-    newTag: e530516490628fb72f0f2dfda0cf9223791fc044
++    newTag: f44889e6b1075838af927fc858b75c9922059af1

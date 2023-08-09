@@ -1,0 +1,45 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b559510c/staging/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-62ebed1a/staging/components/enterprise-contract/kustomize.out.yaml
+37a38,60
+>               authorization:
+>                 description: Authorization for per component release approvals
+>                 properties:
+>                   components:
+>                     description: Components based authorization
+>                     items:
+>                       description: Authorization defines a release approval on a component
+>                         basis
+>                       properties:
+>                         authorizer:
+>                           description: Authorizer is the email address of the person
+>                             authorizing the release
+>                           type: string
+>                         changeId:
+>                           description: ChangeID is the identifier of the change, e.g.
+>                             git commit id
+>                           type: string
+>                         repository:
+>                           description: Repository of the component sources
+>                           type: string
+>                       type: object
+>                     type: array
+>                 type: object
+231c254
+<   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:7d4cbd53487c6f35b203d44c656cd43a652313d3@sha256:e659ee22f29654f5db31c09249bd0fbf877898f89f203498515c5dfe9024c0f8
+---
+>   verify_ec_task_bundle: quay.io/hacbs-contract/ec-task-bundle:084b0ee30df73482142a20f07f731432f03036c7@sha256:186dfea62534ef7c2121f612648e9c5e3ade8ab3bd869f93334e984786633c0a
+249c272
+<     - oci::quay.io/hacbs-contract/ec-policy-data:git-e1e4102@sha256:08835082ab736f9b71332166731cb49ed5e9956f190fc06cb96014edd1dfda1e
+---
+>     - oci::quay.io/hacbs-contract/ec-policy-data:git-b4062eb@sha256:8dcb4b022645dc17c500f4926c9757d8c47953265dbd8665728f255058e5067f
+252c275
+<     - oci::quay.io/hacbs-contract/ec-release-policy:git-12be85e@sha256:774be30d20e3182620591980796a100818878b51928752d3c5dfcc89167a642b
+---
+>     - oci::quay.io/hacbs-contract/ec-release-policy:git-e908e45@sha256:e90f160c60acd9ef18f503556d635bb3c6b17b75c65d39efb7462a4d4950086a
+270c293
+<     - oci::quay.io/hacbs-contract/ec-policy-data:git-e1e4102@sha256:08835082ab736f9b71332166731cb49ed5e9956f190fc06cb96014edd1dfda1e
+---
+>     - oci::quay.io/hacbs-contract/ec-policy-data:git-b4062eb@sha256:8dcb4b022645dc17c500f4926c9757d8c47953265dbd8665728f255058e5067f
+273c296
+<     - oci::quay.io/hacbs-contract/ec-release-policy:git-12be85e@sha256:774be30d20e3182620591980796a100818878b51928752d3c5dfcc89167a642b
+---
+>     - oci::quay.io/hacbs-contract/ec-release-policy:git-e908e45@sha256:e90f160c60acd9ef18f503556d635bb3c6b17b75c65d39efb7462a4d4950086a
