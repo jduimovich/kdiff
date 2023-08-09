@@ -1,0 +1,12 @@
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index afb63e2f..76a700b6 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -14,6 +14,7 @@ resources:
+ - sandbox-sre-admins.yaml
+ - has-admin.yaml
+ - inspect-pods.yaml
++- segment-bridge.yaml
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization

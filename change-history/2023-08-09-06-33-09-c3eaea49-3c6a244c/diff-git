@@ -1,0 +1,13 @@
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index a42bd970..afb63e2f 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -2,8 +2,6 @@ resources:
+ - everyone-can-view.yaml
+ - component-maintainer.yaml
+ - spi.yaml
+-- gitops.yaml
+-- gitops-component-maintainer.yaml
+ - release-team.yaml
+ - has.yaml
+ - build.yaml

@@ -1,0 +1,34 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-862666ff/staging/components/integration/kustomize.out.yaml ./kustomized-cache/commit-bfdcb83f/staging/components/integration/kustomize.out.yaml
+1084c1084
+<         image: quay.io/redhat-appstudio/integration-service:55d2bc356b9b7e7a9fd4ab1124076252748b8d75
+---
+>         image: quay.io/redhat-appstudio/integration-service:4594f38c1844a8d6eb15f4cc3197a92d8111f171
+1168a1169,1196
+> ---
+> apiVersion: networking.k8s.io/v1
+> kind: NetworkPolicy
+> metadata:
+>   name: integration-service-egress-controller-manager
+>   namespace: integration-service
+> spec:
+>   egress:
+>   - ports:
+>     - port: 6443
+>       protocol: TCP
+>     to:
+>     - namespaceSelector: {}
+>       podSelector:
+>         matchLabels:
+>           apiserver: "true"
+>           app: openshift-kube-apiserver
+>   - ports:
+>     - port: 6443
+>       protocol: TCP
+>     to:
+>     - ipBlock:
+>         cidr: 172.20.0.1/32
+>   podSelector:
+>     matchLabels:
+>       control-plane: controller-manager
+>   policyTypes:
+>   - Egress
