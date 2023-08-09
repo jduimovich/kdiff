@@ -1,0 +1,30 @@
+diff --git a/components/monitoring/grafana/base/dashboards/dora-metrics/dashboard.yaml b/components/monitoring/grafana/base/dashboards/dora-metrics/dashboard.yaml
+deleted file mode 100644
+index 1bc8ecff..00000000
+--- a/components/monitoring/grafana/base/dashboards/dora-metrics/dashboard.yaml
++++ /dev/null
+@@ -1,13 +0,0 @@
+-apiVersion: grafana.integreatly.org/v1beta1
+-kind: GrafanaDashboard
+-metadata:
+-  name: grafana-dashboard-dora-metrics
+-  labels: 
+-    app: appstudio-grafana
+-spec:
+-  instanceSelector:
+-    matchLabels:
+-      dashboards: "appstudio-grafana"
+-  configMapRef:
+-    name: grafana-dashboard-dora-metrics
+-    key: dora-dashboard.json
+diff --git a/components/monitoring/grafana/base/dashboards/dora-metrics/kustomization.yaml b/components/monitoring/grafana/base/dashboards/dora-metrics/kustomization.yaml
+index 182b1f49..430d087f 100644
+--- a/components/monitoring/grafana/base/dashboards/dora-metrics/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/dora-metrics/kustomization.yaml
+@@ -1,5 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/dora-metrics/deploy/grafana/?ref=2d448566456926a6ea9a48c98286ef1013be76c5
+-- dashboard.yaml
++- https://github.com/redhat-appstudio/dora-metrics/deploy/grafana/?ref=a1ade717ab31bdf2f0cdadd5e3d61dbab8710863
