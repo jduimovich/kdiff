@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-03a234e4/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-339a1e9b/development/components/pipeline-service/development/kustomize.out.yaml
+1138c1138
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:d3aba610f1f26a934b3813489766f27782eca013
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:fa818a591509e3da4d46aec5aadc904fd4daacf9
+1831a1832
+>     embedded-status: both
