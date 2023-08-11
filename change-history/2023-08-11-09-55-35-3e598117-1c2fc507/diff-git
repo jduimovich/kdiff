@@ -1,0 +1,12 @@
+diff --git a/ci/teams/rhtap-servicerelease/ec-policy.yaml b/ci/teams/rhtap-servicerelease/ec-policy.yaml
+index 21e5a505..e2b8fb80 100644
+--- a/ci/teams/rhtap-servicerelease/ec-policy.yaml
++++ b/ci/teams/rhtap-servicerelease/ec-policy.yaml
+@@ -2,6 +2,7 @@ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+ metadata:
+   name: rh-policy
++  namespace: rhtap-servicerelease-tenant
+ spec:
+   description: >-
+     Includes rules for levels 1, 2 & 3 of SLSA v0.1.

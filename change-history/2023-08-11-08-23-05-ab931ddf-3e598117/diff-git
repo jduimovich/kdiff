@@ -1,0 +1,29 @@
+diff --git a/hack/build/setup-pac-integration.sh b/hack/build/setup-pac-integration.sh
+index cfdf2d66..fc8ba7de 100755
+--- a/hack/build/setup-pac-integration.sh
++++ b/hack/build/setup-pac-integration.sh
+@@ -64,7 +64,11 @@ setup-pac-app() (
+ )
+ 
+ if [ -n "${PAC_GITHUB_APP_ID}" ] && [ -n "${PAC_GITHUB_APP_PRIVATE_KEY}" ]; then
+-        WEBHOOK_SECRET=$(setup-pac-app)
++        if [ -n "${PAC_GITHUB_APP_WEBHOOK_SECRET}" ]; then
++                WEBHOOK_SECRET="$PAC_GITHUB_APP_WEBHOOK_SECRET"
++        else
++                WEBHOOK_SECRET=$(setup-pac-app)
++        fi
+         GITHUB_APP_PRIVATE_KEY=$(echo "$PAC_GITHUB_APP_PRIVATE_KEY" | base64 -d)
+         GITHUB_APP_DATA="--from-literal github-private-key='$GITHUB_APP_PRIVATE_KEY' --from-literal github-application-id='${PAC_GITHUB_APP_ID}' --from-literal webhook.secret='$WEBHOOK_SECRET'"                
+ fi
+diff --git a/hack/preview-template.env b/hack/preview-template.env
+index f4ea12de..bf637295 100644
+--- a/hack/preview-template.env
++++ b/hack/preview-template.env
+@@ -89,6 +89,7 @@ export DOCKER_IO_AUTH=""
+ ### pipelines-as-code-secret is created by preview.sh
+ export PAC_GITHUB_APP_PRIVATE_KEY= # Base64 encoded private key of the GitHub APP
+ export PAC_GITHUB_APP_ID= # Application ID
++export PAC_GITHUB_APP_WEBHOOK_SECRET= # Webhook secret of the GitHub APP
+ 
+ # GitHub webhook integration (alternative to the GitHub PaC application)
+ # See https://pipelinesascode.com/docs/install/github_webhook/#setup-git-repository for the required token permissions
