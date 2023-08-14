@@ -1,0 +1,54 @@
+diff --git a/components/remote-secret-controller/overlays/production/base/kustomization.yaml b/components/remote-secret-controller/overlays/production/base/kustomization.yaml
+index b3fd6662..f2b1c355 100644
+--- a/components/remote-secret-controller/overlays/production/base/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/production/base/kustomization.yaml
+@@ -12,3 +12,9 @@ images:
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+     newTag: 1f1a541eb25c3237715e3a67a90c8f0029142bfa
++
++patches:
++  - target:
++      kind: Deployment
++      name: remote-secret-controller-manager
++    path: operator-limits-patch.json
+diff --git a/components/remote-secret-controller/overlays/production/base/operator-limits-patch.json b/components/remote-secret-controller/overlays/production/base/operator-limits-patch.json
+new file mode 100644
+index 00000000..7c871ba0
+--- /dev/null
++++ b/components/remote-secret-controller/overlays/production/base/operator-limits-patch.json
+@@ -0,0 +1,7 @@
++[
++  {
++    "op": "replace",
++    "path": "/spec/template/spec/containers/0/resources/limits/memory",
++    "value": "1024Mi"
++  }
++]
+diff --git a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+index daa77bd1..67c38703 100644
+--- a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+@@ -12,3 +12,9 @@ images:
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+     newTag: d7532823ec79959e046c9e5f60a5ae1cb15ec482
++
++patches:
++  - target:
++      kind: Deployment
++      name: remote-secret-controller-manager
++    path: operator-limits-patch.json
+diff --git a/components/remote-secret-controller/overlays/staging/base/operator-limits-patch.json b/components/remote-secret-controller/overlays/staging/base/operator-limits-patch.json
+new file mode 100644
+index 00000000..d0ae0920
+--- /dev/null
++++ b/components/remote-secret-controller/overlays/staging/base/operator-limits-patch.json
+@@ -0,0 +1,7 @@
++[
++  {
++    "op": "replace",
++    "path": "/spec/template/spec/containers/0/resources/limits/memory",
++    "value": "4096Mi"
++  }
++]
