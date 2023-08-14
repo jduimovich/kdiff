@@ -1,0 +1,19 @@
+diff --git a/components/gitops/base/authentication/gitops-clusterroles.yaml b/components/gitops/base/authentication/gitops-clusterroles.yaml
+index b5d39263..16577b3c 100644
+--- a/components/gitops/base/authentication/gitops-clusterroles.yaml
++++ b/components/gitops/base/authentication/gitops-clusterroles.yaml
+@@ -11,6 +11,14 @@ rules:
+       - get
+       - list
+       - watch
++
++  - apiGroups:
++      - appstudio.redhat.com
++    resources:
++      - snapshotenvironmentbindings
++    verbs:
++      - delete
++
+   - apiGroups:
+       - operators.coreos.com
+     resources:
