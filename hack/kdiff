@@ -27,7 +27,7 @@ function ktry() {
     fi
 }
 
-OVERLAYS="staging development"
+OVERLAYS="production staging development"
 
 function generateManifests()  { 
     COMMIT=$1
