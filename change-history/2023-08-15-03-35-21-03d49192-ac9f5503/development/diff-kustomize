@@ -1,0 +1,68 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ac9f5503/development/app-of-apps-development.yaml ./kustomized-cache/commit-03d49192/development/app-of-apps-development.yaml
+721,766d720
+<   name: multi-arch-controller
+<   namespace: openshift-gitops
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: development
+<             sourceRoot: components/multi-arch-controller
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: multi-arch-controller-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: default
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: -1
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ac9f5503/development/components/authentication/development/kustomize.out.yaml ./kustomized-cache/commit-03d49192/development/components/authentication/development/kustomize.out.yaml
+621,637d620
+<   name: component-maintainers
+<   namespace: multi-arch-controller
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: component-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: sbose78
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: stuartwdouglas
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+Only in ./kustomized-cache/commit-ac9f5503/development/components: multi-arch-controller

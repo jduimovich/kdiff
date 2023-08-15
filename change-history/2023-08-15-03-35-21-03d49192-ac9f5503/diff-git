@@ -1,0 +1,320 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 8b155343..941f9587 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -17,5 +17,6 @@ resources:
+   - internal-services
+   - image-controller
+   - segment-bridge
++  - multi-arch-controller
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/multi-arch-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/multi-arch-controller/kustomization.yaml
+new file mode 100644
+index 00000000..fc8dd85f
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/multi-arch-controller/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- multi-arch-controller.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/multi-arch-controller/multi-arch-controller.yaml b/argo-cd-apps/base/member/infra-deployments/multi-arch-controller/multi-arch-controller.yaml
+new file mode 100644
+index 00000000..40ad864b
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/multi-arch-controller/multi-arch-controller.yaml
+@@ -0,0 +1,41 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: multi-arch-controller
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/multi-arch-controller
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: multi-arch-controller-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: default
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++        - CreateNamespace=true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index 851e8831..9bc056dc 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -63,6 +63,11 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: image-controller
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: multi-arch-controller
+   - path: development-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+diff --git a/argo-cd-apps/overlays/production/delete-applications.yaml b/argo-cd-apps/overlays/production/delete-applications.yaml
+new file mode 100644
+index 00000000..2a1f9eee
+--- /dev/null
++++ b/argo-cd-apps/overlays/production/delete-applications.yaml
+@@ -0,0 +1,6 @@
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: multi-arch-controller
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index c977a488..73a86765 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -7,6 +7,9 @@ resources:
+   - ../../base/tekton-ci
+   - ../../base/ci-workspaces
+ namespace: argocd
++
++patchesStrategicMerge:
++  - delete-applications.yaml
+ patches:
+   - path: production-overlay-patch.yaml
+     target:
+diff --git a/components/authentication/base/build.yaml b/components/authentication/base/build.yaml
+index af0e4bdd..194388c5 100644
+--- a/components/authentication/base/build.yaml
++++ b/components/authentication/base/build.yaml
+@@ -120,3 +120,20 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: component-maintainer
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: component-maintainers
++  namespace: multi-arch-controller
++subjects:
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: sbose78
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: stuartwdouglas
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: component-maintainer
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 7511a2f9..a3c337a7 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -39,6 +39,7 @@ spec:
+         - build-service
+         - tekton-ci
+         - image-controller
++        - multi-arch-controller
+         - jvm-build-service
+         - openshift-logging
+         - sprayproxy
+diff --git a/components/multi-arch-controller/OWNERS b/components/multi-arch-controller/OWNERS
+new file mode 100644
+index 00000000..9a4c71a0
+--- /dev/null
++++ b/components/multi-arch-controller/OWNERS
+@@ -0,0 +1,9 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- stuartwdouglas
++- sbose78
++
++reviewers:
++- sbose78
++- stuartwdouglas
+diff --git a/components/multi-arch-controller/base/allow-argocd-to-manage.yaml b/components/multi-arch-controller/base/allow-argocd-to-manage.yaml
+new file mode 100644
+index 00000000..42ad3335
+--- /dev/null
++++ b/components/multi-arch-controller/base/allow-argocd-to-manage.yaml
+@@ -0,0 +1,13 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: grant-argocd
++  namespace: multi-arch-controller
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops 
+diff --git a/components/multi-arch-controller/base/external-secrets/awskeys.yaml b/components/multi-arch-controller/base/external-secrets/awskeys.yaml
+new file mode 100644
+index 00000000..bbf28925
+--- /dev/null
++++ b/components/multi-arch-controller/base/external-secrets/awskeys.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: awskeys
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/build/multi-arch-controller
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: awskeys
+diff --git a/components/multi-arch-controller/base/external-secrets/kustomization.yaml b/components/multi-arch-controller/base/external-secrets/kustomization.yaml
+new file mode 100644
+index 00000000..6700cbb6
+--- /dev/null
++++ b/components/multi-arch-controller/base/external-secrets/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- awskeys.yaml
++namespace: multi-arch-controller
+diff --git a/components/multi-arch-controller/base/host-config.yaml b/components/multi-arch-controller/base/host-config.yaml
+new file mode 100644
+index 00000000..25d98449
+--- /dev/null
++++ b/components/multi-arch-controller/base/host-config.yaml
+@@ -0,0 +1,18 @@
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  labels:
++    build.appstudio.redhat.com/multi-arch-config: hosts
++  name: host-config
++  namespace: multi-arch-controller
++data:
++  host1.address: "ec2-54-165-44-192.compute-1.amazonaws.com"
++  host1.secret: "awskeys"
++  host1.concurrency: "4"
++  host1.user: "ec2-user"
++  host1.arch: "arm64"
++  host2.address: "ec2-34-227-115-211.compute-1.amazonaws.com"
++  host2.secret: "awskeys"
++  host2.concurrency: "4"
++  host2.user: "ec2-user"
++  host2.arch: "arm64"
+diff --git a/components/multi-arch-controller/base/kustomization.yaml b/components/multi-arch-controller/base/kustomization.yaml
+new file mode 100644
+index 00000000..2218fe8a
+--- /dev/null
++++ b/components/multi-arch-controller/base/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- allow-argocd-to-manage.yaml
++- host-config.yaml
++- https://github.com/redhat-appstudio/multi-arch-controller/deploy/operator?ref=74d7049e1200a273dc294de8c0521a7d6e5de8a0
++
++images:
++- name: multi-arch-controller
++  newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
++  newTag: 74d7049e1200a273dc294de8c0521a7d6e5de8a0
++
++namespace: multi-arch-controller
++
++
+diff --git a/components/multi-arch-controller/development/kustomization.yaml b/components/multi-arch-controller/development/kustomization.yaml
+new file mode 100644
+index 00000000..8c8c5e25
+--- /dev/null
++++ b/components/multi-arch-controller/development/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++
++patches:
++  - target:
++      group: apps
++      version: v1
++      kind: Deployment
++      name: multi-arch-controller
++    path: logs-in-console-format-cmd-arg-patch.yaml
+diff --git a/components/multi-arch-controller/development/logs-in-console-format-cmd-arg-patch.yaml b/components/multi-arch-controller/development/logs-in-console-format-cmd-arg-patch.yaml
+new file mode 100644
+index 00000000..020e2b99
+--- /dev/null
++++ b/components/multi-arch-controller/development/logs-in-console-format-cmd-arg-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/template/spec/containers/0/args/-
++  value: '--zap-encoder=console'
+diff --git a/components/multi-arch-controller/staging/kustomization.yaml b/components/multi-arch-controller/staging/kustomization.yaml
+new file mode 100644
+index 00000000..479bc600
+--- /dev/null
++++ b/components/multi-arch-controller/staging/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- ../base/external-secrets
+diff --git a/hack/preview.sh b/hack/preview.sh
+index b8d6a5fd..b7ddd77d 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -201,6 +201,11 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [ -n "${IMAGE_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/image-controller\")) |=.newTag=\"${IMAGE_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/image-controller/base/kustomization.yaml
+ [[ -n "${IMAGE_CONTROLLER_PR_OWNER}" && "${IMAGE_CONTROLLER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/image-controller*\")) |= \"https://github.com/${IMAGE_CONTROLLER_PR_OWNER}/image-controller/config/default?ref=${IMAGE_CONTROLLER_PR_SHA}\"" $ROOT/components/image-controller/base/kustomization.yaml
+ 
++[ -n "${MULTI_ARCH_CONTROLLER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"multi-arch-controller\")) |=.newName=\"${MULTI_ARCH_CONTROLLER_IMAGE_REPO}\"" $ROOT/components/multi-arch-controller/base/kustomization.yaml
++[ -n "${MULTI_ARCH_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"multi-arch-controller\")) |=.newTag=\"${MULTI_ARCH_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/multi-arch-controller/base/kustomization.yaml
++[[ -n "${MULTI_ARCH_CONTROLLER_PR_OWNER}" && "${MULTI_ARCH_CONTROLLER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/multi-arch-controller*\")) |= \"https://github.com/${MULTI_ARCH_CONTROLLER_PR_OWNER}/multi-arch-controller/config/default?ref=${MULTI_ARCH_CONTROLLER_PR_SHA}\"" $ROOT/components/multi-arch-controller/base/kustomization.yaml
++
++
+ [[ -n "${PIPELINE_PR_OWNER}" && "${PIPELINE_PR_SHA}" ]] && yq -i e ".resources[] |= sub(\"ref=[^ ]*\"; \"ref=${PIPELINE_PR_SHA}\") | .resources[] |= sub(\"openshift-pipelines\"; \"${PIPELINE_PR_OWNER}\")" $ROOT/components/pipeline-service/development/kustomization.yaml
+ 
+ if ! git diff --exit-code --quiet; then
