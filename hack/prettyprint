@@ -11,11 +11,12 @@ INFRA=$ROOT/infra-deployments
  
 SUMMARY=$ROOT/index.md
 COMPARE_DIR=$ROOT/change-history
- 
+OVERLAYS="production staging development"
+
 echo "# kustomize changes tracked by commits "> $SUMMARY 
 echo "### This file generated at $(date)" >> $SUMMARY 
 echo "## Repo - https://github.com/redhat-appstudio/infra-deployments.git " >> $SUMMARY 
-echo "## Overlays: staging, development" >> $SUMMARY 
+echo "## Overlays: $OVERLAYS" >> $SUMMARY 
 echo "## Showing last $MAX_LINES commits" >> $SUMMARY 
 
 echo >> $SUMMARY 
@@ -28,7 +29,7 @@ do
     GIT=$(cat $diff/diff-git | sed s#.*kustomized-cache/#./#g)
     GLINES=$(wc -l $diff/diff-git | cut -d ' ' -f 1)
     echo $diff
-    for overlay in  staging  development
+    for overlay in $OVERLAYS
     do  
         if [ -f $diff/title ]; then
             TITLE="${overlay^} $(cat $diff/title)"
