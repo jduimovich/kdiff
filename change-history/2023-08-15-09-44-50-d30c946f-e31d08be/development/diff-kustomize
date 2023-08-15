@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e31d08be/development/components/gitops/development/kustomize.out.yaml ./kustomized-cache/commit-d30c946f/development/components/gitops/development/kustomize.out.yaml
+3389,3392c3389
+<         env:
+<         - name: DEV_ONLY_IGNORE_SELFSIGNED_CERT_IN_DEPLOYMENT_TARGET
+<           value: "true"
+<         image: quay.io/redhat-appstudio/gitops-service:9204dce20538d9c4f3b0b481e19a298dc89e7c8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:3e1f81af40a982a1124af145ecf7c56d06e92734
+3486c3483
+<         image: quay.io/redhat-appstudio/gitops-service:9204dce20538d9c4f3b0b481e19a298dc89e7c8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:3e1f81af40a982a1124af145ecf7c56d06e92734
+3577c3574
+<         image: quay.io/redhat-appstudio/gitops-service:9204dce20538d9c4f3b0b481e19a298dc89e7c8c
+---
+>         image: quay.io/redhat-appstudio/gitops-service:3e1f81af40a982a1124af145ecf7c56d06e92734
