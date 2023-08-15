@@ -1,0 +1,22 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ac9f5503/production/components/authentication/production/kustomize.out.yaml ./kustomized-cache/commit-03d49192/production/components/authentication/production/kustomize.out.yaml
+593,609d592
+<   name: component-maintainers
+<   namespace: multi-arch-controller
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: component-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: sbose78
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: stuartwdouglas
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ac9f5503/production/components/cluster-secret-store/production/kustomize.out.yaml ./kustomized-cache/commit-03d49192/production/components/cluster-secret-store/production/kustomize.out.yaml
+22d21
+<     - multi-arch-controller

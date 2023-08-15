@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-03d49192/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-f762f713/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml
+2665,2670d2664
+<   - appstudio.redhat.com
+<   resources:
+<   - snapshotenvironmentbindings
+<   verbs:
+<   - delete
+< - apiGroups:
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-03d49192/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-f762f713/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml
+2665,2670d2664
+<   - appstudio.redhat.com
+<   resources:
+<   - snapshotenvironmentbindings
+<   verbs:
+<   - delete
+< - apiGroups:

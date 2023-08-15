@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-85f016ab/production/components/authentication/production/kustomize.out.yaml ./kustomized-cache/commit-f6d25f56/production/components/authentication/production/kustomize.out.yaml
+45c45
+<   - toolchain.dev.openshift.com
+---
+>   - ""
+47c47
+<   - usersignups
+---
+>   - UserSignup

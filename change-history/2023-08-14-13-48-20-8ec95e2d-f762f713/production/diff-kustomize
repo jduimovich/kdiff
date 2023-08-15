@@ -1,0 +1,410 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f762f713/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-8ec95e2d/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml
+20c20,21
+<     controller-gen.kubebuilder.io/version: v0.12.1
+---
+>     controller-gen.kubebuilder.io/version: v0.6.1
+>   creationTimestamp: null
+82,83c83,84
+<                   using the credentials provided by the user in the secret. - Argo
+<                   CD will then be configured to deploy with that new ServiceAccount.
+---
+>                   \  using the credentials provided by the user in the secret.   -
+>                   Argo CD will then be configured to deploy with that new ServiceAccount.
+86c87
+<                   and Argo CD will be configred to use the ServiceAccount referenced
+---
+>                   and   Argo CD will be configred to use the ServiceAccount referenced
+88c89
+<                   - This should be used, for example, when the ServiceAccount Argo
+---
+>                   \  - This should be used, for example, when the ServiceAccount Argo
+123,126c124,128
+<                     \n type FooStatus struct{ // Represents the observations of a
+<                     foo's current state. // Known .status.conditions.type are: \"Available\",
+<                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
+<                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
+---
+>                     \n \ttype FooStatus struct{ \t    // Represents the observations
+>                     of a foo's current state. \t    // Known .status.conditions.type
+>                     are: \"Available\", \"Progressing\", and \"Degraded\" \t    //
+>                     +patchMergeKey=type \t    // +patchStrategy=merge \t    // +listType=map
+>                     \t    // +listMapKey=type \t    Conditions []metav1.Condition
+128c130,131
+<                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
+---
+>                     protobuf:\"bytes,1,rep,name=conditions\"` \n \t    // other fields
+>                     \t}"
+191a195,200
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+198c207,208
+<     controller-gen.kubebuilder.io/version: v0.12.1
+---
+>     controller-gen.kubebuilder.io/version: v0.6.1
+>   creationTimestamp: null
+254,257c264,268
+<                     \n type FooStatus struct{ // Represents the observations of a
+<                     foo's current state. // Known .status.conditions.type are: \"Available\",
+<                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
+<                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
+---
+>                     \n \ttype FooStatus struct{ \t    // Represents the observations
+>                     of a foo's current state. \t    // Known .status.conditions.type
+>                     are: \"Available\", \"Progressing\", and \"Degraded\" \t    //
+>                     +patchMergeKey=type \t    // +patchStrategy=merge \t    // +listType=map
+>                     \t    // +listMapKey=type \t    Conditions []metav1.Condition
+259c270,271
+<                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
+---
+>                     protobuf:\"bytes,1,rep,name=conditions\"` \n \t    // other fields
+>                     \t}"
+322a335,340
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+329c347,348
+<     controller-gen.kubebuilder.io/version: v0.12.1
+---
+>     controller-gen.kubebuilder.io/version: v0.6.1
+>   creationTimestamp: null
+934a954,959
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+941c966,967
+<     controller-gen.kubebuilder.io/version: v0.12.1
+---
+>     controller-gen.kubebuilder.io/version: v0.6.1
+>   creationTimestamp: null
+1025a1052,1057
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+1032c1064,1065
+<     controller-gen.kubebuilder.io/version: v0.12.1
+---
+>     controller-gen.kubebuilder.io/version: v0.6.1
+>   creationTimestamp: null
+1073a1107,1112
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+2316a2356
+>   creationTimestamp: null
+2678a2719
+>   creationTimestamp: null
+2684,2709d2724
+<   - configmaps
+<   - endpoints
+<   - persistentvolumeclaims
+<   - persistentvolumes
+<   - pods
+<   - secrets
+<   - serviceaccounts
+<   - services
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+<   - apps
+<   resources:
+<   - daemonsets
+<   - deployments
+<   - replicasets
+<   - statefulsets
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+<   - ""
+<   resources:
+2724,2731d2738
+<   - discovery.k8s.io
+<   resources:
+<   - endpointslices
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+2847,2889d2853
+< - apiGroups:
+<   - networking.k8s.io
+<   resources:
+<   - ingressclasses
+<   - ingresses
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+<   - pipelinesascode.tekton.dev
+<   resources:
+<   - repositories
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+<   - rbac.authorization.k8s.io
+<   resources:
+<   - rolebindings
+<   - roles
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+<   - route.openshift.io
+<   resources:
+<   - routes
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+<   - triggers.tekton.dev
+<   resources:
+<   - eventlisteners
+<   - triggertemplates
+<   verbs:
+<   - delete
+<   - get
+<   - list
+2996a2961
+>   creationTimestamp: null
+3686c3651
+<         image: quay.io/redhat-appstudio/gitops-service:3e1f81af40a982a1124af145ecf7c56d06e92734
+---
+>         image: quay.io/redhat-appstudio/gitops-service:8a16f2900331697054cb4608333aa0981c4cd3a2
+3791c3756
+<         image: quay.io/redhat-appstudio/gitops-service:3e1f81af40a982a1124af145ecf7c56d06e92734
+---
+>         image: quay.io/redhat-appstudio/gitops-service:8a16f2900331697054cb4608333aa0981c4cd3a2
+3893c3858
+<         image: quay.io/redhat-appstudio/gitops-service:3e1f81af40a982a1124af145ecf7c56d06e92734
+---
+>         image: quay.io/redhat-appstudio/gitops-service:8a16f2900331697054cb4608333aa0981c4cd3a2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f762f713/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-8ec95e2d/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml
+20c20,21
+<     controller-gen.kubebuilder.io/version: v0.12.1
+---
+>     controller-gen.kubebuilder.io/version: v0.6.1
+>   creationTimestamp: null
+82,83c83,84
+<                   using the credentials provided by the user in the secret. - Argo
+<                   CD will then be configured to deploy with that new ServiceAccount.
+---
+>                   \  using the credentials provided by the user in the secret.   -
+>                   Argo CD will then be configured to deploy with that new ServiceAccount.
+86c87
+<                   and Argo CD will be configred to use the ServiceAccount referenced
+---
+>                   and   Argo CD will be configred to use the ServiceAccount referenced
+88c89
+<                   - This should be used, for example, when the ServiceAccount Argo
+---
+>                   \  - This should be used, for example, when the ServiceAccount Argo
+123,126c124,128
+<                     \n type FooStatus struct{ // Represents the observations of a
+<                     foo's current state. // Known .status.conditions.type are: \"Available\",
+<                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
+<                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
+---
+>                     \n \ttype FooStatus struct{ \t    // Represents the observations
+>                     of a foo's current state. \t    // Known .status.conditions.type
+>                     are: \"Available\", \"Progressing\", and \"Degraded\" \t    //
+>                     +patchMergeKey=type \t    // +patchStrategy=merge \t    // +listType=map
+>                     \t    // +listMapKey=type \t    Conditions []metav1.Condition
+128c130,131
+<                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
+---
+>                     protobuf:\"bytes,1,rep,name=conditions\"` \n \t    // other fields
+>                     \t}"
+191a195,200
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+198c207,208
+<     controller-gen.kubebuilder.io/version: v0.12.1
+---
+>     controller-gen.kubebuilder.io/version: v0.6.1
+>   creationTimestamp: null
+254,257c264,268
+<                     \n type FooStatus struct{ // Represents the observations of a
+<                     foo's current state. // Known .status.conditions.type are: \"Available\",
+<                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
+<                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
+---
+>                     \n \ttype FooStatus struct{ \t    // Represents the observations
+>                     of a foo's current state. \t    // Known .status.conditions.type
+>                     are: \"Available\", \"Progressing\", and \"Degraded\" \t    //
+>                     +patchMergeKey=type \t    // +patchStrategy=merge \t    // +listType=map
+>                     \t    // +listMapKey=type \t    Conditions []metav1.Condition
+259c270,271
+<                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
+---
+>                     protobuf:\"bytes,1,rep,name=conditions\"` \n \t    // other fields
+>                     \t}"
+322a335,340
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+329c347,348
+<     controller-gen.kubebuilder.io/version: v0.12.1
+---
+>     controller-gen.kubebuilder.io/version: v0.6.1
+>   creationTimestamp: null
+934a954,959
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+941c966,967
+<     controller-gen.kubebuilder.io/version: v0.12.1
+---
+>     controller-gen.kubebuilder.io/version: v0.6.1
+>   creationTimestamp: null
+1025a1052,1057
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+1032c1064,1065
+<     controller-gen.kubebuilder.io/version: v0.12.1
+---
+>     controller-gen.kubebuilder.io/version: v0.6.1
+>   creationTimestamp: null
+1073a1107,1112
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+2316a2356
+>   creationTimestamp: null
+2678a2719
+>   creationTimestamp: null
+2684,2709d2724
+<   - configmaps
+<   - endpoints
+<   - persistentvolumeclaims
+<   - persistentvolumes
+<   - pods
+<   - secrets
+<   - serviceaccounts
+<   - services
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+<   - apps
+<   resources:
+<   - daemonsets
+<   - deployments
+<   - replicasets
+<   - statefulsets
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+<   - ""
+<   resources:
+2724,2731d2738
+<   - discovery.k8s.io
+<   resources:
+<   - endpointslices
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+2847,2889d2853
+< - apiGroups:
+<   - networking.k8s.io
+<   resources:
+<   - ingressclasses
+<   - ingresses
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+<   - pipelinesascode.tekton.dev
+<   resources:
+<   - repositories
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+<   - rbac.authorization.k8s.io
+<   resources:
+<   - rolebindings
+<   - roles
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+<   - route.openshift.io
+<   resources:
+<   - routes
+<   verbs:
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+<   - triggers.tekton.dev
+<   resources:
+<   - eventlisteners
+<   - triggertemplates
+<   verbs:
+<   - delete
+<   - get
+<   - list
+2996a2961
+>   creationTimestamp: null
+3686c3651
+<         image: quay.io/redhat-appstudio/gitops-service:3e1f81af40a982a1124af145ecf7c56d06e92734
+---
+>         image: quay.io/redhat-appstudio/gitops-service:8a16f2900331697054cb4608333aa0981c4cd3a2
+3791c3756
+<         image: quay.io/redhat-appstudio/gitops-service:3e1f81af40a982a1124af145ecf7c56d06e92734
+---
+>         image: quay.io/redhat-appstudio/gitops-service:8a16f2900331697054cb4608333aa0981c4cd3a2
+3893c3858
+<         image: quay.io/redhat-appstudio/gitops-service:3e1f81af40a982a1124af145ecf7c56d06e92734
+---
+>         image: quay.io/redhat-appstudio/gitops-service:8a16f2900331697054cb4608333aa0981c4cd3a2
