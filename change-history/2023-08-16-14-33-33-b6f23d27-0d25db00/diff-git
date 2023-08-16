@@ -1,0 +1,85 @@
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index afe06a45..8ae0b1b7 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -24,7 +24,7 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: pac-app-name.yaml
++  - path: pac-config.yaml
+     target:
+       kind: ConfigMap
+       name: pipelines-as-code
+diff --git a/components/pipeline-service/production/base/pac-app-name.yaml b/components/pipeline-service/production/base/pac-app-name.yaml
+deleted file mode 100644
+index b4882506..00000000
+--- a/components/pipeline-service/production/base/pac-app-name.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: replace
+-  path: /data/application-name
+-  value: Red Hat Trusted App Pipeline
+diff --git a/components/pipeline-service/production/base/pac-config.yaml b/components/pipeline-service/production/base/pac-config.yaml
+new file mode 100644
+index 00000000..11e3bb94
+--- /dev/null
++++ b/components/pipeline-service/production/base/pac-config.yaml
+@@ -0,0 +1,10 @@
++---
++- op: replace
++  path: /data/application-name
++  value: Red Hat Trusted App Pipeline
++- op: replace
++  path: /data/custom-console-name
++  value: Red Hat Trusted App Pipeline
++- op: replace
++  path: /data/custom-console-url
++  value: https://console.redhat.com/preview/application-pipeline
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index ff314462..1c9e2e49 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -20,7 +20,7 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-  - path: pac-app-name.yaml
++  - path: pac-config.yaml
+     target:
+       kind: ConfigMap
+       name: pipelines-as-code
+@@ -33,4 +33,4 @@ patches:
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+-      name: config
+\ No newline at end of file
++      name: config
+diff --git a/components/pipeline-service/staging/base/pac-app-name.yaml b/components/pipeline-service/staging/base/pac-app-name.yaml
+deleted file mode 100644
+index 18535026..00000000
+--- a/components/pipeline-service/staging/base/pac-app-name.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: replace
+-  path: /data/application-name
+-  value: RHTAP Staging
+diff --git a/components/pipeline-service/staging/base/pac-config.yaml b/components/pipeline-service/staging/base/pac-config.yaml
+new file mode 100644
+index 00000000..47db68b3
+--- /dev/null
++++ b/components/pipeline-service/staging/base/pac-config.yaml
+@@ -0,0 +1,10 @@
++---
++- op: replace
++  path: /data/application-name
++  value: RHTAP Staging
++- op: replace
++  path: /data/custom-console-name
++  value: RHTAP Staging
++- op: replace
++  path: /data/custom-console-url
++  value: https://console.dev.redhat.com/preview/application-pipeline

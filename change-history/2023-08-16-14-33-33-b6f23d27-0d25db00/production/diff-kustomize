@@ -1,0 +1,8 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0d25db00/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-b6f23d27/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+868,869d867
+<   custom-console-name: Red Hat Trusted App Pipeline
+<   custom-console-url: https://console.redhat.com/preview/application-pipeline
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0d25db00/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-b6f23d27/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+868,869d867
+<   custom-console-name: Red Hat Trusted App Pipeline
+<   custom-console-url: https://console.redhat.com/preview/application-pipeline
