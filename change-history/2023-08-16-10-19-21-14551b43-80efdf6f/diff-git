@@ -1,0 +1,225 @@
+diff --git a/argo-cd-apps/base/host/kustomization.yaml b/argo-cd-apps/base/host/kustomization.yaml
+index 1c903cb7..79818233 100644
+--- a/argo-cd-apps/base/host/kustomization.yaml
++++ b/argo-cd-apps/base/host/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - sprayproxy
++  - toolchain-host-operator
+   - segment-bridge
+ components:
+   - ../../k-components/deploy-to-host-cluster-merge-generator
+diff --git a/argo-cd-apps/base/host/toolchain-host-operator/kustomization.yaml b/argo-cd-apps/base/host/toolchain-host-operator/kustomization.yaml
+new file mode 100644
+index 00000000..8c2e8eac
+--- /dev/null
++++ b/argo-cd-apps/base/host/toolchain-host-operator/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - toolchain-host-operator.yaml
++components:
++  - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml b/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml
+new file mode 100644
+index 00000000..aa12727d
+--- /dev/null
++++ b/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml
+@@ -0,0 +1,41 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: toolchain-host-operator
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/sandbox/toolchain-host-operator
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: toolchain-host-operator-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: toolchain-host-operator
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: false
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=false
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 941f9587..801b9195 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -17,6 +17,7 @@ resources:
+   - internal-services
+   - image-controller
+   - segment-bridge
++  - toolchain-member-operator
+   - multi-arch-controller
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/toolchain-member-operator/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/toolchain-member-operator/kustomization.yaml
+new file mode 100644
+index 00000000..5e5c4dae
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/toolchain-member-operator/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - toolchain-member-operator.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+\ No newline at end of file
+diff --git a/argo-cd-apps/base/member/infra-deployments/toolchain-member-operator/toolchain-member-operator.yaml b/argo-cd-apps/base/member/infra-deployments/toolchain-member-operator/toolchain-member-operator.yaml
+new file mode 100644
+index 00000000..2c2867db
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/toolchain-member-operator/toolchain-member-operator.yaml
+@@ -0,0 +1,41 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: toolchain-member-operator
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/sandbox/toolchain-member-operator
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: toolchain-member-operator-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: toolchain-member-operator
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: false
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=false
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/components/sandbox/OWNERS b/components/sandbox/OWNERS
+new file mode 100644
+index 00000000..69264da5
+--- /dev/null
++++ b/components/sandbox/OWNERS
+@@ -0,0 +1,8 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- mfrancisc
++- MatousJobanek
++- xcoulon
++- alexeykazakov
++- rajivnathan
+diff --git a/components/sandbox/base/kustomization.yaml b/components/sandbox/base/kustomization.yaml
+new file mode 100644
+index 00000000..dfb700ec
+--- /dev/null
++++ b/components/sandbox/base/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ./rbac/edit-secrets.yaml
+diff --git a/components/sandbox/base/rbac/edit-secrets.yaml b/components/sandbox/base/rbac/edit-secrets.yaml
+new file mode 100644
+index 00000000..67fdd32c
+--- /dev/null
++++ b/components/sandbox/base/rbac/edit-secrets.yaml
+@@ -0,0 +1,32 @@
++kind: Role
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: edit-secrets
++  labels:
++    provider: codeready-toolchain
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - "secrets"
++  verbs:
++  - "get"
++  - "list"
++  - "watch"
++  - "create"
++  - "update"
++  - "patch"
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: edit-secrets
++  labels:
++    provider: codeready-toolchain
++subjects:
++  - kind: User
++    name: mfrancisc
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: edit-secrets
+diff --git a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/kustomization.yaml
+new file mode 100644
+index 00000000..4e4f1976
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/staging/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../../base
+diff --git a/components/sandbox/toolchain-member-operator/staging/kustomization.yaml b/components/sandbox/toolchain-member-operator/staging/kustomization.yaml
+new file mode 100644
+index 00000000..4e4f1976
+--- /dev/null
++++ b/components/sandbox/toolchain-member-operator/staging/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../../base
