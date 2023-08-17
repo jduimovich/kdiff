@@ -1,0 +1,129 @@
+diff --git a/ci/teams/rhtap-servicerelease/external-secrets/infra-deployments-pr-creator.yaml b/ci/teams/rhtap-servicerelease/external-secrets/infra-deployments-pr-creator.yaml
+new file mode 100644
+index 00000000..c5ac1dc1
+--- /dev/null
++++ b/ci/teams/rhtap-servicerelease/external-secrets/infra-deployments-pr-creator.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: infra-deployments-pr-creator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/build/tekton-ci/infra-deployments-pr-creator
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: infra-deployments-pr-creator
+diff --git a/ci/teams/rhtap-servicerelease/external-secrets/kustomization.yaml b/ci/teams/rhtap-servicerelease/external-secrets/kustomization.yaml
+new file mode 100644
+index 00000000..ec7ed978
+--- /dev/null
++++ b/ci/teams/rhtap-servicerelease/external-secrets/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- infra-deployments-pr-creator.yaml
++- slack-webhook-notification-secret.yaml
++namespace: rhtap-servicerelease-tenant
+diff --git a/ci/teams/rhtap-servicerelease/external-secrets/slack-webhook-notification-secret.yaml b/ci/teams/rhtap-servicerelease/external-secrets/slack-webhook-notification-secret.yaml
+new file mode 100644
+index 00000000..5a7b755e
+--- /dev/null
++++ b/ci/teams/rhtap-servicerelease/external-secrets/slack-webhook-notification-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: slack-webhook-notification-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: "production/build/tekton-ci/slack-webhook-notification-secret"
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: slack-webhook-notification-secret
+diff --git a/ci/teams/rhtap-servicerelease/release-build.yaml b/ci/teams/rhtap-servicerelease/release-build.yaml
+index c849e0e5..d61ebc0c 100644
+--- a/ci/teams/rhtap-servicerelease/release-build.yaml
++++ b/ci/teams/rhtap-servicerelease/release-build.yaml
+@@ -10,4 +10,12 @@ spec:
+   application: build
+   displayName: ''
+   origin: rhtap-build-tenant
+-  releaseStrategy: push-to-external-registry-strategy
++  releaseStrategy: rhtap-service-push-strategy
++  extraData:
++    infra-deployment-update-script: >
++      sed -i -e 's|\(https://github.com/redhat-appstudio/build-service/.*?ref=\)\(.*\)|\1{{ revision }}
++      |' -e 's/\(newTag: \).*/\1{{ revision }}/' components/build-service/base/kustomization.yaml
++
++      sed -i -e 's|\(https://github.com/redhat-appstudio/build-service/.*?ref=\)\(.*\)|\1{{ revision }}
++      |' components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
++    slack-webhook-notification-secret-keyname: "build"
+diff --git a/ci/teams/rhtap-servicerelease/release-external-secrets.yaml b/ci/teams/rhtap-servicerelease/release-external-secrets.yaml
+index 3cfc7b30..b7a28677 100644
+--- a/ci/teams/rhtap-servicerelease/release-external-secrets.yaml
++++ b/ci/teams/rhtap-servicerelease/release-external-secrets.yaml
+@@ -9,4 +9,4 @@ spec:
+   application: external-secrets
+   displayName: ''
+   origin: rhtap-gitops-tenant
+-  releaseStrategy: push-to-external-registry-strategy
++  releaseStrategy: rhtap-service-push-strategy
+diff --git a/ci/teams/rhtap-servicerelease/release-strategy.yaml b/ci/teams/rhtap-servicerelease/release-strategy.yaml
+index 9b1f4cb7..2395b44b 100644
+--- a/ci/teams/rhtap-servicerelease/release-strategy.yaml
++++ b/ci/teams/rhtap-servicerelease/release-strategy.yaml
+@@ -1,3 +1,4 @@
++---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: ReleaseStrategy
+ metadata:
+@@ -23,3 +24,29 @@ spec:
+   pipeline: push-to-external-registry
+   policy: rh-policy
+   serviceAccount: rhtap-servicerelease-sa
++---
++apiVersion: appstudio.redhat.com/v1alpha1
++kind: ReleaseStrategy
++metadata:
++  name: rhtap-service-push-strategy
++  namespace: rhtap-servicerelease-tenant
++spec:
++  bundle: 'quay.io/hacbs-release/rhtap-service-push:main'
++  params:
++    - name: extraConfigGitUrl
++      value: 'https://github.com/hacbs-release/strategy-configs.git'
++    - name: extraConfigPath
++      value: rhtap.yaml
++    - name: extraConfigRevision
++      value: main
++    - name: pyxisServerType
++      value: stage
++    - name: pyxisSecret
++      value: pyxis
++    - name: tag
++      value: latest
++    - name: addGitShaTag
++      value: 'true'
++  pipeline: rhtap-service-push
++  policy: rh-policy
++  serviceAccount: rhtap-servicerelease-sa
