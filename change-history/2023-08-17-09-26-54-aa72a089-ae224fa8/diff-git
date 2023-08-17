@@ -1,0 +1,32 @@
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 7c253f61..8b03ad15 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=f916c17ef9c546ad7bdbedf614e154cb8369e6c7
++- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=52e55e3d3c61b283ec95219e44d28c65970ad63a
+diff --git a/components/release/kustomization.yaml b/components/release/kustomization.yaml
+index 8b7f2e5d..7e46f817 100644
+--- a/components/release/kustomization.yaml
++++ b/components/release/kustomization.yaml
+@@ -1,7 +1,7 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+ - argocd-permissions.yaml
+-- https://github.com/redhat-appstudio/release-service/config/default?ref=f916c17ef9c546ad7bdbedf614e154cb8369e6c7
++- https://github.com/redhat-appstudio/release-service/config/default?ref=52e55e3d3c61b283ec95219e44d28c65970ad63a
+ - release-pipeline-resources-clusterrole.yaml
+ - release-team.yaml
+ 
+@@ -11,7 +11,7 @@ kind: Kustomization
+ images:
+ - name: quay.io/redhat-appstudio/release-service
+   newName: quay.io/redhat-appstudio/release-service
+-  newTag: f916c17ef9c546ad7bdbedf614e154cb8369e6c7
++  newTag: 52e55e3d3c61b283ec95219e44d28c65970ad63a
+ 
+ namespace: release-service
+ 

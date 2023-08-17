@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-756af2c7/production/app-of-apps-production.yaml ./kustomized-cache/commit-ae224fa8/production/app-of-apps-production.yaml
+1308c1308
+<             environment: production
+---
+>             environment: staging
+1354c1354
+<             environment: production
+---
+>             environment: staging
