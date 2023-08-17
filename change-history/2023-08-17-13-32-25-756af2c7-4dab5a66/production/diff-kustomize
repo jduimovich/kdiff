@@ -1,0 +1,22 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4dab5a66/production/components/authentication/production/kustomize.out.yaml ./kustomized-cache/commit-756af2c7/production/components/authentication/production/kustomize.out.yaml
+106,125d105
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+<   - spacebindingrequests
+<   verbs:
+<   - '*'
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+<   - spacebindingrequests/finalizers
+<   verbs:
+<   - update
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+<   - spacebindingrequests/status
+<   verbs:
+<   - get
+<   - patch
+<   - update
