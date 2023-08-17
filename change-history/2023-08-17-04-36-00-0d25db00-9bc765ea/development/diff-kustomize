@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9bc765ea/development/components/multi-arch-controller/development/kustomize.out.yaml ./kustomized-cache/commit-0d25db00/development/components/multi-arch-controller/development/kustomize.out.yaml
+181c181
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:72618fe94ad86040a944afb5411d3ba8df98ac93
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:74d7049e1200a273dc294de8c0521a7d6e5de8a0
+187c187
+<             memory: 512Mi
+---
+>             memory: 256Mi
+190c190
+<             memory: 512Mi
+---
+>             memory: 256Mi
+299,300d298
+<         labels:
+<           build.appstudio.redhat.com/multi-arch-required: true

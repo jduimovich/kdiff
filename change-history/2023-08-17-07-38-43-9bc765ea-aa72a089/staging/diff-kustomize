@@ -1,0 +1,682 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aa72a089/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-9bc765ea/staging/components/authentication/staging/kustomize.out.yaml
+8a9,14
+>   name: segment-bridge-host-sa
+>   namespace: toolchain-host-operator
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+14a21,40
+>   name: has-admin
+>   namespace: application-service
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   verbs:
+>   - get
+>   - delete
+> - apiGroups:
+>   - apps
+>   resources:
+>   - deployments/scale
+>   verbs:
+>   - patch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+25a52,130
+> kind: Role
+> metadata:
+>   name: segment-bridge-read-access
+>   namespace: toolchain-host-operator
+> rules:
+> - apiGroups:
+>   - toolchain.dev.openshift.com
+>   resources:
+>   - usersignups
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   name: segment-bridge-read-host-sa-secret
+>   namespace: toolchain-host-operator
+> rules:
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - segment-bridge-host
+>   resources:
+>   - secrets
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: dora-metrics-maintainer
+>   namespace: dora-metrics
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - create
+>   - delete
+>   - edit
+>   - list
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: cluster-registration-maintainer
+> rules:
+> - apiGroups:
+>   - singapore.open-cluster-management.io
+>   resources:
+>   - clusterregistrars
+>   - hubconfigs
+>   - registeredclusters
+>   verbs:
+>   - create
+>   - delete
+>   - get
+>   - list
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - create
+>   - delete
+>   - list
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - pipelineruns
+>   verbs:
+>   - '*'
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+280a386,448
+>   name: application-service-maintainers
+>   namespace: application-service
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: component-maintainer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sbose78
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: johnmcollier
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jduimovich
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: kim-tsao
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: yangcao77
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: maysunfaisal
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: thepetk
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: mike-hoang
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: michael-valdron
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: has-admin
+>   namespace: application-service
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: has-admin
+> subjects:
+> - kind: User
+>   name: johnmcollier
+> - kind: User
+>   name: kim-tsao
+> - kind: User
+>   name: maysunfaisal
+> - kind: User
+>   name: yangcao77
+> - kind: User
+>   name: thepetk
+> - kind: User
+>   name: mike-hoang
+> - kind: User
+>   name: michael-valdron
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+347a516,564
+>   name: cluster-registration-service-component-maintainers
+>   namespace: cluster-reg-config
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: component-maintainer
+> subjects:
+> - kind: User
+>   name: chrisahl
+> - kind: User
+>   name: leena-jawale
+> - kind: User
+>   name: itdove
+> - kind: User
+>   name: vidyanambiar
+> - kind: User
+>   name: tpouyer
+> - kind: User
+>   name: robinbobbit
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: dora-metrics-maintainers
+>   namespace: dora-metrics
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: dora-metrics-maintainer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: rhopp
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: flacatus
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jkopriva
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sawood14012
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: albarbaro
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+362a580,613
+>   name: integration-service-maintainers
+>   namespace: integration-service
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: component-maintainer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: dirgim
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: internal-services
+>   namespace: internal-services
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: component-maintainer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: Release team
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+467a719,752
+>   name: release-service-maintainers
+>   namespace: release-service
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: component-maintainer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: Release team
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: spi-service-maintainers
+>   namespace: spi-system
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: component-maintainer
+> subjects:
+> - kind: User
+>   name: skabashnyuk
+> - kind: User
+>   name: sbose78
+> - kind: User
+>   name: Michkov
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+516a802,846
+> kind: RoleBinding
+> metadata:
+>   name: sa-read-permissions
+>   namespace: toolchain-host-operator
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: segment-bridge-read-access
+> subjects:
+> - kind: ServiceAccount
+>   name: segment-bridge-host-sa
+>   namespace: toolchain-host-operator
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: segment-bridge-read-host-sa-secret-binding
+>   namespace: toolchain-host-operator
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: segment-bridge-read-host-sa-secret
+> subjects:
+> - kind: User
+>   name: Omeramsc
+> - kind: User
+>   name: ifireball
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   name: cluster-registration-maintainer-rolebinding
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: cluster-registration-maintainer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: chrisahl
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: robinbobbit
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+557a888,903
+>   name: internal-services
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: internal-service-request-role
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: Release team
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+601a948,956
+> ---
+> apiVersion: v1
+> kind: Secret
+> metadata:
+>   annotations:
+>     kubernetes.io/service-account.name: segment-bridge-host-sa
+>   name: segment-bridge-host
+>   namespace: toolchain-host-operator
+> type: kubernetes.io/service-account-token
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aa72a089/staging/components/cluster-registration/kustomize.out.yaml ./kustomized-cache/commit-9bc765ea/staging/components/cluster-registration/kustomize.out.yaml
+50,82d49
+<   name: cluster-registration-installer-cluster-registration-maintainer
+< rules:
+< - apiGroups:
+<   - singapore.open-cluster-management.io
+<   resources:
+<   - clusterregistrars
+<   - hubconfigs
+<   - registeredclusters
+<   verbs:
+<   - create
+<   - delete
+<   - get
+<   - list
+<   - patch
+<   - update
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+<   - create
+<   - delete
+<   - list
+< - apiGroups:
+<   - tekton.dev
+<   resources:
+<   - pipelineruns
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+286,308d252
+<   name: cluster-registration-installer-cluster-registration-service-component-maintainers
+<   namespace: cluster-reg-config
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: component-maintainer
+< subjects:
+< - kind: User
+<   name: chrisahl
+< - kind: User
+<   name: leena-jawale
+< - kind: User
+<   name: itdove
+< - kind: User
+<   name: vidyanambiar
+< - kind: User
+<   name: tpouyer
+< - kind: User
+<   name: robinbobbit
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+319,334d262
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: cluster-registration-installer-cluster-registration-maintainer-rolebinding
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: cluster-registration-installer-cluster-registration-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: chrisahl
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: robinbobbit
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aa72a089/staging/components/has/staging/kustomize.out.yaml ./kustomized-cache/commit-9bc765ea/staging/components/has/staging/kustomize.out.yaml
+59,78d58
+< kind: Role
+< metadata:
+<   name: has-admin
+<   namespace: application-service
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods
+<   verbs:
+<   - get
+<   - delete
+< - apiGroups:
+<   - apps
+<   resources:
+<   - deployments/scale
+<   verbs:
+<   - patch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+506,543d485
+<   name: application-service-maintainers
+<   namespace: application-service
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: component-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: sbose78
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: johnmcollier
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: jduimovich
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: kim-tsao
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: yangcao77
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: maysunfaisal
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: thepetk
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: mike-hoang
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: michael-valdron
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+554,578d495
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: has-admin
+<   namespace: application-service
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: has-admin
+< subjects:
+< - kind: User
+<   name: johnmcollier
+< - kind: User
+<   name: kim-tsao
+< - kind: User
+<   name: maysunfaisal
+< - kind: User
+<   name: yangcao77
+< - kind: User
+<   name: thepetk
+< - kind: User
+<   name: mike-hoang
+< - kind: User
+<   name: michael-valdron
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aa72a089/staging/components/integration/kustomize.out.yaml ./kustomized-cache/commit-9bc765ea/staging/components/integration/kustomize.out.yaml
+928,944d927
+< kind: RoleBinding
+< metadata:
+<   name: integration-service-maintainers
+<   namespace: integration-service
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: component-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: dirgim
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: Michkov
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aa72a089/staging/components/internal-services/kustomize.out.yaml ./kustomized-cache/commit-9bc765ea/staging/components/internal-services/kustomize.out.yaml
+192,208d191
+< kind: RoleBinding
+< metadata:
+<   name: internal-services
+<   namespace: internal-services
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: component-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Release team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: Michkov
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+220,235d202
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: internal-services
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: internal-service-request-role
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Release team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: Michkov
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aa72a089/staging/components/release/kustomize.out.yaml ./kustomized-cache/commit-9bc765ea/staging/components/release/kustomize.out.yaml
+1146,1162d1145
+< kind: RoleBinding
+< metadata:
+<   name: release-service-maintainers
+<   namespace: release-service
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: component-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Release team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: Michkov
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aa72a089/staging/components/segment-bridge/staging/kustomize.out.yaml ./kustomized-cache/commit-9bc765ea/staging/components/segment-bridge/staging/kustomize.out.yaml
+7,12d6
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+<   name: segment-bridge-host-sa
+<   namespace: toolchain-host-operator
+< ---
+29,58d22
+< kind: Role
+< metadata:
+<   name: segment-bridge-read-access
+<   namespace: toolchain-host-operator
+< rules:
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+<   - usersignups
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   name: segment-bridge-read-host-sa-secret
+<   namespace: toolchain-host-operator
+< rules:
+< - apiGroups:
+<   - ""
+<   resourceNames:
+<   - segment-bridge-host
+<   resources:
+<   - secrets
+<   verbs:
+<   - get
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+88,116d51
+< kind: RoleBinding
+< metadata:
+<   name: sa-read-permissions
+<   namespace: toolchain-host-operator
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: segment-bridge-read-access
+< subjects:
+< - kind: ServiceAccount
+<   name: segment-bridge-host-sa
+<   namespace: toolchain-host-operator
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: segment-bridge-read-host-sa-secret-binding
+<   namespace: toolchain-host-operator
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: segment-bridge-read-host-sa-secret
+< subjects:
+< - kind: User
+<   name: Omeramsc
+< - kind: User
+<   name: ifireball
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+136,144d70
+< type: kubernetes.io/service-account-token
+< ---
+< apiVersion: v1
+< kind: Secret
+< metadata:
+<   annotations:
+<     kubernetes.io/service-account.name: segment-bridge-host-sa
+<   name: segment-bridge-host
+<   namespace: toolchain-host-operator

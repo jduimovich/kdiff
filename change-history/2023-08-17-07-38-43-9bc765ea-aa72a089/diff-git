@@ -1,0 +1,200 @@
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index 76a700b6..1411f18b 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -1,20 +1,11 @@
+ resources:
+ - everyone-can-view.yaml
+ - component-maintainer.yaml
+-- spi.yaml
+-- release-team.yaml
+-- has.yaml
+ - build.yaml
+-- integration.yaml
+-- cluster-registration-maintainer.yaml
+ - group-sync/
+-- dora-metrics.yaml
+-- internal-services.yaml
+ - pipeline-service-sre.yaml
+ - sandbox-sre-admins.yaml
+-- has-admin.yaml
+ - inspect-pods.yaml
+-- segment-bridge.yaml
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+diff --git a/components/authentication/base/cluster-registration-maintainer.yaml b/components/cluster-registration/cluster-registration-maintainer.yaml
+similarity index 100%
+rename from components/authentication/base/cluster-registration-maintainer.yaml
+rename to components/cluster-registration/cluster-registration-maintainer.yaml
+diff --git a/components/cluster-registration/kustomization.yaml b/components/cluster-registration/kustomization.yaml
+index c66dfaa6..81774cd5 100644
+--- a/components/cluster-registration/kustomization.yaml
++++ b/components/cluster-registration/kustomization.yaml
+@@ -1,4 +1,5 @@
+ resources:
++- cluster-registration-maintainer.yaml
+ - https://raw.githubusercontent.com/stolostron/cluster-registration-operator/0.0.0-20220504-13-23-32/config/rbac/service_account.yaml
+ - https://raw.githubusercontent.com/stolostron/cluster-registration-operator/0.0.0-20220504-13-23-32/config/rbac/role.yaml
+ - https://raw.githubusercontent.com/stolostron/cluster-registration-operator/0.0.0-20220504-13-23-32/config/rbac/role_binding.yaml
+diff --git a/components/dora-metrics/base/kustomization.yaml b/components/dora-metrics/base/kustomization.yaml
+index 0bff264c..b832d313 100644
+--- a/components/dora-metrics/base/kustomization.yaml
++++ b/components/dora-metrics/base/kustomization.yaml
+@@ -1,5 +1,6 @@
+ resources:
+ - https://github.com/redhat-appstudio/dora-metrics/deploy/base?ref=dadd13a75d0fd0e4337fd90ddba3d3e47fb6199f
++- ./rbac
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+diff --git a/components/authentication/base/dora-metrics.yaml b/components/dora-metrics/base/rbac/dora-metrics.yaml
+similarity index 100%
+rename from components/authentication/base/dora-metrics.yaml
+rename to components/dora-metrics/base/rbac/dora-metrics.yaml
+diff --git a/components/dora-metrics/base/rbac/kustomization.yaml b/components/dora-metrics/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..430bf582
+--- /dev/null
++++ b/components/dora-metrics/base/rbac/kustomization.yaml
+@@ -0,0 +1,5 @@
++resources:
++- dora-metrics.yaml
++
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
+diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
+index 9ab38e5b..c901955d 100644
+--- a/components/has/base/kustomization.yaml
++++ b/components/has/base/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ./argocd-roles
++  - ./rbac
+   - https://github.com/redhat-appstudio/application-service/config/default?ref=4f7b4a1cda2ffbfb33f2b709c069e72457277a5d
+ 
+ 
+diff --git a/components/authentication/base/has-admin.yaml b/components/has/base/rbac/has-admin.yaml
+similarity index 100%
+rename from components/authentication/base/has-admin.yaml
+rename to components/has/base/rbac/has-admin.yaml
+diff --git a/components/authentication/base/has.yaml b/components/has/base/rbac/has.yaml
+similarity index 100%
+rename from components/authentication/base/has.yaml
+rename to components/has/base/rbac/has.yaml
+diff --git a/components/has/base/rbac/kustomization.yaml b/components/has/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..46c890d4
+--- /dev/null
++++ b/components/has/base/rbac/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - has-admin.yaml
++  - has.yaml
+\ No newline at end of file
+diff --git a/components/authentication/base/integration.yaml b/components/integration/integration.yaml
+similarity index 100%
+rename from components/authentication/base/integration.yaml
+rename to components/integration/integration.yaml
+diff --git a/components/integration/kustomization.yaml b/components/integration/kustomization.yaml
+index 05dbee32..19387d57 100644
+--- a/components/integration/kustomization.yaml
++++ b/components/integration/kustomization.yaml
+@@ -2,6 +2,7 @@ resources:
+ - allow-argocd-to-manage.yaml
+ - argocd-permissions.yaml
+ - https://github.com/redhat-appstudio/integration-service/config/default?ref=b22b4eb56c90f6d4fbc260d25bfa83ada6f89fbf
++- integration.yaml
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+diff --git a/components/authentication/base/internal-services.yaml b/components/internal-services/internal-services.yaml
+similarity index 100%
+rename from components/authentication/base/internal-services.yaml
+rename to components/internal-services/internal-services.yaml
+diff --git a/components/internal-services/kustomization.yaml b/components/internal-services/kustomization.yaml
+index 081f52ab..9c9d4b1c 100644
+--- a/components/internal-services/kustomization.yaml
++++ b/components/internal-services/kustomization.yaml
+@@ -3,6 +3,7 @@ resources:
+ - internal_service_request_role_binding.yaml
+ - internal_service_request_service_account.yaml
+ - internal_service_service_account_token.yaml
++- internal-services.yaml
+ - https://github.com/hacbs-release/internal-services-resources/openshift/internal-services-internal-request?ref=32295f49140a72dffd55a07fd31d739bd1baa121
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/release/kustomization.yaml b/components/release/kustomization.yaml
+index b249a896..8b7f2e5d 100644
+--- a/components/release/kustomization.yaml
++++ b/components/release/kustomization.yaml
+@@ -3,6 +3,7 @@ resources:
+ - argocd-permissions.yaml
+ - https://github.com/redhat-appstudio/release-service/config/default?ref=f916c17ef9c546ad7bdbedf614e154cb8369e6c7
+ - release-pipeline-resources-clusterrole.yaml
++- release-team.yaml
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+diff --git a/components/authentication/base/release-team.yaml b/components/release/release-team.yaml
+similarity index 100%
+rename from components/authentication/base/release-team.yaml
+rename to components/release/release-team.yaml
+diff --git a/components/segment-bridge/base/kustomization.yaml b/components/segment-bridge/base/kustomization.yaml
+index e206552d..7fb83529 100644
+--- a/components/segment-bridge/base/kustomization.yaml
++++ b/components/segment-bridge/base/kustomization.yaml
+@@ -1,4 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
++- ./rbac
+ - serviceaccount.yaml
+diff --git a/components/segment-bridge/base/rbac/kustomization.yaml b/components/segment-bridge/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..549e0eee
+--- /dev/null
++++ b/components/segment-bridge/base/rbac/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - segment-bridge.yaml
+\ No newline at end of file
+diff --git a/components/authentication/base/segment-bridge.yaml b/components/segment-bridge/base/rbac/segment-bridge.yaml
+similarity index 100%
+rename from components/authentication/base/segment-bridge.yaml
+rename to components/segment-bridge/base/rbac/segment-bridge.yaml
+diff --git a/components/spi/base/kustomization.yaml b/components/spi/base/kustomization.yaml
+index 7ae4abfe..db02eac7 100644
+--- a/components/spi/base/kustomization.yaml
++++ b/components/spi/base/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
++  - ./rbac
+   - argocd-permissions.yaml
+ 
+ namespace: spi-system
+diff --git a/components/spi/base/rbac/kustomization.yaml b/components/spi/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..b2a156c1
+--- /dev/null
++++ b/components/spi/base/rbac/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - spi.yaml
+\ No newline at end of file
+diff --git a/components/authentication/base/spi.yaml b/components/spi/base/rbac/spi.yaml
+similarity index 100%
+rename from components/authentication/base/spi.yaml
+rename to components/spi/base/rbac/spi.yaml
