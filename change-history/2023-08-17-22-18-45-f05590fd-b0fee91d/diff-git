@@ -1,0 +1,13 @@
+diff --git a/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml b/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml
+index 370b7905..8a97fbdd 100644
+--- a/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml
++++ b/components/gitops/openshift-gitops/overlays/production-and-dev/subscription-openshift-gitops.yaml
+@@ -6,7 +6,7 @@ metadata:
+   annotations:
+     argocd.argoproj.io/sync-wave: "-1"
+ spec:
+-  channel: gitops-1.8
++  channel: gitops-1.9
+   installPlanApproval: Automatic
+   name: openshift-gitops-operator
+   source: redhat-operators

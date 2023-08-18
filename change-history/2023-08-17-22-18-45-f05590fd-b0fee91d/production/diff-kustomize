@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b0fee91d/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-f05590fd/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml
+4233c4233
+<   channel: gitops-1.9
+---
+>   channel: gitops-1.8
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b0fee91d/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-f05590fd/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml
+4233c4233
+<   channel: gitops-1.9
+---
+>   channel: gitops-1.8

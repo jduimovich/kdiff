@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f05590fd/staging/components/sprayproxy/staging/kustomize.out.yaml ./kustomized-cache/commit-714e19d7/staging/components/sprayproxy/staging/kustomize.out.yaml
+203c203
+<         image: quay.io/redhat-appstudio/sprayproxy:1c18ffcf6e25d6095dc794b10cbb79385a4663a1
+---
+>         image: quay.io/redhat-appstudio/sprayproxy:4854a5b2b0664c42978ac4529d7ab28dfddff7b4
+239c239
+<         - --upstream=http://127.0.0.1:9090/
+---
+>         - --upstream=http://127.0.0.1:6000/
