@@ -1,0 +1,24 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4d1b3d8d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-7bbdf065/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+877c877,879
+<   application-name: Pipelines as Code CI
+---
+>   application-name: RHTAP Staging
+>   custom-console-name: RHTAP Staging
+>   custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
+1803,1806d1804
+<         settings:
+<           application-name: RHTAP Staging
+<           custom-console-name: RHTAP Staging
+<           custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4d1b3d8d/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-7bbdf065/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+877c877,879
+<   application-name: Pipelines as Code CI
+---
+>   application-name: RHTAP Staging
+>   custom-console-name: RHTAP Staging
+>   custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
+1803,1806d1804
+<         settings:
+<           application-name: RHTAP Staging
+<           custom-console-name: RHTAP Staging
+<           custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
