@@ -1,0 +1,51 @@
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index 9bc056dc..2db9c706 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -83,3 +83,13 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: monitoring-workload-grafana
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: toolchain-host-operator
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: toolchain-member-operator
+\ No newline at end of file
+diff --git a/components/sandbox/base/kustomization.yaml b/components/sandbox/base/kustomization.yaml
+index dfb700ec..308a9ee4 100644
+--- a/components/sandbox/base/kustomization.yaml
++++ b/components/sandbox/base/kustomization.yaml
+@@ -2,3 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ./rbac/edit-secrets.yaml
++- ./rbac/sandbox-sre-admins.yaml
+diff --git a/components/authentication/base/sandbox-sre-admins.yaml b/components/sandbox/base/rbac/sandbox-sre-admins.yaml
+similarity index 100%
+rename from components/authentication/base/sandbox-sre-admins.yaml
+rename to components/sandbox/base/rbac/sandbox-sre-admins.yaml
+diff --git a/components/sandbox/toolchain-host-operator/development/kustomization.yaml b/components/sandbox/toolchain-host-operator/development/kustomization.yaml
+new file mode 100644
+index 00000000..991a8834
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/development/kustomization.yaml
+@@ -0,0 +1,2 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-member-operator/development/kustomization.yaml b/components/sandbox/toolchain-member-operator/development/kustomization.yaml
+new file mode 100644
+index 00000000..4e4f1976
+--- /dev/null
++++ b/components/sandbox/toolchain-member-operator/development/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../../base
