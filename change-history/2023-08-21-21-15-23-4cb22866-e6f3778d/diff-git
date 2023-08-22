@@ -1,0 +1,13 @@
+diff --git a/ci/teams/rhtap-servicerelease/release-strategy.yaml b/ci/teams/rhtap-servicerelease/release-strategy.yaml
+index 2395b44b..6578754c 100644
+--- a/ci/teams/rhtap-servicerelease/release-strategy.yaml
++++ b/ci/teams/rhtap-servicerelease/release-strategy.yaml
+@@ -31,7 +31,7 @@ metadata:
+   name: rhtap-service-push-strategy
+   namespace: rhtap-servicerelease-tenant
+ spec:
+-  bundle: 'quay.io/hacbs-release/rhtap-service-push:main'
++  bundle: 'quay.io/hacbs-release/pipeline-rhtap-service-push:main'
+   params:
+     - name: extraConfigGitUrl
+       value: 'https://github.com/hacbs-release/strategy-configs.git'
