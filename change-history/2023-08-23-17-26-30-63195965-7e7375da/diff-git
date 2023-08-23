@@ -1,0 +1,48 @@
+diff --git a/ci/teams/rhtap-servicerelease/external-secrets/kustomization.yaml b/ci/teams/rhtap-servicerelease/external-secrets/kustomization.yaml
+index ec7ed978..51d10c79 100644
+--- a/ci/teams/rhtap-servicerelease/external-secrets/kustomization.yaml
++++ b/ci/teams/rhtap-servicerelease/external-secrets/kustomization.yaml
+@@ -3,4 +3,5 @@ kind: Kustomization
+ resources:
+ - infra-deployments-pr-creator.yaml
+ - slack-webhook-notification-secret.yaml
++- pyxis-secret.yaml
+ namespace: rhtap-servicerelease-tenant
+diff --git a/ci/teams/rhtap-servicerelease/external-secrets/pyxis-secret.yaml b/ci/teams/rhtap-servicerelease/external-secrets/pyxis-secret.yaml
+new file mode 100644
+index 00000000..ecc4074a
+--- /dev/null
++++ b/ci/teams/rhtap-servicerelease/external-secrets/pyxis-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: pyxis-staging-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: "staging/release/pyxis/certificate"
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pyxis-staging-secret
+diff --git a/ci/teams/rhtap-servicerelease/release-strategy.yaml b/ci/teams/rhtap-servicerelease/release-strategy.yaml
+index 6578754c..09fe6d96 100644
+--- a/ci/teams/rhtap-servicerelease/release-strategy.yaml
++++ b/ci/teams/rhtap-servicerelease/release-strategy.yaml
+@@ -42,7 +42,7 @@ spec:
+     - name: pyxisServerType
+       value: stage
+     - name: pyxisSecret
+-      value: pyxis
++      value: pyxis-staging-secret
+     - name: tag
+       value: latest
+     - name: addGitShaTag
