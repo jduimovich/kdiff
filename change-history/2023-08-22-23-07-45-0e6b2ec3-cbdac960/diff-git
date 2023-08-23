@@ -1,0 +1,38 @@
+diff --git a/ci/teams/rhtap-servicerelease/release-build.yaml b/ci/teams/rhtap-servicerelease/release-build.yaml
+index d61ebc0c..b2d9c585 100644
+--- a/ci/teams/rhtap-servicerelease/release-build.yaml
++++ b/ci/teams/rhtap-servicerelease/release-build.yaml
+@@ -13,9 +13,6 @@ spec:
+   releaseStrategy: rhtap-service-push-strategy
+   extraData:
+     infra-deployment-update-script: >
+-      sed -i -e 's|\(https://github.com/redhat-appstudio/build-service/.*?ref=\)\(.*\)|\1{{ revision }}
+-      |' -e 's/\(newTag: \).*/\1{{ revision }}/' components/build-service/base/kustomization.yaml
+-
+-      sed -i -e 's|\(https://github.com/redhat-appstudio/build-service/.*?ref=\)\(.*\)|\1{{ revision }}
+-      |' components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
++      sed -i -e 's|\(https://github.com/redhat-appstudio/image-controller/.*?ref=\)\(.*\)|\1{{ revision }}
++      |' -e 's/\(newTag: \).*/\1{{ revision }}/' components/image-controller/base/kustomization.yaml
+     slack-webhook-notification-secret-keyname: "build"
+diff --git a/components/image-controller/base/kustomization.yaml b/components/image-controller/base/kustomization.yaml
+index 9871c26c..1acc1adb 100644
+--- a/components/image-controller/base/kustomization.yaml
++++ b/components/image-controller/base/kustomization.yaml
+@@ -1,14 +1,11 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=f53cfdcbbd35adba9855ab75ffb505b7bf798e30
++- https://github.com/redhat-appstudio/image-controller/config/default?ref=9c4e21bd150d3a7f2a34eb018bbc3c4cd93682ad
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+-  # newName: quay.io/redhat-appstudio/image-controller
+-  # newTag: 843b52f
+-  # Using image from the build itself, because of the problems with the release flow.
+-  newName: quay.io/redhat-user-workloads/rhtap-build-tenant/build/image-controller
+-  newTag: f53cfdcbbd35adba9855ab75ffb505b7bf798e30
++  newName: quay.io/redhat-appstudio/image-controller
++  newTag: 9c4e21bd150d3a7f2a34eb018bbc3c4cd93682ad
+ 
+ namespace: image-controller
+ 

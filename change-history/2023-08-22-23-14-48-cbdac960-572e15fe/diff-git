@@ -1,0 +1,11 @@
+diff --git a/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS b/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS
+new file mode 100644
+index 00000000..a9cd1d75
+--- /dev/null
++++ b/components/monitoring/grafana/base/dashboards/jvm-build-service/OWNERS
+@@ -0,0 +1,5 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- gabemontero
++- stuartwdouglas
