@@ -1,0 +1,60 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-308eade9/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-572e15fe/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1125,1143d1124
+<   labels:
+<     app.kubernetes.io/component: metrics
+<     app.kubernetes.io/name: tekton-results-api
+<   name: tekton-results-api-metrics
+<   namespace: tekton-results
+< spec:
+<   ports:
+<   - name: metrics
+<     port: 9443
+<     protocol: TCP
+<     targetPort: metrics
+<   selector:
+<     app.kubernetes.io/name: tekton-results-api
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1157a1139,1142
+>   - name: metrics
+>     port: 9443
+>     protocol: TCP
+>     targetPort: metrics
+1758d1742
+<   jobLabel: app.kubernetes.io/name
+1761d1744
+<       app.kubernetes.io/component: metrics
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-308eade9/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-572e15fe/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1125,1143d1124
+<   labels:
+<     app.kubernetes.io/component: metrics
+<     app.kubernetes.io/name: tekton-results-api
+<   name: tekton-results-api-metrics
+<   namespace: tekton-results
+< spec:
+<   ports:
+<   - name: metrics
+<     port: 9443
+<     protocol: TCP
+<     targetPort: metrics
+<   selector:
+<     app.kubernetes.io/name: tekton-results-api
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1157a1139,1142
+>   - name: metrics
+>     port: 9443
+>     protocol: TCP
+>     targetPort: metrics
+1758d1742
+<   jobLabel: app.kubernetes.io/name
+1761d1744
+<       app.kubernetes.io/component: metrics

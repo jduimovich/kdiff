@@ -1,0 +1,10 @@
+diff --git a/components/pipeline-service/staging/base/update-tekton-config-pac.yaml b/components/pipeline-service/staging/base/update-tekton-config-pac.yaml
+index 23387a07..30a00816 100644
+--- a/components/pipeline-service/staging/base/update-tekton-config-pac.yaml
++++ b/components/pipeline-service/staging/base/update-tekton-config-pac.yaml
+@@ -5,3 +5,5 @@
+     application-name: RHTAP Staging
+     custom-console-name: RHTAP Staging
+     custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
++    custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
++    custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline

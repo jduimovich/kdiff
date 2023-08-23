@@ -1,0 +1,30 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-308eade9/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-572e15fe/development/components/pipeline-service/development/kustomize.out.yaml
+1074,1092d1073
+<   labels:
+<     app.kubernetes.io/component: metrics
+<     app.kubernetes.io/name: tekton-results-api
+<   name: tekton-results-api-metrics
+<   namespace: tekton-results
+< spec:
+<   ports:
+<   - name: metrics
+<     port: 9443
+<     protocol: TCP
+<     targetPort: metrics
+<   selector:
+<     app.kubernetes.io/name: tekton-results-api
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1106a1088,1091
+>   - name: metrics
+>     port: 9443
+>     protocol: TCP
+>     targetPort: metrics
+1801d1785
+<   jobLabel: app.kubernetes.io/name
+1804d1787
+<       app.kubernetes.io/component: metrics

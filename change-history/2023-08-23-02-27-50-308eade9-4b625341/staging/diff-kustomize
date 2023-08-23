@@ -1,0 +1,8 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4b625341/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-308eade9/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1824,1825d1823
+<           custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
+<           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4b625341/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-308eade9/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1824,1825d1823
+<           custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
+<           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
