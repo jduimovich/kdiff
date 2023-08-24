@@ -1,0 +1,265 @@
+diff --git a/components/authentication/base/build.yaml b/components/authentication/base/build.yaml
+index 194388c5..3c2b803f 100644
+--- a/components/authentication/base/build.yaml
++++ b/components/authentication/base/build.yaml
+@@ -86,43 +86,6 @@ roleRef:
+ ---
+ kind: RoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: component-maintainers
+-  namespace: build-service
+-subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sbose78
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Michkov
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: component-maintainer
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: component-maintainers
+-  namespace: jvm-build-service
+-subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: stuartwdouglas
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: gabemontero
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Michkov
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: component-maintainer
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   name: component-maintainers
+   namespace: multi-arch-controller
+diff --git a/components/build-service/base/kustomization.yaml b/components/build-service/base/kustomization.yaml
+index 83dc0348..e4058c5e 100644
+--- a/components/build-service/base/kustomization.yaml
++++ b/components/build-service/base/kustomization.yaml
+@@ -3,6 +3,7 @@ resources:
+ - https://github.com/redhat-appstudio/build-service/config/default?ref=3dd6990ebc2092feba34fd4062dc9033b2e8168c
+ - build-pipeline-selector.yaml
+ - monitoring.yaml
++- rbac
+ 
+ # Skip applying the build-service operands (BuildPipelineSelector) while the build-service operator is being installed.
+ # See more information about this option, here:
+diff --git a/components/build-service/base/rbac/build-maintainer.yaml b/components/build-service/base/rbac/build-maintainer.yaml
+new file mode 100644
+index 00000000..dd6775a6
+--- /dev/null
++++ b/components/build-service/base/rbac/build-maintainer.yaml
+@@ -0,0 +1,77 @@
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: build-maintainer
++rules:
++  - apiGroups:
++      - operators.coreos.com
++    resources:
++      - installplans
++    verbs:
++      - get
++      - list
++      - update
++      - patch
++  - verbs:
++      - patch
++      - get
++    apiGroups:
++      - ''
++    resources:
++      - serviceaccounts
++    resourceNames:
++      - pipeline # TODO: figure out how to 'gitops' this.
++  - verbs:
++      - create
++      - get
++      - list
++      - watch
++      - delete
++    apiGroups:
++      - ''
++    resources:
++      - secrets
++  - verbs:
++      - '*' # needed till we figure out how to cleanup workspaces.
++    apiGroups:
++      - 'tekton.dev'
++    resources:
++      - 'pipelineruns'
++  - apiGroups:
++      - results.tekton.dev
++    resources:
++      - results
++      - records
++    verbs:
++      - get
++      - list
++  - apiGroups:
++    - ''
++    resources:
++    - pods/portforward
++    verbs:
++    - create
++  - apiGroups:
++      - 'apps'
++    resources:
++      - deployments
++    verbs:
++      - get
++      - patch
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: build-maintainers
++  namespace: build-service
++subjects:
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: sbose78
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: Michkov
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: build-maintainer
+\ No newline at end of file
+diff --git a/components/build-service/base/rbac/kustomization.yaml b/components/build-service/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..3eaaff63
+--- /dev/null
++++ b/components/build-service/base/rbac/kustomization.yaml
+@@ -0,0 +1,5 @@
++resources:
++- build-maintainer.yaml
++
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
+diff --git a/components/jvm-build-service/base/kustomization.yaml b/components/jvm-build-service/base/kustomization.yaml
+index dafaef79..1a3d0368 100644
+--- a/components/jvm-build-service/base/kustomization.yaml
++++ b/components/jvm-build-service/base/kustomization.yaml
+@@ -4,6 +4,7 @@ resources:
+ - https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=d78e4e0506374ba4669bd8bc2ce2e0215e187646
+ - https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=d78e4e0506374ba4669bd8bc2ce2e0215e187646
+ - monitoring.yaml
++- rbac
+ 
+ # Skip applying the jvm-build-service operands (SystemConfig) while the jvm-build-service operator is being installed.
+ # See more information about this option, here:
+diff --git a/components/jvm-build-service/base/rbac/jvm-build-maintainer.yaml b/components/jvm-build-service/base/rbac/jvm-build-maintainer.yaml
+new file mode 100644
+index 00000000..d7058017
+--- /dev/null
++++ b/components/jvm-build-service/base/rbac/jvm-build-maintainer.yaml
+@@ -0,0 +1,80 @@
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: jvm-build-maintainer
++rules:
++  - apiGroups:
++      - operators.coreos.com
++    resources:
++      - installplans
++    verbs:
++      - get
++      - list
++      - update
++      - patch
++  - verbs:
++      - patch
++      - get
++    apiGroups:
++      - ''
++    resources:
++      - serviceaccounts
++    resourceNames:
++      - pipeline # TODO: figure out how to 'gitops' this.
++  - verbs:
++      - create
++      - get
++      - list
++      - watch
++      - delete
++    apiGroups:
++      - ''
++    resources:
++      - secrets
++  - verbs:
++      - '*' # needed till we figure out how to cleanup workspaces.
++    apiGroups:
++      - 'tekton.dev'
++    resources:
++      - 'pipelineruns'
++  - apiGroups:
++      - results.tekton.dev
++    resources:
++      - results
++      - records
++    verbs:
++      - get
++      - list
++  - apiGroups:
++    - ''
++    resources:
++    - pods/portforward
++    verbs:
++    - create
++  - apiGroups:
++      - 'apps'
++    resources:
++      - deployments
++    verbs:
++      - get
++      - patch
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: jvm-build-maintainers
++  namespace: jvm-build-service
++subjects:
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: stuartwdouglas
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: gabemontero
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: Michkov
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: jvm-build-maintainer
+\ No newline at end of file
+diff --git a/components/jvm-build-service/base/rbac/kustomization.yaml b/components/jvm-build-service/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..c8b3292c
+--- /dev/null
++++ b/components/jvm-build-service/base/rbac/kustomization.yaml
+@@ -0,0 +1,5 @@
++resources:
++- jvm-build-maintainer.yaml
++
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
