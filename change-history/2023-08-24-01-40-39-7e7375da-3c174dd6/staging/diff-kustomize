@@ -1,0 +1,191 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3c174dd6/staging/components/jvm-build-service/staging/kustomize.out.yaml ./kustomized-cache/commit-7e7375da/staging/components/jvm-build-service/staging/kustomize.out.yaml
+164,268d163
+<               buildAttempts:
+<                 items:
+<                   properties:
+<                     build:
+<                       properties:
+<                         complete:
+<                           type: boolean
+<                         diagnosticDockerFile:
+<                           type: string
+<                         pipelineName:
+<                           type: string
+<                         results:
+<                           properties:
+<                             gavs:
+<                               description: The produced GAVs
+<                               items:
+<                                 type: string
+<                               type: array
+<                             hermeticBuildImage:
+<                               description: The hermetic build image produced by the
+<                                 build
+<                               type: string
+<                             image:
+<                               description: the image resulting from the run
+<                               type: string
+<                             imageDigest:
+<                               type: string
+<                             pipelineResults:
+<                               description: The Tekton results
+<                               properties:
+<                                 logs:
+<                                   type: string
+<                                 record:
+<                                   type: string
+<                                 result:
+<                                   type: string
+<                               type: object
+<                             verified:
+<                               description: If the resulting image was verified
+<                               type: boolean
+<                           required:
+<                           - imageDigest
+<                           type: object
+<                         succeeded:
+<                           type: boolean
+<                       required:
+<                       - complete
+<                       - pipelineName
+<                       type: object
+<                     buildRecipe:
+<                       properties:
+<                         additionalDownloads:
+<                           items:
+<                             properties:
+<                               binaryPath:
+<                                 type: string
+<                               fileName:
+<                                 type: string
+<                               packageName:
+<                                 type: string
+<                               sha256:
+<                                 type: string
+<                               type:
+<                                 type: string
+<                               uri:
+<                                 type: string
+<                             required:
+<                             - type
+<                             type: object
+<                           type: array
+<                         additionalMemory:
+<                           type: integer
+<                         allowedDifferences:
+<                           items:
+<                             type: string
+<                           type: array
+<                         commandLine:
+<                           items:
+<                             type: string
+<                           type: array
+<                         disableSubmodules:
+<                           type: boolean
+<                         enforceVersion:
+<                           type: string
+<                         image:
+<                           type: string
+<                         javaVersion:
+<                           type: string
+<                         pipeline:
+<                           type: string
+<                         postBuildScript:
+<                           type: string
+<                         preBuildScript:
+<                           type: string
+<                         repositories:
+<                           items:
+<                             type: string
+<                           type: array
+<                         tool:
+<                           type: string
+<                         toolVersion:
+<                           type: string
+<                       type: object
+<                   type: object
+<                 type: array
+359c254
+<                   then this recipe was used to get to the current state Deprecated
+---
+>                   then this recipe was used to get to the current state
+418d312
+<                 description: Deprecated
+422,432d315
+<               discoveryPipelineResults:
+<                 description: A representation of the Tekton Results records for a
+<                   pipeline
+<                 properties:
+<                   logs:
+<                     type: string
+<                   record:
+<                     type: string
+<                   result:
+<                     type: string
+<                 type: object
+436d318
+<                   Deprecated
+494,495d375
+<               hermetic:
+<                 type: boolean
+497d376
+<                 description: Deprecated
+666,667d544
+<               hermeticBuilds:
+<                 type: string
+682,696d558
+<               registry:
+<                 properties:
+<                   host:
+<                     type: string
+<                   insecure:
+<                     type: boolean
+<                   owner:
+<                     type: string
+<                   port:
+<                     type: string
+<                   prependTag:
+<                     type: string
+<                   repository:
+<                     type: string
+<                 type: object
+733,749d594
+<               sharedRegistries:
+<                 items:
+<                   properties:
+<                     host:
+<                       type: string
+<                     insecure:
+<                       type: boolean
+<                     owner:
+<                       type: string
+<                     port:
+<                       type: string
+<                     prependTag:
+<                       type: string
+<                     repository:
+<                       type: string
+<                   type: object
+<                 type: array
+1355,1356c1200,1201
+<           value: d78e4e0506374ba4669bd8bc2ce2e0215e187646
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:d78e4e0506374ba4669bd8bc2ce2e0215e187646
+---
+>           value: 8899d8d1bc4052b58535d70c12a01ddb297e709d
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:8899d8d1bc4052b58535d70c12a01ddb297e709d
+1413c1258
+<       image: quay.io/redhat-appstudio/hacbs-jdk7-builder:081c833ec3ed3baa85b88cc5b2209fba208565b0
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk7-builder:13f1e4ed67a29061e033e251c9f38e7905279649
+1417c1262
+<       image: quay.io/redhat-appstudio/hacbs-jdk8-builder:081c833ec3ed3baa85b88cc5b2209fba208565b0
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk8-builder:13f1e4ed67a29061e033e251c9f38e7905279649
+1421c1266
+<       image: quay.io/redhat-appstudio/hacbs-jdk11-builder:081c833ec3ed3baa85b88cc5b2209fba208565b0
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk11-builder:13f1e4ed67a29061e033e251c9f38e7905279649
+1425c1270
+<       image: quay.io/redhat-appstudio/hacbs-jdk17-builder:081c833ec3ed3baa85b88cc5b2209fba208565b0
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk17-builder:13f1e4ed67a29061e033e251c9f38e7905279649

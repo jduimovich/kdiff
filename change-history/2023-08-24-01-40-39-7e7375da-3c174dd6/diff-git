@@ -1,0 +1,48 @@
+diff --git a/components/jvm-build-service/base/kustomization.yaml b/components/jvm-build-service/base/kustomization.yaml
+index 6aba8069..dafaef79 100644
+--- a/components/jvm-build-service/base/kustomization.yaml
++++ b/components/jvm-build-service/base/kustomization.yaml
+@@ -1,8 +1,8 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=8899d8d1bc4052b58535d70c12a01ddb297e709d
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=8899d8d1bc4052b58535d70c12a01ddb297e709d
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=8899d8d1bc4052b58535d70c12a01ddb297e709d
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=d78e4e0506374ba4669bd8bc2ce2e0215e187646
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=d78e4e0506374ba4669bd8bc2ce2e0215e187646
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=d78e4e0506374ba4669bd8bc2ce2e0215e187646
+ - monitoring.yaml
+ 
+ # Skip applying the jvm-build-service operands (SystemConfig) while the jvm-build-service operator is being installed.
+@@ -16,7 +16,7 @@ namespace: jvm-build-service
+ images:
+ - name: hacbs-jvm-operator
+   newName: quay.io/redhat-appstudio/hacbs-jvm-controller
+-  newTag: 8899d8d1bc4052b58535d70c12a01ddb297e709d
++  newTag: d78e4e0506374ba4669bd8bc2ce2e0215e187646
+ 
+ patches:
+ - path: ./operator_env_patch.yaml
+diff --git a/components/jvm-build-service/base/operator_env_patch.yaml b/components/jvm-build-service/base/operator_env_patch.yaml
+index 9a92040f..f4c8e503 100644
+--- a/components/jvm-build-service/base/operator_env_patch.yaml
++++ b/components/jvm-build-service/base/operator_env_patch.yaml
+@@ -3,4 +3,4 @@
+   path: /spec/template/spec/containers/0/env
+   value:
+   - name: IMAGE_TAG
+-    value: 8899d8d1bc4052b58535d70c12a01ddb297e709d
+\ No newline at end of file
++    value: d78e4e0506374ba4669bd8bc2ce2e0215e187646
+\ No newline at end of file
+diff --git a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
+index 12ffb7b1..717cb96b 100644
+--- a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=8899d8d1bc4052b58535d70c12a01ddb297e709d
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=d78e4e0506374ba4669bd8bc2ce2e0215e187646
+ - dashboard.yaml
