@@ -1,0 +1,33 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bd1fc926/development/components/release/kustomize.out.yaml ./kustomized-cache/commit-2d9fbd29/development/components/release/kustomize.out.yaml
+825,827d824
+<   labels:
+<     rbac.authorization.k8s.io/aggregate-to-admin: "true"
+<     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+852,853d848
+<   labels:
+<     rbac.authorization.k8s.io/aggregate-to-view: "true"
+874,876d868
+<   labels:
+<     rbac.authorization.k8s.io/aggregate-to-admin: "true"
+<     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+901,902d892
+<   labels:
+<     rbac.authorization.k8s.io/aggregate-to-view: "true"
+923,925d912
+<   labels:
+<     rbac.authorization.k8s.io/aggregate-to-admin: "true"
+<     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+950,951d936
+<   labels:
+<     rbac.authorization.k8s.io/aggregate-to-view: "true"
+972,974d956
+<   labels:
+<     rbac.authorization.k8s.io/aggregate-to-admin: "true"
+<     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+999,1000d980
+<   labels:
+<     rbac.authorization.k8s.io/aggregate-to-view: "true"
+1471c1451
+<         image: quay.io/redhat-appstudio/release-service:3ba78742daa454c0c82456c56140e9154f5f42fe
+---
+>         image: quay.io/redhat-appstudio/release-service:2bf374359cd07dd388bc6ba019bb7d863b128862

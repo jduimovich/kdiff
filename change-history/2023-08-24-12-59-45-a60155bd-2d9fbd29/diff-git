@@ -1,0 +1,70 @@
+diff --git a/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml b/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml
+new file mode 100644
+index 00000000..574eac2d
+--- /dev/null
++++ b/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml
+@@ -0,0 +1,15 @@
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: gitops-allow-team-access-to-jgwest-tenant
++  namespace: jgwest-tenant
++subjects:
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: jgwest
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: gitops-namespaces-all-access
++---
+diff --git a/components/gitops/production/stone-prd-m01/kustomization.yaml b/components/gitops/production/stone-prd-m01/kustomization.yaml
+index 92c671c3..047e2d9c 100644
+--- a/components/gitops/production/stone-prd-m01/kustomization.yaml
++++ b/components/gitops/production/stone-prd-m01/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ 
+ resources:
+ - ../base
++- gitops-team-member-namespaces.yaml
+ 
+ patches:
+   - path: gitops-service-postgres-rds-config-path.yaml
+diff --git a/components/gitops/staging/stone-stg-m01/gitops-team-member-namespaces.yaml b/components/gitops/staging/stone-stg-m01/gitops-team-member-namespaces.yaml
+new file mode 100644
+index 00000000..ff36216c
+--- /dev/null
++++ b/components/gitops/staging/stone-stg-m01/gitops-team-member-namespaces.yaml
+@@ -0,0 +1,19 @@
++#
++# This file grants access to some specific tenant namespaces, to GitOps Service team members, to allow debugging/testing in those Namespaces.
++# - Note: this grants access to the team members's GitHub ID, not to their Red Hat ID.
++#
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: gitops-allow-team-access-to-jgwest-tenant
++  namespace: jgwest-tenant
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: GitOps Service Team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: gitops-namespaces-all-access
++---
+diff --git a/components/gitops/staging/stone-stg-m01/kustomization.yaml b/components/gitops/staging/stone-stg-m01/kustomization.yaml
+index 92c671c3..047e2d9c 100644
+--- a/components/gitops/staging/stone-stg-m01/kustomization.yaml
++++ b/components/gitops/staging/stone-stg-m01/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ 
+ resources:
+ - ../base
++- gitops-team-member-namespaces.yaml
+ 
+ patches:
+   - path: gitops-service-postgres-rds-config-path.yaml

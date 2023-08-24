@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2d9fbd29/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-a60155bd/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+3253,3266d3252
+< kind: RoleBinding
+< metadata:
+<   name: gitops-allow-team-access-to-jgwest-tenant
+<   namespace: jgwest-tenant
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: gitops-namespaces-all-access
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: GitOps Service Team
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1

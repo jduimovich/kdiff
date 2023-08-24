@@ -1,0 +1,12 @@
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index 1411f18b..cf071f5f 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -4,7 +4,6 @@ resources:
+ - build.yaml
+ - group-sync/
+ - pipeline-service-sre.yaml
+-- sandbox-sre-admins.yaml
+ - inspect-pods.yaml
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
