@@ -1,0 +1,42 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-928ae4e6/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-506f8619/development/components/pipeline-service/development/kustomize.out.yaml
+825a826,836
+>   application-name: Pipelines as Code CI
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: pipelines-as-code
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+1053c1064,1067
+<     app: tekton-chains-controller
+---
+>     app.kubernetes.io/component: controller
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/name: controller
+>     app.kubernetes.io/part-of: tekton-chains
+1139c1153
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:bc1182ed4633744b38166f2b6866568adda9855f
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:46a602d3cf1d7054f391e3b41042d6e9787272e9
+1768,1784d1781
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "1"
+<   name: tekton-chains-controller
+<   namespace: openshift-pipelines
+< spec:
+<   endpoints:
+<   - path: /metrics
+<     port: metrics
+<     scheme: http
+<   selector:
+<     matchLabels:
+<       app: tekton-chains-controller

@@ -1,0 +1,65 @@
+diff --git a/hack/build/setup-pac-integration.sh b/hack/build/setup-pac-integration.sh
+index fc8ba7de..bcaf26fc 100755
+--- a/hack/build/setup-pac-integration.sh
++++ b/hack/build/setup-pac-integration.sh
+@@ -49,24 +49,37 @@ setup-pac-app() (
+ 
+         webhook_secret=$(openssl rand -hex 20)
+ 
+-        if ! oc get -n $PAC_NAMESPACE secret $PAC_SECRET_NAME &>/dev/null; then
+-                token=$(sign rs256 "$payload" "$(echo "$PAC_GITHUB_APP_PRIVATE_KEY" | base64 -d)")
+-                pac_host=$(oc get -n $PAC_NAMESPACE route pipelines-as-code-controller -o go-template="{{ .spec.host }}")
+-                curl \
+-                -X PATCH \
+-                -H "Accept: application/vnd.github.v3+json" \
+-                -H "Authorization: Bearer $token" \
+-                https://api.github.com/app/hook/config \
+-                -d "{\"content_type\":\"json\",\"insecure_ssl\":\"1\",\"secret\":\"$webhook_secret\",\"url\":\"https://$pac_host\"}" &>/dev/null
+-        fi
++        token=$(sign rs256 "$payload" "$(echo "$PAC_GITHUB_APP_PRIVATE_KEY" | base64 -d)")
++
++        local retry=0
++        while ! oc get -n $PAC_NAMESPACE route pipelines-as-code-controller >/dev/null 2>&1 ; do
++                if [ "$retry" -eq "10" ]; then
++                        echo "[ERROR] Failed to wait for Pac route to be available" >&2
++                        exit
++                fi
++                echo "Waiting for Pac route to be available" >&2
++                sleep 5
++                retry=$((retry+1))
++        done
++        pac_host=$(oc get -n $PAC_NAMESPACE route pipelines-as-code-controller -o go-template="{{ .spec.host }}")
++        curl \
++        -X PATCH \
++        -H "Accept: application/vnd.github.v3+json" \
++        -H "Authorization: Bearer $token" \
++        https://api.github.com/app/hook/config \
++        -d "{\"content_type\":\"json\",\"insecure_ssl\":\"1\",\"secret\":\"$webhook_secret\",\"url\":\"https://$pac_host\"}" &>/dev/null
+ 
+-        echo $webhook_secret
++        echo "$webhook_secret"
+ )
+ 
+ if [ -n "${PAC_GITHUB_APP_ID}" ] && [ -n "${PAC_GITHUB_APP_PRIVATE_KEY}" ]; then
++        # if using the existing QE sprayproxy, we suppose the setup between sprayproxy and github App is already done
+         if [ -n "${PAC_GITHUB_APP_WEBHOOK_SECRET}" ]; then
++                echo "Setup Pac with existing QE sprayproxy and github App"
+                 WEBHOOK_SECRET="$PAC_GITHUB_APP_WEBHOOK_SECRET"
+         else
++        # if not, we setup pac with github App directly, this step will update the webhook secret and webhook url in the github App
++                echo "Setup Pac with github App"
+                 WEBHOOK_SECRET=$(setup-pac-app)
+         fi
+         GITHUB_APP_PRIVATE_KEY=$(echo "$PAC_GITHUB_APP_PRIVATE_KEY" | base64 -d)
+diff --git a/hack/preview-template.env b/hack/preview-template.env
+index 0f9b1c07..8d7f9704 100644
+--- a/hack/preview-template.env
++++ b/hack/preview-template.env
+@@ -100,7 +100,6 @@ export DOCKER_IO_AUTH=""
+ ### pipelines-as-code-secret is created by preview.sh
+ export PAC_GITHUB_APP_PRIVATE_KEY= # Base64 encoded private key of the GitHub APP
+ export PAC_GITHUB_APP_ID= # Application ID
+-export PAC_GITHUB_APP_WEBHOOK_SECRET= # Webhook secret of the GitHub APP
+ 
+ # GitHub webhook integration (alternative to the GitHub PaC application)
+ # See https://pipelinesascode.com/docs/install/github_webhook/#setup-git-repository for the required token permissions
