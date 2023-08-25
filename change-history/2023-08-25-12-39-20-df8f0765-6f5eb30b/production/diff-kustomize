@@ -1,0 +1,39 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6f5eb30b/production/app-of-apps-production.yaml ./kustomized-cache/commit-df8f0765/production/app-of-apps-production.yaml
+1296,1332d1295
+<   name: tenants-config
+<   namespace: argocd
+< spec:
+<   generators:
+<   - git:
+<       directories:
+<       - path: auto-generated/cluster/stone-prd-rh01/*
+<       repoUrl: https://github.com/redhat-appstudio/tenants-config
+<       revision: main
+<   template:
+<     metadata:
+<       name: '{{path.basename}}-{{path[2]}}'
+<     spec:
+<       destination:
+<         name: '{{path[2]}}'
+<         namespace: '{{path.basename}}'
+<       project: tenants-config
+<       source:
+<         path: '{{path}}'
+<         repoURL: https://github.com/redhat-appstudio/tenants-config
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: 10
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:

@@ -1,0 +1,64 @@
+diff --git a/argo-cd-apps/base/tenants-config/kustomization.yaml b/argo-cd-apps/base/tenants-config/kustomization.yaml
+new file mode 100644
+index 00000000..b98cae12
+--- /dev/null
++++ b/argo-cd-apps/base/tenants-config/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - tenants-config.yaml
+diff --git a/argo-cd-apps/base/tenants-config/tenants-config.yaml b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+new file mode 100644
+index 00000000..ead673f1
+--- /dev/null
++++ b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+@@ -0,0 +1,36 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: tenants-config
++spec:
++  generators:
++    - git:
++        repoUrl: https://github.com/redhat-appstudio/tenants-config
++        revision: main
++        directories:
++          - path: auto-generated/cluster/stone-prd-rh01/*
++  template:
++    metadata:
++      name: '{{path.basename}}-{{path[2]}}'
++    spec:
++      # The project is created using app-interface
++      project: tenants-config
++      source:
++        path: '{{path}}'
++        repoURL: https://github.com/redhat-appstudio/tenants-config
++        targetRevision: main
++      destination:
++        namespace: '{{path.basename}}'
++        name: '{{path[2]}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: 10
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index adab0af0..c33a12b1 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -6,6 +6,7 @@ resources:
+   - ../../base/all-clusters
+   - ../../base/tekton-ci
+   - ../../base/ci-workspaces
++  - ../../base/tenants-config
+ namespace: argocd
+ 
+ patchesStrategicMerge:

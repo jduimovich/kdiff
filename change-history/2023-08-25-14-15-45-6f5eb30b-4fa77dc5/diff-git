@@ -1,0 +1,13 @@
+diff --git a/argo-cd-apps/base/tenants-config/tenants-config.yaml b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+index ead673f1..87a870fa 100644
+--- a/argo-cd-apps/base/tenants-config/tenants-config.yaml
++++ b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+@@ -5,7 +5,7 @@ metadata:
+ spec:
+   generators:
+     - git:
+-        repoUrl: https://github.com/redhat-appstudio/tenants-config
++        repoURL: https://github.com/redhat-appstudio/tenants-config
+         revision: main
+         directories:
+           - path: auto-generated/cluster/stone-prd-rh01/*
