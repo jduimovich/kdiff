@@ -1,0 +1,26 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-848b41af/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-10a997e4/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml
+2671,2681d2670
+<   - toolchain.dev.openshift.com
+<   resources:
+<   - spacerequests
+<   verbs:
+<   - list
+<   - watch
+<   - create
+<   - update
+<   - patch
+<   - delete
+< - apiGroups:
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-848b41af/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-10a997e4/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml
+2671,2681d2670
+<   - toolchain.dev.openshift.com
+<   resources:
+<   - spacerequests
+<   verbs:
+<   - list
+<   - watch
+<   - create
+<   - update
+<   - patch
+<   - delete
+< - apiGroups:

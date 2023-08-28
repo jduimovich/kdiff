@@ -1,0 +1,23 @@
+diff --git a/components/gitops/base/authentication/gitops-clusterroles.yaml b/components/gitops/base/authentication/gitops-clusterroles.yaml
+index 16577b3c..c762f28d 100644
+--- a/components/gitops/base/authentication/gitops-clusterroles.yaml
++++ b/components/gitops/base/authentication/gitops-clusterroles.yaml
+@@ -19,6 +19,18 @@ rules:
+     verbs:
+       - delete
+ 
++  - apiGroups:
++    - toolchain.dev.openshift.com
++    resources:
++    - spacerequests
++    verbs:
++    - list
++    - watch
++    - create
++    - update
++    - patch
++    - delete
++
+   - apiGroups:
+       - operators.coreos.com
+     resources:

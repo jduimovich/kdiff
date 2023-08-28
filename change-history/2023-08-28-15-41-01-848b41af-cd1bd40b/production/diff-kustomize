@@ -1,0 +1,25 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-cd1bd40b/production/components/has/production/kustomize.out.yaml ./kustomized-cache/commit-848b41af/production/components/has/production/kustomize.out.yaml
+806c806
+<         image: quay.io/redhat-appstudio/application-service:1c302a6699d6857d94f621c11a469f2f7d7a6ba4
+---
+>         image: quay.io/redhat-appstudio/application-service:2e23404b221ae469943bdd728ff41d1b94a232cf
+834d833
+<           readOnlyRootFilesystem: true
+839,841d837
+<         - mountPath: /tmp
+<           name: tmp-storage
+<           readOnly: false
+853,862d848
+<         resources:
+<           limits:
+<             cpu: 500m
+<             memory: 400Mi
+<           requests:
+<             cpu: 100m
+<             memory: 20Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           readOnlyRootFilesystem: true
+872,873d857
+<       - emptyDir: {}
+<         name: tmp-storage
