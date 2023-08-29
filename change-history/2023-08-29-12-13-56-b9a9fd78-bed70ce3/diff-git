@@ -1,0 +1,9 @@
+diff --git a/OWNERS b/OWNERS
+index 5561cd09..4715bc11 100644
+--- a/OWNERS
++++ b/OWNERS
+@@ -24,3 +24,4 @@ approvers:
+ - adambkaplan
+ - gbenhaim
+ - hugares
++- spartidarh
