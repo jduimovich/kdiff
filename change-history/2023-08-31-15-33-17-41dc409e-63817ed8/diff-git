@@ -1,0 +1,808 @@
+diff --git a/components/authentication/base/build.yaml b/components/authentication/base/build.yaml
+deleted file mode 100644
+index 3c2b803f..00000000
+--- a/components/authentication/base/build.yaml
++++ /dev/null
+@@ -1,102 +0,0 @@
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipelines-as-code-maintainers
+-  namespace: pipelines-as-code
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sbose78
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jduimovich
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: chmouel
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Michkov
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: component-maintainer
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: build-templates-maintainers
+-  namespace: build-templates
+-subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sbose78
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jduimovich
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Michkov
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: component-maintainer
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: build-templates-maintainers
+-  namespace: build-templates-e2e
+-subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Michkov
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: psturc
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: component-maintainer
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: component-maintainers
+-  namespace: tekton-chains
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sbose78
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jduimovich
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Michkov
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: component-maintainer
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: component-maintainers
+-  namespace: multi-arch-controller
+-subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sbose78
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: stuartwdouglas
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: component-maintainer
+diff --git a/components/authentication/base/component-maintainer.yaml b/components/authentication/base/component-maintainer.yaml
+index ef94477a..80bb213f 100644
+--- a/components/authentication/base/component-maintainer.yaml
++++ b/components/authentication/base/component-maintainer.yaml
+@@ -42,6 +42,7 @@ rules:
+     resources:
+       - results
+       - records
++      - logs
+     verbs:
+       - get
+       - list
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index cf071f5f..daa4f77e 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -1,9 +1,7 @@
+ resources:
+ - everyone-can-view.yaml
+ - component-maintainer.yaml
+-- build.yaml
+ - group-sync/
+-- pipeline-service-sre.yaml
+ - inspect-pods.yaml
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/authentication/base/pipeline-service-sre.yaml b/components/authentication/base/pipeline-service-sre.yaml
+deleted file mode 100644
+index ad4c55e0..00000000
+--- a/components/authentication/base/pipeline-service-sre.yaml
++++ /dev/null
+@@ -1,142 +0,0 @@
+-kind: ClusterRole
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipeline-service-sre
+-rules:
+-- apiGroups:
+-  - operators.coreos.com
+-  resources:
+-  - installplans
+-  verbs:
+-  - get
+-  - list
+-  - update
+-  - patch
+-- apiGroups:
+-  - tekton.dev
+-  resources:
+-  - clustertasks
+-  - conditions
+-  - pipelineresources
+-  - pipelineruns
+-  - pipelines
+-  - runs
+-  - taskruns
+-  - tasks
+-  verbs:
+-  - get
+-  - list
+-  - watch
+-  - create
+-  - delete
+-  - patch
+-- apiGroups:
+-  - triggers.tekton.dev
+-  resources:
+-  - clusterinterceptors
+-  - clustertriggerbindings
+-  - eventlisteners
+-  - triggerbindings
+-  - triggers
+-  - triggertemplates
+-  verbs:
+-  - get
+-  - list
+-  - watch
+-  - create
+-  - delete
+-  - patch
+-- apiGroups:
+-  - pipelinesascode.tekton.dev
+-  resources:
+-  - repositories
+-  verbs:
+-  - get
+-  - list
+-  - watch
+-  - create
+-  - delete
+-  - patch
+----
+-kind: ClusterRoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipeline-service-sre
+-subjects:
+-- kind: Group
+-  apiGroup: rbac.authorization.k8s.io
+-  name: Pipeline Service
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pipeline-service-sre
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipeline-service-admin
+-  namespace: tekton-results
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: admin
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipeline-service-admin
+-  namespace: tekton-chains
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: admin
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipeline-service-admin
+-  namespace: pipelines-as-code
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: admin
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipeline-service-admin
+-  namespace: openshift-pipelines
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: admin
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipeline-service-admin
+-  namespace: plnsvc-tests
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: admin
+diff --git a/components/multi-arch-controller/base/rbac/kustomization.yaml b/components/multi-arch-controller/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..bf34e73d
+--- /dev/null
++++ b/components/multi-arch-controller/base/rbac/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- role-binding.yaml
+\ No newline at end of file
+diff --git a/components/multi-arch-controller/base/rbac/role-binding.yaml b/components/multi-arch-controller/base/rbac/role-binding.yaml
+new file mode 100644
+index 00000000..3dbd2462
+--- /dev/null
++++ b/components/multi-arch-controller/base/rbac/role-binding.yaml
+@@ -0,0 +1,78 @@
++---
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: multi-arch-controller-maintainer
++rules:
++  - apiGroups:
++      - operators.coreos.com
++    resources:
++      - installplans
++    verbs:
++      - get
++      - list
++      - update
++      - patch
++  - verbs:
++      - patch
++      - get
++    apiGroups:
++      - ''
++    resources:
++      - serviceaccounts
++    resourceNames:
++      - pipeline # TODO: figure out how to 'gitops' this.
++  - verbs:
++      - create
++      - get
++      - list
++      - watch
++      - delete
++    apiGroups:
++      - ''
++    resources:
++      - secrets
++  - verbs:
++      - '*' # needed till we figure out how to cleanup workspaces.
++    apiGroups:
++      - 'tekton.dev'
++    resources:
++      - 'pipelineruns'
++  - apiGroups:
++      - results.tekton.dev
++    resources:
++      - results
++      - records
++    verbs:
++      - get
++      - list
++  - apiGroups:
++    - ''
++    resources:
++    - pods/portforward
++    verbs:
++    - create
++  - apiGroups:
++      - 'apps'
++    resources:
++      - deployments
++    verbs:
++      - get
++      - patch
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: multi-arch-controller-maintainers
++  namespace: multi-arch-controller
++subjects:
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: sbose78
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: stuartwdouglas
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: multi-arch-controller-maintainer
+\ No newline at end of file
+diff --git a/components/multi-arch-controller/development/kustomization.yaml b/components/multi-arch-controller/development/kustomization.yaml
+index 8c8c5e25..088100bb 100644
+--- a/components/multi-arch-controller/development/kustomization.yaml
++++ b/components/multi-arch-controller/development/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
++- ../base/rbac
+ 
+ patches:
+   - target:
+diff --git a/components/multi-arch-controller/staging/kustomization.yaml b/components/multi-arch-controller/staging/kustomization.yaml
+index 479bc600..aa377da7 100644
+--- a/components/multi-arch-controller/staging/kustomization.yaml
++++ b/components/multi-arch-controller/staging/kustomization.yaml
+@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
++- ../base/rbac
+ - ../base/external-secrets
+diff --git a/components/pipeline-service/base/rbac/cluster-role/kustomization.yaml b/components/pipeline-service/base/rbac/cluster-role/kustomization.yaml
+new file mode 100644
+index 00000000..220aec55
+--- /dev/null
++++ b/components/pipeline-service/base/rbac/cluster-role/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - pipeline-service-sre.yaml
++  - pipeline-maintainer.yaml
+\ No newline at end of file
+diff --git a/components/pipeline-service/base/rbac/cluster-role/pipeline-maintainer.yaml b/components/pipeline-service/base/rbac/cluster-role/pipeline-maintainer.yaml
+new file mode 100644
+index 00000000..3a70c6be
+--- /dev/null
++++ b/components/pipeline-service/base/rbac/cluster-role/pipeline-maintainer.yaml
+@@ -0,0 +1,61 @@
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-maintainer
++rules:
++  - apiGroups:
++      - operators.coreos.com
++    resources:
++      - installplans
++    verbs:
++      - get
++      - list
++      - update
++      - patch
++  - verbs:
++      - patch
++      - get
++    apiGroups:
++      - ''
++    resources:
++      - serviceaccounts
++    resourceNames:
++      - pipeline # TODO: figure out how to 'gitops' this.
++  - verbs:
++      - create
++      - get
++      - list
++      - watch
++      - delete
++    apiGroups:
++      - ''
++    resources:
++      - secrets
++  - verbs:
++      - '*' # needed till we figure out how to cleanup workspaces.
++    apiGroups:
++      - 'tekton.dev'
++    resources:
++      - 'pipelineruns'
++  - apiGroups:
++      - results.tekton.dev
++    resources:
++      - results
++      - records
++      - logs
++    verbs:
++      - get
++      - list
++  - apiGroups:
++    - ''
++    resources:
++    - pods/portforward
++    verbs:
++    - create
++  - apiGroups:
++      - 'apps'
++    resources:
++      - deployments
++    verbs:
++      - get
++      - patch
+diff --git a/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml b/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
+new file mode 100644
+index 00000000..f3baa7ca
+--- /dev/null
++++ b/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
+@@ -0,0 +1,72 @@
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - operators.coreos.com
++  resources:
++  - installplans
++  verbs:
++  - get
++  - list
++  - update
++  - patch
++- apiGroups:
++  - tekton.dev
++  resources:
++  - clustertasks
++  - conditions
++  - pipelineresources
++  - pipelineruns
++  - pipelines
++  - runs
++  - taskruns
++  - tasks
++  verbs:
++  - get
++  - list
++  - watch
++  - create
++  - delete
++  - patch
++- apiGroups:
++  - triggers.tekton.dev
++  resources:
++  - clusterinterceptors
++  - clustertriggerbindings
++  - eventlisteners
++  - triggerbindings
++  - triggers
++  - triggertemplates
++  verbs:
++  - get
++  - list
++  - watch
++  - create
++  - delete
++  - patch
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  resources:
++  - repositories
++  verbs:
++  - get
++  - list
++  - watch
++  - create
++  - delete
++  - patch
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-sre
++subjects:
++- kind: Group
++  apiGroup: rbac.authorization.k8s.io
++  name: Pipeline Service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
+\ No newline at end of file
+diff --git a/components/pipeline-service/base/rbac/kustomization.yaml b/components/pipeline-service/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..a4911de8
+--- /dev/null
++++ b/components/pipeline-service/base/rbac/kustomization.yaml
+@@ -0,0 +1,8 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - cluster-role
++  - openshift-pipelines
++  # - pipelines-as-code
++  # - tekton-chains
++  - tekton-results
+diff --git a/components/pipeline-service/base/rbac/openshift-pipelines/kustomization.yaml b/components/pipeline-service/base/rbac/openshift-pipelines/kustomization.yaml
+new file mode 100644
+index 00000000..20809f0f
+--- /dev/null
++++ b/components/pipeline-service/base/rbac/openshift-pipelines/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - role-binding.yaml
++namespace: openshift-pipelines
+\ No newline at end of file
+diff --git a/components/pipeline-service/base/rbac/openshift-pipelines/role-binding.yaml b/components/pipeline-service/base/rbac/openshift-pipelines/role-binding.yaml
+new file mode 100644
+index 00000000..5515aedf
+--- /dev/null
++++ b/components/pipeline-service/base/rbac/openshift-pipelines/role-binding.yaml
+@@ -0,0 +1,13 @@
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-admin
++  namespace: openshift-pipelines
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: Pipeline Service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: admin
+\ No newline at end of file
+diff --git a/components/pipeline-service/base/rbac/pipelines-as-code/kustomization.yaml b/components/pipeline-service/base/rbac/pipelines-as-code/kustomization.yaml
+new file mode 100644
+index 00000000..0ad54d91
+--- /dev/null
++++ b/components/pipeline-service/base/rbac/pipelines-as-code/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - role-binding.yaml
++namespace: pipelines-as-code
+\ No newline at end of file
+diff --git a/components/pipeline-service/base/rbac/pipelines-as-code/role-binding.yaml b/components/pipeline-service/base/rbac/pipelines-as-code/role-binding.yaml
+new file mode 100644
+index 00000000..56ba263d
+--- /dev/null
++++ b/components/pipeline-service/base/rbac/pipelines-as-code/role-binding.yaml
+@@ -0,0 +1,36 @@
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-admin
++  namespace: pipelines-as-code
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: Pipeline Service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: admin
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipelines-as-code-maintainers
++  namespace: pipelines-as-code
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: Pipeline Service
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: sbose78
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: jduimovich
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: chmouel
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-maintainer
+\ No newline at end of file
+diff --git a/components/pipeline-service/base/rbac/tekton-chains/kustomization.yaml b/components/pipeline-service/base/rbac/tekton-chains/kustomization.yaml
+new file mode 100644
+index 00000000..fce31626
+--- /dev/null
++++ b/components/pipeline-service/base/rbac/tekton-chains/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - role-binding.yaml
++namespace: tekton-chains
+\ No newline at end of file
+diff --git a/components/pipeline-service/base/rbac/tekton-chains/role-binding.yaml b/components/pipeline-service/base/rbac/tekton-chains/role-binding.yaml
+new file mode 100644
+index 00000000..b6d1f54c
+--- /dev/null
++++ b/components/pipeline-service/base/rbac/tekton-chains/role-binding.yaml
+@@ -0,0 +1,34 @@
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-admin
++  namespace: tekton-chains
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: Pipeline Service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: admin
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: tekton-chains-maintainers
++  namespace: tekton-chains
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: Pipeline Service
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: sbose78
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: jduimovich
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-maintainer
+\ No newline at end of file
+diff --git a/components/pipeline-service/base/rbac/tekton-results/kustomization.yaml b/components/pipeline-service/base/rbac/tekton-results/kustomization.yaml
+new file mode 100644
+index 00000000..9971238f
+--- /dev/null
++++ b/components/pipeline-service/base/rbac/tekton-results/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - role-binding.yaml
++namespace: tekton-results
+\ No newline at end of file
+diff --git a/components/pipeline-service/base/rbac/tekton-results/role-binding.yaml b/components/pipeline-service/base/rbac/tekton-results/role-binding.yaml
+new file mode 100644
+index 00000000..a62f4997
+--- /dev/null
++++ b/components/pipeline-service/base/rbac/tekton-results/role-binding.yaml
+@@ -0,0 +1,14 @@
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-admin
++  namespace: tekton-results
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: Pipeline Service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: admin
+\ No newline at end of file
+diff --git a/components/pipeline-service/base/testing/rbac.yaml b/components/pipeline-service/base/testing/rbac.yaml
+index 8faff7ed..ce5b840e 100644
+--- a/components/pipeline-service/base/testing/rbac.yaml
++++ b/components/pipeline-service/base/testing/rbac.yaml
+@@ -18,4 +18,19 @@ subjects:
+   - kind: ServiceAccount
+     name: tekton-results-tests
+     namespace: plnsvc-tests
++---
++# Moving from `components/authentication/base/pipeline-service-sre.yaml`
+ 
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: Pipeline Service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: admin
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 59d6f422..cbd3d4dc 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -10,7 +10,8 @@ commonAnnotations:
+ resources:
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=feee26ee2853088712f9e63357079c986a698077
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=feee26ee2853088712f9e63357079c986a698077
+-
++  - ../base/rbac
++  
+ patches:
+ #  - path: scale-down-exporter.yaml
+ #    target:
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 8ae0b1b7..69cc9d9b 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -13,6 +13,7 @@ resources:
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
++  - ../../base/rbac
+   - team-support-rbac.yaml
+ 
+ patches:
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 1f3152d4..036da51d 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -13,6 +13,7 @@ resources:
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
++  - ../../base/rbac
+   - team-support-rbac.yaml
+ 
+ patches:

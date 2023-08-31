@@ -1,0 +1,724 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-63817ed8/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-41dc409e/staging/components/authentication/staging/kustomize.out.yaml
+69d68
+<   - logs
+109a109,168
+>   name: pipeline-service-sre
+> rules:
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - installplans
+>   verbs:
+>   - get
+>   - list
+>   - update
+>   - patch
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - clustertasks
+>   - conditions
+>   - pipelineresources
+>   - pipelineruns
+>   - pipelines
+>   - runs
+>   - taskruns
+>   - tasks
+>   verbs:
+>   - get
+>   - list
+>   - watch
+>   - create
+>   - delete
+>   - patch
+> - apiGroups:
+>   - triggers.tekton.dev
+>   resources:
+>   - clusterinterceptors
+>   - clustertriggerbindings
+>   - eventlisteners
+>   - triggerbindings
+>   - triggers
+>   - triggertemplates
+>   verbs:
+>   - get
+>   - list
+>   - watch
+>   - create
+>   - delete
+>   - patch
+> - apiGroups:
+>   - pipelinesascode.tekton.dev
+>   resources:
+>   - repositories
+>   verbs:
+>   - get
+>   - list
+>   - watch
+>   - create
+>   - delete
+>   - patch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+200a260,296
+>   name: build-templates-maintainers
+>   namespace: build-templates-e2e
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: component-maintainer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: psturc
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: build-templates-maintainers
+>   namespace: build-templates
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: component-maintainer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sbose78
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jduimovich
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+213a310,445
+> kind: RoleBinding
+> metadata:
+>   name: component-maintainers
+>   namespace: multi-arch-controller
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: component-maintainer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sbose78
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: stuartwdouglas
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: pipeline-service-admin
+>   namespace: openshift-pipelines
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: admin
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: Pipeline Service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: pipeline-service-admin
+>   namespace: pipelines-as-code
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: admin
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: Pipeline Service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: pipelines-as-code-maintainers
+>   namespace: pipelines-as-code
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: component-maintainer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: Pipeline Service
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sbose78
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jduimovich
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: chmouel
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: pipeline-service-admin
+>   namespace: plnsvc-tests
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: admin
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: Pipeline Service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: component-maintainers
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: component-maintainer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: Pipeline Service
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sbose78
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jduimovich
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: pipeline-service-admin
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: admin
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: Pipeline Service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: pipeline-service-admin
+>   namespace: tekton-results
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: admin
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: Pipeline Service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+250a483,495
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   name: pipeline-service-sre
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: pipeline-service-sre
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: Pipeline Service
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-63817ed8/staging/components/multi-arch-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-41dc409e/staging/components/multi-arch-controller/staging/kustomize.out.yaml
+91,151d90
+< kind: ClusterRole
+< metadata:
+<   name: multi-arch-controller-maintainer
+< rules:
+< - apiGroups:
+<   - operators.coreos.com
+<   resources:
+<   - installplans
+<   verbs:
+<   - get
+<   - list
+<   - update
+<   - patch
+< - apiGroups:
+<   - ""
+<   resourceNames:
+<   - pipeline
+<   resources:
+<   - serviceaccounts
+<   verbs:
+<   - patch
+<   - get
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+<   - create
+<   - get
+<   - list
+<   - watch
+<   - delete
+< - apiGroups:
+<   - tekton.dev
+<   resources:
+<   - pipelineruns
+<   verbs:
+<   - '*'
+< - apiGroups:
+<   - results.tekton.dev
+<   resources:
+<   - results
+<   - records
+<   verbs:
+<   - get
+<   - list
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods/portforward
+<   verbs:
+<   - create
+< - apiGroups:
+<   - apps
+<   resources:
+<   - deployments
+<   verbs:
+<   - get
+<   - patch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+164,180d102
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: multi-arch-controller-maintainers
+<   namespace: multi-arch-controller
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: multi-arch-controller-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: sbose78
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: stuartwdouglas
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-63817ed8/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-41dc409e/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+243,306d242
+<   name: pipeline-maintainer
+< rules:
+< - apiGroups:
+<   - operators.coreos.com
+<   resources:
+<   - installplans
+<   verbs:
+<   - get
+<   - list
+<   - update
+<   - patch
+< - apiGroups:
+<   - ""
+<   resourceNames:
+<   - pipeline
+<   resources:
+<   - serviceaccounts
+<   verbs:
+<   - patch
+<   - get
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+<   - create
+<   - get
+<   - list
+<   - watch
+<   - delete
+< - apiGroups:
+<   - tekton.dev
+<   resources:
+<   - pipelineruns
+<   verbs:
+<   - '*'
+< - apiGroups:
+<   - results.tekton.dev
+<   resources:
+<   - results
+<   - records
+<   - logs
+<   verbs:
+<   - get
+<   - list
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods/portforward
+<   verbs:
+<   - create
+< - apiGroups:
+<   - apps
+<   resources:
+<   - deployments
+<   verbs:
+<   - get
+<   - patch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+374,435d309
+<   name: pipeline-service-sre
+< rules:
+< - apiGroups:
+<   - operators.coreos.com
+<   resources:
+<   - installplans
+<   verbs:
+<   - get
+<   - list
+<   - update
+<   - patch
+< - apiGroups:
+<   - tekton.dev
+<   resources:
+<   - clustertasks
+<   - conditions
+<   - pipelineresources
+<   - pipelineruns
+<   - pipelines
+<   - runs
+<   - taskruns
+<   - tasks
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - create
+<   - delete
+<   - patch
+< - apiGroups:
+<   - triggers.tekton.dev
+<   resources:
+<   - clusterinterceptors
+<   - clustertriggerbindings
+<   - eventlisteners
+<   - triggerbindings
+<   - triggers
+<   - triggertemplates
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - create
+<   - delete
+<   - patch
+< - apiGroups:
+<   - pipelinesascode.tekton.dev
+<   resources:
+<   - repositories
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - create
+<   - delete
+<   - patch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+712,743d585
+<   name: pipeline-service-admin
+<   namespace: openshift-pipelines
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-admin
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Pipeline Service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service-admin
+<   namespace: plnsvc-tests
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-admin
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Pipeline Service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+795,810d636
+<   name: pipeline-service-admin
+<   namespace: tekton-results
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-admin
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Pipeline Service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+922,936d747
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service-sre
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: pipeline-service-sre
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Pipeline Service
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-63817ed8/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-41dc409e/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+243,306d242
+<   name: pipeline-maintainer
+< rules:
+< - apiGroups:
+<   - operators.coreos.com
+<   resources:
+<   - installplans
+<   verbs:
+<   - get
+<   - list
+<   - update
+<   - patch
+< - apiGroups:
+<   - ""
+<   resourceNames:
+<   - pipeline
+<   resources:
+<   - serviceaccounts
+<   verbs:
+<   - patch
+<   - get
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+<   - create
+<   - get
+<   - list
+<   - watch
+<   - delete
+< - apiGroups:
+<   - tekton.dev
+<   resources:
+<   - pipelineruns
+<   verbs:
+<   - '*'
+< - apiGroups:
+<   - results.tekton.dev
+<   resources:
+<   - results
+<   - records
+<   - logs
+<   verbs:
+<   - get
+<   - list
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods/portforward
+<   verbs:
+<   - create
+< - apiGroups:
+<   - apps
+<   resources:
+<   - deployments
+<   verbs:
+<   - get
+<   - patch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+374,435d309
+<   name: pipeline-service-sre
+< rules:
+< - apiGroups:
+<   - operators.coreos.com
+<   resources:
+<   - installplans
+<   verbs:
+<   - get
+<   - list
+<   - update
+<   - patch
+< - apiGroups:
+<   - tekton.dev
+<   resources:
+<   - clustertasks
+<   - conditions
+<   - pipelineresources
+<   - pipelineruns
+<   - pipelines
+<   - runs
+<   - taskruns
+<   - tasks
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - create
+<   - delete
+<   - patch
+< - apiGroups:
+<   - triggers.tekton.dev
+<   resources:
+<   - clusterinterceptors
+<   - clustertriggerbindings
+<   - eventlisteners
+<   - triggerbindings
+<   - triggers
+<   - triggertemplates
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - create
+<   - delete
+<   - patch
+< - apiGroups:
+<   - pipelinesascode.tekton.dev
+<   resources:
+<   - repositories
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - create
+<   - delete
+<   - patch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+712,743d585
+<   name: pipeline-service-admin
+<   namespace: openshift-pipelines
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-admin
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Pipeline Service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service-admin
+<   namespace: plnsvc-tests
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-admin
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Pipeline Service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+795,810d636
+<   name: pipeline-service-admin
+<   namespace: tekton-results
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-admin
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Pipeline Service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+922,936d747
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service-sre
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: pipeline-service-sre
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Pipeline Service
