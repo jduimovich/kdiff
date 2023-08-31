@@ -1,0 +1,24 @@
+diff --git a/components/monitoring/grafana/base/dashboards/release/OWNERS b/components/monitoring/grafana/base/dashboards/release/OWNERS
+new file mode 100644
+index 00000000..11f0f231
+--- /dev/null
++++ b/components/monitoring/grafana/base/dashboards/release/OWNERS
+@@ -0,0 +1,18 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- davidmogar
++- johnbieren
++- scoheb
++- theflockers
++- mmalina
++- happybhati
++
++
++reviewers:
++- davidmogar
++- johnbieren
++- scoheb
++- theflockers
++- mmalina
++- happybhati
