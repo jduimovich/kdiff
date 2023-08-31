@@ -1,0 +1,49 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0daf6ef0/production/app-of-apps-production.yaml ./kustomized-cache/commit-17d47ce3/production/app-of-apps-production.yaml
+313,358d312
+<   name: cluster-secret-store-rh
+<   namespace: argocd
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/rh-member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: production
+<             sourceRoot: components/cluster-secret-store-rh
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: cluster-secret-store-rh-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: cluster-secret-store-rh
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: 20
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+Only in ./kustomized-cache/commit-0daf6ef0/production/components: cluster-secret-store-rh
