@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-41dc409e/production/components/cluster-secret-store-rh/production/kustomize.out.yaml ./kustomized-cache/commit-0daf6ef0/production/components/cluster-secret-store-rh/production/kustomize.out.yaml
+41c41
+<       version: v1
+---
+>       version: v2
