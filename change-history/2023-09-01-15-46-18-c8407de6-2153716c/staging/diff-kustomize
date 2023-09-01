@@ -1,0 +1,58 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2153716c/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-c8407de6/staging/components/authentication/staging/kustomize.out.yaml
+6a7,19
+> kind: Role
+> metadata:
+>   name: has-exec
+>   namespace: application-service
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/exec
+>   verbs:
+>   - create
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+144a158,170
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   name: has-exec
+>   namespace: application-service
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: has-exec
+> subjects:
+> - kind: User
+>   name: johnmcollier
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2153716c/staging/components/has/staging/kustomize.out.yaml ./kustomized-cache/commit-c8407de6/staging/components/has/staging/kustomize.out.yaml
+79,91d78
+< kind: Role
+< metadata:
+<   name: has-exec
+<   namespace: application-service
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods/exec
+<   verbs:
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+592,604d578
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: has-exec
+<   namespace: application-service
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: has-exec
+< subjects:
+< - kind: User
+<   name: johnmcollier

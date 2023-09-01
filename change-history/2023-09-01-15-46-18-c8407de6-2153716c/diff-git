@@ -1,0 +1,36 @@
+diff --git a/components/authentication/staging/kustomization.yaml b/components/authentication/staging/kustomization.yaml
+index a8f4021f..424b4f26 100644
+--- a/components/authentication/staging/kustomization.yaml
++++ b/components/authentication/staging/kustomization.yaml
+@@ -2,5 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - ./has-exec.yaml
+   - ./results-cluster-viewer.yaml
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index 33e47917..e283f6e6 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ resources:
+   - ../base
+   - ../base/external-secrets
++  - rbac
+   - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=1c302a6699d6857d94f621c11a469f2f7d7a6ba4
+ 
+ 
+diff --git a/components/authentication/staging/has-exec.yaml b/components/has/staging/rbac/has-exec.yaml
+similarity index 100%
+rename from components/authentication/staging/has-exec.yaml
+rename to components/has/staging/rbac/has-exec.yaml
+diff --git a/components/has/staging/rbac/kustomization.yaml b/components/has/staging/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..e5b714c9
+--- /dev/null
++++ b/components/has/staging/rbac/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - has-exec.yaml
