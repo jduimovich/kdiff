@@ -1,0 +1,47 @@
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index daa4f77e..b6700b81 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -2,7 +2,6 @@ resources:
+ - everyone-can-view.yaml
+ - component-maintainer.yaml
+ - group-sync/
+-- inspect-pods.yaml
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+diff --git a/components/sandbox/toolchain-member-operator/base/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+new file mode 100644
+index 00000000..c845dd08
+--- /dev/null
++++ b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../../base
++- ./rbac/inspect-pods.yaml
+diff --git a/components/authentication/base/inspect-pods.yaml b/components/sandbox/toolchain-member-operator/base/rbac/inspect-pods.yaml
+similarity index 100%
+rename from components/authentication/base/inspect-pods.yaml
+rename to components/sandbox/toolchain-member-operator/base/rbac/inspect-pods.yaml
+diff --git a/components/sandbox/toolchain-member-operator/production/kustomization.yaml b/components/sandbox/toolchain-member-operator/production/kustomization.yaml
+index 4e4f1976..bdf7ce4f 100644
+--- a/components/sandbox/toolchain-member-operator/production/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/production/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../../base
++- ../base
+diff --git a/components/sandbox/toolchain-member-operator/staging/kustomization.yaml b/components/sandbox/toolchain-member-operator/staging/kustomization.yaml
+index 4e4f1976..bdf7ce4f 100644
+--- a/components/sandbox/toolchain-member-operator/staging/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/staging/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../../base
++- ../base

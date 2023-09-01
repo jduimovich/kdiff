@@ -1,0 +1,43 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c8407de6/production/components/authentication/production/kustomize.out.yaml ./kustomized-cache/commit-125b67a3/production/components/authentication/production/kustomize.out.yaml
+5a6,11
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   name: inspect-pods
+>   namespace: toolchain-member-operator
+> ---
+70a77,96
+>   name: inspect-pods
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   verbs:
+>   - list
+>   - get
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/exec
+>   verbs:
+>   - '*'
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+170a197,209
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   name: inspect-pods
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: inspect-pods
+> subjects:
+> - kind: ServiceAccount
+>   name: inspect-pods
+>   namespace: toolchain-member-operator
