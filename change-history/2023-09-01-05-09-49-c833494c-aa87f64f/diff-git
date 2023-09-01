@@ -1,0 +1,10 @@
+diff --git a/OWNERS b/OWNERS
+index 4715bc11..36bf1ab0 100644
+--- a/OWNERS
++++ b/OWNERS
+@@ -25,3 +25,4 @@ approvers:
+ - gbenhaim
+ - hugares
+ - spartidarh
++- manish-jangra
+\ No newline at end of file

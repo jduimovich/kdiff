@@ -1,0 +1,24 @@
+diff --git a/components/sandbox/toolchain-member-operator/development/kustomization.yaml b/components/sandbox/toolchain-member-operator/development/kustomization.yaml
+index 4e4f1976..991a8834 100644
+--- a/components/sandbox/toolchain-member-operator/development/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/development/kustomization.yaml
+@@ -1,4 +1,2 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- ../../base
++kind: Kustomization
+\ No newline at end of file
+diff --git a/hack/bootstrap-cluster.sh b/hack/bootstrap-cluster.sh
+index 95979e42..e3d977d5 100755
+--- a/hack/bootstrap-cluster.sh
++++ b/hack/bootstrap-cluster.sh
+@@ -38,7 +38,7 @@ main() {
+     "${ROOT}/hack/bootstrap-member-cluster.sh"
+     "${ROOT}/hack/bootstrap-cluster-common.sh"
+ 
+-    echo "Setting Cluster Mode: ${MODE:-Upstream}"
++    echo "Setting Cluster Mode: ${mode:-Upstream}"
+     case $mode in
+     "" | "upstream")
+         kubectl create -k $ROOT/argo-cd-apps/app-of-app-sets/staging
