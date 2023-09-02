@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b9ae035e/development/components/release/kustomize.out.yaml ./kustomized-cache/commit-604a747d/development/components/release/kustomize.out.yaml
+1471c1471
+<         image: quay.io/redhat-appstudio/release-service:ab5d3b1cbf6ded63cb1b36bb7574b4e605e43ad6
+---
+>         image: quay.io/redhat-appstudio/release-service:56b15cd0564401261dd0944c215bb12b723e29fa
+1498d1497
+<           readOnlyRootFilesystem: true
+1521,1522d1519
+<         securityContext:
+<           readOnlyRootFilesystem: true
