@@ -1,0 +1,13 @@
+diff --git a/components/cluster-secret-store-rh/base/appsre-stonesoup-vault-rh-secret-store.yaml b/components/cluster-secret-store-rh/base/appsre-stonesoup-vault-rh-secret-store.yaml
+index b4259a4d..f64c6a1e 100644
+--- a/components/cluster-secret-store-rh/base/appsre-stonesoup-vault-rh-secret-store.yaml
++++ b/components/cluster-secret-store-rh/base/appsre-stonesoup-vault-rh-secret-store.yaml
+@@ -9,7 +9,7 @@ spec:
+   provider:
+     vault:
+       server: "https://vault.ci.ext.devshift.net"
+-      path: stonesoup/production/redhat
++      path: stonesoup
+       version: v2
+       auth:
+         # VaultAppRole authenticates with Vault using the
