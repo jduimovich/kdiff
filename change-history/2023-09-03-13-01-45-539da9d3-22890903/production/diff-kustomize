@@ -1,0 +1,43 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-22890903/production/app-of-apps-production.yaml ./kustomized-cache/commit-539da9d3/production/app-of-apps-production.yaml
+1100,1136d1099
+<   name: rh-managed-workspaces-config
+<   namespace: argocd
+< spec:
+<   generators:
+<   - git:
+<       directories:
+<       - path: auto-generated/cluster/stone-prd-rh01/managed/*
+<       repoURL: https://github.com/redhat-appstudio/tenants-config
+<       revision: main
+<   template:
+<     metadata:
+<       name: '{{path.basename}}-{{path[2]}}'
+<     spec:
+<       destination:
+<         name: '{{path[2]}}'
+<         namespace: '{{path.basename}}'
+<       project: rh-managed-workspaces-config
+<       source:
+<         path: '{{path}}'
+<         repoURL: https://github.com/redhat-appstudio/tenants-config
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: 10
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+1385c1348
+<       - path: auto-generated/cluster/stone-prd-rh01/tenants/*
+---
+>       - path: auto-generated/cluster/stone-prd-rh01/*

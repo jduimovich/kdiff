@@ -1,0 +1,77 @@
+diff --git a/argo-cd-apps/base/rh-managed-workspaces-config/kustomization.yaml b/argo-cd-apps/base/rh-managed-workspaces-config/kustomization.yaml
+new file mode 100644
+index 00000000..4db7cf76
+--- /dev/null
++++ b/argo-cd-apps/base/rh-managed-workspaces-config/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - rh-managed-workspaces-config.yaml
+diff --git a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
+new file mode 100644
+index 00000000..f8a4636f
+--- /dev/null
++++ b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
+@@ -0,0 +1,36 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: rh-managed-workspaces-config
++spec:
++  generators:
++    - git:
++        repoURL: https://github.com/redhat-appstudio/tenants-config
++        revision: main
++        directories:
++          - path: auto-generated/cluster/stone-prd-rh01/managed/*
++  template:
++    metadata:
++      name: '{{path.basename}}-{{path[2]}}'
++    spec:
++      # The project is created using app-interface
++      project: rh-managed-workspaces-config
++      source:
++        path: '{{path}}'
++        repoURL: https://github.com/redhat-appstudio/tenants-config
++        targetRevision: main
++      destination:
++        namespace: '{{path.basename}}'
++        name: '{{path[2]}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: 10
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/base/tenants-config/tenants-config.yaml b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+index 87a870fa..d048a418 100644
+--- a/argo-cd-apps/base/tenants-config/tenants-config.yaml
++++ b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+@@ -8,7 +8,7 @@ spec:
+         repoURL: https://github.com/redhat-appstudio/tenants-config
+         revision: main
+         directories:
+-          - path: auto-generated/cluster/stone-prd-rh01/*
++          - path: auto-generated/cluster/stone-prd-rh01/tenants/*
+   template:
+     metadata:
+       name: '{{path.basename}}-{{path[2]}}'
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index b764d008..0f6b6022 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -8,6 +8,7 @@ resources:
+   - ../../base/ci-workspaces
+   - ../../base/tenants-config
+   - ../../base/cluster-secret-store-rh
++  - ../../base/rh-managed-workspaces-config
+ namespace: argocd
+ 
+ patchesStrategicMerge:
