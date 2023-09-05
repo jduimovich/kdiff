@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ede54dc2/development/components/multi-arch-controller/development/kustomize.out.yaml ./kustomized-cache/commit-775acf83/development/components/multi-arch-controller/development/kustomize.out.yaml
+264c264
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:392c145e565793ba31656949366c6ece925b90e0
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:dc8c21f378b1622a0c9dcd9f1984218860a1a622
