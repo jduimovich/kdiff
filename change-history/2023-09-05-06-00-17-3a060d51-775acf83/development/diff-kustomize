@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-775acf83/development/components/multi-arch-controller/development/kustomize.out.yaml ./kustomized-cache/commit-3a060d51/development/components/multi-arch-controller/development/kustomize.out.yaml
+219,228c219,223
+<   ibmz1.address: 169.59.165.178
+<   ibmz1.arch: s390x
+<   ibmz1.concurrency: "4"
+<   ibmz1.secret: awskeys
+<   ibmz1.user: root
+<   ppc1.address: 150.240.147.198
+<   ppc1.arch: ppc64le
+<   ppc1.concurrency: "4"
+<   ppc1.secret: awskeys
+<   ppc1.user: root
+---
+>   host2.address: ec2-34-227-115-211.compute-1.amazonaws.com
+>   host2.arch: arm64
+>   host2.concurrency: "4"
+>   host2.secret: awskeys
+>   host2.user: ec2-user
