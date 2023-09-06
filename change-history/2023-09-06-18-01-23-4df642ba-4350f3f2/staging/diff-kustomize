@@ -1,0 +1,104 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4350f3f2/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-4df642ba/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+3711c3711
+<         image: quay.io/redhat-appstudio/gitops-service:30367d2b11b9f8b4686ec1ed2e0b490594062673
+---
+>         image: quay.io/redhat-appstudio/gitops-service:4c427528cc9c51ebcc6dd6f8c1e56681f95039fc
+3757,3766c3757
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 100Mi
+<           requests:
+<             cpu: 50m
+<             memory: 50Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           readOnlyRootFilesystem: true
+---
+>         resources: {}
+3825c3816
+<         image: quay.io/redhat-appstudio/gitops-service:30367d2b11b9f8b4686ec1ed2e0b490594062673
+---
+>         image: quay.io/redhat-appstudio/gitops-service:4c427528cc9c51ebcc6dd6f8c1e56681f95039fc
+3868,3877c3859
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 100Mi
+<           requests:
+<             cpu: 50m
+<             memory: 50Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           readOnlyRootFilesystem: true
+---
+>         resources: {}
+3936c3918
+<         image: quay.io/redhat-appstudio/gitops-service:30367d2b11b9f8b4686ec1ed2e0b490594062673
+---
+>         image: quay.io/redhat-appstudio/gitops-service:4c427528cc9c51ebcc6dd6f8c1e56681f95039fc
+3978,3987c3960
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 100Mi
+<           requests:
+<             cpu: 50m
+<             memory: 50Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           readOnlyRootFilesystem: true
+---
+>         resources: {}
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4350f3f2/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-4df642ba/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml
+3697c3697
+<         image: quay.io/redhat-appstudio/gitops-service:30367d2b11b9f8b4686ec1ed2e0b490594062673
+---
+>         image: quay.io/redhat-appstudio/gitops-service:4c427528cc9c51ebcc6dd6f8c1e56681f95039fc
+3743,3752c3743
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 100Mi
+<           requests:
+<             cpu: 50m
+<             memory: 50Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           readOnlyRootFilesystem: true
+---
+>         resources: {}
+3811c3802
+<         image: quay.io/redhat-appstudio/gitops-service:30367d2b11b9f8b4686ec1ed2e0b490594062673
+---
+>         image: quay.io/redhat-appstudio/gitops-service:4c427528cc9c51ebcc6dd6f8c1e56681f95039fc
+3854,3863c3845
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 100Mi
+<           requests:
+<             cpu: 50m
+<             memory: 50Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           readOnlyRootFilesystem: true
+---
+>         resources: {}
+3922c3904
+<         image: quay.io/redhat-appstudio/gitops-service:30367d2b11b9f8b4686ec1ed2e0b490594062673
+---
+>         image: quay.io/redhat-appstudio/gitops-service:4c427528cc9c51ebcc6dd6f8c1e56681f95039fc
+3964,3973c3946
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 100Mi
+<           requests:
+<             cpu: 50m
+<             memory: 50Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           readOnlyRootFilesystem: true
+---
+>         resources: {}
