@@ -1,0 +1,100 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-302ef41e/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-cda59545/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1069a1070
+>     TLS_HOSTNAME_OVERRIDE=tekton-results-api-service.tekton-results.svc.cluster.local
+1273d1273
+<     argocd.argoproj.io/sync-wave: "0"
+1275,1276c1275
+<     app: tekton-chains-controller
+<     app.kubernetes.io/component: metrics
+---
+>     app.kubernetes.io/instance: default
+1287,1289c1286
+<     app.kubernetes.io/component: controller
+<     app.kubernetes.io/instance: default
+<     app.kubernetes.io/part-of: tekton-chains
+---
+>     app: tekton-chains-controller
+1375c1372
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:02edcf3b3a394611ae4c514ec689801bcf811836
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:151a24dc2c639602a89bd66858b63b7722bbe5a8
+1494c1491
+<         image: quay.io/redhat-appstudio/tekton-results-api:5e742e6d729ea533da980aad3d851773843fba08
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:fbaeeb6a43a09d95076f4d3cb7798c7350810858
+1557c1554
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:5e742e6d729ea533da980aad3d851773843fba08
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:fbaeeb6a43a09d95076f4d3cb7798c7350810858
+1652c1649
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:5e742e6d729ea533da980aad3d851773843fba08
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:fbaeeb6a43a09d95076f4d3cb7798c7350810858
+1900,1902c1897
+<   - honorLabels: true
+<     interval: 15s
+<     path: /metrics
+---
+>   - path: /metrics
+1905,1908d1899
+<   jobLabel: app.kubernetes.io/name
+<   namespaceSelector:
+<     matchNames:
+<     - openshift-pipelines
+1912,1917d1902
+<       app.kubernetes.io/component: metrics
+<       app.kubernetes.io/part-of: tekton-chains
+<   targetLabels:
+<   - app
+<   - app.kubernetes.io/component
+<   - app.kubernetes.io/part-of
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-302ef41e/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-cda59545/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1069a1070
+>     TLS_HOSTNAME_OVERRIDE=tekton-results-api-service.tekton-results.svc.cluster.local
+1273d1273
+<     argocd.argoproj.io/sync-wave: "0"
+1275,1276c1275
+<     app: tekton-chains-controller
+<     app.kubernetes.io/component: metrics
+---
+>     app.kubernetes.io/instance: default
+1287,1289c1286
+<     app.kubernetes.io/component: controller
+<     app.kubernetes.io/instance: default
+<     app.kubernetes.io/part-of: tekton-chains
+---
+>     app: tekton-chains-controller
+1375c1372
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:02edcf3b3a394611ae4c514ec689801bcf811836
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:151a24dc2c639602a89bd66858b63b7722bbe5a8
+1494c1491
+<         image: quay.io/redhat-appstudio/tekton-results-api:5e742e6d729ea533da980aad3d851773843fba08
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:fbaeeb6a43a09d95076f4d3cb7798c7350810858
+1557c1554
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:5e742e6d729ea533da980aad3d851773843fba08
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:fbaeeb6a43a09d95076f4d3cb7798c7350810858
+1652c1649
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:5e742e6d729ea533da980aad3d851773843fba08
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:fbaeeb6a43a09d95076f4d3cb7798c7350810858
+1900,1902c1897
+<   - honorLabels: true
+<     interval: 15s
+<     path: /metrics
+---
+>   - path: /metrics
+1905,1908d1899
+<   jobLabel: app.kubernetes.io/name
+<   namespaceSelector:
+<     matchNames:
+<     - openshift-pipelines
+1912,1917d1902
+<       app.kubernetes.io/component: metrics
+<       app.kubernetes.io/part-of: tekton-chains
+<   targetLabels:
+<   - app
+<   - app.kubernetes.io/component
+<   - app.kubernetes.io/part-of

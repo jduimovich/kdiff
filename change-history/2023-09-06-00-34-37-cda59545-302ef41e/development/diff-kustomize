@@ -1,0 +1,50 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-302ef41e/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-cda59545/development/components/pipeline-service/development/kustomize.out.yaml
+1009a1010
+>     TLS_HOSTNAME_OVERRIDE=tekton-results-api-service.tekton-results.svc.cluster.local
+1213d1213
+<     argocd.argoproj.io/sync-wave: "0"
+1215,1216c1215
+<     app: tekton-chains-controller
+<     app.kubernetes.io/component: metrics
+---
+>     app.kubernetes.io/instance: default
+1227,1229c1226
+<     app.kubernetes.io/component: controller
+<     app.kubernetes.io/instance: default
+<     app.kubernetes.io/part-of: tekton-chains
+---
+>     app: tekton-chains-controller
+1315c1312
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:02edcf3b3a394611ae4c514ec689801bcf811836
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:151a24dc2c639602a89bd66858b63b7722bbe5a8
+1409c1406
+<         image: quay.io/redhat-appstudio/tekton-results-api:5e742e6d729ea533da980aad3d851773843fba08
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:fbaeeb6a43a09d95076f4d3cb7798c7350810858
+1543c1540
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:5e742e6d729ea533da980aad3d851773843fba08
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:fbaeeb6a43a09d95076f4d3cb7798c7350810858
+1644c1641
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:5e742e6d729ea533da980aad3d851773843fba08
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:fbaeeb6a43a09d95076f4d3cb7798c7350810858
+1955,1957c1952
+<   - honorLabels: true
+<     interval: 15s
+<     path: /metrics
+---
+>   - path: /metrics
+1960,1963d1954
+<   jobLabel: app.kubernetes.io/name
+<   namespaceSelector:
+<     matchNames:
+<     - openshift-pipelines
+1967,1972d1957
+<       app.kubernetes.io/component: metrics
+<       app.kubernetes.io/part-of: tekton-chains
+<   targetLabels:
+<   - app
+<   - app.kubernetes.io/component
+<   - app.kubernetes.io/part-of
