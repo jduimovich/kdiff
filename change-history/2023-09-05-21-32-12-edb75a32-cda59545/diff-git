@@ -1,0 +1,105 @@
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index ef4792c2..18bc281e 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -34,7 +34,6 @@ spec:
+         - spi-system
+         - group-sync-operator
+         - tekton-chains
+-        - pipelines-as-code
+         - build-templates
+         - build-service
+         - tekton-ci
+diff --git a/components/pipeline-service/base/external-secrets/kustomization.yaml b/components/pipeline-service/base/external-secrets/kustomization.yaml
+index 1987bf03..cbd94d62 100644
+--- a/components/pipeline-service/base/external-secrets/kustomization.yaml
++++ b/components/pipeline-service/base/external-secrets/kustomization.yaml
+@@ -2,4 +2,3 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - tekton-results
+-  - pipelines-as-code
+diff --git a/components/pipeline-service/base/external-secrets/pipelines-as-code/kustomization.yaml b/components/pipeline-service/base/external-secrets/pipelines-as-code/kustomization.yaml
+deleted file mode 100644
+index 64ef8318..00000000
+--- a/components/pipeline-service/base/external-secrets/pipelines-as-code/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - pipelines-as-code-secret.yaml
+-namespace: pipelines-as-code
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 69cc9d9b..45d50e6b 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -10,6 +10,7 @@ commonAnnotations:
+ resources:
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=153ce437712b2da250c5d9b168ac0fed5e0ffd85
+   - pipelines-as-code-namespace.yaml # preserve old PAC namespace until 1.11 rolled out through production
++  - pipelines-as-code-secret-deleteme.yaml # keep prod unchanged, remove after validation in staging
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+@@ -17,14 +18,6 @@ resources:
+   - team-support-rbac.yaml
+ 
+ patches:
+-  # still do this patch for the external secret kept in the pipelines-as-code namespace per components/pipeline-service/base/external-secrets/pipelines-as-code
+-  - path: pipelines-as-code-secret-path.yaml
+-    target:
+-      name: pipelines-as-code-secret
+-      namespace: pipelines-as-code
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+   - path: pac-config.yaml
+     target:
+       kind: ConfigMap
+diff --git a/components/pipeline-service/base/external-secrets/pipelines-as-code/pipelines-as-code-secret.yaml b/components/pipeline-service/production/base/pipelines-as-code-secret-deleteme.yaml
+similarity index 84%
+rename from components/pipeline-service/base/external-secrets/pipelines-as-code/pipelines-as-code-secret.yaml
+rename to components/pipeline-service/production/base/pipelines-as-code-secret-deleteme.yaml
+index 3aa1ec9f..da2ee530 100644
+--- a/components/pipeline-service/base/external-secrets/pipelines-as-code/pipelines-as-code-secret.yaml
++++ b/components/pipeline-service/production/base/pipelines-as-code-secret-deleteme.yaml
+@@ -2,13 +2,14 @@ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+   name: pipelines-as-code-secret
++  namespace: pipelines-as-code
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+-        key: staging/pipeline-service/github-app
++        key: production/pipeline-service/github-app
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 8c050eaa..90099bc3 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -9,7 +9,6 @@ commonAnnotations:
+ 
+ resources:
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=532acec5d86ffe83992565bc4d4cd6913b8a29c7
+-  - pipelines-as-code-namespace.yaml
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/staging/base/pipelines-as-code-namespace.yaml b/components/pipeline-service/staging/base/pipelines-as-code-namespace.yaml
+deleted file mode 100644
+index 92eca1cf..00000000
+--- a/components/pipeline-service/staging/base/pipelines-as-code-namespace.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+----
+-apiVersion: v1
+-kind: Namespace
+-metadata:
+-  name: pipelines-as-code
