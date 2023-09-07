@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e76066c9/production/components/jvm-build-service/production/kustomize.out.yaml ./kustomized-cache/commit-9d0b6983/production/components/jvm-build-service/production/kustomize.out.yaml
+1440,1441c1440,1441
+<           value: 8d0f3e447e81965939e00b29624beaf35efbaa90
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:8d0f3e447e81965939e00b29624beaf35efbaa90
+---
+>           value: d78e4e0506374ba4669bd8bc2ce2e0215e187646
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:d78e4e0506374ba4669bd8bc2ce2e0215e187646
+1454,1455d1453
+<         securityContext:
+<           readOnlyRootFilesystem: true
+1460,1461d1457
+<       securityContext:
+<         runAsNonRoot: true
