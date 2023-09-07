@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-140bd670/production/app-of-apps-production.yaml ./kustomized-cache/commit-df659f6d/production/app-of-apps-production.yaml
+1395,1399d1394
+<       ignoreDifferences:
+<       - group: appstudio.redhat.com
+<         jsonPointers:
+<         - /metadata/annotations/build.appstudio.openshift.io~1request
+<         kind: Component
