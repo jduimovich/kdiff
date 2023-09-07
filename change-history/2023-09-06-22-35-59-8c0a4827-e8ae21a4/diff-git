@@ -1,0 +1,117 @@
+diff --git a/components/pipeline-service/base/rbac/kustomization.yaml b/components/pipeline-service/base/rbac/kustomization.yaml
+index a4911de8..8c2064c9 100644
+--- a/components/pipeline-service/base/rbac/kustomization.yaml
++++ b/components/pipeline-service/base/rbac/kustomization.yaml
+@@ -3,6 +3,5 @@ kind: Kustomization
+ resources:
+   - cluster-role
+   - openshift-pipelines
+-  # - pipelines-as-code
+   # - tekton-chains
+   - tekton-results
+diff --git a/components/pipeline-service/base/rbac/pipelines-as-code/kustomization.yaml b/components/pipeline-service/base/rbac/pipelines-as-code/kustomization.yaml
+deleted file mode 100644
+index 0ad54d91..00000000
+--- a/components/pipeline-service/base/rbac/pipelines-as-code/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - role-binding.yaml
+-namespace: pipelines-as-code
+\ No newline at end of file
+diff --git a/components/pipeline-service/base/rbac/pipelines-as-code/role-binding.yaml b/components/pipeline-service/base/rbac/pipelines-as-code/role-binding.yaml
+deleted file mode 100644
+index 56ba263d..00000000
+--- a/components/pipeline-service/base/rbac/pipelines-as-code/role-binding.yaml
++++ /dev/null
+@@ -1,36 +0,0 @@
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipeline-service-admin
+-  namespace: pipelines-as-code
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: admin
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipelines-as-code-maintainers
+-  namespace: pipelines-as-code
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sbose78
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jduimovich
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: chmouel
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pipeline-maintainer
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 45d50e6b..869a409c 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -9,8 +9,6 @@ commonAnnotations:
+ 
+ resources:
+   - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=153ce437712b2da250c5d9b168ac0fed5e0ffd85
+-  - pipelines-as-code-namespace.yaml # preserve old PAC namespace until 1.11 rolled out through production
+-  - pipelines-as-code-secret-deleteme.yaml # keep prod unchanged, remove after validation in staging
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/production/base/pipelines-as-code-namespace.yaml b/components/pipeline-service/production/base/pipelines-as-code-namespace.yaml
+deleted file mode 100644
+index 20b3a325..00000000
+--- a/components/pipeline-service/production/base/pipelines-as-code-namespace.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+----
+-apiVersion: v1
+-kind: Namespace
+-metadata:
+-  name: pipelines-as-code
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/base/pipelines-as-code-secret-deleteme.yaml b/components/pipeline-service/production/base/pipelines-as-code-secret-deleteme.yaml
+deleted file mode 100644
+index da2ee530..00000000
+--- a/components/pipeline-service/production/base/pipelines-as-code-secret-deleteme.yaml
++++ /dev/null
+@@ -1,20 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: pipelines-as-code-secret
+-  namespace: pipelines-as-code
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        key: production/pipeline-service/github-app
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: pipelines-as-code-secret

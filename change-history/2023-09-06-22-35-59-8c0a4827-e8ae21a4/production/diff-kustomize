@@ -1,0 +1,62 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e8ae21a4/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-8c0a4827/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+5a6,12
+>   name: pipelines-as-code
+> ---
+> apiVersion: v1
+> kind: Namespace
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1792a1800,1820
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: production/pipeline-service/github-app
+>   refreshInterval: 1h
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: pipelines-as-code-secret
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   name: pipelines-as-code-secret
+>   namespace: pipelines-as-code
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e8ae21a4/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-8c0a4827/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+5a6,12
+>   name: pipelines-as-code
+> ---
+> apiVersion: v1
+> kind: Namespace
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1792a1800,1820
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: production/pipeline-service/github-app
+>   refreshInterval: 1h
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: pipelines-as-code-secret
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   name: pipelines-as-code-secret
+>   namespace: pipelines-as-code
