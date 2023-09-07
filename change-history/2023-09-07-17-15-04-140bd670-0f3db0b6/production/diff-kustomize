@@ -1,0 +1,162 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0f3db0b6/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-140bd670/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1048a1049,1061
+>   application-name: Red Hat Trusted App Pipeline
+>   custom-console-name: Red Hat Trusted App Pipeline
+>   custom-console-url: https://console.redhat.com/preview/application-pipeline
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: pipelines-as-code
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+1276,1295c1289,1292
+<     app: tekton-chains-controller
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   labels:
+<     app.kubernetes.io/component: metrics
+<     app.kubernetes.io/name: tekton-results-api
+<   name: tekton-results-api-metrics
+<   namespace: tekton-results
+< spec:
+<   ports:
+<   - name: metrics
+<     port: 9443
+<     protocol: TCP
+<     targetPort: metrics
+<   selector:
+<     app.kubernetes.io/name: tekton-results-api
+---
+>     app.kubernetes.io/component: controller
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/name: controller
+>     app.kubernetes.io/part-of: tekton-chains
+1315a1313,1316
+>   - name: metrics
+>     port: 9443
+>     protocol: TCP
+>     targetPort: metrics
+1362c1363
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:7c56cdd830d62b3dfe7b773a70344122deb82e34
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:fa818a591509e3da4d46aec5aadc904fd4daacf9
+1882,1898d1882
+<     argocd.argoproj.io/sync-wave: "1"
+<   name: tekton-chains-controller
+<   namespace: openshift-pipelines
+< spec:
+<   endpoints:
+<   - path: /metrics
+<     port: metrics
+<     scheme: http
+<   selector:
+<     matchLabels:
+<       app: tekton-chains-controller
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1912d1895
+<   jobLabel: app.kubernetes.io/name
+1915d1897
+<       app.kubernetes.io/component: metrics
+1959a1942
+>     embedded-status: both
+1974,1979d1956
+<         settings:
+<           application-name: Red Hat Trusted App Pipeline
+<           custom-console-name: Red Hat Trusted App Pipeline
+<           custom-console-url: https://console.redhat.com/preview/application-pipeline
+<           custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline
+<           custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0f3db0b6/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-140bd670/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1048a1049,1061
+>   application-name: Red Hat Trusted App Pipeline
+>   custom-console-name: Red Hat Trusted App Pipeline
+>   custom-console-url: https://console.redhat.com/preview/application-pipeline
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: pipelines-as-code
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+1276,1295c1289,1292
+<     app: tekton-chains-controller
+< ---
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   labels:
+<     app.kubernetes.io/component: metrics
+<     app.kubernetes.io/name: tekton-results-api
+<   name: tekton-results-api-metrics
+<   namespace: tekton-results
+< spec:
+<   ports:
+<   - name: metrics
+<     port: 9443
+<     protocol: TCP
+<     targetPort: metrics
+<   selector:
+<     app.kubernetes.io/name: tekton-results-api
+---
+>     app.kubernetes.io/component: controller
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/name: controller
+>     app.kubernetes.io/part-of: tekton-chains
+1315a1313,1316
+>   - name: metrics
+>     port: 9443
+>     protocol: TCP
+>     targetPort: metrics
+1362c1363
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:7c56cdd830d62b3dfe7b773a70344122deb82e34
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:fa818a591509e3da4d46aec5aadc904fd4daacf9
+1882,1898d1882
+<     argocd.argoproj.io/sync-wave: "1"
+<   name: tekton-chains-controller
+<   namespace: openshift-pipelines
+< spec:
+<   endpoints:
+<   - path: /metrics
+<     port: metrics
+<     scheme: http
+<   selector:
+<     matchLabels:
+<       app: tekton-chains-controller
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1912d1895
+<   jobLabel: app.kubernetes.io/name
+1915d1897
+<       app.kubernetes.io/component: metrics
+1959a1942
+>     embedded-status: both
+1974,1979d1956
+<         settings:
+<           application-name: Red Hat Trusted App Pipeline
+<           custom-console-name: Red Hat Trusted App Pipeline
+<           custom-console-url: https://console.redhat.com/preview/application-pipeline
+<           custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline
+<           custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline

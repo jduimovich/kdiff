@@ -1,0 +1,59 @@
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 869a409c..304a103a 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=153ce437712b2da250c5d9b168ac0fed5e0ffd85
++  - git::https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=a806b150697f03f47395a8c998d4fc82dbc25f95
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+@@ -16,16 +16,15 @@ resources:
+   - team-support-rbac.yaml
+ 
+ patches:
+-  - path: pac-config.yaml
+-    target:
+-      kind: ConfigMap
+-      name: pipelines-as-code
+-      namespace: openshift-pipelines
+ #  - path: scale-down-exporter.yaml
+ #    target:
+ #      kind: Deployment
+ #      name: pipeline-metrics-exporter
+ #      namespace: openshift-pipelines
++  - path: update-tekton-config-pac.yaml
++    target:
++      kind: TektonConfig
++      name: config
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+diff --git a/components/pipeline-service/production/base/pipelines-as-code-secret-path.yaml b/components/pipeline-service/production/base/pipelines-as-code-secret-path.yaml
+deleted file mode 100644
+index 7af9ce53..00000000
+--- a/components/pipeline-service/production/base/pipelines-as-code-secret-path.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/pipeline-service/github-app
+diff --git a/components/pipeline-service/production/base/update-tekton-config-pac.yaml b/components/pipeline-service/production/base/update-tekton-config-pac.yaml
+new file mode 100644
+index 00000000..b207bf90
+--- /dev/null
++++ b/components/pipeline-service/production/base/update-tekton-config-pac.yaml
+@@ -0,0 +1,9 @@
++---
++- op: add
++  path: /spec/platforms/openshift/pipelinesAsCode/settings
++  value:
++    application-name: Red Hat Trusted App Pipeline
++    custom-console-name: Red Hat Trusted App Pipeline
++    custom-console-url: https://console.redhat.com/preview/application-pipeline
++    custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline
++    custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline
