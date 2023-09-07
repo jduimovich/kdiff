@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9d0b6983/development/components/multi-arch-controller/development/kustomize.out.yaml ./kustomized-cache/commit-e8ae21a4/development/components/multi-arch-controller/development/kustomize.out.yaml
+264c264
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:967af570e200f7af2038d25917322bfb27d3a4d3
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:392c145e565793ba31656949366c6ece925b90e0
+359d358
+<       sudo dnf install podman -y
+388c387
+<           build.appstudio.redhat.com/multi-arch-secret: "true"
+---
+>           build.appstudio.redhat.com/multi-arch-required: "true"
