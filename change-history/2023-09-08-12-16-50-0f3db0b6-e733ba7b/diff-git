@@ -1,0 +1,134 @@
+diff --git a/components/sandbox/base/olm-restart/cronjob.yaml b/components/sandbox/base/olm-restart/cronjob.yaml
+new file mode 100644
+index 00000000..15b0799d
+--- /dev/null
++++ b/components/sandbox/base/olm-restart/cronjob.yaml
+@@ -0,0 +1,32 @@
++
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  name: olm-restart
++spec:
++  schedule: "0 2 * * *"
++  concurrencyPolicy: "Replace"
++  startingDeadlineSeconds: 200
++  suspend: false
++  successfulJobsHistoryLimit: 3
++  failedJobsHistoryLimit: 1
++  jobTemplate:
++    spec:
++      template:
++        metadata:
++          labels:
++            provider: "codeready-toolchain"
++        spec:
++          serviceAccountName: sandbox-sre-olm-restart-sa
++          containers:
++          - name: olm-restart
++            image: quay.io/codeready-toolchain/oc-client-base:latest
++            imagePullPolicy: IfNotPresent
++            command:
++            - /bin/sh
++            - -c
++            - echo "Restarting OLM..." && 
++              oc delete pod --all -n openshift-operator-lifecycle-manager --ignore-not-found --wait &&
++              oc delete pod --all -n openshift-marketplace --ignore-not-found --wait && 
++              echo "Completed restart"
++          restartPolicy: OnFailure
+\ No newline at end of file
+diff --git a/components/sandbox/base/olm-restart/kustomization.yaml b/components/sandbox/base/olm-restart/kustomization.yaml
+new file mode 100644
+index 00000000..a08d091a
+--- /dev/null
++++ b/components/sandbox/base/olm-restart/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- cronjob.yaml
++- sandbox-sre-olm-restart.yaml
+diff --git a/components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml b/components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml
+new file mode 100644
+index 00000000..9647c2e1
+--- /dev/null
++++ b/components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml
+@@ -0,0 +1,32 @@
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: sandbox-sre-olm-restart-sa
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: restart-pods
++rules:
++- apiGroups:
++    - ""
++  resources:
++  - "pods"
++  verbs:
++  - "get"
++  - "watch"
++  - "list"
++  - "delete"
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: olm-restart-global
++subjects:
++- kind: ServiceAccount
++  name: sandbox-sre-olm-restart-sa
++roleRef:
++  kind: ClusterRole
++  name: restart-pods
++  apiGroup: rbac.authorization.k8s.io
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+new file mode 100644
+index 00000000..8a0bcafe
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: toolchain-host-operator
++resources:
++- ../../base
++- ../../base/olm-restart
+diff --git a/components/sandbox/toolchain-host-operator/production/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/kustomization.yaml
+index 4e4f1976..443762b7 100644
+--- a/components/sandbox/toolchain-host-operator/production/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/production/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../../base
++- ../base
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/kustomization.yaml
+index 4e4f1976..bdf7ce4f 100644
+--- a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../../base
++- ../base
+diff --git a/components/sandbox/toolchain-member-operator/base/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+index c845dd08..26378924 100644
+--- a/components/sandbox/toolchain-member-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+@@ -1,5 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++namespace: toolchain-member-operator
+ resources:
+ - ../../base
++- ../../base/olm-restart
+ - ./rbac/inspect-pods.yaml
