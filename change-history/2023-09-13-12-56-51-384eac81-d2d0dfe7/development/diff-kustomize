@@ -1,0 +1,38 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d2d0dfe7/development/app-of-apps-development.yaml ./kustomized-cache/commit-384eac81/development/app-of-apps-development.yaml
+145a146,181
+>   name: cluster-registration
+>   namespace: openshift-gitops
+> spec:
+>   generators:
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+>   template:
+>     metadata:
+>       name: cluster-registration-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: cluster-reg-config
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: components/cluster-registration
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:

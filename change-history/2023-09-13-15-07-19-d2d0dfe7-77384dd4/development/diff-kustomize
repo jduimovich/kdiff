@@ -1,0 +1,32 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-77384dd4/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-d2d0dfe7/development/components/pipeline-service/development/kustomize.out.yaml
+1235a1236,1254
+>   labels:
+>     app.kubernetes.io/component: metrics
+>     app.kubernetes.io/name: tekton-results-api
+>   name: tekton-results-api-metrics
+>   namespace: tekton-results
+> spec:
+>   ports:
+>   - name: metrics
+>     port: 9443
+>     protocol: TCP
+>     targetPort: metrics
+>   selector:
+>     app.kubernetes.io/name: tekton-results-api
+> ---
+> apiVersion: v1
+> kind: Service
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1250,1253d1268
+<   - name: metrics
+<     port: 9443
+<     protocol: TCP
+<     targetPort: metrics
+1979a1995
+>       app.kubernetes.io/component: metrics
+2082d2097
+<     haproxy.router.openshift.io/timeout: 86410s
+2084d2098
+<     router.openshift.io/haproxy.health.check.interval: 86400s

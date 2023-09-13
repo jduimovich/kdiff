@@ -1,0 +1,37 @@
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index 28b6a850..6e2c30e8 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -46,3 +46,9 @@ kind: ApplicationSet
+ metadata:
+   name: segment-bridge-host
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: cluster-registration
++$patch: delete
+diff --git a/argo-cd-apps/overlays/staging/delete-applications.yaml b/argo-cd-apps/overlays/staging/delete-applications.yaml
+new file mode 100644
+index 00000000..acd59b76
+--- /dev/null
++++ b/argo-cd-apps/overlays/staging/delete-applications.yaml
+@@ -0,0 +1,6 @@
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: cluster-registration
++$patch: delete
+diff --git a/argo-cd-apps/overlays/staging/kustomization.yaml b/argo-cd-apps/overlays/staging/kustomization.yaml
+index e23fe3fc..2b488faa 100644
+--- a/argo-cd-apps/overlays/staging/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging/kustomization.yaml
+@@ -5,3 +5,5 @@ resources:
+   - ../../base/member
+   - ../../base/all-clusters
+   - ../../base/quality-dashboard
++patchesStrategicMerge:
++  - delete-applications.yaml
+\ No newline at end of file
