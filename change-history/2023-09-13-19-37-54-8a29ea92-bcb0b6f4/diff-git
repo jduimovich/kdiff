@@ -1,0 +1,151 @@
+diff --git a/components/cluster-secret-store/staging/cluster-secret-store-patch.yaml b/components/cluster-secret-store/staging/cluster-secret-store-patch.yaml
+new file mode 100644
+index 00000000..babee207
+--- /dev/null
++++ b/components/cluster-secret-store/staging/cluster-secret-store-patch.yaml
+@@ -0,0 +1,26 @@
++# cluster-secret-store-patch.yaml
++apiVersion: external-secrets.io/v1beta1
++kind: ClusterSecretStore
++metadata:
++  name: appsre-stonesoup-vault
++spec:
++  conditions:
++    - namespaces:
++      - dora-metrics
++      - application-service
++      - appstudio-workload-monitoring
++      - quality-dashboard
++      - spi-system
++      - group-sync-operator
++      - build-templates
++      - build-service
++      - tekton-ci
++      - image-controller
++      - multi-arch-controller
++      - jvm-build-service
++      - openshift-logging
++      - sprayproxy
++      - appstudio-monitoring
++      - openshift-pipelines
++      - rhtap-servicerelease-tenant
++      - rhtap-build-tenant
+diff --git a/components/cluster-secret-store/staging/kustomization.yaml b/components/cluster-secret-store/staging/kustomization.yaml
+index 27bb5cb0..d0304746 100644
+--- a/components/cluster-secret-store/staging/kustomization.yaml
++++ b/components/cluster-secret-store/staging/kustomization.yaml
+@@ -2,3 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
++
++# remove `tekton-chains` ns from appsre-stonesoup-vault
++patchesStrategicMerge:
++  - cluster-secret-store-patch.yaml
+diff --git a/components/pipeline-service/base/rbac/kustomization.yaml b/components/pipeline-service/base/rbac/kustomization.yaml
+index 8c2064c9..ba88978c 100644
+--- a/components/pipeline-service/base/rbac/kustomization.yaml
++++ b/components/pipeline-service/base/rbac/kustomization.yaml
+@@ -3,5 +3,4 @@ kind: Kustomization
+ resources:
+   - cluster-role
+   - openshift-pipelines
+-  # - tekton-chains
+   - tekton-results
+diff --git a/components/pipeline-service/base/rbac/tekton-chains/kustomization.yaml b/components/pipeline-service/base/rbac/tekton-chains/kustomization.yaml
+deleted file mode 100644
+index fce31626..00000000
+--- a/components/pipeline-service/base/rbac/tekton-chains/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - role-binding.yaml
+-namespace: tekton-chains
+\ No newline at end of file
+diff --git a/components/pipeline-service/base/rbac/tekton-chains/role-binding.yaml b/components/pipeline-service/base/rbac/tekton-chains/role-binding.yaml
+deleted file mode 100644
+index b6d1f54c..00000000
+--- a/components/pipeline-service/base/rbac/tekton-chains/role-binding.yaml
++++ /dev/null
+@@ -1,34 +0,0 @@
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipeline-service-admin
+-  namespace: tekton-chains
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: admin
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: tekton-chains-maintainers
+-  namespace: tekton-chains
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sbose78
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jduimovich
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: pipeline-maintainer
+\ No newline at end of file
+diff --git a/hack/bootstrap-cluster.sh b/hack/bootstrap-cluster.sh
+index e3d977d5..f0e2ed78 100755
+--- a/hack/bootstrap-cluster.sh
++++ b/hack/bootstrap-cluster.sh
+@@ -42,17 +42,19 @@ main() {
+     case $mode in
+     "" | "upstream")
+         kubectl create -k $ROOT/argo-cd-apps/app-of-app-sets/staging
+-        # Check if we have a tekton-chains namespace, and if so, remove any explicit transparency.url setting
+-        # which might be left from running this script with the 'preview' flag to enable the cluster local
++        # Remove any explicit transparency.url setting from chains-config which might be left from running
++        # this script with the 'preview' flag to enable the cluster local
+         # rekor instance. By default, chains will use the publicly accessible sandbox instance hosted by sigstore
+         # of rekor
+         # If, in the future, we're boostrapping to use a Red Hat internal rekor instance instead of the public,
+         # default sandbox instance hosted by sigstore we would want to reconsider this approach.
+-        if kubectl get namespace tekton-chains &>/dev/null; then
+-            # Remove our transparency.url, if present, to ensure we're not using the cluster local rekor
+-            # which is only available in 'preview' mode.
+-            kubectl patch configmap/chains-config -n tekton-chains --type=json --patch '[{"op":"remove","path":"/data/transparency.url"}]'
+-            kubectl delete pod -n tekton-chains -l app=tekton-chains-controller
++        if kubectl get namespace openshift-pipelines &>/dev/null; then
++            if kubectl get configmap chains-config -n openshift-pipelines &>/dev/null; then
++                # Remove our transparency.url, if present, to ensure we're not using the cluster local rekor
++                # which is only available in 'preview' mode.
++                kubectl patch configmap/chains-config -n openshift-pipelines --type=json --patch '[{"op":"remove","path":"/data/transparency.url"}]'
++                kubectl delete pod -n openshift-pipelines -l app=tekton-chains-controller
++            fi
+         fi
+         ;;
+     "preview")
+diff --git a/hack/destroy-cluster.sh b/hack/destroy-cluster.sh
+index f1539375..38a9f8fe 100755
+--- a/hack/destroy-cluster.sh
++++ b/hack/destroy-cluster.sh
+@@ -16,7 +16,7 @@ ARGO_CD_URL="https://$ARGO_CD_ROUTE"
+ # there is an issue with deletion of chains-pods
+ function wait_and_delete_chains {
+   sleep 10
+-  oc delete -n tekton-chains --force pod --all
++  kubectl delete pod -n openshift-pipelines -l app=tekton-chains-controller
+ }
+ wait_and_delete_chains &
+ 
