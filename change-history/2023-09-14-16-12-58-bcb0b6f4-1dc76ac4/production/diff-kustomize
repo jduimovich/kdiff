@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1dc76ac4/production/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-bcb0b6f4/production/components/enterprise-contract/kustomize.out.yaml
+254,255c254
+<     - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:021515caf0a4fb6455ada88fcd155baef5b5e5e229e62a587c44e0ff8c5024a0
+---
+>     - oci::quay.io/enterprise-contract/ec-policy-data:git-43c831e@sha256:3b3eddc03b0c55d1271bff3b9580ed81acf19b1d3fb8e1502b6f12c1ef87a697
+276,277c275
+<     - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:021515caf0a4fb6455ada88fcd155baef5b5e5e229e62a587c44e0ff8c5024a0
+---
+>     - oci::quay.io/enterprise-contract/ec-policy-data:git-43c831e@sha256:3b3eddc03b0c55d1271bff3b9580ed81acf19b1d3fb8e1502b6f12c1ef87a697
