@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-42689bee/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-97c254f0/development/components/pipeline-service/development/kustomize.out.yaml
+412,423d411
+< - apiGroups:
+<   - results.tekton.dev
+<   resources:
+<   - results
+<   - records
+<   - logs
+<   verbs:
+<   - get
+<   - list
+<   - create
+<   - delete
+<   - update

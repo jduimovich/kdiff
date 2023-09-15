@@ -1,0 +1,28 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-42689bee/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-97c254f0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+423,434d422
+< - apiGroups:
+<   - results.tekton.dev
+<   resources:
+<   - results
+<   - records
+<   - logs
+<   verbs:
+<   - get
+<   - list
+<   - create
+<   - delete
+<   - update
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-42689bee/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-97c254f0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+423,434d422
+< - apiGroups:
+<   - results.tekton.dev
+<   resources:
+<   - results
+<   - records
+<   - logs
+<   verbs:
+<   - get
+<   - list
+<   - create
+<   - delete
+<   - update

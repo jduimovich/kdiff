@@ -1,0 +1,23 @@
+diff --git a/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml b/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
+index f3baa7ca..8ceba9c0 100644
+--- a/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
++++ b/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
+@@ -57,6 +57,18 @@ rules:
+   - create
+   - delete
+   - patch
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - get
++  - list
++  - create
++  - delete
++  - update
+ ---
+ kind: ClusterRoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
