@@ -1,0 +1,33 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86840923/development/components/authentication/development/kustomize.out.yaml ./kustomized-cache/commit-67048383/development/components/authentication/development/kustomize.out.yaml
+169a170,171
+>   name: Michkov
+> - kind: User
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86840923/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-67048383/development/components/build-service/development/kustomize.out.yaml
+536c536
+<   name: mmorhun
+---
+>   name: Michkov
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86840923/development/components/integration/kustomize.out.yaml ./kustomized-cache/commit-67048383/development/components/integration/kustomize.out.yaml
+939a940,942
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86840923/development/components/internal-services/kustomize.out.yaml ./kustomized-cache/commit-67048383/development/components/internal-services/kustomize.out.yaml
+203a204,206
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+229a233,235
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86840923/development/components/jvm-build-service/development/kustomize.out.yaml ./kustomized-cache/commit-67048383/development/components/jvm-build-service/development/kustomize.out.yaml
+1338a1339,1341
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86840923/development/components/release/kustomize.out.yaml ./kustomized-cache/commit-67048383/development/components/release/kustomize.out.yaml
+1177a1178,1180
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov

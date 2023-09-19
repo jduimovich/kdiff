@@ -1,0 +1,23 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-60546e76/development/components/dora-metrics/development/kustomize.out.yaml ./kustomized-cache/commit-86840923/development/components/dora-metrics/development/kustomize.out.yaml
+149,155c149
+<         - name: PAGERDUTY_API_KEY
+<           valueFrom:
+<             secretKeyRef:
+<               key: pager-duty-token
+<               name: exporters-secret
+<               optional: false
+<         image: quay.io/redhat-appstudio/dora-metrics:aed21b2b16f1682b9126b94df88f149ad1612d19
+---
+>         image: quay.io/redhat-appstudio/dora-metrics:dadd13a75d0fd0e4337fd90ddba3d3e47fb6199f
+161,171d154
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<       securityContext:
+<         runAsNonRoot: true

@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-60546e76/staging/components/dora-metrics/staging/kustomize.out.yaml ./kustomized-cache/commit-86840923/staging/components/dora-metrics/staging/kustomize.out.yaml
+113c113
+<         image: quay.io/redhat-appstudio/dora-metrics:aed21b2b16f1682b9126b94df88f149ad1612d19
+---
+>         image: quay.io/redhat-appstudio/dora-metrics:c52bfe1a88fde0bc63a30eb4a662f6bc8b925f3c
+119,129d118
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<       securityContext:
+<         runAsNonRoot: true

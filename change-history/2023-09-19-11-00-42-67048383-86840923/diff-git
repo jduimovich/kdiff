@@ -1,0 +1,197 @@
+diff --git a/components/authentication/base/group-sync/group-sync.yaml b/components/authentication/base/group-sync/group-sync.yaml
+index abd9ce6e..8e45f623 100644
+--- a/components/authentication/base/group-sync/group-sync.yaml
++++ b/components/authentication/base/group-sync/group-sync.yaml
+@@ -4,8 +4,6 @@ metadata:
+   name: group-sync-operator-maintainers
+   namespace: group-sync-operator
+ subjects:
+-  - kind: User
+-    name: Michkov
+   - kind: User
+     name: sbose78
+ roleRef:
+diff --git a/components/build-service/OWNERS b/components/build-service/OWNERS
+index d1ad3cbe..ba26bbf1 100644
+--- a/components/build-service/OWNERS
++++ b/components/build-service/OWNERS
+@@ -2,8 +2,12 @@
+ 
+ approvers:
+ - mmorhun
+-- Michkov
++- tkdchen
++- rcerven
++- mkosiarc
+ 
+ reviewers:
+ - mmorhun
+-- Michkov
++- tkdchen
++- rcerven
++- mkosiarc
+diff --git a/components/build-service/base/rbac/build-maintainer.yaml b/components/build-service/base/rbac/build-maintainer.yaml
+index dd6775a6..5184663d 100644
+--- a/components/build-service/base/rbac/build-maintainer.yaml
++++ b/components/build-service/base/rbac/build-maintainer.yaml
+@@ -70,8 +70,8 @@ subjects:
+     name: sbose78
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+-    name: Michkov
++    name: mmorhun
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+-  name: build-maintainer
+\ No newline at end of file
++  name: build-maintainer
+diff --git a/components/image-controller/base/OWNERS b/components/image-controller/base/OWNERS
+index 7c7995a1..853b2766 100644
+--- a/components/image-controller/base/OWNERS
++++ b/components/image-controller/base/OWNERS
+@@ -1,9 +1,15 @@
+ # See the OWNERS docs: https://go.k8s.io/owners
+ 
+ approvers:
+-- Michkov
++- mmorhun
++- tkdchen
++- rcerven
++- mkosiarc
+ - sbose78
+ 
+ reviewers:
+ - sbose78
+-- Michkov
++- mmorhun
++- tkdchen
++- mkosiarc
++- rcerven
+diff --git a/components/integration/integration.yaml b/components/integration/integration.yaml
+index ec8408cc..06fd9592 100644
+--- a/components/integration/integration.yaml
++++ b/components/integration/integration.yaml
+@@ -7,9 +7,6 @@ subjects:
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: dirgim
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Michkov
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/internal-services/internal-services.yaml b/components/internal-services/internal-services.yaml
+index 23714969..a36f7cd8 100644
+--- a/components/internal-services/internal-services.yaml
++++ b/components/internal-services/internal-services.yaml
+@@ -7,9 +7,6 @@ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+     name: Release team
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Michkov
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+@@ -23,9 +20,6 @@ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+     name: Release team
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Michkov
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/jvm-build-service/OWNERS b/components/jvm-build-service/OWNERS
+index d100380e..ed907b9b 100644
+--- a/components/jvm-build-service/OWNERS
++++ b/components/jvm-build-service/OWNERS
+@@ -3,9 +3,7 @@
+ approvers:
+ - gabemontero
+ - stuartwdouglas
+-- Michkov
+ 
+ reviewers:
+ - gabemontero
+ - stuartwdouglas
+-- Michkov
+diff --git a/components/jvm-build-service/base/rbac/jvm-build-maintainer.yaml b/components/jvm-build-service/base/rbac/jvm-build-maintainer.yaml
+index d7058017..d460426a 100644
+--- a/components/jvm-build-service/base/rbac/jvm-build-maintainer.yaml
++++ b/components/jvm-build-service/base/rbac/jvm-build-maintainer.yaml
+@@ -71,10 +71,7 @@ subjects:
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: gabemontero
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Michkov
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+-  name: jvm-build-maintainer
+\ No newline at end of file
++  name: jvm-build-maintainer
+diff --git a/components/release/release-team.yaml b/components/release/release-team.yaml
+index 25ca1890..f0363dff 100644
+--- a/components/release/release-team.yaml
++++ b/components/release/release-team.yaml
+@@ -7,9 +7,6 @@ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+     name: Release team
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Michkov
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/spi/base/rbac/spi.yaml b/components/spi/base/rbac/spi.yaml
+index e0be44d4..138f6048 100644
+--- a/components/spi/base/rbac/spi.yaml
++++ b/components/spi/base/rbac/spi.yaml
+@@ -8,8 +8,6 @@ subjects:
+     name: skabashnyuk
+   - kind: User
+     name: sbose78
+-  - kind: User
+-    name: Michkov
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/sprayproxy/OWNERS b/components/sprayproxy/OWNERS
+index 7464403e..2b7bda2c 100644
+--- a/components/sprayproxy/OWNERS
++++ b/components/sprayproxy/OWNERS
+@@ -4,12 +4,10 @@ approvers:
+   - Roming22
+   - adambkaplan
+   - stuartwdouglas
+-  - Michkov
+   - gabemontero
+ 
+ reviewers:
+   - stuartwdouglas
+-  - Michkov
+   - Roming22
+   - adambkaplan
+   - ramessesii2
+diff --git a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
+index 7d55f72f..9709b431 100644
+--- a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
++++ b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
+@@ -7,9 +7,6 @@ subjects:
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: sbose78
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Michkov
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: psturc

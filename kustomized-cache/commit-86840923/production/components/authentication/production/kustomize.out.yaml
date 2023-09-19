@@ -1,0 +1,269 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: group-sync-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: component-maintainer
+rules:
+- apiGroups:
+  - operators.coreos.com
+  resources:
+  - installplans
+  verbs:
+  - get
+  - list
+  - update
+  - patch
+- apiGroups:
+  - ""
+  resourceNames:
+  - pipeline
+  resources:
+  - serviceaccounts
+  verbs:
+  - patch
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - delete
+- apiGroups:
+  - tekton.dev
+  resources:
+  - pipelineruns
+  verbs:
+  - '*'
+- apiGroups:
+  - results.tekton.dev
+  resources:
+  - results
+  - records
+  - logs
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - ""
+  resources:
+  - pods/portforward
+  verbs:
+  - create
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - get
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: view-appstudio
+rules:
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - applications
+  - buildpipelineselectors
+  - componentdetectionqueries
+  - components
+  - enterprisecontractpolicies
+  - environments
+  - integrationtestscenarios
+  - promotionruns
+  - releaseplanadmissions
+  - releaseplans
+  - releases
+  - releasestrategies
+  - snapshotenvironmentbindings
+  - snapshots
+  - spiaccesschecks
+  - spiaccesstokenbindings
+  - spifilecontentrequests
+  - remotesecrets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - managed-gitops.redhat.com
+  resources:
+  - gitopsdeploymentmanagedenvironments
+  - gitopsdeployments
+  - gitopsdeploymentsyncruns
+  - operations
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - jvmbuildservice.io
+  resources:
+  - artifactbuilds
+  - dependencybuilds
+  - rebuiltartifacts
+  - systemconfigs
+  - tektonwrappers
+  - jbsconfigs
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - pipelinesascode.tekton.dev
+  resources:
+  - repositories
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: group-sync-operator-maintainers
+  namespace: group-sync-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- kind: User
+  name: sbose78
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: everyone-view
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: stage
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: everyone-view-appstudio
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view-appstudio
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: stage
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: github-redhat-appstudio
+  namespace: group-sync-operator
+spec:
+  dataFrom:
+  - extract:
+      conversionStrategy: Default
+      decodingStrategy: None
+      key: production/group-sync/github-redhat-appstudio
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: github-redhat-appstudio
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: github-redhat-appstudio-sre
+  namespace: group-sync-operator
+spec:
+  dataFrom:
+  - extract:
+      conversionStrategy: Default
+      decodingStrategy: None
+      key: production/group-sync/github-redhat-appstudio-sre
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: github-redhat-appstudio-sre
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: group-sync-operator
+  namespace: group-sync-operator
+spec:
+  targetNamespaces:
+  - group-sync-operator
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: group-sync-operator
+  namespace: group-sync-operator
+spec:
+  channel: alpha
+  installPlanApproval: Automatic
+  name: group-sync-operator
+  source: community-operators
+  sourceNamespace: openshift-marketplace
+---
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: GroupSync
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: github-redhat-appstudio
+  namespace: group-sync-operator
+spec:
+  providers:
+  - github:
+      credentialsSecret:
+        name: github-redhat-appstudio
+        namespace: group-sync-operator
+      organization: redhat-appstudio
+    name: github
+  schedule: '*/15 * * * *'
+---
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: GroupSync
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: github-redhat-appstudio-sre
+  namespace: group-sync-operator
+spec:
+  providers:
+  - github:
+      credentialsSecret:
+        name: github-redhat-appstudio-sre
+        namespace: group-sync-operator
+      organization: redhat-appstudio-sre
+    name: github
+  schedule: '*/15 * * * *'

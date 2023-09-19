@@ -1,0 +1,38 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86840923/production/components/authentication/production/kustomize.out.yaml ./kustomized-cache/commit-67048383/production/components/authentication/production/kustomize.out.yaml
+141a142,143
+>   name: Michkov
+> - kind: User
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86840923/production/components/build-service/production/kustomize.out.yaml ./kustomized-cache/commit-67048383/production/components/build-service/production/kustomize.out.yaml
+536c536
+<   name: mmorhun
+---
+>   name: Michkov
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86840923/production/components/integration/kustomize.out.yaml ./kustomized-cache/commit-67048383/production/components/integration/kustomize.out.yaml
+939a940,942
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86840923/production/components/internal-services/kustomize.out.yaml ./kustomized-cache/commit-67048383/production/components/internal-services/kustomize.out.yaml
+203a204,206
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+229a233,235
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86840923/production/components/jvm-build-service/production/kustomize.out.yaml ./kustomized-cache/commit-67048383/production/components/jvm-build-service/production/kustomize.out.yaml
+1338a1339,1341
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86840923/production/components/release/kustomize.out.yaml ./kustomized-cache/commit-67048383/production/components/release/kustomize.out.yaml
+1177a1178,1180
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: Michkov
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-86840923/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-67048383/production/components/tekton-ci/production/kustomize.out.yaml
+36a37,39
+>   name: Michkov
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
