@@ -1,0 +1,8 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-67048383/staging/components/quality-dashboard/staging/kustomize.out.yaml ./kustomized-cache/commit-878f8d5c/staging/components/quality-dashboard/staging/kustomize.out.yaml
+246c246
+<         image: quay.io/redhat-appstudio/quality-dashboard-frontend:e6ba5d09f498ecbec82596eead2a3589f770865b
+---
+>         image: quay.io/redhat-appstudio/quality-dashboard-frontend:bb70cddf67540b46a218024ac29f520f7a63dd2e
+259a260,261
+>         securityContext:
+>           readOnlyRootFilesystem: true
