@@ -1,0 +1,22 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-dd8deeb3/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-1e5ca79d/production/components/tekton-ci/production/kustomize.out.yaml
+208,227d207
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: plnsvc-codecov-secret
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/pipeline-service/codecov
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: plnsvc-codecov-secret
+< ---

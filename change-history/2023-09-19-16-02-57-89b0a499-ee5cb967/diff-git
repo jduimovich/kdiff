@@ -1,0 +1,9 @@
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 18bc281e..6eea7ba9 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -46,3 +46,4 @@ spec:
+         - openshift-pipelines
+         - rhtap-servicerelease-tenant
+         - rhtap-build-tenant
++        - rhtap-o11y-tenant

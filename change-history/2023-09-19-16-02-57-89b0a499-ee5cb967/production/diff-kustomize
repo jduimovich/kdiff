@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ee5cb967/production/components/cluster-secret-store/production/kustomize.out.yaml ./kustomized-cache/commit-89b0a499/production/components/cluster-secret-store/production/kustomize.out.yaml
+29d28
+<     - rhtap-o11y-tenant

@@ -1,0 +1,26 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5e9bda4d/production/components/has/production/kustomize.out.yaml ./kustomized-cache/commit-ee5cb967/production/components/has/production/kustomize.out.yaml
+352,371d351
+<   - appstudio.redhat.com
+<   resources:
+<   - spifilecontentrequests
+<   verbs:
+<   - create
+<   - get
+<   - list
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - spifilecontentrequests/finalizers
+<   verbs:
+<   - update
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - spifilecontentrequests/status
+<   verbs:
+<   - get
+< - apiGroups:
+826c806
+<         image: quay.io/redhat-appstudio/application-service:61526b73f8933763048bd91046cb728e026353ec
+---
+>         image: quay.io/redhat-appstudio/application-service:1c302a6699d6857d94f621c11a469f2f7d7a6ba4

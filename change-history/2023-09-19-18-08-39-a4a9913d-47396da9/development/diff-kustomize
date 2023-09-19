@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-47396da9/development/components/authentication/development/kustomize.out.yaml ./kustomized-cache/commit-a4a9913d/development/components/authentication/development/kustomize.out.yaml
+324,332d323
+< - apiGroups:
+<   - user.openshift.io
+<   resources:
+<   - groups
+<   - identities
+<   - useridentitymappings
+<   - users
+<   verbs:
+<   - '*'

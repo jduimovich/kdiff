@@ -1,0 +1,37 @@
+diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
+index 79913a06..65cd79ed 100644
+--- a/components/tekton-ci/production/kustomization.yaml
++++ b/components/tekton-ci/production/kustomization.yaml
+@@ -4,6 +4,7 @@ resources:
+ - ../base
+ - ../base/external-secrets
+ - plnsvc-ci-secret.yaml
++- plnsvc-codecov-secret.yaml
+ 
+ patches:
+   - path: quay-push-secret.yaml
+diff --git a/components/tekton-ci/production/plnsvc-codecov-secret.yaml b/components/tekton-ci/production/plnsvc-codecov-secret.yaml
+new file mode 100644
+index 00000000..5442145e
+--- /dev/null
++++ b/components/tekton-ci/production/plnsvc-codecov-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: plnsvc-codecov-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/pipeline-service/codecov
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: plnsvc-codecov-secret
