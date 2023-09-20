@@ -1,0 +1,20 @@
+diff --git a/components/authentication/base/rhtap-admins.yaml b/components/authentication/base/rhtap-admins.yaml
+index 4308d463..da34ab09 100644
+--- a/components/authentication/base/rhtap-admins.yaml
++++ b/components/authentication/base/rhtap-admins.yaml
+@@ -209,6 +209,15 @@ rules:
+       - roles
+     verbs:
+       - '*'
++  - apiGroups:
++      - rbac.authorization.k8s.io
++    resources:
++      - clusterrolebindings
++      - rolebindings
++    verbs:
++      - get
++      - list
++      - watch
+   - apiGroups:
+       - autoscaling
+     resources:

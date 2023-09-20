@@ -1,0 +1,25 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-32cab19d/development/components/image-controller/development/kustomize.out.yaml ./kustomized-cache/commit-2e755e8c/development/components/image-controller/development/kustomize.out.yaml
+515c515
+<         image: quay.io/redhat-appstudio/image-controller:fe1aca049c0539804e9abc66eba9be3ae12c16ca
+---
+>         image: quay.io/redhat-appstudio/image-controller:32da0f93e0c00cabcfe3e342c67eff6f5110d457
+541d540
+<           readOnlyRootFilesystem: true
+569d567
+<           readOnlyRootFilesystem: true
+572,573d569
+<         seccompProfile:
+<           type: RuntimeDefault
+612,620d607
+<             resources:
+<               limits:
+<                 cpu: 500m
+<                 memory: 512Mi
+<               requests:
+<                 cpu: 150m
+<                 memory: 128Mi
+<             securityContext:
+<               readOnlyRootFilesystem: true
+625,626d611
+<           securityContext:
+<             runAsNonRoot: true

@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c8440f18/production/components/authentication/production/kustomize.out.yaml ./kustomized-cache/commit-32cab19d/production/components/authentication/production/kustomize.out.yaml
+280,288d279
+<   - rbac.authorization.k8s.io
+<   resources:
+<   - clusterrolebindings
+<   - rolebindings
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
