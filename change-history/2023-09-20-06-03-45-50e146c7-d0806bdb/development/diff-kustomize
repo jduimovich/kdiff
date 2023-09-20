@@ -1,0 +1,72 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d0806bdb/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-50e146c7/development/components/build-service/development/kustomize.out.yaml
+311a312,320
+>   - operators.coreos.com
+>   resources:
+>   - installplans
+>   verbs:
+>   - get
+>   - list
+>   - update
+>   - patch
+> - apiGroups:
+314c323
+<   - appstudio-pipeline
+---
+>   - pipeline
+318,319d326
+<   - get
+<   - list
+321c328
+<   - update
+---
+>   - get
+326a334,335
+>   - create
+>   - get
+327a337,365
+>   - watch
+>   - delete
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - pipelineruns
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - results.tekton.dev
+>   resources:
+>   - results
+>   - records
+>   verbs:
+>   - get
+>   - list
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/portforward
+>   verbs:
+>   - create
+> - apiGroups:
+>   - apps
+>   resources:
+>   - deployments
+>   verbs:
+>   - get
+>   - patch
+495,498c533
+<   name: cqi
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: mkosiarc
+---
+>   name: sbose78
+502,510d536
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: rcerven
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: susdas
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: tnevrlka
