@@ -1,0 +1,76 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-50e146c7/development/components/release/kustomize.out.yaml ./kustomized-cache/commit-dd8deeb3/development/components/release/kustomize.out.yaml
+448,505d447
+<   name: releaseserviceconfigs.appstudio.redhat.com
+< spec:
+<   group: appstudio.redhat.com
+<   names:
+<     kind: ReleaseServiceConfig
+<     listKind: ReleaseServiceConfigList
+<     plural: releaseserviceconfigs
+<     singular: releaseserviceconfig
+<   scope: Namespaced
+<   versions:
+<   - name: v1alpha1
+<     schema:
+<       openAPIV3Schema:
+<         description: ReleaseServiceConfig is the Schema for the releaseserviceconfigs
+<           API
+<         properties:
+<           apiVersion:
+<             description: 'APIVersion defines the versioned schema of this representation
+<               of an object. Servers should convert recognized schemas to the latest
+<               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+<             type: string
+<           kind:
+<             description: 'Kind is a string value representing the REST resource this
+<               object represents. Servers may infer this from the endpoint the client
+<               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+<             type: string
+<           metadata:
+<             type: object
+<           spec:
+<             description: ReleaseServiceConfigSpec defines the desired state of ReleaseServiceConfig.
+<             properties:
+<               debug:
+<                 description: Debug is the boolean that specifies whether or not the
+<                   Release Service should run in debug mode
+<                 type: boolean
+<             type: object
+<           status:
+<             description: ReleaseServiceConfigStatus defines the observed state of
+<               ReleaseServiceConfig.
+<             type: object
+<         type: object
+<     served: true
+<     storage: true
+<     subresources:
+<       status: {}
+< status:
+<   acceptedNames:
+<     kind: ""
+<     plural: ""
+<   conditions: []
+<   storedVersions: []
+< ---
+< apiVersion: apiextensions.k8s.io/v1
+< kind: CustomResourceDefinition
+< metadata:
+<   annotations:
+<     controller-gen.kubebuilder.io/version: v0.8.0
+<   creationTimestamp: null
+834,840d775
+<   - appstudio.redhat.com
+<   resources:
+<   - releaseserviceconfigs
+<   verbs:
+<   - get
+<   - list
+< - apiGroups:
+1533,1537c1468
+<         - name: SERVICE_NAMESPACE
+<           valueFrom:
+<             fieldRef:
+<               fieldPath: metadata.namespace
+<         image: quay.io/redhat-appstudio/release-service:ef5def6e34f95b650bb32b8e053a9dece62e99bf
+---
+>         image: quay.io/redhat-appstudio/release-service:6a1803e18c2f9b1a57b0bf4495a76370d46b75c8
