@@ -1,0 +1,15 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2536c68b/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-ffe411cf/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1806c1806
+<   refreshInterval: 5m
+---
+>   refreshInterval: 1h
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2536c68b/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-ffe411cf/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1806c1806
+<   refreshInterval: 5m
+---
+>   refreshInterval: 1h
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2536c68b/staging/components/sprayproxy/staging/kustomize.out.yaml ./kustomized-cache/commit-ffe411cf/staging/components/sprayproxy/staging/kustomize.out.yaml
+273c273
+<   refreshInterval: 5m
+---
+>   refreshInterval: 1h

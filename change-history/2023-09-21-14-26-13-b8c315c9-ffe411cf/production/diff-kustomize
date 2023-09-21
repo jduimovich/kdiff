@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ffe411cf/production/components/authentication/production/kustomize.out.yaml ./kustomized-cache/commit-b8c315c9/production/components/authentication/production/kustomize.out.yaml
+259,266d258
+<   - config.openshift.io
+<   resources:
+<   - '*'
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+273,278d264
+<   verbs:
+<   - '*'
+< - apiGroups:
+<   - operators.coreos.com
+<   resources:
+<   - '*'

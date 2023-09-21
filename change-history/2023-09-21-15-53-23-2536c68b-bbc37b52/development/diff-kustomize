@@ -1,0 +1,198 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bbc37b52/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-2536c68b/development/components/pipeline-service/development/kustomize.out.yaml
+252a253,316
+>   name: pipeline-maintainer
+> rules:
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - installplans
+>   verbs:
+>   - get
+>   - list
+>   - update
+>   - patch
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - pipeline
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - patch
+>   - get
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+>   - delete
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - pipelineruns
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - results.tekton.dev
+>   resources:
+>   - results
+>   - records
+>   - logs
+>   verbs:
+>   - get
+>   - list
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/portforward
+>   verbs:
+>   - create
+> - apiGroups:
+>   - apps
+>   resources:
+>   - deployments
+>   verbs:
+>   - get
+>   - patch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+295c359
+<   - ""
+---
+>   - operators.coreos.com
+297c361
+<   - secrets
+---
+>   - installplans
+298a363
+>   - get
+300c365,366
+<   - delete
+---
+>   - update
+>   - patch
+302,304c368
+<   - ""
+<   resourceNames:
+<   - appstudio-pipeline
+---
+>   - tekton.dev
+306c370,377
+<   - serviceaccounts
+---
+>   - clustertasks
+>   - conditions
+>   - pipelineresources
+>   - pipelineruns
+>   - pipelines
+>   - runs
+>   - taskruns
+>   - tasks
+309a381,384
+>   - watch
+>   - create
+>   - delete
+>   - patch
+311,313d385
+<   - pipelinesascode.tekton.dev
+<   - results.tekton.dev
+<   - tekton.dev
+316c388,393
+<   - '*'
+---
+>   - clusterinterceptors
+>   - clustertriggerbindings
+>   - eventlisteners
+>   - triggerbindings
+>   - triggers
+>   - triggertemplates
+317a395,397
+>   - get
+>   - list
+>   - watch
+319a400,405
+>   - patch
+> - apiGroups:
+>   - pipelinesascode.tekton.dev
+>   resources:
+>   - repositories
+>   verbs:
+321a408,410
+>   - watch
+>   - create
+>   - delete
+322a412,422
+> - apiGroups:
+>   - results.tekton.dev
+>   resources:
+>   - results
+>   - records
+>   - logs
+>   verbs:
+>   - get
+>   - list
+>   - create
+>   - delete
+324d423
+<   - watch
+623,644d721
+<   name: pipeline-service-sre
+<   namespace: openshift-pipelines
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-admin
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: pipeline-grp
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: sbose78
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: jduimovich
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+712,733d788
+<   name: pipeline-service-sre
+<   namespace: tekton-results
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: tekton-results-admin
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: pipeline-grp
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: sbose78
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: jduimovich
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+827,832d881
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: sbose78
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: jduimovich

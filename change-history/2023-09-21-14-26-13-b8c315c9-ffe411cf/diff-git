@@ -1,0 +1,32 @@
+diff --git a/components/authentication/base/rhtap-admins.yaml b/components/authentication/base/rhtap-admins.yaml
+index da34ab09..f93d5631 100644
+--- a/components/authentication/base/rhtap-admins.yaml
++++ b/components/authentication/base/rhtap-admins.yaml
+@@ -188,6 +188,14 @@ rules:
+       - buildlogs
+     verbs:
+       - '*'
++  - apiGroups:
++      - config.openshift.io
++    resources:
++      - '*'
++    verbs:
++      - get
++      - list
++      - watch
+   - apiGroups:
+       - image.openshift.io
+     resources:
+@@ -197,6 +205,12 @@ rules:
+       - imagetags
+     verbs:
+       - '*'
++  - apiGroups:
++      - operators.coreos.com
++    resources:
++      - '*'
++    verbs:
++      - '*'
+   - apiGroups:
+       - route.openshift.io
+     resources:

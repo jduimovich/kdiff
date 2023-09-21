@@ -1,0 +1,52 @@
+diff --git a/components/pipeline-service/production/base/pipelines-as-code-secret.yaml b/components/pipeline-service/production/base/pipelines-as-code-secret.yaml
+index 90c2c582..53220869 100644
+--- a/components/pipeline-service/production/base/pipelines-as-code-secret.yaml
++++ b/components/pipeline-service/production/base/pipelines-as-code-secret.yaml
+@@ -10,7 +10,7 @@ spec:
+   dataFrom:
+     - extract:
+         key: production/pipeline-service/github-app
+-  refreshInterval: 1h
++  refreshInterval: 5m
+   secretStoreRef:
+     kind: ClusterSecretStore
+     name: appsre-stonesoup-vault
+diff --git a/components/pipeline-service/staging/base/pipelines-as-code-secret.yaml b/components/pipeline-service/staging/base/pipelines-as-code-secret.yaml
+index c40ce73e..3609d953 100644
+--- a/components/pipeline-service/staging/base/pipelines-as-code-secret.yaml
++++ b/components/pipeline-service/staging/base/pipelines-as-code-secret.yaml
+@@ -10,7 +10,7 @@ spec:
+   dataFrom:
+     - extract:
+         key: staging/pipeline-service/github-app
+-  refreshInterval: 1h
++  refreshInterval: 5m
+   secretStoreRef:
+     kind: ClusterSecretStore
+     name: appsre-stonesoup-vault
+diff --git a/components/sprayproxy/production/pipelines-as-code-secret.yaml b/components/sprayproxy/production/pipelines-as-code-secret.yaml
+index e58d37a8..11ffb5d6 100644
+--- a/components/sprayproxy/production/pipelines-as-code-secret.yaml
++++ b/components/sprayproxy/production/pipelines-as-code-secret.yaml
+@@ -9,7 +9,7 @@ spec:
+   dataFrom:
+     - extract:
+         key: production/pipeline-service/github-app
+-  refreshInterval: 1h
++  refreshInterval: 5m
+   secretStoreRef:
+     kind: ClusterSecretStore
+     name: appsre-stonesoup-vault
+diff --git a/components/sprayproxy/staging/pipelines-as-code-secret.yaml b/components/sprayproxy/staging/pipelines-as-code-secret.yaml
+index 3aa1ec9f..4663435f 100644
+--- a/components/sprayproxy/staging/pipelines-as-code-secret.yaml
++++ b/components/sprayproxy/staging/pipelines-as-code-secret.yaml
+@@ -9,7 +9,7 @@ spec:
+   dataFrom:
+     - extract:
+         key: staging/pipeline-service/github-app
+-  refreshInterval: 1h
++  refreshInterval: 5m
+   secretStoreRef:
+     kind: ClusterSecretStore
+     name: appsre-stonesoup-vault
