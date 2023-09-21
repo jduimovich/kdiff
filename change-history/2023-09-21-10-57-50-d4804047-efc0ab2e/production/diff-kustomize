@@ -1,0 +1,34 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-efc0ab2e/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-d4804047/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml
+3717c3717
+<         image: quay.io/redhat-appstudio/gitops-service:4dd54285385edf4438aaa9be0d170e72478c89a6
+---
+>         image: quay.io/redhat-appstudio/gitops-service:67523b5a8bc26c0f41bdc759962bb425a34735f1
+3831,3833c3831
+<         - name: ENABLE_APPPROJECT_ISOLATION
+<           value: "true"
+<         image: quay.io/redhat-appstudio/gitops-service:4dd54285385edf4438aaa9be0d170e72478c89a6
+---
+>         image: quay.io/redhat-appstudio/gitops-service:67523b5a8bc26c0f41bdc759962bb425a34735f1
+3944,3946c3942
+<         - name: ENABLE_APPPROJECT_ISOLATION
+<           value: "true"
+<         image: quay.io/redhat-appstudio/gitops-service:4dd54285385edf4438aaa9be0d170e72478c89a6
+---
+>         image: quay.io/redhat-appstudio/gitops-service:67523b5a8bc26c0f41bdc759962bb425a34735f1
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-efc0ab2e/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-d4804047/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml
+3703c3703
+<         image: quay.io/redhat-appstudio/gitops-service:4dd54285385edf4438aaa9be0d170e72478c89a6
+---
+>         image: quay.io/redhat-appstudio/gitops-service:67523b5a8bc26c0f41bdc759962bb425a34735f1
+3817,3819c3817
+<         - name: ENABLE_APPPROJECT_ISOLATION
+<           value: "true"
+<         image: quay.io/redhat-appstudio/gitops-service:4dd54285385edf4438aaa9be0d170e72478c89a6
+---
+>         image: quay.io/redhat-appstudio/gitops-service:67523b5a8bc26c0f41bdc759962bb425a34735f1
+3930,3932c3928
+<         - name: ENABLE_APPPROJECT_ISOLATION
+<           value: "true"
+<         image: quay.io/redhat-appstudio/gitops-service:4dd54285385edf4438aaa9be0d170e72478c89a6
+---
+>         image: quay.io/redhat-appstudio/gitops-service:67523b5a8bc26c0f41bdc759962bb425a34735f1

@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-efc0ab2e/development/components/gitops/development/kustomize.out.yaml ./kustomized-cache/commit-d4804047/development/components/gitops/development/kustomize.out.yaml
+3392c3392
+<         image: quay.io/redhat-appstudio/gitops-service:4dd54285385edf4438aaa9be0d170e72478c89a6
+---
+>         image: quay.io/redhat-appstudio/gitops-service:67523b5a8bc26c0f41bdc759962bb425a34735f1
+3495,3497c3495
+<         - name: ENABLE_APPPROJECT_ISOLATION
+<           value: "true"
+<         image: quay.io/redhat-appstudio/gitops-service:4dd54285385edf4438aaa9be0d170e72478c89a6
+---
+>         image: quay.io/redhat-appstudio/gitops-service:67523b5a8bc26c0f41bdc759962bb425a34735f1
+3597,3599c3595
+<         - name: ENABLE_APPPROJECT_ISOLATION
+<           value: "true"
+<         image: quay.io/redhat-appstudio/gitops-service:4dd54285385edf4438aaa9be0d170e72478c89a6
+---
+>         image: quay.io/redhat-appstudio/gitops-service:67523b5a8bc26c0f41bdc759962bb425a34735f1
