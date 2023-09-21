@@ -1,0 +1,23 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b55f3fc7/production/components/jvm-build-service/production/kustomize.out.yaml ./kustomized-cache/commit-b6c5c0e5/production/components/jvm-build-service/production/kustomize.out.yaml
+696,697d695
+<                   secretName:
+<                     type: string
+735,736d732
+<               secretName:
+<                 type: string
+752,753d747
+<                     secretName:
+<                       type: string
+773,774d766
+<                   secretName:
+<                     type: string
+1205c1197
+<   - imagerepositories
+---
+>   - spiaccesstokenbindings
+1445,1446c1437,1438
+<           value: f95009538ceafa73448dce142b75bddd6f073bbc
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:f95009538ceafa73448dce142b75bddd6f073bbc
+---
+>           value: 8d0f3e447e81965939e00b29624beaf35efbaa90
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:8d0f3e447e81965939e00b29624beaf35efbaa90
