@@ -1,0 +1,65 @@
+diff --git a/components/has/OWNERS b/components/has/OWNERS
+index 9eb9055a..8878f681 100644
+--- a/components/has/OWNERS
++++ b/components/has/OWNERS
+@@ -6,7 +6,6 @@ approvers:
+ - kim-tsao
+ - maysunfaisal
+ - michael-valdron
+-- mike-hoang
+ - thepetk
+ - yangcao77
+ 
+@@ -16,6 +15,5 @@ reviewers:
+ - kim-tsao
+ - maysunfaisal
+ - michael-valdron
+-- mike-hoang
+ - thepetk
+ - yangcao77
+diff --git a/components/has/base/rbac/has-admin.yaml b/components/has/base/rbac/has-admin.yaml
+index 10a0fc7c..6a62a436 100644
+--- a/components/has/base/rbac/has-admin.yaml
++++ b/components/has/base/rbac/has-admin.yaml
+@@ -34,8 +34,6 @@ subjects:
+     name: yangcao77
+   - kind: User
+     name: thepetk
+-  - kind: User
+-    name: mike-hoang
+   - kind: User
+     name: michael-valdron
+ roleRef:
+diff --git a/components/has/base/rbac/has.yaml b/components/has/base/rbac/has.yaml
+index dc2eb2b1..5f863e4f 100644
+--- a/components/has/base/rbac/has.yaml
++++ b/components/has/base/rbac/has.yaml
+@@ -25,9 +25,6 @@ subjects:
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: thepetk
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: mike-hoang
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: michael-valdron
+diff --git a/components/monitoring/grafana/base/dashboards/has/OWNERS b/components/monitoring/grafana/base/dashboards/has/OWNERS
+index 9eb9055a..8878f681 100644
+--- a/components/monitoring/grafana/base/dashboards/has/OWNERS
++++ b/components/monitoring/grafana/base/dashboards/has/OWNERS
+@@ -6,7 +6,6 @@ approvers:
+ - kim-tsao
+ - maysunfaisal
+ - michael-valdron
+-- mike-hoang
+ - thepetk
+ - yangcao77
+ 
+@@ -16,6 +15,5 @@ reviewers:
+ - kim-tsao
+ - maysunfaisal
+ - michael-valdron
+-- mike-hoang
+ - thepetk
+ - yangcao77

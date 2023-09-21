@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9f9aad48/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-3dece441/staging/components/authentication/staging/kustomize.out.yaml
+98d97
+<   - internalrequests
+313,319d311
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - rbac.authorization.k8s.io
+<   resources:
+322,323d313
+<   - create
+<   - delete

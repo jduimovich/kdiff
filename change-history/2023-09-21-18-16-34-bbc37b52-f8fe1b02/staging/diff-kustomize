@@ -1,0 +1,8 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f8fe1b02/staging/components/has/staging/kustomize.out.yaml ./kustomized-cache/commit-bbc37b52/staging/components/has/staging/kustomize.out.yaml
+568a569,571
+>   name: mike-hoang
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+604a608,609
+> - kind: User
+>   name: mike-hoang

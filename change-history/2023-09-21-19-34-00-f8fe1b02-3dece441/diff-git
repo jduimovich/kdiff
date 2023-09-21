@@ -1,0 +1,177 @@
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-dvo-for-all-cluster/enable-dvo.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-dvo-for-all-cluster/enable-dvo.yaml
+new file mode 100644
+index 00000000..a3dfb3f0
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-dvo-for-all-cluster/enable-dvo.yaml
+@@ -0,0 +1,41 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: enable-dvo
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: configs/enable-dvo-for-all-cluster
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: enable-dvo-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: configs/enable-dvo-for-all-cluster
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: deployment-validation-operator
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/enable-dvo-for-all-cluster/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/enable-dvo-for-all-cluster/kustomization.yaml
+new file mode 100644
+index 00000000..38b19cfd
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/enable-dvo-for-all-cluster/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - enable-dvo.yaml
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+index 9d6d38e3..2dee7e9b 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+@@ -9,6 +9,7 @@ resources:
+   - monitoring-workload-logging
+   - authentication
+   - disable-csvcopy-for-all-cluster
++  - enable-dvo-for-all-cluster
+ 
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/configs/enable-dvo-for-all-cluster/configure-dvo.yaml b/configs/enable-dvo-for-all-cluster/configure-dvo.yaml
+new file mode 100644
+index 00000000..cdcc2d36
+--- /dev/null
++++ b/configs/enable-dvo-for-all-cluster/configure-dvo.yaml
+@@ -0,0 +1,42 @@
++---
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: deployment-validation-operator-config
++  namespace: deployment-validation-operator
++  labels:
++    name: deployment-validation-operator
++data:
++  deployment-validation-operator-config.yaml: |-
++    checks:
++      doNotAutoAddDefaults: true
++      addAllBuiltIn: false
++      include:
++      - "host-ipc"
++      - "host-network"
++      - "host-pid"
++      - "non-isolated-pod"
++      - "pdb-max-unavailable"
++      - "pdb-min-available"
++      - "privilege-escalation-container"
++      - "privileged-container"
++      - "run-as-non-root"
++      - "unsafe-sysctls"
++      - "unset-cpu-requirements"
++      - "unset-memory-requirements"
++---
++apiVersion: v1
++kind: Service
++metadata:
++  labels:
++    name: deployment-validation-operator
++  name: deployment-validation-operator-metrics
++  namespace: deployment-validation-operator
++spec:
++  ports:
++  - name: http-metrics
++    port: 8383
++    protocol: TCP
++    targetPort: 8383
++  selector:
++    name: deployment-validation-operator
+diff --git a/configs/enable-dvo-for-all-cluster/install-dvo.yaml b/configs/enable-dvo-for-all-cluster/install-dvo.yaml
+new file mode 100644
+index 00000000..4ca5d9aa
+--- /dev/null
++++ b/configs/enable-dvo-for-all-cluster/install-dvo.yaml
+@@ -0,0 +1,42 @@
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: CatalogSource
++metadata:
++  name: deployment-validation-operator-catalog
++  labels:
++    name: deployment-validation-operator
++spec:
++  displayName: Deployment Validation Operator
++  grpcPodConfig:
++    securityContextConfig: restricted
++  image: quay.io/app-sre/deployment-validation-operator-catalog:latest
++  publisher: OperatorHub.io
++  sourceType: grpc
++
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  name: deployment-validation-operator
++  labels:
++    name: deployment-validation-operator
++  namespace: deployment-validation-operator
++spec:
++  channel: alpha
++  installPlanApproval: Automatic
++  name: deployment-validation-operator
++  source: community-operators
++  sourceNamespace: openshift-marketplace
++  startingCSV: deployment-validation-operator.v0.6.0
++
++---
++apiVersion: operators.coreos.com/v1
++kind: OperatorGroup
++metadata:
++  name: deployment-validation-operator
++  labels:
++    name: deployment-validation-operator
++  namespace: deployment-validation-operator
++spec:
++  targetNamespaces:
++  - deployment-validation-operator
+diff --git a/configs/enable-dvo-for-all-cluster/kustomization.yaml b/configs/enable-dvo-for-all-cluster/kustomization.yaml
+new file mode 100644
+index 00000000..9b57c29a
+--- /dev/null
++++ b/configs/enable-dvo-for-all-cluster/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: deployment-validation-operator
++resources:
++  - install-dvo.yaml
++  - configure-dvo.yaml
