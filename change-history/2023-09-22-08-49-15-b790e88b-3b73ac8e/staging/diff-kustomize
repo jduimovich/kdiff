@@ -1,0 +1,19 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3b73ac8e/staging/components/multi-arch-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-b790e88b/staging/components/multi-arch-controller/staging/kustomize.out.yaml
+214,228d213
+<   host.host1.address: ec2-54-165-44-192.compute-1.amazonaws.com
+<   host.host1.concurrency: "4"
+<   host.host1.platform: linux/arm64
+<   host.host1.secret: awskeys
+<   host.host1.user: ec2-user
+<   host.ibmz1.address: 169.63.188.21
+<   host.ibmz1.concurrency: "4"
+<   host.ibmz1.platform: linux/s390x
+<   host.ibmz1.secret: awskeys
+<   host.ibmz1.user: root
+<   host.ppc1.address: 150.240.147.198
+<   host.ppc1.concurrency: "4"
+<   host.ppc1.platform: linux/ppc64le
+<   host.ppc1.secret: awskeys
+<   host.ppc1.user: root
+248d232
+<     build.appstudio.redhat.com/multi-platform-config: hosts
