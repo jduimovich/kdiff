@@ -1,0 +1,107 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b790e88b/production/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-9f9aad48/production/components/enterprise-contract/kustomize.out.yaml
+233c233
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:306267989ecea379471646ef0dee97255c920634@sha256:0fdef06f78674fa2419b795a367b75076c4aedcf0947aa22d957471412cb3bbb
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:2aa427bc12fab0cc5fdda95085f73534d3fd86f2@sha256:664b782af26a3b175d1f64f642b42014110d6d8a801a885313c0209b2b56d72a
+235c235
+<   verify_ec_task_git_revision: 306267989ecea379471646ef0dee97255c920634
+---
+>   verify_ec_task_git_revision: 2aa427bc12fab0cc5fdda95085f73534d3fd86f2
+248,257c248,250
+<   configuration:
+<     exclude:
+<     - step_image_registries
+<     include:
+<     - '*'
+<   description: Include every rule in the default policy source. For experiments only.
+<     This is not expected to pass for RHTAP builds without excluding some rules. Available
+<     collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
+<     If a different policy configuration is desired, this resource can serve as a starting
+<     point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
+---
+>   configuration: {}
+>   description: |
+>     Evaluate components with all of the available policy rules. The policy rules are described in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html
+262,263c255,256
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:85431601d5d50520d6de63f649d37943a68c86de0a62228dab30a7774fa074c0
+<     name: Default
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:021515caf0a4fb6455ada88fcd155baef5b5e5e229e62a587c44e0ff8c5024a0
+>     name: Release Policies
+265c258
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-89e9175@sha256:5b58d42b9392263eab7824ab5278e3a0e9ff57243c189ef63d24bf2867abf128
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-1f33b3b@sha256:e9a2feafa17a2b189b20376e29d787a2f7816885491bd19ea37d4e95876ed380
+277,326d269
+<     - '@slsa1'
+<     - '@slsa2'
+<     - '@slsa3'
+<   description: Includes rules for levels 1, 2 & 3 of SLSA v0.1. This is the default
+<     config used for new RHTAP applications. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
+<     If a different policy configuration is desired, this resource can serve as a starting
+<     point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
+<   publicKey: k8s://openshift-pipelines/public-key
+<   sources:
+<   - data:
+<     - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:85431601d5d50520d6de63f649d37943a68c86de0a62228dab30a7774fa074c0
+<     name: Default
+<     policy:
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-89e9175@sha256:5b58d42b9392263eab7824ab5278e3a0e9ff57243c189ef63d24bf2867abf128
+< ---
+< apiVersion: appstudio.redhat.com/v1alpha1
+< kind: EnterpriseContractPolicy
+< metadata:
+<   name: redhat
+<   namespace: enterprise-contract-service
+< spec:
+<   configuration:
+<     exclude:
+<     - step_image_registries
+<     include:
+<     - '@redhat'
+<   description: Includes the full set of rules and policies required internally by
+<     Red Hat when building Red Hat products. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
+<     If a different policy configuration is desired, this resource can serve as a starting
+<     point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
+<   publicKey: k8s://openshift-pipelines/public-key
+<   sources:
+<   - data:
+<     - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:85431601d5d50520d6de63f649d37943a68c86de0a62228dab30a7774fa074c0
+<     name: Default
+<     policy:
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-89e9175@sha256:5b58d42b9392263eab7824ab5278e3a0e9ff57243c189ef63d24bf2867abf128
+< ---
+< apiVersion: appstudio.redhat.com/v1alpha1
+< kind: EnterpriseContractPolicy
+< metadata:
+<   name: slsa3
+<   namespace: enterprise-contract-service
+< spec:
+<   configuration:
+<     exclude:
+<     - step_image_registries
+<     include:
+328,335c271,272
+<     - '@slsa1'
+<     - '@slsa2'
+<     - '@slsa3'
+<   description: Rules specifically related to levels 1, 2 & 3 of SLSA v0.1, plus a
+<     set of basic checks that are expected to pass for all RHTAP builds. Available
+<     collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
+<     If a different policy configuration is desired, this resource can serve as a starting
+<     point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
+---
+>   description: |
+>     Use the policy rules from the "minimal" collection. This and other collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections The minimal collection is a small set of policy rules that should be easy to pass for brand new Stonesoup users. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules
+340,341c277,278
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:85431601d5d50520d6de63f649d37943a68c86de0a62228dab30a7774fa074c0
+<     name: Default
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:021515caf0a4fb6455ada88fcd155baef5b5e5e229e62a587c44e0ff8c5024a0
+>     name: Release Policies
+343c280
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-89e9175@sha256:5b58d42b9392263eab7824ab5278e3a0e9ff57243c189ef63d24bf2867abf128
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-1f33b3b@sha256:e9a2feafa17a2b189b20376e29d787a2f7816885491bd19ea37d4e95876ed380
