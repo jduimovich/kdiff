@@ -1,0 +1,53 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37a82011/development/app-of-apps-development.yaml ./kustomized-cache/commit-8291ecc5/development/app-of-apps-development.yaml
+280a281,331
+>   name: enable-dvo
+>   namespace: openshift-gitops
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchExpressions:
+>             - key: app.kubernetes.io/name
+>               operator: NotIn
+>               values:
+>               - argocd-default-cluster-config
+>             matchLabels:
+>               argocd.argoproj.io/secret-type: cluster
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: configs/enable-dvo-for-all-cluster
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: enable-dvo-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: deployment-validation-operator
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: configs/enable-dvo-for-all-cluster
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
