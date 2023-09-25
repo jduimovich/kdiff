@@ -1,0 +1,47 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f1d532aa/production/app-of-apps-production.yaml ./kustomized-cache/commit-d086624f/production/app-of-apps-production.yaml
+736,780d735
+<   name: ingresscontroller
+<   namespace: argocd
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/host-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: ""
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: ingresscontroller-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: openshift-ingress-operator
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: configs/ingresscontroller
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: -1
+<         syncOptions:
+<         - CreateNamespace=false
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:

@@ -1,0 +1,124 @@
+diff --git a/argo-cd-apps/base/host/ingresscontroller/ingresscontroller.yaml b/argo-cd-apps/base/host/ingresscontroller/ingresscontroller.yaml
+new file mode 100644
+index 00000000..87d51f18
+--- /dev/null
++++ b/argo-cd-apps/base/host/ingresscontroller/ingresscontroller.yaml
+@@ -0,0 +1,40 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: ingresscontroller
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                environment: ""
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: ingresscontroller-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: configs/ingresscontroller
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: openshift-ingress-operator
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=false
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/base/host/ingresscontroller/kustomization.yaml b/argo-cd-apps/base/host/ingresscontroller/kustomization.yaml
+new file mode 100644
+index 00000000..4e977cd8
+--- /dev/null
++++ b/argo-cd-apps/base/host/ingresscontroller/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ingresscontroller.yaml
++components:
++  - ../../../k-components/inject-infra-deployments-repo-details
+\ No newline at end of file
+diff --git a/argo-cd-apps/base/host/kustomization.yaml b/argo-cd-apps/base/host/kustomization.yaml
+index 79818233..1f1d0bb8 100644
+--- a/argo-cd-apps/base/host/kustomization.yaml
++++ b/argo-cd-apps/base/host/kustomization.yaml
+@@ -4,6 +4,7 @@ resources:
+   - sprayproxy
+   - toolchain-host-operator
+   - segment-bridge
++  - ingresscontroller
+ components:
+   - ../../k-components/deploy-to-host-cluster-merge-generator
+   - ../../k-components/inject-argocd-namespace
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index 2db9c706..efc70151 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -92,4 +92,9 @@ patches:
+     target:
+       kind: ApplicationSet
+       version: v1alpha1
+-      name: toolchain-member-operator
+\ No newline at end of file
++      name: toolchain-member-operator
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: ingresscontroller
+\ No newline at end of file
+diff --git a/configs/ingresscontroller/kustomization.yaml b/configs/ingresscontroller/kustomization.yaml
+new file mode 100644
+index 00000000..c03209b9
+--- /dev/null
++++ b/configs/ingresscontroller/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - timeout-patch.yaml
+\ No newline at end of file
+diff --git a/configs/ingresscontroller/timeout-patch.yaml b/configs/ingresscontroller/timeout-patch.yaml
+new file mode 100644
+index 00000000..56e77758
+--- /dev/null
++++ b/configs/ingresscontroller/timeout-patch.yaml
+@@ -0,0 +1,17 @@
++apiVersion: operator.openshift.io/v1
++kind: IngressController
++metadata:
++  name: default
++  namespace: openshift-ingress-operator
++spec:
++  endpointPublishingStrategy:
++    loadBalancer:
++      dnsManagementPolicy: Managed
++      providerParameters:
++        aws:
++          classicLoadBalancer:
++            connectionIdleTimeout: 30m
++          type: Classic
++        type: AWS
++      scope: External
++    type: LoadBalancerService
+\ No newline at end of file
