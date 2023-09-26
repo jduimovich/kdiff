@@ -1,0 +1,21 @@
+diff --git a/components/authentication/base/rhtap-admins.yaml b/components/authentication/base/rhtap-admins.yaml
+index d0c3c6e6..365a4cf5 100644
+--- a/components/authentication/base/rhtap-admins.yaml
++++ b/components/authentication/base/rhtap-admins.yaml
+@@ -90,6 +90,7 @@ rules:
+       - machinesets
+       - machines
+     verbs:
++      - delete
+       - get
+       - list
+       - watch
+@@ -116,6 +117,8 @@ rules:
+       - imagestreams
+       - imagetags
+       - limitranges
++      - namespaces
++      - nodes
+       - persistentvolumeclaims
+       - pods
+       - pods/attach

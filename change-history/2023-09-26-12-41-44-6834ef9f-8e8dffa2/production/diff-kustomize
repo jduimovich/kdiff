@@ -1,0 +1,6 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8e8dffa2/production/components/authentication/production/kustomize.out.yaml ./kustomized-cache/commit-6834ef9f/production/components/authentication/production/kustomize.out.yaml
+160d159
+<   - delete
+187,188d185
+<   - namespaces
+<   - nodes
