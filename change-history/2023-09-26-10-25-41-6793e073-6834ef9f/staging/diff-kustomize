@@ -1,0 +1,56 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6834ef9f/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-6793e073/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+3711c3711
+<         image: quay.io/redhat-appstudio/gitops-service:a806d492df5093f95ca9d40e762b3a59928b9d9b
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6c6550ab596fbd047020df70497b2bd0d89fd20b
+3827c3827
+<         image: quay.io/redhat-appstudio/gitops-service:a806d492df5093f95ca9d40e762b3a59928b9d9b
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6c6550ab596fbd047020df70497b2bd0d89fd20b
+3940c3940
+<         image: quay.io/redhat-appstudio/gitops-service:a806d492df5093f95ca9d40e762b3a59928b9d9b
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6c6550ab596fbd047020df70497b2bd0d89fd20b
+4089d4088
+<     execTimeout: 30
+4093,4094d4091
+<     - --parallelismlimit
+<     - "20"
+4099c4096
+<         memory: 2Gi
+---
+>         memory: 1Gi
+4101,4102c4098,4099
+<         cpu: 500m
+<         memory: 512Mi
+---
+>         cpu: 250m
+>         memory: 256Mi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6834ef9f/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-6793e073/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml
+3697c3697
+<         image: quay.io/redhat-appstudio/gitops-service:a806d492df5093f95ca9d40e762b3a59928b9d9b
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6c6550ab596fbd047020df70497b2bd0d89fd20b
+3813c3813
+<         image: quay.io/redhat-appstudio/gitops-service:a806d492df5093f95ca9d40e762b3a59928b9d9b
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6c6550ab596fbd047020df70497b2bd0d89fd20b
+3926c3926
+<         image: quay.io/redhat-appstudio/gitops-service:a806d492df5093f95ca9d40e762b3a59928b9d9b
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6c6550ab596fbd047020df70497b2bd0d89fd20b
+4075d4074
+<     execTimeout: 30
+4079,4080d4077
+<     - --parallelismlimit
+<     - "20"
+4085c4082
+<         memory: 2Gi
+---
+>         memory: 1Gi
+4087,4088c4084,4085
+<         cpu: 500m
+<         memory: 512Mi
+---
+>         cpu: 250m
+>         memory: 256Mi

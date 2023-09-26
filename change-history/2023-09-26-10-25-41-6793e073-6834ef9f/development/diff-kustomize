@@ -1,0 +1,28 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6834ef9f/development/components/gitops/development/kustomize.out.yaml ./kustomized-cache/commit-6793e073/development/components/gitops/development/kustomize.out.yaml
+3392c3392
+<         image: quay.io/redhat-appstudio/gitops-service:a806d492df5093f95ca9d40e762b3a59928b9d9b
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6c6550ab596fbd047020df70497b2bd0d89fd20b
+3497c3497
+<         image: quay.io/redhat-appstudio/gitops-service:a806d492df5093f95ca9d40e762b3a59928b9d9b
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6c6550ab596fbd047020df70497b2bd0d89fd20b
+3599c3599
+<         image: quay.io/redhat-appstudio/gitops-service:a806d492df5093f95ca9d40e762b3a59928b9d9b
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6c6550ab596fbd047020df70497b2bd0d89fd20b
+3839d3838
+<     execTimeout: 30
+3843,3844d3841
+<     - --parallelismlimit
+<     - "20"
+3849c3846
+<         memory: 2Gi
+---
+>         memory: 1Gi
+3851,3852c3848,3849
+<         cpu: 500m
+<         memory: 512Mi
+---
+>         cpu: 250m
+>         memory: 256Mi
