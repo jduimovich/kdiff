@@ -1,0 +1,104 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4b96a732/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-3909d256/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1505,1511d1504
+<           set -o errexit
+<           set -o nounset
+<           set -o pipefail
+< 
+<           namespace="openshift-pipelines"
+<           secret="signing-secrets"
+< 
+1513,1514c1506,1509
+< 
+<           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+---
+>           # Once the key-pair has been set it's marked as immutable so it can't be updated.
+>           # Try to handle that nicely. The object is expected to always exist so check the data.
+>           SIG_KEY_DATA=$(kubectl get secret signing-secrets -n openshift-pipelines -o jsonpath='{.data}')
+>           if [[ -n $SIG_KEY_DATA ]]; then
+1518c1513
+<             kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+---
+>             kubectl delete secrets -n openshift-pipelines signing-secrets --ignore-not-found=true
+1521c1516
+<             RANDOM_PASS=$( openssl rand -base64 30 )
+---
+>             RANDOM_PASS=$( head -c 12 /dev/urandom | base64 )
+1524,1534c1519,1520
+<             # The secret should be created as immutable.
+<             echo "Generating k8s secret/$secret in $namespace with key-pair"
+<             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+<           fi
+< 
+<           # If the secret is not marked as immutable, make it so.
+<           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+<             echo "Making secret immutable"
+<             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+<               --patch='{"immutable": true}' \
+<             | kubectl apply -f -
+---
+>             echo "Generating k8s secret/signing-secrets with key-pair"
+>             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair k8s://openshift-pipelines/signing-secrets
+1539c1525
+<             --namespace "$namespace" \
+---
+>             --namespace openshift-pipelines \
+1541c1527
+<               cosign public-key --key "k8s://$namespace/$secret"
+---
+>               cosign public-key --key k8s://openshift-pipelines/signing-secrets
+1545c1531
+<         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
+---
+>         image: quay.io/redhat-appstudio/appstudio-utils:eb94f28fe2d7c182f15e659d0fdb66f87b0b3b6b
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4b96a732/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-3909d256/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1505,1511d1504
+<           set -o errexit
+<           set -o nounset
+<           set -o pipefail
+< 
+<           namespace="openshift-pipelines"
+<           secret="signing-secrets"
+< 
+1513,1514c1506,1509
+< 
+<           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+---
+>           # Once the key-pair has been set it's marked as immutable so it can't be updated.
+>           # Try to handle that nicely. The object is expected to always exist so check the data.
+>           SIG_KEY_DATA=$(kubectl get secret signing-secrets -n openshift-pipelines -o jsonpath='{.data}')
+>           if [[ -n $SIG_KEY_DATA ]]; then
+1518c1513
+<             kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+---
+>             kubectl delete secrets -n openshift-pipelines signing-secrets --ignore-not-found=true
+1521c1516
+<             RANDOM_PASS=$( openssl rand -base64 30 )
+---
+>             RANDOM_PASS=$( head -c 12 /dev/urandom | base64 )
+1524,1534c1519,1520
+<             # The secret should be created as immutable.
+<             echo "Generating k8s secret/$secret in $namespace with key-pair"
+<             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+<           fi
+< 
+<           # If the secret is not marked as immutable, make it so.
+<           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+<             echo "Making secret immutable"
+<             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+<               --patch='{"immutable": true}' \
+<             | kubectl apply -f -
+---
+>             echo "Generating k8s secret/signing-secrets with key-pair"
+>             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair k8s://openshift-pipelines/signing-secrets
+1539c1525
+<             --namespace "$namespace" \
+---
+>             --namespace openshift-pipelines \
+1541c1527
+<               cosign public-key --key "k8s://$namespace/$secret"
+---
+>               cosign public-key --key k8s://openshift-pipelines/signing-secrets
+1545c1531
+<         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
+---
+>         image: quay.io/redhat-appstudio/appstudio-utils:eb94f28fe2d7c182f15e659d0fdb66f87b0b3b6b
