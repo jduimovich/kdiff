@@ -1,0 +1,12 @@
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index 0f6b6022..b54c97e1 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -5,7 +5,6 @@ resources:
+   - ../../base/member
+   - ../../base/all-clusters
+   - ../../base/tekton-ci
+-  - ../../base/ci-workspaces
+   - ../../base/tenants-config
+   - ../../base/cluster-secret-store-rh
+   - ../../base/rh-managed-workspaces-config
