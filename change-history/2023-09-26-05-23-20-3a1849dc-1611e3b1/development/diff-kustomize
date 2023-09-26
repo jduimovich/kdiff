@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1611e3b1/development/components/multi-arch-controller/development/kustomize.out.yaml ./kustomized-cache/commit-3a1849dc/development/components/multi-arch-controller/development/kustomize.out.yaml
+280c280
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:35506e482b297e26bc88e27282d299076a91900e
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:d6317a12ca5f1b91bf1ccdc3a21c12de7aa20342
+398c398
+<         user-dir: "$DIR"
+---
+>         build-dir: "$DIR"
+404c404
+<           build.appstudio.redhat.com/multi-platform-secret: "true"
+---
+>           build.appstudio.redhat.com/multi-arch-secret: "true"
