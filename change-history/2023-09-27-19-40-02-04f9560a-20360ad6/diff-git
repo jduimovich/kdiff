@@ -1,0 +1,69 @@
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 793a3bac..8967af56 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -33,7 +33,6 @@ spec:
+         - quality-dashboard
+         - spi-system
+         - group-sync-operator
+-        - tekton-chains
+         - build-templates
+         - build-service
+         - tekton-ci
+diff --git a/components/cluster-secret-store/staging/cluster-secret-store-patch.yaml b/components/cluster-secret-store/staging/cluster-secret-store-patch.yaml
+deleted file mode 100644
+index f4e85acc..00000000
+--- a/components/cluster-secret-store/staging/cluster-secret-store-patch.yaml
++++ /dev/null
+@@ -1,26 +0,0 @@
+-# cluster-secret-store-patch.yaml
+-apiVersion: external-secrets.io/v1beta1
+-kind: ClusterSecretStore
+-metadata:
+-  name: appsre-stonesoup-vault
+-spec:
+-  conditions:
+-    - namespaces:
+-      - dora-metrics
+-      - application-service
+-      - appstudio-workload-monitoring
+-      - quality-dashboard
+-      - spi-system
+-      - group-sync-operator
+-      - build-templates
+-      - build-service
+-      - tekton-ci
+-      - image-controller
+-      - multi-platform-controller
+-      - jvm-build-service
+-      - openshift-logging
+-      - sprayproxy
+-      - appstudio-monitoring
+-      - openshift-pipelines
+-      - rhtap-servicerelease-tenant
+-      - rhtap-build-tenant
+diff --git a/components/cluster-secret-store/staging/kustomization.yaml b/components/cluster-secret-store/staging/kustomization.yaml
+index d0304746..27bb5cb0 100644
+--- a/components/cluster-secret-store/staging/kustomization.yaml
++++ b/components/cluster-secret-store/staging/kustomization.yaml
+@@ -2,7 +2,3 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-
+-# remove `tekton-chains` ns from appsre-stonesoup-vault
+-patchesStrategicMerge:
+-  - cluster-secret-store-patch.yaml
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 719a5bbf..b65264ea 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=0ec317814d86b591df6d40fd0b11567ff5a477ea
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=4e8ed916b4d1c8d47da0da59ebabf852c5a5bebb
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing

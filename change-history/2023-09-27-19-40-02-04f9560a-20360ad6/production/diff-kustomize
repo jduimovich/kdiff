@@ -1,0 +1,663 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-20360ad6/production/components/cluster-secret-store/production/kustomize.out.yaml ./kustomized-cache/commit-04f9560a/production/components/cluster-secret-store/production/kustomize.out.yaml
+15a16
+>     - tekton-chains
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-20360ad6/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-04f9560a/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+15a16,25
+>   name: tekton-chains
+> ---
+> apiVersion: v1
+> kind: Namespace
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+>   labels:
+>     argocd.argoproj.io/managed-by: openshift-gitops
+24c34
+<   name: chains-secrets-admin
+---
+>   name: pipeline-service-exporter
+33c43
+<   name: pipeline-service-exporter
+---
+>   name: tekton-chains-secrets-migrator
+49a60,68
+>   name: chains-secrets-admin
+>   namespace: tekton-chains
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+81c100,116
+<   name: chains-secret-admin
+---
+>   name: secret-reader
+>   namespace: openshift-ingress-operator
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: openshift-pipelines-secret-migration
+100a136,155
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secret-admin
+>   namespace: tekton-chains
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - list
+>   - create
+>   - get
+>   - update
+>   - patch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+305a361,378
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-chains-secret-migration
+> rules:
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - public-key
+>   - signing-secrets
+>   resources:
+>   - secrets
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+495,496c568,569
+<   name: chains-secret-admin
+<   namespace: openshift-pipelines
+---
+>   name: chains-secret-reader
+>   namespace: openshift-ingress-operator
+500c573
+<   name: chains-secret-admin
+---
+>   name: secret-reader
+504c577
+<   namespace: openshift-pipelines
+---
+>   namespace: tekton-chains
+511c584,585
+<   name: pipeline-service-sre-ns-edit
+---
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: openshift-pipelines-public-key-viewer
+516c590
+<   name: edit
+---
+>   name: tekton-chains-public-key-viewer
+520c594
+<   name: Pipeline Service
+---
+>   name: system:authenticated
+528c602,618
+<   name: tekton-chains-public-key-viewer
+---
+>   name: openshift-pipelines-secret-migration
+>   namespace: openshift-pipelines
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: openshift-pipelines-secret-migration
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-chains-secrets-migrator
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: pipeline-service-sre-ns-edit
+533c623
+<   name: tekton-chains-public-key-viewer
+---
+>   name: edit
+537c627
+<   name: system:authenticated
+---
+>   name: Pipeline Service
+559a650,700
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secret-admin
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: chains-secret-admin
+> subjects:
+> - kind: ServiceAccount
+>   name: chains-secrets-admin
+>   namespace: tekton-chains
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-chains-public-key-viewer
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-chains-public-key-viewer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: system:authenticated
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-chains-secrets-migrator
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-chains-secret-migration
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-chains-secrets-migrator
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1122c1263
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:d4f6a57f7b4c116d45ae15ca8cc5d5dad786ea9b
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:c594f5d4b8e15eedd6df22082ae966f9ae24f713
+1431,1432c1572,1573
+<     argocd.argoproj.io/sync-wave: "1"
+<   name: tekton-chains-signing-secret
+---
+>     argocd.argoproj.io/sync-wave: "2"
+>   name: tekton-chains-secrets-migration
+1445,1451d1585
+<           set -o errexit
+<           set -o nounset
+<           set -o pipefail
+< 
+<           namespace="openshift-pipelines"
+<           secret="signing-secrets"
+< 
+1452a1587,1595
+>           # Once the key-pair has been set it's marked as immutable so it can't be updated.
+>           # Try to handle that nicely. The object is expected to always exist so check the data.
+>           echo "Waiting for tekton-chains/secrets/signing-secrets: "
+>           while [ -z  $CHAINS_SIG_KEY_DATA ]; do
+>             echo -n "."
+>             CHAINS_SIG_KEY_DATA=$(kubectl get secret signing-secrets -n tekton-chains -o jsonpath='{.data}')
+>             sleep 3
+>           done
+>           echo "OK"
+1454,1455c1597,1612
+<           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+<             echo "Signing secret exists and is non-empty."
+---
+>           OSP_SIG_KEY_DATA=$(kubectl get secret signing-secrets -n openshift-pipelines -o jsonpath='{.data}')
+>           if [ -z "$OSP_SIG_KEY_DATA" -o "$OSP_SIG_KEY_DATA" != "$CHAINS_SIG_KEY_DATA" ]; then
+>             echo "openshift-pipelines: copying signing-secrets from tekton-chains"
+>             kubectl create secret generic signing-secrets \
+>               --namespace openshift-pipelines \
+>               --from-literal=cosign.key="$(
+>                 echo "$CHAINS_SIG_KEY_DATA" | jq -r '.["cosign.key"]' | base64 -d
+>               )" \
+>               --from-literal=cosign.password="$(
+>                 echo "$CHAINS_SIG_KEY_DATA" | jq -r '.["cosign.password"]' | base64 -d
+>               )" \
+>               --from-literal=cosign.pub="$(
+>                 echo "$CHAINS_SIG_KEY_DATA" | jq -r '.["cosign.pub"]' | base64 -d
+>               )" \
+>               --dry-run=client \
+>               -o yaml | kubectl apply -f -
+1457,1458c1614,1615
+<             # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+<             kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+---
+>             echo "openshift-pipelines: signing-secrets is up to date"
+>           fi
+1459a1617,1660
+>           # Generate/update the secret with the public key
+>           echo "Creating public-key in openshift-pipelines"
+>           kubectl create secret generic public-key \
+>             --namespace openshift-pipelines \
+>             --from-literal=cosign.pub="$(
+>               cosign public-key --key k8s://openshift-pipelines/signing-secrets
+>             )" \
+>             --dry-run=client \
+>             -o yaml | kubectl apply -f -
+>           echo "OK"
+>         image: quay.io/redhat-appstudio/appstudio-utils:eb94f28fe2d7c182f15e659d0fdb66f87b0b3b6b
+>         imagePullPolicy: Always
+>         name: chains-secret-migration
+>       dnsPolicy: ClusterFirst
+>       restartPolicy: OnFailure
+>       serviceAccountName: tekton-chains-secrets-migrator
+>       terminationGracePeriodSeconds: 30
+> ---
+> apiVersion: batch/v1
+> kind: Job
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   name: tekton-chains-signing-secret
+>   namespace: tekton-chains
+> spec:
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       containers:
+>       - command:
+>         - /bin/bash
+>         - -c
+>         - |
+>           cd /tmp
+>           # Once the key-pair has been set it's marked as immutable so it can't be updated.
+>           # Try to handle that nicely. The object is expected to always exist so check the data.
+>           SIG_KEY_DATA=$(kubectl get secret signing-secrets -n tekton-chains -o jsonpath='{.data}')
+>           if [[ -n $SIG_KEY_DATA ]]; then
+>             echo "Signing secret exists."
+>           else
+1461c1662
+<             RANDOM_PASS=$( openssl rand -base64 30 )
+---
+>             RANDOM_PASS=$( head -c 12 /dev/urandom | base64 )
+1464,1474c1665
+<             # The secret should be created as immutable.
+<             echo "Generating k8s secret/$secret in $namespace with key-pair"
+<             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+<           fi
+< 
+<           # If the secret is not marked as immutable, make it so.
+<           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+<             echo "Making secret immutable"
+<             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+<               --patch='{"immutable": true}' \
+<             | kubectl apply -f -
+---
+>             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair k8s://tekton-chains/signing-secrets
+1477c1668
+<           echo "Generating/updating the secret with the public key"
+---
+>           # Generate/update the secret with the public key
+1479c1670
+<             --namespace "$namespace" \
+---
+>             --namespace tekton-chains \
+1481c1672
+<               cosign public-key --key "k8s://$namespace/$secret"
+---
+>               cosign public-key --key k8s://tekton-chains/signing-secrets
+1485c1676
+<         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
+---
+>         image: quay.io/redhat-appstudio/appstudio-utils:eb94f28fe2d7c182f15e659d0fdb66f87b0b3b6b
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-20360ad6/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-04f9560a/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+15a16,25
+>   name: tekton-chains
+> ---
+> apiVersion: v1
+> kind: Namespace
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+>   labels:
+>     argocd.argoproj.io/managed-by: openshift-gitops
+24c34
+<   name: chains-secrets-admin
+---
+>   name: pipeline-service-exporter
+33c43
+<   name: pipeline-service-exporter
+---
+>   name: tekton-chains-secrets-migrator
+49a60,68
+>   name: chains-secrets-admin
+>   namespace: tekton-chains
+> ---
+> apiVersion: v1
+> kind: ServiceAccount
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+81c100,116
+<   name: chains-secret-admin
+---
+>   name: secret-reader
+>   namespace: openshift-ingress-operator
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: openshift-pipelines-secret-migration
+100a136,155
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secret-admin
+>   namespace: tekton-chains
+> rules:
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - list
+>   - create
+>   - get
+>   - update
+>   - patch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: Role
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+305a361,378
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-chains-secret-migration
+> rules:
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - public-key
+>   - signing-secrets
+>   resources:
+>   - secrets
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+495,496c568,569
+<   name: chains-secret-admin
+<   namespace: openshift-pipelines
+---
+>   name: chains-secret-reader
+>   namespace: openshift-ingress-operator
+500c573
+<   name: chains-secret-admin
+---
+>   name: secret-reader
+504c577
+<   namespace: openshift-pipelines
+---
+>   namespace: tekton-chains
+511c584,585
+<   name: pipeline-service-sre-ns-edit
+---
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: openshift-pipelines-public-key-viewer
+516c590
+<   name: edit
+---
+>   name: tekton-chains-public-key-viewer
+520c594
+<   name: Pipeline Service
+---
+>   name: system:authenticated
+528c602,618
+<   name: tekton-chains-public-key-viewer
+---
+>   name: openshift-pipelines-secret-migration
+>   namespace: openshift-pipelines
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: openshift-pipelines-secret-migration
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-chains-secrets-migrator
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: pipeline-service-sre-ns-edit
+533c623
+<   name: tekton-chains-public-key-viewer
+---
+>   name: edit
+537c627
+<   name: system:authenticated
+---
+>   name: Pipeline Service
+559a650,700
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: chains-secret-admin
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: Role
+>   name: chains-secret-admin
+> subjects:
+> - kind: ServiceAccount
+>   name: chains-secrets-admin
+>   namespace: tekton-chains
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-chains-public-key-viewer
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-chains-public-key-viewer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: system:authenticated
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "0"
+>   name: tekton-chains-secrets-migrator
+>   namespace: tekton-chains
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-chains-secret-migration
+> subjects:
+> - kind: ServiceAccount
+>   name: tekton-chains-secrets-migrator
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1122c1263
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:d4f6a57f7b4c116d45ae15ca8cc5d5dad786ea9b
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:c594f5d4b8e15eedd6df22082ae966f9ae24f713
+1431,1432c1572,1573
+<     argocd.argoproj.io/sync-wave: "1"
+<   name: tekton-chains-signing-secret
+---
+>     argocd.argoproj.io/sync-wave: "2"
+>   name: tekton-chains-secrets-migration
+1445,1451d1585
+<           set -o errexit
+<           set -o nounset
+<           set -o pipefail
+< 
+<           namespace="openshift-pipelines"
+<           secret="signing-secrets"
+< 
+1452a1587,1595
+>           # Once the key-pair has been set it's marked as immutable so it can't be updated.
+>           # Try to handle that nicely. The object is expected to always exist so check the data.
+>           echo "Waiting for tekton-chains/secrets/signing-secrets: "
+>           while [ -z  $CHAINS_SIG_KEY_DATA ]; do
+>             echo -n "."
+>             CHAINS_SIG_KEY_DATA=$(kubectl get secret signing-secrets -n tekton-chains -o jsonpath='{.data}')
+>             sleep 3
+>           done
+>           echo "OK"
+1454,1455c1597,1612
+<           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
+<             echo "Signing secret exists and is non-empty."
+---
+>           OSP_SIG_KEY_DATA=$(kubectl get secret signing-secrets -n openshift-pipelines -o jsonpath='{.data}')
+>           if [ -z "$OSP_SIG_KEY_DATA" -o "$OSP_SIG_KEY_DATA" != "$CHAINS_SIG_KEY_DATA" ]; then
+>             echo "openshift-pipelines: copying signing-secrets from tekton-chains"
+>             kubectl create secret generic signing-secrets \
+>               --namespace openshift-pipelines \
+>               --from-literal=cosign.key="$(
+>                 echo "$CHAINS_SIG_KEY_DATA" | jq -r '.["cosign.key"]' | base64 -d
+>               )" \
+>               --from-literal=cosign.password="$(
+>                 echo "$CHAINS_SIG_KEY_DATA" | jq -r '.["cosign.password"]' | base64 -d
+>               )" \
+>               --from-literal=cosign.pub="$(
+>                 echo "$CHAINS_SIG_KEY_DATA" | jq -r '.["cosign.pub"]' | base64 -d
+>               )" \
+>               --dry-run=client \
+>               -o yaml | kubectl apply -f -
+1457,1458c1614,1615
+<             # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
+<             kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
+---
+>             echo "openshift-pipelines: signing-secrets is up to date"
+>           fi
+1459a1617,1660
+>           # Generate/update the secret with the public key
+>           echo "Creating public-key in openshift-pipelines"
+>           kubectl create secret generic public-key \
+>             --namespace openshift-pipelines \
+>             --from-literal=cosign.pub="$(
+>               cosign public-key --key k8s://openshift-pipelines/signing-secrets
+>             )" \
+>             --dry-run=client \
+>             -o yaml | kubectl apply -f -
+>           echo "OK"
+>         image: quay.io/redhat-appstudio/appstudio-utils:eb94f28fe2d7c182f15e659d0fdb66f87b0b3b6b
+>         imagePullPolicy: Always
+>         name: chains-secret-migration
+>       dnsPolicy: ClusterFirst
+>       restartPolicy: OnFailure
+>       serviceAccountName: tekton-chains-secrets-migrator
+>       terminationGracePeriodSeconds: 30
+> ---
+> apiVersion: batch/v1
+> kind: Job
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   name: tekton-chains-signing-secret
+>   namespace: tekton-chains
+> spec:
+>   template:
+>     metadata:
+>       annotations:
+>         argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     spec:
+>       containers:
+>       - command:
+>         - /bin/bash
+>         - -c
+>         - |
+>           cd /tmp
+>           # Once the key-pair has been set it's marked as immutable so it can't be updated.
+>           # Try to handle that nicely. The object is expected to always exist so check the data.
+>           SIG_KEY_DATA=$(kubectl get secret signing-secrets -n tekton-chains -o jsonpath='{.data}')
+>           if [[ -n $SIG_KEY_DATA ]]; then
+>             echo "Signing secret exists."
+>           else
+1461c1662
+<             RANDOM_PASS=$( openssl rand -base64 30 )
+---
+>             RANDOM_PASS=$( head -c 12 /dev/urandom | base64 )
+1464,1474c1665
+<             # The secret should be created as immutable.
+<             echo "Generating k8s secret/$secret in $namespace with key-pair"
+<             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+<           fi
+< 
+<           # If the secret is not marked as immutable, make it so.
+<           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+<             echo "Making secret immutable"
+<             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+<               --patch='{"immutable": true}' \
+<             | kubectl apply -f -
+---
+>             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair k8s://tekton-chains/signing-secrets
+1477c1668
+<           echo "Generating/updating the secret with the public key"
+---
+>           # Generate/update the secret with the public key
+1479c1670
+<             --namespace "$namespace" \
+---
+>             --namespace tekton-chains \
+1481c1672
+<               cosign public-key --key "k8s://$namespace/$secret"
+---
+>               cosign public-key --key k8s://tekton-chains/signing-secrets
+1485c1676
+<         image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
+---
+>         image: quay.io/redhat-appstudio/appstudio-utils:eb94f28fe2d7c182f15e659d0fdb66f87b0b3b6b

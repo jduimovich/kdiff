@@ -1,0 +1,38 @@
+diff --git a/components/pipeline-service/base/rbac/openshift-pipelines/pipeline-service-sre.yaml b/components/pipeline-service/base/rbac/openshift-pipelines/pipeline-service-sre.yaml
+index d62ccdf4..a9b04357 100644
+--- a/components/pipeline-service/base/rbac/openshift-pipelines/pipeline-service-sre.yaml
++++ b/components/pipeline-service/base/rbac/openshift-pipelines/pipeline-service-sre.yaml
+@@ -3,7 +3,7 @@
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+ metadata:
+-  name: pipeline-service-sre-ns-admin
++  name: pipeline-service-sre-ns-edit
+   namespace: openshift-pipelines
+ subjects:
+   - apiGroup: rbac.authorization.k8s.io
+@@ -12,4 +12,4 @@ subjects:
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+-  name: admin
++  name: edit
+diff --git a/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml b/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
+index 5f4e5c29..ef701b44 100644
+--- a/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
++++ b/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
+@@ -4,7 +4,7 @@
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+ metadata:
+-  name: pipeline-service-sre
++  name: pipeline-service-sre-ns-edit
+   namespace: tekton-results
+ subjects:
+   - apiGroup: rbac.authorization.k8s.io
+@@ -13,4 +13,4 @@ subjects:
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+-  name: admin
++  name: edit

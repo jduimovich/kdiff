@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-04f9560a/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-ab396a36/development/components/pipeline-service/development/kustomize.out.yaml
+500c500
+<   name: pipeline-service-sre-ns-edit
+---
+>   name: pipeline-service-sre-ns-admin
+505c505
+<   name: edit
+---
+>   name: tekton-results-admin
+533c533
+<   name: pipeline-service-sre-ns-edit
+---
+>   name: pipeline-service-sre
+538c538
+<   name: edit
+---
+>   name: tekton-results-admin
