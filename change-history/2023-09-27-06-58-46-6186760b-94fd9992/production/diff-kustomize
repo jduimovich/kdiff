@@ -1,0 +1,85 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-94fd9992/production/components/jvm-build-service/production/kustomize.out.yaml ./kustomized-cache/commit-6186760b/production/components/jvm-build-service/production/kustomize.out.yaml
+1242a1243,1305
+>   name: jvm-build-maintainer
+> rules:
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - installplans
+>   verbs:
+>   - get
+>   - list
+>   - update
+>   - patch
+> - apiGroups:
+>   - ""
+>   resourceNames:
+>   - pipeline
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - patch
+>   - get
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+>   - delete
+> - apiGroups:
+>   - tekton.dev
+>   resources:
+>   - pipelineruns
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - results.tekton.dev
+>   resources:
+>   - results
+>   - records
+>   verbs:
+>   - get
+>   - list
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/portforward
+>   verbs:
+>   - create
+> - apiGroups:
+>   - apps
+>   resources:
+>   - deployments
+>   verbs:
+>   - get
+>   - patch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1264a1328,1346
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: jvm-build-maintainers
+>   namespace: jvm-build-service
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: jvm-build-maintainer
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: stuartwdouglas
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: gabemontero
