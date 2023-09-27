@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6186760b/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-d4626c47/staging/app-of-apps-staging.yaml
+927c927
+<   name: multi-platform-controller
+---
+>   name: multi-arch-controller
+940c940
+<             sourceRoot: components/multi-platform-controller
+---
+>             sourceRoot: components/multi-arch-controller
+947c947
+<       name: multi-platform-controller-{{nameNormalized}}
+---
+>       name: multi-arch-controller-{{nameNormalized}}
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6186760b/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-d4626c47/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+20c20
+<     - multi-platform-controller
+---
+>     - multi-arch-controller
+Only in ./kustomized-cache/commit-d4626c47/staging/components: multi-arch-controller
+Only in ./kustomized-cache/commit-6186760b/staging/components: multi-platform-controller

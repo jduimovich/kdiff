@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6186760b/production/components/cluster-secret-store/production/kustomize.out.yaml ./kustomized-cache/commit-d4626c47/production/components/cluster-secret-store/production/kustomize.out.yaml
+21c21
+<     - multi-platform-controller
+---
+>     - multi-arch-controller

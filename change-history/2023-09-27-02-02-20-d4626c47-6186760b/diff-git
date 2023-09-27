@@ -1,0 +1,313 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 801b9195..628b7063 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -18,6 +18,6 @@ resources:
+   - image-controller
+   - segment-bridge
+   - toolchain-member-operator
+-  - multi-arch-controller
++  - multi-platform-controller
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/multi-arch-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/kustomization.yaml
+similarity index 82%
+rename from argo-cd-apps/base/member/infra-deployments/multi-arch-controller/kustomization.yaml
+rename to argo-cd-apps/base/member/infra-deployments/multi-platform-controller/kustomization.yaml
+index fc8dd85f..f363fe8c 100644
+--- a/argo-cd-apps/base/member/infra-deployments/multi-arch-controller/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- multi-arch-controller.yaml
++- multi-platform-controller.yaml
+ components:
+   - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/multi-arch-controller/multi-arch-controller.yaml b/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
+similarity index 85%
+rename from argo-cd-apps/base/member/infra-deployments/multi-arch-controller/multi-arch-controller.yaml
+rename to argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
+index 40ad864b..74959d84 100644
+--- a/argo-cd-apps/base/member/infra-deployments/multi-arch-controller/multi-arch-controller.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/multi-platform-controller/multi-platform-controller.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+ metadata:
+-  name: multi-arch-controller
++  name: multi-platform-controller
+ spec:
+   generators:
+     - merge:
+@@ -10,14 +10,14 @@ spec:
+         generators:
+           - clusters:
+               values:
+-                sourceRoot: components/multi-arch-controller
++                sourceRoot: components/multi-platform-controller
+                 environment: staging
+                 clusterDir: ""
+           - list:
+               elements: []
+   template:
+     metadata:
+-      name: multi-arch-controller-{{nameNormalized}}
++      name: multi-platform-controller-{{nameNormalized}}
+     spec:
+       project: default
+       source:
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index efc70151..39dd043d 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -67,7 +67,7 @@ patches:
+     target:
+       kind: ApplicationSet
+       version: v1alpha1
+-      name: multi-arch-controller
++      name: multi-platform-controller
+   - path: development-overlay-patch.yaml
+     target:
+       kind: ApplicationSet
+@@ -97,4 +97,4 @@ patches:
+     target:
+       kind: ApplicationSet
+       version: v1alpha1
+-      name: ingresscontroller
+\ No newline at end of file
++      name: ingresscontroller
+diff --git a/argo-cd-apps/overlays/production/delete-applications.yaml b/argo-cd-apps/overlays/production/delete-applications.yaml
+index 2a1f9eee..cb42f2a8 100644
+--- a/argo-cd-apps/overlays/production/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production/delete-applications.yaml
+@@ -2,5 +2,5 @@
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+ metadata:
+-  name: multi-arch-controller
++  name: multi-platform-controller
+ $patch: delete
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 6eea7ba9..793a3bac 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -38,7 +38,7 @@ spec:
+         - build-service
+         - tekton-ci
+         - image-controller
+-        - multi-arch-controller
++        - multi-platform-controller
+         - jvm-build-service
+         - openshift-logging
+         - sprayproxy
+diff --git a/components/cluster-secret-store/staging/cluster-secret-store-patch.yaml b/components/cluster-secret-store/staging/cluster-secret-store-patch.yaml
+index babee207..f4e85acc 100644
+--- a/components/cluster-secret-store/staging/cluster-secret-store-patch.yaml
++++ b/components/cluster-secret-store/staging/cluster-secret-store-patch.yaml
+@@ -16,7 +16,7 @@ spec:
+       - build-service
+       - tekton-ci
+       - image-controller
+-      - multi-arch-controller
++      - multi-platform-controller
+       - jvm-build-service
+       - openshift-logging
+       - sprayproxy
+diff --git a/components/multi-arch-controller/base/kustomization.yaml b/components/multi-arch-controller/base/kustomization.yaml
+deleted file mode 100644
+index ecec013f..00000000
+--- a/components/multi-arch-controller/base/kustomization.yaml
++++ /dev/null
+@@ -1,16 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-resources:
+-- allow-argocd-to-manage.yaml
+-- host-config.yaml
+-- https://github.com/redhat-appstudio/multi-arch-controller/deploy/operator?ref=35506e482b297e26bc88e27282d299076a91900e
+-
+-images:
+-- name: multi-arch-controller
+-  newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 35506e482b297e26bc88e27282d299076a91900e
+-
+-namespace: multi-arch-controller
+-
+-
+diff --git a/components/multi-arch-controller/OWNERS b/components/multi-platform-controller/OWNERS
+similarity index 100%
+rename from components/multi-arch-controller/OWNERS
+rename to components/multi-platform-controller/OWNERS
+diff --git a/components/multi-arch-controller/base/allow-argocd-to-manage.yaml b/components/multi-platform-controller/base/allow-argocd-to-manage.yaml
+similarity index 88%
+rename from components/multi-arch-controller/base/allow-argocd-to-manage.yaml
+rename to components/multi-platform-controller/base/allow-argocd-to-manage.yaml
+index 42ad3335..8fd4e8be 100644
+--- a/components/multi-arch-controller/base/allow-argocd-to-manage.yaml
++++ b/components/multi-platform-controller/base/allow-argocd-to-manage.yaml
+@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+ metadata:
+   name: grant-argocd
+-  namespace: multi-arch-controller
++  namespace: multi-platform-controller
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/multi-arch-controller/base/external-secrets/awskeys.yaml b/components/multi-platform-controller/base/external-secrets/awskeys.yaml
+similarity index 100%
+rename from components/multi-arch-controller/base/external-secrets/awskeys.yaml
+rename to components/multi-platform-controller/base/external-secrets/awskeys.yaml
+diff --git a/components/multi-arch-controller/base/external-secrets/kustomization.yaml b/components/multi-platform-controller/base/external-secrets/kustomization.yaml
+similarity index 70%
+rename from components/multi-arch-controller/base/external-secrets/kustomization.yaml
+rename to components/multi-platform-controller/base/external-secrets/kustomization.yaml
+index 6700cbb6..896881b8 100644
+--- a/components/multi-arch-controller/base/external-secrets/kustomization.yaml
++++ b/components/multi-platform-controller/base/external-secrets/kustomization.yaml
+@@ -2,4 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - awskeys.yaml
+-namespace: multi-arch-controller
++namespace: multi-platform-controller
+diff --git a/components/multi-arch-controller/base/host-config.yaml b/components/multi-platform-controller/base/host-config.yaml
+similarity index 53%
+rename from components/multi-arch-controller/base/host-config.yaml
+rename to components/multi-platform-controller/base/host-config.yaml
+index 4c608ba5..1033a6db 100644
+--- a/components/multi-arch-controller/base/host-config.yaml
++++ b/components/multi-platform-controller/base/host-config.yaml
+@@ -2,29 +2,10 @@ apiVersion: v1
+ kind: ConfigMap
+ metadata:
+   labels:
+-    build.appstudio.redhat.com/multi-arch-config: hosts
+     build.appstudio.redhat.com/multi-platform-config: hosts
+   name: host-config
+-  namespace: multi-arch-controller
++  namespace: multi-platform-controller
+ data:
+-  #Legacy Config, remove after update
+-  host1.address: "ec2-54-165-44-192.compute-1.amazonaws.com"
+-  host1.secret: "awskeys"
+-  host1.concurrency: "4"
+-  host1.user: "ec2-user"
+-  host1.arch: "arm64"
+-  ppc1.address: "150.240.147.198"
+-  ppc1.arch: "ppc64le"
+-  ppc1.user: "root"
+-  ppc1.secret: "awskeys"
+-  ppc1.concurrency: "4"
+-  ibmz1.address: "169.59.165.178"
+-  ibmz1.arch: "s390x"
+-  ibmz1.user: "root"
+-  ibmz1.secret: "awskeys"
+-  ibmz1.concurrency: "4"
+-
+-  #new platform config
+   host.host1.address: "ec2-54-165-44-192.compute-1.amazonaws.com"
+   host.host1.secret: "awskeys"
+   host.host1.concurrency: "4"
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+new file mode 100644
+index 00000000..80fb45cd
+--- /dev/null
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- allow-argocd-to-manage.yaml
++- host-config.yaml
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=e1f86ce53eca883f7196e42e03cc2f538c14bbce
++
++images:
++- name: multi-platform-controller
++  newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
++  newTag: e1f86ce53eca883f7196e42e03cc2f538c14bbce
++
++namespace: multi-platform-controller
++
++
+diff --git a/components/multi-arch-controller/base/rbac/kustomization.yaml b/components/multi-platform-controller/base/rbac/kustomization.yaml
+similarity index 100%
+rename from components/multi-arch-controller/base/rbac/kustomization.yaml
+rename to components/multi-platform-controller/base/rbac/kustomization.yaml
+diff --git a/components/multi-arch-controller/base/rbac/role-binding.yaml b/components/multi-platform-controller/base/rbac/role-binding.yaml
+similarity index 88%
+rename from components/multi-arch-controller/base/rbac/role-binding.yaml
+rename to components/multi-platform-controller/base/rbac/role-binding.yaml
+index 3dbd2462..117f19b5 100644
+--- a/components/multi-arch-controller/base/rbac/role-binding.yaml
++++ b/components/multi-platform-controller/base/rbac/role-binding.yaml
+@@ -2,7 +2,7 @@
+ kind: ClusterRole
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+-  name: multi-arch-controller-maintainer
++  name: multi-platform-controller-maintainer
+ rules:
+   - apiGroups:
+       - operators.coreos.com
+@@ -63,8 +63,8 @@ rules:
+ kind: RoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+-  name: multi-arch-controller-maintainers
+-  namespace: multi-arch-controller
++  name: multi-platform-controller-maintainers
++  namespace: multi-platform-controller
+ subjects:
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+@@ -75,4 +75,4 @@ subjects:
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+-  name: multi-arch-controller-maintainer
+\ No newline at end of file
++  name: multi-platform-controller-maintainer
+diff --git a/components/multi-arch-controller/development/kustomization.yaml b/components/multi-platform-controller/development/kustomization.yaml
+similarity index 85%
+rename from components/multi-arch-controller/development/kustomization.yaml
+rename to components/multi-platform-controller/development/kustomization.yaml
+index 088100bb..d3072a34 100644
+--- a/components/multi-arch-controller/development/kustomization.yaml
++++ b/components/multi-platform-controller/development/kustomization.yaml
+@@ -9,5 +9,5 @@ patches:
+       group: apps
+       version: v1
+       kind: Deployment
+-      name: multi-arch-controller
++      name: multi-platform-controller
+     path: logs-in-console-format-cmd-arg-patch.yaml
+diff --git a/components/multi-arch-controller/development/logs-in-console-format-cmd-arg-patch.yaml b/components/multi-platform-controller/development/logs-in-console-format-cmd-arg-patch.yaml
+similarity index 100%
+rename from components/multi-arch-controller/development/logs-in-console-format-cmd-arg-patch.yaml
+rename to components/multi-platform-controller/development/logs-in-console-format-cmd-arg-patch.yaml
+diff --git a/components/multi-arch-controller/staging/kustomization.yaml b/components/multi-platform-controller/staging/kustomization.yaml
+similarity index 100%
+rename from components/multi-arch-controller/staging/kustomization.yaml
+rename to components/multi-platform-controller/staging/kustomization.yaml
+diff --git a/hack/preview.sh b/hack/preview.sh
+index 2237e9b8..e58fd7a4 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -208,9 +208,9 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [ -n "${IMAGE_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/image-controller\")) |=.newTag=\"${IMAGE_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/image-controller/base/kustomization.yaml
+ [[ -n "${IMAGE_CONTROLLER_PR_OWNER}" && "${IMAGE_CONTROLLER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/image-controller*\")) |= \"https://github.com/${IMAGE_CONTROLLER_PR_OWNER}/image-controller/config/default?ref=${IMAGE_CONTROLLER_PR_SHA}\"" $ROOT/components/image-controller/base/kustomization.yaml
+ 
+-[ -n "${MULTI_ARCH_CONTROLLER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"multi-arch-controller\")) |=.newName=\"${MULTI_ARCH_CONTROLLER_IMAGE_REPO}\"" $ROOT/components/multi-arch-controller/base/kustomization.yaml
+-[ -n "${MULTI_ARCH_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"multi-arch-controller\")) |=.newTag=\"${MULTI_ARCH_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/multi-arch-controller/base/kustomization.yaml
+-[[ -n "${MULTI_ARCH_CONTROLLER_PR_OWNER}" && "${MULTI_ARCH_CONTROLLER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/multi-arch-controller*\")) |= \"https://github.com/${MULTI_ARCH_CONTROLLER_PR_OWNER}/multi-arch-controller/config/default?ref=${MULTI_ARCH_CONTROLLER_PR_SHA}\"" $ROOT/components/multi-arch-controller/base/kustomization.yaml
++[ -n "${MULTI_ARCH_CONTROLLER_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"multi-platform-controller\")) |=.newName=\"${MULTI_ARCH_CONTROLLER_IMAGE_REPO}\"" $ROOT/components/multi-platform-controller/base/kustomization.yaml
++[ -n "${MULTI_ARCH_CONTROLLER_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"multi-platform-controller\")) |=.newTag=\"${MULTI_ARCH_CONTROLLER_IMAGE_TAG}\"" $ROOT/components/multi-platform-controller/base/kustomization.yaml
++[[ -n "${MULTI_ARCH_CONTROLLER_PR_OWNER}" && "${MULTI_ARCH_CONTROLLER_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/multi-platform-controller*\")) |= \"https://github.com/${MULTI_ARCH_CONTROLLER_PR_OWNER}/multi-platform-controller/config/default?ref=${MULTI_ARCH_CONTROLLER_PR_SHA}\"" $ROOT/components/multi-platform-controller/base/kustomization.yaml
+ 
+ 
+ [[ -n "${PIPELINE_PR_OWNER}" && "${PIPELINE_PR_SHA}" ]] && yq -i e ".resources[] |= sub(\"ref=[^ ]*\"; \"ref=${PIPELINE_PR_SHA}\") | .resources[] |= sub(\"openshift-pipelines\"; \"${PIPELINE_PR_OWNER}\")" $ROOT/components/pipeline-service/development/kustomization.yaml

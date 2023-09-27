@@ -1,0 +1,15 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6186760b/development/app-of-apps-development.yaml ./kustomized-cache/commit-d4626c47/development/app-of-apps-development.yaml
+730c730
+<   name: multi-platform-controller
+---
+>   name: multi-arch-controller
+743c743
+<             sourceRoot: components/multi-platform-controller
+---
+>             sourceRoot: components/multi-arch-controller
+750c750
+<       name: multi-platform-controller-{{nameNormalized}}
+---
+>       name: multi-arch-controller-{{nameNormalized}}
+Only in ./kustomized-cache/commit-d4626c47/development/components: multi-arch-controller
+Only in ./kustomized-cache/commit-6186760b/development/components: multi-platform-controller
