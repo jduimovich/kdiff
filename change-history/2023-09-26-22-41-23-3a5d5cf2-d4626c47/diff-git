@@ -1,0 +1,159 @@
+diff --git a/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml b/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
+index 2980ab54..60ab5909 100644
+--- a/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
++++ b/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
+@@ -47,56 +47,7 @@ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+     name: Pipeline Service
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sbose78
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jduimovich
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: pipeline-service-sre
+----
+-# Grant access to the OpenShift-Pipelines operator namespace
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+-metadata:
+-  name: pipeline-service-sre
+-  namespace: openshift-pipelines
+-subjects:
+-  - kind: Group
+-    name: pipeline-grp
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sbose78
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jduimovich
+-roleRef:
+-  kind: ClusterRole
+-  name: admin
+-  apiGroup: rbac.authorization.k8s.io
+----
+-# Grant access to the Tekton Result namespace
+-# This binding is needed until Tekton Result is deployed by OpenShift Pipelines
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+-metadata:
+-  name: pipeline-service-sre
+-  namespace: tekton-results
+-subjects:
+-  - kind: Group
+-    name: pipeline-grp
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sbose78
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jduimovich
+-roleRef:
+-  kind: ClusterRole
+-  name: admin
+-  apiGroup: rbac.authorization.k8s.io
+diff --git a/components/pipeline-service/base/rbac/openshift-pipelines/kustomization.yaml b/components/pipeline-service/base/rbac/openshift-pipelines/kustomization.yaml
+index 20809f0f..8ca04999 100644
+--- a/components/pipeline-service/base/rbac/openshift-pipelines/kustomization.yaml
++++ b/components/pipeline-service/base/rbac/openshift-pipelines/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++namespace: openshift-pipelines
+ resources:
+-  - role-binding.yaml
+-namespace: openshift-pipelines
+\ No newline at end of file
++  - pipeline-service-sre.yaml
+diff --git a/components/pipeline-service/base/rbac/openshift-pipelines/role-binding.yaml b/components/pipeline-service/base/rbac/openshift-pipelines/pipeline-service-sre.yaml
+similarity index 54%
+rename from components/pipeline-service/base/rbac/openshift-pipelines/role-binding.yaml
+rename to components/pipeline-service/base/rbac/openshift-pipelines/pipeline-service-sre.yaml
+index 5515aedf..d62ccdf4 100644
+--- a/components/pipeline-service/base/rbac/openshift-pipelines/role-binding.yaml
++++ b/components/pipeline-service/base/rbac/openshift-pipelines/pipeline-service-sre.yaml
+@@ -1,13 +1,15 @@
+-kind: RoleBinding
++---
++# Grant access to the OpenShift-Pipelines operator namespace
+ apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+-  name: pipeline-service-admin
++  name: pipeline-service-sre-ns-admin
+   namespace: openshift-pipelines
+ subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
+     name: Pipeline Service
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+-  name: admin
+\ No newline at end of file
++  name: admin
+diff --git a/components/pipeline-service/base/rbac/tekton-results/kustomization.yaml b/components/pipeline-service/base/rbac/tekton-results/kustomization.yaml
+index 9971238f..a6660657 100644
+--- a/components/pipeline-service/base/rbac/tekton-results/kustomization.yaml
++++ b/components/pipeline-service/base/rbac/tekton-results/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++namespace: tekton-results
+ resources:
+-  - role-binding.yaml
+-namespace: tekton-results
+\ No newline at end of file
++  - pipeline-service-sre.yaml
+diff --git a/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml b/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
+new file mode 100644
+index 00000000..5f4e5c29
+--- /dev/null
++++ b/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
+@@ -0,0 +1,16 @@
++---
++# Grant access to the Tekton Result namespace
++# This binding is needed until Tekton Result is deployed by OpenShift Pipelines
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: pipeline-service-sre
++  namespace: tekton-results
++subjects:
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: Pipeline Service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: admin
+diff --git a/components/pipeline-service/base/rbac/tekton-results/role-binding.yaml b/components/pipeline-service/base/rbac/tekton-results/role-binding.yaml
+deleted file mode 100644
+index a62f4997..00000000
+--- a/components/pipeline-service/base/rbac/tekton-results/role-binding.yaml
++++ /dev/null
+@@ -1,14 +0,0 @@
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipeline-service-admin
+-  namespace: tekton-results
+-subjects:
+-  - kind: Group
+-    apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: admin
+\ No newline at end of file

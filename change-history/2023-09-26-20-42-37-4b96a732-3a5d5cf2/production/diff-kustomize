@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3a5d5cf2/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-4b96a732/production/components/tekton-ci/production/kustomize.out.yaml
+421a422,430
+>   name: release-service
+> spec:
+>   url: https://github.com/redhat-appstudio/release-service
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

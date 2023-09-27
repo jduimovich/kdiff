@@ -1,0 +1,62 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d4626c47/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-3a5d5cf2/development/components/pipeline-service/development/kustomize.out.yaml
+500c500
+<   name: pipeline-service-sre-ns-admin
+---
+>   name: pipeline-service-admin
+515a516,537
+>   name: pipeline-service-sre
+>   namespace: openshift-pipelines
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-results-admin
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: pipeline-grp
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sbose78
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jduimovich
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+533c555
+<   name: pipeline-service-sre
+---
+>   name: pipeline-service-admin
+548a571,592
+>   name: pipeline-service-sre
+>   namespace: tekton-results
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: tekton-results-admin
+> subjects:
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: Group
+>   name: pipeline-grp
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sbose78
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jduimovich
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: RoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+641a686,691
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sbose78
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jduimovich
