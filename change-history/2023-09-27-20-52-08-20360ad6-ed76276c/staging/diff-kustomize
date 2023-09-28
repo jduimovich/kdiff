@@ -1,0 +1,51 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ed76276c/staging/components/release/kustomize.out.yaml ./kustomized-cache/commit-20360ad6/staging/components/release/kustomize.out.yaml
+535a536,539
+>               bundle:
+>                 description: Bundle is a reference to the Tekton bundle where to find
+>                   the pipeline
+>                 type: string
+562,590c566,569
+<               pipelineRef:
+<                 description: PipelineRef is a reference to the Pipeline to be executed
+<                   by the release PipelineRun
+<                 properties:
+<                   params:
+<                     description: Params is a slice of parameters for a given resolver
+<                     items:
+<                       description: Param defines the parameters for a given resolver
+<                         in PipelineRef
+<                       properties:
+<                         name:
+<                           description: Name is the name of the parameter
+<                           type: string
+<                         value:
+<                           description: Value is the value of the parameter
+<                           type: string
+<                       required:
+<                       - name
+<                       - value
+<                       type: object
+<                     type: array
+<                   resolver:
+<                     description: Resolver is the name of a Tekton resolver to be used
+<                       (e.g. git)
+<                     type: string
+<                 required:
+<                 - params
+<                 - resolver
+<                 type: object
+---
+>               pipeline:
+>                 description: Release Tekton Pipeline to execute
+>                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                 type: string
+601c580
+<             - pipelineRef
+---
+>             - pipeline
+861d839
+<   - watch
+1559c1537
+<         image: quay.io/redhat-appstudio/release-service:e0931f87c4c803037c63c4e09e59cded3f0dab91
+---
+>         image: quay.io/redhat-appstudio/release-service:6b1480ca068826c34784bcfd05108835619757df
