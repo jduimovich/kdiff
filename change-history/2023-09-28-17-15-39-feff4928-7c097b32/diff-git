@@ -1,0 +1,10 @@
+diff --git a/components/monitoring/grafana/base/kustomization.yaml b/components/monitoring/grafana/base/kustomization.yaml
+index d7c4a063..40a121a9 100644
+--- a/components/monitoring/grafana/base/kustomization.yaml
++++ b/components/monitoring/grafana/base/kustomization.yaml
+@@ -4,4 +4,4 @@ resources:
+ - grafana-operator.yaml
+ - grafana-app.yaml
+ - dashboards
+-- https://github.com/redhat-appstudio/o11y/config/probes/monitoring/grafana/base?ref=e8f31ce7ab37729d4c2d2f1b676995de8bb27e37
++- https://github.com/redhat-appstudio/o11y/config/probes/monitoring/grafana/base?ref=b73cbf6fb646006771415cec9b32a23fee7b4bff
