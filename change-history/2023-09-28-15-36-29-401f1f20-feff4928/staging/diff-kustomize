@@ -1,0 +1,44 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-feff4928/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-401f1f20/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+309d308
+<     rbac.authorization.k8s.io/aggregate-to-admin: "true"
+356,357d354
+<     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+<     rbac.authorization.k8s.io/aggregate-to-view: "true"
+1135c1132
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:ee511e79117e5abaa651b150c27038bdb82834c8
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:d4f6a57f7b4c116d45ae15ca8cc5d5dad786ea9b
+1254c1251
+<         image: quay.io/redhat-appstudio/tekton-results-api:d60d5ffeb42313406b8b3e7adc220e3f7a62c6c9
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:5e742e6d729ea533da980aad3d851773843fba08
+1317c1314
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:d60d5ffeb42313406b8b3e7adc220e3f7a62c6c9
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:5e742e6d729ea533da980aad3d851773843fba08
+1412c1409
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:d60d5ffeb42313406b8b3e7adc220e3f7a62c6c9
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:5e742e6d729ea533da980aad3d851773843fba08
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-feff4928/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-401f1f20/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+309d308
+<     rbac.authorization.k8s.io/aggregate-to-admin: "true"
+356,357d354
+<     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+<     rbac.authorization.k8s.io/aggregate-to-view: "true"
+1135c1132
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:ee511e79117e5abaa651b150c27038bdb82834c8
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:d4f6a57f7b4c116d45ae15ca8cc5d5dad786ea9b
+1254c1251
+<         image: quay.io/redhat-appstudio/tekton-results-api:d60d5ffeb42313406b8b3e7adc220e3f7a62c6c9
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:5e742e6d729ea533da980aad3d851773843fba08
+1317c1314
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:d60d5ffeb42313406b8b3e7adc220e3f7a62c6c9
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:5e742e6d729ea533da980aad3d851773843fba08
+1412c1409
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:d60d5ffeb42313406b8b3e7adc220e3f7a62c6c9
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:5e742e6d729ea533da980aad3d851773843fba08

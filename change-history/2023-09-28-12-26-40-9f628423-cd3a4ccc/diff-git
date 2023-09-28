@@ -1,0 +1,94 @@
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 01d3cd39..7a9ff543 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -24,10 +24,10 @@ spec:
+   sources:
+     - data:
+         - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:dc89022688fef704e1d092d312ebceaf457e4b07594746c3dfb1231eb71e452a
++        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f21da48d90163156846b1fffc45b9081d998385351349f1afbd7ad1f65ed6f1f
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-89e9175@sha256:5b58d42b9392263eab7824ab5278e3a0e9ff57243c189ef63d24bf2867abf128
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-1d7ae83@sha256:104dcb9fbed4975e1ca48265a600c70329b8d53cd2d323b3a71e661074a62d7c
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -47,10 +47,10 @@ spec:
+   sources:
+     - data:
+         - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:dc89022688fef704e1d092d312ebceaf457e4b07594746c3dfb1231eb71e452a
++        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f21da48d90163156846b1fffc45b9081d998385351349f1afbd7ad1f65ed6f1f
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-89e9175@sha256:5b58d42b9392263eab7824ab5278e3a0e9ff57243c189ef63d24bf2867abf128
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-1d7ae83@sha256:104dcb9fbed4975e1ca48265a600c70329b8d53cd2d323b3a71e661074a62d7c
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -72,10 +72,10 @@ spec:
+   sources:
+     - data:
+         - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:dc89022688fef704e1d092d312ebceaf457e4b07594746c3dfb1231eb71e452a
++        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f21da48d90163156846b1fffc45b9081d998385351349f1afbd7ad1f65ed6f1f
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-89e9175@sha256:5b58d42b9392263eab7824ab5278e3a0e9ff57243c189ef63d24bf2867abf128
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-1d7ae83@sha256:104dcb9fbed4975e1ca48265a600c70329b8d53cd2d323b3a71e661074a62d7c
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -95,10 +95,10 @@ spec:
+   sources:
+     - data:
+         - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:dc89022688fef704e1d092d312ebceaf457e4b07594746c3dfb1231eb71e452a
++        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f21da48d90163156846b1fffc45b9081d998385351349f1afbd7ad1f65ed6f1f
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-89e9175@sha256:5b58d42b9392263eab7824ab5278e3a0e9ff57243c189ef63d24bf2867abf128
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-1d7ae83@sha256:104dcb9fbed4975e1ca48265a600c70329b8d53cd2d323b3a71e661074a62d7c
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -121,7 +121,7 @@ spec:
+   sources:
+     - data:
+         - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:dc89022688fef704e1d092d312ebceaf457e4b07594746c3dfb1231eb71e452a
++        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f21da48d90163156846b1fffc45b9081d998385351349f1afbd7ad1f65ed6f1f
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-89e9175@sha256:5b58d42b9392263eab7824ab5278e3a0e9ff57243c189ef63d24bf2867abf128
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-1d7ae83@sha256:104dcb9fbed4975e1ca48265a600c70329b8d53cd2d323b3a71e661074a62d7c
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 61fad25c..fce786c4 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=df2bb8a22d46ddd526d407c07d4d205d2ad6c4ae
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=14c3c9f25735991dd49cc94d0fb5a823e4c8ad9a
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -11,11 +11,11 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:306267989ecea379471646ef0dee97255c920634@sha256:0fdef06f78674fa2419b795a367b75076c4aedcf0947aa22d957471412cb3bbb
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:439d1cc00a425255cb08a4a0e54d05ebdb0a8a9c@sha256:f66d44bfd6a584179af2ee53d0342c838b5100acf6815620f21d86a835dd4c27
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=306267989ecea379471646ef0dee97255c920634
++      - verify_ec_task_git_revision=439d1cc00a425255cb08a4a0e54d05ebdb0a8a9c
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml
+ images:
+   - name: quay.io/redhat-appstudio/enterprise-contract-controller
+     newName: quay.io/redhat-appstudio/enterprise-contract-controller
+-    newTag: df2bb8a22d46ddd526d407c07d4d205d2ad6c4ae
++    newTag: 14c3c9f25735991dd49cc94d0fb5a823e4c8ad9a
