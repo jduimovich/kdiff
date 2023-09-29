@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a732898b/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-7c097b32/production/components/multi-platform-controller/production/kustomize.out.yaml
+201c201
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:3463f65e7e12610df7f6f4ba9bcd44cebeb54cef
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:8cf5917527aab5c73ad9ce29bc4d4dab13a2945f
+251c251,253
+<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo userdel -f -r -Z $USER
+---
+>       export USERNAME=$(echo $(params.TASKRUN_NAME)$(params.NAMESPACE) | md5sum | cut -d' ' -f1)
+> 
+>       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo userdel -f -r -Z $USERNAME

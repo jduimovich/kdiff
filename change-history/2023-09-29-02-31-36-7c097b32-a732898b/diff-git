@@ -1,0 +1,81 @@
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index f1be85f9..35abee18 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=8cf5917527aab5c73ad9ce29bc4d4dab13a2945f
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=3463f65e7e12610df7f6f4ba9bcd44cebeb54cef
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 8cf5917527aab5c73ad9ce29bc4d4dab13a2945f
++  newTag: 3463f65e7e12610df7f6f4ba9bcd44cebeb54cef
+ 
+ namespace: multi-platform-controller
+ 
+diff --git a/components/multi-platform-controller/production/external-secrets.yaml b/components/multi-platform-controller/production/external-secrets.yaml
+index ee74e3cb..a4e84154 100644
+--- a/components/multi-platform-controller/production/external-secrets.yaml
++++ b/components/multi-platform-controller/production/external-secrets.yaml
+@@ -3,6 +3,8 @@ kind: ExternalSecret
+ metadata:
+   name: aws-ssh-key
+   namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: true
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+@@ -24,6 +26,8 @@ kind: ExternalSecret
+ metadata:
+   name: ibm-ssh-key
+   namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: true
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+@@ -45,6 +49,8 @@ kind: ExternalSecret
+ metadata:
+   name: aws-account
+   namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: true
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+diff --git a/components/multi-platform-controller/staging/external-secrets.yaml b/components/multi-platform-controller/staging/external-secrets.yaml
+index ab236bfa..9ef9c0f6 100644
+--- a/components/multi-platform-controller/staging/external-secrets.yaml
++++ b/components/multi-platform-controller/staging/external-secrets.yaml
+@@ -3,6 +3,8 @@ kind: ExternalSecret
+ metadata:
+   name: aws-ssh-key
+   namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: true
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+@@ -24,6 +26,8 @@ kind: ExternalSecret
+ metadata:
+   name: ibm-ssh-key
+   namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: true
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+@@ -45,6 +49,8 @@ kind: ExternalSecret
+ metadata:
+   name: aws-account
+   namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: true
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
