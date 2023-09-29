@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-367917e0/staging/components/application-api/kustomize.out.yaml ./kustomized-cache/commit-3c0b4ad3/staging/components/application-api/kustomize.out.yaml
+34,36c34
+<         description: Application is the Schema for the applications API.  For a detailed
+<           description with examples, refer to <a href="https://github.com/redhat-appstudio/book/blob/main/book/HAS/hybrid-application-service-api.md">
+<           Hybrid Application Service Kube API </a>
+---
+>         description: Application is the Schema for the applications API
+234,235c232
+<           API.    For a detailed description with examples, refer to <a href="https://github.com/redhat-appstudio/book/blob/main/book/HAS/hybrid-application-service-api.md">
+<           Hybrid Application Service Kube API </a>
+---
+>           API
+669,671c666
+<         description: Component is the Schema for the components API.    For a detailed
+<           description with examples, refer to <a href="https://github.com/redhat-appstudio/book/blob/main/book/HAS/hybrid-application-service-api.md">
+<           Hybrid Application Service Kube API </a>
+---
+>         description: Component is the Schema for the components API
