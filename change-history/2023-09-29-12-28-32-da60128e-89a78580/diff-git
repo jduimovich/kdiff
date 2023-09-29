@@ -1,0 +1,13 @@
+diff --git a/argo-cd-apps/base/tenants-config/tenants-config.yaml b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+index 14b158e2..d2646c9d 100644
+--- a/argo-cd-apps/base/tenants-config/tenants-config.yaml
++++ b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+@@ -27,6 +27,8 @@ spec:
+           kind: Component
+           jsonPointers:
+             - /metadata/annotations/build.appstudio.openshift.io~1request
++            - /metadata/annotations/image.redhat.com~1image
++            - /metadata/annotations/image.redhat.com~1generate
+       syncPolicy:
+         automated:
+           prune: true

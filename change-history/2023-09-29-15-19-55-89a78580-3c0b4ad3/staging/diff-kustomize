@@ -1,0 +1,22 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3c0b4ad3/staging/components/has/staging/kustomize.out.yaml ./kustomized-cache/commit-89a78580/staging/components/has/staging/kustomize.out.yaml
+385,395d384
+<   - batch
+<   resources:
+<   - jobs
+<   verbs:
+<   - create
+<   - delete
+<   - get
+<   - list
+<   - update
+<   - watch
+< - apiGroups:
+400,401d388
+<   - create
+<   - delete
+404d390
+<   - update
+861c847
+<         image: quay.io/redhat-appstudio/application-service:ea77d603e1cef40e6a81ce7b9ab0b8065042b2e0
+---
+>         image: quay.io/redhat-appstudio/application-service:c2f7c296dc3a7732b3fd2d16d9f50685935125ad

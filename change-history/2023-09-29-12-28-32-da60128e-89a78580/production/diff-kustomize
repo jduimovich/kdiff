@@ -1,0 +1,4 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-89a78580/production/app-of-apps-production.yaml ./kustomized-cache/commit-da60128e/production/app-of-apps-production.yaml
+1494,1495d1493
+<         - /metadata/annotations/image.redhat.com~1image
+<         - /metadata/annotations/image.redhat.com~1generate
