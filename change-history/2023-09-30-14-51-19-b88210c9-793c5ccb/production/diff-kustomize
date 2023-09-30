@@ -1,0 +1,35 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-793c5ccb/production/components/jvm-build-service/production/kustomize.out.yaml ./kustomized-cache/commit-b88210c9/production/components/jvm-build-service/production/kustomize.out.yaml
+1363,1364c1363,1364
+<           value: 2c8753d6c04de69f4277c68a6cc181c3b4f36106
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:2c8753d6c04de69f4277c68a6cc181c3b4f36106
+---
+>           value: f95009538ceafa73448dce142b75bddd6f073bbc
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:f95009538ceafa73448dce142b75bddd6f073bbc
+1425c1425
+<       image: quay.io/redhat-appstudio/hacbs-jdk7-builder:f0c0dbbd5926e7a38af245b4e48a38ddd2d17359
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk7-builder:081c833ec3ed3baa85b88cc5b2209fba208565b0
+1429c1429
+<       image: quay.io/redhat-appstudio/hacbs-jdk8-builder:f0c0dbbd5926e7a38af245b4e48a38ddd2d17359
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk8-builder:081c833ec3ed3baa85b88cc5b2209fba208565b0
+1431c1431
+<       tag: jdk:8,maven:3.8,gradle:8.3;8.0.2;7.4.2;6.9.2;5.6.4;4.10.3,sbt:1.8.0,ant:1.10.13
+---
+>       tag: jdk:8,maven:3.8,gradle:8.0.2;7.4.2;6.9.2;5.6.4;4.10.3,sbt:1.8.0,ant:1.10.13
+1433c1433
+<       image: quay.io/redhat-appstudio/hacbs-jdk11-builder:f0c0dbbd5926e7a38af245b4e48a38ddd2d17359
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk11-builder:081c833ec3ed3baa85b88cc5b2209fba208565b0
+1435c1435
+<       tag: jdk:11,maven:3.8,gradle:8.3;8.0.2;7.4.2;6.9.2;5.6.4;4.10.3,sbt:1.8.0,ant:1.10.13
+---
+>       tag: jdk:11,maven:3.8,gradle:8.0.2;7.4.2;6.9.2;5.6.4;4.10.3,sbt:1.8.0,ant:1.10.13
+1437c1437
+<       image: quay.io/redhat-appstudio/hacbs-jdk17-builder:f0c0dbbd5926e7a38af245b4e48a38ddd2d17359
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk17-builder:081c833ec3ed3baa85b88cc5b2209fba208565b0
+1439c1439
+<       tag: jdk:17,maven:3.8,gradle:8.3;8.0.2;7.4.2;6.9.2,sbt:1.8.0,ant:1.10.13
+---
+>       tag: jdk:17,maven:3.8,gradle:8.0.2;7.4.2;6.9.2,sbt:1.8.0,ant:1.10.13
