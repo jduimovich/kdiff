@@ -1,0 +1,30 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0246b17a/development/components/authentication/development/kustomize.out.yaml ./kustomized-cache/commit-a3dd2b84/development/components/authentication/development/kustomize.out.yaml
+434,447d433
+< kind: ClusterRole
+< metadata:
+<   name: view-cluster-version
+< rules:
+< - apiGroups:
+<   - config.openshift.io
+<   resources:
+<   - clusterversions
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+498,510d483
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: stage
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: everyone-view-cluster-version
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: view-cluster-version
