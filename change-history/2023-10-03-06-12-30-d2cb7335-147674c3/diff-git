@@ -1,0 +1,53 @@
+diff --git a/components/remote-secret-controller/base/kustomization.yaml b/components/remote-secret-controller/base/kustomization.yaml
+index b7abaa1c..21e26b62 100644
+--- a/components/remote-secret-controller/base/kustomization.yaml
++++ b/components/remote-secret-controller/base/kustomization.yaml
+@@ -3,5 +3,6 @@ kind: Kustomization
+ 
+ resources:
+   - argocd-permissions.yaml
++  - ./rbac
+ 
+ namespace: remotesecret
+diff --git a/components/remote-secret-controller/base/rbac/kustomization.yaml b/components/remote-secret-controller/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..dfe83e69
+--- /dev/null
++++ b/components/remote-secret-controller/base/rbac/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - remote-secret.yaml
+diff --git a/components/remote-secret-controller/base/rbac/remote-secret.yaml b/components/remote-secret-controller/base/rbac/remote-secret.yaml
+new file mode 100644
+index 00000000..1845fd62
+--- /dev/null
++++ b/components/remote-secret-controller/base/rbac/remote-secret.yaml
+@@ -0,0 +1,12 @@
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: remotesecret-service-maintainers
++  namespace: remotesecret
++subjects:
++  - kind: User
++    name: skabashnyuk
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: component-maintainer
+diff --git a/components/spi/base/rbac/spi.yaml b/components/spi/base/rbac/spi.yaml
+index 138f6048..8521d836 100644
+--- a/components/spi/base/rbac/spi.yaml
++++ b/components/spi/base/rbac/spi.yaml
+@@ -6,8 +6,6 @@ metadata:
+ subjects:
+   - kind: User
+     name: skabashnyuk
+-  - kind: User
+-    name: sbose78
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
