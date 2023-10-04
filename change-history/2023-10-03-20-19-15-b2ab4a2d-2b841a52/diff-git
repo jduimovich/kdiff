@@ -1,0 +1,38 @@
+diff --git a/configs/enable-dvo-for-all-cluster/install-dvo.yaml b/configs/enable-dvo-for-all-cluster/install-dvo.yaml
+index d3552391..95eb83fa 100644
+--- a/configs/enable-dvo-for-all-cluster/install-dvo.yaml
++++ b/configs/enable-dvo-for-all-cluster/install-dvo.yaml
+@@ -1,18 +1,3 @@
+----
+-apiVersion: operators.coreos.com/v1alpha1
+-kind: CatalogSource
+-metadata:
+-  name: deployment-validation-operator-catalog
+-  labels:
+-    name: deployment-validation-operator
+-spec:
+-  displayName: Deployment Validation Operator
+-  grpcPodConfig:
+-    securityContextConfig: restricted
+-  image: quay.io/app-sre/deployment-validation-operator-catalog:latest
+-  publisher: OperatorHub.io
+-  sourceType: grpc
+-
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
+ kind: Subscription
+@@ -20,12 +5,13 @@ metadata:
+   name: deployment-validation-operator
+   labels:
+     name: deployment-validation-operator
++  namespace: deployment-validation-operator
+ spec:
+   channel: alpha
+   installPlanApproval: Automatic
+   name: deployment-validation-operator
+   source: community-operators
+-  sourceNamespace: deployment-validation-operator
++  sourceNamespace: openshift-marketplace
+ 
+ ---
+ apiVersion: operators.coreos.com/v1
