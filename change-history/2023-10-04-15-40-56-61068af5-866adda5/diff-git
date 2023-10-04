@@ -1,0 +1,201 @@
+diff --git a/components/authentication/base/admin-checker/admin-checker-sa.yaml b/components/authentication/base/admin-checker/admin-checker-sa.yaml
+new file mode 100644
+index 00000000..6fcc0426
+--- /dev/null
++++ b/components/authentication/base/admin-checker/admin-checker-sa.yaml
+@@ -0,0 +1,32 @@
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: admin-checker-sa
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: groups-reader
++rules:
++- apiGroups:
++    - "user.openshift.io"
++  resources:
++    - "groups"
++  verbs:
++    - "get"
++    - "list"
++    - "watch"
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: admin-checker-group-reader
++subjects:
++- kind: ServiceAccount
++  name: admin-checker-sa
++  namespace: admin-checker
++roleRef:
++  kind: ClusterRole
++  name: groups-reader
++  apiGroup: rbac.authorization.k8s.io
+diff --git a/components/authentication/base/admin-checker/cronjob.yaml b/components/authentication/base/admin-checker/cronjob.yaml
+new file mode 100644
+index 00000000..39a9899b
+--- /dev/null
++++ b/components/authentication/base/admin-checker/cronjob.yaml
+@@ -0,0 +1,51 @@
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  name: check-cluster-admins
++spec:
++  schedule: "0 7 * * 1" # every Monday at 7:00
++  jobTemplate:
++    spec:
++      template:
++        spec:
++          containers:
++            - name: admin-checker
++              image: registry.redhat.io/openshift4/ose-cli:v4.12
++              env:
++                - name: ADMIN_CHECKER_WORKFLOW_URL
++                  valueFrom:
++                    secretKeyRef:
++                      name: rhtap-infra-secrets
++                      key: admin-checker-workflow-url
++              command:
++                - /bin/sh
++                - -c
++                - |
++                  validate_and_notify_for_group(){
++                    local group="$1"
++                    local users
++                    users=$(oc get group "${group}" -o jsonpath='{.users}' | tr -d '"[]')
++                    if [[ -n "${users}" ]]; then
++                      echo "The list of ${group} is: ${users}"
++                      curl -s -X POST "${ADMIN_CHECKER_WORKFLOW_URL}" \
++                      -H 'Content-Type: application/json' \
++                      -d '{"clusterName": "'$(oc whoami --show-console)'", "userNames": "'${users}'", "groupName": "'${group}'" }'
++                    else
++                      echo "The is no one part of ${group}"
++                    fi
++                  }
++
++                  validate_and_notify_for_group "cluster-admins"
++                  validate_and_notify_for_group "dedicated-admins"
++              resources:
++                requests:
++                  cpu: 100m
++                  memory: 10Mi
++                limits:
++                  cpu: 100m
++                  memory: 100Mi
++              securityContext:
++                readOnlyRootFilesystem: true
++                runAsNonRoot: true
++          restartPolicy: OnFailure
++          serviceAccountName: admin-checker-sa
+diff --git a/components/authentication/base/admin-checker/external-secrets/kustomization.yaml b/components/authentication/base/admin-checker/external-secrets/kustomization.yaml
+new file mode 100644
+index 00000000..c1f32d03
+--- /dev/null
++++ b/components/authentication/base/admin-checker/external-secrets/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - rhtap-infra-secrets.yaml
+diff --git a/components/authentication/base/admin-checker/external-secrets/rhtap-infra-secrets.yaml b/components/authentication/base/admin-checker/external-secrets/rhtap-infra-secrets.yaml
+new file mode 100644
+index 00000000..f9e5177e
+--- /dev/null
++++ b/components/authentication/base/admin-checker/external-secrets/rhtap-infra-secrets.yaml
+@@ -0,0 +1,21 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: rhtap-infra-secrets
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        conversionStrategy: Default
++        decodingStrategy: None
++        key: staging/platform/rhtap-infra-secrets
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: rhtap-infra-secrets
+diff --git a/components/authentication/base/admin-checker/kustomization.yaml b/components/authentication/base/admin-checker/kustomization.yaml
+new file mode 100644
+index 00000000..d499a597
+--- /dev/null
++++ b/components/authentication/base/admin-checker/kustomization.yaml
+@@ -0,0 +1,8 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: admin-checker
++resources:
++  - admin-checker-sa.yaml
++  - cronjob.yaml
++  - namespace.yaml
++  - external-secrets/
+diff --git a/components/authentication/base/admin-checker/namespace.yaml b/components/authentication/base/admin-checker/namespace.yaml
+new file mode 100644
+index 00000000..2325a0c5
+--- /dev/null
++++ b/components/authentication/base/admin-checker/namespace.yaml
+@@ -0,0 +1,4 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: admin-checker
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/kustomization.yaml
+index 9486482e..b90dbf22 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/kustomization.yaml
+@@ -3,6 +3,7 @@ resources:
+ - component-maintainer.yaml
+ - group-sync/
+ - rhtap-admins.yaml
++- admin-checker/
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+diff --git a/components/authentication/production/kustomization.yaml b/components/authentication/production/kustomization.yaml
+index 2c088de8..f5efc6b2 100644
+--- a/components/authentication/production/kustomization.yaml
++++ b/components/authentication/production/kustomization.yaml
+@@ -15,3 +15,9 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
++  - path: rhtap-infra-secrets-patch.yaml
++    target:
++      name: rhtap-infra-secrets
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
+diff --git a/components/authentication/production/rhtap-infra-secrets-patch.yaml b/components/authentication/production/rhtap-infra-secrets-patch.yaml
+new file mode 100644
+index 00000000..7613e949
+--- /dev/null
++++ b/components/authentication/production/rhtap-infra-secrets-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/platform/rhtap-infra-secrets
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 8967af56..ca5cc4d7 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -46,3 +46,4 @@ spec:
+         - rhtap-servicerelease-tenant
+         - rhtap-build-tenant
+         - rhtap-o11y-tenant
++        - admin-checker

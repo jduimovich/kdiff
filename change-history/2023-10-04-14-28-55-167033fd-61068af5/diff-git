@@ -1,0 +1,290 @@
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index b65264ea..bb7267bf 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -13,7 +13,6 @@ resources:
+   - ../../base/external-secrets
+   - ../../base/testing
+   - ../../base/rbac
+-  - team-support-rbac.yaml
+ 
+ patches:
+ #  - path: scale-down-exporter.yaml
+diff --git a/components/pipeline-service/production/base/team-support-rbac.yaml b/components/pipeline-service/production/base/team-support-rbac.yaml
+deleted file mode 100644
+index 7307f875..00000000
+--- a/components/pipeline-service/production/base/team-support-rbac.yaml
++++ /dev/null
+@@ -1,47 +0,0 @@
+----
+-kind: ClusterRole
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipeline-service-rbac-for-support
+-rules:
+-  - verbs:
+-      - delete # allow deletion to help with pac-git-auth issues
+-      - list
+-    apiGroups:
+-      - ''
+-    resources:
+-      - secrets
+-  - verbs:
+-      - get
+-      - list
+-    apiGroups:
+-      - ''
+-    resources:
+-      - serviceaccounts
+-  - verbs: # full administration right on all tekton resources
+-      - '*'
+-    apiGroups:
+-      - 'tekton.dev'
+-    resources:
+-      - '*'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: pipeline-service-rbac-for-support
+-roleRef:
+-  kind: ClusterRole
+-  name: pipeline-service-rbac-for-support
+-  apiGroup: rbac.authorization.k8s.io
+-subjects:
+-  - kind: User
+-    name: adambkaplan
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: Roming22
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: gabemontero
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: enarha
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 8d10f0a7..03610965 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -13,7 +13,6 @@ resources:
+   - ../../base/external-secrets
+   - ../../base/testing
+   - ../../base/rbac
+-  - team-support-rbac.yaml
+ 
+ patches:
+   - path: greedy-pruner.yaml
+diff --git a/components/pipeline-service/staging/base/team-support-rbac.yaml b/components/pipeline-service/staging/base/team-support-rbac.yaml
+deleted file mode 100644
+index 18ac8c04..00000000
+--- a/components/pipeline-service/staging/base/team-support-rbac.yaml
++++ /dev/null
+@@ -1,57 +0,0 @@
+----
+-kind: ClusterRole
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: pipeline-service-rbac-for-support
+-rules:
+-  - verbs:
+-      - delete # allow deletion to help with pac-git-auth issues
+-      - list
+-    apiGroups:
+-      - ''
+-    resources:
+-      - secrets
+-  - verbs:
+-      - get
+-      - list
+-    apiGroups:
+-      - ''
+-    resources:
+-      - serviceaccounts
+-  - verbs: # full administration right on all tekton resources
+-      - '*'
+-    apiGroups:
+-      - 'tekton.dev'
+-    resources:
+-      - '*'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRoleBinding
+-metadata:
+-  name: pipeline-service-rbac-for-support
+-roleRef:
+-  kind: ClusterRole
+-  name: pipeline-service-rbac-for-support
+-  apiGroup: rbac.authorization.k8s.io
+-subjects:
+-  - kind: User
+-    name: adambkaplan
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: Roming22
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: gabemontero
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: avinal
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: sayan-biswas
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: enarha
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: ramessesii2
+-    apiGroup: rbac.authorization.k8s.io
+diff --git a/components/sprayproxy/base/kustomization.yaml b/components/sprayproxy/base/kustomization.yaml
+index d62401ad..b102b317 100644
+--- a/components/sprayproxy/base/kustomization.yaml
++++ b/components/sprayproxy/base/kustomization.yaml
+@@ -1,4 +1,5 @@
++---
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+-
+-namespace: sprayproxy
++resources:
++  - rbac
+diff --git a/components/sprayproxy/base/rbac/kustomization.yaml b/components/sprayproxy/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..06346538
+--- /dev/null
++++ b/components/sprayproxy/base/rbac/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - pipeline-service-sre.yaml
++  
+\ No newline at end of file
+diff --git a/components/sprayproxy/base/rbac/pipeline-service-sre.yaml b/components/sprayproxy/base/rbac/pipeline-service-sre.yaml
+new file mode 100644
+index 00000000..2b309b89
+--- /dev/null
++++ b/components/sprayproxy/base/rbac/pipeline-service-sre.yaml
+@@ -0,0 +1,14 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: pipeline-service-sre
++  namespace: sprayproxy
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: Pipeline Service
++roleRef:
++  kind: ClusterRole
++  name: view
++  apiGroup: rbac.authorization.k8s.io
+diff --git a/components/sprayproxy/production/kustomization.yaml b/components/sprayproxy/production/kustomization.yaml
+index b8771165..1c320744 100644
+--- a/components/sprayproxy/production/kustomization.yaml
++++ b/components/sprayproxy/production/kustomization.yaml
+@@ -1,9 +1,9 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
++  - ../base
+   - https://github.com/redhat-appstudio/sprayproxy/config?ref=f17c3c09b4899e056dce85ec9e0d62bb38f09a61
+   - pipelines-as-code-secret.yaml
+-  - team-support-rbac.yaml
+ 
+ images:
+   - name: ko://github.com/redhat-appstudio/sprayproxy
+diff --git a/components/sprayproxy/production/team-support-rbac.yaml b/components/sprayproxy/production/team-support-rbac.yaml
+deleted file mode 100644
+index 301e3b8e..00000000
+--- a/components/sprayproxy/production/team-support-rbac.yaml
++++ /dev/null
+@@ -1,31 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+-metadata:
+-  name: sprayproxy-rbac-for-support
+-  namespace: sprayproxy
+-subjects:
+-  - kind: User
+-    name: adambkaplan
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: Roming22
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: gabemontero
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: avinal
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: sayan-biswas
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: enarha
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: ramessesii2
+-    apiGroup: rbac.authorization.k8s.io
+-roleRef:
+-  kind: ClusterRole
+-  name: view
+-  apiGroup: rbac.authorization.k8s.io
+\ No newline at end of file
+diff --git a/components/sprayproxy/staging/kustomization.yaml b/components/sprayproxy/staging/kustomization.yaml
+index b8771165..1c320744 100644
+--- a/components/sprayproxy/staging/kustomization.yaml
++++ b/components/sprayproxy/staging/kustomization.yaml
+@@ -1,9 +1,9 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
++  - ../base
+   - https://github.com/redhat-appstudio/sprayproxy/config?ref=f17c3c09b4899e056dce85ec9e0d62bb38f09a61
+   - pipelines-as-code-secret.yaml
+-  - team-support-rbac.yaml
+ 
+ images:
+   - name: ko://github.com/redhat-appstudio/sprayproxy
+diff --git a/components/sprayproxy/staging/team-support-rbac.yaml b/components/sprayproxy/staging/team-support-rbac.yaml
+deleted file mode 100644
+index 301e3b8e..00000000
+--- a/components/sprayproxy/staging/team-support-rbac.yaml
++++ /dev/null
+@@ -1,31 +0,0 @@
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: RoleBinding
+-metadata:
+-  name: sprayproxy-rbac-for-support
+-  namespace: sprayproxy
+-subjects:
+-  - kind: User
+-    name: adambkaplan
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: Roming22
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: gabemontero
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: avinal
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: sayan-biswas
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: enarha
+-    apiGroup: rbac.authorization.k8s.io
+-  - kind: User
+-    name: ramessesii2
+-    apiGroup: rbac.authorization.k8s.io
+-roleRef:
+-  kind: ClusterRole
+-  name: view
+-  apiGroup: rbac.authorization.k8s.io
+\ No newline at end of file

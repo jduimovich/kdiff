@@ -1,0 +1,34 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-249f84d9/development/components/gitops/development/kustomize.out.yaml ./kustomized-cache/commit-e9bedae0/development/components/gitops/development/kustomize.out.yaml
+3392c3392
+<         image: quay.io/redhat-appstudio/gitops-service:2385b3e608755e8d5103e7850f18f3727326a0c4
+---
+>         image: quay.io/redhat-appstudio/gitops-service:a806d492df5093f95ca9d40e762b3a59928b9d9b
+3497c3497
+<         image: quay.io/redhat-appstudio/gitops-service:2385b3e608755e8d5103e7850f18f3727326a0c4
+---
+>         image: quay.io/redhat-appstudio/gitops-service:a806d492df5093f95ca9d40e762b3a59928b9d9b
+3599c3599
+<         image: quay.io/redhat-appstudio/gitops-service:2385b3e608755e8d5103e7850f18f3727326a0c4
+---
+>         image: quay.io/redhat-appstudio/gitops-service:a806d492df5093f95ca9d40e762b3a59928b9d9b
+4110,4129d4109
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: gitops-appstudio-service-webhook-service
+<       namespace: gitops
+<       path: /validate-appstudio-redhat-com-v1alpha1-environment
+<   failurePolicy: Fail
+<   name: venvironment.kb.io
+<   rules:
+<   - apiGroups:
+<     - appstudio.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     - UPDATE
+<     resources:
+<     - environments

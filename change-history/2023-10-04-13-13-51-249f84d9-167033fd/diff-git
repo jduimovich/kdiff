@@ -1,0 +1,11 @@
+diff --git a/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml b/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
+index bf5c27c0..95b7a96a 100644
+--- a/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/integration/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/redhat-appstudio/integration-service/config/grafana/?ref=7b3c6f5190af397aad70a147aedcb61f03cb7ad6
++  - https://github.com/redhat-appstudio/integration-service/config/grafana/?ref=92c8f944f0104ba4d687b89bd458008cd341bcb9
+ 
