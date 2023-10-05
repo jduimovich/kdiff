@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5a1959a8/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-e14df547/development/components/pipeline-service/development/kustomize.out.yaml
+247,262d246
+<   - quota.openshift.io
+<   resources:
+<   - clusterresourcequotas
+<   verbs:
+<   - list
+<   - get
+<   - watch
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
