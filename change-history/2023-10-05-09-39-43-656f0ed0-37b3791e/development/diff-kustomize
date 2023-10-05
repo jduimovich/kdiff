@@ -1,0 +1,59 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37b3791e/development/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-656f0ed0/development/components/enterprise-contract/kustomize.out.yaml
+256c256
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:01198791912c00a929556b9b10f3f1bb4c9d1111@sha256:5207d63a750a8ef212e3652a71ddea8b14084e1dd8fb415e5bdc11166ef7b6c0
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:9878b77c2cfea70603170c39b47eb3747693dc19@sha256:57612e0cafb703cbf603a2fbe1e223040b30477c9cd99cc407df737d9682bebd
+258c258
+<   verify_ec_task_git_revision: 01198791912c00a929556b9b10f3f1bb4c9d1111
+---
+>   verify_ec_task_git_revision: 9878b77c2cfea70603170c39b47eb3747693dc19
+281d280
+<   name: Everything (experimental)
+286c285
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f217aebf4d3227d23fc4831090a16f9ca70f3f5b655ce0fb9c5fc3f4de2e43c6
+289c288
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-83068dc@sha256:2f38a10acf233fdb1bb34b04fede1e4024823a1ff0e7c5f64cdc9ae464efe7b4
+308d306
+<   name: Default
+313c311
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f217aebf4d3227d23fc4831090a16f9ca70f3f5b655ce0fb9c5fc3f4de2e43c6
+316c314
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-83068dc@sha256:2f38a10acf233fdb1bb34b04fede1e4024823a1ff0e7c5f64cdc9ae464efe7b4
+333d330
+<   name: Red Hat
+338c335
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f217aebf4d3227d23fc4831090a16f9ca70f3f5b655ce0fb9c5fc3f4de2e43c6
+341c338
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-83068dc@sha256:2f38a10acf233fdb1bb34b04fede1e4024823a1ff0e7c5f64cdc9ae464efe7b4
+361d357
+<   name: Red Hat (non hermetic)
+366c362
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f217aebf4d3227d23fc4831090a16f9ca70f3f5b655ce0fb9c5fc3f4de2e43c6
+369c365
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-83068dc@sha256:2f38a10acf233fdb1bb34b04fede1e4024823a1ff0e7c5f64cdc9ae464efe7b4
+390d385
+<   name: SLSA3
+395c390
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f217aebf4d3227d23fc4831090a16f9ca70f3f5b655ce0fb9c5fc3f4de2e43c6
+398c393
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-83068dc@sha256:2f38a10acf233fdb1bb34b04fede1e4024823a1ff0e7c5f64cdc9ae464efe7b4

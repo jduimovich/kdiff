@@ -1,0 +1,119 @@
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index fc5b2720..a77206eb 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -20,14 +20,15 @@ spec:
+       - '@slsa2'
+       - '@slsa3'
+   description: Includes rules for levels 1, 2 & 3 of SLSA v0.1. This is the default config used for new RHTAP applications. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
++  name: Default
+   publicKey: k8s://openshift-pipelines/public-key
+   sources:
+     - data:
+         - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f217aebf4d3227d23fc4831090a16f9ca70f3f5b655ce0fb9c5fc3f4de2e43c6
++        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-83068dc@sha256:2f38a10acf233fdb1bb34b04fede1e4024823a1ff0e7c5f64cdc9ae464efe7b4
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -43,14 +44,15 @@ spec:
+     include:
+       - '*'
+   description: Include every rule in the default policy source. For experiments only. This is not expected to pass for RHTAP builds without excluding some rules. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
++  name: Everything (experimental)
+   publicKey: k8s://openshift-pipelines/public-key
+   sources:
+     - data:
+         - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f217aebf4d3227d23fc4831090a16f9ca70f3f5b655ce0fb9c5fc3f4de2e43c6
++        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-83068dc@sha256:2f38a10acf233fdb1bb34b04fede1e4024823a1ff0e7c5f64cdc9ae464efe7b4
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -68,14 +70,15 @@ spec:
+     include:
+       - '@redhat'
+   description: Includes most of the rules and policies required internally by Red Hat when building Red Hat products. It excludes the requirement of hermetic builds. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
++  name: Red Hat (non hermetic)
+   publicKey: k8s://openshift-pipelines/public-key
+   sources:
+     - data:
+         - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f217aebf4d3227d23fc4831090a16f9ca70f3f5b655ce0fb9c5fc3f4de2e43c6
++        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-83068dc@sha256:2f38a10acf233fdb1bb34b04fede1e4024823a1ff0e7c5f64cdc9ae464efe7b4
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -91,14 +94,15 @@ spec:
+     include:
+       - '@redhat'
+   description: Includes the full set of rules and policies required internally by Red Hat when building Red Hat products. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
++  name: Red Hat
+   publicKey: k8s://openshift-pipelines/public-key
+   sources:
+     - data:
+         - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f217aebf4d3227d23fc4831090a16f9ca70f3f5b655ce0fb9c5fc3f4de2e43c6
++        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-83068dc@sha256:2f38a10acf233fdb1bb34b04fede1e4024823a1ff0e7c5f64cdc9ae464efe7b4
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -117,11 +121,12 @@ spec:
+       - '@slsa2'
+       - '@slsa3'
+   description: Rules specifically related to levels 1, 2 & 3 of SLSA v0.1, plus a set of basic checks that are expected to pass for all RHTAP builds. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
++  name: SLSA3
+   publicKey: k8s://openshift-pipelines/public-key
+   sources:
+     - data:
+         - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+-        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:f217aebf4d3227d23fc4831090a16f9ca70f3f5b655ce0fb9c5fc3f4de2e43c6
++        - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-83068dc@sha256:2f38a10acf233fdb1bb34b04fede1e4024823a1ff0e7c5f64cdc9ae464efe7b4
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index edc10a45..3215ae69 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=efbd65be9984f8cb2a71cf6ac254e6e68b29c2af
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=5ca61f4b86455e5d00188ee436f6b1e3240bb188
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -11,11 +11,11 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:9878b77c2cfea70603170c39b47eb3747693dc19@sha256:57612e0cafb703cbf603a2fbe1e223040b30477c9cd99cc407df737d9682bebd
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:01198791912c00a929556b9b10f3f1bb4c9d1111@sha256:5207d63a750a8ef212e3652a71ddea8b14084e1dd8fb415e5bdc11166ef7b6c0
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=9878b77c2cfea70603170c39b47eb3747693dc19
++      - verify_ec_task_git_revision=01198791912c00a929556b9b10f3f1bb4c9d1111
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml
+ images:
+   - name: quay.io/redhat-appstudio/enterprise-contract-controller
+     newName: quay.io/redhat-appstudio/enterprise-contract-controller
+-    newTag: efbd65be9984f8cb2a71cf6ac254e6e68b29c2af
++    newTag: 5ca61f4b86455e5d00188ee436f6b1e3240bb188
