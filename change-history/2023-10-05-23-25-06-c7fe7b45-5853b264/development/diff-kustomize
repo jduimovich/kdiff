@@ -1,0 +1,4 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5853b264/development/components/application-api/kustomize.out.yaml ./kustomized-cache/commit-c7fe7b45/development/components/application-api/kustomize.out.yaml
+1294a1295,1296
+>                 required:
+>                 - env
