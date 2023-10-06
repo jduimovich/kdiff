@@ -1,0 +1,163 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 628b7063..98c7ab3d 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -19,5 +19,6 @@ resources:
+   - segment-bridge
+   - toolchain-member-operator
+   - multi-platform-controller
++  - perf-team-prometheus-reader
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/perf-team-prometheus-reader/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/perf-team-prometheus-reader/kustomization.yaml
+new file mode 100644
+index 00000000..dcd495b3
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/perf-team-prometheus-reader/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - perf-team-prometheus-reader.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/perf-team-prometheus-reader/perf-team-prometheus-reader.yaml b/argo-cd-apps/base/member/infra-deployments/perf-team-prometheus-reader/perf-team-prometheus-reader.yaml
+new file mode 100644
+index 00000000..a1a44822
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/perf-team-prometheus-reader/perf-team-prometheus-reader.yaml
+@@ -0,0 +1,41 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: perf-team-prometheus-reader
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/perf-team-prometheus-reader
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: perf-team-prometheus-reader-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: perf-team-prometheus-reader
++        server: '{{server}}'
++      syncPolicy:
++        automated: 
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/components/perf-team-prometheus-reader/OWNERS b/components/perf-team-prometheus-reader/OWNERS
+new file mode 100644
+index 00000000..cc411e82
+--- /dev/null
++++ b/components/perf-team-prometheus-reader/OWNERS
+@@ -0,0 +1,5 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- jhutar
++- pmacik
+diff --git a/components/perf-team-prometheus-reader/README.md b/components/perf-team-prometheus-reader/README.md
+new file mode 100644
+index 00000000..e160ac3d
+--- /dev/null
++++ b/components/perf-team-prometheus-reader/README.md
+@@ -0,0 +1,4 @@
++# perf-team-prometheus-reader
++
++Component used by RHTAP Perf&Scale team to read monitoring data from
++Stage multi-tenant member cluster Prometheus.
+diff --git a/components/perf-team-prometheus-reader/base/kustomization.yaml b/components/perf-team-prometheus-reader/base/kustomization.yaml
+new file mode 100644
+index 00000000..cf30275b
+--- /dev/null
++++ b/components/perf-team-prometheus-reader/base/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - serviceaccount.yaml
+diff --git a/components/perf-team-prometheus-reader/base/serviceaccount.yaml b/components/perf-team-prometheus-reader/base/serviceaccount.yaml
+new file mode 100644
+index 00000000..109b1f8c
+--- /dev/null
++++ b/components/perf-team-prometheus-reader/base/serviceaccount.yaml
+@@ -0,0 +1,36 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: perf-team-prometheus-reader-read-openshift-monitoring
++rules:
++  - apiGroups: [""]
++    resources: ["namespaces"]
++    verbs: ["get", "list", "watch"]
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: perf-team-prometheus-reader-cluster-sa
++  namespace: perf-team-prometheus-reader
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: sa-read-permissions-openshift-monitoring
++subjects:
++  - kind: ServiceAccount
++    name: perf-team-prometheus-reader-cluster-sa
++    namespace: perf-team-prometheus-reader
++roleRef:
++  kind: ClusterRole
++  name: perf-team-prometheus-reader-read-openshift-monitoring
++  apiGroup: rbac.authorization.k8s.io
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  name: perf-team-prometheus-reader
++  namespace: perf-team-prometheus-reader
++  annotations:
++    kubernetes.io/service-account.name: perf-team-prometheus-reader
++type: kubernetes.io/service-account-token
+diff --git a/components/perf-team-prometheus-reader/development/kustomization.yaml b/components/perf-team-prometheus-reader/development/kustomization.yaml
+new file mode 100644
+index 00000000..27bb5cb0
+--- /dev/null
++++ b/components/perf-team-prometheus-reader/development/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
+diff --git a/components/perf-team-prometheus-reader/staging/kustomization.yaml b/components/perf-team-prometheus-reader/staging/kustomization.yaml
+new file mode 100644
+index 00000000..27bb5cb0
+--- /dev/null
++++ b/components/perf-team-prometheus-reader/staging/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base

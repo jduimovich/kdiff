@@ -1,0 +1,49 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d2a842f3/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-5853b264/staging/app-of-apps-staging.yaml
+973,1018d972
+<   name: perf-team-prometheus-reader
+<   namespace: argocd-staging
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: staging
+<             sourceRoot: components/perf-team-prometheus-reader
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: perf-team-prometheus-reader-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: perf-team-prometheus-reader
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: -1
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+Only in ./kustomized-cache/commit-d2a842f3/staging/components: perf-team-prometheus-reader
