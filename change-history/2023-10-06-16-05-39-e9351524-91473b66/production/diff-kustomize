@@ -1,0 +1,21 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-91473b66/production/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-e9351524/production/components/enterprise-contract/kustomize.out.yaml
+286c286
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:d38d8804d0636e46d31fc317c3f759458f76e822d02554afc1953fa6e3252970
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+313c313
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:d38d8804d0636e46d31fc317c3f759458f76e822d02554afc1953fa6e3252970
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+338c338
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:d38d8804d0636e46d31fc317c3f759458f76e822d02554afc1953fa6e3252970
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+366c366
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:d38d8804d0636e46d31fc317c3f759458f76e822d02554afc1953fa6e3252970
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
+395c395
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:d38d8804d0636e46d31fc317c3f759458f76e822d02554afc1953fa6e3252970
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:9631e239c319cc14c38235604051618f67d707a8c11776c8d104e7fe7009a5e6
