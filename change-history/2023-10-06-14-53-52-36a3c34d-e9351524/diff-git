@@ -1,0 +1,13 @@
+diff --git a/components/authentication/base/admin-checker/cronjob.yaml b/components/authentication/base/admin-checker/cronjob.yaml
+index 907733fd..e03e9590 100644
+--- a/components/authentication/base/admin-checker/cronjob.yaml
++++ b/components/authentication/base/admin-checker/cronjob.yaml
+@@ -3,7 +3,7 @@ kind: CronJob
+ metadata:
+   name: check-cluster-admins
+ spec:
+-  schedule: "30 11 * * *" # every day 11:30 UTC
++  schedule: "30 11 * * 1-5" # every week day 11:30 UTC
+   jobTemplate:
+     spec:
+       template:

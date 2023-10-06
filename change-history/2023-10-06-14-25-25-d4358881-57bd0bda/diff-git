@@ -1,0 +1,14 @@
+diff --git a/components/authentication/base/rhtap-admins.yaml b/components/authentication/base/rhtap-admins.yaml
+index 365a4cf5..487d0c22 100644
+--- a/components/authentication/base/rhtap-admins.yaml
++++ b/components/authentication/base/rhtap-admins.yaml
+@@ -13,7 +13,8 @@ rules:
+       - enterprisecontractpolicies
+       - environments
+       - integrationtestscenarios
+-      - internalrequests
++      # RHTAP Admins should not be permitted to create or edit InternalRequest resources.
++      # - internalrequests
+       - promotionruns
+       - releaseplanadmissions
+       - releaseplans
