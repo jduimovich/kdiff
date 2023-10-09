@@ -1,0 +1,63 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-366bceb1/development/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-c5e44a28/development/components/enterprise-contract/kustomize.out.yaml
+272c272,273
+<     exclude: []
+---
+>     exclude:
+>     - step_image_registries
+285c286
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:24a0195a03f949a943e4c305ac2ef95103392332e3896e9143487bcf98113a66
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:d38d8804d0636e46d31fc317c3f759458f76e822d02554afc1953fa6e3252970
+288c289
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-81167b1@sha256:3f288b3ffe1e3289b1c6570e70690d1397aa9ad740e053d492aa1814c0557acf
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+297c298,299
+<     exclude: []
+---
+>     exclude:
+>     - step_image_registries
+311c313
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:24a0195a03f949a943e4c305ac2ef95103392332e3896e9143487bcf98113a66
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:d38d8804d0636e46d31fc317c3f759458f76e822d02554afc1953fa6e3252970
+314c316
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-81167b1@sha256:3f288b3ffe1e3289b1c6570e70690d1397aa9ad740e053d492aa1814c0557acf
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+323c325,326
+<     exclude: []
+---
+>     exclude:
+>     - step_image_registries
+335c338
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:24a0195a03f949a943e4c305ac2ef95103392332e3896e9143487bcf98113a66
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:d38d8804d0636e46d31fc317c3f759458f76e822d02554afc1953fa6e3252970
+338c341
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-81167b1@sha256:3f288b3ffe1e3289b1c6570e70690d1397aa9ad740e053d492aa1814c0557acf
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+349a353
+>     - step_image_registries
+362c366
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:24a0195a03f949a943e4c305ac2ef95103392332e3896e9143487bcf98113a66
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:d38d8804d0636e46d31fc317c3f759458f76e822d02554afc1953fa6e3252970
+365c369
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-81167b1@sha256:3f288b3ffe1e3289b1c6570e70690d1397aa9ad740e053d492aa1814c0557acf
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
+374c378,379
+<     exclude: []
+---
+>     exclude:
+>     - step_image_registries
+390c395
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:24a0195a03f949a943e4c305ac2ef95103392332e3896e9143487bcf98113a66
+---
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:d38d8804d0636e46d31fc317c3f759458f76e822d02554afc1953fa6e3252970
+393c398
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-81167b1@sha256:3f288b3ffe1e3289b1c6570e70690d1397aa9ad740e053d492aa1814c0557acf
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-af84959@sha256:d5fe1e771369388e7bbac80a5d3b7274a19c6729dfeaf44a1dc4d5bf471c5823
