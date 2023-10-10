@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f34bb488/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-d49bd4ce/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1686c1686
+<   channel: pipelines-1.12
+---
+>   channel: pipelines-1.11
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f34bb488/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-d49bd4ce/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1686c1686
+<   channel: pipelines-1.12
+---
+>   channel: pipelines-1.11

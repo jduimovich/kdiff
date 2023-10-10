@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-172ffe82/development/components/authentication/development/kustomize.out.yaml ./kustomized-cache/commit-f34bb488/development/components/authentication/development/kustomize.out.yaml
+597c597
+<                 users=$(oc get group "${group}" -o jsonpath='{.users}' | sed "s/<nil>//g" | tr -d '"[]')
+---
+>                 users=$(oc get group "${group}" -o jsonpath='{.users}' | tr -d '"[]')
