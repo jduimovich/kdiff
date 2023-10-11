@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1d381305/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-172ffe82/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml
+2671c2671
+<   - admissionregistration.k8s.io
+---
+>   - toolchain.dev.openshift.com
+2673,2674c2673
+<   - validatingwebhookconfigurations
+<   - mutatingwebhookconfigurations
+---
+>   - spacerequests
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1d381305/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-172ffe82/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml
+2671c2671
+<   - admissionregistration.k8s.io
+---
+>   - toolchain.dev.openshift.com
+2673,2674c2673
+<   - validatingwebhookconfigurations
+<   - mutatingwebhookconfigurations
+---
+>   - spacerequests
