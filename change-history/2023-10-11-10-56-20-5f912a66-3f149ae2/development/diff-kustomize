@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3f149ae2/development/components/perf-team-prometheus-reader/development/kustomize.out.yaml ./kustomized-cache/commit-5f912a66/development/components/perf-team-prometheus-reader/development/kustomize.out.yaml
+32a33,41
+> ---
+> apiVersion: v1
+> kind: Secret
+> metadata:
+>   annotations:
+>     kubernetes.io/service-account.name: perf-team-prometheus-reader
+>   name: perf-team-prometheus-reader
+>   namespace: perf-team-prometheus-reader
+> type: kubernetes.io/service-account-token
