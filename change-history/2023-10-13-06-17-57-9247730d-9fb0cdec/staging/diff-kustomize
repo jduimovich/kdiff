@@ -1,0 +1,44 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9fb0cdec/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-9247730d/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+4451a4452,4471
+> - admissionReviewVersions:
+>   - v1
+>   clientConfig:
+>     service:
+>       name: gitops-appstudio-service-webhook-service
+>       namespace: gitops
+>       path: /validate-appstudio-redhat-com-v1alpha1-environment
+>   failurePolicy: Fail
+>   name: venvironment.kb.io
+>   rules:
+>   - apiGroups:
+>     - appstudio.redhat.com
+>     apiVersions:
+>     - v1alpha1
+>     operations:
+>     - CREATE
+>     - UPDATE
+>     resources:
+>     - environments
+>   sideEffects: None
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9fb0cdec/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-9247730d/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml
+4437a4438,4457
+> - admissionReviewVersions:
+>   - v1
+>   clientConfig:
+>     service:
+>       name: gitops-appstudio-service-webhook-service
+>       namespace: gitops
+>       path: /validate-appstudio-redhat-com-v1alpha1-environment
+>   failurePolicy: Fail
+>   name: venvironment.kb.io
+>   rules:
+>   - apiGroups:
+>     - appstudio.redhat.com
+>     apiVersions:
+>     - v1alpha1
+>     operations:
+>     - CREATE
+>     - UPDATE
+>     resources:
+>     - environments
+>   sideEffects: None
