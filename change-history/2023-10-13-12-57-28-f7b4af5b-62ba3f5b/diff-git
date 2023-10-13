@@ -1,0 +1,211 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/cluster-registration/cluster-registration.yaml b/argo-cd-apps/base/member/infra-deployments/cluster-registration/cluster-registration.yaml
+deleted file mode 100644
+index e044312d..00000000
+--- a/argo-cd-apps/base/member/infra-deployments/cluster-registration/cluster-registration.yaml
++++ /dev/null
+@@ -1,31 +0,0 @@
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: cluster-registration
+-spec:
+-  generators:
+-    - clusters: {}
+-  template:
+-    metadata:
+-      name: cluster-registration-{{nameNormalized}}
+-    spec:
+-      project: default
+-      source:
+-        path: components/cluster-registration
+-        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+-        targetRevision: main
+-      destination:
+-        namespace: cluster-reg-config
+-        server: '{{server}}'
+-      syncPolicy:
+-        automated:
+-          prune: true
+-          selfHeal: true
+-        syncOptions:
+-        - CreateNamespace=true
+-        retry:
+-          limit: -1
+-          backoff:
+-            duration: 10s
+-            factor: 2
+-            maxDuration: 3m
+\ No newline at end of file
+diff --git a/argo-cd-apps/base/member/infra-deployments/cluster-registration/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/cluster-registration/kustomization.yaml
+deleted file mode 100644
+index 78310c61..00000000
+--- a/argo-cd-apps/base/member/infra-deployments/cluster-registration/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- cluster-registration.yaml
+-components:
+-  - ../../../../k-components/deploy-to-member-cluster
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 98c7ab3d..9e886d45 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -8,7 +8,6 @@ resources:
+   - integration
+   - spi
+   - remote-secret-controller
+-  - cluster-registration
+   - enterprise-contract
+   - build-service
+   - jvm-build-service
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index 0e211342..0796114b 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -49,12 +49,6 @@ $patch: delete
+ ---
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+-metadata:
+-  name: cluster-registration
+-$patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+ metadata:
+   name: enable-dvo
+ $patch: delete
+diff --git a/argo-cd-apps/overlays/staging/delete-applications.yaml b/argo-cd-apps/overlays/staging/delete-applications.yaml
+deleted file mode 100644
+index acd59b76..00000000
+--- a/argo-cd-apps/overlays/staging/delete-applications.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: cluster-registration
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/staging/kustomization.yaml b/argo-cd-apps/overlays/staging/kustomization.yaml
+index 2b488faa..e23fe3fc 100644
+--- a/argo-cd-apps/overlays/staging/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging/kustomization.yaml
+@@ -5,5 +5,3 @@ resources:
+   - ../../base/member
+   - ../../base/all-clusters
+   - ../../base/quality-dashboard
+-patchesStrategicMerge:
+-  - delete-applications.yaml
+\ No newline at end of file
+diff --git a/components/cluster-registration/cluster-registration-maintainer.yaml b/components/cluster-registration/cluster-registration-maintainer.yaml
+deleted file mode 100644
+index 37f82024..00000000
+--- a/components/cluster-registration/cluster-registration-maintainer.yaml
++++ /dev/null
+@@ -1,71 +0,0 @@
+-kind: ClusterRole
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: cluster-registration-maintainer
+-rules:
+-  - verbs:
+-      - create
+-      - delete
+-      - get
+-      - list
+-      - patch
+-      - update
+-    apiGroups:
+-      - 'singapore.open-cluster-management.io'
+-    resources:
+-      - clusterregistrars
+-      - hubconfigs
+-      - registeredclusters
+-  - verbs:
+-      - create # allows addition of credentials only.
+-      - delete
+-      - list
+-    apiGroups:
+-      - ''
+-    resources:
+-      - secrets
+-  - verbs:
+-      - '*' # needed till we figure out how to cleanup workspaces.
+-    apiGroups:
+-      - 'tekton.dev'
+-    resources:
+-      - 'pipelineruns'
+----
+-kind: ClusterRoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: cluster-registration-maintainer-rolebinding
+-subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: chrisahl
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: robinbobbit
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: cluster-registration-maintainer
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: cluster-registration-service-component-maintainers
+-  namespace: cluster-reg-config
+-subjects:
+-- kind: User
+-  name: chrisahl
+-- kind: User
+-  name: leena-jawale
+-- kind: User
+-  name: itdove
+-- kind: User
+-  name: vidyanambiar
+-- kind: User
+-  name: tpouyer
+-- kind: User
+-  name: robinbobbit
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: component-maintainer
+diff --git a/components/cluster-registration/kustomization.yaml b/components/cluster-registration/kustomization.yaml
+deleted file mode 100644
+index 81774cd5..00000000
+--- a/components/cluster-registration/kustomization.yaml
++++ /dev/null
+@@ -1,26 +0,0 @@
+-resources:
+-- cluster-registration-maintainer.yaml
+-- https://raw.githubusercontent.com/stolostron/cluster-registration-operator/0.0.0-20220504-13-23-32/config/rbac/service_account.yaml
+-- https://raw.githubusercontent.com/stolostron/cluster-registration-operator/0.0.0-20220504-13-23-32/config/rbac/role.yaml
+-- https://raw.githubusercontent.com/stolostron/cluster-registration-operator/0.0.0-20220504-13-23-32/config/rbac/role_binding.yaml
+-- https://raw.githubusercontent.com/stolostron/cluster-registration-operator/0.0.0-20220504-13-23-32/config/rbac/leader_election_role.yaml
+-- https://raw.githubusercontent.com/stolostron/cluster-registration-operator/0.0.0-20220504-13-23-32/config/rbac/leader_election_role_binding.yaml
+-- https://raw.githubusercontent.com/stolostron/cluster-registration-operator/0.0.0-20220504-13-23-32/config/installer/installer.yaml
+-
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-images:
+-- name: controller
+-  newName: quay.io/stolostron/cluster-registration-operator
+-  newTag: 0.0.0-20220504-13-23-32
+-
+-# Adds namespace to all resources.
+-namespace: cluster-reg-config
+-
+-# Value of this field is prepended to the
+-# names of all resources, e.g. a deployment named
+-# "wordpress" becomes "alices-wordpress".
+-# Note that it should also match with the prefix (text before '-') of the namespace
+-# field above.
+-namePrefix: cluster-registration-installer-
