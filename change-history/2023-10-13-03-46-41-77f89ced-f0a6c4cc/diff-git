@@ -1,0 +1,9 @@
+diff --git a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
+index 72f7299a..c66aa63d 100644
+--- a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
++++ b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
+@@ -10,4 +10,3 @@ spec:
+   collection:
+     logs:
+       type: vector
+-      vector: {}
