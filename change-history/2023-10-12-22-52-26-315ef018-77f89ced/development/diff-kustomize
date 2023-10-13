@@ -1,0 +1,59 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-77f89ced/development/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-315ef018/development/components/enterprise-contract/kustomize.out.yaml
+256c256
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:2f80f96772adc7d0bd585790597ad521eff99227@sha256:ee28717edec4d4179eb262015e89a66993300df7f0594cfd2fd19a2d480006bf
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:01198791912c00a929556b9b10f3f1bb4c9d1111@sha256:5207d63a750a8ef212e3652a71ddea8b14084e1dd8fb415e5bdc11166ef7b6c0
+258c258
+<   verify_ec_task_git_revision: 2f80f96772adc7d0bd585790597ad521eff99227
+---
+>   verify_ec_task_git_revision: 01198791912c00a929556b9b10f3f1bb4c9d1111
+284,285c284,285
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+<     - github.com/release-engineering/rhtap-ec-policy//data
+---
+>     - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:24a0195a03f949a943e4c305ac2ef95103392332e3896e9143487bcf98113a66
+288c288
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-1e6ae52@sha256:9421be9d518b3e239f953f1e8c8f4701ca1103919d144ddba1520e7acde8ebc9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-81167b1@sha256:3f288b3ffe1e3289b1c6570e70690d1397aa9ad740e053d492aa1814c0557acf
+310,311c310,311
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+<     - github.com/release-engineering/rhtap-ec-policy//data
+---
+>     - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:24a0195a03f949a943e4c305ac2ef95103392332e3896e9143487bcf98113a66
+314c314
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-1e6ae52@sha256:9421be9d518b3e239f953f1e8c8f4701ca1103919d144ddba1520e7acde8ebc9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-81167b1@sha256:3f288b3ffe1e3289b1c6570e70690d1397aa9ad740e053d492aa1814c0557acf
+334,335c334,335
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+<     - github.com/release-engineering/rhtap-ec-policy//data
+---
+>     - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:24a0195a03f949a943e4c305ac2ef95103392332e3896e9143487bcf98113a66
+338c338
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-1e6ae52@sha256:9421be9d518b3e239f953f1e8c8f4701ca1103919d144ddba1520e7acde8ebc9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-81167b1@sha256:3f288b3ffe1e3289b1c6570e70690d1397aa9ad740e053d492aa1814c0557acf
+361,362c361,362
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+<     - github.com/release-engineering/rhtap-ec-policy//data
+---
+>     - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:24a0195a03f949a943e4c305ac2ef95103392332e3896e9143487bcf98113a66
+365c365
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-1e6ae52@sha256:9421be9d518b3e239f953f1e8c8f4701ca1103919d144ddba1520e7acde8ebc9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-81167b1@sha256:3f288b3ffe1e3289b1c6570e70690d1397aa9ad740e053d492aa1814c0557acf
+389,390c389,390
+<     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+<     - github.com/release-engineering/rhtap-ec-policy//data
+---
+>     - github.com/release-engineering/rhtap-ec-policy//data?ref=be7e1ef73bdeef2752dde400a52f9eab9b7542ca
+>     - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest@sha256:24a0195a03f949a943e4c305ac2ef95103392332e3896e9143487bcf98113a66
+393c393
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-1e6ae52@sha256:9421be9d518b3e239f953f1e8c8f4701ca1103919d144ddba1520e7acde8ebc9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-81167b1@sha256:3f288b3ffe1e3289b1c6570e70690d1397aa9ad740e053d492aa1814c0557acf

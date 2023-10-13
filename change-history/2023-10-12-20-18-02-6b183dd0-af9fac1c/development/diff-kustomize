@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-af9fac1c/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-6b183dd0/development/components/pipeline-service/development/kustomize.out.yaml
+1185c1185
+<         image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:8162207171f941e0eca4c2a00e2a4cbf4768ace5
+1319c1319
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:8162207171f941e0eca4c2a00e2a4cbf4768ace5
+1420c1420
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:8162207171f941e0eca4c2a00e2a4cbf4768ace5
