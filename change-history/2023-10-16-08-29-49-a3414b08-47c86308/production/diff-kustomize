@@ -1,0 +1,19 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-47c86308/production/components/sprayproxy/production/kustomize.out.yaml ./kustomized-cache/commit-a3414b08/production/components/sprayproxy/production/kustomize.out.yaml
+185c185
+<         image: quay.io/redhat-appstudio/sprayproxy:5ba6ee480187adae0ded1321fd19f46cd884884b
+---
+>         image: quay.io/redhat-appstudio/sprayproxy:f17c3c09b4899e056dce85ec9e0d62bb38f09a61
+194,198d193
+<           requests:
+<             cpu: 5m
+<             memory: 64Mi
+<         securityContext:
+<           readOnlyRootFilesystem: true
+220,221d214
+<         securityContext:
+<           readOnlyRootFilesystem: true
+244,247d236
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<       securityContext:
+<         runAsNonRoot: true
