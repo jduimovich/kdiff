@@ -1,0 +1,35 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e3ab69db/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-d3cfa206/development/components/pipeline-service/development/kustomize.out.yaml
+1091c1091
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:fb7dd3a3bca5cde981c552e6ec50c8054c590506
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:7ffa67747cae05345dd1e9a274ec26c50d508068
+1103,1105d1102
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+1211d1207
+<           readOnlyRootFilesystem: true
+1256,1257d1251
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+1300,1302d1293
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+1307,1308d1297
+<         - mountPath: /tmp
+<           name: tmp-mc-volume
+1339d1327
+<           readOnlyRootFilesystem: true
+1355,1356d1342
+<       - emptyDir: {}
+<         name: tmp-mc-volume
+1414,1415d1399
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+1450d1433
+<           readOnlyRootFilesystem: true
+1596,1598d1578
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true

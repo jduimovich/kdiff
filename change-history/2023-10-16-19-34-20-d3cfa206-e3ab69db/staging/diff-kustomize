@@ -1,0 +1,50 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e3ab69db/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-d3cfa206/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1090c1090
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:fb7dd3a3bca5cde981c552e6ec50c8054c590506
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:7ffa67747cae05345dd1e9a274ec26c50d508068
+1102,1104d1101
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+1158,1159d1154
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+1237d1231
+<           readOnlyRootFilesystem: true
+1287d1280
+<           readOnlyRootFilesystem: true
+1354,1355d1346
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+1390d1380
+<           readOnlyRootFilesystem: true
+1466,1468d1455
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e3ab69db/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-d3cfa206/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1090c1090
+<       - image: quay.io/redhat-appstudio/pipeline-service-exporter:fb7dd3a3bca5cde981c552e6ec50c8054c590506
+---
+>       - image: quay.io/redhat-appstudio/pipeline-service-exporter:7ffa67747cae05345dd1e9a274ec26c50d508068
+1102,1104d1101
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+1158,1159d1154
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+1237d1231
+<           readOnlyRootFilesystem: true
+1287d1280
+<           readOnlyRootFilesystem: true
+1354,1355d1346
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+1390d1380
+<           readOnlyRootFilesystem: true
+1466,1468d1455
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
