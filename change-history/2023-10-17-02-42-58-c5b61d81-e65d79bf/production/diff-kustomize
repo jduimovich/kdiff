@@ -1,0 +1,22 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e65d79bf/production/components/application-api/kustomize.out.yaml ./kustomized-cache/commit-c5b61d81/production/components/application-api/kustomize.out.yaml
+314,319d313
+<                         build-nudges-ref:
+<                           description: The list of components to be nudged by this
+<                             components build upon a successful result. Optional.
+<                           items:
+<                             type: string
+<                           type: array
+699,704d692
+<               build-nudges-ref:
+<                 description: The list of components to be nudged by this components
+<                   build upon a successful result. Optional.
+<                 items:
+<                   type: string
+<                 type: array
+912,917d899
+<               build-nudged-by:
+<                 description: The list of names of Components whose builds nudge this
+<                   resource (their spec.build-nudges-ref[] references this component)
+<                 items:
+<                   type: string
+<                 type: array
