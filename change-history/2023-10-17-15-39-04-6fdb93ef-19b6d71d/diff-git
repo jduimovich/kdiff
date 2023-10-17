@@ -1,0 +1,74 @@
+diff --git a/components/dora-metrics/base/kustomization.yaml b/components/dora-metrics/base/kustomization.yaml
+index b832d313..3cd8d4b0 100644
+--- a/components/dora-metrics/base/kustomization.yaml
++++ b/components/dora-metrics/base/kustomization.yaml
+@@ -1,11 +1,5 @@
+-resources:
+-- https://github.com/redhat-appstudio/dora-metrics/deploy/base?ref=dadd13a75d0fd0e4337fd90ddba3d3e47fb6199f
+-- ./rbac
+-
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+-images:
+-  - name: quay.io/redhat-appstudio/dora-metrics
+-    newName: quay.io/redhat-appstudio/dora-metrics
+-    newTag: dadd13a75d0fd0e4337fd90ddba3d3e47fb6199f
++resources:
++  - ./rbac
+diff --git a/components/dora-metrics/development/kustomization.yaml b/components/dora-metrics/development/kustomization.yaml
+index bdf7ce4f..3eefc3e3 100644
+--- a/components/dora-metrics/development/kustomization.yaml
++++ b/components/dora-metrics/development/kustomization.yaml
+@@ -1,4 +1,10 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
++- https://github.com/redhat-appstudio/dora-metrics/deploy/base?ref=630e08a427f4a6cd3a5fd869d224de34d03874c2
+ - ../base
++
++images:
++  - name: quay.io/redhat-appstudio/dora-metrics
++    newName: quay.io/redhat-appstudio/dora-metrics
++    newTag: 630e08a427f4a6cd3a5fd869d224de34d03874c2
+\ No newline at end of file
+diff --git a/components/dora-metrics/production/kustomization.yaml b/components/dora-metrics/production/kustomization.yaml
+index 4e51095e..fb79074e 100644
+--- a/components/dora-metrics/production/kustomization.yaml
++++ b/components/dora-metrics/production/kustomization.yaml
+@@ -1,6 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
++- https://github.com/redhat-appstudio/dora-metrics/deploy/base?ref=630e08a427f4a6cd3a5fd869d224de34d03874c2
+ - ../base
+ - ../base/external-secrets
+ patches:
+@@ -10,3 +11,8 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
++
++images:
++  - name: quay.io/redhat-appstudio/dora-metrics
++    newName: quay.io/redhat-appstudio/dora-metrics
++    newTag: 630e08a427f4a6cd3a5fd869d224de34d03874c2
+\ No newline at end of file
+diff --git a/components/dora-metrics/staging/kustomization.yaml b/components/dora-metrics/staging/kustomization.yaml
+index 517208b3..73a2c62a 100644
+--- a/components/dora-metrics/staging/kustomization.yaml
++++ b/components/dora-metrics/staging/kustomization.yaml
+@@ -1,10 +1,11 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/dora-metrics/deploy/base?ref=aed21b2b16f1682b9126b94df88f149ad1612d19
++- https://github.com/redhat-appstudio/dora-metrics/deploy/base?ref=630e08a427f4a6cd3a5fd869d224de34d03874c2
++- ../base
+ - ../base/external-secrets
+ 
+ images:
+   - name: quay.io/redhat-appstudio/dora-metrics
+     newName: quay.io/redhat-appstudio/dora-metrics
+-    newTag: aed21b2b16f1682b9126b94df88f149ad1612d19
++    newTag: 630e08a427f4a6cd3a5fd869d224de34d03874c2

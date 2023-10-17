@@ -1,0 +1,49 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-19b6d71d/staging/components/dora-metrics/staging/kustomize.out.yaml ./kustomized-cache/commit-6fdb93ef/staging/components/dora-metrics/staging/kustomize.out.yaml
+15,30d14
+<   name: dora-metrics-maintainer
+<   namespace: dora-metrics
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+<   - create
+<   - delete
+<   - edit
+<   - list
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+59,84d42
+< kind: RoleBinding
+< metadata:
+<   name: dora-metrics-maintainers
+<   namespace: dora-metrics
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: dora-metrics-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: rhopp
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: flacatus
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: jkopriva
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: sawood14012
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: albarbaro
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+155c113
+<         image: quay.io/redhat-appstudio/dora-metrics:630e08a427f4a6cd3a5fd869d224de34d03874c2
+---
+>         image: quay.io/redhat-appstudio/dora-metrics:aed21b2b16f1682b9126b94df88f149ad1612d19
