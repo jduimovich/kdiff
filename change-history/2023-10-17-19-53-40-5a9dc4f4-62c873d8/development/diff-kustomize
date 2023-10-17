@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-62c873d8/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-5a9dc4f4/development/components/pipeline-service/development/kustomize.out.yaml
+1423,1424d1422
+<         - -completed_run_grace_period
+<         - 10m
+1800a1799
+>   profile: all
+1802c1801,1805
+<     disabled: true
+---
+>     keep: 10
+>     resources:
+>     - pipelinerun
+>     schedule: 0/2 * * * *
+>   targetNamespace: openshift-pipelines

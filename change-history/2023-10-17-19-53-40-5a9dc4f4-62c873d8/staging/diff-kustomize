@@ -1,0 +1,26 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-62c873d8/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-5a9dc4f4/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1363,1364d1362
+<         - -completed_run_grace_period
+<         - 10m
+1683a1682
+>   profile: all
+1685d1683
+<     disabled: true
+1686a1685,1688
+>     resources:
+>     - pipelinerun
+>     schedule: 0/2 * * * *
+>   targetNamespace: openshift-pipelines
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-62c873d8/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-5a9dc4f4/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1363,1364d1362
+<         - -completed_run_grace_period
+<         - 10m
+1683a1682
+>   profile: all
+1685d1683
+<     disabled: true
+1686a1685,1688
+>     resources:
+>     - pipelinerun
+>     schedule: 0/2 * * * *
+>   targetNamespace: openshift-pipelines
