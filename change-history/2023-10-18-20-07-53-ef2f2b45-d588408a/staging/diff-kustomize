@@ -1,0 +1,35 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d588408a/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-ef2f2b45/staging/components/authentication/staging/kustomize.out.yaml
+127d126
+<   - releaseserviceconfigs
+401d399
+<   - releaseserviceconfigs
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d588408a/staging/components/release/kustomize.out.yaml ./kustomized-cache/commit-ef2f2b45/staging/components/release/kustomize.out.yaml
+634,646d633
+<   name: release-service-configurator
+<   namespace: release-service
+< rules:
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - releaseserviceconfigs
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+1250,1263d1236
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: release-service-configurators
+<   namespace: release-service
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: release-service-configurator
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Release team
