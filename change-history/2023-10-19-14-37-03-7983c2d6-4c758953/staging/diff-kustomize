@@ -1,0 +1,24 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4c758953/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-7983c2d6/staging/components/authentication/staging/kustomize.out.yaml
+373,382d372
+<   - oadp.openshift.io
+<   resources:
+<   - dataprotectionapplications
+<   - cloudstorages
+<   verbs:
+<   - create
+<   - delete
+<   - get
+<   - list
+< - apiGroups:
+391,401d380
+< - apiGroups:
+<   - velero.io
+<   resources:
+<   - backups
+<   - restores
+<   - schedules
+<   verbs:
+<   - create
+<   - delete
+<   - get
+<   - list

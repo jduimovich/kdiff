@@ -1,0 +1,335 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f1c5b2f5/staging/components/release/kustomize.out.yaml ./kustomized-cache/commit-4c758953/staging/components/release/kustomize.out.yaml
+24a25,31
+>     - jsonPath: .spec.displayName
+>       name: Display Name
+>       priority: 1
+>       type: string
+>     - jsonPath: .spec.application
+>       name: Application
+>       type: string
+27a35,37
+>     - jsonPath: .spec.releaseStrategy
+>       name: Strategy
+>       type: string
+52,62c62,69
+<               applications:
+<                 description: Applications is a list of references to application to
+<                   be released in the managed namespace
+<                 items:
+<                   type: string
+<                 type: array
+<               data:
+<                 description: Data is an unstructured key used for providing data for
+<                   the release Pipeline
+<                 type: object
+<                 x-kubernetes-preserve-unknown-fields: true
+---
+>               application:
+>                 description: Application is a reference to the application to be released
+>                   in the managed namespace
+>                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                 type: string
+>               displayName:
+>                 description: DisplayName is the long name of the ReleasePlanAdmission
+>                 type: string
+65c72
+<                   release the Application
+---
+>                   release the application
+67a75,79
+>               extraData:
+>                 description: ExtraData is used for providing extra data for the release
+>                   pipeline
+>                 type: object
+>                 x-kubernetes-preserve-unknown-fields: true
+73,108c85,87
+<               pipelineRef:
+<                 description: PipelineRef is a reference to the Pipeline to be executed
+<                   by the release PipelineRun
+<                 properties:
+<                   params:
+<                     description: Params is a slice of parameters for a given resolver
+<                     items:
+<                       description: Param defines the parameters for a given resolver
+<                         in PipelineRef
+<                       properties:
+<                         name:
+<                           description: Name is the name of the parameter
+<                           type: string
+<                         value:
+<                           description: Value is the value of the parameter
+<                           type: string
+<                       required:
+<                       - name
+<                       - value
+<                       type: object
+<                     type: array
+<                   resolver:
+<                     description: Resolver is the name of a Tekton resolver to be used
+<                       (e.g. git)
+<                     type: string
+<                 required:
+<                 - params
+<                 - resolver
+<                 type: object
+<               policy:
+<                 description: Policy to validate before releasing an artifact
+<                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                 type: string
+<               serviceAccount:
+<                 description: ServiceAccount is the name of the service account to
+<                   use in the release PipelineRun to gain elevated privileges
+---
+>               releaseStrategy:
+>                 description: ReleaseStrategy defines which strategy will be used to
+>                   release the application
+112c91
+<             - applications
+---
+>             - application
+114,115c93
+<             - pipelineRef
+<             - policy
+---
+>             - releaseStrategy
+149a128,131
+>     - jsonPath: .spec.displayName
+>       name: Display Name
+>       priority: 1
+>       type: string
+181,218c163,164
+<               data:
+<                 description: Data is an unstructured key used for providing data for
+<                   the release Pipeline
+<                 type: object
+<                 x-kubernetes-preserve-unknown-fields: true
+<               pipelineRef:
+<                 description: PipelineRef is an optional reference to a Pipeline that
+<                   would be executed before the release Pipeline
+<                 properties:
+<                   params:
+<                     description: Params is a slice of parameters for a given resolver
+<                     items:
+<                       description: Param defines the parameters for a given resolver
+<                         in PipelineRef
+<                       properties:
+<                         name:
+<                           description: Name is the name of the parameter
+<                           type: string
+<                         value:
+<                           description: Value is the value of the parameter
+<                           type: string
+<                       required:
+<                       - name
+<                       - value
+<                       type: object
+<                     type: array
+<                   resolver:
+<                     description: Resolver is the name of a Tekton resolver to be used
+<                       (e.g. git)
+<                     type: string
+<                 required:
+<                 - params
+<                 - resolver
+<                 type: object
+<               serviceAccount:
+<                 description: ServiceAccount is the name of the service account to
+<                   use in the Pipeline to gain elevated privileges
+<                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+---
+>               displayName:
+>                 description: DisplayName is the long name of the ReleasePlan
+449a396,400
+>                   releaseStrategy:
+>                     description: ReleaseStrategy contains the namespaced name of the
+>                       ReleaseStrategy used for this release
+>                     pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                     type: string
+548a500,618
+> apiVersion: apiextensions.k8s.io/v1
+> kind: CustomResourceDefinition
+> metadata:
+>   annotations:
+>     controller-gen.kubebuilder.io/version: v0.8.0
+>   creationTimestamp: null
+>   name: releasestrategies.appstudio.redhat.com
+> spec:
+>   group: appstudio.redhat.com
+>   names:
+>     kind: ReleaseStrategy
+>     listKind: ReleaseStrategyList
+>     plural: releasestrategies
+>     singular: releasestrategy
+>   scope: Namespaced
+>   versions:
+>   - name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: ReleaseStrategy is the Schema for the releasestrategies API
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             description: ReleaseStrategySpec defines the desired state of ReleaseStrategy
+>             properties:
+>               params:
+>                 description: Params to pass to the pipeline
+>                 items:
+>                   description: Params holds the definition of a parameter that should
+>                     be passed to the release Pipeline
+>                   properties:
+>                     name:
+>                       description: Name is the name of the parameter
+>                       type: string
+>                     value:
+>                       description: Value is the string value of the parameter
+>                       type: string
+>                     values:
+>                       description: Values is a list of values for the parameter
+>                       items:
+>                         type: string
+>                       type: array
+>                   required:
+>                   - name
+>                   type: object
+>                 type: array
+>               persistentVolumeClaim:
+>                 description: PersistentVolumeClaim is the pvc to use in the Release
+>                   pipeline namespace
+>                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                 type: string
+>               pipelineRef:
+>                 description: PipelineRef is a reference to the Pipeline to be executed
+>                   by the release PipelineRun
+>                 properties:
+>                   params:
+>                     description: Params is a slice of parameters for a given resolver
+>                     items:
+>                       description: Param defines the parameters for a given resolver
+>                         in PipelineRef
+>                       properties:
+>                         name:
+>                           description: Name is the name of the parameter
+>                           type: string
+>                         value:
+>                           description: Value is the value of the parameter
+>                           type: string
+>                       required:
+>                       - name
+>                       - value
+>                       type: object
+>                     type: array
+>                   resolver:
+>                     description: Resolver is the name of a Tekton resolver to be used
+>                       (e.g. git)
+>                     type: string
+>                 required:
+>                 - params
+>                 - resolver
+>                 type: object
+>               policy:
+>                 description: Policy to validate before releasing an artifact
+>                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                 type: string
+>               serviceAccount:
+>                 description: ServiceAccount is the name of the service account to
+>                   use in the release PipelineRun to gain elevated privileges
+>                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                 type: string
+>             required:
+>             - pipelineRef
+>             - policy
+>             type: object
+>           status:
+>             description: ReleaseStrategyStatus defines the observed state of ReleaseStrategy
+>             type: object
+>         type: object
+>     served: true
+>     storage: true
+>     subresources:
+>       status: {}
+> status:
+>   acceptedNames:
+>     kind: ""
+>     plural: ""
+>   conditions: []
+>   storedVersions: []
+> ---
+1001a1072,1120
+>   labels:
+>     rbac.authorization.k8s.io/aggregate-to-admin: "true"
+>     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+>   name: release-service-releasestrategy-editor-role
+> rules:
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - releasestrategies
+>   verbs:
+>   - create
+>   - delete
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - releasestrategies/status
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   labels:
+>     rbac.authorization.k8s.io/aggregate-to-view: "true"
+>   name: release-service-releasestrategy-viewer-role
+> rules:
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - releasestrategies
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - appstudio.redhat.com
+>   resources:
+>   - releasestrategies/status
+>   verbs:
+>   - get
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+1306a1426,1438
+>   name: release-service-releasestrategy-role-binding
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: release-service-releasestrategy-viewer-role
+> subjects:
+> - kind: ServiceAccount
+>   name: release-service-controller-manager
+>   namespace: release-service
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+1454c1586
+<         image: quay.io/redhat-appstudio/release-service:9a0f08573e4ca3f0d5deda2cbda2575b7e7093bd
+---
+>         image: quay.io/redhat-appstudio/release-service:116168adc7066139a1d0e22ffe04fb35faca36ce

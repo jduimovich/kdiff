@@ -1,0 +1,39 @@
+diff --git a/components/authentication/base/rhtap-admins.yaml b/components/authentication/base/rhtap-admins.yaml
+index 233f6584..9b1c7a9c 100644
+--- a/components/authentication/base/rhtap-admins.yaml
++++ b/components/authentication/base/rhtap-admins.yaml
+@@ -264,6 +264,16 @@ rules:
+       - thanosrulers
+     verbs:
+       - '*'
++  - apiGroups:
++      - oadp.openshift.io
++    resources:
++      - dataprotectionapplications
++      - cloudstorages
++    verbs:
++      - create
++      - delete
++      - get
++      - list
+   - apiGroups:
+     - user.openshift.io
+     resources:
+@@ -273,6 +283,17 @@ rules:
+       - users
+     verbs:
+       - '*'
++  - apiGroups:
++      - velero.io
++    resources:
++      - backups
++      - restores
++      - schedules
++    verbs:
++      - create
++      - delete
++      - get
++      - list
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
