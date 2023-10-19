@@ -1,0 +1,223 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/release/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/release/kustomization.yaml
+index ec96f1f4..4385d5e5 100644
+--- a/argo-cd-apps/base/member/infra-deployments/release/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/release/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ resources:
+ - release.yaml
+ components:
+-  - ../../../../k-components/deploy-to-member-cluster
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/release/release.yaml b/argo-cd-apps/base/member/infra-deployments/release/release.yaml
+index be48958d..d025a1b8 100644
+--- a/argo-cd-apps/base/member/infra-deployments/release/release.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/release/release.yaml
+@@ -4,14 +4,24 @@ metadata:
+   name: release
+ spec:
+   generators:
+-    - clusters: {}
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/release
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
+   template:
+     metadata:
+       name: release-{{nameNormalized}}
+     spec:
+       project: default
+       source:
+-        path: components/release
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index 39dd043d..5c9c8533 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -98,3 +98,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: ingresscontroller
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: release
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index fe4fefeb..900fae76 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -120,4 +120,8 @@ patches:
+     target:
+       kind: ApplicationSet
+       version: v1alpha1
++<<<<<<< HEAD
+       name: multi-platform-controller
++=======
++      name: release
++>>>>>>> f9ad4ba3 (chore(RHTAPREL-645): add release overlays)
+diff --git a/components/release/allow-argocd-to-manage.yaml b/components/release/base/allow-argocd-to-manage.yaml
+similarity index 100%
+rename from components/release/allow-argocd-to-manage.yaml
+rename to components/release/base/allow-argocd-to-manage.yaml
+diff --git a/components/release/argocd-permissions.yaml b/components/release/base/argocd-permissions.yaml
+similarity index 100%
+rename from components/release/argocd-permissions.yaml
+rename to components/release/base/argocd-permissions.yaml
+diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
+new file mode 100644
+index 00000000..d0a8814a
+--- /dev/null
++++ b/components/release/base/kustomization.yaml
+@@ -0,0 +1,11 @@
++resources:
++- allow-argocd-to-manage.yaml
++- argocd-permissions.yaml
++- release-pipeline-resources-clusterrole.yaml
++- release-service-configurator-role.yaml
++- release-team.yaml
++
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++namespace: release-service
+diff --git a/components/release/release-pipeline-resources-clusterrole.yaml b/components/release/base/release-pipeline-resources-clusterrole.yaml
+similarity index 100%
+rename from components/release/release-pipeline-resources-clusterrole.yaml
+rename to components/release/base/release-pipeline-resources-clusterrole.yaml
+diff --git a/components/release/release-service-configurator-role.yaml b/components/release/base/release-service-configurator-role.yaml
+similarity index 100%
+rename from components/release/release-service-configurator-role.yaml
+rename to components/release/base/release-service-configurator-role.yaml
+diff --git a/components/release/release-team.yaml b/components/release/base/release-team.yaml
+similarity index 100%
+rename from components/release/release-team.yaml
+rename to components/release/base/release-team.yaml
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+new file mode 100644
+index 00000000..57252cd6
+--- /dev/null
++++ b/components/release/development/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/redhat-appstudio/release-service/config/default?ref=9a0f08573e4ca3f0d5deda2cbda2575b7e7093bd
++
++images:
++  - name: quay.io/redhat-appstudio/release-service
++    newName: quay.io/redhat-appstudio/release-service
++    newTag: 9a0f08573e4ca3f0d5deda2cbda2575b7e7093bd
++
++namespace: release-service
+diff --git a/components/release/k-components/manager-resources-patch/kustomization.yaml b/components/release/k-components/manager-resources-patch/kustomization.yaml
+new file mode 100644
+index 00000000..918316c7
+--- /dev/null
++++ b/components/release/k-components/manager-resources-patch/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++
++patches:
++  - path: manager_resources_patch.yaml
+diff --git a/components/release/manager_resources_patch.yaml b/components/release/k-components/manager-resources-patch/manager_resources_patch.yaml
+similarity index 100%
+rename from components/release/manager_resources_patch.yaml
+rename to components/release/k-components/manager-resources-patch/manager_resources_patch.yaml
+diff --git a/components/release/kustomization.yaml b/components/release/kustomization.yaml
+deleted file mode 100644
+index 017c5419..00000000
+--- a/components/release/kustomization.yaml
++++ /dev/null
+@@ -1,20 +0,0 @@
+-resources:
+-- allow-argocd-to-manage.yaml
+-- argocd-permissions.yaml
+-- https://github.com/redhat-appstudio/release-service/config/default?ref=9a0f08573e4ca3f0d5deda2cbda2575b7e7093bd
+-- release-pipeline-resources-clusterrole.yaml
+-- release-service-configurator-role.yaml
+-- release-team.yaml
+-
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-
+-images:
+-- name: quay.io/redhat-appstudio/release-service
+-  newName: quay.io/redhat-appstudio/release-service
+-  newTag: 9a0f08573e4ca3f0d5deda2cbda2575b7e7093bd
+-
+-namespace: release-service
+-
+-patches:
+-  - path: ./manager_resources_patch.yaml
+diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
+new file mode 100644
+index 00000000..958c96f6
+--- /dev/null
++++ b/components/release/production/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/redhat-appstudio/release-service/config/default?ref=9a0f08573e4ca3f0d5deda2cbda2575b7e7093bd
++
++components:
++  - ../k-components/manager-resources-patch
++
++images:
++  - name: quay.io/redhat-appstudio/release-service
++    newName: quay.io/redhat-appstudio/release-service
++    newTag: 9a0f08573e4ca3f0d5deda2cbda2575b7e7093bd
++
++namespace: release-service
+diff --git a/components/release/staging/kustomization.yaml b/components/release/staging/kustomization.yaml
+new file mode 100644
+index 00000000..c3b3934a
+--- /dev/null
++++ b/components/release/staging/kustomization.yaml
+@@ -0,0 +1,16 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/redhat-appstudio/release-service/config/default?ref=9a0f08573e4ca3f0d5deda2cbda2575b7e7093bd
++
++components:
++  - ../k-components/manager-resources-patch
++
++images:
++  - name: quay.io/redhat-appstudio/release-service
++    newName: quay.io/redhat-appstudio/release-service
++    newTag: 9a0f08573e4ca3f0d5deda2cbda2575b7e7093bd
++
++namespace: release-service
++
+diff --git a/hack/preview.sh b/hack/preview.sh
+index e58fd7a4..5fde6c8d 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -189,9 +189,9 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/kustomization.yaml
+ [[ -n "${INTEGRATION_SERVICE_PR_OWNER}" && "${INTEGRATION_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/integration-service*\")) |= \"https://github.com/${INTEGRATION_SERVICE_PR_OWNER}/integration-service/config/default?ref=${INTEGRATION_SERVICE_PR_SHA}\"" $ROOT/components/integration/kustomization.yaml
+ 
+-[ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/kustomization.yaml
+-[ -n "${RELEASE_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/release-service\")) |=.newTag=\"${RELEASE_SERVICE_IMAGE_TAG}\"" $ROOT/components/release/kustomization.yaml
+-[[ -n "${RELEASE_SERVICE_PR_OWNER}" && "${RELEASE_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/release-service*\")) |= \"https://github.com/${RELEASE_SERVICE_PR_OWNER}/release-service/config/default?ref=${RELEASE_SERVICE_PR_SHA}\"" $ROOT/components/release/kustomization.yaml
++[ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/development/kustomization.yaml
++[ -n "${RELEASE_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/release-service\")) |=.newTag=\"${RELEASE_SERVICE_IMAGE_TAG}\"" $ROOT/components/release/development/kustomization.yaml
++[[ -n "${RELEASE_SERVICE_PR_OWNER}" && "${RELEASE_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/release-service*\")) |= \"https://github.com/${RELEASE_SERVICE_PR_OWNER}/release-service/config/default?ref=${RELEASE_SERVICE_PR_SHA}\"" $ROOT/components/release/development/kustomization.yaml
+ 
+ [ -n "${SPI_OPERATOR_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/service-provider-integration-operator\")) |=.newName=\"${SPI_OPERATOR_IMAGE_REPO}\"" $ROOT/components/spi/overlays/development/kustomization.yaml
+ [ -n "${SPI_OPERATOR_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/service-provider-integration-operator\")) |=.newTag=\"${SPI_OPERATOR_IMAGE_TAG}\"" $ROOT/components/spi/overlays/development/kustomization.yaml

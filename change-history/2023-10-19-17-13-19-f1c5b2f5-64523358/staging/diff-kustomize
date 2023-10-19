@@ -1,0 +1,27 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-64523358/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-f1c5b2f5/staging/app-of-apps-staging.yaml
+1077,1090c1077,1080
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: staging
+<             sourceRoot: components/release
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+---
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+1100c1090
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+---
+>         path: components/release
+Only in ./kustomized-cache/commit-f1c5b2f5/staging/components/release: kustomize.out.yaml
+Only in ./kustomized-cache/commit-64523358/staging/components/release: staging
