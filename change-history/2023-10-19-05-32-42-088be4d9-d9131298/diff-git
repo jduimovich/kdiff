@@ -1,0 +1,32 @@
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index 713ed1cb..fe4fefeb 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -116,3 +116,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: cluster-secret-store-rh
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: multi-platform-controller
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 5ab93adc..f223843f 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=b62ea163e5876e466208feda29cfdf8613be9b70
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=e6d840901f4ce0ead0f501b874c544a406f0d553
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: b62ea163e5876e466208feda29cfdf8613be9b70
++  newTag: e6d840901f4ce0ead0f501b874c544a406f0d553
+ 
+ namespace: multi-platform-controller
+ 

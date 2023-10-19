@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d9131298/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-088be4d9/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+191c191
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:e6d840901f4ce0ead0f501b874c544a406f0d553
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:b62ea163e5876e466208feda29cfdf8613be9b70

@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d9131298/production/app-of-apps-production.yaml ./kustomized-cache/commit-088be4d9/production/app-of-apps-production.yaml
+985c985
+<             environment: production
+---
+>             environment: staging
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d9131298/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-088be4d9/production/components/multi-platform-controller/production/kustomize.out.yaml
+201c201
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:e6d840901f4ce0ead0f501b874c544a406f0d553
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:b62ea163e5876e466208feda29cfdf8613be9b70

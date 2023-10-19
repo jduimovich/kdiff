@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3266d57c/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-d9131298/development/components/build-service/development/kustomize.out.yaml
+755c755
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:d7d142209a286f6c825b5df73abcae7ba20d2709
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:b26c9826605d69919fc6a8ec73cbf379aba1da6d
+761c761
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:d7d142209a286f6c825b5df73abcae7ba20d2709
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:b26c9826605d69919fc6a8ec73cbf379aba1da6d
+767c767
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:d7d142209a286f6c825b5df73abcae7ba20d2709
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:b26c9826605d69919fc6a8ec73cbf379aba1da6d
+773c773
+<       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:d7d142209a286f6c825b5df73abcae7ba20d2709
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:b26c9826605d69919fc6a8ec73cbf379aba1da6d
