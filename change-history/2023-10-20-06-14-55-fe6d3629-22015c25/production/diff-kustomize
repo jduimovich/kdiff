@@ -1,0 +1,75 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-22015c25/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-fe6d3629/production/components/multi-platform-controller/production/kustomize.out.yaml
+201c201
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:f311350a648b702f2eef91609a6c714cfb5c2774
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:a23471628a6d3cd4868d0868810da959ce6a6fde
+216,284d215
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     build.appstudio.redhat.com/multi-platform-secret: "true"
+<   name: aws-account
+<   namespace: multi-platform-controller
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/multi-platform-controller/aws-account
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: aws-account
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     build.appstudio.redhat.com/multi-platform-secret: "true"
+<   name: aws-ssh-key
+<   namespace: multi-platform-controller
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/multi-platform-controller/aws-ssh-key
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: aws-ssh-key
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     build.appstudio.redhat.com/multi-platform-secret: "true"
+<   name: ibm-ssh-key
+<   namespace: multi-platform-controller
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/multi-platform-controller/ibm-ssh-key
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: ibm-ssh-key

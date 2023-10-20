@@ -1,0 +1,31 @@
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 78413d3c..0c7373e1 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=a23471628a6d3cd4868d0868810da959ce6a6fde
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=f311350a648b702f2eef91609a6c714cfb5c2774
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: a23471628a6d3cd4868d0868810da959ce6a6fde
++  newTag: f311350a648b702f2eef91609a6c714cfb5c2774
+ 
+ namespace: multi-platform-controller
+ 
+diff --git a/components/multi-platform-controller/production/kustomization.yaml b/components/multi-platform-controller/production/kustomization.yaml
+index 2df203a8..fce62070 100644
+--- a/components/multi-platform-controller/production/kustomization.yaml
++++ b/components/multi-platform-controller/production/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ resources:
+ - ../base
+ - host-config.yaml
++- external-secrets.yaml
+ 
+ 
+ namespace: multi-platform-controller
