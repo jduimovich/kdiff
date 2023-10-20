@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2bb6aa81/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-f1e729dd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1684d1683
+<   profile: all
+1688d1686
+<   targetNamespace: openshift-pipelines
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2bb6aa81/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-f1e729dd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1684d1683
+<   profile: all
+1688d1686
+<   targetNamespace: openshift-pipelines
