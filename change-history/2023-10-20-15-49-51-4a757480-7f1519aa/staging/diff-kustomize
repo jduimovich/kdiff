@@ -1,0 +1,46 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7f1519aa/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-4a757480/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1280,1286d1279
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 32Mi
+1475,1481d1467
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 250Mi
+<           requests:
+<             cpu: 10m
+<             memory: 10Mi
+1699a1686
+>     disabled: true
+1701,1703d1687
+<     resources:
+<     - pipelinerun
+<     schedule: 0/2 * * * *
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7f1519aa/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-4a757480/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1280,1286d1279
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 32Mi
+1475,1481d1467
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 250Mi
+<           requests:
+<             cpu: 10m
+<             memory: 10Mi
+1699a1686
+>     disabled: true
+1701,1703d1687
+<     resources:
+<     - pipelinerun
+<     schedule: 0/2 * * * *
