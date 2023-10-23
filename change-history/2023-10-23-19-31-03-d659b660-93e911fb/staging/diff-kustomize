@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-93e911fb/staging/components/release/staging/kustomize.out.yaml ./kustomized-cache/commit-d659b660/staging/components/release/staging/kustomize.out.yaml
+292,296d291
+<               data:
+<                 description: Data is an unstructured key used for providing data for
+<                   the release Pipeline
+<                 type: object
+<                 x-kubernetes-preserve-unknown-fields: true
+1459c1454
+<         image: quay.io/redhat-appstudio/release-service:68f2f2c678f726ffa20166adcab8e7e0204a8c69
+---
+>         image: quay.io/redhat-appstudio/release-service:9a0f08573e4ca3f0d5deda2cbda2575b7e7093bd
