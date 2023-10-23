@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fa9d5f3f/staging/components/sprayproxy/staging/kustomize.out.yaml ./kustomized-cache/commit-6de4c0c1/staging/components/sprayproxy/staging/kustomize.out.yaml
+175a176,179
+>         - name: SPRAYPROXY_SERVER_BACKEND
+>           value: |
+>             https://pipelines-as-code-controller-openshift-pipelines.apps.stone-stg-m01.7ayg.p1.openshiftapps.com https://pipelines-as-code-controller-openshift-pipelines.apps.stone-stg-rh01.l2vh.p1.openshiftapps.com
+>         - name: GH_APP_WEBHOOK_SECRET
+181,183d184
+<         - name: SPRAYPROXY_SERVER_BACKEND
+<           value: |
+<             https://pipelines-as-code-controller-openshift-pipelines.apps.stone-stg-m01.7ayg.p1.openshiftapps.com https://pipelines-as-code-controller-openshift-pipelines.apps.stone-stg-rh01.l2vh.p1.openshiftapps.com
