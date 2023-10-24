@@ -1,0 +1,93 @@
+diff --git a/components/sprayproxy/production/add-backends.yml b/components/sprayproxy/production/add-backends.yml
+deleted file mode 100644
+index d8df869b..00000000
+--- a/components/sprayproxy/production/add-backends.yml
++++ /dev/null
+@@ -1,6 +0,0 @@
+----
+-- op: add
+-  path: /spec/template/spec/containers/0/env/0/value
+-  value: >
+-      https://pipelines-as-code-controller-openshift-pipelines.apps.stone-prd-m01.84db.p1.openshiftapps.com
+-      https://pipelines-as-code-controller-openshift-pipelines.apps.stone-prd-rh01.pg1f.p1.openshiftapps.com
+diff --git a/components/sprayproxy/production/add-webhook-secret.yaml b/components/sprayproxy/production/add-webhook-secret.yaml
+deleted file mode 100644
+index 96154afc..00000000
+--- a/components/sprayproxy/production/add-webhook-secret.yaml
++++ /dev/null
+@@ -1,9 +0,0 @@
+----
+-- op: add
+-  path: /spec/template/spec/containers/0/env/-
+-  value:
+-    name: GH_APP_WEBHOOK_SECRET
+-    valueFrom:
+-      secretKeyRef:
+-        name: pipelines-as-code-secret
+-        key: webhook.secret
+diff --git a/components/sprayproxy/production/change-backends.yaml b/components/sprayproxy/production/change-backends.yaml
+new file mode 100644
+index 00000000..0d935199
+--- /dev/null
++++ b/components/sprayproxy/production/change-backends.yaml
+@@ -0,0 +1,16 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: sprayproxy
++  namespace: sprayproxy
++spec:
++  template:
++    spec:
++      containers:
++        - name: sprayproxy
++          env:
++            - name: SPRAYPROXY_SERVER_BACKEND
++              value: >
++                https://pipelines-as-code-controller-openshift-pipelines.apps.stone-prd-m01.84db.p1.openshiftapps.com
++                https://pipelines-as-code-controller-openshift-pipelines.apps.stone-prd-rh01.pg1f.p1.openshiftapps.com
+diff --git a/components/sprayproxy/production/change-webhook-secret.yaml b/components/sprayproxy/production/change-webhook-secret.yaml
+new file mode 100644
+index 00000000..b2e60149
+--- /dev/null
++++ b/components/sprayproxy/production/change-webhook-secret.yaml
+@@ -0,0 +1,17 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: sprayproxy
++  namespace: sprayproxy
++spec:
++  template:
++    spec:
++      containers:
++        - name: sprayproxy
++          env:
++            - name: GH_APP_WEBHOOK_SECRET
++              valueFrom:
++                secretKeyRef:
++                  name: pipelines-as-code-secret
++                  key: webhook.secret
+diff --git a/components/sprayproxy/production/kustomization.yaml b/components/sprayproxy/production/kustomization.yaml
+index 6a90e44c..2c13e66b 100644
+--- a/components/sprayproxy/production/kustomization.yaml
++++ b/components/sprayproxy/production/kustomization.yaml
+@@ -11,14 +11,5 @@ images:
+     newTag: 8a03dffd427c35646ba6aca73ee17ec68fd356c2
+ 
+ patches:
+-  - path: add-backends.yml
+-    target:
+-      name: sprayproxy
+-      group: apps
+-      version: v1
+-  - path: add-webhook-secret.yaml
+-    target:
+-      name: sprayproxy
+-      group: apps
+-      version: v1
+-      kind: Deployment
++  - path: change-backends.yaml
++  - path: change-webhook-secret.yaml
