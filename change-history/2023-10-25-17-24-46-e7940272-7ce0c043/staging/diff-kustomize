@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7ce0c043/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-e7940272/staging/components/tekton-ci/staging/kustomize.out.yaml
+363a364,381
+>   name: remote-secrets
+> spec:
+>   url: https://github.com/redhat-appstudio/remote-secret
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: service-provider-integration
+> spec:
+>   url: https://github.com/redhat-appstudio/service-provider-integration-operator
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
