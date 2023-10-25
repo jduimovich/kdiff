@@ -1,0 +1,64 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8442dd1f/staging/components/jvm-build-service/staging/kustomize.out.yaml ./kustomized-cache/commit-a9d22558/staging/components/jvm-build-service/staging/kustomize.out.yaml
+266,269d265
+<                         toolVersions:
+<                           additionalProperties:
+<                             type: string
+<                           type: object
+416,419d411
+<                   toolVersions:
+<                     additionalProperties:
+<                       type: string
+<                     type: object
+498,501d489
+<                     toolVersions:
+<                       additionalProperties:
+<                         type: string
+<                       type: object
+571,574d558
+<                     toolVersions:
+<                       additionalProperties:
+<                         type: string
+<                       type: object
+692,698d675
+<               mavenDeployment:
+<                 properties:
+<                   repository:
+<                     type: string
+<                   username:
+<                     type: string
+<                 type: object
+717,720d693
+<                   private:
+<                     description: if this is true and we are automatically creating
+<                       registries then we will make it private
+<                     type: boolean
+1390,1391c1363,1364
+<           value: b03b06453a12ca89f74b325150e6dd368a443a19
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:b03b06453a12ca89f74b325150e6dd368a443a19
+---
+>           value: 2c8753d6c04de69f4277c68a6cc181c3b4f36106
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:2c8753d6c04de69f4277c68a6cc181c3b4f36106
+1452,1456c1425,1433
+<       image: quay.io/redhat-appstudio/hacbs-jdk7-builder:bd8e505b3082a03c030b36868a3753df9db15f97
+<       priority: 1000
+<       tag: jdk:7,maven:3.8.8;3.9.5,ant:1.9.16
+<     jdk17:
+<       image: quay.io/redhat-appstudio/hacbs-jdk17-builder:bd8e505b3082a03c030b36868a3753df9db15f97
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk7-builder:f0c0dbbd5926e7a38af245b4e48a38ddd2d17359
+>       priority: 500
+>       tag: jdk:7,maven:3.8,ant:1.9.16
+>     jdk8:
+>       image: quay.io/redhat-appstudio/hacbs-jdk8-builder:f0c0dbbd5926e7a38af245b4e48a38ddd2d17359
+>       priority: 3000
+>       tag: jdk:8,maven:3.8,gradle:8.3;8.0.2;7.4.2;6.9.2;5.6.4;4.10.3,sbt:1.8.0,ant:1.10.13
+>     jdk11:
+>       image: quay.io/redhat-appstudio/hacbs-jdk11-builder:f0c0dbbd5926e7a38af245b4e48a38ddd2d17359
+1458c1435,1439
+<       tag: jdk:8;11;17,maven:3.8.8;3.9.5,gradle:8.4;8.3;8.0.2;7.4.2;6.9.2,sbt:1.8.0,ant:1.10.13
+---
+>       tag: jdk:11,maven:3.8,gradle:8.3;8.0.2;7.4.2;6.9.2;5.6.4;4.10.3,sbt:1.8.0,ant:1.10.13
+>     jdk17:
+>       image: quay.io/redhat-appstudio/hacbs-jdk17-builder:f0c0dbbd5926e7a38af245b4e48a38ddd2d17359
+>       priority: 1000
+>       tag: jdk:17,maven:3.8,gradle:8.3;8.0.2;7.4.2;6.9.2,sbt:1.8.0,ant:1.10.13
