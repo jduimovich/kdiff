@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ec05ead6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-3d48c3f6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1230,1236d1229
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 512Mi
+<           requests:
+<             cpu: 5m
+<             memory: 32Mi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ec05ead6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-3d48c3f6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1230,1236d1229
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 512Mi
+<           requests:
+<             cpu: 5m
+<             memory: 32Mi
