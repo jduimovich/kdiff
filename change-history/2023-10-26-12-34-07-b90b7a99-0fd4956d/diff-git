@@ -1,0 +1,32 @@
+diff --git a/components/sandbox/base/kustomization.yaml b/components/sandbox/base/kustomization.yaml
+index 308a9ee4..2ab35894 100644
+--- a/components/sandbox/base/kustomization.yaml
++++ b/components/sandbox/base/kustomization.yaml
+@@ -3,3 +3,4 @@ kind: Kustomization
+ resources:
+ - ./rbac/edit-secrets.yaml
+ - ./rbac/sandbox-sre-admins.yaml
++- ./monitoring/sandbox-registration-service-proxy.yaml
+diff --git a/components/sandbox/base/monitoring/sandbox-registration-service-proxy.yaml b/components/sandbox/base/monitoring/sandbox-registration-service-proxy.yaml
+new file mode 100644
+index 00000000..98c781f9
+--- /dev/null
++++ b/components/sandbox/base/monitoring/sandbox-registration-service-proxy.yaml
+@@ -0,0 +1,17 @@
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  namespace: toolchain-host-operator
++  name: sandbox-registration-service-proxy
++  labels:
++    prometheus: appstudio-workload
++spec:
++  endpoints:
++    - interval: 15s
++      scheme: http
++      path: /metrics
++      port: proxy-metrics
++  selector:
++    matchLabels:
++      run: proxy-metrics
++
