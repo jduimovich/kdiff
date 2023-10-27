@@ -1,0 +1,29 @@
+diff --git a/components/sandbox/base/kustomization.yaml b/components/sandbox/base/kustomization.yaml
+index 2ab35894..3075a08e 100644
+--- a/components/sandbox/base/kustomization.yaml
++++ b/components/sandbox/base/kustomization.yaml
+@@ -4,3 +4,4 @@ resources:
+ - ./rbac/edit-secrets.yaml
+ - ./rbac/sandbox-sre-admins.yaml
+ - ./monitoring/sandbox-registration-service-proxy.yaml
++- ./monitoring/prometheus-network-policy.yaml
+diff --git a/components/sandbox/base/monitoring/prometheus-network-policy.yaml b/components/sandbox/base/monitoring/prometheus-network-policy.yaml
+new file mode 100644
+index 00000000..772934b6
+--- /dev/null
++++ b/components/sandbox/base/monitoring/prometheus-network-policy.yaml
+@@ -0,0 +1,14 @@
++apiVersion: networking.k8s.io/v1
++kind: NetworkPolicy
++metadata:
++  name: allow-from-appstudio-monitoring
++  namespace: toolchain-host-operator
++spec:
++  ingress:
++    - from:
++        - namespaceSelector:
++            matchLabels:
++              kubernetes.io/metadata.name: appstudio-monitoring
++  podSelector: {}
++  policyTypes:
++    - Ingress

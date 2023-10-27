@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f60ab540/development/components/perf-team-prometheus-reader/development/kustomize.out.yaml ./kustomized-cache/commit-149e0b66/development/components/perf-team-prometheus-reader/development/kustomize.out.yaml
+22,35d21
+< kind: RoleBinding
+< metadata:
+<   name: perf-team-prometheus-reader-maintainers
+<   namespace: perf-team-prometheus-reader
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: component-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Performance
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1

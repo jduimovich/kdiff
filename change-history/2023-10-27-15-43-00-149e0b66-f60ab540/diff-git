@@ -1,0 +1,30 @@
+diff --git a/components/perf-team-prometheus-reader/base/kustomization.yaml b/components/perf-team-prometheus-reader/base/kustomization.yaml
+index cf30275b..6c8ba607 100644
+--- a/components/perf-team-prometheus-reader/base/kustomization.yaml
++++ b/components/perf-team-prometheus-reader/base/kustomization.yaml
+@@ -1,4 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++namespace: perf-team-prometheus-reader
+ resources:
+   - serviceaccount.yaml
++  - perf-team.yaml
+diff --git a/components/perf-team-prometheus-reader/base/perf-team.yaml b/components/perf-team-prometheus-reader/base/perf-team.yaml
+new file mode 100644
+index 00000000..252e2f94
+--- /dev/null
++++ b/components/perf-team-prometheus-reader/base/perf-team.yaml
+@@ -0,0 +1,13 @@
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: perf-team-prometheus-reader-maintainers
++  namespace: perf-team-prometheus-reader
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: Performance
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: component-maintainer
