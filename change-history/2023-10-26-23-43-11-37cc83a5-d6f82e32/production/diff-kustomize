@@ -1,0 +1,56 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d6f82e32/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-37cc83a5/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml
+3718c3718
+<         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6564f8254a002f976f90f68fffb0928dec72f50b
+3757,3758c3757
+<         - --http2-disable=true
+<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+---
+>         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0
+3835c3834
+<         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6564f8254a002f976f90f68fffb0928dec72f50b
+3871,3872c3870
+<         - --http2-disable=true
+<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+---
+>         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0
+3949c3947
+<         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6564f8254a002f976f90f68fffb0928dec72f50b
+3984,3985c3982
+<         - --http2-disable=true
+<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+---
+>         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d6f82e32/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-37cc83a5/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml
+3704c3704
+<         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6564f8254a002f976f90f68fffb0928dec72f50b
+3743,3744c3743
+<         - --http2-disable=true
+<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+---
+>         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0
+3821c3820
+<         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6564f8254a002f976f90f68fffb0928dec72f50b
+3857,3858c3856
+<         - --http2-disable=true
+<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+---
+>         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0
+3935c3933
+<         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+---
+>         image: quay.io/redhat-appstudio/gitops-service:6564f8254a002f976f90f68fffb0928dec72f50b
+3970,3971c3968
+<         - --http2-disable=true
+<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+---
+>         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0

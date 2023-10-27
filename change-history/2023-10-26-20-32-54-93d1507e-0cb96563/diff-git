@@ -1,0 +1,79 @@
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 0c7373e1..cffbd0c6 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=f311350a648b702f2eef91609a6c714cfb5c2774
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=a0939c62d870570b24fef4897bfd17e0b91d6656
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: f311350a648b702f2eef91609a6c714cfb5c2774
++  newTag: a0939c62d870570b24fef4897bfd17e0b91d6656
+ 
+ namespace: multi-platform-controller
+ 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 16475a66..72e5c49a 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
+ 
+-  dynamic-platforms: linux/arm64
++  dynamic-platforms: linux/arm64,linux/amd64
+   instance-tag: rhtap-prod
+ 
+   dynamic.linux-arm64.type: aws
+@@ -20,6 +20,16 @@ data:
+   dynamic.linux-arm64.security-group: "launch-wizard-1"
+   dynamic.linux-arm64.max-instances: "10"
+ 
++  dynamic.linux-amd64.type: aws
++  dynamic.linux-amd64.region: us-east-1
++  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-amd64.instance-type: m5.large
++  dynamic.linux-amd64.key-name: multi-platform-aws-prod
++  dynamic.linux-amd64.aws-secret: aws-account
++  dynamic.linux-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-amd64.security-group: "launch-wizard-1"
++  dynamic.linux-amd64.max-instances: "10"
++
+   host.power-rhtap-prod-1.address: "150.240.147.196"
+   host.power-rhtap-prod-1.platform: "linux/ppc64le"
+   host.power-rhtap-prod-1.user: "root"
+diff --git a/components/multi-platform-controller/staging/host-config.yaml b/components/multi-platform-controller/staging/host-config.yaml
+index 315ca270..4f3f4e11 100644
+--- a/components/multi-platform-controller/staging/host-config.yaml
++++ b/components/multi-platform-controller/staging/host-config.yaml
+@@ -7,7 +7,7 @@ metadata:
+   namespace: multi-platform-controller
+ data:
+ 
+-  dynamic-platforms: linux/arm64
++  dynamic-platforms: linux/arm64,linux/amd64
+   instance-tag: rhtap-staging
+ 
+   dynamic.linux-arm64.type: aws
+@@ -20,6 +20,16 @@ data:
+   dynamic.linux-arm64.security-group: "launch-wizard-1"
+   dynamic.linux-arm64.max-instances: "10"
+ 
++  dynamic.linux-amd64.type: aws
++  dynamic.linux-amd64.region: us-east-1
++  dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
++  dynamic.linux-amd64.instance-type: m5.large
++  dynamic.linux-amd64.key-name: multi-platform-aws-stage
++  dynamic.linux-amd64.aws-secret: aws-account
++  dynamic.linux-amd64.ssh-secret: aws-ssh-key
++  dynamic.linux-amd64.security-group: "launch-wizard-1"
++  dynamic.linux-amd64.max-instances: "10"
++
+   host.ppc1.address: "150.240.147.198"
+   host.ppc1.platform: "linux/ppc64le"
+   host.ppc1.user: "root"

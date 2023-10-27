@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0cb96563/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-93d1507e/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+136,145c136
+<   dynamic-platforms: linux/arm64,linux/amd64
+<   dynamic.linux-amd64.ami: ami-026ebd4cfe2c043b2
+<   dynamic.linux-amd64.aws-secret: aws-account
+<   dynamic.linux-amd64.instance-type: m5.large
+<   dynamic.linux-amd64.key-name: multi-platform-aws-stage
+<   dynamic.linux-amd64.max-instances: "10"
+<   dynamic.linux-amd64.region: us-east-1
+<   dynamic.linux-amd64.security-group: launch-wizard-1
+<   dynamic.linux-amd64.ssh-secret: aws-ssh-key
+<   dynamic.linux-amd64.type: aws
+---
+>   dynamic-platforms: linux/arm64
+200c191
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:a0939c62d870570b24fef4897bfd17e0b91d6656
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:f311350a648b702f2eef91609a6c714cfb5c2774
