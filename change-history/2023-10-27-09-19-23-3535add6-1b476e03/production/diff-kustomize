@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1b476e03/production/components/integration/kustomize.out.yaml ./kustomized-cache/commit-3535add6/production/components/integration/kustomize.out.yaml
+1104c1104
+<         image: quay.io/redhat-appstudio/integration-service:1813d358d3915937573207dd20a265847e6d4d3b
+---
+>         image: quay.io/redhat-appstudio/integration-service:b3f521c408d147ecc4f8811c9112172b31c0c405
+1140d1139
+<         - --http2-disable
+1142c1141
+<         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0
+---
+>         image: gcr.io/kubebuilder/kube-rbac-proxy:v0.8.0
