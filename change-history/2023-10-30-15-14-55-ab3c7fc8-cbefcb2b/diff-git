@@ -1,0 +1,26 @@
+diff --git a/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml b/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml
+index aa12727d..b9c6225f 100644
+--- a/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml
++++ b/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml
+@@ -29,7 +29,7 @@ spec:
+         server: '{{server}}'
+       syncPolicy:
+         automated:
+-          prune: false
++          prune: true
+           selfHeal: true
+         syncOptions:
+           - CreateNamespace=false
+diff --git a/argo-cd-apps/base/member/infra-deployments/toolchain-member-operator/toolchain-member-operator.yaml b/argo-cd-apps/base/member/infra-deployments/toolchain-member-operator/toolchain-member-operator.yaml
+index 2c2867db..98d00310 100644
+--- a/argo-cd-apps/base/member/infra-deployments/toolchain-member-operator/toolchain-member-operator.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/toolchain-member-operator/toolchain-member-operator.yaml
+@@ -29,7 +29,7 @@ spec:
+         server: '{{server}}'
+       syncPolicy:
+         automated:
+-          prune: false
++          prune: true
+           selfHeal: true
+         syncOptions:
+           - CreateNamespace=false

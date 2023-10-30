@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-cbefcb2b/production/app-of-apps-production.yaml ./kustomized-cache/commit-ab3c7fc8/production/app-of-apps-production.yaml
+1570c1570
+<           prune: true
+---
+>           prune: false
+1616c1616
+<           prune: true
+---
+>           prune: false
