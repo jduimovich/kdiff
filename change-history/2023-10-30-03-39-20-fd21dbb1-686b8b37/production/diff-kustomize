@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-686b8b37/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-fd21dbb1/production/components/multi-platform-controller/production/kustomize.out.yaml
+210c210
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:a93520a595364747fdf3afccf88cb86296900277
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:a0939c62d870570b24fef4897bfd17e0b91d6656
+316c316
+<   - image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/hacktask-image-multi-platform-controller:build-dfd73-1698382902@sha256:d733531a07ede2e73500c500a33cdaf78332db146ffdc23d3c1a71b253a734b6
+---
+>   - image: quay.io/sdouglas/registry:multiarch
+355c355
+<   - image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/hacktask-image-multi-platform-controller:build-dfd73-1698382902@sha256:d733531a07ede2e73500c500a33cdaf78332db146ffdc23d3c1a71b253a734b6
+---
+>   - image: quay.io/sdouglas/registry:multiarch
