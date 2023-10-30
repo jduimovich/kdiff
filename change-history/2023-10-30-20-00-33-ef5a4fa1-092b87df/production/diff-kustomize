@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-092b87df/production/app-of-apps-production.yaml ./kustomized-cache/commit-ef5a4fa1/production/app-of-apps-production.yaml
+1224,1228d1223
+<   - git:
+<       directories:
+<       - path: auto-generated/cluster/stone-stg-rh01/managed/*
+<       repoURL: https://github.com/redhat-appstudio/tenants-config
+<       revision: main

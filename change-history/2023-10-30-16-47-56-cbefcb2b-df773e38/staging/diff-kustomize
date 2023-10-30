@@ -1,0 +1,108 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-df773e38/staging/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-cbefcb2b/staging/components/enterprise-contract/kustomize.out.yaml
+256c256
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:5a0fdbae1629f015c6ac1509f6c578fb8b963a34@sha256:15ed6fa65fa6ce99367f941d41878114d3d685163d5a09125b4dfc9e94775402
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:3e428fc0de5b3ccfd4fad90423e4f121283fd5f4@sha256:395951382d733c631712c4f3dda71cccc6c775fc5a8351859660508e4667d624
+258c258
+<   verify_ec_task_git_revision: 5a0fdbae1629f015c6ac1509f6c578fb8b963a34
+---
+>   verify_ec_task_git_revision: 3e428fc0de5b3ccfd4fad90423e4f121283fd5f4
+270a271,274
+>   configuration:
+>     exclude: []
+>     include:
+>     - '*'
+279,283c283
+<   - config:
+<       exclude: []
+<       include:
+<       - '*'
+<     data:
+---
+>   - data:
+288c288
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-6e6566f@sha256:79092b29f85163c41f9f19f830f260b8d7626046af9cd634db19dd7229bac866
+295a296,301
+>   configuration:
+>     exclude: []
+>     include:
+>     - '@slsa1'
+>     - '@slsa2'
+>     - '@slsa3'
+303,309c309
+<   - config:
+<       exclude: []
+<       include:
+<       - '@slsa1'
+<       - '@slsa2'
+<       - '@slsa3'
+<     data:
+---
+>   - data:
+314c314
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-6e6566f@sha256:79092b29f85163c41f9f19f830f260b8d7626046af9cd634db19dd7229bac866
+321a322,325
+>   configuration:
+>     exclude: []
+>     include:
+>     - '@redhat'
+329,333c333
+<   - config:
+<       exclude: []
+<       include:
+<       - '@redhat'
+<     data:
+---
+>   - data:
+338c338
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-6e6566f@sha256:79092b29f85163c41f9f19f830f260b8d7626046af9cd634db19dd7229bac866
+345a346,351
+>   configuration:
+>     exclude:
+>     - hermetic_build_task
+>     - tasks.required_tasks_found:prefetch-dependencies
+>     include:
+>     - '@redhat'
+354,360c360
+<   - config:
+<       exclude:
+<       - hermetic_build_task
+<       - tasks.required_tasks_found:prefetch-dependencies
+<       include:
+<       - '@redhat'
+<     data:
+---
+>   - data:
+365c365
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-6e6566f@sha256:79092b29f85163c41f9f19f830f260b8d7626046af9cd634db19dd7229bac866
+372a373,379
+>   configuration:
+>     exclude: []
+>     include:
+>     - '@minimal'
+>     - '@slsa1'
+>     - '@slsa2'
+>     - '@slsa3'
+381,388c388
+<   - config:
+<       exclude: []
+<       include:
+<       - '@minimal'
+<       - '@slsa1'
+<       - '@slsa2'
+<       - '@slsa3'
+<     data:
+---
+>   - data:
+393c393
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-6e6566f@sha256:79092b29f85163c41f9f19f830f260b8d7626046af9cd634db19dd7229bac866

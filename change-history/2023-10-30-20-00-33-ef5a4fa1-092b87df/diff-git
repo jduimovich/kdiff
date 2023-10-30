@@ -1,0 +1,16 @@
+diff --git a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
+index f8a4636f..217e8af3 100644
+--- a/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
++++ b/argo-cd-apps/base/rh-managed-workspaces-config/rh-managed-workspaces-config.yaml
+@@ -9,6 +9,11 @@ spec:
+         revision: main
+         directories:
+           - path: auto-generated/cluster/stone-prd-rh01/managed/*
++    - git:
++        repoURL: https://github.com/redhat-appstudio/tenants-config
++        revision: main
++        directories:
++          - path: auto-generated/cluster/stone-stg-rh01/managed/*
+   template:
+     metadata:
+       name: '{{path.basename}}-{{path[2]}}'
