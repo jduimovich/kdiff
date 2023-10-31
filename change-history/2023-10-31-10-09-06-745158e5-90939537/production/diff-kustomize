@@ -1,0 +1,80 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-90939537/production/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-745158e5/production/components/enterprise-contract/kustomize.out.yaml
+146,191d145
+<                     volatileConfig:
+<                       description: Specifies volatile configuration that can include
+<                         or exclude policy rules based on effective time.
+<                       properties:
+<                         exclude:
+<                           description: Exclude is a set of policy exclusions that,
+<                             in case of failure, do not block the success of the outcome.
+<                           items:
+<                             properties:
+<                               effectiveOn:
+<                                 format: date-time
+<                                 type: string
+<                               effectiveUntil:
+<                                 format: date-time
+<                                 type: string
+<                               value:
+<                                 type: string
+<                             required:
+<                             - value
+<                             type: object
+<                           type: array
+<                           x-kubernetes-list-map-keys:
+<                           - value
+<                           x-kubernetes-list-type: map
+<                         include:
+<                           description: Include is a set of policy inclusions that
+<                             are added to the policy evaluation. These take precedence
+<                             over policy exclusions.
+<                           items:
+<                             properties:
+<                               effectiveOn:
+<                                 format: date-time
+<                                 type: string
+<                               effectiveUntil:
+<                                 format: date-time
+<                                 type: string
+<                               value:
+<                                 type: string
+<                             required:
+<                             - value
+<                             type: object
+<                           type: array
+<                           x-kubernetes-list-map-keys:
+<                           - value
+<                           x-kubernetes-list-type: map
+<                       type: object
+302c256
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:980d94498952438dbcf3a2ae2c49b962e003ea62@sha256:7b46a5ff4bb2352200a16b17dc7105bbbed59fe78e04c6c14e0c82b12e90a085
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:5a0fdbae1629f015c6ac1509f6c578fb8b963a34@sha256:15ed6fa65fa6ce99367f941d41878114d3d685163d5a09125b4dfc9e94775402
+304c258
+<   verify_ec_task_git_revision: 980d94498952438dbcf3a2ae2c49b962e003ea62
+---
+>   verify_ec_task_git_revision: 5a0fdbae1629f015c6ac1509f6c578fb8b963a34
+334c288
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-f406e71@sha256:4a1fe1f4bc792be643b0801d0f54edbfb76ce093ce95daff09624da15f7671c6
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
+360c314
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-f406e71@sha256:4a1fe1f4bc792be643b0801d0f54edbfb76ce093ce95daff09624da15f7671c6
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
+384c338
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-f406e71@sha256:4a1fe1f4bc792be643b0801d0f54edbfb76ce093ce95daff09624da15f7671c6
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
+411c365
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-f406e71@sha256:4a1fe1f4bc792be643b0801d0f54edbfb76ce093ce95daff09624da15f7671c6
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
+439c393
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-f406e71@sha256:4a1fe1f4bc792be643b0801d0f54edbfb76ce093ce95daff09624da15f7671c6
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
+467c421
+<             - git::https://github.com/enterprise-contract/ec-policies//example/data
+---
+>             - oci::quay.io/hacbs-contract/ec-policy-data:latest

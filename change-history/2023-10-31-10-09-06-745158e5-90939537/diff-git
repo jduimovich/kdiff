@@ -1,0 +1,74 @@
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 6541d596..6be67ae1 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -25,7 +25,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-f406e71@sha256:4a1fe1f4bc792be643b0801d0f54edbfb76ce093ce95daff09624da15f7671c6
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -46,7 +46,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-f406e71@sha256:4a1fe1f4bc792be643b0801d0f54edbfb76ce093ce95daff09624da15f7671c6
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -69,7 +69,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-f406e71@sha256:4a1fe1f4bc792be643b0801d0f54edbfb76ce093ce95daff09624da15f7671c6
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -90,7 +90,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-f406e71@sha256:4a1fe1f4bc792be643b0801d0f54edbfb76ce093ce95daff09624da15f7671c6
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -114,4 +114,4 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-131b6c0@sha256:87ef59968f8cd017635d4b3bdda817dc343cdfde3e0097d8d275934640aed0c7
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-f406e71@sha256:4a1fe1f4bc792be643b0801d0f54edbfb76ce093ce95daff09624da15f7671c6
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 33d17ba3..060e31b2 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=bc4531debd4c69a7ba87749ab8cd291d39f5dc4b
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=830b71ea12be4d3ffd16742338804c9fb7ed70d2
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -11,11 +11,11 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:5a0fdbae1629f015c6ac1509f6c578fb8b963a34@sha256:15ed6fa65fa6ce99367f941d41878114d3d685163d5a09125b4dfc9e94775402
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:980d94498952438dbcf3a2ae2c49b962e003ea62@sha256:7b46a5ff4bb2352200a16b17dc7105bbbed59fe78e04c6c14e0c82b12e90a085
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=5a0fdbae1629f015c6ac1509f6c578fb8b963a34
++      - verify_ec_task_git_revision=980d94498952438dbcf3a2ae2c49b962e003ea62
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml
+ images:
+   - name: quay.io/redhat-appstudio/enterprise-contract-controller
+     newName: quay.io/redhat-appstudio/enterprise-contract-controller
+-    newTag: bc4531debd4c69a7ba87749ab8cd291d39f5dc4b
++    newTag: 830b71ea12be4d3ffd16742338804c9fb7ed70d2
