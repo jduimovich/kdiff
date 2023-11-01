@@ -1,0 +1,38 @@
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index dc58f2db..85fb7932 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=36c99a1ad7a52ff9eb642b6ee20ebde83944d352
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=15f755cf4f4aaa575107f05ec3b44c92218802f1
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index beb74210..f7eb9e6b 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=36c99a1ad7a52ff9eb642b6ee20ebde83944d352
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=36c99a1ad7a52ff9eb642b6ee20ebde83944d352
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=15f755cf4f4aaa575107f05ec3b44c92218802f1
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=15f755cf4f4aaa575107f05ec3b44c92218802f1
+   - ../base/rbac
+   
+ patches:
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index c8a7b9f9..9e392115 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=36c99a1ad7a52ff9eb642b6ee20ebde83944d352
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=15f755cf4f4aaa575107f05ec3b44c92218802f1
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing

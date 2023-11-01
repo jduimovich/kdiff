@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-39f4ad4c/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-fd10b8be/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1545c1545
+<                     select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+---
+>                     select(.metadata.creationTimestamp < (now - 86400)) |
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-39f4ad4c/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-fd10b8be/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1545c1545
+<                     select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
+---
+>                     select(.metadata.creationTimestamp < (now - 86400)) |
