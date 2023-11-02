@@ -1,0 +1,51 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-98c11e30/development/components/integration/kustomize.out.yaml ./kustomized-cache/commit-f8196bb8/development/components/integration/kustomize.out.yaml
+1104c1104
+<         image: quay.io/redhat-appstudio/integration-service:d7620c9eb233d1c406e721513ad9d1089cd6009b
+---
+>         image: quay.io/redhat-appstudio/integration-service:945e4babeb79cf90242174f194e11ac2e87f3960
+1194a1195,1224
+> kind: MutatingWebhookConfiguration
+> metadata:
+>   annotations:
+>     service.beta.openshift.io/inject-cabundle: "true"
+>   creationTimestamp: null
+>   name: integration-service-mutating-webhook-configuration
+> webhooks:
+> - admissionReviewVersions:
+>   - v1alpha1
+>   - v1beta1
+>   clientConfig:
+>     service:
+>       name: integration-service-webhook-service
+>       namespace: integration-service
+>       path: /mutate-appstudio-redhat-com-v1beta1-integrationtestscenario
+>   failurePolicy: Fail
+>   name: mintegration.kb.io
+>   rules:
+>   - apiGroups:
+>     - appstudio.redhat.com
+>     apiVersions:
+>     - v1beta1
+>     operations:
+>     - CREATE
+>     - UPDATE
+>     resources:
+>     - applications
+>   sideEffects: None
+> ---
+> apiVersion: admissionregistration.k8s.io/v1
+1203c1233,1234
+<   - v1
+---
+>   - v1alpha1
+>   - v1beta1
+1210c1241
+<   name: vintegrationtestscenario.kb.io
+---
+>   name: vapplication.kb.io
+1219d1249
+<     - DELETE
+1221c1251
+<     - integrationtestscenarios
+---
+>     - applications
