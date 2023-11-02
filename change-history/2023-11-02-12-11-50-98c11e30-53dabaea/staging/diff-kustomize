@@ -1,0 +1,51 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-53dabaea/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-98c11e30/staging/app-of-apps-staging.yaml
+1446a1447,1491
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: quality-dashboard
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/quality-dashboard: "true"
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/quality-dashboard
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: quality-dashboard-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: quality-dashboard
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-53dabaea/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-98c11e30/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+12a13
+>     - quality-dashboard
+Only in ./kustomized-cache/commit-98c11e30/staging/components: quality-dashboard
