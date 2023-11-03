@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d5ce8cbb/development/components/jvm-build-service/development/kustomize.out.yaml ./kustomized-cache/commit-3322e79f/development/components/jvm-build-service/development/kustomize.out.yaml
+1389,1390c1389,1390
+<         - name: USE_IMAGE_SPI
+<           value: "true"
+---
+>         - name: IMAGE_TAG
+>           value: b03b06453a12ca89f74b325150e6dd368a443a19

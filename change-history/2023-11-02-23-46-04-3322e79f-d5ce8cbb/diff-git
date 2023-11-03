@@ -1,0 +1,16 @@
+diff --git a/components/jvm-build-service/base/operator_env_patch.yaml b/components/jvm-build-service/base/operator_env_patch.yaml
+index 6ac22630..ee2e9792 100644
+--- a/components/jvm-build-service/base/operator_env_patch.yaml
++++ b/components/jvm-build-service/base/operator_env_patch.yaml
+@@ -3,4 +3,9 @@
+   path: /spec/template/spec/containers/0/env
+   value:
+   - name: IMAGE_TAG
+-    value: b03b06453a12ca89f74b325150e6dd368a443a19
+\ No newline at end of file
++    value: b03b06453a12ca89f74b325150e6dd368a443a19
++- op: add
++  path: /spec/template/spec/containers/0/env
++  value:
++  - name: "USE_IMAGE_SPI"
++    value: "true"
