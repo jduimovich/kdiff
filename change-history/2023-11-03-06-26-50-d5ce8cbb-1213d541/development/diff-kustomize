@@ -1,0 +1,15 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1213d541/development/components/jvm-build-service/development/kustomize.out.yaml ./kustomized-cache/commit-d5ce8cbb/development/components/jvm-build-service/development/kustomize.out.yaml
+1093d1092
+<   - pods/log
+1392c1391
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:df65deb5a957e2f3bf39e823a8e7521723a81ad1
+---
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:b03b06453a12ca89f74b325150e6dd368a443a19
+1401c1400
+<             memory: 1024Mi
+---
+>             memory: 512Mi
+1404c1403
+<             memory: 1024Mi
+---
+>             memory: 512Mi
