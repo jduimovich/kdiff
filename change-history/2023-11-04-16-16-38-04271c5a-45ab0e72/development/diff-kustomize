@@ -1,0 +1,65 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-45ab0e72/development/components/gitops/development/kustomize.out.yaml ./kustomized-cache/commit-04271c5a/development/components/gitops/development/kustomize.out.yaml
+3392c3392
+<         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+---
+>         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+3500c3500
+<         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+---
+>         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+3605c3605
+<         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+---
+>         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+4069a4070
+>   creationTimestamp: null
+4074d4074
+<   - v1beta1
+4079c4079
+<       path: /validate-appstudio-redhat-com-v1alpha1-environment
+---
+>       path: /validate-appstudio-redhat-com-v1alpha1-snapshot
+4081c4081
+<   name: venvironment.kb.io
+---
+>   name: vsnapshot.kb.io
+4091c4091
+<     - environments
+---
+>     - snapshots
+4099c4099
+<       path: /validate-appstudio-redhat-com-v1alpha1-promotionrun
+---
+>       path: /validate-appstudio-redhat-com-v1alpha1-snapshotenvironmentbinding
+4101c4101
+<   name: vpromotionrun.kb.io
+---
+>   name: vsnapshotenvironmentbinding.kb.io
+4111c4111
+<     - promotionruns
+---
+>     - snapshotenvironmentbindings
+4119c4119
+<       path: /validate-appstudio-redhat-com-v1alpha1-snapshot
+---
+>       path: /validate-appstudio-redhat-com-v1alpha1-promotionrun
+4121c4121
+<   name: vsnapshot.kb.io
+---
+>   name: vpromotionrun.kb.io
+4131c4131
+<     - snapshots
+---
+>     - promotionruns
+4139c4139
+<       path: /validate-appstudio-redhat-com-v1alpha1-snapshotenvironmentbinding
+---
+>       path: /validate-appstudio-redhat-com-v1alpha1-environment
+4141c4141
+<   name: vsnapshotenvironmentbinding.kb.io
+---
+>   name: venvironment.kb.io
+4151c4151
+<     - snapshotenvironmentbindings
+---
+>     - environments

@@ -1,0 +1,130 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-45ab0e72/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-04271c5a/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml
+3718c3718
+<         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+---
+>         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+3835c3835
+<         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+---
+>         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+3949c3949
+<         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+---
+>         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+4397a4398
+>   creationTimestamp: null
+4402d4402
+<   - v1beta1
+4407c4407
+<       path: /validate-appstudio-redhat-com-v1alpha1-environment
+---
+>       path: /validate-appstudio-redhat-com-v1alpha1-snapshot
+4409c4409
+<   name: venvironment.kb.io
+---
+>   name: vsnapshot.kb.io
+4419c4419
+<     - environments
+---
+>     - snapshots
+4427c4427
+<       path: /validate-appstudio-redhat-com-v1alpha1-promotionrun
+---
+>       path: /validate-appstudio-redhat-com-v1alpha1-snapshotenvironmentbinding
+4429c4429
+<   name: vpromotionrun.kb.io
+---
+>   name: vsnapshotenvironmentbinding.kb.io
+4439c4439
+<     - promotionruns
+---
+>     - snapshotenvironmentbindings
+4447c4447
+<       path: /validate-appstudio-redhat-com-v1alpha1-snapshot
+---
+>       path: /validate-appstudio-redhat-com-v1alpha1-promotionrun
+4449c4449
+<   name: vsnapshot.kb.io
+---
+>   name: vpromotionrun.kb.io
+4459c4459
+<     - snapshots
+---
+>     - promotionruns
+4467c4467
+<       path: /validate-appstudio-redhat-com-v1alpha1-snapshotenvironmentbinding
+---
+>       path: /validate-appstudio-redhat-com-v1alpha1-environment
+4469c4469
+<   name: vsnapshotenvironmentbinding.kb.io
+---
+>   name: venvironment.kb.io
+4479c4479
+<     - snapshotenvironmentbindings
+---
+>     - environments
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-45ab0e72/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-04271c5a/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml
+3704c3704
+<         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+---
+>         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+3821c3821
+<         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+---
+>         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+3935c3935
+<         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+---
+>         image: quay.io/redhat-appstudio/gitops-service:7d148953f48a0ac91e4af6b18920312ff114a5a2
+4383a4384
+>   creationTimestamp: null
+4388d4388
+<   - v1beta1
+4393c4393
+<       path: /validate-appstudio-redhat-com-v1alpha1-environment
+---
+>       path: /validate-appstudio-redhat-com-v1alpha1-snapshot
+4395c4395
+<   name: venvironment.kb.io
+---
+>   name: vsnapshot.kb.io
+4405c4405
+<     - environments
+---
+>     - snapshots
+4413c4413
+<       path: /validate-appstudio-redhat-com-v1alpha1-promotionrun
+---
+>       path: /validate-appstudio-redhat-com-v1alpha1-snapshotenvironmentbinding
+4415c4415
+<   name: vpromotionrun.kb.io
+---
+>   name: vsnapshotenvironmentbinding.kb.io
+4425c4425
+<     - promotionruns
+---
+>     - snapshotenvironmentbindings
+4433c4433
+<       path: /validate-appstudio-redhat-com-v1alpha1-snapshot
+---
+>       path: /validate-appstudio-redhat-com-v1alpha1-promotionrun
+4435c4435
+<   name: vsnapshot.kb.io
+---
+>   name: vpromotionrun.kb.io
+4445c4445
+<     - snapshots
+---
+>     - promotionruns
+4453c4453
+<       path: /validate-appstudio-redhat-com-v1alpha1-snapshotenvironmentbinding
+---
+>       path: /validate-appstudio-redhat-com-v1alpha1-environment
+4455c4455
+<   name: vsnapshotenvironmentbinding.kb.io
+---
+>   name: venvironment.kb.io
+4465c4465
+<     - snapshotenvironmentbindings
+---
+>     - environments
