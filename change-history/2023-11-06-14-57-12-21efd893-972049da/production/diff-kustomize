@@ -1,0 +1,6 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-972049da/production/app-of-apps-production.yaml ./kustomized-cache/commit-21efd893/production/app-of-apps-production.yaml
+1517,1520d1516
+<       - group: appstudio.redhat.com
+<         jsonPointers:
+<         - /metadata/labels/release.appstudio.openshift.io~author
+<         kind: ReleasePlan
