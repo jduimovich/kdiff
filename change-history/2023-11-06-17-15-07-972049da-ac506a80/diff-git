@@ -1,0 +1,12 @@
+diff --git a/argo-cd-apps/base/tenants-config/tenants-config.yaml b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+index 22b5dd68..f98bbf2e 100644
+--- a/argo-cd-apps/base/tenants-config/tenants-config.yaml
++++ b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+@@ -33,6 +33,7 @@ spec:
+           kind: ReleasePlan
+           jsonPointers:
+             - /metadata/labels/release.appstudio.openshift.io~author
++            - /metadata/labels/release.appstudio.openshift.io~standing-attribution
+       syncPolicy:
+         automated:
+           prune: true

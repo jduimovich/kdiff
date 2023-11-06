@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a0cc3084/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-ac506a80/production/components/multi-platform-controller/production/kustomize.out.yaml
+148c148
+<   dynamic.linux-arm64.instance-type: m6g.large
+---
+>   dynamic.linux-arm64.instance-type: t4g.small
