@@ -1,0 +1,12 @@
+diff --git a/argo-cd-apps/base/tenants-config/tenants-config.yaml b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+index f98bbf2e..a57c32db 100644
+--- a/argo-cd-apps/base/tenants-config/tenants-config.yaml
++++ b/argo-cd-apps/base/tenants-config/tenants-config.yaml
+@@ -40,6 +40,7 @@ spec:
+           selfHeal: true
+         syncOptions:
+           - CreateNamespace=true
++          - RespectIgnoreDifferences=true
+         retry:
+           limit: 10
+           backoff:
