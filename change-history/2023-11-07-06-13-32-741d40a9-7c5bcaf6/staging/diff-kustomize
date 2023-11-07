@@ -1,0 +1,155 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7c5bcaf6/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-741d40a9/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+173,192d172
+< apiVersion: v1
+< kind: Service
+< metadata:
+<   annotations:
+<     service.beta.openshift.io/serving-cert-secret-name: otp-tls-secrets
+<   labels:
+<     app: multi-platform-otp-server
+<   name: multi-platform-otp-server
+<   namespace: multi-platform-controller
+< spec:
+<   ports:
+<   - name: https
+<     port: 443
+<     protocol: TCP
+<     targetPort: 8443
+<   selector:
+<     app: multi-platform-otp-server
+<   sessionAffinity: None
+<   type: ClusterIP
+< ---
+220c200
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:ae1b67d34f8f35b8b5888b019a4daafd0b19eab3
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:a93520a595364747fdf3afccf88cb86296900277
+236,283d215
+< apiVersion: apps/v1
+< kind: Deployment
+< metadata:
+<   labels:
+<     app: multi-platform-otp-server
+<   name: multi-platform-otp-server
+<   namespace: multi-platform-controller
+< spec:
+<   replicas: 1
+<   selector:
+<     matchLabels:
+<       app: multi-platform-otp-server
+<   template:
+<     metadata:
+<       labels:
+<         app: multi-platform-otp-server
+<     spec:
+<       containers:
+<       - env:
+<         - name: POD_NAMESPACE
+<           valueFrom:
+<             fieldRef:
+<               fieldPath: metadata.namespace
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:ae1b67d34f8f35b8b5888b019a4daafd0b19eab3
+<         imagePullPolicy: Always
+<         name: multi-platform-otp-server
+<         ports:
+<         - containerPort: 8080
+<           name: server
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 128Mi
+<           requests:
+<             cpu: 100m
+<             memory: 128Mi
+<         securityContext:
+<           readOnlyRootFilesystem: true
+<         volumeMounts:
+<         - mountPath: /tls
+<           name: tls
+<       securityContext:
+<         runAsNonRoot: true
+<       volumes:
+<       - name: tls
+<         secret:
+<           secretName: otp-tls-secrets
+< ---
+374c306
+<   - image: quay.io/redhat-appstudio/multi-platform-runner:01c7670e81d5120347cf0ad13372742489985e5f
+---
+>   - image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/hacktask-image-multi-platform-controller:build-dfd73-1698382902@sha256:d733531a07ede2e73500c500a33cdaf78332db146ffdc23d3c1a71b253a734b6
+387,388c319
+<       export USERNAME=u-$(echo $(params.TASKRUN_NAME)$(params.NAMESPACE) | md5sum | cut -b-28)
+<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo userdel -f -r -Z $USERNAME
+---
+>       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo userdel -f -r -Z $USER
+414c345
+<   - image: quay.io/redhat-appstudio/multi-platform-runner:01c7670e81d5120347cf0ad13372742489985e5f
+---
+>   - image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/hacktask-image-multi-platform-controller:build-dfd73-1698382902@sha256:d733531a07ede2e73500c500a33cdaf78332db146ffdc23d3c1a71b253a734b6
+445,446c376
+<       KEY=$(cat id_rsa)
+<       echo $KEY
+---
+>       KEY=$(cat id_rsa | base64 -w 0)
+450,469c380,392
+< 
+<       if [ -e "/tls/tls.crt" ]; then
+<         OTP=$(curl --cacert /tls/tls.crt -XPOST -d "$KEY" https://multi-platform-otp-server.multi-platform-controller.svc.cluster.local/store-key | base64 -w 0)
+<         OTP_SERVER="$(echo https://multi-platform-otp-server.multi-platform-controller.svc.cluster.local/otp | base64 -w 0)"
+<         echo $OTP | base64 -d
+<         cat >secret.yaml <<EOF
+<         apiVersion: v1
+<         data:
+<           otp-ca: "$(cat /tls/tls.crt | base64 -w 0)"
+<           otp: "$OTP"
+<           otp-server: "$OTP_SERVER"
+<           host: "$HOST"
+<           user-dir: "$DIR"
+<         kind: Secret
+<         metadata:
+<           name: $(params.SECRET_NAME)
+<           namespace: $(params.NAMESPACE)
+<           labels:
+<             build.appstudio.redhat.com/multi-platform-secret: "true"
+<         type: Opaque
+---
+>       cat >secret.yaml <<EOF
+>       apiVersion: v1
+>       data:
+>         id_rsa: "$KEY"
+>         host: "$HOST"
+>         user-dir: "$DIR"
+>       kind: Secret
+>       metadata:
+>         name: $(params.SECRET_NAME)
+>         namespace: $(params.NAMESPACE)
+>         labels:
+>           build.appstudio.redhat.com/multi-platform-secret: "true"
+>       type: Opaque
+471,487d393
+<       else
+<         cat >secret.yaml <<EOF
+<         apiVersion: v1
+<         data:
+<           id_rsa: "$(echo $KEY | base64 -w 0)"
+<           host: "$HOST"
+<           user-dir: "$DIR"
+<         kind: Secret
+<         metadata:
+<           name: $(params.SECRET_NAME)
+<           namespace: $(params.NAMESPACE)
+<           labels:
+<             build.appstudio.redhat.com/multi-platform-secret: "true"
+<         type: Opaque
+<       EOF
+<       fi
+< 
+489,496d394
+<     volumeMounts:
+<     - mountPath: /tls
+<       name: tls
+<   volumes:
+<   - name: tls
+<     secret:
+<       optional: true
+<       secretName: otp-tls-secrets

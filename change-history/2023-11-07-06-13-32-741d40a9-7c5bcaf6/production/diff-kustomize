@@ -1,0 +1,85 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7c5bcaf6/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-741d40a9/production/components/multi-platform-controller/production/kustomize.out.yaml
+210c210
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:ae1b67d34f8f35b8b5888b019a4daafd0b19eab3
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:a93520a595364747fdf3afccf88cb86296900277
+316c316
+<   - image: quay.io/redhat-appstudio/multi-platform-runner:01c7670e81d5120347cf0ad13372742489985e5f
+---
+>   - image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/hacktask-image-multi-platform-controller:build-dfd73-1698382902@sha256:d733531a07ede2e73500c500a33cdaf78332db146ffdc23d3c1a71b253a734b6
+329,330c329
+<       export USERNAME=u-$(echo $(params.TASKRUN_NAME)$(params.NAMESPACE) | md5sum | cut -b-28)
+<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo userdel -f -r -Z $USERNAME
+---
+>       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo userdel -f -r -Z $USER
+356c355
+<   - image: quay.io/redhat-appstudio/multi-platform-runner:01c7670e81d5120347cf0ad13372742489985e5f
+---
+>   - image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/hacktask-image-multi-platform-controller:build-dfd73-1698382902@sha256:d733531a07ede2e73500c500a33cdaf78332db146ffdc23d3c1a71b253a734b6
+387,388c386
+<       KEY=$(cat id_rsa)
+<       echo $KEY
+---
+>       KEY=$(cat id_rsa | base64 -w 0)
+392,411c390,402
+< 
+<       if [ -e "/tls/tls.crt" ]; then
+<         OTP=$(curl --cacert /tls/tls.crt -XPOST -d "$KEY" https://multi-platform-otp-server.multi-platform-controller.svc.cluster.local/store-key | base64 -w 0)
+<         OTP_SERVER="$(echo https://multi-platform-otp-server.multi-platform-controller.svc.cluster.local/otp | base64 -w 0)"
+<         echo $OTP | base64 -d
+<         cat >secret.yaml <<EOF
+<         apiVersion: v1
+<         data:
+<           otp-ca: "$(cat /tls/tls.crt | base64 -w 0)"
+<           otp: "$OTP"
+<           otp-server: "$OTP_SERVER"
+<           host: "$HOST"
+<           user-dir: "$DIR"
+<         kind: Secret
+<         metadata:
+<           name: $(params.SECRET_NAME)
+<           namespace: $(params.NAMESPACE)
+<           labels:
+<             build.appstudio.redhat.com/multi-platform-secret: "true"
+<         type: Opaque
+---
+>       cat >secret.yaml <<EOF
+>       apiVersion: v1
+>       data:
+>         id_rsa: "$KEY"
+>         host: "$HOST"
+>         user-dir: "$DIR"
+>       kind: Secret
+>       metadata:
+>         name: $(params.SECRET_NAME)
+>         namespace: $(params.NAMESPACE)
+>         labels:
+>           build.appstudio.redhat.com/multi-platform-secret: "true"
+>       type: Opaque
+413,429d403
+<       else
+<         cat >secret.yaml <<EOF
+<         apiVersion: v1
+<         data:
+<           id_rsa: "$(echo $KEY | base64 -w 0)"
+<           host: "$HOST"
+<           user-dir: "$DIR"
+<         kind: Secret
+<         metadata:
+<           name: $(params.SECRET_NAME)
+<           namespace: $(params.NAMESPACE)
+<           labels:
+<             build.appstudio.redhat.com/multi-platform-secret: "true"
+<         type: Opaque
+<       EOF
+<       fi
+< 
+431,438d404
+<     volumeMounts:
+<     - mountPath: /tls
+<       name: tls
+<   volumes:
+<   - name: tls
+<     secret:
+<       optional: true
+<       secretName: otp-tls-secrets
