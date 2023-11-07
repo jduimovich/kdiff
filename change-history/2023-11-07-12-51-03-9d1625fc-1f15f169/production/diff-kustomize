@@ -1,0 +1,37 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1f15f169/production/components/build-service/production/kustomize.out.yaml ./kustomized-cache/commit-9d1625fc/production/components/build-service/production/kustomize.out.yaml
+102c102,128
+<                                 type: string
+---
+>                                 description: ParamValue is a type that can hold a
+>                                   single string or string array. Used in JSON unmarshalling
+>                                   so that a single JSON field can accept either an
+>                                   individual string or an array of strings.
+>                                 properties:
+>                                   arrayVal:
+>                                     items:
+>                                       type: string
+>                                     type: array
+>                                     x-kubernetes-list-type: atomic
+>                                   objectVal:
+>                                     additionalProperties:
+>                                       type: string
+>                                     type: object
+>                                   stringVal:
+>                                     type: string
+>                                   type:
+>                                     description: ParamType indicates the type of an
+>                                       input parameter; Used to distinguish between
+>                                       a single string and an array of strings.
+>                                     type: string
+>                                 required:
+>                                 - arrayVal
+>                                 - objectVal
+>                                 - stringVal
+>                                 - type
+>                                 type: object
+386d411
+<   - delete
+658c683
+<         image: quay.io/redhat-appstudio/build-service:9ddc35a680d65f265b6ebc3110defab5c7c35021
+---
+>         image: quay.io/redhat-appstudio/build-service:99cebd0a67a6b25b8ccffb76522861f526c762de
