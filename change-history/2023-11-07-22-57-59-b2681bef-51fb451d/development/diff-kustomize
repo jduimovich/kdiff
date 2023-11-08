@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-51fb451d/development/components/multi-platform-controller/development/kustomize.out.yaml ./kustomized-cache/commit-b2681bef/development/components/multi-platform-controller/development/kustomize.out.yaml
+162c162
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:6e51427a3fc0598829f9fd4e10e7d86d89ab21f8
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:ae1b67d34f8f35b8b5888b019a4daafd0b19eab3
+269a270,271
+>       KEY=$(cat id_rsa)
+>       echo $KEY
+272a275
+> 
+274d276
+<         KEY=$(cat id_rsa)
+295d296
+<         KEY=$(cat id_rsa | base64 -w 0)
+299c300
+<           id_rsa: "$KEY"
+---
+>           id_rsa: "$(echo $KEY | base64 -w 0)"

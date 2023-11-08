@@ -1,0 +1,22 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-51fb451d/staging/components/multi-platform-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-b2681bef/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+220c220
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:6e51427a3fc0598829f9fd4e10e7d86d89ab21f8
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:ae1b67d34f8f35b8b5888b019a4daafd0b19eab3
+259c259
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:6e51427a3fc0598829f9fd4e10e7d86d89ab21f8
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:ae1b67d34f8f35b8b5888b019a4daafd0b19eab3
+444a445,446
+>       KEY=$(cat id_rsa)
+>       echo $KEY
+447a450
+> 
+449d451
+<         KEY=$(cat id_rsa)
+470d471
+<         KEY=$(cat id_rsa | base64 -w 0)
+474c475
+<           id_rsa: "$KEY"
+---
+>           id_rsa: "$(echo $KEY | base64 -w 0)"
