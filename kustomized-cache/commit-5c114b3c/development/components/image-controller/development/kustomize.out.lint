@@ -1,0 +1,4 @@
+KubeLinter v0.6.1-0-gc6177366a3
+
+.//kustomized-cache/commit-5c114b3c/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+

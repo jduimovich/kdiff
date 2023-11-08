@@ -1,0 +1,21 @@
+diff --git a/.github/workflows/auto-update.yml b/.github/workflows/auto-update.yml
+deleted file mode 100644
+index fec797b1..00000000
+--- a/.github/workflows/auto-update.yml
++++ /dev/null
+@@ -1,15 +0,0 @@
+-name: autoupdate
+-on:
+-  push:
+-    branches:
+-        - main
+-jobs:
+-  autoupdate:
+-    name: autoupdate
+-    runs-on: ubuntu-20.04
+-    steps:
+-      - uses: docker://chinthakagodawita/autoupdate-action@sha256:a3e234f9fce69dd9b3a205acfd55bf9d5c94f0f7cf119f0267a5ab54220e8f56
+-        env:
+-          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+-          PR_FILTER: "labelled"
+-          PR_LABELS: "approved,lgtm"
