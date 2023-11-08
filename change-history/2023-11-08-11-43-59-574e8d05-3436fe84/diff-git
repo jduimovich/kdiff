@@ -1,0 +1,32 @@
+diff --git a/components/monitoring/grafana/base/dashboards/spi/dashboard.yaml b/components/monitoring/grafana/base/dashboards/spi/dashboard.yaml
+index a312cd6a..72505d13 100644
+--- a/components/monitoring/grafana/base/dashboards/spi/dashboard.yaml
++++ b/components/monitoring/grafana/base/dashboards/spi/dashboard.yaml
+@@ -40,3 +40,17 @@ spec:
+   configMapRef:
+     name: grafana-dashboard-spi-slo
+     key: spi-slo.json
++---
++apiVersion: grafana.integreatly.org/v1beta1
++kind: GrafanaDashboard
++metadata:
++  name: remotesecret-metrics-dashboard
++  labels:
++    app: appstudio-grafana
++spec:
++  instanceSelector:
++    matchLabels:
++      dashboards: "appstudio-grafana"
++  configMapRef:
++    name: grafana-dashboard-remotesecret-metrics
++    key: remotesecret-metrics.json
+diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+index 20b30c24..381397ed 100644
+--- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+@@ -2,4 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/grafana/base?ref=1b33efa4b02986cde3c00da0718ae487a8c2cd12
++- https://github.com/redhat-appstudio/remote-secret/config/monitoring/grafana/base?ref=0015934c1d7abd291145675153187c0a0e3aa300
+ - dashboard.yaml
