@@ -1,0 +1,36 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a026a6da/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-236af31e/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+329,344d328
+< - apiGroups:
+<   - ""
+<   resources:
+<   - nodes
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - metrics.k8s.io
+<   resources:
+<   - nodes
+<   verbs:
+<   - get
+<   - list
+<   - watch
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a026a6da/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-236af31e/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+329,344d328
+< - apiGroups:
+<   - ""
+<   resources:
+<   - nodes
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - metrics.k8s.io
+<   resources:
+<   - nodes
+<   verbs:
+<   - get
+<   - list
+<   - watch

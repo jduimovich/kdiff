@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a026a6da/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-236af31e/development/components/pipeline-service/development/kustomize.out.yaml
+346,361d345
+< - apiGroups:
+<   - ""
+<   resources:
+<   - nodes
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - metrics.k8s.io
+<   resources:
+<   - nodes
+<   verbs:
+<   - get
+<   - list
+<   - watch
