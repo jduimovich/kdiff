@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-236af31e/production/components/build-service/production/kustomize.out.yaml ./kustomized-cache/commit-9eac59a9/production/components/build-service/production/kustomize.out.yaml
+364a365,372
+>   - appstudio.redhat.com
+>   resources:
+>   - spiaccesstokenbindings
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+650c658
+<         image: quay.io/redhat-appstudio/build-service:7a247f9ccb6f63a7b7260571b69908747451f655
+---
+>         image: quay.io/redhat-appstudio/build-service:9ddc35a680d65f265b6ebc3110defab5c7c35021
