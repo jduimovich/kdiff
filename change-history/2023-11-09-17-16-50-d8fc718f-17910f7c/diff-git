@@ -1,0 +1,206 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/backup/backup.yaml b/argo-cd-apps/base/member/infra-deployments/backup/backup.yaml
+new file mode 100644
+index 00000000..6bde4997
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/backup/backup.yaml
+@@ -0,0 +1,41 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: backup
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/backup
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: backup-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: default
++        server: '{{server}}'
++      syncPolicy:
++        automated: 
++          prune: true
++          selfHeal: true
++        syncOptions:
++        - CreateNamespace=true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/base/member/infra-deployments/backup/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/backup/kustomization.yaml
+new file mode 100644
+index 00000000..7e838843
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/backup/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- backup.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 9e886d45..96a462b3 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -19,5 +19,6 @@ resources:
+   - toolchain-member-operator
+   - multi-platform-controller
+   - perf-team-prometheus-reader
++  - backup
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index c171a92f..922d0c17 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -46,3 +46,9 @@ kind: ApplicationSet
+ metadata:
+   name: enable-dvo
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: backup
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production/delete-applications.yaml b/argo-cd-apps/overlays/production/delete-applications.yaml
+new file mode 100644
+index 00000000..ca6cc91b
+--- /dev/null
++++ b/argo-cd-apps/overlays/production/delete-applications.yaml
+@@ -0,0 +1,6 @@
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: backup
++$patch: delete
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index 2deb6ce8..71ed6203 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -8,6 +8,9 @@ resources:
+   - ../../base/tenants-config
+   - ../../base/cluster-secret-store-rh
+   - ../../base/rh-managed-workspaces-config
++
++patchesStrategicMerge:
++  - delete-applications.yaml
+ namespace: argocd
+ 
+ patches:
+diff --git a/components/backup/base/external-secret.yaml b/components/backup/base/external-secret.yaml
+new file mode 100644
+index 00000000..9314b3f6
+--- /dev/null
++++ b/components/backup/base/external-secret.yaml
+@@ -0,0 +1,18 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: backup-s3-credentials
++spec:
++  dataFrom:
++  - extract:
++      conversionStrategy: Default
++      decodingStrategy: None
++      key: CHANGE_ME
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: backup-s3-credentials
+diff --git a/components/backup/base/kustomization.yaml b/components/backup/base/kustomization.yaml
+new file mode 100644
+index 00000000..dfafa68a
+--- /dev/null
++++ b/components/backup/base/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: openshift-adp
++resources:
++  - external-secret.yaml
+diff --git a/components/backup/staging/stone-stg-m01/backup-stone-stg-m01.yaml b/components/backup/staging/stone-stg-m01/backup-stone-stg-m01.yaml
+new file mode 100644
+index 00000000..6795dda1
+--- /dev/null
++++ b/components/backup/staging/stone-stg-m01/backup-stone-stg-m01.yaml
+@@ -0,0 +1,8 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: backup-s3-credentials
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01
+diff --git a/components/backup/staging/stone-stg-m01/kustomization.yaml b/components/backup/staging/stone-stg-m01/kustomization.yaml
+new file mode 100644
+index 00000000..6b0a1509
+--- /dev/null
++++ b/components/backup/staging/stone-stg-m01/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/
++patches:
++  - path: backup-stone-stg-m01.yaml
+diff --git a/components/backup/staging/stone-stg-rh01/backup-stone-stg-rh01.yaml b/components/backup/staging/stone-stg-rh01/backup-stone-stg-rh01.yaml
+new file mode 100644
+index 00000000..0b35615f
+--- /dev/null
++++ b/components/backup/staging/stone-stg-rh01/backup-stone-stg-rh01.yaml
+@@ -0,0 +1,8 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: backup-s3-credentials
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01
+diff --git a/components/backup/staging/stone-stg-rh01/kustomization.yaml b/components/backup/staging/stone-stg-rh01/kustomization.yaml
+new file mode 100644
+index 00000000..9bf26cd2
+--- /dev/null
++++ b/components/backup/staging/stone-stg-rh01/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/
++patches:
++  - path: backup-stone-stg-rh01.yaml
+diff --git a/components/cluster-secret-store/base/appsre-vault-secret-store.yml b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
+index 3a9b7127..26ea9398 100644
+--- a/components/cluster-secret-store/base/appsre-vault-secret-store.yml
++++ b/components/cluster-secret-store/base/appsre-vault-secret-store.yml
+@@ -31,3 +31,4 @@ spec:
+         - gitops
+         - spi-system
+         - remotesecret
++        - openshift-adp

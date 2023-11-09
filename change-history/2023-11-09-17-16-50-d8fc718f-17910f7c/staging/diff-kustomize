@@ -1,0 +1,52 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-17910f7c/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-d8fc718f/staging/app-of-apps-staging.yaml
+87,132d86
+<   name: backup
+<   namespace: argocd-staging
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: staging
+<             sourceRoot: components/backup
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: backup-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: default
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: -1
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+Only in ./kustomized-cache/commit-17910f7c/staging/components: backup
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-17910f7c/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-d8fc718f/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+56d55
+<     - openshift-adp
