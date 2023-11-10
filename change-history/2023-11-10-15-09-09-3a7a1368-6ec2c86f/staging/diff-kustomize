@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6ec2c86f/staging/components/backup/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-3a7a1368/staging/components/backup/staging/stone-stg-m01/kustomize.out.yaml
+18,23d17
+<     template:
+<       data:
+<         cloud: |
+<           [default]
+<           aws_access_key_id={{ .aws_access_key_id }}
+<           aws_secret_access_key={{ .aws_secret_access_key }}
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6ec2c86f/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-3a7a1368/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml
+18,23d17
+<     template:
+<       data:
+<         cloud: |
+<           [default]
+<           aws_access_key_id={{ .aws_access_key_id }}
+<           aws_secret_access_key={{ .aws_secret_access_key }}
