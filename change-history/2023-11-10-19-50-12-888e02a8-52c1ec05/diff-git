@@ -1,0 +1,55 @@
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 44632bf7..91ffccd1 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -11,8 +11,13 @@ resources:
+   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=589d6e4688334ed09eb4e10ddd5bdd7a01a5122b
+   - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=589d6e4688334ed09eb4e10ddd5bdd7a01a5122b
+   - ../base/rbac
+-  
++
+ patches:
++  - path: metrics-exporter-trace.yaml
++    target:
++      kind: Deployment
++      name: pipeline-metrics-exporter
++      namespace: openshift-pipelines
+ #  - path: scale-down-exporter.yaml
+ #    target:
+ #      kind: Deployment
+diff --git a/components/pipeline-service/development/metrics-exporter-trace.yaml b/components/pipeline-service/development/metrics-exporter-trace.yaml
+new file mode 100644
+index 00000000..9b9a60fd
+--- /dev/null
++++ b/components/pipeline-service/development/metrics-exporter-trace.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/template/spec/containers/0/args/-
++  value: '-zap-log-level=6'
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index db0f7c64..aa769b23 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -19,6 +19,11 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
++  - path: metrics-exporter-trace.yaml
++    target:
++      kind: Deployment
++      name: pipeline-metrics-exporter
++      namespace: openshift-pipelines
+   - path: update-tekton-config-pac.yaml
+     target:
+       kind: TektonConfig
+diff --git a/components/pipeline-service/staging/base/metrics-exporter-trace.yaml b/components/pipeline-service/staging/base/metrics-exporter-trace.yaml
+new file mode 100644
+index 00000000..9b9a60fd
+--- /dev/null
++++ b/components/pipeline-service/staging/base/metrics-exporter-trace.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/template/spec/containers/0/args/-
++  value: '-zap-log-level=6'

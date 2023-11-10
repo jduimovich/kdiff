@@ -1,0 +1,6 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-52c1ec05/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-888e02a8/development/components/pipeline-service/development/kustomize.out.yaml
+1198,1199c1198
+<       - args:
+<         - -zap-log-level=6
+---
+>       - args: []
