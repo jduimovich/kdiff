@@ -1,0 +1,21 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/backup/backup.yaml b/argo-cd-apps/base/member/infra-deployments/backup/backup.yaml
+index 6bde4997..d9ad0e6d 100644
+--- a/argo-cd-apps/base/member/infra-deployments/backup/backup.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/backup/backup.yaml
+@@ -12,7 +12,6 @@ spec:
+               values:
+                 sourceRoot: components/backup
+                 environment: staging
+-                clusterDir: ""
+           - list:
+               elements: []
+   template:
+@@ -21,7 +20,7 @@ spec:
+     spec:
+       project: default
+       source:
+-        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{nameNormalized}}'
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:

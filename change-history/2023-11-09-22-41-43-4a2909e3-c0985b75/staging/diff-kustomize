@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c0985b75/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-4a2909e3/staging/app-of-apps-staging.yaml
+97a98
+>             clusterDir: ""
+113c114
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{nameNormalized}}'
+---
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
