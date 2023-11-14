@@ -1,0 +1,19 @@
+diff --git a/components/backup/base/kustomization.yaml b/components/backup/base/kustomization.yaml
+index dfafa68a..487d9768 100644
+--- a/components/backup/base/kustomization.yaml
++++ b/components/backup/base/kustomization.yaml
+@@ -3,3 +3,4 @@ kind: Kustomization
+ namespace: openshift-adp
+ resources:
+   - external-secret.yaml
++  - namespace.yaml
+diff --git a/components/backup/base/namespace.yaml b/components/backup/base/namespace.yaml
+new file mode 100644
+index 00000000..bb28827e
+--- /dev/null
++++ b/components/backup/base/namespace.yaml
+@@ -0,0 +1,4 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: openshift-adp

@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1675a099/development/components/release/development/kustomize.out.yaml ./kustomized-cache/commit-a2729ad2/development/components/release/development/kustomize.out.yaml
+21,22d20
+<     shortNames:
+<     - rpa
+230,231d227
+<     shortNames:
+<     - rp
+423,424d418
+<     shortNames:
+<     - rel
+678,679d671
+<     shortNames:
+<     - rsc
+1630c1622
+<         image: quay.io/redhat-appstudio/release-service:9eb779342fe78d90bfc0cf055fc7b041cd678d05
+---
+>         image: quay.io/redhat-appstudio/release-service:9bf5bb781c8b158b2e34839b274f5cd37f9a5e12

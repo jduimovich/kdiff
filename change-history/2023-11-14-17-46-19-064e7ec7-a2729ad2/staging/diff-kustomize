@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a2729ad2/staging/components/backup/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-064e7ec7/staging/components/backup/staging/stone-stg-m01/kustomize.out.yaml
+1,5d0
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   name: openshift-adp
+< ---
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a2729ad2/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-064e7ec7/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml
+1,5d0
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   name: openshift-adp
+< ---
