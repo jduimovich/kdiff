@@ -1,0 +1,49 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8858a88c/production/components/build-service/production/kustomize.out.yaml ./kustomized-cache/commit-d7c95595/production/components/build-service/production/kustomize.out.yaml
+716,723c716,717
+<       params:
+<       - name: name
+<         value: fbc-builder
+<       - name: bundle
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:06784ffb837be23caeab4248bf563fa79b9b27f5
+<       - name: kind
+<         value: pipeline
+<       resolver: bundles
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:06784ffb837be23caeab4248bf563fa79b9b27f5
+>       name: fbc-builder
+728,735c722,723
+<       params:
+<       - name: name
+<         value: docker-build
+<       - name: bundle
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:06784ffb837be23caeab4248bf563fa79b9b27f5
+<       - name: kind
+<         value: pipeline
+<       resolver: bundles
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:06784ffb837be23caeab4248bf563fa79b9b27f5
+>       name: docker-build
+740,747c728,729
+<       params:
+<       - name: name
+<         value: java-builder
+<       - name: bundle
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:06784ffb837be23caeab4248bf563fa79b9b27f5
+<       - name: kind
+<         value: pipeline
+<       resolver: bundles
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:06784ffb837be23caeab4248bf563fa79b9b27f5
+>       name: java-builder
+752,759c734,735
+<       params:
+<       - name: name
+<         value: nodejs-builder
+<       - name: bundle
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:06784ffb837be23caeab4248bf563fa79b9b27f5
+<       - name: kind
+<         value: pipeline
+<       resolver: bundles
+---
+>       bundle: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:06784ffb837be23caeab4248bf563fa79b9b27f5
+>       name: nodejs-builder
