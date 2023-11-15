@@ -1,0 +1,35 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4e687e9c/development/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-3e374d67/development/components/enterprise-contract/kustomize.out.yaml
+302c302
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:ece604c4939992abadc77762014affbe67c433a1@sha256:1955a41c18dac0af5a702ff1fd16168891d798223760390f9aa56ed787dd1fc7
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:2f5821e3d1aa7b9661305f922e59a971cf5498b8@sha256:eb3181d2e46fc1c62b2d88417f6e0ba25650827035a30bb9718402218e242d42
+304c304
+<   verify_ec_task_git_revision: ece604c4939992abadc77762014affbe67c433a1
+---
+>   verify_ec_task_git_revision: 2f5821e3d1aa7b9661305f922e59a971cf5498b8
+334c334
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-d4e9abf@sha256:a205fe61e01faae4c77c8949e5cccde904b01184d1920d489714829681813d2f
+351a352,353
+>       - '@slsa1'
+>       - '@slsa2'
+358c360
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-d4e9abf@sha256:a205fe61e01faae4c77c8949e5cccde904b01184d1920d489714829681813d2f
+382c384
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-d4e9abf@sha256:a205fe61e01faae4c77c8949e5cccde904b01184d1920d489714829681813d2f
+409c411
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-d4e9abf@sha256:a205fe61e01faae4c77c8949e5cccde904b01184d1920d489714829681813d2f
+428a431,432
+>       - '@slsa1'
+>       - '@slsa2'
+435c439
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-d4e9abf@sha256:a205fe61e01faae4c77c8949e5cccde904b01184d1920d489714829681813d2f
