@@ -1,0 +1,48 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-57674cac/production/app-of-apps-production.yaml ./kustomized-cache/commit-d5073060/production/app-of-apps-production.yaml
+87,131d86
+<   name: backup
+<   namespace: argocd
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             environment: staging
+<             sourceRoot: components/backup
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: backup-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: default
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{nameNormalized}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: -1
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+Only in ./kustomized-cache/commit-57674cac/production/components: backup

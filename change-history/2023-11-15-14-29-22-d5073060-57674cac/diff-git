@@ -1,0 +1,77 @@
+diff --git a/argo-cd-apps/overlays/production/delete-applications.yaml b/argo-cd-apps/overlays/production/delete-applications.yaml
+deleted file mode 100644
+index ca6cc91b..00000000
+--- a/argo-cd-apps/overlays/production/delete-applications.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: backup
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index 71ed6203..65b66c77 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -9,8 +9,6 @@ resources:
+   - ../../base/cluster-secret-store-rh
+   - ../../base/rh-managed-workspaces-config
+ 
+-patchesStrategicMerge:
+-  - delete-applications.yaml
+ namespace: argocd
+ 
+ patches:
+diff --git a/components/backup/production/stone-prd-m01/backup-stone-prd-m01.yaml b/components/backup/production/stone-prd-m01/backup-stone-prd-m01.yaml
+new file mode 100644
+index 00000000..4bd23351
+--- /dev/null
++++ b/components/backup/production/stone-prd-m01/backup-stone-prd-m01.yaml
+@@ -0,0 +1,8 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: backup-s3-credentials
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
+diff --git a/components/backup/production/stone-prd-m01/kustomization.yaml b/components/backup/production/stone-prd-m01/kustomization.yaml
+new file mode 100644
+index 00000000..356d4cc0
+--- /dev/null
++++ b/components/backup/production/stone-prd-m01/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/
++patches:
++  - path: backup-stone-prd-m01.yaml
+diff --git a/components/backup/production/stone-prd-rh01/backup-stone-prd-rh01.yaml b/components/backup/production/stone-prd-rh01/backup-stone-prd-rh01.yaml
+new file mode 100644
+index 00000000..68d0ae75
+--- /dev/null
++++ b/components/backup/production/stone-prd-rh01/backup-stone-prd-rh01.yaml
+@@ -0,0 +1,8 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: backup-s3-credentials
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
+diff --git a/components/backup/production/stone-prd-rh01/kustomization.yaml b/components/backup/production/stone-prd-rh01/kustomization.yaml
+new file mode 100644
+index 00000000..01323418
+--- /dev/null
++++ b/components/backup/production/stone-prd-rh01/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/
++patches:
++  - path: backup-stone-prd-rh01.yaml

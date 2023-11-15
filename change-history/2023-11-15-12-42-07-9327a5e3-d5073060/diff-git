@@ -1,0 +1,13 @@
+diff --git a/components/image-controller/base/external-secrets/quaytoken.yaml b/components/image-controller/base/external-secrets/quaytoken.yaml
+index cf4b2275..8090bee0 100644
+--- a/components/image-controller/base/external-secrets/quaytoken.yaml
++++ b/components/image-controller/base/external-secrets/quaytoken.yaml
+@@ -9,7 +9,7 @@ spec:
+   dataFrom:
+     - extract:
+         key: staging/build/image-controller
+-  refreshInterval: 1h
++  refreshInterval: 15m
+   secretStoreRef:
+     kind: ClusterSecretStore
+     name: appsre-stonesoup-vault
