@@ -1,0 +1,251 @@
+diff --git a/components/sandbox/base/kustomization.yaml b/components/sandbox/base/kustomization.yaml
+index 2ab35894..af7550d5 100644
+--- a/components/sandbox/base/kustomization.yaml
++++ b/components/sandbox/base/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ./rbac/edit-secrets.yaml
+-- ./rbac/sandbox-sre-admins.yaml
++- ./rbac
++- ./olm-restart
+ - ./monitoring/sandbox-registration-service-proxy.yaml
+diff --git a/components/sandbox/base/rbac/edit-secrets.yaml b/components/sandbox/base/rbac/edit-secrets.yaml
+index 67fdd32c..6d5567d8 100644
+--- a/components/sandbox/base/rbac/edit-secrets.yaml
++++ b/components/sandbox/base/rbac/edit-secrets.yaml
+@@ -2,8 +2,6 @@ kind: Role
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   name: edit-secrets
+-  labels:
+-    provider: codeready-toolchain
+ rules:
+ - apiGroups:
+   - ""
+@@ -21,11 +19,18 @@ kind: RoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   name: edit-secrets
+-  labels:
+-    provider: codeready-toolchain
+ subjects:
+   - kind: User
+     name: mfrancisc
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: MatousJobanek
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: alexeykazakov
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: xcoulon
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: Role
+diff --git a/components/sandbox/base/rbac/kustomization.yaml b/components/sandbox/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..0d2d9697
+--- /dev/null
++++ b/components/sandbox/base/rbac/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- edit-secrets.yaml
++- sandbox-sre-admins.yaml
+diff --git a/components/sandbox/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/base/rbac/sandbox-sre-admins.yaml
+index 842f1795..437719dd 100644
+--- a/components/sandbox/base/rbac/sandbox-sre-admins.yaml
++++ b/components/sandbox/base/rbac/sandbox-sre-admins.yaml
+@@ -2,7 +2,7 @@
+ kind: ClusterRole
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+-  name: impersonate-groups-and-users
++  name: register-cluster-extra-permissions
+ rules:
+ - apiGroups:
+   - ""
+@@ -52,11 +52,33 @@ rules:
+   - "get"
+   - "patch"
+   - "update"
++- apiGroups:
++  - "rbac.authorization.k8s.io"
++  resources:
++  - "clusterroles"
++  - "clusterrolebindings"
++  verbs:
++  - "create"
++  - "delete"
++  - "get"
++  - "list"
++  - "patch"
++  - "update"
++  - "watch"
++- apiGroups:
++  - "authorization.openshift.io"
++  resources:
++  - "clusterroles"
++  - "clusterrolebindings"
++  verbs:
++  - "get"
++  - "list"
++  - "watch"
+ ---
+ kind: ClusterRoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+-  name: sandbox-sre-admins-can-impersonate
++  name: sandbox-sre-admins-can-register-clusters
+ subjects:
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+@@ -70,4 +92,4 @@ subjects:
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+-  name: impersonate-groups-and-users
++  name: register-cluster-extra-permissions
+diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+index 8a0bcafe..3b3b8a81 100644
+--- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+@@ -3,4 +3,3 @@ kind: Kustomization
+ namespace: toolchain-host-operator
+ resources:
+ - ../../base
+-- ../../base/olm-restart
+diff --git a/components/sandbox/toolchain-member-operator/base/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+index 26378924..dedf0ead 100644
+--- a/components/sandbox/toolchain-member-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+@@ -3,5 +3,4 @@ kind: Kustomization
+ namespace: toolchain-member-operator
+ resources:
+ - ../../base
+-- ../../base/olm-restart
+-- ./rbac/inspect-pods.yaml
++- rbac
+diff --git a/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..7c5fc3cc
+--- /dev/null
++++ b/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: toolchain-member-operator
++resources:
++- inspect-pods.yaml
++- register-cluster-extra-member-permissions.yaml
+diff --git a/components/sandbox/toolchain-member-operator/base/rbac/register-cluster-extra-member-permissions.yaml b/components/sandbox/toolchain-member-operator/base/rbac/register-cluster-extra-member-permissions.yaml
+new file mode 100644
+index 00000000..7b1fb4ea
+--- /dev/null
++++ b/components/sandbox/toolchain-member-operator/base/rbac/register-cluster-extra-member-permissions.yaml
+@@ -0,0 +1,101 @@
++---
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: register-cluster-extra-member-permissions
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - "groups"
++  - "users"
++  verbs:
++  - "impersonate"
++- apiGroups:
++  - "authentication.k8s.io"
++  resources:
++  - "tokenreviews"
++  verbs:
++  - "create"
++- apiGroups:
++  - "toolchain.dev.openshift.com"
++  resources:
++  - "spacerequests"
++  verbs:
++  - "*"
++- apiGroups:
++  - "toolchain.dev.openshift.com"
++  resources:
++  - "spacerequests/finalizers"
++  verbs:
++  - "update"
++- apiGroups:
++  - "toolchain.dev.openshift.com"
++  resources:
++  - "spacerequests/status"
++  verbs:
++  - "get"
++  - "patch"
++  - "update"
++- apiGroups:
++  - ""
++  resources:
++  - "namespaces"
++  verbs:
++  - "get"
++  - "list"
++  - "watch"
++- apiGroups:
++  - ""
++  resources:
++  - "secrets"
++  - "serviceaccounts/token"
++  verbs:
++  - "*"
++- apiGroups:
++  - "route.openshift.io"
++  resources:
++  - "routes"
++  verbs:
++  - "get"
++  - "list"
++  - "watch"
++- apiGroups:
++  - "toolchain.dev.openshift.com"
++  resources:
++  - "spacebindingrequests"
++  verbs:
++  - "*"
++- apiGroups:
++  - "toolchain.dev.openshift.com"
++  resources:
++  - "spacebindingrequests/finalizers"
++  verbs:
++  - "update"
++- apiGroups:
++  - "toolchain.dev.openshift.com"
++  resources:
++  - "spacebindingrequests/status"
++  verbs:
++  - "get"
++  - "patch"
++  - "update"
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: sandbox-sre-admins-can-register-member-clusters
++subjects:
++- kind: User
++  apiGroup: rbac.authorization.k8s.io
++  name: MatousJobanek
++- kind: User
++  apiGroup: rbac.authorization.k8s.io
++  name: alexeykazakov
++- kind: User
++  apiGroup: rbac.authorization.k8s.io
++  name: xcoulon
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: register-cluster-extra-member-permissions

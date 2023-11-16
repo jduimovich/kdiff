@@ -1,0 +1,13 @@
+diff --git a/components/tekton-ci/base/external-secrets/quay-push-secret.yaml b/components/tekton-ci/base/external-secrets/quay-push-secret.yaml
+index fcb1f119..6f1237e1 100644
+--- a/components/tekton-ci/base/external-secrets/quay-push-secret.yaml
++++ b/components/tekton-ci/base/external-secrets/quay-push-secret.yaml
+@@ -9,7 +9,7 @@ spec:
+   dataFrom:
+     - extract:
+         key: staging/build/tekton-ci/quay-push-secret
+-  refreshInterval: 1h
++  refreshInterval: 15m
+   secretStoreRef:
+     kind: ClusterSecretStore
+     name: appsre-stonesoup-vault
