@@ -1,12 +1,6271 @@
 # kustomize changes tracked by commits 
-### This file generated at Sat Nov 18 04:01:55 UTC 2023
+### This file generated at Sat Nov 18 08:04:52 UTC 2023
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 7a23953b to b7484218 on Fri Nov 17 10:39:45 2023 </h3>  
+<h3>1: Production changes from 2fe31146 to 2953b774 on Sat Nov 18 07:17:38 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (39 lines)</summary>  
+
+``` 
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+index 6d95cff2..3fc612eb 100644
+--- a/components/gitops/development/kustomization.yaml
++++ b/components/gitops/development/kustomization.yaml
+@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ - ../openshift-gitops/overlays/production-and-dev
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++    newTag: c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+diff --git a/components/gitops/production/base/kustomization.yaml b/components/gitops/production/base/kustomization.yaml
+index b81528fa..2e3dee78 100644
+--- a/components/gitops/production/base/kustomization.yaml
++++ b/components/gitops/production/base/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ - ../../openshift-gitops/overlays/production-and-dev
+ - ../../base/external-secrets
+ - ../../base/monitoring
+@@ -11,7 +11,7 @@ resources:
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++    newTag: c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (2122 lines)</summary>  
+
+``` 
+./commit-2fe31146/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml
+1231a1232,2247
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - monitoring.coreos.com
+>   resources:
+>   - '*'
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - subscriptions
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - clusterserviceversions
+>   - catalogsources
+>   - installplans
+>   - subscriptions
+>   verbs:
+>   - delete
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - clusterserviceversions
+>   - catalogsources
+>   - installplans
+>   - subscriptions
+>   - operatorgroups
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   - packagemanifests/icon
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - applicationsets
+>   - appprojects
+>   - argocds
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - applicationsets
+>   - appprojects
+>   - argocds
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - helm.openshift.io
+>   resources:
+>   - projecthelmchartrepositories
+>   verbs:
+>   - get
+>   - list
+>   - update
+>   - create
+>   - watch
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   - serviceaccounts
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimages
+>   - imagestreammappings
+>   - imagestreams
+>   - imagestreams/secrets
+>   - imagestreamtags
+>   - imagetags
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimports
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/layers
+>   verbs:
+>   - get
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/attach
+>   - pods/exec
+>   - pods/portforward
+>   - pods/proxy
+>   - secrets
+>   - services/proxy
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - impersonate
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   - pods/attach
+>   - pods/exec
+>   - pods/portforward
+>   - pods/proxy
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/eviction
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   - endpoints
+>   - events
+>   - persistentvolumeclaims
+>   - replicationcontrollers
+>   - replicationcontrollers/scale
+>   - secrets
+>   - serviceaccounts
+>   - services
+>   - services/proxy
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - serviceaccounts/token
+>   verbs:
+>   - create
+> - apiGroups:
+>   - apps
+>   resources:
+>   - daemonsets
+>   - deployments
+>   - deployments/rollback
+>   - deployments/scale
+>   - replicasets
+>   - replicasets/scale
+>   - statefulsets
+>   - statefulsets/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - autoscaling
+>   resources:
+>   - horizontalpodautoscalers
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   - jobs
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - extensions
+>   resources:
+>   - daemonsets
+>   - deployments
+>   - deployments/rollback
+>   - deployments/scale
+>   - ingresses
+>   - networkpolicies
+>   - replicasets
+>   - replicasets/scale
+>   - replicationcontrollers/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - policy
+>   resources:
+>   - poddisruptionbudgets
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - ingresses
+>   - networkpolicies
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - coordination.k8s.io
+>   resources:
+>   - leases
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - metrics.k8s.io
+>   resources:
+>   - pods
+>   - nodes
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds/details
+>   verbs:
+>   - update
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds
+>   verbs:
+>   - get
+> - apiGroups:
+>   - snapshot.storage.k8s.io
+>   resources:
+>   - volumesnapshots
+>   verbs:
+>   - get
+>   - list
+>   - watch
+>   - create
+>   - update
+>   - patch
+>   - delete
+>   - deletecollection
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs
+>   - buildconfigs/webhooks
+>   - builds
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds/log
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs/instantiate
+>   - buildconfigs/instantiatebinary
+>   - builds/clone
+>   verbs:
+>   - create
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - edit
+>   - view
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs
+>   - deploymentconfigs/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigrollbacks
+>   - deploymentconfigs/instantiate
+>   - deploymentconfigs/rollback
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs/log
+>   - deploymentconfigs/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - quota.openshift.io
+>   resources:
+>   - appliedclusterresourcequotas
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/custom-host
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - template.openshift.io
+>   resources:
+>   - processedtemplates
+>   - templateconfigs
+>   - templateinstances
+>   - templates
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - networkpolicies
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildlogs
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - resourcequotausages
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - applications.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - applicationsets.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applicationsets
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - appprojects.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - appprojects
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - argocds.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - argocds
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - gitopsservices.pipelines.openshift.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimages
+>   - imagestreammappings
+>   - imagestreams
+>   - imagestreamtags
+>   - imagetags
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/layers
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   - endpoints
+>   - persistentvolumeclaims
+>   - persistentvolumeclaims/status
+>   - pods
+>   - replicationcontrollers
+>   - replicationcontrollers/scale
+>   - serviceaccounts
+>   - services
+>   - services/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - bindings
+>   - events
+>   - limitranges
+>   - namespaces/status
+>   - pods/log
+>   - pods/status
+>   - replicationcontrollers/status
+>   - resourcequotas
+>   - resourcequotas/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - discovery.k8s.io
+>   resources:
+>   - endpointslices
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apps
+>   resources:
+>   - controllerrevisions
+>   - daemonsets
+>   - daemonsets/status
+>   - deployments
+>   - deployments/scale
+>   - deployments/status
+>   - replicasets
+>   - replicasets/scale
+>   - replicasets/status
+>   - statefulsets
+>   - statefulsets/scale
+>   - statefulsets/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - autoscaling
+>   resources:
+>   - horizontalpodautoscalers
+>   - horizontalpodautoscalers/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   - cronjobs/status
+>   - jobs
+>   - jobs/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - extensions
+>   resources:
+>   - daemonsets
+>   - daemonsets/status
+>   - deployments
+>   - deployments/scale
+>   - deployments/status
+>   - ingresses
+>   - ingresses/status
+>   - networkpolicies
+>   - replicasets
+>   - replicasets/scale
+>   - replicasets/status
+>   - replicationcontrollers/scale
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - policy
+>   resources:
+>   - poddisruptionbudgets
+>   - poddisruptionbudgets/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - ingresses
+>   - ingresses/status
+>   - networkpolicies
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - snapshot.storage.k8s.io
+>   resources:
+>   - volumesnapshots
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs
+>   - buildconfigs/webhooks
+>   - builds
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - view
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs
+>   - deploymentconfigs/scale
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - template.openshift.io
+>   resources:
+>   - processedtemplates
+>   - templateconfigs
+>   - templateinstances
+>   - templates
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildlogs
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - k8s.cni.cncf.io
+>   resources:
+>   - network-attachment-definitions
+>   verbs:
+>   - watch
+>   - list
+>   - get
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - rolebindings
+>   - roles
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - rbac.authorization.k8s.io
+>   resources:
+>   - rolebindings
+>   - roles
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - localresourceaccessreviews
+>   - localsubjectaccessreviews
+>   - subjectrulesreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - authorization.k8s.io
+>   resources:
+>   - localsubjectaccessreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - delete
+>   - get
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - resourceaccessreviews
+>   - subjectaccessreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - security.openshift.io
+>   resources:
+>   - podsecuritypolicyreviews
+>   - podsecuritypolicyselfsubjectreviews
+>   - podsecuritypolicysubjectreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - rolebindingrestrictions
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - admin
+>   - edit
+>   - view
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - delete
+>   - get
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/status
+>   verbs:
+>   - update
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: appstudio-gitops-service-argocd-argocd-server
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - get
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   - configmaps
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - appprojects
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+>   - update
+>   - delete
+>   - patch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - events
+>   verbs:
+>   - create
+>   - list
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2288a3305,3334
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> subjects:
+> - kind: ServiceAccount
+>   name: gitops-service-argocd-argocd-application-controller
+>   namespace: gitops-service-argocd
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: appstudio-gitops-service-argocd-argocd-server
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: appstudio-gitops-service-argocd-argocd-server
+> subjects:
+> - kind: ServiceAccount
+>   name: gitops-service-argocd-argocd-server
+>   namespace: gitops-service-argocd
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2672c3718
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+2789c3835
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+2903c3949
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+./commit-2fe31146/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml
+1231a1232,2247
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - monitoring.coreos.com
+>   resources:
+>   - '*'
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - subscriptions
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - clusterserviceversions
+>   - catalogsources
+>   - installplans
+>   - subscriptions
+>   verbs:
+>   - delete
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - clusterserviceversions
+>   - catalogsources
+>   - installplans
+>   - subscriptions
+>   - operatorgroups
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   - packagemanifests/icon
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - applicationsets
+>   - appprojects
+>   - argocds
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - applicationsets
+>   - appprojects
+>   - argocds
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - helm.openshift.io
+>   resources:
+>   - projecthelmchartrepositories
+>   verbs:
+>   - get
+>   - list
+>   - update
+>   - create
+>   - watch
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   - serviceaccounts
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimages
+>   - imagestreammappings
+>   - imagestreams
+>   - imagestreams/secrets
+>   - imagestreamtags
+>   - imagetags
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimports
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/layers
+>   verbs:
+>   - get
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/attach
+>   - pods/exec
+>   - pods/portforward
+>   - pods/proxy
+>   - secrets
+>   - services/proxy
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - impersonate
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   - pods/attach
+>   - pods/exec
+>   - pods/portforward
+>   - pods/proxy
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/eviction
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   - endpoints
+>   - events
+>   - persistentvolumeclaims
+>   - replicationcontrollers
+>   - replicationcontrollers/scale
+>   - secrets
+>   - serviceaccounts
+>   - services
+>   - services/proxy
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - serviceaccounts/token
+>   verbs:
+>   - create
+> - apiGroups:
+>   - apps
+>   resources:
+>   - daemonsets
+>   - deployments
+>   - deployments/rollback
+>   - deployments/scale
+>   - replicasets
+>   - replicasets/scale
+>   - statefulsets
+>   - statefulsets/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - autoscaling
+>   resources:
+>   - horizontalpodautoscalers
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   - jobs
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - extensions
+>   resources:
+>   - daemonsets
+>   - deployments
+>   - deployments/rollback
+>   - deployments/scale
+>   - ingresses
+>   - networkpolicies
+>   - replicasets
+>   - replicasets/scale
+>   - replicationcontrollers/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - policy
+>   resources:
+>   - poddisruptionbudgets
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - ingresses
+>   - networkpolicies
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - coordination.k8s.io
+>   resources:
+>   - leases
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - metrics.k8s.io
+>   resources:
+>   - pods
+>   - nodes
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds/details
+>   verbs:
+>   - update
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds
+>   verbs:
+>   - get
+> - apiGroups:
+>   - snapshot.storage.k8s.io
+>   resources:
+>   - volumesnapshots
+>   verbs:
+>   - get
+>   - list
+>   - watch
+>   - create
+>   - update
+>   - patch
+>   - delete
+>   - deletecollection
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs
+>   - buildconfigs/webhooks
+>   - builds
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds/log
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs/instantiate
+>   - buildconfigs/instantiatebinary
+>   - builds/clone
+>   verbs:
+>   - create
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - edit
+>   - view
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs
+>   - deploymentconfigs/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigrollbacks
+>   - deploymentconfigs/instantiate
+>   - deploymentconfigs/rollback
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs/log
+>   - deploymentconfigs/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - quota.openshift.io
+>   resources:
+>   - appliedclusterresourcequotas
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/custom-host
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - template.openshift.io
+>   resources:
+>   - processedtemplates
+>   - templateconfigs
+>   - templateinstances
+>   - templates
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - networkpolicies
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildlogs
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - resourcequotausages
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - applications.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - applicationsets.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applicationsets
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - appprojects.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - appprojects
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - argocds.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - argocds
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - gitopsservices.pipelines.openshift.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimages
+>   - imagestreammappings
+>   - imagestreams
+>   - imagestreamtags
+>   - imagetags
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/layers
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   - endpoints
+>   - persistentvolumeclaims
+>   - persistentvolumeclaims/status
+>   - pods
+>   - replicationcontrollers
+>   - replicationcontrollers/scale
+>   - serviceaccounts
+>   - services
+>   - services/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - bindings
+>   - events
+>   - limitranges
+>   - namespaces/status
+>   - pods/log
+>   - pods/status
+>   - replicationcontrollers/status
+>   - resourcequotas
+>   - resourcequotas/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - discovery.k8s.io
+>   resources:
+>   - endpointslices
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apps
+>   resources:
+>   - controllerrevisions
+>   - daemonsets
+>   - daemonsets/status
+>   - deployments
+>   - deployments/scale
+>   - deployments/status
+>   - replicasets
+>   - replicasets/scale
+>   - replicasets/status
+>   - statefulsets
+>   - statefulsets/scale
+>   - statefulsets/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - autoscaling
+>   resources:
+>   - horizontalpodautoscalers
+>   - horizontalpodautoscalers/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   - cronjobs/status
+>   - jobs
+>   - jobs/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - extensions
+>   resources:
+>   - daemonsets
+>   - daemonsets/status
+>   - deployments
+>   - deployments/scale
+>   - deployments/status
+>   - ingresses
+>   - ingresses/status
+>   - networkpolicies
+>   - replicasets
+>   - replicasets/scale
+>   - replicasets/status
+>   - replicationcontrollers/scale
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - policy
+>   resources:
+>   - poddisruptionbudgets
+>   - poddisruptionbudgets/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - ingresses
+>   - ingresses/status
+>   - networkpolicies
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - snapshot.storage.k8s.io
+>   resources:
+>   - volumesnapshots
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs
+>   - buildconfigs/webhooks
+>   - builds
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - view
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs
+>   - deploymentconfigs/scale
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - template.openshift.io
+>   resources:
+>   - processedtemplates
+>   - templateconfigs
+>   - templateinstances
+>   - templates
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildlogs
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - k8s.cni.cncf.io
+>   resources:
+>   - network-attachment-definitions
+>   verbs:
+>   - watch
+>   - list
+>   - get
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - rolebindings
+>   - roles
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - rbac.authorization.k8s.io
+>   resources:
+>   - rolebindings
+>   - roles
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - localresourceaccessreviews
+>   - localsubjectaccessreviews
+>   - subjectrulesreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - authorization.k8s.io
+>   resources:
+>   - localsubjectaccessreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - delete
+>   - get
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - resourceaccessreviews
+>   - subjectaccessreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - security.openshift.io
+>   resources:
+>   - podsecuritypolicyreviews
+>   - podsecuritypolicyselfsubjectreviews
+>   - podsecuritypolicysubjectreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - rolebindingrestrictions
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - admin
+>   - edit
+>   - view
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - delete
+>   - get
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/status
+>   verbs:
+>   - update
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: appstudio-gitops-service-argocd-argocd-server
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - get
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   - configmaps
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - appprojects
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+>   - update
+>   - delete
+>   - patch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - events
+>   verbs:
+>   - create
+>   - list
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2274a3291,3320
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> subjects:
+> - kind: ServiceAccount
+>   name: gitops-service-argocd-argocd-application-controller
+>   namespace: gitops-service-argocd
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: appstudio-gitops-service-argocd-argocd-server
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: appstudio-gitops-service-argocd-argocd-server
+> subjects:
+> - kind: ServiceAccount
+>   name: gitops-service-argocd-argocd-server
+>   namespace: gitops-service-argocd
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2658c3704
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+2775c3821
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+2889c3935
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2953b774/production/components/image-controller/production/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2953b774/production/components/has/production/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 2fe31146 to 2953b774 on Sat Nov 18 07:17:38 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (39 lines)</summary>  
+
+``` 
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+index 6d95cff2..3fc612eb 100644
+--- a/components/gitops/development/kustomization.yaml
++++ b/components/gitops/development/kustomization.yaml
+@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ - ../openshift-gitops/overlays/production-and-dev
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++    newTag: c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+diff --git a/components/gitops/production/base/kustomization.yaml b/components/gitops/production/base/kustomization.yaml
+index b81528fa..2e3dee78 100644
+--- a/components/gitops/production/base/kustomization.yaml
++++ b/components/gitops/production/base/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ - ../../openshift-gitops/overlays/production-and-dev
+ - ../../base/external-secrets
+ - ../../base/monitoring
+@@ -11,7 +11,7 @@ resources:
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++    newTag: c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2953b774/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2953b774/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 2fe31146 to 2953b774 on Sat Nov 18 07:17:38 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (39 lines)</summary>  
+
+``` 
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+index 6d95cff2..3fc612eb 100644
+--- a/components/gitops/development/kustomization.yaml
++++ b/components/gitops/development/kustomization.yaml
+@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ - ../openshift-gitops/overlays/production-and-dev
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++    newTag: c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+diff --git a/components/gitops/production/base/kustomization.yaml b/components/gitops/production/base/kustomization.yaml
+index b81528fa..2e3dee78 100644
+--- a/components/gitops/production/base/kustomization.yaml
++++ b/components/gitops/production/base/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ - ../../openshift-gitops/overlays/production-and-dev
+ - ../../base/external-secrets
+ - ../../base/monitoring
+@@ -11,7 +11,7 @@ resources:
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++    newTag: c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1053 lines)</summary>  
+
+``` 
+./commit-2fe31146/development/components/gitops/development/kustomize.out.yaml
+1200a1201,2212
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - monitoring.coreos.com
+>   resources:
+>   - '*'
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - subscriptions
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - clusterserviceversions
+>   - catalogsources
+>   - installplans
+>   - subscriptions
+>   verbs:
+>   - delete
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - clusterserviceversions
+>   - catalogsources
+>   - installplans
+>   - subscriptions
+>   - operatorgroups
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   - packagemanifests/icon
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - applicationsets
+>   - appprojects
+>   - argocds
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - applicationsets
+>   - appprojects
+>   - argocds
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - helm.openshift.io
+>   resources:
+>   - projecthelmchartrepositories
+>   verbs:
+>   - get
+>   - list
+>   - update
+>   - create
+>   - watch
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   - serviceaccounts
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimages
+>   - imagestreammappings
+>   - imagestreams
+>   - imagestreams/secrets
+>   - imagestreamtags
+>   - imagetags
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimports
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/layers
+>   verbs:
+>   - get
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/attach
+>   - pods/exec
+>   - pods/portforward
+>   - pods/proxy
+>   - secrets
+>   - services/proxy
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - impersonate
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   - pods/attach
+>   - pods/exec
+>   - pods/portforward
+>   - pods/proxy
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/eviction
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   - endpoints
+>   - events
+>   - persistentvolumeclaims
+>   - replicationcontrollers
+>   - replicationcontrollers/scale
+>   - secrets
+>   - serviceaccounts
+>   - services
+>   - services/proxy
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - serviceaccounts/token
+>   verbs:
+>   - create
+> - apiGroups:
+>   - apps
+>   resources:
+>   - daemonsets
+>   - deployments
+>   - deployments/rollback
+>   - deployments/scale
+>   - replicasets
+>   - replicasets/scale
+>   - statefulsets
+>   - statefulsets/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - autoscaling
+>   resources:
+>   - horizontalpodautoscalers
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   - jobs
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - extensions
+>   resources:
+>   - daemonsets
+>   - deployments
+>   - deployments/rollback
+>   - deployments/scale
+>   - ingresses
+>   - networkpolicies
+>   - replicasets
+>   - replicasets/scale
+>   - replicationcontrollers/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - policy
+>   resources:
+>   - poddisruptionbudgets
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - ingresses
+>   - networkpolicies
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - coordination.k8s.io
+>   resources:
+>   - leases
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - metrics.k8s.io
+>   resources:
+>   - pods
+>   - nodes
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds/details
+>   verbs:
+>   - update
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds
+>   verbs:
+>   - get
+> - apiGroups:
+>   - snapshot.storage.k8s.io
+>   resources:
+>   - volumesnapshots
+>   verbs:
+>   - get
+>   - list
+>   - watch
+>   - create
+>   - update
+>   - patch
+>   - delete
+>   - deletecollection
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs
+>   - buildconfigs/webhooks
+>   - builds
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds/log
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs/instantiate
+>   - buildconfigs/instantiatebinary
+>   - builds/clone
+>   verbs:
+>   - create
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - edit
+>   - view
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs
+>   - deploymentconfigs/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigrollbacks
+>   - deploymentconfigs/instantiate
+>   - deploymentconfigs/rollback
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs/log
+>   - deploymentconfigs/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - quota.openshift.io
+>   resources:
+>   - appliedclusterresourcequotas
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/custom-host
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - template.openshift.io
+>   resources:
+>   - processedtemplates
+>   - templateconfigs
+>   - templateinstances
+>   - templates
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - networkpolicies
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildlogs
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - resourcequotausages
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - applications.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - applicationsets.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applicationsets
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - appprojects.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - appprojects
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - argocds.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - argocds
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - gitopsservices.pipelines.openshift.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimages
+>   - imagestreammappings
+>   - imagestreams
+>   - imagestreamtags
+>   - imagetags
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/layers
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   - endpoints
+>   - persistentvolumeclaims
+>   - persistentvolumeclaims/status
+>   - pods
+>   - replicationcontrollers
+>   - replicationcontrollers/scale
+>   - serviceaccounts
+>   - services
+>   - services/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - bindings
+>   - events
+>   - limitranges
+>   - namespaces/status
+>   - pods/log
+>   - pods/status
+>   - replicationcontrollers/status
+>   - resourcequotas
+>   - resourcequotas/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - discovery.k8s.io
+>   resources:
+>   - endpointslices
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apps
+>   resources:
+>   - controllerrevisions
+>   - daemonsets
+>   - daemonsets/status
+>   - deployments
+>   - deployments/scale
+>   - deployments/status
+>   - replicasets
+>   - replicasets/scale
+>   - replicasets/status
+>   - statefulsets
+>   - statefulsets/scale
+>   - statefulsets/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - autoscaling
+>   resources:
+>   - horizontalpodautoscalers
+>   - horizontalpodautoscalers/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   - cronjobs/status
+>   - jobs
+>   - jobs/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - extensions
+>   resources:
+>   - daemonsets
+>   - daemonsets/status
+>   - deployments
+>   - deployments/scale
+>   - deployments/status
+>   - ingresses
+>   - ingresses/status
+>   - networkpolicies
+>   - replicasets
+>   - replicasets/scale
+>   - replicasets/status
+>   - replicationcontrollers/scale
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - policy
+>   resources:
+>   - poddisruptionbudgets
+>   - poddisruptionbudgets/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - ingresses
+>   - ingresses/status
+>   - networkpolicies
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - snapshot.storage.k8s.io
+>   resources:
+>   - volumesnapshots
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs
+>   - buildconfigs/webhooks
+>   - builds
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - view
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs
+>   - deploymentconfigs/scale
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - template.openshift.io
+>   resources:
+>   - processedtemplates
+>   - templateconfigs
+>   - templateinstances
+>   - templates
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildlogs
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - k8s.cni.cncf.io
+>   resources:
+>   - network-attachment-definitions
+>   verbs:
+>   - watch
+>   - list
+>   - get
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - rolebindings
+>   - roles
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - rbac.authorization.k8s.io
+>   resources:
+>   - rolebindings
+>   - roles
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - localresourceaccessreviews
+>   - localsubjectaccessreviews
+>   - subjectrulesreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - authorization.k8s.io
+>   resources:
+>   - localsubjectaccessreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - delete
+>   - get
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - resourceaccessreviews
+>   - subjectaccessreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - security.openshift.io
+>   resources:
+>   - podsecuritypolicyreviews
+>   - podsecuritypolicyselfsubjectreviews
+>   - podsecuritypolicysubjectreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - rolebindingrestrictions
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - admin
+>   - edit
+>   - view
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - delete
+>   - get
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/status
+>   verbs:
+>   - update
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: appstudio-gitops-service-argocd-argocd-server
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - get
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   - configmaps
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - appprojects
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+>   - update
+>   - delete
+>   - patch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - events
+>   verbs:
+>   - create
+>   - list
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+2015a3028,3053
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> subjects:
+> - kind: ServiceAccount
+>   name: gitops-service-argocd-argocd-application-controller
+>   namespace: gitops-service-argocd
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   name: appstudio-gitops-service-argocd-argocd-server
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: appstudio-gitops-service-argocd-argocd-server
+> subjects:
+> - kind: ServiceAccount
+>   name: gitops-service-argocd-argocd-server
+>   namespace: gitops-service-argocd
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+2354c3392
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+2462c3500
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+2567c3605
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2953b774/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2953b774/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-2953b774/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-2953b774/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2953b774/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from b7484218 to 2fe31146 on Sat Nov 18 07:04:36 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (22 lines)</summary>  
+
+``` 
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+index 46f6f5df..2803fa1c 100644
+--- a/components/gitops/staging/base/kustomization.yaml
++++ b/components/gitops/staging/base/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ - ../../openshift-gitops/overlays/staging
+ - ../../base/external-secrets
+ - ../../base/monitoring
+@@ -11,7 +11,7 @@ resources:
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++    newTag: c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2fe31146/production/components/image-controller/production/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2fe31146/production/components/has/production/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from b7484218 to 2fe31146 on Sat Nov 18 07:04:36 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (22 lines)</summary>  
+
+``` 
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+index 46f6f5df..2803fa1c 100644
+--- a/components/gitops/staging/base/kustomization.yaml
++++ b/components/gitops/staging/base/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ - ../../openshift-gitops/overlays/staging
+ - ../../base/external-secrets
+ - ../../base/monitoring
+@@ -11,7 +11,7 @@ resources:
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++    newTag: c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (2122 lines)</summary>  
+
+``` 
+./commit-b7484218/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+1231a1232,2247
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - monitoring.coreos.com
+>   resources:
+>   - '*'
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - subscriptions
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - clusterserviceversions
+>   - catalogsources
+>   - installplans
+>   - subscriptions
+>   verbs:
+>   - delete
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - clusterserviceversions
+>   - catalogsources
+>   - installplans
+>   - subscriptions
+>   - operatorgroups
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   - packagemanifests/icon
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - applicationsets
+>   - appprojects
+>   - argocds
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - applicationsets
+>   - appprojects
+>   - argocds
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - helm.openshift.io
+>   resources:
+>   - projecthelmchartrepositories
+>   verbs:
+>   - get
+>   - list
+>   - update
+>   - create
+>   - watch
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   - serviceaccounts
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimages
+>   - imagestreammappings
+>   - imagestreams
+>   - imagestreams/secrets
+>   - imagestreamtags
+>   - imagetags
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimports
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/layers
+>   verbs:
+>   - get
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/attach
+>   - pods/exec
+>   - pods/portforward
+>   - pods/proxy
+>   - secrets
+>   - services/proxy
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - impersonate
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   - pods/attach
+>   - pods/exec
+>   - pods/portforward
+>   - pods/proxy
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/eviction
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   - endpoints
+>   - events
+>   - persistentvolumeclaims
+>   - replicationcontrollers
+>   - replicationcontrollers/scale
+>   - secrets
+>   - serviceaccounts
+>   - services
+>   - services/proxy
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - serviceaccounts/token
+>   verbs:
+>   - create
+> - apiGroups:
+>   - apps
+>   resources:
+>   - daemonsets
+>   - deployments
+>   - deployments/rollback
+>   - deployments/scale
+>   - replicasets
+>   - replicasets/scale
+>   - statefulsets
+>   - statefulsets/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - autoscaling
+>   resources:
+>   - horizontalpodautoscalers
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   - jobs
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - extensions
+>   resources:
+>   - daemonsets
+>   - deployments
+>   - deployments/rollback
+>   - deployments/scale
+>   - ingresses
+>   - networkpolicies
+>   - replicasets
+>   - replicasets/scale
+>   - replicationcontrollers/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - policy
+>   resources:
+>   - poddisruptionbudgets
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - ingresses
+>   - networkpolicies
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - coordination.k8s.io
+>   resources:
+>   - leases
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - metrics.k8s.io
+>   resources:
+>   - pods
+>   - nodes
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds/details
+>   verbs:
+>   - update
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds
+>   verbs:
+>   - get
+> - apiGroups:
+>   - snapshot.storage.k8s.io
+>   resources:
+>   - volumesnapshots
+>   verbs:
+>   - get
+>   - list
+>   - watch
+>   - create
+>   - update
+>   - patch
+>   - delete
+>   - deletecollection
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs
+>   - buildconfigs/webhooks
+>   - builds
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds/log
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs/instantiate
+>   - buildconfigs/instantiatebinary
+>   - builds/clone
+>   verbs:
+>   - create
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - edit
+>   - view
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs
+>   - deploymentconfigs/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigrollbacks
+>   - deploymentconfigs/instantiate
+>   - deploymentconfigs/rollback
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs/log
+>   - deploymentconfigs/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - quota.openshift.io
+>   resources:
+>   - appliedclusterresourcequotas
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/custom-host
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - template.openshift.io
+>   resources:
+>   - processedtemplates
+>   - templateconfigs
+>   - templateinstances
+>   - templates
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - networkpolicies
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildlogs
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - resourcequotausages
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - applications.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - applicationsets.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applicationsets
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - appprojects.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - appprojects
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - argocds.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - argocds
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - gitopsservices.pipelines.openshift.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimages
+>   - imagestreammappings
+>   - imagestreams
+>   - imagestreamtags
+>   - imagetags
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/layers
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   - endpoints
+>   - persistentvolumeclaims
+>   - persistentvolumeclaims/status
+>   - pods
+>   - replicationcontrollers
+>   - replicationcontrollers/scale
+>   - serviceaccounts
+>   - services
+>   - services/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - bindings
+>   - events
+>   - limitranges
+>   - namespaces/status
+>   - pods/log
+>   - pods/status
+>   - replicationcontrollers/status
+>   - resourcequotas
+>   - resourcequotas/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - discovery.k8s.io
+>   resources:
+>   - endpointslices
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apps
+>   resources:
+>   - controllerrevisions
+>   - daemonsets
+>   - daemonsets/status
+>   - deployments
+>   - deployments/scale
+>   - deployments/status
+>   - replicasets
+>   - replicasets/scale
+>   - replicasets/status
+>   - statefulsets
+>   - statefulsets/scale
+>   - statefulsets/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - autoscaling
+>   resources:
+>   - horizontalpodautoscalers
+>   - horizontalpodautoscalers/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   - cronjobs/status
+>   - jobs
+>   - jobs/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - extensions
+>   resources:
+>   - daemonsets
+>   - daemonsets/status
+>   - deployments
+>   - deployments/scale
+>   - deployments/status
+>   - ingresses
+>   - ingresses/status
+>   - networkpolicies
+>   - replicasets
+>   - replicasets/scale
+>   - replicasets/status
+>   - replicationcontrollers/scale
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - policy
+>   resources:
+>   - poddisruptionbudgets
+>   - poddisruptionbudgets/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - ingresses
+>   - ingresses/status
+>   - networkpolicies
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - snapshot.storage.k8s.io
+>   resources:
+>   - volumesnapshots
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs
+>   - buildconfigs/webhooks
+>   - builds
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - view
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs
+>   - deploymentconfigs/scale
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - template.openshift.io
+>   resources:
+>   - processedtemplates
+>   - templateconfigs
+>   - templateinstances
+>   - templates
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildlogs
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - k8s.cni.cncf.io
+>   resources:
+>   - network-attachment-definitions
+>   verbs:
+>   - watch
+>   - list
+>   - get
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - rolebindings
+>   - roles
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - rbac.authorization.k8s.io
+>   resources:
+>   - rolebindings
+>   - roles
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - localresourceaccessreviews
+>   - localsubjectaccessreviews
+>   - subjectrulesreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - authorization.k8s.io
+>   resources:
+>   - localsubjectaccessreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - delete
+>   - get
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - resourceaccessreviews
+>   - subjectaccessreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - security.openshift.io
+>   resources:
+>   - podsecuritypolicyreviews
+>   - podsecuritypolicyselfsubjectreviews
+>   - podsecuritypolicysubjectreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - rolebindingrestrictions
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - admin
+>   - edit
+>   - view
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - delete
+>   - get
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/status
+>   verbs:
+>   - update
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: appstudio-gitops-service-argocd-argocd-server
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - get
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   - configmaps
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - appprojects
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+>   - update
+>   - delete
+>   - patch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - events
+>   verbs:
+>   - create
+>   - list
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2282a3299,3328
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> subjects:
+> - kind: ServiceAccount
+>   name: gitops-service-argocd-argocd-application-controller
+>   namespace: gitops-service-argocd
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: appstudio-gitops-service-argocd-argocd-server
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: appstudio-gitops-service-argocd-argocd-server
+> subjects:
+> - kind: ServiceAccount
+>   name: gitops-service-argocd-argocd-server
+>   namespace: gitops-service-argocd
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2666c3712
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+2783c3829
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+2897c3943
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+./commit-b7484218/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml
+1231a1232,2247
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - monitoring.coreos.com
+>   resources:
+>   - '*'
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - subscriptions
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - clusterserviceversions
+>   - catalogsources
+>   - installplans
+>   - subscriptions
+>   verbs:
+>   - delete
+> - apiGroups:
+>   - operators.coreos.com
+>   resources:
+>   - clusterserviceversions
+>   - catalogsources
+>   - installplans
+>   - subscriptions
+>   - operatorgroups
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   - packagemanifests/icon
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - applicationsets
+>   - appprojects
+>   - argocds
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - applicationsets
+>   - appprojects
+>   - argocds
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - create
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - helm.openshift.io
+>   resources:
+>   - projecthelmchartrepositories
+>   verbs:
+>   - get
+>   - list
+>   - update
+>   - create
+>   - watch
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   - serviceaccounts
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimages
+>   - imagestreammappings
+>   - imagestreams
+>   - imagestreams/secrets
+>   - imagestreamtags
+>   - imagetags
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimports
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/layers
+>   verbs:
+>   - get
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/attach
+>   - pods/exec
+>   - pods/portforward
+>   - pods/proxy
+>   - secrets
+>   - services/proxy
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - serviceaccounts
+>   verbs:
+>   - impersonate
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods
+>   - pods/attach
+>   - pods/exec
+>   - pods/portforward
+>   - pods/proxy
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - pods/eviction
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   - endpoints
+>   - events
+>   - persistentvolumeclaims
+>   - replicationcontrollers
+>   - replicationcontrollers/scale
+>   - secrets
+>   - serviceaccounts
+>   - services
+>   - services/proxy
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   resources:
+>   - serviceaccounts/token
+>   verbs:
+>   - create
+> - apiGroups:
+>   - apps
+>   resources:
+>   - daemonsets
+>   - deployments
+>   - deployments/rollback
+>   - deployments/scale
+>   - replicasets
+>   - replicasets/scale
+>   - statefulsets
+>   - statefulsets/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - autoscaling
+>   resources:
+>   - horizontalpodautoscalers
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   - jobs
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - extensions
+>   resources:
+>   - daemonsets
+>   - deployments
+>   - deployments/rollback
+>   - deployments/scale
+>   - ingresses
+>   - networkpolicies
+>   - replicasets
+>   - replicasets/scale
+>   - replicationcontrollers/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - policy
+>   resources:
+>   - poddisruptionbudgets
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - ingresses
+>   - networkpolicies
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - patch
+>   - update
+> - apiGroups:
+>   - coordination.k8s.io
+>   resources:
+>   - leases
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - metrics.k8s.io
+>   resources:
+>   - pods
+>   - nodes
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds/details
+>   verbs:
+>   - update
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds
+>   verbs:
+>   - get
+> - apiGroups:
+>   - snapshot.storage.k8s.io
+>   resources:
+>   - volumesnapshots
+>   verbs:
+>   - get
+>   - list
+>   - watch
+>   - create
+>   - update
+>   - patch
+>   - delete
+>   - deletecollection
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs
+>   - buildconfigs/webhooks
+>   - builds
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - builds/log
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs/instantiate
+>   - buildconfigs/instantiatebinary
+>   - builds/clone
+>   verbs:
+>   - create
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - edit
+>   - view
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs
+>   - deploymentconfigs/scale
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigrollbacks
+>   - deploymentconfigs/instantiate
+>   - deploymentconfigs/rollback
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs/log
+>   - deploymentconfigs/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - quota.openshift.io
+>   resources:
+>   - appliedclusterresourcequotas
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/custom-host
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - template.openshift.io
+>   resources:
+>   - processedtemplates
+>   - templateconfigs
+>   - templateinstances
+>   - templates
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - networkpolicies
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildlogs
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - resourcequotausages
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - applications.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - applicationsets.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applicationsets
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - appprojects.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - appprojects
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - argocds.argoproj.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - argocds
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apiextensions.k8s.io
+>   resourceNames:
+>   - gitopsservices.pipelines.openshift.io
+>   resources:
+>   - customresourcedefinitions
+>   verbs:
+>   - get
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreamimages
+>   - imagestreammappings
+>   - imagestreams
+>   - imagestreamtags
+>   - imagetags
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - image.openshift.io
+>   resources:
+>   - imagestreams/layers
+>   verbs:
+>   - get
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   - endpoints
+>   - persistentvolumeclaims
+>   - persistentvolumeclaims/status
+>   - pods
+>   - replicationcontrollers
+>   - replicationcontrollers/scale
+>   - serviceaccounts
+>   - services
+>   - services/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - bindings
+>   - events
+>   - limitranges
+>   - namespaces/status
+>   - pods/log
+>   - pods/status
+>   - replicationcontrollers/status
+>   - resourcequotas
+>   - resourcequotas/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - namespaces
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - discovery.k8s.io
+>   resources:
+>   - endpointslices
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - apps
+>   resources:
+>   - controllerrevisions
+>   - daemonsets
+>   - daemonsets/status
+>   - deployments
+>   - deployments/scale
+>   - deployments/status
+>   - replicasets
+>   - replicasets/scale
+>   - replicasets/status
+>   - statefulsets
+>   - statefulsets/scale
+>   - statefulsets/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - autoscaling
+>   resources:
+>   - horizontalpodautoscalers
+>   - horizontalpodautoscalers/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - batch
+>   resources:
+>   - cronjobs
+>   - cronjobs/status
+>   - jobs
+>   - jobs/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - extensions
+>   resources:
+>   - daemonsets
+>   - daemonsets/status
+>   - deployments
+>   - deployments/scale
+>   - deployments/status
+>   - ingresses
+>   - ingresses/status
+>   - networkpolicies
+>   - replicasets
+>   - replicasets/scale
+>   - replicasets/status
+>   - replicationcontrollers/scale
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - policy
+>   resources:
+>   - poddisruptionbudgets
+>   - poddisruptionbudgets/status
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - networking.k8s.io
+>   resources:
+>   - ingresses
+>   - ingresses/status
+>   - networkpolicies
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - snapshot.storage.k8s.io
+>   resources:
+>   - volumesnapshots
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildconfigs
+>   - buildconfigs/webhooks
+>   - builds
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - view
+> - apiGroups:
+>   - ""
+>   - apps.openshift.io
+>   resources:
+>   - deploymentconfigs
+>   - deploymentconfigs/scale
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - template.openshift.io
+>   resources:
+>   - processedtemplates
+>   - templateconfigs
+>   - templateinstances
+>   - templates
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - ""
+>   - build.openshift.io
+>   resources:
+>   - buildlogs
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - pipelines.openshift.io
+>   resources:
+>   - gitopsservices
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - k8s.cni.cncf.io
+>   resources:
+>   - network-attachment-definitions
+>   verbs:
+>   - watch
+>   - list
+>   - get
+> - apiGroups:
+>   - packages.operators.coreos.com
+>   resources:
+>   - packagemanifests
+>   verbs:
+>   - '*'
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - rolebindings
+>   - roles
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - rbac.authorization.k8s.io
+>   resources:
+>   - rolebindings
+>   - roles
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - localresourceaccessreviews
+>   - localsubjectaccessreviews
+>   - subjectrulesreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - authorization.k8s.io
+>   resources:
+>   - localsubjectaccessreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - delete
+>   - get
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - resourceaccessreviews
+>   - subjectaccessreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - security.openshift.io
+>   resources:
+>   - podsecuritypolicyreviews
+>   - podsecuritypolicyselfsubjectreviews
+>   - podsecuritypolicysubjectreviews
+>   verbs:
+>   - create
+> - apiGroups:
+>   - ""
+>   - authorization.openshift.io
+>   resources:
+>   - rolebindingrestrictions
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> - apiGroups:
+>   - build.openshift.io
+>   resources:
+>   - jenkins
+>   verbs:
+>   - admin
+>   - edit
+>   - view
+> - apiGroups:
+>   - ""
+>   - project.openshift.io
+>   resources:
+>   - projects
+>   verbs:
+>   - delete
+>   - get
+>   - patch
+>   - update
+> - apiGroups:
+>   - ""
+>   - route.openshift.io
+>   resources:
+>   - routes/status
+>   verbs:
+>   - update
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: appstudio-gitops-service-argocd-argocd-server
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - get
+>   - patch
+>   - delete
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   - configmaps
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+>   - update
+>   - patch
+>   - delete
+> - apiGroups:
+>   - argoproj.io
+>   resources:
+>   - applications
+>   - appprojects
+>   verbs:
+>   - create
+>   - get
+>   - list
+>   - watch
+>   - update
+>   - delete
+>   - patch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - events
+>   verbs:
+>   - create
+>   - list
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2268a3285,3314
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: appstudio-gitops-service-argocd-argocd-application-controller
+> subjects:
+> - kind: ServiceAccount
+>   name: gitops-service-argocd-argocd-application-controller
+>   namespace: gitops-service-argocd
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: appstudio-gitops-service-argocd-argocd-server
+> roleRef:
+>   apiGroup: rbac.authorization.k8s.io
+>   kind: ClusterRole
+>   name: appstudio-gitops-service-argocd-argocd-server
+> subjects:
+> - kind: ServiceAccount
+>   name: gitops-service-argocd-argocd-server
+>   namespace: gitops-service-argocd
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRoleBinding
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2652c3698
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+2769c3815
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
+2883c3929
+<         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+---
+>         image: quay.io/redhat-appstudio/gitops-service:f59fc2f1033bb0049b463f76e3cbd07fae78c9e4 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2fe31146/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2fe31146/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from b7484218 to 2fe31146 on Sat Nov 18 07:04:36 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (22 lines)</summary>  
+
+``` 
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+index 46f6f5df..2803fa1c 100644
+--- a/components/gitops/staging/base/kustomization.yaml
++++ b/components/gitops/staging/base/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ - ../../openshift-gitops/overlays/staging
+ - ../../base/external-secrets
+ - ../../base/monitoring
+@@ -11,7 +11,7 @@ resources:
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: f59fc2f1033bb0049b463f76e3cbd07fae78c9e4
++    newTag: c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2fe31146/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-2fe31146/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-2fe31146/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-2fe31146/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-2fe31146/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 7a23953b to b7484218 on Fri Nov 17 10:39:45 2023 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -162,7 +6421,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 7a23953b to b7484218 on Fri Nov 17 10:39:45 2023 </h3>  
+<h3>3: Staging changes from 7a23953b to b7484218 on Fri Nov 17 10:39:45 2023 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -321,7 +6580,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 7a23953b to b7484218 on Fri Nov 17 10:39:45 2023 </h3>  
+<h3>3: Development changes from 7a23953b to b7484218 on Fri Nov 17 10:39:45 2023 </h3>  
  
 <details> 
 <summary>Git Diff (15 lines)</summary>  
@@ -442,7 +6701,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 69ef6d10 to 7a23953b on Thu Nov 16 20:30:48 2023 </h3>  
+<h3>4: Production changes from 69ef6d10 to 7a23953b on Thu Nov 16 20:30:48 2023 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -600,7 +6859,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 69ef6d10 to 7a23953b on Thu Nov 16 20:30:48 2023 </h3>  
+<h3>4: Staging changes from 69ef6d10 to 7a23953b on Thu Nov 16 20:30:48 2023 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -757,7 +7016,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 69ef6d10 to 7a23953b on Thu Nov 16 20:30:48 2023 </h3>  
+<h3>4: Development changes from 69ef6d10 to 7a23953b on Thu Nov 16 20:30:48 2023 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -863,1142 +7122,6 @@ KubeLinter v0.6.1-0-gc6177366a3
 ./commit-7a23953b/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 
 ./commit-7a23953b/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 16b00ef6 to 69ef6d10 on Thu Nov 16 19:43:22 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 90a53d5b..db8600f0 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=27d7ec15526e0441525f11b6e446f91601eed1a5
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=c36e75cea7e9e15d20bcde54d8e16048d0ffdb19
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 64223d8a..1af6cedd 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=27d7ec15526e0441525f11b6e446f91601eed1a5
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=27d7ec15526e0441525f11b6e446f91601eed1a5
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=c36e75cea7e9e15d20bcde54d8e16048d0ffdb19
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=c36e75cea7e9e15d20bcde54d8e16048d0ffdb19
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 3b4891bd..f9c8ec88 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=27d7ec15526e0441525f11b6e446f91601eed1a5
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=c36e75cea7e9e15d20bcde54d8e16048d0ffdb19
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-69ef6d10/production/components/image-controller/production/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-69ef6d10/production/components/has/production/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 16b00ef6 to 69ef6d10 on Thu Nov 16 19:43:22 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 90a53d5b..db8600f0 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=27d7ec15526e0441525f11b6e446f91601eed1a5
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=c36e75cea7e9e15d20bcde54d8e16048d0ffdb19
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 64223d8a..1af6cedd 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=27d7ec15526e0441525f11b6e446f91601eed1a5
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=27d7ec15526e0441525f11b6e446f91601eed1a5
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=c36e75cea7e9e15d20bcde54d8e16048d0ffdb19
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=c36e75cea7e9e15d20bcde54d8e16048d0ffdb19
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 3b4891bd..f9c8ec88 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=27d7ec15526e0441525f11b6e446f91601eed1a5
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=c36e75cea7e9e15d20bcde54d8e16048d0ffdb19
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-69ef6d10/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-69ef6d10/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 16b00ef6 to 69ef6d10 on Thu Nov 16 19:43:22 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 90a53d5b..db8600f0 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=27d7ec15526e0441525f11b6e446f91601eed1a5
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=c36e75cea7e9e15d20bcde54d8e16048d0ffdb19
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 64223d8a..1af6cedd 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=27d7ec15526e0441525f11b6e446f91601eed1a5
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=27d7ec15526e0441525f11b6e446f91601eed1a5
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=c36e75cea7e9e15d20bcde54d8e16048d0ffdb19
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=c36e75cea7e9e15d20bcde54d8e16048d0ffdb19
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 3b4891bd..f9c8ec88 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=27d7ec15526e0441525f11b6e446f91601eed1a5
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=c36e75cea7e9e15d20bcde54d8e16048d0ffdb19
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-69ef6d10/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-69ef6d10/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-69ef6d10/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-69ef6d10/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-69ef6d10/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 867b0f1b to 16b00ef6 on Thu Nov 16 15:03:03 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
-index 784e1c70..4bae0940 100644
---- a/components/release/production/kustomization.yaml
-+++ b/components/release/production/kustomization.yaml
-@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/release-service/config/default?ref=0f13691656967eada660b296e39a2bc2d57f19ec
-+  - https://github.com/redhat-appstudio/release-service/config/default?ref=9eb779342fe78d90bfc0cf055fc7b041cd678d05
- 
- components:
-   - ../k-components/manager-resources-patch
-@@ -10,6 +10,6 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 0f13691656967eada660b296e39a2bc2d57f19ec
-+    newTag: 9eb779342fe78d90bfc0cf055fc7b041cd678d05
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (178 lines)</summary>  
-
-``` 
-./commit-867b0f1b/production/components/release/production/kustomize.out.yaml
-21,22d20
-<     shortNames:
-<     - rpa
-55,56c53,54
-<                 description: Applications is a list of references to applications
-<                   to be released in the managed namespace
----
->                 description: Applications is a list of references to application to
->                   be released in the managed namespace
-127,203d124
-<             properties:
-<               conditions:
-<                 description: Conditions represent the latest available observations
-<                   for the releasePlanAdmission
-<                 items:
-<                   description: "Condition contains details for one aspect of the current
-<                     state of this API Resource. --- This struct is intended for direct
-<                     use as an array at the field path .status.conditions.  For example,
-<                     \n type FooStatus struct{ // Represents the observations of a
-<                     foo's current state. // Known .status.conditions.type are: \"Available\",
-<                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
-<                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
-<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
-<                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
-<                   properties:
-<                     lastTransitionTime:
-<                       description: lastTransitionTime is the last time the condition
-<                         transitioned from one status to another. This should be when
-<                         the underlying condition changed.  If that is not known, then
-<                         using the time when the API field changed is acceptable.
-<                       format: date-time
-<                       type: string
-<                     message:
-<                       description: message is a human readable message indicating
-<                         details about the transition. This may be an empty string.
-<                       maxLength: 32768
-<                       type: string
-<                     observedGeneration:
-<                       description: observedGeneration represents the .metadata.generation
-<                         that the condition was set based upon. For instance, if .metadata.generation
-<                         is currently 12, but the .status.conditions[x].observedGeneration
-<                         is 9, the condition is out of date with respect to the current
-<                         state of the instance.
-<                       format: int64
-<                       minimum: 0
-<                       type: integer
-<                     reason:
-<                       description: reason contains a programmatic identifier indicating
-<                         the reason for the condition's last transition. Producers
-<                         of specific condition types may define expected values and
-<                         meanings for this field, and whether the values are considered
-<                         a guaranteed API. The value should be a CamelCase string.
-<                         This field may not be empty.
-<                       maxLength: 1024
-<                       minLength: 1
-<                       pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
-<                       type: string
-<                     status:
-<                       description: status of the condition, one of True, False, Unknown.
-<                       enum:
-<                       - "True"
-<                       - "False"
-<                       - Unknown
-<                       type: string
-<                     type:
-<                       description: type of condition in CamelCase or in foo.example.com/CamelCase.
-<                         --- Many .condition.type values are consistent across resources
-<                         like Available, but because arbitrary conditions can be useful
-<                         (see .node.status.conditions), the ability to deconflict is
-<                         important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
-<                       maxLength: 316
-<                       pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
-<                       type: string
-<                   required:
-<                   - lastTransitionTime
-<                   - message
-<                   - reason
-<                   - status
-<                   - type
-<                   type: object
-<                 type: array
-<               releasePlans:
-<                 description: ReleasePlan is a list of references to releasePlans matched
-<                   to the ReleasePlanAdmission
-<                 items:
-<                   type: string
-<                 type: array
-230,231d150
-<     shortNames:
-<     - rp
-321,396d239
-<             properties:
-<               conditions:
-<                 description: Conditions represent the latest available observations
-<                   for the releasePlan
-<                 items:
-<                   description: "Condition contains details for one aspect of the current
-<                     state of this API Resource. --- This struct is intended for direct
-<                     use as an array at the field path .status.conditions.  For example,
-<                     \n type FooStatus struct{ // Represents the observations of a
-<                     foo's current state. // Known .status.conditions.type are: \"Available\",
-<                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
-<                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
-<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
-<                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
-<                   properties:
-<                     lastTransitionTime:
-<                       description: lastTransitionTime is the last time the condition
-<                         transitioned from one status to another. This should be when
-<                         the underlying condition changed.  If that is not known, then
-<                         using the time when the API field changed is acceptable.
-<                       format: date-time
-<                       type: string
-<                     message:
-<                       description: message is a human readable message indicating
-<                         details about the transition. This may be an empty string.
-<                       maxLength: 32768
-<                       type: string
-<                     observedGeneration:
-<                       description: observedGeneration represents the .metadata.generation
-<                         that the condition was set based upon. For instance, if .metadata.generation
-<                         is currently 12, but the .status.conditions[x].observedGeneration
-<                         is 9, the condition is out of date with respect to the current
-<                         state of the instance.
-<                       format: int64
-<                       minimum: 0
-<                       type: integer
-<                     reason:
-<                       description: reason contains a programmatic identifier indicating
-<                         the reason for the condition's last transition. Producers
-<                         of specific condition types may define expected values and
-<                         meanings for this field, and whether the values are considered
-<                         a guaranteed API. The value should be a CamelCase string.
-<                         This field may not be empty.
-<                       maxLength: 1024
-<                       minLength: 1
-<                       pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
-<                       type: string
-<                     status:
-<                       description: status of the condition, one of True, False, Unknown.
-<                       enum:
-<                       - "True"
-<                       - "False"
-<                       - Unknown
-<                       type: string
-<                     type:
-<                       description: type of condition in CamelCase or in foo.example.com/CamelCase.
-<                         --- Many .condition.type values are consistent across resources
-<                         like Available, but because arbitrary conditions can be useful
-<                         (see .node.status.conditions), the ability to deconflict is
-<                         important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
-<                       maxLength: 316
-<                       pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
-<                       type: string
-<                   required:
-<                   - lastTransitionTime
-<                   - message
-<                   - reason
-<                   - status
-<                   - type
-<                   type: object
-<                 type: array
-<               releasePlanAdmission:
-<                 description: ReleasePlanAdmission contains the namespaced name of
-<                   the releasePlanAdmission this ReleasePlan is matched to
-<                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
-<                 type: string
-423,424d265
-<     shortNames:
-<     - rel
-678,679d518
-<     shortNames:
-<     - rsc
-1630c1469
-<         image: quay.io/redhat-appstudio/release-service:9eb779342fe78d90bfc0cf055fc7b041cd678d05
----
->         image: quay.io/redhat-appstudio/release-service:0f13691656967eada660b296e39a2bc2d57f19ec 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-16b00ef6/production/components/image-controller/production/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-16b00ef6/production/components/has/production/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 867b0f1b to 16b00ef6 on Thu Nov 16 15:03:03 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
-index 784e1c70..4bae0940 100644
---- a/components/release/production/kustomization.yaml
-+++ b/components/release/production/kustomization.yaml
-@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/release-service/config/default?ref=0f13691656967eada660b296e39a2bc2d57f19ec
-+  - https://github.com/redhat-appstudio/release-service/config/default?ref=9eb779342fe78d90bfc0cf055fc7b041cd678d05
- 
- components:
-   - ../k-components/manager-resources-patch
-@@ -10,6 +10,6 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 0f13691656967eada660b296e39a2bc2d57f19ec
-+    newTag: 9eb779342fe78d90bfc0cf055fc7b041cd678d05
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-16b00ef6/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-16b00ef6/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 867b0f1b to 16b00ef6 on Thu Nov 16 15:03:03 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
-index 784e1c70..4bae0940 100644
---- a/components/release/production/kustomization.yaml
-+++ b/components/release/production/kustomization.yaml
-@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/release-service/config/default?ref=0f13691656967eada660b296e39a2bc2d57f19ec
-+  - https://github.com/redhat-appstudio/release-service/config/default?ref=9eb779342fe78d90bfc0cf055fc7b041cd678d05
- 
- components:
-   - ../k-components/manager-resources-patch
-@@ -10,6 +10,6 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 0f13691656967eada660b296e39a2bc2d57f19ec
-+    newTag: 9eb779342fe78d90bfc0cf055fc7b041cd678d05
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-16b00ef6/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-16b00ef6/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-16b00ef6/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-16b00ef6/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-16b00ef6/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 
 KubeLinter v0.6.1-0-gc6177366a3
 
