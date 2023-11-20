@@ -1,0 +1,12 @@
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index aa56ceff..04ea5665 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -33,6 +33,7 @@ spec:
+         - spi-system
+         - group-sync-operator
+         - build-templates
++        - build-templates-e2e
+         - build-service
+         - tekton-ci
+         - image-controller
