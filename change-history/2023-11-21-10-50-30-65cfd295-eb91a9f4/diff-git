@@ -1,0 +1,198 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
+index b1b08ad1..6c45a413 100644
+--- a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
+@@ -4,14 +4,24 @@ metadata:
+   name: integration
+ spec:
+   generators:
+-    - clusters: {}
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/integration
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
+   template:
+     metadata:
+       name: integration-{{nameNormalized}}
+     spec:
+       project: default
+       source:
+-        path: components/integration
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
+diff --git a/argo-cd-apps/base/member/infra-deployments/integration/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/integration/kustomization.yaml
+index d56379f7..eaa83771 100644
+--- a/argo-cd-apps/base/member/infra-deployments/integration/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/integration/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ resources:
+ - integration.yaml
+ components:
+-  - ../../../../k-components/deploy-to-member-cluster
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index ccf7c7cb..50c4152f 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -97,3 +97,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: release
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: integration
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index c278a0b7..e226401c 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -132,3 +132,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: backup
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: integration
+diff --git a/components/integration/allow-argocd-to-manage.yaml b/components/integration/base/allow-argocd-to-manage.yaml
+similarity index 100%
+rename from components/integration/allow-argocd-to-manage.yaml
+rename to components/integration/base/allow-argocd-to-manage.yaml
+diff --git a/components/integration/argocd-permissions.yaml b/components/integration/base/argocd-permissions.yaml
+similarity index 100%
+rename from components/integration/argocd-permissions.yaml
+rename to components/integration/base/argocd-permissions.yaml
+diff --git a/components/integration/integration.yaml b/components/integration/base/integration.yaml
+similarity index 100%
+rename from components/integration/integration.yaml
+rename to components/integration/base/integration.yaml
+diff --git a/components/integration/base/kustomization.yaml b/components/integration/base/kustomization.yaml
+new file mode 100644
+index 00000000..6b588710
+--- /dev/null
++++ b/components/integration/base/kustomization.yaml
+@@ -0,0 +1,9 @@
++resources:
++- allow-argocd-to-manage.yaml
++- argocd-permissions.yaml
++- integration.yaml
++
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++namespace: integration-service
+diff --git a/components/integration/kustomization.yaml b/components/integration/development/kustomization.yaml
+similarity index 75%
+rename from components/integration/kustomization.yaml
+rename to components/integration/development/kustomization.yaml
+index dc4a5208..3eb9f3cc 100644
+--- a/components/integration/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -1,11 +1,8 @@
+-resources:
+-- allow-argocd-to-manage.yaml
+-- argocd-permissions.yaml
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=1c09614c43e1e50c768b5ddce35e344290e420ff
+-- integration.yaml
+-
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++resources:
++- ../base
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=1c09614c43e1e50c768b5ddce35e344290e420ff
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+@@ -14,5 +11,5 @@ images:
+ 
+ namespace: integration-service
+ 
+-patches:
+-  - path: ./manager_resources_patch.yaml
++components:
++  - ../k-components/manager-resources-patch
+diff --git a/components/integration/k-components/manager-resources-patch/kustomization.yaml b/components/integration/k-components/manager-resources-patch/kustomization.yaml
+new file mode 100644
+index 00000000..918316c7
+--- /dev/null
++++ b/components/integration/k-components/manager-resources-patch/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++
++patches:
++  - path: manager_resources_patch.yaml
+diff --git a/components/integration/manager_resources_patch.yaml b/components/integration/k-components/manager-resources-patch/manager_resources_patch.yaml
+similarity index 100%
+rename from components/integration/manager_resources_patch.yaml
+rename to components/integration/k-components/manager-resources-patch/manager_resources_patch.yaml
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+new file mode 100644
+index 00000000..3eb9f3cc
+--- /dev/null
++++ b/components/integration/production/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=1c09614c43e1e50c768b5ddce35e344290e420ff
++
++images:
++- name: quay.io/redhat-appstudio/integration-service
++  newName: quay.io/redhat-appstudio/integration-service
++  newTag: 1c09614c43e1e50c768b5ddce35e344290e420ff
++
++namespace: integration-service
++
++components:
++  - ../k-components/manager-resources-patch
+diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
+new file mode 100644
+index 00000000..3eb9f3cc
+--- /dev/null
++++ b/components/integration/staging/kustomization.yaml
+@@ -0,0 +1,15 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=1c09614c43e1e50c768b5ddce35e344290e420ff
++
++images:
++- name: quay.io/redhat-appstudio/integration-service
++  newName: quay.io/redhat-appstudio/integration-service
++  newTag: 1c09614c43e1e50c768b5ddce35e344290e420ff
++
++namespace: integration-service
++
++components:
++  - ../k-components/manager-resources-patch
+diff --git a/hack/preview.sh b/hack/preview.sh
+index a45d7c22..b365de78 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -185,9 +185,9 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [ -n "${HAS_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/application-service\")) |=.newTag=\"${HAS_IMAGE_TAG}\"" $ROOT/components/has/base/kustomization.yaml
+ [[ -n "${HAS_PR_OWNER}" && "${HAS_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/application-service*\")) |= \"https://github.com/${HAS_PR_OWNER}/application-service/config/default?ref=${HAS_PR_SHA}\"" $ROOT/components/has/base/kustomization.yaml
+ 
+-[ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/kustomization.yaml
+-[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/kustomization.yaml
+-[[ -n "${INTEGRATION_SERVICE_PR_OWNER}" && "${INTEGRATION_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/integration-service*\")) |= \"https://github.com/${INTEGRATION_SERVICE_PR_OWNER}/integration-service/config/default?ref=${INTEGRATION_SERVICE_PR_SHA}\"" $ROOT/components/integration/kustomization.yaml
++[ -n "${INTEGRATION_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newName=\"${INTEGRATION_SERVICE_IMAGE_REPO}\"" $ROOT/components/integration/development/kustomization.yaml
++[ -n "${INTEGRATION_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/integration-service\")) |=.newTag=\"${INTEGRATION_SERVICE_IMAGE_TAG}\"" $ROOT/components/integration/development/kustomization.yaml
++[[ -n "${INTEGRATION_SERVICE_PR_OWNER}" && "${INTEGRATION_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/integration-service*\")) |= \"https://github.com/${INTEGRATION_SERVICE_PR_OWNER}/integration-service/config/default?ref=${INTEGRATION_SERVICE_PR_SHA}\"" $ROOT/components/integration/development/kustomization.yaml
+ 
+ [ -n "${RELEASE_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/release-service\")) |=.newName=\"${RELEASE_SERVICE_IMAGE_REPO}\"" $ROOT/components/release/development/kustomization.yaml
+ [ -n "${RELEASE_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/release-service\")) |=.newTag=\"${RELEASE_SERVICE_IMAGE_TAG}\"" $ROOT/components/release/development/kustomization.yaml

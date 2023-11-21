@@ -1,0 +1,27 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-eb91a9f4/production/app-of-apps-production.yaml ./kustomized-cache/commit-65cfd295/production/app-of-apps-production.yaml
+747,760c747,750
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: production
+<             sourceRoot: components/integration
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+---
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+770c760
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+---
+>         path: components/integration
+Only in ./kustomized-cache/commit-65cfd295/production/components/integration: kustomize.out.yaml
+Only in ./kustomized-cache/commit-eb91a9f4/production/components/integration: production
