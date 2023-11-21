@@ -1,0 +1,11 @@
+diff --git a/OWNERS b/OWNERS
+index ae2482ed..84cbefac 100644
+--- a/OWNERS
++++ b/OWNERS
+@@ -25,3 +25,6 @@ approvers:
+ - hugares
+ - spartidarh
+ - manish-jangra
++- mmorhun
++- tisutisu
++- arewm
