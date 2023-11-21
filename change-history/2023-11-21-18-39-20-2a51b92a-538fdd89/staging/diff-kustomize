@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-538fdd89/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-2a51b92a/staging/app-of-apps-staging.yaml
+91,94c91,103
+<   - clusters:
+<       selector:
+<         matchLabels:
+<           appstudio.redhat.com/member-cluster: "true"
+---
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             environment: staging
+>             sourceRoot: components/backup
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized

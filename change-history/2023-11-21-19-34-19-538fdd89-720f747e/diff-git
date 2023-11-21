@@ -1,0 +1,35 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/backup/backup.yaml b/argo-cd-apps/base/member/infra-deployments/backup/backup.yaml
+index be11729b..d9ad0e6d 100644
+--- a/argo-cd-apps/base/member/infra-deployments/backup/backup.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/backup/backup.yaml
+@@ -4,10 +4,16 @@ metadata:
+   name: backup
+ spec:
+   generators:
+-    - clusters:
+-        values:
+-          sourceRoot: components/backup
+-          environment: staging
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/backup
++                environment: staging
++          - list:
++              elements: []
+   template:
+     metadata:
+       name: backup-{{nameNormalized}}
+diff --git a/argo-cd-apps/base/member/infra-deployments/backup/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/backup/kustomization.yaml
+index 4d4f5b35..7e838843 100644
+--- a/argo-cd-apps/base/member/infra-deployments/backup/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/backup/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ resources:
+ - backup.yaml
+ components:
+-  - ../../../../k-components/deploy-to-member-cluster
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
