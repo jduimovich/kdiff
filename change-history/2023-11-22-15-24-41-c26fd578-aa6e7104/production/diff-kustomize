@@ -1,0 +1,28 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-aa6e7104/production/components/build-templates/production/kustomize.out.yaml ./kustomized-cache/commit-c26fd578/production/components/build-templates/production/kustomize.out.yaml
+104,129d103
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: quay-push-secret
+<   namespace: build-templates-e2e
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/tekton-ci/quay-push-secret
+<   refreshInterval: 15m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: quay-push-secret
+<     template:
+<       data:
+<         .dockerconfigjson: '{{ .config }}'
+<       engineVersion: v2
+<       type: kubernetes.io/dockerconfigjson

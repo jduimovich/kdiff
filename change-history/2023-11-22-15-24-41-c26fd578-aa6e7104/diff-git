@@ -1,0 +1,80 @@
+diff --git a/components/build-templates/production/e2e-quay-push-secret.yaml b/components/build-templates/production/e2e-quay-push-secret.yaml
+new file mode 100644
+index 00000000..c2591eb6
+--- /dev/null
++++ b/components/build-templates/production/e2e-quay-push-secret.yaml
+@@ -0,0 +1,25 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: quay-push-secret
++  namespace: build-templates-e2e
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/tekton-ci/quay-push-secret
++  refreshInterval: 15m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: quay-push-secret
++    template:
++      engineVersion: v2
++      type: kubernetes.io/dockerconfigjson
++      data:
++        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml
+index 27bb5cb0..018960de 100644
+--- a/components/build-templates/production/kustomization.yaml
++++ b/components/build-templates/production/kustomization.yaml
+@@ -2,3 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
++  - e2e-quay-push-secret.yaml
+diff --git a/components/build-templates/staging/e2e-quay-push-secret.yaml b/components/build-templates/staging/e2e-quay-push-secret.yaml
+new file mode 100644
+index 00000000..5581b80e
+--- /dev/null
++++ b/components/build-templates/staging/e2e-quay-push-secret.yaml
+@@ -0,0 +1,25 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: quay-push-secret
++  namespace: build-templates-e2e
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/build/tekton-ci/quay-push-secret
++  refreshInterval: 15m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: quay-push-secret
++    template:
++      engineVersion: v2
++      type: kubernetes.io/dockerconfigjson
++      data:
++        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/build-templates/staging/kustomization.yaml b/components/build-templates/staging/kustomization.yaml
+index 27bb5cb0..018960de 100644
+--- a/components/build-templates/staging/kustomization.yaml
++++ b/components/build-templates/staging/kustomization.yaml
+@@ -2,3 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
++  - e2e-quay-push-secret.yaml
