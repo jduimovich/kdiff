@@ -1,12 +1,28890 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Nov 22 08:02:08 UTC 2023
+### This file generated at Wed Nov 22 12:04:49 UTC 2023
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 538fdd89 to 720f747e on Tue Nov 21 19:34:19 2023 </h3>  
+<h3>1: Production changes from 6266aab1 to c26fd578 on Wed Nov 22 10:08:43 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+index 3eb9f3cc..bbd10b4d 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=1c09614c43e1e50c768b5ddce35e344290e420ff
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=169329939d92d6345e2eaa6882527dea6b027c54
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 1c09614c43e1e50c768b5ddce35e344290e420ff
++  newTag: 169329939d92d6345e2eaa6882527dea6b027c54
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-6266aab1/production/components/integration/production/kustomize.out.yaml
+1100c1100
+<         image: quay.io/redhat-appstudio/integration-service:169329939d92d6345e2eaa6882527dea6b027c54
+---
+>         image: quay.io/redhat-appstudio/integration-service:1c09614c43e1e50c768b5ddce35e344290e420ff 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-c26fd578/production/components/image-controller/production/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-c26fd578/production/components/has/production/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 6266aab1 to c26fd578 on Wed Nov 22 10:08:43 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+index 3eb9f3cc..bbd10b4d 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=1c09614c43e1e50c768b5ddce35e344290e420ff
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=169329939d92d6345e2eaa6882527dea6b027c54
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 1c09614c43e1e50c768b5ddce35e344290e420ff
++  newTag: 169329939d92d6345e2eaa6882527dea6b027c54
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-c26fd578/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-c26fd578/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 6266aab1 to c26fd578 on Wed Nov 22 10:08:43 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+index 3eb9f3cc..bbd10b4d 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=1c09614c43e1e50c768b5ddce35e344290e420ff
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=169329939d92d6345e2eaa6882527dea6b027c54
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 1c09614c43e1e50c768b5ddce35e344290e420ff
++  newTag: 169329939d92d6345e2eaa6882527dea6b027c54
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-c26fd578/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-c26fd578/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-c26fd578/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-c26fd578/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-c26fd578/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 720f747e to 6266aab1 on Wed Nov 22 08:57:57 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (9345 lines)</summary>  
+
+``` 
+diff --git a/.tekton/hack/check-pr-label.py b/.tekton/hack/check-pr-label.py
+new file mode 100755
+index 00000000..1163fbb8
+--- /dev/null
++++ b/.tekton/hack/check-pr-label.py
+@@ -0,0 +1,47 @@
++#!/usr/bin/env python3
++import json
++import os
++import requests
++import argparse
++
++def get_labels_name(args):
++    github_api_url = os.environ.get('GITHUB_API_URL', "https://api.github.com")
++    req = requests.get(
++      f"{github_api_url}/repos/{args.git_owner}/{args.git_repo}/issues/{args.pr_number}",
++      headers={
++        "Authorization": f"Bearer {args.token}"
++      },
++      data=json.dumps({}))
++    response = req.json()
++    label_names = [label["name"] for label in response["labels"]]
++    return label_names
++
++def check_label_exist(args, label_names):
++    if not label_names or args.label not in label_names:
++      print("Label does not exists")
++      return False
++    else:
++      print("Label matched")
++      return True
++
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="check pull request labels")
++    parser.add_argument("--filepath", "-f", required=True)
++    parser.add_argument("--label", "-l", required=True)
++    parser.add_argument("--token", "-t", required=True)
++    parser.add_argument("--git-owner", "-o", required=True)
++    parser.add_argument("--git-repo", "-r", required=True)
++    parser.add_argument("--pr-number", "-n", required=True)
++    return parser.parse_args()
++
++
++def main(args):
++    label_names = get_labels_name(args)
++    matched_label_status = check_label_exist(args, label_names)
++    with open(args.filepath, "w") as f:
++      f.write(str(matched_label_status))
++
++
++if __name__ == "__main__":
++    main(parse_args())
+diff --git a/.tekton/hack/get-component-name.py b/.tekton/hack/get-component-name.py
+new file mode 100755
+index 00000000..e60e725d
+--- /dev/null
++++ b/.tekton/hack/get-component-name.py
+@@ -0,0 +1,47 @@
++#!/usr/bin/env python3
++import argparse
++import yaml
++import re
++
++def update_app_path(app_path, app_name):
++    with open(app_path, "a") as f:
++        f.write(app_name + "\n")
++
++def main(args):
++    try:
++        APP_FILE_NAME = args.filepath
++
++        # Load applicationset file
++        with open(APP_FILE_NAME) as f:
++            applications = yaml.safe_load(f)
++
++        keys_pattern = r"\b(" + "|".join(re.escape(key) for key in applications.keys()) + r")\b"
++
++        # Print the list of file paths
++        apps = []
++        for file in open(args.pr_filepath).readlines():
++            file = file.strip()
++            path_matches = re.findall(keys_pattern, file)
++            apps.extend(path_matches)
++
++        # Find app match in pull request files
++        unique_apps = set(apps)
++
++        if not unique_apps:
++            print(f'No matching components found in pull request files. Add them to the {APP_FILE_NAME} file.')
++        else:
++            for app in unique_apps:
++                for app_name in applications.get(app, []):
++                    update_app_path(args.app_filepath, app + ":" + app_name)
++    except Exception as e:
++        print(f"Error while updating the applicationset name into file: {str(e)}")
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="update a file with all the applicationsets for application changed in PR")
++    parser.add_argument("--filepath", "-f", required=True)
++    parser.add_argument("--app-filepath", "-af", required=True)
++    parser.add_argument("--pr-filepath", "-pf", required=True)
++    return parser.parse_args()
++
++if __name__ == '__main__':
++    main(parse_args())
+diff --git a/.tekton/hack/get-git-token.py b/.tekton/hack/get-git-token.py
+new file mode 100755
+index 00000000..49e22469
+--- /dev/null
++++ b/.tekton/hack/get-git-token.py
+@@ -0,0 +1,92 @@
++#!/usr/bin/env python3
++import argparse
++import json
++import os
++import time
++import requests
++from jwcrypto import jwk, jwt
++
++EXPIRE_MINUTES_AS_SECONDS = int(os.environ.get('GITHUBAPP_TOKEN_EXPIRATION_MINUTES', 10)) * 60
++GITHUB_API_URL = os.environ.get('GITHUB_API_URL', "https://api.github.com")
++
++class GitHub():
++    token = None
++
++    def __init__(self, private_key, app_id=None, installation_id=None):
++        if not isinstance(private_key, bytes):
++            raise ValueError(f'"{private_key}" parameter must be byte-string')
++        self._private_key = private_key
++        self.app_id = app_id
++        self.token = self._get_token(installation_id)
++
++    def _load_private_key(self, pem_key_bytes):
++        return jwk.JWK.from_pem(pem_key_bytes)
++
++    def _app_token(self, expire_in=EXPIRE_MINUTES_AS_SECONDS):
++        key = self._load_private_key(self._private_key)
++        now = int(time.time())
++        token = jwt.JWT(
++            header={"alg": "RS256"},
++            claims={
++                "iat": now,
++                "exp": now + expire_in,
++                "iss": self.app_id
++            },
++            algs=["RS256"],
++        )
++        token.make_signed_token(key)
++        return token.serialize()
++
++    def _get_token(self, installation_id=None):
++        app_token = self._app_token()
++        if not installation_id:
++            return app_token
++        req = self._request(
++            "POST",
++            f"/app/installations/{installation_id}/access_tokens",
++            headers={
++                "Authorization": f"Bearer {app_token}",
++                "Accept": "application/vnd.github.machine-man-preview+json"
++            }
++        )
++        ret = req.json()
++        if 'token' not in ret:
++            raise Exception(f"Authentication errors: {ret}")
++        return ret['token']
++
++    def _request(self, method, url, headers={}, data={}):
++        if self.token and 'Authorization' not in headers:
++            headers.update({"Authorization": "Bearer " + self.token})
++        if not url.startswith("http"):
++            url = f"{GITHUB_API_URL}{url}"
++        return requests.request(method, url, headers=headers, data=json.dumps(data))
++
++    def get_git_token(self):
++        return self.token
++
++def main(args):
++    with open(args.private_key_path, 'rb') as key_file:
++        key = key_file.read()
++    if args.git_app_id:
++        app_id = args.git_app_id
++    else:
++        raise Exception("application id is not set")
++    print(f"Getting user token for application_id: {app_id}")
++    github_app = GitHub(
++        key,
++        app_id=app_id,
++        installation_id=args.git_installation_id)
++    git_token = github_app.get_git_token()
++    with open(args.token_path, "w") as f:
++        f.write(git_token)
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="get github app token")
++    parser.add_argument("--private-key-path", "-p", required=True)
++    parser.add_argument("--git-app-id", "-i", required=True)
++    parser.add_argument("--git-installation-id", "-I", required=True)
++    parser.add_argument("--token-path", "-T", required=True)
++    return parser.parse_args()
++
++if __name__ == '__main__':
++    main(parse_args())
+diff --git a/.tekton/hack/merge-pr.py b/.tekton/hack/merge-pr.py
+new file mode 100755
+index 00000000..429fa6d9
+--- /dev/null
++++ b/.tekton/hack/merge-pr.py
+@@ -0,0 +1,93 @@
++#!/usr/bin/env python3
++import os
++import requests
++import argparse
++
++github_graphql_api_url = os.environ.get('GITHUB_GRAPHQL_API_URL', "https://api.github.com/graphql")
++
++def run_query(query, variables, headers={}):
++    url = f"{github_graphql_api_url}"
++    request = requests.post(url, json={'query': query, 'variables': variables}, headers=headers)
++    if request.status_code == 200:
++        return request.json()
++    else:
++        raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query))
++
++def get_pr_id_branch_oid(args):
++    get_pr_id_branch_oid_query_variables = {
++      "owner": f"{args.git_owner}",
++      "repo": f"{args.git_repo}",
++      "pr_number": int(f"{args.pr_number}"),
++      "source_branch_name": f"{args.branch}",
++    }
++    get_pr_id_branch_oid_query = """
++    query GetPullRequestIDs($owner:String!, $repo:String!, $pr_number:Int!, $source_branch_name:String!) {
++      repository(owner:$owner, name:$repo) {
++        pullRequest(number: $pr_number) {
++          id
++        }
++        ref(qualifiedName: $source_branch_name) {
++          target {
++            oid
++          }
++        }
++      }
++    }
++    """
++    result = run_query(
++        get_pr_id_branch_oid_query,
++        get_pr_id_branch_oid_query_variables,
++        headers={
++            "Authorization": f"Bearer {args.token}"
++        })
++    pr_id = result["data"]["repository"]["pullRequest"]["id"]
++    source_branch_oid = result["data"]["repository"]["ref"]["target"]["oid"]
++    return pr_id, source_branch_oid
++
++def merge_pr(args, pr_id, source_branch_oid):
++    merge_pr_varaibles = {
++      "pullrequest_id": str(pr_id),
++      "expectedHeadOid": source_branch_oid,
++      "mergeMethod" : 'MERGE',
++    }
++
++    merge_pr_mutation = """
++    mutation MergePullRequest($pullrequest_id:ID!, $expectedHeadOid:GitObjectID, $mergeMethod:PullRequestMergeMethod) {
++      mergePullRequest(input:{pullRequestId: $pullrequest_id, expectedHeadOid: $expectedHeadOid, mergeMethod: $mergeMethod}) {
++        clientMutationId
++        pullRequest {
++          id
++        }
++      }
++    }
++    """
++
++    result = run_query(
++        merge_pr_mutation,
++        merge_pr_varaibles,
++        headers={
++            "Authorization": f"Bearer {args.token}"
++        })
++    if "errors" in result.keys():
++        for error in result["errors"]:
++            print("ERROR: {0}".format(error["message"]))
++    else:
++        print("SUCCESS: merged PR id {0}".format(result["data"]["mergePullRequest"]["pullRequest"]["id"]))
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="merge pull request")
++    parser.add_argument("--branch", "-b", required=True)
++    parser.add_argument("--token", "-t", required=True)
++    parser.add_argument("--git-owner", "-o", required=True)
++    parser.add_argument("--git-repo", "-r", required=True)
++    parser.add_argument("--pr-number", "-n", required=True)
++    return parser.parse_args()
++
++
++def main(args):
++    pr_id, source_branch_oid = get_pr_id_branch_oid(args)
++    merge_pr(args, pr_id, source_branch_oid)
++
++
++if __name__ == "__main__":
++    main(parse_args())
+diff --git a/.tekton/hack/remove-pr-label.py b/.tekton/hack/remove-pr-label.py
+new file mode 100755
+index 00000000..1b28a90c
+--- /dev/null
++++ b/.tekton/hack/remove-pr-label.py
+@@ -0,0 +1,54 @@
++#!/usr/bin/env python3
++import json
++import os
++import requests
++import argparse
++
++github_api_url = os.environ.get('GITHUB_API_URL', "https://api.github.com")
++
++def get_labels_name(args):
++    req = requests.get(
++      f"{github_api_url}/repos/{args.git_owner}/{args.git_repo}/issues/{args.pr_number}",
++      headers={
++        "Authorization": f"Bearer {args.token}"
++      },
++      data=json.dumps({}))
++    response = req.json()
++    label_names = [label["name"] for label in response["labels"]]
++    return label_names
++
++def remove_label(args, label_names):
++    # Check if the label to remove exists on the pull request
++    if args.label in label_names:
++        # Remove the label
++        label_names.remove(args.label)
++
++        # Update the labels on the pull request
++        req = requests.patch(
++            f"{github_api_url}/repos/{args.git_owner}/{args.git_repo}/issues/{args.pr_number}",
++            headers={
++                "Authorization": f"Bearer {args.token}"
++            },
++            data=json.dumps({"labels": label_names}))
++        if req.status_code == 200:
++          print("label {args.label} has been removed successfully")
++        else:
++          raise Exception("Failed to remove the label {args.label} from the pull request.")
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="remove pull request labels")
++    parser.add_argument("--label", "-l", required=True)
++    parser.add_argument("--token", "-t", required=True)
++    parser.add_argument("--git-owner", "-o", required=True)
++    parser.add_argument("--git-repo", "-r", required=True)
++    parser.add_argument("--pr-number", "-n", required=True)
++    return parser.parse_args()
++
++
++def main(args):
++    label_names = get_labels_name(args)
++    remove_label(args, label_names)
++
++
++if __name__ == "__main__":
++    main(parse_args())
+diff --git a/.tekton/hack/update-argocd-app-revision.sh b/.tekton/hack/update-argocd-app-revision.sh
+new file mode 100755
+index 00000000..41583e71
+--- /dev/null
++++ b/.tekton/hack/update-argocd-app-revision.sh
+@@ -0,0 +1,95 @@
++#!/usr/bin/env bash
++
++#quit if exit status of any cmd is a non-zero value
++set -o errexit
++set -o nounset
++set -o pipefail
++
++usage() {
++    echo "
++Usage: 
++    ${0##*/} ./update-argocd-app-revision.sh [options]
++Replace the argocd application revision.
++Mandatory arguments:
++    --branch
++        Pull request branch
++    --filepath
++        path to the file which has contains applicationset e.g pipeline-service: pipeline-service-stone-stg-m01
++    
++Optional arguments:
++    -h, --help
++        Display this message.
++Example:
++    ${0##*/} ./update-argocd-app-revision.sh --branch test-branch
++" >&2
++
++}
++
++parse_args() {
++  while [[ $# -gt 0 ]]; do
++    case $1 in
++    -b | --branch)
++      shift
++      export BRANCH="$1"
++      ;;
++    -p | --filepath)
++      shift
++      export FILEPATH="$1"
++      ;;
++    -h | --help)
++      usage
++      exit 0
++      ;;
++    *)
++      echo "Unknown argument: $1"
++      usage
++      exit 1
++      ;;
++    esac
++      shift
++  done
++}
++
++prechecks() {
++    if [[ -z "$BRANCH" ]]; then
++      printf "PR Branch is not set\n\n"
++      usage
++      exit 1
++    fi
++    if [[ -z "$FILEPATH" ]]; then
++      printf "path of applicationset is not set\n\n"
++      usage
++      exit 1
++    fi
++}
++
++main() {
++    parse_args "$@"
++    prechecks
++
++    echo "Disable auto sync for all-application-sets"
++    if ! oc patch applications.argoproj.io/all-application-sets -n openshift-gitops --type json --patch='[ { "op": "remove", "path": "/spec/syncPolicy/automated" } ]'; then
++      echo "Failed to disable auto sync."
++      exit 1
++    fi
++    # Read each line from the component file, which has all the application details from sync app task e.g {pipeline-service: pipeline-service-stone-stg-m01}
++    while IFS= read -r line
++    do
++    component="$line"
++    component=$(echo -e "$component" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
++    
++    # Set the delimiter to separate component-app and appset name
++    IFS=":"
++    read -ra app <<< "$component"
++    echo "Replace revision for changed components ${app[0]} application set"
++    if ! oc patch applicationsets.argoproj.io/${app[1]} -n openshift-gitops --type json --patch="[ { \"op\": \"replace\", \"path\": \"/spec/template/spec/source/targetRevision\", \"value\": \"$BRANCH\" } ]"; then
++      echo "Error: Failed to replace revision for ${app[0]} application set."
++      exit 1
++    fi
++
++    done < "$FILEPATH"
++}
++
++if [ "${BASH_SOURCE[0]}" == "$0" ]; then
++  main "$@"
++fi
+diff --git a/.tekton/pipeline/rhtap-staging-e2e.yaml b/.tekton/pipeline/rhtap-staging-e2e.yaml
+new file mode 100644
+index 00000000..d3ad83fe
+--- /dev/null
++++ b/.tekton/pipeline/rhtap-staging-e2e.yaml
+@@ -0,0 +1,270 @@
++apiVersion: tekton.dev/v1beta1
++kind: Pipeline
++metadata:
++  name: rhtap-staging-e2e
++  namespace: rhtap-staging-testing
++spec:
++  params:
++    - name: repo_url
++    - name: revision
++    - name: pull_request_number
++    - name: source_branch
++  workspaces:
++    - name: git
++    - name: shared-file
++  tasks:
++    - name: get-github-token
++      taskRef:
++        name: get-github-token
++      runAfter:
++        - clone-infra-deployment-git
++      workspaces:
++        - name: shared-file-path
++          workspace: shared-file
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++    - name: check-merge-label
++      taskRef:
++        name: pr-labels
++      params:
++        - name: pull_request_number
++          value: $(params.pull_request_number)
++        - name: match_label
++          value: "ok-to-merge"
++      runAfter:
++        - get-github-token
++        - clone-infra-deployment-git
++      workspaces:
++        - name: shared-file-path
++          workspace: shared-file
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++    - name: clone-infra-deployment-git
++      taskRef:
++        name: git-clone
++      params:
++        - name: url
++          value: $(params.repo_url)
++        - name: deleteExisting
++          value: "true"
++        - name: revision
++          value: $(params.revision)
++        - name: depth
++          value: "3"
++      workspaces:
++      - name: output
++        workspace: git
++        subPath: infra-deployment-git
++    - name: get-pr-modified-files
++      taskRef:
++        name: get-pr-modified-files
++      runAfter:
++        - check-merge-label
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++    - name: changed-component-app-name
++      taskRef:
++        name: component-app-name
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      runAfter:
++        - get-pr-modified-files
++    - name: check-rebase-label-pre-test
++      taskRef:
++        name: pr-rebase-labels
++      runAfter:
++        - get-pr-modified-files
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++    - name: rebase-pr-pre-test
++      taskRef:
++        name: rebase-pr
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["True"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      runAfter:
++        - check-rebase-label-pre-test
++    - name: replace-revision
++      taskRef:
++        name: replace-revision
++      params:
++        - name: pr_branch_revision
++          value: $(params.revision)
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["False"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      runAfter:
++        - changed-component-app-name
++        - check-rebase-label-pre-test
++    - name: clone-stage-e2e-git
++      taskRef:
++        name: git-clone
++      params:
++        - name: url
++          value: 'https://github.com/sawood14012/e2e-tests.git'
++        - name: deleteExisting
++          value: "true"
++        - name: revision
++          value: "verify-stage"
++      runAfter:
++        - check-merge-label
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++      - name: output
++        workspace: git
++        subPath: stage-e2e-git
++    - name: stage-verify-e2e-test
++      taskRef:
++        name: stage-verify-e2e-test
++      params:
++      - name: TASK_RETRIES
++        value: "$(context.pipelineTask.retries)"
++      workspaces:
++      - name: stage-e2e-git
++        workspace: git
++        subPath: stage-e2e-git
++      runAfter:
++        - replace-revision
++        - clone-stage-e2e-git
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["False"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++    - name: check-rebase-label-post-test
++      taskRef:
++        name: pr-rebase-labels
++      runAfter:
++        - stage-verify-e2e-test
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["False"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++    - name: remove-merge-label
++      taskRef:
++        name: remove-pr-labels
++      params:
++        - name: match_label
++          value: "ok-to-merge"
++        - name: pull_request_number
++          value: $(params.pull_request_number)
++      when:
++        - input: $(tasks.check-rebase-label-post-test.results.matched-rebase-label)
++          operator: in
++          values: ["True"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++        - name: shared-file-path
++          workspace: shared-file
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++      runAfter:
++        - check-rebase-label-post-test
++    - name: rebase-pr-post-test
++      taskRef:
++        name: rebase-pr
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      runAfter:
++        - remove-merge-label
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++        - input: $(tasks.check-rebase-label-post-test.results.matched-rebase-label)
++          operator: in
++          values: ["True"]
++    - name: merge-pr
++      taskRef:
++        name: merge-pr
++      params:
++        - name: pull_request_number
++          value: $(params.pull_request_number)
++        - name: source_branch
++          value: $(params.source_branch)
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      runAfter:
++        - rebase-pr-post-test
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["False"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++  finally:
++    - name: revert-replace-revision
++      taskRef:
++        name: revert-replace-revision
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
+diff --git a/.tekton/rhtap-staging-e2e-ci.yaml b/.tekton/rhtap-staging-e2e-ci.yaml
+new file mode 100644
+index 00000000..6729ab67
+--- /dev/null
++++ b/.tekton/rhtap-staging-e2e-ci.yaml
+@@ -0,0 +1,56 @@
++apiVersion: tekton.dev/v1beta1
++kind: PipelineRun
++metadata:
++  generateName: rhtap-staging-e2e-
++  namespace: rhtap-staging-testing
++  annotations:
++    pipelinesascode.tekton.dev/on-cel-expression: |
++      event == "pull_request" && target_branch == "main" &&
++      (
++        "**/staging/**".pathChanged() ||
++        "argo-cd-apps/app-of-app-sets/base/**".pathChanged() ||
++        "components/*/base/**".pathChanged()
++      )
++    pipelinesascode.tekton.dev/pipeline: "[.tekton/pipeline/rhtap-staging-e2e.yaml]"
++    pipelinesascode.tekton.dev/task: "[.tekton/tasks/verify-smoke-e2e.yaml]"
++    pipelinesascode.tekton.dev/task-1: "[.tekton/tasks/get-pr-modified-files.yaml]"
++    pipelinesascode.tekton.dev/task-2: "[.tekton/tasks/component-app-name.yaml]"
++    pipelinesascode.tekton.dev/task-3: "[.tekton/tasks/rebase-pr.yaml]"
++    pipelinesascode.tekton.dev/task-4: "[.tekton/tasks/replace-revision.yaml]"
++    pipelinesascode.tekton.dev/task-5: "[.tekton/tasks/revert-replace-revision.yaml]"
++    pipelinesascode.tekton.dev/task-6: "[.tekton/tasks/merge-pr.yaml]"
++    pipelinesascode.tekton.dev/task-7: "[.tekton/tasks/check-pr-label.yaml]"
++    pipelinesascode.tekton.dev/task-8: "[.tekton/tasks/remove-pr-label.yaml]"
++    pipelinesascode.tekton.dev/task-9: "[.tekton/tasks/get-git-token.yaml]"
++    pipelinesascode.tekton.dev/task-10: "[.tekton/tasks/check-pr-rebase-label.yaml]"
++    pipelinesascode.tekton.dev/task-11: "[git-clone]"
++    pipelinesascode.tekton.dev/max-keep-runs: "10"
++spec:
++  params:
++    - name: repo_url
++      value: "{{ repo_url }}"
++    - name: revision
++      value: "{{ revision }}"
++    - name: pull_request_number
++      value: "{{ pull_request_number }}"
++    - name: source_branch
++      value: "{{ source_branch }}"
++  pipelineRef:
++    name: rhtap-staging-e2e
++  workspaces:
++    - name: git
++      volumeClaimTemplate:
++        spec:
++          accessModes:
++            - ReadWriteOnce
++          resources:
++            requests:
++              storage: 1Gi
++    - name: shared-file
++      volumeClaimTemplate:
++        spec:
++          accessModes:
++            - ReadWriteOnce
++          resources:
++            requests:
++              storage: 50Mi
+diff --git a/.tekton/tasks/check-pr-label.yaml b/.tekton/tasks/check-pr-label.yaml
+new file mode 100644
+index 00000000..e8084ce7
+--- /dev/null
++++ b/.tekton/tasks/check-pr-label.yaml
+@@ -0,0 +1,39 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: pr-labels
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    check if the pull request label for which the test is running on staging is ready to be merged
++  params:
++    - name: match_label
++    - name: pull_request_number
++    - name: TARGET_GH_OWNER
++      description: Owner of GitHub repository of the infra-deployments code
++      default: redhat-appstudio
++    - name: TARGET_GH_REPO
++      description: GitHub repository of the infra-deployments code
++      default: infra-deployments
++  results:
++    - name: matched-merge-label
++  workspaces:
++    - name: shared-file-path
++    - name: infra-deployment-git
++  steps:
++    - name: check-pr-label
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      env:
++        - name: PULL_REQUEST_NUMBER
++          value: $(params.pull_request_number)
++        - name: TARGET_GH_OWNER
++          value: "$(params.TARGET_GH_OWNER)"
++        - name: TARGET_GH_REPO
++          value: "$(params.TARGET_GH_REPO)"
++      script: |
++        #!/usr/bin/env bash
++
++        token=$(cat '$(workspaces.shared-file-path.path)/github-token.txt')
++
++        ".tekton/hack/check-pr-label.py" --token ${token} --label "$(params.match_label)" -f '$(results.matched-merge-label.path)' -o ${TARGET_GH_OWNER} -r ${TARGET_GH_REPO} -n ${PULL_REQUEST_NUMBER}
+diff --git a/.tekton/tasks/check-pr-rebase-label.yaml b/.tekton/tasks/check-pr-rebase-label.yaml
+new file mode 100644
+index 00000000..b7b092d3
+--- /dev/null
++++ b/.tekton/tasks/check-pr-rebase-label.yaml
+@@ -0,0 +1,27 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: pr-rebase-labels
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    check if the pull request label for which the test is running on staging needs to be rebased.
++  results:
++    - name: matched-rebase-label
++  workspaces:
++    - name: infra-deployment-git
++  steps:
++    - name: check-pr-rebase-label
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        git config --global --add safe.directory $(pwd)
++        git fetch
++        if [ "$(git log HEAD ..origin/main | wc -l)" == "0" ]; then
++          echo -n "False" > "$(results.matched-rebase-label.path)"
++        else
++          echo -n "True" > "$(results.matched-rebase-label.path)"
++        fi
+diff --git a/.tekton/tasks/component-app-name.yaml b/.tekton/tasks/component-app-name.yaml
+new file mode 100644
+index 00000000..76318ccf
+--- /dev/null
++++ b/.tekton/tasks/component-app-name.yaml
+@@ -0,0 +1,35 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: component-app-name
++  namespace: rhtap-staging-testing
++spec:
++  params:
++   - name: APP_FILE_NAME
++     description: This is the file which contains the argocd applicationset names running as per the component.
++     default: "staging-app.yaml"
++  description: >-
++    This task is to find out which applicationset needs to be updated for the staging cluster argocd application
++  workspaces:
++   - name: infra-deployment-git
++   - name: shared-file-path
++  steps:
++    - name: get-component-app-name
++      image: image-registry.openshift-image-registry.svc:5000/openshift/python:3.8
++      workingDir: $(workspaces.infra-deployment-git.path)
++      env:
++        - name: APP_FILE_NAME
++          value: $(params.APP_FILE_NAME)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        default_appset_file="$(pwd)/${APP_FILE_NAME}"
++
++        if pip3 install pyyaml 2>&1; then
++          echo "PyYAML installed successfully"
++        else
++          echo "Error running 'pip3 install pyyaml': $?"
++        fi
++
++        ".tekton/hack/get-component-name.py" --filepath ${default_appset_file} --app-filepath "$(workspaces.shared-file-path.path)/component.txt" --pr-filepath "$(workspaces.shared-file-path.path)/updated_files.txt"
+diff --git a/.tekton/tasks/get-git-token.yaml b/.tekton/tasks/get-git-token.yaml
+new file mode 100644
+index 00000000..c921a5ac
+--- /dev/null
++++ b/.tekton/tasks/get-git-token.yaml
+@@ -0,0 +1,46 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: get-github-token
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    get the github app token for infra-deployment
++  params:
++    - name: shared-secret
++      default: infra-deployments-pr-creator
++      description: secret in the namespace which contains private key for the GitHub App
++    - name: GITHUB_APP_ID
++      description: ID of Github app used for updating PR
++      default: "305606"
++    - name: GITHUB_APP_INSTALLATION_ID
++      description: Installation ID of Github app in the organization
++      default: "35269675"
++  workspaces:
++   - name: shared-file-path
++   - name: infra-deployment-git
++  volumes:
++    - name: infra-deployments-pr-creator
++      secret:
++        # 'private-key' - private key for Github app
++        secretName: $(params.shared-secret)
++  steps:
++    - name: get-token
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      volumeMounts:
++        - name: infra-deployments-pr-creator
++          mountPath: /secrets/deploy-key
++      env:
++        - name: GITHUBAPP_KEY_PATH
++          value: /secrets/deploy-key/private-key
++        - name: GITHUBAPP_APP_ID
++          value: "$(params.GITHUB_APP_ID)"
++        - name: GITHUBAPP_INSTALLATION_ID
++          value: "$(params.GITHUB_APP_INSTALLATION_ID)"
++      script: |
++        #!/usr/bin/env bash
++
++        ".tekton/hack/get-git-token.py" --token-path '$(workspaces.shared-file-path.path)/github-token.txt' --private-key-path ${GITHUBAPP_KEY_PATH} --git-app-id ${GITHUBAPP_APP_ID} --git-installation-id ${GITHUBAPP_INSTALLATION_ID}
++
++        echo "successfully got the token"
+diff --git a/.tekton/tasks/get-pr-modified-files.yaml b/.tekton/tasks/get-pr-modified-files.yaml
+new file mode 100644
+index 00000000..39019cdb
+--- /dev/null
++++ b/.tekton/tasks/get-pr-modified-files.yaml
+@@ -0,0 +1,23 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: get-pr-modified-files
++  namespace: rhtap-staging-testing
++spec:
++  description: >-
++    This task retrieves the file paths modified by the pull request
++  workspaces:
++   - name: infra-deployment-git
++   - name: shared-file-path
++  steps:
++    - name: get-merged-pr-files-changed
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++        
++        git config --global --add safe.directory $(pwd)
++        git fetch
++        git diff --name-only origin/main > $(workspaces.shared-file-path.path)/updated_files.txt
++        cat '$(workspaces.shared-file-path.path)/updated_files.txt'
+diff --git a/.tekton/tasks/merge-pr.yaml b/.tekton/tasks/merge-pr.yaml
+new file mode 100644
+index 00000000..ab039122
+--- /dev/null
++++ b/.tekton/tasks/merge-pr.yaml
+@@ -0,0 +1,39 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: merge-pr
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    merge the pull request into main branch.
++  params:
++    - name: pull_request_number
++    - name: TARGET_GH_OWNER
++      description: Owner of GitHub repository of the infra-deployments code
++      default: redhat-appstudio
++    - name: TARGET_GH_REPO
++      description: GitHub repository of the infra-deployments code
++      default: infra-deployments
++    - name: source_branch
++  workspaces:
++   - name: shared-file-path
++   - name: infra-deployment-git
++  steps:
++    - name: merge-pull-request
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      env:
++        - name: PULL_REQUEST_NUMBER
++          value: $(params.pull_request_number)
++        - name: SOURCE_BRANCH
++          value: $(params.source_branch)
++        - name: TARGET_GH_OWNER
++          value: "$(params.TARGET_GH_OWNER)"
++        - name: TARGET_GH_REPO
++          value: "$(params.TARGET_GH_REPO)"
++      script: |
++        #!/usr/bin/env bash
++
++        token=$(cat '$(workspaces.shared-file-path.path)/github-token.txt')
++
++        ".tekton/hack/merge-pr.py" --token ${token} --branch ${SOURCE_BRANCH} -o ${TARGET_GH_OWNER} -r ${TARGET_GH_REPO} -n ${PULL_REQUEST_NUMBER}
+diff --git a/.tekton/tasks/rebase-pr.yaml b/.tekton/tasks/rebase-pr.yaml
+new file mode 100644
+index 00000000..d2a1897d
+--- /dev/null
++++ b/.tekton/tasks/rebase-pr.yaml
+@@ -0,0 +1,26 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: rebase-pr
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    rebase the pull request for which the test is running on staging.
++  workspaces:
++   - name: infra-deployment-git
++   - name: shared-file-path
++  steps:
++    - name: rebase-pull-request
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        git config --global --add safe.directory $(pwd)
++        git fetch
++        git config --global user.email "rhtap-ci-bot@redhat.com"
++        git config --global user.name "RHTAP CI Robot"
++        git rebase origin/main
++
++        echo "successfully rebased"
+diff --git a/.tekton/tasks/remove-pr-label.yaml b/.tekton/tasks/remove-pr-label.yaml
+new file mode 100644
+index 00000000..6e7bf94f
+--- /dev/null
++++ b/.tekton/tasks/remove-pr-label.yaml
+@@ -0,0 +1,37 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: remove-pr-labels
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    Remove the 'ok-to-merge' label on the PR so the final rebase does not trigger a new execution of the pipelinerun
++  params:
++    - name: pull_request_number
++    - name: match_label
++    - name: TARGET_GH_OWNER
++      description: Owner of GitHub repository of the infra-deployments code
++      default: redhat-appstudio
++    - name: TARGET_GH_REPO
++      description: GitHub repository of the infra-deployments code
++      default: infra-deployments
++  workspaces:
++   - name: shared-file-path
++   - name: infra-deployment-git
++  steps:
++    - name: remove-pr-label
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      env:
++        - name: PULL_REQUEST_NUMBER
++          value: $(params.pull_request_number)
++        - name: TARGET_GH_OWNER
++          value: "$(params.TARGET_GH_OWNER)"
++        - name: TARGET_GH_REPO
++          value: "$(params.TARGET_GH_REPO)"
++      script: |
++        #!/usr/bin/env bash
++
++        token=$(cat '$(workspaces.shared-file-path.path)/github-token.txt')
++
++        ".tekton/hack/remove-pr-label.py" --token ${token} --label "$(params.match_label)" -o ${TARGET_GH_OWNER} -r ${TARGET_GH_REPO} -n ${PULL_REQUEST_NUMBER}
+diff --git a/.tekton/tasks/replace-revision.yaml b/.tekton/tasks/replace-revision.yaml
+new file mode 100644
+index 00000000..3fb257db
+--- /dev/null
++++ b/.tekton/tasks/replace-revision.yaml
+@@ -0,0 +1,21 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: replace-revision
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    replace the target revision of staging argocd applicationset with pull request latest revision
++  params:
++    - name: pr_branch_revision
++  workspaces:
++   - name: shared-file-path
++   - name: infra-deployment-git
++  steps:
++    - name: replace-target-revision
++      image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
++      workingDir: $(workspaces.infra-deployment-git.path)
++      command:
++        - /bin/bash
++        - -c
++        - ".tekton/hack/update-argocd-app-revision.sh --branch $(params.pr_branch_revision) --filepath $(workspaces.shared-file-path.path)/component.txt"
+diff --git a/.tekton/tasks/revert-replace-revision.yaml b/.tekton/tasks/revert-replace-revision.yaml
+new file mode 100644
+index 00000000..f7508bfb
+--- /dev/null
++++ b/.tekton/tasks/revert-replace-revision.yaml
+@@ -0,0 +1,17 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: revert-replace-revision
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    revert the argocd applicationset target revision to original branch state.
++  steps:
++    - name: revert-revision
++      image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        echo "Enable auto sync for all-application-sets"
++        oc patch applications.argoproj.io/all-application-sets -n openshift-gitops --type merge -p '{"spec":{"syncPolicy": {"automated":{"prune":true, "selfHeal":true}}}}'
+diff --git a/.tekton/tasks/verify-smoke-e2e.yaml b/.tekton/tasks/verify-smoke-e2e.yaml
+new file mode 100644
+index 00000000..0cda9465
+--- /dev/null
++++ b/.tekton/tasks/verify-smoke-e2e.yaml
+@@ -0,0 +1,87 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: stage-verify-e2e-test
++  namespace: rhtap-staging-testing
++spec:
++  description: >-
++    This task is for running stage e2e test on RHTAP staging cluster
++  params:
++  - name: PLATFORM
++    description: which environment the test is running on.
++    default: "stage"
++  - name: TASK_RETRIES
++    description: number of times the task will be rerun
++    default: "0"
++  workspaces:
++    - name: stage-e2e-git
++  steps:
++    - name: run-stage-verify-e2e-test
++      image: registry.access.redhat.com/ubi9/go-toolset:1.20.10-2.1699551725
++      workingDir: $(workspaces.stage-e2e-git.path)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        mkdir -p ~/.kube
++        cat <<EOF > ~/.kube/config
++        apiVersion: v1
++        clusters:
++        - cluster:
++            server: YOUR_KUBE_API_SERVER_URL
++          name: YOUR_CLUSTER_NAME
++        contexts:
++        - context:
++            cluster: YOUR_CLUSTER_NAME
++            user: YOUR_USER_NAME
++          name: YOUR_CONTEXT_NAME
++        current-context: YOUR_CONTEXT_NAME
++        kind: Config
++        preferences: {}
++        users:
++        - name: YOUR_USER_NAME
++          user:
++            token: YOUR_KUBE_API_TOKEN
++        EOF
++        make build
++        E2E_ARGS_EXEC="--ginkgo.label-filter $(params.PLATFORM) --ginkgo.vv" make run
++      env:
++        - name: STAGE_SSOURL
++          valueFrom:
++            secretKeyRef:
++              name: stage-test-e2e
++              key: ssourl
++        - name: STAGE_APIURL
++          valueFrom:
++            secretKeyRef:
++              name: stage-test-e2e
++              key: apiurl
++        - name: STAGEUSER_TOKEN
++          valueFrom:
++            secretKeyRef:
++              name: stage-test-e2e
++              key: token
++        - name: STAGE_USERNAME
++          valueFrom:
++            secretKeyRef:
++              name: stage-test-e2e
++              key: username
++    - name: enable-retries
++      image: registry.access.redhat.com/ubi8/go-toolset:1.19.10-10.1692783630
++      script: |
++        #!/usr/bin/env bash
++        set -o errexit
++        set -o nounset
++        set -o pipefail
++
++        if [ "$(cat $(steps.step-run.exitCode.path))" != "0" ]; then
++          if [ "$(context.task.retry-count)" == "$(params.TASK_RETRIES)" ]; then
++            echo "Marking this step as PASS though previous step failed as this is the last retry"
++            exit 0
++          else
++            echo "Marking this step as FAIL to make sure that the task is retried"
++            exit 1
++          fi
++        else
++          echo "Marking this step as PASS as previous step was successful"
++        fi
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+new file mode 100644
+index 00000000..e57368c0
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -0,0 +1,1955 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: chains-secret-admin
++subjects:
++- kind: ServiceAccount
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.webhook: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "sampling": {
++        "initial": 100,
++        "thereafter": 100
++      },
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/component: resolvers
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-pipelines
++    operator.tekton.dev/operand-name: tektoncd-pipelines
++  name: config-logging
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=require
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args: []
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 512Mi
++          requests:
++            cpu: 250m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 100m
++            memory: 512Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="openshift-pipelines"
++          secret="signing-secrets"
++
++          cd /tmp
++
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
++            echo "Signing secret exists and is non-empty."
++          else
++            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
++            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
++
++            # To make this run conveniently without user input let's create a random password
++            RANDOM_PASS=$( openssl rand -base64 30 )
++
++            # Generate the key pair secret directly in the cluster.
++            # The secret should be created as immutable.
++            echo "Generating k8s secret/$secret in $namespace with key-pair"
++            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
++          fi
++
++          # If the secret is not marked as immutable, make it so.
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
++            echo "Making secret immutable"
++            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
++              --patch='{"immutable": true}' \
++            | kubectl apply -f -
++          fi
++
++          echo "Generating/updating the secret with the public key"
++          kubectl create secret generic public-key \
++            --namespace "$namespace" \
++            --from-literal=cosign.pub="$(
++              cosign public-key --key "k8s://$namespace/$secret"
++            )" \
++            --dry-run=client \
++            -o yaml | kubectl apply -f -
++        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        imagePullPolicy: Always
++        name: chains-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: OnFailure
++      serviceAccount: chains-secrets-admin
++      serviceAccountName: chains-secrets-admin
++      terminationGracePeriodSeconds: 30
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-prod-01/stonesoup-infra-production/multi-tenant-prod-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-prod-01/stonesoup-infra-production/multi-tenant-prod-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: beta
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-tekton-oci-bundles: true
++    performance:
++      kube-api-burst: 50
++      kube-api-qps: 50
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        settings:
++          application-name: Red Hat Trusted App Pipeline
++          custom-console-name: Red Hat Trusted App Pipeline
++          custom-console-url: https://console.redhat.com/preview/application-pipeline
++          custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline
++          custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline
++  profile: all
++  pruner:
++    keep: 10
++    resources:
++    - pipelinerun
++    schedule: 0/2 * * * *
++  targetNamespace: openshift-pipelines
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-1.12
++  name: openshift-pipelines-operator-rh
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/production/stone-prd-m01/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/kustomization.yaml
+index ec5720c2..ee2da5d8 100644
+--- a/components/pipeline-service/production/stone-prd-m01/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/kustomization.yaml
+@@ -1,17 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
+-patches:
+-  - path: tekton-results-database-secret-path.yaml
+-    target:
+-      name: tekton-results-database
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: tekton-results-s3-secret-path.yaml
+-    target:
+-      name: tekton-results-s3
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
++  - deploy.yaml
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+new file mode 100644
+index 00000000..dedaea51
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+@@ -0,0 +1,17 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prd-m01/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prd-m01/resources/tekton-results-database-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/production/stone-prd-m01/tekton-results-database-secret-path.yaml
+rename to components/pipeline-service/production/stone-prd-m01/resources/tekton-results-database-secret-path.yaml
+diff --git a/components/pipeline-service/production/stone-prd-m01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/stone-prd-m01/resources/tekton-results-s3-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/production/stone-prd-m01/tekton-results-s3-secret-path.yaml
+rename to components/pipeline-service/production/stone-prd-m01/resources/tekton-results-s3-secret-path.yaml
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+new file mode 100644
+index 00000000..736cb59f
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -0,0 +1,1955 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: chains-secret-admin
++subjects:
++- kind: ServiceAccount
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.webhook: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "sampling": {
++        "initial": 100,
++        "thereafter": 100
++      },
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/component: resolvers
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-pipelines
++    operator.tekton.dev/operand-name: tektoncd-pipelines
++  name: config-logging
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=require
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args: []
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 512Mi
++          requests:
++            cpu: 250m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 100m
++            memory: 512Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="openshift-pipelines"
++          secret="signing-secrets"
++
++          cd /tmp
++
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
++            echo "Signing secret exists and is non-empty."
++          else
++            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
++            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
++
++            # To make this run conveniently without user input let's create a random password
++            RANDOM_PASS=$( openssl rand -base64 30 )
++
++            # Generate the key pair secret directly in the cluster.
++            # The secret should be created as immutable.
++            echo "Generating k8s secret/$secret in $namespace with key-pair"
++            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
++          fi
++
++          # If the secret is not marked as immutable, make it so.
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
++            echo "Making secret immutable"
++            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
++              --patch='{"immutable": true}' \
++            | kubectl apply -f -
++          fi
++
++          echo "Generating/updating the secret with the public key"
++          kubectl create secret generic public-key \
++            --namespace "$namespace" \
++            --from-literal=cosign.pub="$(
++              cosign public-key --key "k8s://$namespace/$secret"
++            )" \
++            --dry-run=client \
++            -o yaml | kubectl apply -f -
++        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        imagePullPolicy: Always
++        name: chains-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: OnFailure
++      serviceAccount: chains-secrets-admin
++      serviceAccountName: chains-secrets-admin
++      terminationGracePeriodSeconds: 30
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-prod-01/stonesoup-infra-production/redhat-prod-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-prod-01/stonesoup-infra-production/redhat-prod-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: beta
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-tekton-oci-bundles: true
++    performance:
++      kube-api-burst: 50
++      kube-api-qps: 50
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        settings:
++          application-name: Red Hat Trusted App Pipeline
++          custom-console-name: Red Hat Trusted App Pipeline
++          custom-console-url: https://console.redhat.com/preview/application-pipeline
++          custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline
++          custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline
++  profile: all
++  pruner:
++    keep: 10
++    resources:
++    - pipelinerun
++    schedule: 0/2 * * * *
++  targetNamespace: openshift-pipelines
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-1.12
++  name: openshift-pipelines-operator-rh
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml
+index ec5720c2..ee2da5d8 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml
+@@ -1,17 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
+-patches:
+-  - path: tekton-results-database-secret-path.yaml
+-    target:
+-      name: tekton-results-database
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: tekton-results-s3-secret-path.yaml
+-    target:
+-      name: tekton-results-s3
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
++  - deploy.yaml
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+new file mode 100644
+index 00000000..dedaea51
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+@@ -0,0 +1,17 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-results-database-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/production/stone-prd-rh01/tekton-results-database-secret-path.yaml
+rename to components/pipeline-service/production/stone-prd-rh01/resources/tekton-results-database-secret-path.yaml
+diff --git a/components/pipeline-service/production/stone-prd-rh01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-results-s3-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/production/stone-prd-rh01/tekton-results-s3-secret-path.yaml
+rename to components/pipeline-service/production/stone-prd-rh01/resources/tekton-results-s3-secret-path.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+new file mode 100644
+index 00000000..7069bc9c
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -0,0 +1,1956 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: chains-secret-admin
++subjects:
++- kind: ServiceAccount
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.webhook: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "sampling": {
++        "initial": 100,
++        "thereafter": 100
++      },
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/component: resolvers
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-pipelines
++    operator.tekton.dev/operand-name: tektoncd-pipelines
++  name: config-logging
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=require
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args:
++        - -zap-log-level=6
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 512Mi
++          requests:
++            cpu: 250m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 100m
++            memory: 512Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="openshift-pipelines"
++          secret="signing-secrets"
++
++          cd /tmp
++
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
++            echo "Signing secret exists and is non-empty."
++          else
++            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
++            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
++
++            # To make this run conveniently without user input let's create a random password
++            RANDOM_PASS=$( openssl rand -base64 30 )
++
++            # Generate the key pair secret directly in the cluster.
++            # The secret should be created as immutable.
++            echo "Generating k8s secret/$secret in $namespace with key-pair"
++            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
++          fi
++
++          # If the secret is not marked as immutable, make it so.
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
++            echo "Making secret immutable"
++            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
++              --patch='{"immutable": true}' \
++            | kubectl apply -f -
++          fi
++
++          echo "Generating/updating the secret with the public key"
++          kubectl create secret generic public-key \
++            --namespace "$namespace" \
++            --from-literal=cosign.pub="$(
++              cosign public-key --key "k8s://$namespace/$secret"
++            )" \
++            --dry-run=client \
++            -o yaml | kubectl apply -f -
++        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        imagePullPolicy: Always
++        name: chains-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: OnFailure
++      serviceAccount: chains-secrets-admin
++      serviceAccountName: chains-secrets-admin
++      terminationGracePeriodSeconds: 30
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: staging/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-staging-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: beta
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-tekton-oci-bundles: true
++    performance:
++      kube-api-burst: 50
++      kube-api-qps: 50
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        settings:
++          application-name: RHTAP Staging
++          custom-console-name: RHTAP Staging
++          custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
++          custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
++          custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
++  profile: all
++  pruner:
++    keep: 2
++    resources:
++    - pipelinerun
++    schedule: 0/2 * * * *
++  targetNamespace: openshift-pipelines
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-1.12
++  name: openshift-pipelines-operator-rh
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/staging/stone-stg-m01/kustomization.yaml b/components/pipeline-service/staging/stone-stg-m01/kustomization.yaml
+index ec5720c2..ee2da5d8 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/kustomization.yaml
+@@ -1,17 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
+-patches:
+-  - path: tekton-results-database-secret-path.yaml
+-    target:
+-      name: tekton-results-database
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: tekton-results-s3-secret-path.yaml
+-    target:
+-      name: tekton-results-s3
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
++  - deploy.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+new file mode 100644
+index 00000000..dedaea51
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+@@ -0,0 +1,17 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/stone-stg-m01/tekton-results-database-secret-path.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-database-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/stone-stg-m01/tekton-results-database-secret-path.yaml
+rename to components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-database-secret-path.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-m01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-s3-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/stone-stg-m01/tekton-results-s3-secret-path.yaml
+rename to components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-s3-secret-path.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+new file mode 100644
+index 00000000..b34e2834
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -0,0 +1,1956 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: chains-secret-admin
++subjects:
++- kind: ServiceAccount
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.webhook: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "sampling": {
++        "initial": 100,
++        "thereafter": 100
++      },
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/component: resolvers
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-pipelines
++    operator.tekton.dev/operand-name: tektoncd-pipelines
++  name: config-logging
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=require
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args:
++        - -zap-log-level=6
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 512Mi
++          requests:
++            cpu: 250m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 100m
++            memory: 512Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="openshift-pipelines"
++          secret="signing-secrets"
++
++          cd /tmp
++
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
++            echo "Signing secret exists and is non-empty."
++          else
++            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
++            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
++
++            # To make this run conveniently without user input let's create a random password
++            RANDOM_PASS=$( openssl rand -base64 30 )
++
++            # Generate the key pair secret directly in the cluster.
++            # The secret should be created as immutable.
++            echo "Generating k8s secret/$secret in $namespace with key-pair"
++            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
++          fi
++
++          # If the secret is not marked as immutable, make it so.
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
++            echo "Making secret immutable"
++            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
++              --patch='{"immutable": true}' \
++            | kubectl apply -f -
++          fi
++
++          echo "Generating/updating the secret with the public key"
++          kubectl create secret generic public-key \
++            --namespace "$namespace" \
++            --from-literal=cosign.pub="$(
++              cosign public-key --key "k8s://$namespace/$secret"
++            )" \
++            --dry-run=client \
++            -o yaml | kubectl apply -f -
++        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        imagePullPolicy: Always
++        name: chains-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: OnFailure
++      serviceAccount: chains-secrets-admin
++      serviceAccountName: chains-secrets-admin
++      terminationGracePeriodSeconds: 30
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: staging/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-staging-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: beta
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-tekton-oci-bundles: true
++    performance:
++      kube-api-burst: 50
++      kube-api-qps: 50
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        settings:
++          application-name: RHTAP Staging
++          custom-console-name: RHTAP Staging
++          custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
++          custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
++          custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
++  profile: all
++  pruner:
++    keep: 2
++    resources:
++    - pipelinerun
++    schedule: 0/2 * * * *
++  targetNamespace: openshift-pipelines
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-1.12
++  name: openshift-pipelines-operator-rh
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/kustomization.yaml b/components/pipeline-service/staging/stone-stg-rh01/kustomization.yaml
+index ec5720c2..ee2da5d8 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/kustomization.yaml
+@@ -1,17 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
+-patches:
+-  - path: tekton-results-database-secret-path.yaml
+-    target:
+-      name: tekton-results-database
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: tekton-results-s3-secret-path.yaml
+-    target:
+-      name: tekton-results-s3
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
++  - deploy.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stg-rh01/resources/kustomization.yaml
+new file mode 100644
+index 00000000..dedaea51
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-rh01/resources/kustomization.yaml
+@@ -0,0 +1,17 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/tekton-results-database-secret-path.yaml b/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-database-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/stone-stg-rh01/tekton-results-database-secret-path.yaml
+rename to components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-database-secret-path.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-s3-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/stone-stg-rh01/tekton-results-s3-secret-path.yaml
+rename to components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-s3-secret-path.yaml
+diff --git a/staging-app.yaml b/staging-app.yaml
+new file mode 100644
+index 00000000..24f8bc51
+--- /dev/null
++++ b/staging-app.yaml
+@@ -0,0 +1,11 @@
++---
++# This is the file which contains the argocd applicationset names running as per the component in staging.
++# Using this file to filter out which component has been changed in pull request
++monitoring:
++  - monitoring-workload-grafana
++pipeline-service:
++  - pipeline-service
++build-service:
++  - build-service
++integration:
++  - integration
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6266aab1/production/components/image-controller/production/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6266aab1/production/components/has/production/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 720f747e to 6266aab1 on Wed Nov 22 08:57:57 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (9345 lines)</summary>  
+
+``` 
+diff --git a/.tekton/hack/check-pr-label.py b/.tekton/hack/check-pr-label.py
+new file mode 100755
+index 00000000..1163fbb8
+--- /dev/null
++++ b/.tekton/hack/check-pr-label.py
+@@ -0,0 +1,47 @@
++#!/usr/bin/env python3
++import json
++import os
++import requests
++import argparse
++
++def get_labels_name(args):
++    github_api_url = os.environ.get('GITHUB_API_URL', "https://api.github.com")
++    req = requests.get(
++      f"{github_api_url}/repos/{args.git_owner}/{args.git_repo}/issues/{args.pr_number}",
++      headers={
++        "Authorization": f"Bearer {args.token}"
++      },
++      data=json.dumps({}))
++    response = req.json()
++    label_names = [label["name"] for label in response["labels"]]
++    return label_names
++
++def check_label_exist(args, label_names):
++    if not label_names or args.label not in label_names:
++      print("Label does not exists")
++      return False
++    else:
++      print("Label matched")
++      return True
++
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="check pull request labels")
++    parser.add_argument("--filepath", "-f", required=True)
++    parser.add_argument("--label", "-l", required=True)
++    parser.add_argument("--token", "-t", required=True)
++    parser.add_argument("--git-owner", "-o", required=True)
++    parser.add_argument("--git-repo", "-r", required=True)
++    parser.add_argument("--pr-number", "-n", required=True)
++    return parser.parse_args()
++
++
++def main(args):
++    label_names = get_labels_name(args)
++    matched_label_status = check_label_exist(args, label_names)
++    with open(args.filepath, "w") as f:
++      f.write(str(matched_label_status))
++
++
++if __name__ == "__main__":
++    main(parse_args())
+diff --git a/.tekton/hack/get-component-name.py b/.tekton/hack/get-component-name.py
+new file mode 100755
+index 00000000..e60e725d
+--- /dev/null
++++ b/.tekton/hack/get-component-name.py
+@@ -0,0 +1,47 @@
++#!/usr/bin/env python3
++import argparse
++import yaml
++import re
++
++def update_app_path(app_path, app_name):
++    with open(app_path, "a") as f:
++        f.write(app_name + "\n")
++
++def main(args):
++    try:
++        APP_FILE_NAME = args.filepath
++
++        # Load applicationset file
++        with open(APP_FILE_NAME) as f:
++            applications = yaml.safe_load(f)
++
++        keys_pattern = r"\b(" + "|".join(re.escape(key) for key in applications.keys()) + r")\b"
++
++        # Print the list of file paths
++        apps = []
++        for file in open(args.pr_filepath).readlines():
++            file = file.strip()
++            path_matches = re.findall(keys_pattern, file)
++            apps.extend(path_matches)
++
++        # Find app match in pull request files
++        unique_apps = set(apps)
++
++        if not unique_apps:
++            print(f'No matching components found in pull request files. Add them to the {APP_FILE_NAME} file.')
++        else:
++            for app in unique_apps:
++                for app_name in applications.get(app, []):
++                    update_app_path(args.app_filepath, app + ":" + app_name)
++    except Exception as e:
++        print(f"Error while updating the applicationset name into file: {str(e)}")
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="update a file with all the applicationsets for application changed in PR")
++    parser.add_argument("--filepath", "-f", required=True)
++    parser.add_argument("--app-filepath", "-af", required=True)
++    parser.add_argument("--pr-filepath", "-pf", required=True)
++    return parser.parse_args()
++
++if __name__ == '__main__':
++    main(parse_args())
+diff --git a/.tekton/hack/get-git-token.py b/.tekton/hack/get-git-token.py
+new file mode 100755
+index 00000000..49e22469
+--- /dev/null
++++ b/.tekton/hack/get-git-token.py
+@@ -0,0 +1,92 @@
++#!/usr/bin/env python3
++import argparse
++import json
++import os
++import time
++import requests
++from jwcrypto import jwk, jwt
++
++EXPIRE_MINUTES_AS_SECONDS = int(os.environ.get('GITHUBAPP_TOKEN_EXPIRATION_MINUTES', 10)) * 60
++GITHUB_API_URL = os.environ.get('GITHUB_API_URL', "https://api.github.com")
++
++class GitHub():
++    token = None
++
++    def __init__(self, private_key, app_id=None, installation_id=None):
++        if not isinstance(private_key, bytes):
++            raise ValueError(f'"{private_key}" parameter must be byte-string')
++        self._private_key = private_key
++        self.app_id = app_id
++        self.token = self._get_token(installation_id)
++
++    def _load_private_key(self, pem_key_bytes):
++        return jwk.JWK.from_pem(pem_key_bytes)
++
++    def _app_token(self, expire_in=EXPIRE_MINUTES_AS_SECONDS):
++        key = self._load_private_key(self._private_key)
++        now = int(time.time())
++        token = jwt.JWT(
++            header={"alg": "RS256"},
++            claims={
++                "iat": now,
++                "exp": now + expire_in,
++                "iss": self.app_id
++            },
++            algs=["RS256"],
++        )
++        token.make_signed_token(key)
++        return token.serialize()
++
++    def _get_token(self, installation_id=None):
++        app_token = self._app_token()
++        if not installation_id:
++            return app_token
++        req = self._request(
++            "POST",
++            f"/app/installations/{installation_id}/access_tokens",
++            headers={
++                "Authorization": f"Bearer {app_token}",
++                "Accept": "application/vnd.github.machine-man-preview+json"
++            }
++        )
++        ret = req.json()
++        if 'token' not in ret:
++            raise Exception(f"Authentication errors: {ret}")
++        return ret['token']
++
++    def _request(self, method, url, headers={}, data={}):
++        if self.token and 'Authorization' not in headers:
++            headers.update({"Authorization": "Bearer " + self.token})
++        if not url.startswith("http"):
++            url = f"{GITHUB_API_URL}{url}"
++        return requests.request(method, url, headers=headers, data=json.dumps(data))
++
++    def get_git_token(self):
++        return self.token
++
++def main(args):
++    with open(args.private_key_path, 'rb') as key_file:
++        key = key_file.read()
++    if args.git_app_id:
++        app_id = args.git_app_id
++    else:
++        raise Exception("application id is not set")
++    print(f"Getting user token for application_id: {app_id}")
++    github_app = GitHub(
++        key,
++        app_id=app_id,
++        installation_id=args.git_installation_id)
++    git_token = github_app.get_git_token()
++    with open(args.token_path, "w") as f:
++        f.write(git_token)
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="get github app token")
++    parser.add_argument("--private-key-path", "-p", required=True)
++    parser.add_argument("--git-app-id", "-i", required=True)
++    parser.add_argument("--git-installation-id", "-I", required=True)
++    parser.add_argument("--token-path", "-T", required=True)
++    return parser.parse_args()
++
++if __name__ == '__main__':
++    main(parse_args())
+diff --git a/.tekton/hack/merge-pr.py b/.tekton/hack/merge-pr.py
+new file mode 100755
+index 00000000..429fa6d9
+--- /dev/null
++++ b/.tekton/hack/merge-pr.py
+@@ -0,0 +1,93 @@
++#!/usr/bin/env python3
++import os
++import requests
++import argparse
++
++github_graphql_api_url = os.environ.get('GITHUB_GRAPHQL_API_URL', "https://api.github.com/graphql")
++
++def run_query(query, variables, headers={}):
++    url = f"{github_graphql_api_url}"
++    request = requests.post(url, json={'query': query, 'variables': variables}, headers=headers)
++    if request.status_code == 200:
++        return request.json()
++    else:
++        raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query))
++
++def get_pr_id_branch_oid(args):
++    get_pr_id_branch_oid_query_variables = {
++      "owner": f"{args.git_owner}",
++      "repo": f"{args.git_repo}",
++      "pr_number": int(f"{args.pr_number}"),
++      "source_branch_name": f"{args.branch}",
++    }
++    get_pr_id_branch_oid_query = """
++    query GetPullRequestIDs($owner:String!, $repo:String!, $pr_number:Int!, $source_branch_name:String!) {
++      repository(owner:$owner, name:$repo) {
++        pullRequest(number: $pr_number) {
++          id
++        }
++        ref(qualifiedName: $source_branch_name) {
++          target {
++            oid
++          }
++        }
++      }
++    }
++    """
++    result = run_query(
++        get_pr_id_branch_oid_query,
++        get_pr_id_branch_oid_query_variables,
++        headers={
++            "Authorization": f"Bearer {args.token}"
++        })
++    pr_id = result["data"]["repository"]["pullRequest"]["id"]
++    source_branch_oid = result["data"]["repository"]["ref"]["target"]["oid"]
++    return pr_id, source_branch_oid
++
++def merge_pr(args, pr_id, source_branch_oid):
++    merge_pr_varaibles = {
++      "pullrequest_id": str(pr_id),
++      "expectedHeadOid": source_branch_oid,
++      "mergeMethod" : 'MERGE',
++    }
++
++    merge_pr_mutation = """
++    mutation MergePullRequest($pullrequest_id:ID!, $expectedHeadOid:GitObjectID, $mergeMethod:PullRequestMergeMethod) {
++      mergePullRequest(input:{pullRequestId: $pullrequest_id, expectedHeadOid: $expectedHeadOid, mergeMethod: $mergeMethod}) {
++        clientMutationId
++        pullRequest {
++          id
++        }
++      }
++    }
++    """
++
++    result = run_query(
++        merge_pr_mutation,
++        merge_pr_varaibles,
++        headers={
++            "Authorization": f"Bearer {args.token}"
++        })
++    if "errors" in result.keys():
++        for error in result["errors"]:
++            print("ERROR: {0}".format(error["message"]))
++    else:
++        print("SUCCESS: merged PR id {0}".format(result["data"]["mergePullRequest"]["pullRequest"]["id"]))
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="merge pull request")
++    parser.add_argument("--branch", "-b", required=True)
++    parser.add_argument("--token", "-t", required=True)
++    parser.add_argument("--git-owner", "-o", required=True)
++    parser.add_argument("--git-repo", "-r", required=True)
++    parser.add_argument("--pr-number", "-n", required=True)
++    return parser.parse_args()
++
++
++def main(args):
++    pr_id, source_branch_oid = get_pr_id_branch_oid(args)
++    merge_pr(args, pr_id, source_branch_oid)
++
++
++if __name__ == "__main__":
++    main(parse_args())
+diff --git a/.tekton/hack/remove-pr-label.py b/.tekton/hack/remove-pr-label.py
+new file mode 100755
+index 00000000..1b28a90c
+--- /dev/null
++++ b/.tekton/hack/remove-pr-label.py
+@@ -0,0 +1,54 @@
++#!/usr/bin/env python3
++import json
++import os
++import requests
++import argparse
++
++github_api_url = os.environ.get('GITHUB_API_URL', "https://api.github.com")
++
++def get_labels_name(args):
++    req = requests.get(
++      f"{github_api_url}/repos/{args.git_owner}/{args.git_repo}/issues/{args.pr_number}",
++      headers={
++        "Authorization": f"Bearer {args.token}"
++      },
++      data=json.dumps({}))
++    response = req.json()
++    label_names = [label["name"] for label in response["labels"]]
++    return label_names
++
++def remove_label(args, label_names):
++    # Check if the label to remove exists on the pull request
++    if args.label in label_names:
++        # Remove the label
++        label_names.remove(args.label)
++
++        # Update the labels on the pull request
++        req = requests.patch(
++            f"{github_api_url}/repos/{args.git_owner}/{args.git_repo}/issues/{args.pr_number}",
++            headers={
++                "Authorization": f"Bearer {args.token}"
++            },
++            data=json.dumps({"labels": label_names}))
++        if req.status_code == 200:
++          print("label {args.label} has been removed successfully")
++        else:
++          raise Exception("Failed to remove the label {args.label} from the pull request.")
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="remove pull request labels")
++    parser.add_argument("--label", "-l", required=True)
++    parser.add_argument("--token", "-t", required=True)
++    parser.add_argument("--git-owner", "-o", required=True)
++    parser.add_argument("--git-repo", "-r", required=True)
++    parser.add_argument("--pr-number", "-n", required=True)
++    return parser.parse_args()
++
++
++def main(args):
++    label_names = get_labels_name(args)
++    remove_label(args, label_names)
++
++
++if __name__ == "__main__":
++    main(parse_args())
+diff --git a/.tekton/hack/update-argocd-app-revision.sh b/.tekton/hack/update-argocd-app-revision.sh
+new file mode 100755
+index 00000000..41583e71
+--- /dev/null
++++ b/.tekton/hack/update-argocd-app-revision.sh
+@@ -0,0 +1,95 @@
++#!/usr/bin/env bash
++
++#quit if exit status of any cmd is a non-zero value
++set -o errexit
++set -o nounset
++set -o pipefail
++
++usage() {
++    echo "
++Usage: 
++    ${0##*/} ./update-argocd-app-revision.sh [options]
++Replace the argocd application revision.
++Mandatory arguments:
++    --branch
++        Pull request branch
++    --filepath
++        path to the file which has contains applicationset e.g pipeline-service: pipeline-service-stone-stg-m01
++    
++Optional arguments:
++    -h, --help
++        Display this message.
++Example:
++    ${0##*/} ./update-argocd-app-revision.sh --branch test-branch
++" >&2
++
++}
++
++parse_args() {
++  while [[ $# -gt 0 ]]; do
++    case $1 in
++    -b | --branch)
++      shift
++      export BRANCH="$1"
++      ;;
++    -p | --filepath)
++      shift
++      export FILEPATH="$1"
++      ;;
++    -h | --help)
++      usage
++      exit 0
++      ;;
++    *)
++      echo "Unknown argument: $1"
++      usage
++      exit 1
++      ;;
++    esac
++      shift
++  done
++}
++
++prechecks() {
++    if [[ -z "$BRANCH" ]]; then
++      printf "PR Branch is not set\n\n"
++      usage
++      exit 1
++    fi
++    if [[ -z "$FILEPATH" ]]; then
++      printf "path of applicationset is not set\n\n"
++      usage
++      exit 1
++    fi
++}
++
++main() {
++    parse_args "$@"
++    prechecks
++
++    echo "Disable auto sync for all-application-sets"
++    if ! oc patch applications.argoproj.io/all-application-sets -n openshift-gitops --type json --patch='[ { "op": "remove", "path": "/spec/syncPolicy/automated" } ]'; then
++      echo "Failed to disable auto sync."
++      exit 1
++    fi
++    # Read each line from the component file, which has all the application details from sync app task e.g {pipeline-service: pipeline-service-stone-stg-m01}
++    while IFS= read -r line
++    do
++    component="$line"
++    component=$(echo -e "$component" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
++    
++    # Set the delimiter to separate component-app and appset name
++    IFS=":"
++    read -ra app <<< "$component"
++    echo "Replace revision for changed components ${app[0]} application set"
++    if ! oc patch applicationsets.argoproj.io/${app[1]} -n openshift-gitops --type json --patch="[ { \"op\": \"replace\", \"path\": \"/spec/template/spec/source/targetRevision\", \"value\": \"$BRANCH\" } ]"; then
++      echo "Error: Failed to replace revision for ${app[0]} application set."
++      exit 1
++    fi
++
++    done < "$FILEPATH"
++}
++
++if [ "${BASH_SOURCE[0]}" == "$0" ]; then
++  main "$@"
++fi
+diff --git a/.tekton/pipeline/rhtap-staging-e2e.yaml b/.tekton/pipeline/rhtap-staging-e2e.yaml
+new file mode 100644
+index 00000000..d3ad83fe
+--- /dev/null
++++ b/.tekton/pipeline/rhtap-staging-e2e.yaml
+@@ -0,0 +1,270 @@
++apiVersion: tekton.dev/v1beta1
++kind: Pipeline
++metadata:
++  name: rhtap-staging-e2e
++  namespace: rhtap-staging-testing
++spec:
++  params:
++    - name: repo_url
++    - name: revision
++    - name: pull_request_number
++    - name: source_branch
++  workspaces:
++    - name: git
++    - name: shared-file
++  tasks:
++    - name: get-github-token
++      taskRef:
++        name: get-github-token
++      runAfter:
++        - clone-infra-deployment-git
++      workspaces:
++        - name: shared-file-path
++          workspace: shared-file
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++    - name: check-merge-label
++      taskRef:
++        name: pr-labels
++      params:
++        - name: pull_request_number
++          value: $(params.pull_request_number)
++        - name: match_label
++          value: "ok-to-merge"
++      runAfter:
++        - get-github-token
++        - clone-infra-deployment-git
++      workspaces:
++        - name: shared-file-path
++          workspace: shared-file
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++    - name: clone-infra-deployment-git
++      taskRef:
++        name: git-clone
++      params:
++        - name: url
++          value: $(params.repo_url)
++        - name: deleteExisting
++          value: "true"
++        - name: revision
++          value: $(params.revision)
++        - name: depth
++          value: "3"
++      workspaces:
++      - name: output
++        workspace: git
++        subPath: infra-deployment-git
++    - name: get-pr-modified-files
++      taskRef:
++        name: get-pr-modified-files
++      runAfter:
++        - check-merge-label
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++    - name: changed-component-app-name
++      taskRef:
++        name: component-app-name
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      runAfter:
++        - get-pr-modified-files
++    - name: check-rebase-label-pre-test
++      taskRef:
++        name: pr-rebase-labels
++      runAfter:
++        - get-pr-modified-files
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++    - name: rebase-pr-pre-test
++      taskRef:
++        name: rebase-pr
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["True"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      runAfter:
++        - check-rebase-label-pre-test
++    - name: replace-revision
++      taskRef:
++        name: replace-revision
++      params:
++        - name: pr_branch_revision
++          value: $(params.revision)
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["False"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      runAfter:
++        - changed-component-app-name
++        - check-rebase-label-pre-test
++    - name: clone-stage-e2e-git
++      taskRef:
++        name: git-clone
++      params:
++        - name: url
++          value: 'https://github.com/sawood14012/e2e-tests.git'
++        - name: deleteExisting
++          value: "true"
++        - name: revision
++          value: "verify-stage"
++      runAfter:
++        - check-merge-label
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++      - name: output
++        workspace: git
++        subPath: stage-e2e-git
++    - name: stage-verify-e2e-test
++      taskRef:
++        name: stage-verify-e2e-test
++      params:
++      - name: TASK_RETRIES
++        value: "$(context.pipelineTask.retries)"
++      workspaces:
++      - name: stage-e2e-git
++        workspace: git
++        subPath: stage-e2e-git
++      runAfter:
++        - replace-revision
++        - clone-stage-e2e-git
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["False"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++    - name: check-rebase-label-post-test
++      taskRef:
++        name: pr-rebase-labels
++      runAfter:
++        - stage-verify-e2e-test
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["False"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++    - name: remove-merge-label
++      taskRef:
++        name: remove-pr-labels
++      params:
++        - name: match_label
++          value: "ok-to-merge"
++        - name: pull_request_number
++          value: $(params.pull_request_number)
++      when:
++        - input: $(tasks.check-rebase-label-post-test.results.matched-rebase-label)
++          operator: in
++          values: ["True"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++        - name: shared-file-path
++          workspace: shared-file
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++      runAfter:
++        - check-rebase-label-post-test
++    - name: rebase-pr-post-test
++      taskRef:
++        name: rebase-pr
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      runAfter:
++        - remove-merge-label
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++        - input: $(tasks.check-rebase-label-post-test.results.matched-rebase-label)
++          operator: in
++          values: ["True"]
++    - name: merge-pr
++      taskRef:
++        name: merge-pr
++      params:
++        - name: pull_request_number
++          value: $(params.pull_request_number)
++        - name: source_branch
++          value: $(params.source_branch)
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      runAfter:
++        - rebase-pr-post-test
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["False"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++  finally:
++    - name: revert-replace-revision
++      taskRef:
++        name: revert-replace-revision
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
+diff --git a/.tekton/rhtap-staging-e2e-ci.yaml b/.tekton/rhtap-staging-e2e-ci.yaml
+new file mode 100644
+index 00000000..6729ab67
+--- /dev/null
++++ b/.tekton/rhtap-staging-e2e-ci.yaml
+@@ -0,0 +1,56 @@
++apiVersion: tekton.dev/v1beta1
++kind: PipelineRun
++metadata:
++  generateName: rhtap-staging-e2e-
++  namespace: rhtap-staging-testing
++  annotations:
++    pipelinesascode.tekton.dev/on-cel-expression: |
++      event == "pull_request" && target_branch == "main" &&
++      (
++        "**/staging/**".pathChanged() ||
++        "argo-cd-apps/app-of-app-sets/base/**".pathChanged() ||
++        "components/*/base/**".pathChanged()
++      )
++    pipelinesascode.tekton.dev/pipeline: "[.tekton/pipeline/rhtap-staging-e2e.yaml]"
++    pipelinesascode.tekton.dev/task: "[.tekton/tasks/verify-smoke-e2e.yaml]"
++    pipelinesascode.tekton.dev/task-1: "[.tekton/tasks/get-pr-modified-files.yaml]"
++    pipelinesascode.tekton.dev/task-2: "[.tekton/tasks/component-app-name.yaml]"
++    pipelinesascode.tekton.dev/task-3: "[.tekton/tasks/rebase-pr.yaml]"
++    pipelinesascode.tekton.dev/task-4: "[.tekton/tasks/replace-revision.yaml]"
++    pipelinesascode.tekton.dev/task-5: "[.tekton/tasks/revert-replace-revision.yaml]"
++    pipelinesascode.tekton.dev/task-6: "[.tekton/tasks/merge-pr.yaml]"
++    pipelinesascode.tekton.dev/task-7: "[.tekton/tasks/check-pr-label.yaml]"
++    pipelinesascode.tekton.dev/task-8: "[.tekton/tasks/remove-pr-label.yaml]"
++    pipelinesascode.tekton.dev/task-9: "[.tekton/tasks/get-git-token.yaml]"
++    pipelinesascode.tekton.dev/task-10: "[.tekton/tasks/check-pr-rebase-label.yaml]"
++    pipelinesascode.tekton.dev/task-11: "[git-clone]"
++    pipelinesascode.tekton.dev/max-keep-runs: "10"
++spec:
++  params:
++    - name: repo_url
++      value: "{{ repo_url }}"
++    - name: revision
++      value: "{{ revision }}"
++    - name: pull_request_number
++      value: "{{ pull_request_number }}"
++    - name: source_branch
++      value: "{{ source_branch }}"
++  pipelineRef:
++    name: rhtap-staging-e2e
++  workspaces:
++    - name: git
++      volumeClaimTemplate:
++        spec:
++          accessModes:
++            - ReadWriteOnce
++          resources:
++            requests:
++              storage: 1Gi
++    - name: shared-file
++      volumeClaimTemplate:
++        spec:
++          accessModes:
++            - ReadWriteOnce
++          resources:
++            requests:
++              storage: 50Mi
+diff --git a/.tekton/tasks/check-pr-label.yaml b/.tekton/tasks/check-pr-label.yaml
+new file mode 100644
+index 00000000..e8084ce7
+--- /dev/null
++++ b/.tekton/tasks/check-pr-label.yaml
+@@ -0,0 +1,39 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: pr-labels
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    check if the pull request label for which the test is running on staging is ready to be merged
++  params:
++    - name: match_label
++    - name: pull_request_number
++    - name: TARGET_GH_OWNER
++      description: Owner of GitHub repository of the infra-deployments code
++      default: redhat-appstudio
++    - name: TARGET_GH_REPO
++      description: GitHub repository of the infra-deployments code
++      default: infra-deployments
++  results:
++    - name: matched-merge-label
++  workspaces:
++    - name: shared-file-path
++    - name: infra-deployment-git
++  steps:
++    - name: check-pr-label
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      env:
++        - name: PULL_REQUEST_NUMBER
++          value: $(params.pull_request_number)
++        - name: TARGET_GH_OWNER
++          value: "$(params.TARGET_GH_OWNER)"
++        - name: TARGET_GH_REPO
++          value: "$(params.TARGET_GH_REPO)"
++      script: |
++        #!/usr/bin/env bash
++
++        token=$(cat '$(workspaces.shared-file-path.path)/github-token.txt')
++
++        ".tekton/hack/check-pr-label.py" --token ${token} --label "$(params.match_label)" -f '$(results.matched-merge-label.path)' -o ${TARGET_GH_OWNER} -r ${TARGET_GH_REPO} -n ${PULL_REQUEST_NUMBER}
+diff --git a/.tekton/tasks/check-pr-rebase-label.yaml b/.tekton/tasks/check-pr-rebase-label.yaml
+new file mode 100644
+index 00000000..b7b092d3
+--- /dev/null
++++ b/.tekton/tasks/check-pr-rebase-label.yaml
+@@ -0,0 +1,27 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: pr-rebase-labels
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    check if the pull request label for which the test is running on staging needs to be rebased.
++  results:
++    - name: matched-rebase-label
++  workspaces:
++    - name: infra-deployment-git
++  steps:
++    - name: check-pr-rebase-label
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        git config --global --add safe.directory $(pwd)
++        git fetch
++        if [ "$(git log HEAD ..origin/main | wc -l)" == "0" ]; then
++          echo -n "False" > "$(results.matched-rebase-label.path)"
++        else
++          echo -n "True" > "$(results.matched-rebase-label.path)"
++        fi
+diff --git a/.tekton/tasks/component-app-name.yaml b/.tekton/tasks/component-app-name.yaml
+new file mode 100644
+index 00000000..76318ccf
+--- /dev/null
++++ b/.tekton/tasks/component-app-name.yaml
+@@ -0,0 +1,35 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: component-app-name
++  namespace: rhtap-staging-testing
++spec:
++  params:
++   - name: APP_FILE_NAME
++     description: This is the file which contains the argocd applicationset names running as per the component.
++     default: "staging-app.yaml"
++  description: >-
++    This task is to find out which applicationset needs to be updated for the staging cluster argocd application
++  workspaces:
++   - name: infra-deployment-git
++   - name: shared-file-path
++  steps:
++    - name: get-component-app-name
++      image: image-registry.openshift-image-registry.svc:5000/openshift/python:3.8
++      workingDir: $(workspaces.infra-deployment-git.path)
++      env:
++        - name: APP_FILE_NAME
++          value: $(params.APP_FILE_NAME)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        default_appset_file="$(pwd)/${APP_FILE_NAME}"
++
++        if pip3 install pyyaml 2>&1; then
++          echo "PyYAML installed successfully"
++        else
++          echo "Error running 'pip3 install pyyaml': $?"
++        fi
++
++        ".tekton/hack/get-component-name.py" --filepath ${default_appset_file} --app-filepath "$(workspaces.shared-file-path.path)/component.txt" --pr-filepath "$(workspaces.shared-file-path.path)/updated_files.txt"
+diff --git a/.tekton/tasks/get-git-token.yaml b/.tekton/tasks/get-git-token.yaml
+new file mode 100644
+index 00000000..c921a5ac
+--- /dev/null
++++ b/.tekton/tasks/get-git-token.yaml
+@@ -0,0 +1,46 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: get-github-token
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    get the github app token for infra-deployment
++  params:
++    - name: shared-secret
++      default: infra-deployments-pr-creator
++      description: secret in the namespace which contains private key for the GitHub App
++    - name: GITHUB_APP_ID
++      description: ID of Github app used for updating PR
++      default: "305606"
++    - name: GITHUB_APP_INSTALLATION_ID
++      description: Installation ID of Github app in the organization
++      default: "35269675"
++  workspaces:
++   - name: shared-file-path
++   - name: infra-deployment-git
++  volumes:
++    - name: infra-deployments-pr-creator
++      secret:
++        # 'private-key' - private key for Github app
++        secretName: $(params.shared-secret)
++  steps:
++    - name: get-token
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      volumeMounts:
++        - name: infra-deployments-pr-creator
++          mountPath: /secrets/deploy-key
++      env:
++        - name: GITHUBAPP_KEY_PATH
++          value: /secrets/deploy-key/private-key
++        - name: GITHUBAPP_APP_ID
++          value: "$(params.GITHUB_APP_ID)"
++        - name: GITHUBAPP_INSTALLATION_ID
++          value: "$(params.GITHUB_APP_INSTALLATION_ID)"
++      script: |
++        #!/usr/bin/env bash
++
++        ".tekton/hack/get-git-token.py" --token-path '$(workspaces.shared-file-path.path)/github-token.txt' --private-key-path ${GITHUBAPP_KEY_PATH} --git-app-id ${GITHUBAPP_APP_ID} --git-installation-id ${GITHUBAPP_INSTALLATION_ID}
++
++        echo "successfully got the token"
+diff --git a/.tekton/tasks/get-pr-modified-files.yaml b/.tekton/tasks/get-pr-modified-files.yaml
+new file mode 100644
+index 00000000..39019cdb
+--- /dev/null
++++ b/.tekton/tasks/get-pr-modified-files.yaml
+@@ -0,0 +1,23 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: get-pr-modified-files
++  namespace: rhtap-staging-testing
++spec:
++  description: >-
++    This task retrieves the file paths modified by the pull request
++  workspaces:
++   - name: infra-deployment-git
++   - name: shared-file-path
++  steps:
++    - name: get-merged-pr-files-changed
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++        
++        git config --global --add safe.directory $(pwd)
++        git fetch
++        git diff --name-only origin/main > $(workspaces.shared-file-path.path)/updated_files.txt
++        cat '$(workspaces.shared-file-path.path)/updated_files.txt'
+diff --git a/.tekton/tasks/merge-pr.yaml b/.tekton/tasks/merge-pr.yaml
+new file mode 100644
+index 00000000..ab039122
+--- /dev/null
++++ b/.tekton/tasks/merge-pr.yaml
+@@ -0,0 +1,39 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: merge-pr
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    merge the pull request into main branch.
++  params:
++    - name: pull_request_number
++    - name: TARGET_GH_OWNER
++      description: Owner of GitHub repository of the infra-deployments code
++      default: redhat-appstudio
++    - name: TARGET_GH_REPO
++      description: GitHub repository of the infra-deployments code
++      default: infra-deployments
++    - name: source_branch
++  workspaces:
++   - name: shared-file-path
++   - name: infra-deployment-git
++  steps:
++    - name: merge-pull-request
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      env:
++        - name: PULL_REQUEST_NUMBER
++          value: $(params.pull_request_number)
++        - name: SOURCE_BRANCH
++          value: $(params.source_branch)
++        - name: TARGET_GH_OWNER
++          value: "$(params.TARGET_GH_OWNER)"
++        - name: TARGET_GH_REPO
++          value: "$(params.TARGET_GH_REPO)"
++      script: |
++        #!/usr/bin/env bash
++
++        token=$(cat '$(workspaces.shared-file-path.path)/github-token.txt')
++
++        ".tekton/hack/merge-pr.py" --token ${token} --branch ${SOURCE_BRANCH} -o ${TARGET_GH_OWNER} -r ${TARGET_GH_REPO} -n ${PULL_REQUEST_NUMBER}
+diff --git a/.tekton/tasks/rebase-pr.yaml b/.tekton/tasks/rebase-pr.yaml
+new file mode 100644
+index 00000000..d2a1897d
+--- /dev/null
++++ b/.tekton/tasks/rebase-pr.yaml
+@@ -0,0 +1,26 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: rebase-pr
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    rebase the pull request for which the test is running on staging.
++  workspaces:
++   - name: infra-deployment-git
++   - name: shared-file-path
++  steps:
++    - name: rebase-pull-request
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        git config --global --add safe.directory $(pwd)
++        git fetch
++        git config --global user.email "rhtap-ci-bot@redhat.com"
++        git config --global user.name "RHTAP CI Robot"
++        git rebase origin/main
++
++        echo "successfully rebased"
+diff --git a/.tekton/tasks/remove-pr-label.yaml b/.tekton/tasks/remove-pr-label.yaml
+new file mode 100644
+index 00000000..6e7bf94f
+--- /dev/null
++++ b/.tekton/tasks/remove-pr-label.yaml
+@@ -0,0 +1,37 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: remove-pr-labels
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    Remove the 'ok-to-merge' label on the PR so the final rebase does not trigger a new execution of the pipelinerun
++  params:
++    - name: pull_request_number
++    - name: match_label
++    - name: TARGET_GH_OWNER
++      description: Owner of GitHub repository of the infra-deployments code
++      default: redhat-appstudio
++    - name: TARGET_GH_REPO
++      description: GitHub repository of the infra-deployments code
++      default: infra-deployments
++  workspaces:
++   - name: shared-file-path
++   - name: infra-deployment-git
++  steps:
++    - name: remove-pr-label
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      env:
++        - name: PULL_REQUEST_NUMBER
++          value: $(params.pull_request_number)
++        - name: TARGET_GH_OWNER
++          value: "$(params.TARGET_GH_OWNER)"
++        - name: TARGET_GH_REPO
++          value: "$(params.TARGET_GH_REPO)"
++      script: |
++        #!/usr/bin/env bash
++
++        token=$(cat '$(workspaces.shared-file-path.path)/github-token.txt')
++
++        ".tekton/hack/remove-pr-label.py" --token ${token} --label "$(params.match_label)" -o ${TARGET_GH_OWNER} -r ${TARGET_GH_REPO} -n ${PULL_REQUEST_NUMBER}
+diff --git a/.tekton/tasks/replace-revision.yaml b/.tekton/tasks/replace-revision.yaml
+new file mode 100644
+index 00000000..3fb257db
+--- /dev/null
++++ b/.tekton/tasks/replace-revision.yaml
+@@ -0,0 +1,21 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: replace-revision
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    replace the target revision of staging argocd applicationset with pull request latest revision
++  params:
++    - name: pr_branch_revision
++  workspaces:
++   - name: shared-file-path
++   - name: infra-deployment-git
++  steps:
++    - name: replace-target-revision
++      image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
++      workingDir: $(workspaces.infra-deployment-git.path)
++      command:
++        - /bin/bash
++        - -c
++        - ".tekton/hack/update-argocd-app-revision.sh --branch $(params.pr_branch_revision) --filepath $(workspaces.shared-file-path.path)/component.txt"
+diff --git a/.tekton/tasks/revert-replace-revision.yaml b/.tekton/tasks/revert-replace-revision.yaml
+new file mode 100644
+index 00000000..f7508bfb
+--- /dev/null
++++ b/.tekton/tasks/revert-replace-revision.yaml
+@@ -0,0 +1,17 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: revert-replace-revision
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    revert the argocd applicationset target revision to original branch state.
++  steps:
++    - name: revert-revision
++      image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        echo "Enable auto sync for all-application-sets"
++        oc patch applications.argoproj.io/all-application-sets -n openshift-gitops --type merge -p '{"spec":{"syncPolicy": {"automated":{"prune":true, "selfHeal":true}}}}'
+diff --git a/.tekton/tasks/verify-smoke-e2e.yaml b/.tekton/tasks/verify-smoke-e2e.yaml
+new file mode 100644
+index 00000000..0cda9465
+--- /dev/null
++++ b/.tekton/tasks/verify-smoke-e2e.yaml
+@@ -0,0 +1,87 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: stage-verify-e2e-test
++  namespace: rhtap-staging-testing
++spec:
++  description: >-
++    This task is for running stage e2e test on RHTAP staging cluster
++  params:
++  - name: PLATFORM
++    description: which environment the test is running on.
++    default: "stage"
++  - name: TASK_RETRIES
++    description: number of times the task will be rerun
++    default: "0"
++  workspaces:
++    - name: stage-e2e-git
++  steps:
++    - name: run-stage-verify-e2e-test
++      image: registry.access.redhat.com/ubi9/go-toolset:1.20.10-2.1699551725
++      workingDir: $(workspaces.stage-e2e-git.path)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        mkdir -p ~/.kube
++        cat <<EOF > ~/.kube/config
++        apiVersion: v1
++        clusters:
++        - cluster:
++            server: YOUR_KUBE_API_SERVER_URL
++          name: YOUR_CLUSTER_NAME
++        contexts:
++        - context:
++            cluster: YOUR_CLUSTER_NAME
++            user: YOUR_USER_NAME
++          name: YOUR_CONTEXT_NAME
++        current-context: YOUR_CONTEXT_NAME
++        kind: Config
++        preferences: {}
++        users:
++        - name: YOUR_USER_NAME
++          user:
++            token: YOUR_KUBE_API_TOKEN
++        EOF
++        make build
++        E2E_ARGS_EXEC="--ginkgo.label-filter $(params.PLATFORM) --ginkgo.vv" make run
++      env:
++        - name: STAGE_SSOURL
++          valueFrom:
++            secretKeyRef:
++              name: stage-test-e2e
++              key: ssourl
++        - name: STAGE_APIURL
++          valueFrom:
++            secretKeyRef:
++              name: stage-test-e2e
++              key: apiurl
++        - name: STAGEUSER_TOKEN
++          valueFrom:
++            secretKeyRef:
++              name: stage-test-e2e
++              key: token
++        - name: STAGE_USERNAME
++          valueFrom:
++            secretKeyRef:
++              name: stage-test-e2e
++              key: username
++    - name: enable-retries
++      image: registry.access.redhat.com/ubi8/go-toolset:1.19.10-10.1692783630
++      script: |
++        #!/usr/bin/env bash
++        set -o errexit
++        set -o nounset
++        set -o pipefail
++
++        if [ "$(cat $(steps.step-run.exitCode.path))" != "0" ]; then
++          if [ "$(context.task.retry-count)" == "$(params.TASK_RETRIES)" ]; then
++            echo "Marking this step as PASS though previous step failed as this is the last retry"
++            exit 0
++          else
++            echo "Marking this step as FAIL to make sure that the task is retried"
++            exit 1
++          fi
++        else
++          echo "Marking this step as PASS as previous step was successful"
++        fi
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+new file mode 100644
+index 00000000..e57368c0
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -0,0 +1,1955 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: chains-secret-admin
++subjects:
++- kind: ServiceAccount
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.webhook: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "sampling": {
++        "initial": 100,
++        "thereafter": 100
++      },
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/component: resolvers
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-pipelines
++    operator.tekton.dev/operand-name: tektoncd-pipelines
++  name: config-logging
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=require
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args: []
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 512Mi
++          requests:
++            cpu: 250m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 100m
++            memory: 512Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="openshift-pipelines"
++          secret="signing-secrets"
++
++          cd /tmp
++
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
++            echo "Signing secret exists and is non-empty."
++          else
++            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
++            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
++
++            # To make this run conveniently without user input let's create a random password
++            RANDOM_PASS=$( openssl rand -base64 30 )
++
++            # Generate the key pair secret directly in the cluster.
++            # The secret should be created as immutable.
++            echo "Generating k8s secret/$secret in $namespace with key-pair"
++            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
++          fi
++
++          # If the secret is not marked as immutable, make it so.
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
++            echo "Making secret immutable"
++            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
++              --patch='{"immutable": true}' \
++            | kubectl apply -f -
++          fi
++
++          echo "Generating/updating the secret with the public key"
++          kubectl create secret generic public-key \
++            --namespace "$namespace" \
++            --from-literal=cosign.pub="$(
++              cosign public-key --key "k8s://$namespace/$secret"
++            )" \
++            --dry-run=client \
++            -o yaml | kubectl apply -f -
++        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        imagePullPolicy: Always
++        name: chains-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: OnFailure
++      serviceAccount: chains-secrets-admin
++      serviceAccountName: chains-secrets-admin
++      terminationGracePeriodSeconds: 30
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-prod-01/stonesoup-infra-production/multi-tenant-prod-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-prod-01/stonesoup-infra-production/multi-tenant-prod-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: beta
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-tekton-oci-bundles: true
++    performance:
++      kube-api-burst: 50
++      kube-api-qps: 50
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        settings:
++          application-name: Red Hat Trusted App Pipeline
++          custom-console-name: Red Hat Trusted App Pipeline
++          custom-console-url: https://console.redhat.com/preview/application-pipeline
++          custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline
++          custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline
++  profile: all
++  pruner:
++    keep: 10
++    resources:
++    - pipelinerun
++    schedule: 0/2 * * * *
++  targetNamespace: openshift-pipelines
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-1.12
++  name: openshift-pipelines-operator-rh
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/production/stone-prd-m01/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/kustomization.yaml
+index ec5720c2..ee2da5d8 100644
+--- a/components/pipeline-service/production/stone-prd-m01/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/kustomization.yaml
+@@ -1,17 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
+-patches:
+-  - path: tekton-results-database-secret-path.yaml
+-    target:
+-      name: tekton-results-database
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: tekton-results-s3-secret-path.yaml
+-    target:
+-      name: tekton-results-s3
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
++  - deploy.yaml
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+new file mode 100644
+index 00000000..dedaea51
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+@@ -0,0 +1,17 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prd-m01/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prd-m01/resources/tekton-results-database-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/production/stone-prd-m01/tekton-results-database-secret-path.yaml
+rename to components/pipeline-service/production/stone-prd-m01/resources/tekton-results-database-secret-path.yaml
+diff --git a/components/pipeline-service/production/stone-prd-m01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/stone-prd-m01/resources/tekton-results-s3-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/production/stone-prd-m01/tekton-results-s3-secret-path.yaml
+rename to components/pipeline-service/production/stone-prd-m01/resources/tekton-results-s3-secret-path.yaml
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+new file mode 100644
+index 00000000..736cb59f
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -0,0 +1,1955 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: chains-secret-admin
++subjects:
++- kind: ServiceAccount
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.webhook: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "sampling": {
++        "initial": 100,
++        "thereafter": 100
++      },
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/component: resolvers
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-pipelines
++    operator.tekton.dev/operand-name: tektoncd-pipelines
++  name: config-logging
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=require
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args: []
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 512Mi
++          requests:
++            cpu: 250m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 100m
++            memory: 512Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="openshift-pipelines"
++          secret="signing-secrets"
++
++          cd /tmp
++
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
++            echo "Signing secret exists and is non-empty."
++          else
++            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
++            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
++
++            # To make this run conveniently without user input let's create a random password
++            RANDOM_PASS=$( openssl rand -base64 30 )
++
++            # Generate the key pair secret directly in the cluster.
++            # The secret should be created as immutable.
++            echo "Generating k8s secret/$secret in $namespace with key-pair"
++            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
++          fi
++
++          # If the secret is not marked as immutable, make it so.
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
++            echo "Making secret immutable"
++            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
++              --patch='{"immutable": true}' \
++            | kubectl apply -f -
++          fi
++
++          echo "Generating/updating the secret with the public key"
++          kubectl create secret generic public-key \
++            --namespace "$namespace" \
++            --from-literal=cosign.pub="$(
++              cosign public-key --key "k8s://$namespace/$secret"
++            )" \
++            --dry-run=client \
++            -o yaml | kubectl apply -f -
++        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        imagePullPolicy: Always
++        name: chains-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: OnFailure
++      serviceAccount: chains-secrets-admin
++      serviceAccountName: chains-secrets-admin
++      terminationGracePeriodSeconds: 30
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-prod-01/stonesoup-infra-production/redhat-prod-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-prod-01/stonesoup-infra-production/redhat-prod-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: beta
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-tekton-oci-bundles: true
++    performance:
++      kube-api-burst: 50
++      kube-api-qps: 50
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        settings:
++          application-name: Red Hat Trusted App Pipeline
++          custom-console-name: Red Hat Trusted App Pipeline
++          custom-console-url: https://console.redhat.com/preview/application-pipeline
++          custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline
++          custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline
++  profile: all
++  pruner:
++    keep: 10
++    resources:
++    - pipelinerun
++    schedule: 0/2 * * * *
++  targetNamespace: openshift-pipelines
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-1.12
++  name: openshift-pipelines-operator-rh
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml
+index ec5720c2..ee2da5d8 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml
+@@ -1,17 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
+-patches:
+-  - path: tekton-results-database-secret-path.yaml
+-    target:
+-      name: tekton-results-database
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: tekton-results-s3-secret-path.yaml
+-    target:
+-      name: tekton-results-s3
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
++  - deploy.yaml
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+new file mode 100644
+index 00000000..dedaea51
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+@@ -0,0 +1,17 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-results-database-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/production/stone-prd-rh01/tekton-results-database-secret-path.yaml
+rename to components/pipeline-service/production/stone-prd-rh01/resources/tekton-results-database-secret-path.yaml
+diff --git a/components/pipeline-service/production/stone-prd-rh01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-results-s3-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/production/stone-prd-rh01/tekton-results-s3-secret-path.yaml
+rename to components/pipeline-service/production/stone-prd-rh01/resources/tekton-results-s3-secret-path.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+new file mode 100644
+index 00000000..7069bc9c
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -0,0 +1,1956 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: chains-secret-admin
++subjects:
++- kind: ServiceAccount
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.webhook: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "sampling": {
++        "initial": 100,
++        "thereafter": 100
++      },
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/component: resolvers
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-pipelines
++    operator.tekton.dev/operand-name: tektoncd-pipelines
++  name: config-logging
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=require
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args:
++        - -zap-log-level=6
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 512Mi
++          requests:
++            cpu: 250m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 100m
++            memory: 512Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="openshift-pipelines"
++          secret="signing-secrets"
++
++          cd /tmp
++
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
++            echo "Signing secret exists and is non-empty."
++          else
++            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
++            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
++
++            # To make this run conveniently without user input let's create a random password
++            RANDOM_PASS=$( openssl rand -base64 30 )
++
++            # Generate the key pair secret directly in the cluster.
++            # The secret should be created as immutable.
++            echo "Generating k8s secret/$secret in $namespace with key-pair"
++            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
++          fi
++
++          # If the secret is not marked as immutable, make it so.
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
++            echo "Making secret immutable"
++            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
++              --patch='{"immutable": true}' \
++            | kubectl apply -f -
++          fi
++
++          echo "Generating/updating the secret with the public key"
++          kubectl create secret generic public-key \
++            --namespace "$namespace" \
++            --from-literal=cosign.pub="$(
++              cosign public-key --key "k8s://$namespace/$secret"
++            )" \
++            --dry-run=client \
++            -o yaml | kubectl apply -f -
++        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        imagePullPolicy: Always
++        name: chains-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: OnFailure
++      serviceAccount: chains-secrets-admin
++      serviceAccountName: chains-secrets-admin
++      terminationGracePeriodSeconds: 30
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: staging/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-staging-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: beta
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-tekton-oci-bundles: true
++    performance:
++      kube-api-burst: 50
++      kube-api-qps: 50
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        settings:
++          application-name: RHTAP Staging
++          custom-console-name: RHTAP Staging
++          custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
++          custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
++          custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
++  profile: all
++  pruner:
++    keep: 2
++    resources:
++    - pipelinerun
++    schedule: 0/2 * * * *
++  targetNamespace: openshift-pipelines
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-1.12
++  name: openshift-pipelines-operator-rh
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/staging/stone-stg-m01/kustomization.yaml b/components/pipeline-service/staging/stone-stg-m01/kustomization.yaml
+index ec5720c2..ee2da5d8 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/kustomization.yaml
+@@ -1,17 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
+-patches:
+-  - path: tekton-results-database-secret-path.yaml
+-    target:
+-      name: tekton-results-database
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: tekton-results-s3-secret-path.yaml
+-    target:
+-      name: tekton-results-s3
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
++  - deploy.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+new file mode 100644
+index 00000000..dedaea51
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+@@ -0,0 +1,17 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/stone-stg-m01/tekton-results-database-secret-path.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-database-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/stone-stg-m01/tekton-results-database-secret-path.yaml
+rename to components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-database-secret-path.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-m01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-s3-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/stone-stg-m01/tekton-results-s3-secret-path.yaml
+rename to components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-s3-secret-path.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+new file mode 100644
+index 00000000..b34e2834
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -0,0 +1,1956 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: chains-secret-admin
++subjects:
++- kind: ServiceAccount
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.webhook: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "sampling": {
++        "initial": 100,
++        "thereafter": 100
++      },
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/component: resolvers
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-pipelines
++    operator.tekton.dev/operand-name: tektoncd-pipelines
++  name: config-logging
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=require
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args:
++        - -zap-log-level=6
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 512Mi
++          requests:
++            cpu: 250m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 100m
++            memory: 512Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="openshift-pipelines"
++          secret="signing-secrets"
++
++          cd /tmp
++
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
++            echo "Signing secret exists and is non-empty."
++          else
++            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
++            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
++
++            # To make this run conveniently without user input let's create a random password
++            RANDOM_PASS=$( openssl rand -base64 30 )
++
++            # Generate the key pair secret directly in the cluster.
++            # The secret should be created as immutable.
++            echo "Generating k8s secret/$secret in $namespace with key-pair"
++            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
++          fi
++
++          # If the secret is not marked as immutable, make it so.
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
++            echo "Making secret immutable"
++            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
++              --patch='{"immutable": true}' \
++            | kubectl apply -f -
++          fi
++
++          echo "Generating/updating the secret with the public key"
++          kubectl create secret generic public-key \
++            --namespace "$namespace" \
++            --from-literal=cosign.pub="$(
++              cosign public-key --key "k8s://$namespace/$secret"
++            )" \
++            --dry-run=client \
++            -o yaml | kubectl apply -f -
++        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        imagePullPolicy: Always
++        name: chains-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: OnFailure
++      serviceAccount: chains-secrets-admin
++      serviceAccountName: chains-secrets-admin
++      terminationGracePeriodSeconds: 30
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: staging/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-staging-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: beta
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-tekton-oci-bundles: true
++    performance:
++      kube-api-burst: 50
++      kube-api-qps: 50
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        settings:
++          application-name: RHTAP Staging
++          custom-console-name: RHTAP Staging
++          custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
++          custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
++          custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
++  profile: all
++  pruner:
++    keep: 2
++    resources:
++    - pipelinerun
++    schedule: 0/2 * * * *
++  targetNamespace: openshift-pipelines
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-1.12
++  name: openshift-pipelines-operator-rh
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/kustomization.yaml b/components/pipeline-service/staging/stone-stg-rh01/kustomization.yaml
+index ec5720c2..ee2da5d8 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/kustomization.yaml
+@@ -1,17 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
+-patches:
+-  - path: tekton-results-database-secret-path.yaml
+-    target:
+-      name: tekton-results-database
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: tekton-results-s3-secret-path.yaml
+-    target:
+-      name: tekton-results-s3
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
++  - deploy.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stg-rh01/resources/kustomization.yaml
+new file mode 100644
+index 00000000..dedaea51
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-rh01/resources/kustomization.yaml
+@@ -0,0 +1,17 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/tekton-results-database-secret-path.yaml b/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-database-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/stone-stg-rh01/tekton-results-database-secret-path.yaml
+rename to components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-database-secret-path.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-s3-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/stone-stg-rh01/tekton-results-s3-secret-path.yaml
+rename to components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-s3-secret-path.yaml
+diff --git a/staging-app.yaml b/staging-app.yaml
+new file mode 100644
+index 00000000..24f8bc51
+--- /dev/null
++++ b/staging-app.yaml
+@@ -0,0 +1,11 @@
++---
++# This is the file which contains the argocd applicationset names running as per the component in staging.
++# Using this file to filter out which component has been changed in pull request
++monitoring:
++  - monitoring-workload-grafana
++pipeline-service:
++  - pipeline-service
++build-service:
++  - build-service
++integration:
++  - integration
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6266aab1/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6266aab1/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 720f747e to 6266aab1 on Wed Nov 22 08:57:57 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (9345 lines)</summary>  
+
+``` 
+diff --git a/.tekton/hack/check-pr-label.py b/.tekton/hack/check-pr-label.py
+new file mode 100755
+index 00000000..1163fbb8
+--- /dev/null
++++ b/.tekton/hack/check-pr-label.py
+@@ -0,0 +1,47 @@
++#!/usr/bin/env python3
++import json
++import os
++import requests
++import argparse
++
++def get_labels_name(args):
++    github_api_url = os.environ.get('GITHUB_API_URL', "https://api.github.com")
++    req = requests.get(
++      f"{github_api_url}/repos/{args.git_owner}/{args.git_repo}/issues/{args.pr_number}",
++      headers={
++        "Authorization": f"Bearer {args.token}"
++      },
++      data=json.dumps({}))
++    response = req.json()
++    label_names = [label["name"] for label in response["labels"]]
++    return label_names
++
++def check_label_exist(args, label_names):
++    if not label_names or args.label not in label_names:
++      print("Label does not exists")
++      return False
++    else:
++      print("Label matched")
++      return True
++
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="check pull request labels")
++    parser.add_argument("--filepath", "-f", required=True)
++    parser.add_argument("--label", "-l", required=True)
++    parser.add_argument("--token", "-t", required=True)
++    parser.add_argument("--git-owner", "-o", required=True)
++    parser.add_argument("--git-repo", "-r", required=True)
++    parser.add_argument("--pr-number", "-n", required=True)
++    return parser.parse_args()
++
++
++def main(args):
++    label_names = get_labels_name(args)
++    matched_label_status = check_label_exist(args, label_names)
++    with open(args.filepath, "w") as f:
++      f.write(str(matched_label_status))
++
++
++if __name__ == "__main__":
++    main(parse_args())
+diff --git a/.tekton/hack/get-component-name.py b/.tekton/hack/get-component-name.py
+new file mode 100755
+index 00000000..e60e725d
+--- /dev/null
++++ b/.tekton/hack/get-component-name.py
+@@ -0,0 +1,47 @@
++#!/usr/bin/env python3
++import argparse
++import yaml
++import re
++
++def update_app_path(app_path, app_name):
++    with open(app_path, "a") as f:
++        f.write(app_name + "\n")
++
++def main(args):
++    try:
++        APP_FILE_NAME = args.filepath
++
++        # Load applicationset file
++        with open(APP_FILE_NAME) as f:
++            applications = yaml.safe_load(f)
++
++        keys_pattern = r"\b(" + "|".join(re.escape(key) for key in applications.keys()) + r")\b"
++
++        # Print the list of file paths
++        apps = []
++        for file in open(args.pr_filepath).readlines():
++            file = file.strip()
++            path_matches = re.findall(keys_pattern, file)
++            apps.extend(path_matches)
++
++        # Find app match in pull request files
++        unique_apps = set(apps)
++
++        if not unique_apps:
++            print(f'No matching components found in pull request files. Add them to the {APP_FILE_NAME} file.')
++        else:
++            for app in unique_apps:
++                for app_name in applications.get(app, []):
++                    update_app_path(args.app_filepath, app + ":" + app_name)
++    except Exception as e:
++        print(f"Error while updating the applicationset name into file: {str(e)}")
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="update a file with all the applicationsets for application changed in PR")
++    parser.add_argument("--filepath", "-f", required=True)
++    parser.add_argument("--app-filepath", "-af", required=True)
++    parser.add_argument("--pr-filepath", "-pf", required=True)
++    return parser.parse_args()
++
++if __name__ == '__main__':
++    main(parse_args())
+diff --git a/.tekton/hack/get-git-token.py b/.tekton/hack/get-git-token.py
+new file mode 100755
+index 00000000..49e22469
+--- /dev/null
++++ b/.tekton/hack/get-git-token.py
+@@ -0,0 +1,92 @@
++#!/usr/bin/env python3
++import argparse
++import json
++import os
++import time
++import requests
++from jwcrypto import jwk, jwt
++
++EXPIRE_MINUTES_AS_SECONDS = int(os.environ.get('GITHUBAPP_TOKEN_EXPIRATION_MINUTES', 10)) * 60
++GITHUB_API_URL = os.environ.get('GITHUB_API_URL', "https://api.github.com")
++
++class GitHub():
++    token = None
++
++    def __init__(self, private_key, app_id=None, installation_id=None):
++        if not isinstance(private_key, bytes):
++            raise ValueError(f'"{private_key}" parameter must be byte-string')
++        self._private_key = private_key
++        self.app_id = app_id
++        self.token = self._get_token(installation_id)
++
++    def _load_private_key(self, pem_key_bytes):
++        return jwk.JWK.from_pem(pem_key_bytes)
++
++    def _app_token(self, expire_in=EXPIRE_MINUTES_AS_SECONDS):
++        key = self._load_private_key(self._private_key)
++        now = int(time.time())
++        token = jwt.JWT(
++            header={"alg": "RS256"},
++            claims={
++                "iat": now,
++                "exp": now + expire_in,
++                "iss": self.app_id
++            },
++            algs=["RS256"],
++        )
++        token.make_signed_token(key)
++        return token.serialize()
++
++    def _get_token(self, installation_id=None):
++        app_token = self._app_token()
++        if not installation_id:
++            return app_token
++        req = self._request(
++            "POST",
++            f"/app/installations/{installation_id}/access_tokens",
++            headers={
++                "Authorization": f"Bearer {app_token}",
++                "Accept": "application/vnd.github.machine-man-preview+json"
++            }
++        )
++        ret = req.json()
++        if 'token' not in ret:
++            raise Exception(f"Authentication errors: {ret}")
++        return ret['token']
++
++    def _request(self, method, url, headers={}, data={}):
++        if self.token and 'Authorization' not in headers:
++            headers.update({"Authorization": "Bearer " + self.token})
++        if not url.startswith("http"):
++            url = f"{GITHUB_API_URL}{url}"
++        return requests.request(method, url, headers=headers, data=json.dumps(data))
++
++    def get_git_token(self):
++        return self.token
++
++def main(args):
++    with open(args.private_key_path, 'rb') as key_file:
++        key = key_file.read()
++    if args.git_app_id:
++        app_id = args.git_app_id
++    else:
++        raise Exception("application id is not set")
++    print(f"Getting user token for application_id: {app_id}")
++    github_app = GitHub(
++        key,
++        app_id=app_id,
++        installation_id=args.git_installation_id)
++    git_token = github_app.get_git_token()
++    with open(args.token_path, "w") as f:
++        f.write(git_token)
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="get github app token")
++    parser.add_argument("--private-key-path", "-p", required=True)
++    parser.add_argument("--git-app-id", "-i", required=True)
++    parser.add_argument("--git-installation-id", "-I", required=True)
++    parser.add_argument("--token-path", "-T", required=True)
++    return parser.parse_args()
++
++if __name__ == '__main__':
++    main(parse_args())
+diff --git a/.tekton/hack/merge-pr.py b/.tekton/hack/merge-pr.py
+new file mode 100755
+index 00000000..429fa6d9
+--- /dev/null
++++ b/.tekton/hack/merge-pr.py
+@@ -0,0 +1,93 @@
++#!/usr/bin/env python3
++import os
++import requests
++import argparse
++
++github_graphql_api_url = os.environ.get('GITHUB_GRAPHQL_API_URL', "https://api.github.com/graphql")
++
++def run_query(query, variables, headers={}):
++    url = f"{github_graphql_api_url}"
++    request = requests.post(url, json={'query': query, 'variables': variables}, headers=headers)
++    if request.status_code == 200:
++        return request.json()
++    else:
++        raise Exception("Query failed to run by returning code of {}. {}".format(request.status_code, query))
++
++def get_pr_id_branch_oid(args):
++    get_pr_id_branch_oid_query_variables = {
++      "owner": f"{args.git_owner}",
++      "repo": f"{args.git_repo}",
++      "pr_number": int(f"{args.pr_number}"),
++      "source_branch_name": f"{args.branch}",
++    }
++    get_pr_id_branch_oid_query = """
++    query GetPullRequestIDs($owner:String!, $repo:String!, $pr_number:Int!, $source_branch_name:String!) {
++      repository(owner:$owner, name:$repo) {
++        pullRequest(number: $pr_number) {
++          id
++        }
++        ref(qualifiedName: $source_branch_name) {
++          target {
++            oid
++          }
++        }
++      }
++    }
++    """
++    result = run_query(
++        get_pr_id_branch_oid_query,
++        get_pr_id_branch_oid_query_variables,
++        headers={
++            "Authorization": f"Bearer {args.token}"
++        })
++    pr_id = result["data"]["repository"]["pullRequest"]["id"]
++    source_branch_oid = result["data"]["repository"]["ref"]["target"]["oid"]
++    return pr_id, source_branch_oid
++
++def merge_pr(args, pr_id, source_branch_oid):
++    merge_pr_varaibles = {
++      "pullrequest_id": str(pr_id),
++      "expectedHeadOid": source_branch_oid,
++      "mergeMethod" : 'MERGE',
++    }
++
++    merge_pr_mutation = """
++    mutation MergePullRequest($pullrequest_id:ID!, $expectedHeadOid:GitObjectID, $mergeMethod:PullRequestMergeMethod) {
++      mergePullRequest(input:{pullRequestId: $pullrequest_id, expectedHeadOid: $expectedHeadOid, mergeMethod: $mergeMethod}) {
++        clientMutationId
++        pullRequest {
++          id
++        }
++      }
++    }
++    """
++
++    result = run_query(
++        merge_pr_mutation,
++        merge_pr_varaibles,
++        headers={
++            "Authorization": f"Bearer {args.token}"
++        })
++    if "errors" in result.keys():
++        for error in result["errors"]:
++            print("ERROR: {0}".format(error["message"]))
++    else:
++        print("SUCCESS: merged PR id {0}".format(result["data"]["mergePullRequest"]["pullRequest"]["id"]))
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="merge pull request")
++    parser.add_argument("--branch", "-b", required=True)
++    parser.add_argument("--token", "-t", required=True)
++    parser.add_argument("--git-owner", "-o", required=True)
++    parser.add_argument("--git-repo", "-r", required=True)
++    parser.add_argument("--pr-number", "-n", required=True)
++    return parser.parse_args()
++
++
++def main(args):
++    pr_id, source_branch_oid = get_pr_id_branch_oid(args)
++    merge_pr(args, pr_id, source_branch_oid)
++
++
++if __name__ == "__main__":
++    main(parse_args())
+diff --git a/.tekton/hack/remove-pr-label.py b/.tekton/hack/remove-pr-label.py
+new file mode 100755
+index 00000000..1b28a90c
+--- /dev/null
++++ b/.tekton/hack/remove-pr-label.py
+@@ -0,0 +1,54 @@
++#!/usr/bin/env python3
++import json
++import os
++import requests
++import argparse
++
++github_api_url = os.environ.get('GITHUB_API_URL', "https://api.github.com")
++
++def get_labels_name(args):
++    req = requests.get(
++      f"{github_api_url}/repos/{args.git_owner}/{args.git_repo}/issues/{args.pr_number}",
++      headers={
++        "Authorization": f"Bearer {args.token}"
++      },
++      data=json.dumps({}))
++    response = req.json()
++    label_names = [label["name"] for label in response["labels"]]
++    return label_names
++
++def remove_label(args, label_names):
++    # Check if the label to remove exists on the pull request
++    if args.label in label_names:
++        # Remove the label
++        label_names.remove(args.label)
++
++        # Update the labels on the pull request
++        req = requests.patch(
++            f"{github_api_url}/repos/{args.git_owner}/{args.git_repo}/issues/{args.pr_number}",
++            headers={
++                "Authorization": f"Bearer {args.token}"
++            },
++            data=json.dumps({"labels": label_names}))
++        if req.status_code == 200:
++          print("label {args.label} has been removed successfully")
++        else:
++          raise Exception("Failed to remove the label {args.label} from the pull request.")
++
++def parse_args():
++    parser = argparse.ArgumentParser(description="remove pull request labels")
++    parser.add_argument("--label", "-l", required=True)
++    parser.add_argument("--token", "-t", required=True)
++    parser.add_argument("--git-owner", "-o", required=True)
++    parser.add_argument("--git-repo", "-r", required=True)
++    parser.add_argument("--pr-number", "-n", required=True)
++    return parser.parse_args()
++
++
++def main(args):
++    label_names = get_labels_name(args)
++    remove_label(args, label_names)
++
++
++if __name__ == "__main__":
++    main(parse_args())
+diff --git a/.tekton/hack/update-argocd-app-revision.sh b/.tekton/hack/update-argocd-app-revision.sh
+new file mode 100755
+index 00000000..41583e71
+--- /dev/null
++++ b/.tekton/hack/update-argocd-app-revision.sh
+@@ -0,0 +1,95 @@
++#!/usr/bin/env bash
++
++#quit if exit status of any cmd is a non-zero value
++set -o errexit
++set -o nounset
++set -o pipefail
++
++usage() {
++    echo "
++Usage: 
++    ${0##*/} ./update-argocd-app-revision.sh [options]
++Replace the argocd application revision.
++Mandatory arguments:
++    --branch
++        Pull request branch
++    --filepath
++        path to the file which has contains applicationset e.g pipeline-service: pipeline-service-stone-stg-m01
++    
++Optional arguments:
++    -h, --help
++        Display this message.
++Example:
++    ${0##*/} ./update-argocd-app-revision.sh --branch test-branch
++" >&2
++
++}
++
++parse_args() {
++  while [[ $# -gt 0 ]]; do
++    case $1 in
++    -b | --branch)
++      shift
++      export BRANCH="$1"
++      ;;
++    -p | --filepath)
++      shift
++      export FILEPATH="$1"
++      ;;
++    -h | --help)
++      usage
++      exit 0
++      ;;
++    *)
++      echo "Unknown argument: $1"
++      usage
++      exit 1
++      ;;
++    esac
++      shift
++  done
++}
++
++prechecks() {
++    if [[ -z "$BRANCH" ]]; then
++      printf "PR Branch is not set\n\n"
++      usage
++      exit 1
++    fi
++    if [[ -z "$FILEPATH" ]]; then
++      printf "path of applicationset is not set\n\n"
++      usage
++      exit 1
++    fi
++}
++
++main() {
++    parse_args "$@"
++    prechecks
++
++    echo "Disable auto sync for all-application-sets"
++    if ! oc patch applications.argoproj.io/all-application-sets -n openshift-gitops --type json --patch='[ { "op": "remove", "path": "/spec/syncPolicy/automated" } ]'; then
++      echo "Failed to disable auto sync."
++      exit 1
++    fi
++    # Read each line from the component file, which has all the application details from sync app task e.g {pipeline-service: pipeline-service-stone-stg-m01}
++    while IFS= read -r line
++    do
++    component="$line"
++    component=$(echo -e "$component" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
++    
++    # Set the delimiter to separate component-app and appset name
++    IFS=":"
++    read -ra app <<< "$component"
++    echo "Replace revision for changed components ${app[0]} application set"
++    if ! oc patch applicationsets.argoproj.io/${app[1]} -n openshift-gitops --type json --patch="[ { \"op\": \"replace\", \"path\": \"/spec/template/spec/source/targetRevision\", \"value\": \"$BRANCH\" } ]"; then
++      echo "Error: Failed to replace revision for ${app[0]} application set."
++      exit 1
++    fi
++
++    done < "$FILEPATH"
++}
++
++if [ "${BASH_SOURCE[0]}" == "$0" ]; then
++  main "$@"
++fi
+diff --git a/.tekton/pipeline/rhtap-staging-e2e.yaml b/.tekton/pipeline/rhtap-staging-e2e.yaml
+new file mode 100644
+index 00000000..d3ad83fe
+--- /dev/null
++++ b/.tekton/pipeline/rhtap-staging-e2e.yaml
+@@ -0,0 +1,270 @@
++apiVersion: tekton.dev/v1beta1
++kind: Pipeline
++metadata:
++  name: rhtap-staging-e2e
++  namespace: rhtap-staging-testing
++spec:
++  params:
++    - name: repo_url
++    - name: revision
++    - name: pull_request_number
++    - name: source_branch
++  workspaces:
++    - name: git
++    - name: shared-file
++  tasks:
++    - name: get-github-token
++      taskRef:
++        name: get-github-token
++      runAfter:
++        - clone-infra-deployment-git
++      workspaces:
++        - name: shared-file-path
++          workspace: shared-file
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++    - name: check-merge-label
++      taskRef:
++        name: pr-labels
++      params:
++        - name: pull_request_number
++          value: $(params.pull_request_number)
++        - name: match_label
++          value: "ok-to-merge"
++      runAfter:
++        - get-github-token
++        - clone-infra-deployment-git
++      workspaces:
++        - name: shared-file-path
++          workspace: shared-file
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++    - name: clone-infra-deployment-git
++      taskRef:
++        name: git-clone
++      params:
++        - name: url
++          value: $(params.repo_url)
++        - name: deleteExisting
++          value: "true"
++        - name: revision
++          value: $(params.revision)
++        - name: depth
++          value: "3"
++      workspaces:
++      - name: output
++        workspace: git
++        subPath: infra-deployment-git
++    - name: get-pr-modified-files
++      taskRef:
++        name: get-pr-modified-files
++      runAfter:
++        - check-merge-label
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++    - name: changed-component-app-name
++      taskRef:
++        name: component-app-name
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      runAfter:
++        - get-pr-modified-files
++    - name: check-rebase-label-pre-test
++      taskRef:
++        name: pr-rebase-labels
++      runAfter:
++        - get-pr-modified-files
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++    - name: rebase-pr-pre-test
++      taskRef:
++        name: rebase-pr
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["True"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      runAfter:
++        - check-rebase-label-pre-test
++    - name: replace-revision
++      taskRef:
++        name: replace-revision
++      params:
++        - name: pr_branch_revision
++          value: $(params.revision)
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["False"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      runAfter:
++        - changed-component-app-name
++        - check-rebase-label-pre-test
++    - name: clone-stage-e2e-git
++      taskRef:
++        name: git-clone
++      params:
++        - name: url
++          value: 'https://github.com/sawood14012/e2e-tests.git'
++        - name: deleteExisting
++          value: "true"
++        - name: revision
++          value: "verify-stage"
++      runAfter:
++        - check-merge-label
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++      - name: output
++        workspace: git
++        subPath: stage-e2e-git
++    - name: stage-verify-e2e-test
++      taskRef:
++        name: stage-verify-e2e-test
++      params:
++      - name: TASK_RETRIES
++        value: "$(context.pipelineTask.retries)"
++      workspaces:
++      - name: stage-e2e-git
++        workspace: git
++        subPath: stage-e2e-git
++      runAfter:
++        - replace-revision
++        - clone-stage-e2e-git
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["False"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++    - name: check-rebase-label-post-test
++      taskRef:
++        name: pr-rebase-labels
++      runAfter:
++        - stage-verify-e2e-test
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["False"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++    - name: remove-merge-label
++      taskRef:
++        name: remove-pr-labels
++      params:
++        - name: match_label
++          value: "ok-to-merge"
++        - name: pull_request_number
++          value: $(params.pull_request_number)
++      when:
++        - input: $(tasks.check-rebase-label-post-test.results.matched-rebase-label)
++          operator: in
++          values: ["True"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++      workspaces:
++        - name: shared-file-path
++          workspace: shared-file
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++      runAfter:
++        - check-rebase-label-post-test
++    - name: rebase-pr-post-test
++      taskRef:
++        name: rebase-pr
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      runAfter:
++        - remove-merge-label
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++        - input: $(tasks.check-rebase-label-post-test.results.matched-rebase-label)
++          operator: in
++          values: ["True"]
++    - name: merge-pr
++      taskRef:
++        name: merge-pr
++      params:
++        - name: pull_request_number
++          value: $(params.pull_request_number)
++        - name: source_branch
++          value: $(params.source_branch)
++      workspaces:
++        - name: infra-deployment-git
++          workspace: git
++          subPath: infra-deployment-git
++        - name: shared-file-path
++          workspace: shared-file
++      runAfter:
++        - rebase-pr-post-test
++      when:
++        - input: $(tasks.check-rebase-label-pre-test.results.matched-rebase-label)
++          operator: in
++          values: ["False"]
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
++  finally:
++    - name: revert-replace-revision
++      taskRef:
++        name: revert-replace-revision
++      when:
++        - input: $(tasks.check-merge-label.results.matched-merge-label)
++          operator: in
++          values: ["True"]
+diff --git a/.tekton/rhtap-staging-e2e-ci.yaml b/.tekton/rhtap-staging-e2e-ci.yaml
+new file mode 100644
+index 00000000..6729ab67
+--- /dev/null
++++ b/.tekton/rhtap-staging-e2e-ci.yaml
+@@ -0,0 +1,56 @@
++apiVersion: tekton.dev/v1beta1
++kind: PipelineRun
++metadata:
++  generateName: rhtap-staging-e2e-
++  namespace: rhtap-staging-testing
++  annotations:
++    pipelinesascode.tekton.dev/on-cel-expression: |
++      event == "pull_request" && target_branch == "main" &&
++      (
++        "**/staging/**".pathChanged() ||
++        "argo-cd-apps/app-of-app-sets/base/**".pathChanged() ||
++        "components/*/base/**".pathChanged()
++      )
++    pipelinesascode.tekton.dev/pipeline: "[.tekton/pipeline/rhtap-staging-e2e.yaml]"
++    pipelinesascode.tekton.dev/task: "[.tekton/tasks/verify-smoke-e2e.yaml]"
++    pipelinesascode.tekton.dev/task-1: "[.tekton/tasks/get-pr-modified-files.yaml]"
++    pipelinesascode.tekton.dev/task-2: "[.tekton/tasks/component-app-name.yaml]"
++    pipelinesascode.tekton.dev/task-3: "[.tekton/tasks/rebase-pr.yaml]"
++    pipelinesascode.tekton.dev/task-4: "[.tekton/tasks/replace-revision.yaml]"
++    pipelinesascode.tekton.dev/task-5: "[.tekton/tasks/revert-replace-revision.yaml]"
++    pipelinesascode.tekton.dev/task-6: "[.tekton/tasks/merge-pr.yaml]"
++    pipelinesascode.tekton.dev/task-7: "[.tekton/tasks/check-pr-label.yaml]"
++    pipelinesascode.tekton.dev/task-8: "[.tekton/tasks/remove-pr-label.yaml]"
++    pipelinesascode.tekton.dev/task-9: "[.tekton/tasks/get-git-token.yaml]"
++    pipelinesascode.tekton.dev/task-10: "[.tekton/tasks/check-pr-rebase-label.yaml]"
++    pipelinesascode.tekton.dev/task-11: "[git-clone]"
++    pipelinesascode.tekton.dev/max-keep-runs: "10"
++spec:
++  params:
++    - name: repo_url
++      value: "{{ repo_url }}"
++    - name: revision
++      value: "{{ revision }}"
++    - name: pull_request_number
++      value: "{{ pull_request_number }}"
++    - name: source_branch
++      value: "{{ source_branch }}"
++  pipelineRef:
++    name: rhtap-staging-e2e
++  workspaces:
++    - name: git
++      volumeClaimTemplate:
++        spec:
++          accessModes:
++            - ReadWriteOnce
++          resources:
++            requests:
++              storage: 1Gi
++    - name: shared-file
++      volumeClaimTemplate:
++        spec:
++          accessModes:
++            - ReadWriteOnce
++          resources:
++            requests:
++              storage: 50Mi
+diff --git a/.tekton/tasks/check-pr-label.yaml b/.tekton/tasks/check-pr-label.yaml
+new file mode 100644
+index 00000000..e8084ce7
+--- /dev/null
++++ b/.tekton/tasks/check-pr-label.yaml
+@@ -0,0 +1,39 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: pr-labels
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    check if the pull request label for which the test is running on staging is ready to be merged
++  params:
++    - name: match_label
++    - name: pull_request_number
++    - name: TARGET_GH_OWNER
++      description: Owner of GitHub repository of the infra-deployments code
++      default: redhat-appstudio
++    - name: TARGET_GH_REPO
++      description: GitHub repository of the infra-deployments code
++      default: infra-deployments
++  results:
++    - name: matched-merge-label
++  workspaces:
++    - name: shared-file-path
++    - name: infra-deployment-git
++  steps:
++    - name: check-pr-label
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      env:
++        - name: PULL_REQUEST_NUMBER
++          value: $(params.pull_request_number)
++        - name: TARGET_GH_OWNER
++          value: "$(params.TARGET_GH_OWNER)"
++        - name: TARGET_GH_REPO
++          value: "$(params.TARGET_GH_REPO)"
++      script: |
++        #!/usr/bin/env bash
++
++        token=$(cat '$(workspaces.shared-file-path.path)/github-token.txt')
++
++        ".tekton/hack/check-pr-label.py" --token ${token} --label "$(params.match_label)" -f '$(results.matched-merge-label.path)' -o ${TARGET_GH_OWNER} -r ${TARGET_GH_REPO} -n ${PULL_REQUEST_NUMBER}
+diff --git a/.tekton/tasks/check-pr-rebase-label.yaml b/.tekton/tasks/check-pr-rebase-label.yaml
+new file mode 100644
+index 00000000..b7b092d3
+--- /dev/null
++++ b/.tekton/tasks/check-pr-rebase-label.yaml
+@@ -0,0 +1,27 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: pr-rebase-labels
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    check if the pull request label for which the test is running on staging needs to be rebased.
++  results:
++    - name: matched-rebase-label
++  workspaces:
++    - name: infra-deployment-git
++  steps:
++    - name: check-pr-rebase-label
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        git config --global --add safe.directory $(pwd)
++        git fetch
++        if [ "$(git log HEAD ..origin/main | wc -l)" == "0" ]; then
++          echo -n "False" > "$(results.matched-rebase-label.path)"
++        else
++          echo -n "True" > "$(results.matched-rebase-label.path)"
++        fi
+diff --git a/.tekton/tasks/component-app-name.yaml b/.tekton/tasks/component-app-name.yaml
+new file mode 100644
+index 00000000..76318ccf
+--- /dev/null
++++ b/.tekton/tasks/component-app-name.yaml
+@@ -0,0 +1,35 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: component-app-name
++  namespace: rhtap-staging-testing
++spec:
++  params:
++   - name: APP_FILE_NAME
++     description: This is the file which contains the argocd applicationset names running as per the component.
++     default: "staging-app.yaml"
++  description: >-
++    This task is to find out which applicationset needs to be updated for the staging cluster argocd application
++  workspaces:
++   - name: infra-deployment-git
++   - name: shared-file-path
++  steps:
++    - name: get-component-app-name
++      image: image-registry.openshift-image-registry.svc:5000/openshift/python:3.8
++      workingDir: $(workspaces.infra-deployment-git.path)
++      env:
++        - name: APP_FILE_NAME
++          value: $(params.APP_FILE_NAME)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        default_appset_file="$(pwd)/${APP_FILE_NAME}"
++
++        if pip3 install pyyaml 2>&1; then
++          echo "PyYAML installed successfully"
++        else
++          echo "Error running 'pip3 install pyyaml': $?"
++        fi
++
++        ".tekton/hack/get-component-name.py" --filepath ${default_appset_file} --app-filepath "$(workspaces.shared-file-path.path)/component.txt" --pr-filepath "$(workspaces.shared-file-path.path)/updated_files.txt"
+diff --git a/.tekton/tasks/get-git-token.yaml b/.tekton/tasks/get-git-token.yaml
+new file mode 100644
+index 00000000..c921a5ac
+--- /dev/null
++++ b/.tekton/tasks/get-git-token.yaml
+@@ -0,0 +1,46 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: get-github-token
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    get the github app token for infra-deployment
++  params:
++    - name: shared-secret
++      default: infra-deployments-pr-creator
++      description: secret in the namespace which contains private key for the GitHub App
++    - name: GITHUB_APP_ID
++      description: ID of Github app used for updating PR
++      default: "305606"
++    - name: GITHUB_APP_INSTALLATION_ID
++      description: Installation ID of Github app in the organization
++      default: "35269675"
++  workspaces:
++   - name: shared-file-path
++   - name: infra-deployment-git
++  volumes:
++    - name: infra-deployments-pr-creator
++      secret:
++        # 'private-key' - private key for Github app
++        secretName: $(params.shared-secret)
++  steps:
++    - name: get-token
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      volumeMounts:
++        - name: infra-deployments-pr-creator
++          mountPath: /secrets/deploy-key
++      env:
++        - name: GITHUBAPP_KEY_PATH
++          value: /secrets/deploy-key/private-key
++        - name: GITHUBAPP_APP_ID
++          value: "$(params.GITHUB_APP_ID)"
++        - name: GITHUBAPP_INSTALLATION_ID
++          value: "$(params.GITHUB_APP_INSTALLATION_ID)"
++      script: |
++        #!/usr/bin/env bash
++
++        ".tekton/hack/get-git-token.py" --token-path '$(workspaces.shared-file-path.path)/github-token.txt' --private-key-path ${GITHUBAPP_KEY_PATH} --git-app-id ${GITHUBAPP_APP_ID} --git-installation-id ${GITHUBAPP_INSTALLATION_ID}
++
++        echo "successfully got the token"
+diff --git a/.tekton/tasks/get-pr-modified-files.yaml b/.tekton/tasks/get-pr-modified-files.yaml
+new file mode 100644
+index 00000000..39019cdb
+--- /dev/null
++++ b/.tekton/tasks/get-pr-modified-files.yaml
+@@ -0,0 +1,23 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: get-pr-modified-files
++  namespace: rhtap-staging-testing
++spec:
++  description: >-
++    This task retrieves the file paths modified by the pull request
++  workspaces:
++   - name: infra-deployment-git
++   - name: shared-file-path
++  steps:
++    - name: get-merged-pr-files-changed
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++        
++        git config --global --add safe.directory $(pwd)
++        git fetch
++        git diff --name-only origin/main > $(workspaces.shared-file-path.path)/updated_files.txt
++        cat '$(workspaces.shared-file-path.path)/updated_files.txt'
+diff --git a/.tekton/tasks/merge-pr.yaml b/.tekton/tasks/merge-pr.yaml
+new file mode 100644
+index 00000000..ab039122
+--- /dev/null
++++ b/.tekton/tasks/merge-pr.yaml
+@@ -0,0 +1,39 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: merge-pr
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    merge the pull request into main branch.
++  params:
++    - name: pull_request_number
++    - name: TARGET_GH_OWNER
++      description: Owner of GitHub repository of the infra-deployments code
++      default: redhat-appstudio
++    - name: TARGET_GH_REPO
++      description: GitHub repository of the infra-deployments code
++      default: infra-deployments
++    - name: source_branch
++  workspaces:
++   - name: shared-file-path
++   - name: infra-deployment-git
++  steps:
++    - name: merge-pull-request
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      env:
++        - name: PULL_REQUEST_NUMBER
++          value: $(params.pull_request_number)
++        - name: SOURCE_BRANCH
++          value: $(params.source_branch)
++        - name: TARGET_GH_OWNER
++          value: "$(params.TARGET_GH_OWNER)"
++        - name: TARGET_GH_REPO
++          value: "$(params.TARGET_GH_REPO)"
++      script: |
++        #!/usr/bin/env bash
++
++        token=$(cat '$(workspaces.shared-file-path.path)/github-token.txt')
++
++        ".tekton/hack/merge-pr.py" --token ${token} --branch ${SOURCE_BRANCH} -o ${TARGET_GH_OWNER} -r ${TARGET_GH_REPO} -n ${PULL_REQUEST_NUMBER}
+diff --git a/.tekton/tasks/rebase-pr.yaml b/.tekton/tasks/rebase-pr.yaml
+new file mode 100644
+index 00000000..d2a1897d
+--- /dev/null
++++ b/.tekton/tasks/rebase-pr.yaml
+@@ -0,0 +1,26 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: rebase-pr
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    rebase the pull request for which the test is running on staging.
++  workspaces:
++   - name: infra-deployment-git
++   - name: shared-file-path
++  steps:
++    - name: rebase-pull-request
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        git config --global --add safe.directory $(pwd)
++        git fetch
++        git config --global user.email "rhtap-ci-bot@redhat.com"
++        git config --global user.name "RHTAP CI Robot"
++        git rebase origin/main
++
++        echo "successfully rebased"
+diff --git a/.tekton/tasks/remove-pr-label.yaml b/.tekton/tasks/remove-pr-label.yaml
+new file mode 100644
+index 00000000..6e7bf94f
+--- /dev/null
++++ b/.tekton/tasks/remove-pr-label.yaml
+@@ -0,0 +1,37 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: remove-pr-labels
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    Remove the 'ok-to-merge' label on the PR so the final rebase does not trigger a new execution of the pipelinerun
++  params:
++    - name: pull_request_number
++    - name: match_label
++    - name: TARGET_GH_OWNER
++      description: Owner of GitHub repository of the infra-deployments code
++      default: redhat-appstudio
++    - name: TARGET_GH_REPO
++      description: GitHub repository of the infra-deployments code
++      default: infra-deployments
++  workspaces:
++   - name: shared-file-path
++   - name: infra-deployment-git
++  steps:
++    - name: remove-pr-label
++      image: quay.io/redhat-appstudio/github-app-token@sha256:b4f2af12e9beea68055995ccdbdb86cfe1be97688c618117e5da2243dc1da18e
++      workingDir: $(workspaces.infra-deployment-git.path)
++      env:
++        - name: PULL_REQUEST_NUMBER
++          value: $(params.pull_request_number)
++        - name: TARGET_GH_OWNER
++          value: "$(params.TARGET_GH_OWNER)"
++        - name: TARGET_GH_REPO
++          value: "$(params.TARGET_GH_REPO)"
++      script: |
++        #!/usr/bin/env bash
++
++        token=$(cat '$(workspaces.shared-file-path.path)/github-token.txt')
++
++        ".tekton/hack/remove-pr-label.py" --token ${token} --label "$(params.match_label)" -o ${TARGET_GH_OWNER} -r ${TARGET_GH_REPO} -n ${PULL_REQUEST_NUMBER}
+diff --git a/.tekton/tasks/replace-revision.yaml b/.tekton/tasks/replace-revision.yaml
+new file mode 100644
+index 00000000..3fb257db
+--- /dev/null
++++ b/.tekton/tasks/replace-revision.yaml
+@@ -0,0 +1,21 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: replace-revision
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    replace the target revision of staging argocd applicationset with pull request latest revision
++  params:
++    - name: pr_branch_revision
++  workspaces:
++   - name: shared-file-path
++   - name: infra-deployment-git
++  steps:
++    - name: replace-target-revision
++      image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
++      workingDir: $(workspaces.infra-deployment-git.path)
++      command:
++        - /bin/bash
++        - -c
++        - ".tekton/hack/update-argocd-app-revision.sh --branch $(params.pr_branch_revision) --filepath $(workspaces.shared-file-path.path)/component.txt"
+diff --git a/.tekton/tasks/revert-replace-revision.yaml b/.tekton/tasks/revert-replace-revision.yaml
+new file mode 100644
+index 00000000..f7508bfb
+--- /dev/null
++++ b/.tekton/tasks/revert-replace-revision.yaml
+@@ -0,0 +1,17 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: revert-replace-revision
++  namespace: rhtap-staging-testing
++spec:
++  description: |
++    revert the argocd applicationset target revision to original branch state.
++  steps:
++    - name: revert-revision
++      image: image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        echo "Enable auto sync for all-application-sets"
++        oc patch applications.argoproj.io/all-application-sets -n openshift-gitops --type merge -p '{"spec":{"syncPolicy": {"automated":{"prune":true, "selfHeal":true}}}}'
+diff --git a/.tekton/tasks/verify-smoke-e2e.yaml b/.tekton/tasks/verify-smoke-e2e.yaml
+new file mode 100644
+index 00000000..0cda9465
+--- /dev/null
++++ b/.tekton/tasks/verify-smoke-e2e.yaml
+@@ -0,0 +1,87 @@
++apiVersion: tekton.dev/v1beta1
++kind: Task
++metadata:
++  name: stage-verify-e2e-test
++  namespace: rhtap-staging-testing
++spec:
++  description: >-
++    This task is for running stage e2e test on RHTAP staging cluster
++  params:
++  - name: PLATFORM
++    description: which environment the test is running on.
++    default: "stage"
++  - name: TASK_RETRIES
++    description: number of times the task will be rerun
++    default: "0"
++  workspaces:
++    - name: stage-e2e-git
++  steps:
++    - name: run-stage-verify-e2e-test
++      image: registry.access.redhat.com/ubi9/go-toolset:1.20.10-2.1699551725
++      workingDir: $(workspaces.stage-e2e-git.path)
++      script: |
++        #!/usr/bin/env bash
++        set -eufx
++
++        mkdir -p ~/.kube
++        cat <<EOF > ~/.kube/config
++        apiVersion: v1
++        clusters:
++        - cluster:
++            server: YOUR_KUBE_API_SERVER_URL
++          name: YOUR_CLUSTER_NAME
++        contexts:
++        - context:
++            cluster: YOUR_CLUSTER_NAME
++            user: YOUR_USER_NAME
++          name: YOUR_CONTEXT_NAME
++        current-context: YOUR_CONTEXT_NAME
++        kind: Config
++        preferences: {}
++        users:
++        - name: YOUR_USER_NAME
++          user:
++            token: YOUR_KUBE_API_TOKEN
++        EOF
++        make build
++        E2E_ARGS_EXEC="--ginkgo.label-filter $(params.PLATFORM) --ginkgo.vv" make run
++      env:
++        - name: STAGE_SSOURL
++          valueFrom:
++            secretKeyRef:
++              name: stage-test-e2e
++              key: ssourl
++        - name: STAGE_APIURL
++          valueFrom:
++            secretKeyRef:
++              name: stage-test-e2e
++              key: apiurl
++        - name: STAGEUSER_TOKEN
++          valueFrom:
++            secretKeyRef:
++              name: stage-test-e2e
++              key: token
++        - name: STAGE_USERNAME
++          valueFrom:
++            secretKeyRef:
++              name: stage-test-e2e
++              key: username
++    - name: enable-retries
++      image: registry.access.redhat.com/ubi8/go-toolset:1.19.10-10.1692783630
++      script: |
++        #!/usr/bin/env bash
++        set -o errexit
++        set -o nounset
++        set -o pipefail
++
++        if [ "$(cat $(steps.step-run.exitCode.path))" != "0" ]; then
++          if [ "$(context.task.retry-count)" == "$(params.TASK_RETRIES)" ]; then
++            echo "Marking this step as PASS though previous step failed as this is the last retry"
++            exit 0
++          else
++            echo "Marking this step as FAIL to make sure that the task is retried"
++            exit 1
++          fi
++        else
++          echo "Marking this step as PASS as previous step was successful"
++        fi
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+new file mode 100644
+index 00000000..e57368c0
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -0,0 +1,1955 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: chains-secret-admin
++subjects:
++- kind: ServiceAccount
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.webhook: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "sampling": {
++        "initial": 100,
++        "thereafter": 100
++      },
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/component: resolvers
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-pipelines
++    operator.tekton.dev/operand-name: tektoncd-pipelines
++  name: config-logging
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=require
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args: []
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 512Mi
++          requests:
++            cpu: 250m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 100m
++            memory: 512Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="openshift-pipelines"
++          secret="signing-secrets"
++
++          cd /tmp
++
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
++            echo "Signing secret exists and is non-empty."
++          else
++            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
++            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
++
++            # To make this run conveniently without user input let's create a random password
++            RANDOM_PASS=$( openssl rand -base64 30 )
++
++            # Generate the key pair secret directly in the cluster.
++            # The secret should be created as immutable.
++            echo "Generating k8s secret/$secret in $namespace with key-pair"
++            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
++          fi
++
++          # If the secret is not marked as immutable, make it so.
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
++            echo "Making secret immutable"
++            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
++              --patch='{"immutable": true}' \
++            | kubectl apply -f -
++          fi
++
++          echo "Generating/updating the secret with the public key"
++          kubectl create secret generic public-key \
++            --namespace "$namespace" \
++            --from-literal=cosign.pub="$(
++              cosign public-key --key "k8s://$namespace/$secret"
++            )" \
++            --dry-run=client \
++            -o yaml | kubectl apply -f -
++        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        imagePullPolicy: Always
++        name: chains-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: OnFailure
++      serviceAccount: chains-secrets-admin
++      serviceAccountName: chains-secrets-admin
++      terminationGracePeriodSeconds: 30
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-prod-01/stonesoup-infra-production/multi-tenant-prod-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-prod-01/stonesoup-infra-production/multi-tenant-prod-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: beta
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-tekton-oci-bundles: true
++    performance:
++      kube-api-burst: 50
++      kube-api-qps: 50
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        settings:
++          application-name: Red Hat Trusted App Pipeline
++          custom-console-name: Red Hat Trusted App Pipeline
++          custom-console-url: https://console.redhat.com/preview/application-pipeline
++          custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline
++          custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline
++  profile: all
++  pruner:
++    keep: 10
++    resources:
++    - pipelinerun
++    schedule: 0/2 * * * *
++  targetNamespace: openshift-pipelines
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-1.12
++  name: openshift-pipelines-operator-rh
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/production/stone-prd-m01/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/kustomization.yaml
+index ec5720c2..ee2da5d8 100644
+--- a/components/pipeline-service/production/stone-prd-m01/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/kustomization.yaml
+@@ -1,17 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
+-patches:
+-  - path: tekton-results-database-secret-path.yaml
+-    target:
+-      name: tekton-results-database
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: tekton-results-s3-secret-path.yaml
+-    target:
+-      name: tekton-results-s3
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
++  - deploy.yaml
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+new file mode 100644
+index 00000000..dedaea51
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+@@ -0,0 +1,17 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prd-m01/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prd-m01/resources/tekton-results-database-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/production/stone-prd-m01/tekton-results-database-secret-path.yaml
+rename to components/pipeline-service/production/stone-prd-m01/resources/tekton-results-database-secret-path.yaml
+diff --git a/components/pipeline-service/production/stone-prd-m01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/stone-prd-m01/resources/tekton-results-s3-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/production/stone-prd-m01/tekton-results-s3-secret-path.yaml
+rename to components/pipeline-service/production/stone-prd-m01/resources/tekton-results-s3-secret-path.yaml
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+new file mode 100644
+index 00000000..736cb59f
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -0,0 +1,1955 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: chains-secret-admin
++subjects:
++- kind: ServiceAccount
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.webhook: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "sampling": {
++        "initial": 100,
++        "thereafter": 100
++      },
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/component: resolvers
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-pipelines
++    operator.tekton.dev/operand-name: tektoncd-pipelines
++  name: config-logging
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=require
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args: []
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 512Mi
++          requests:
++            cpu: 250m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 100m
++            memory: 512Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="openshift-pipelines"
++          secret="signing-secrets"
++
++          cd /tmp
++
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
++            echo "Signing secret exists and is non-empty."
++          else
++            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
++            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
++
++            # To make this run conveniently without user input let's create a random password
++            RANDOM_PASS=$( openssl rand -base64 30 )
++
++            # Generate the key pair secret directly in the cluster.
++            # The secret should be created as immutable.
++            echo "Generating k8s secret/$secret in $namespace with key-pair"
++            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
++          fi
++
++          # If the secret is not marked as immutable, make it so.
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
++            echo "Making secret immutable"
++            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
++              --patch='{"immutable": true}' \
++            | kubectl apply -f -
++          fi
++
++          echo "Generating/updating the secret with the public key"
++          kubectl create secret generic public-key \
++            --namespace "$namespace" \
++            --from-literal=cosign.pub="$(
++              cosign public-key --key "k8s://$namespace/$secret"
++            )" \
++            --dry-run=client \
++            -o yaml | kubectl apply -f -
++        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        imagePullPolicy: Always
++        name: chains-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: OnFailure
++      serviceAccount: chains-secrets-admin
++      serviceAccountName: chains-secrets-admin
++      terminationGracePeriodSeconds: 30
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-prod-01/stonesoup-infra-production/redhat-prod-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-prod-01/stonesoup-infra-production/redhat-prod-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: beta
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-tekton-oci-bundles: true
++    performance:
++      kube-api-burst: 50
++      kube-api-qps: 50
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        settings:
++          application-name: Red Hat Trusted App Pipeline
++          custom-console-name: Red Hat Trusted App Pipeline
++          custom-console-url: https://console.redhat.com/preview/application-pipeline
++          custom-console-url-pr-details: https://console.redhat.com/preview/application-pipeline
++          custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline
++  profile: all
++  pruner:
++    keep: 10
++    resources:
++    - pipelinerun
++    schedule: 0/2 * * * *
++  targetNamespace: openshift-pipelines
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-1.12
++  name: openshift-pipelines-operator-rh
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml
+index ec5720c2..ee2da5d8 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/kustomization.yaml
+@@ -1,17 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
+-patches:
+-  - path: tekton-results-database-secret-path.yaml
+-    target:
+-      name: tekton-results-database
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: tekton-results-s3-secret-path.yaml
+-    target:
+-      name: tekton-results-s3
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
++  - deploy.yaml
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+new file mode 100644
+index 00000000..dedaea51
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+@@ -0,0 +1,17 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/tekton-results-database-secret-path.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-results-database-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/production/stone-prd-rh01/tekton-results-database-secret-path.yaml
+rename to components/pipeline-service/production/stone-prd-rh01/resources/tekton-results-database-secret-path.yaml
+diff --git a/components/pipeline-service/production/stone-prd-rh01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-results-s3-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/production/stone-prd-rh01/tekton-results-s3-secret-path.yaml
+rename to components/pipeline-service/production/stone-prd-rh01/resources/tekton-results-s3-secret-path.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+new file mode 100644
+index 00000000..7069bc9c
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -0,0 +1,1956 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: chains-secret-admin
++subjects:
++- kind: ServiceAccount
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.webhook: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "sampling": {
++        "initial": 100,
++        "thereafter": 100
++      },
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/component: resolvers
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-pipelines
++    operator.tekton.dev/operand-name: tektoncd-pipelines
++  name: config-logging
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=require
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args:
++        - -zap-log-level=6
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 512Mi
++          requests:
++            cpu: 250m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 100m
++            memory: 512Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="openshift-pipelines"
++          secret="signing-secrets"
++
++          cd /tmp
++
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
++            echo "Signing secret exists and is non-empty."
++          else
++            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
++            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
++
++            # To make this run conveniently without user input let's create a random password
++            RANDOM_PASS=$( openssl rand -base64 30 )
++
++            # Generate the key pair secret directly in the cluster.
++            # The secret should be created as immutable.
++            echo "Generating k8s secret/$secret in $namespace with key-pair"
++            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
++          fi
++
++          # If the secret is not marked as immutable, make it so.
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
++            echo "Making secret immutable"
++            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
++              --patch='{"immutable": true}' \
++            | kubectl apply -f -
++          fi
++
++          echo "Generating/updating the secret with the public key"
++          kubectl create secret generic public-key \
++            --namespace "$namespace" \
++            --from-literal=cosign.pub="$(
++              cosign public-key --key "k8s://$namespace/$secret"
++            )" \
++            --dry-run=client \
++            -o yaml | kubectl apply -f -
++        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        imagePullPolicy: Always
++        name: chains-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: OnFailure
++      serviceAccount: chains-secrets-admin
++      serviceAccountName: chains-secrets-admin
++      terminationGracePeriodSeconds: 30
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: staging/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-staging-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: beta
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-tekton-oci-bundles: true
++    performance:
++      kube-api-burst: 50
++      kube-api-qps: 50
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        settings:
++          application-name: RHTAP Staging
++          custom-console-name: RHTAP Staging
++          custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
++          custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
++          custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
++  profile: all
++  pruner:
++    keep: 2
++    resources:
++    - pipelinerun
++    schedule: 0/2 * * * *
++  targetNamespace: openshift-pipelines
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-1.12
++  name: openshift-pipelines-operator-rh
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/staging/stone-stg-m01/kustomization.yaml b/components/pipeline-service/staging/stone-stg-m01/kustomization.yaml
+index ec5720c2..ee2da5d8 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/kustomization.yaml
+@@ -1,17 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
+-patches:
+-  - path: tekton-results-database-secret-path.yaml
+-    target:
+-      name: tekton-results-database
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: tekton-results-s3-secret-path.yaml
+-    target:
+-      name: tekton-results-s3
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
++  - deploy.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+new file mode 100644
+index 00000000..dedaea51
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/kustomization.yaml
+@@ -0,0 +1,17 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/stone-stg-m01/tekton-results-database-secret-path.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-database-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/stone-stg-m01/tekton-results-database-secret-path.yaml
+rename to components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-database-secret-path.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-m01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-s3-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/stone-stg-m01/tekton-results-s3-secret-path.yaml
+rename to components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-s3-secret-path.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+new file mode 100644
+index 00000000..b34e2834
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -0,0 +1,1956 @@
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: plnsvc-tests
++---
++apiVersion: v1
++kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - create
++  - get
++  - update
++  - patch
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - tekton-results-info
++  resources:
++  - configmaps
++  verbs:
++  - get
++  - describe
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++rules:
++- apiGroups:
++  - monitoring.coreos.com
++  resources:
++  - servicemonitors
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - operator.tekton.dev
++  resources:
++  - tektonconfigs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - security.openshift.io
++  resources:
++  - securitycontextconstraints
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - pac-secret-manager
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++- apiGroups:
++  - batch
++  resources:
++  - cronjobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++rules:
++- apiGroups:
++  - batch
++  resources:
++  - jobs
++  verbs:
++  - get
++  - list
++  - patch
++  - create
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - namespaces
++  verbs:
++  - list
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pods
++  - services
++  - namespaces
++  - endpoints
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - apiextensions.k8s.io
++  resources:
++  - customresourcedefinitions
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - watch
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - list
++  - delete
++- apiGroups:
++  - quota.openshift.io
++  resources:
++  - clusterresourcequotas
++  verbs:
++  - list
++  - get
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resourceNames:
++  - appstudio-pipeline
++  resources:
++  - serviceaccounts
++  verbs:
++  - get
++  - list
++- apiGroups:
++  - pipelinesascode.tekton.dev
++  - results.tekton.dev
++  - tekton.dev
++  - triggers.tekton.dev
++  resources:
++  - '*'
++  verbs:
++  - create
++  - delete
++  - get
++  - list
++  - patch
++  - update
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - metrics.k8s.io
++  resources:
++  - nodes
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++rules:
++- apiGroups:
++  - ""
++  resourceNames:
++  - public-key
++  resources:
++  - secrets
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-admin: "true"
++  name: tekton-results-admin
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++  - delete
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++    rbac.authorization.k8s.io/aggregate-to-edit: "true"
++    rbac.authorization.k8s.io/aggregate-to-view: "true"
++  name: tekton-results-readonly
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-readwrite
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - results
++  - records
++  - logs
++  verbs:
++  - create
++  - update
++  - get
++  - list
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-service-metrics-reader
++rules:
++- nonResourceURLs:
++  - /metrics
++  verbs:
++  - get
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++rules:
++- apiGroups:
++  - results.tekton.dev
++  resources:
++  - logs
++  - results
++  - records
++  verbs:
++  - create
++  - get
++  - update
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelineruns
++  - taskruns
++  verbs:
++  - get
++  - list
++  - patch
++  - update
++  - watch
++  - delete
++- apiGroups:
++  - ""
++  resources:
++  - configmaps
++  - pods
++  verbs:
++  - get
++  - list
++  - watch
++- apiGroups:
++  - ""
++  resources:
++  - pods/log
++  verbs:
++  - get
++- apiGroups:
++  - tekton.dev
++  resources:
++  - pipelines
++  verbs:
++  - get
++- apiGroups:
++  - coordination.k8s.io
++  resources:
++  - leases
++  verbs:
++  - get
++  - list
++  - create
++  - update
++  - delete
++  - patch
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++rules:
++- apiGroups:
++  - authentication.k8s.io
++  resources:
++  - tokenreviews
++  verbs:
++  - create
++- apiGroups:
++  - authorization.k8s.io
++  resources:
++  - subjectaccessreviews
++  verbs:
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: chains-secret-admin
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: chains-secret-admin
++subjects:
++- kind: ServiceAccount
++  name: chains-secrets-admin
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-chains-public-key-viewer
++  namespace: openshift-pipelines
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-chains-public-key-viewer
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-admin
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-ns-edit
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: edit
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: tekton-results-info
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:authenticated
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-readonly
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-tests
++  namespace: plnsvc-tests
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-apply-tekton-config-parameters
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-apply-tekton-config-parameters
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-cronjobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-cronjobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-gitops-jobs-admin
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: openshift-gitops-jobs-admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-manager
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pac-secret-manager
++subjects:
++- kind: ServiceAccount
++  name: pac-secret-manager
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service-exporter-reader-binding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-exporter-reader
++subjects:
++- kind: ServiceAccount
++  name: pipeline-service-exporter
++  namespace: openshift-pipelines
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: pipeline-service-sre
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Pipeline Service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: prometheus-tekton-results-service-metrics-reader
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-service-metrics-reader
++subjects:
++- kind: ServiceAccount
++  name: metrics-reader
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-api
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-api
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-logs
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-admin
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher-rbac
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: tekton-results-watcher-rbac
++subjects:
++- kind: ServiceAccount
++  name: tekton-results-watcher
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.webhook: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "sampling": {
++        "initial": 100,
++        "thereafter": 100
++      },
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/component: resolvers
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-pipelines
++    operator.tekton.dev/operand-name: tektoncd-pipelines
++  name: config-logging
++  namespace: openshift-pipelines
++---
++apiVersion: v1
++data:
++  config.env: |
++    DB_USER=
++    DB_PASSWORD=
++    DB_HOST=
++    DB_PORT=5432
++    DB_NAME=
++    DB_SSLMODE=require
++    DB_ENABLE_AUTO_MIGRATION=true
++    SERVER_PORT=8080
++    PROMETHEUS_PORT=9090
++    PROMETHEUS_HISTOGRAM=true
++    TLS_PATH=/etc/tls
++    AUTH_DISABLE=false
++    AUTH_IMPERSONATE=true
++    LOG_LEVEL=info
++    LOGS_API=false
++    LOGS_TYPE=File
++    LOGS_BUFFER_SIZE=5242880
++    LOGS_PATH=/logs
++    S3_BUCKET_NAME=
++    S3_ENDPOINT=
++    S3_HOSTNAME_IMMUTABLE=false
++    S3_REGION=
++    S3_ACCESS_KEY_ID=
++    S3_SECRET_ACCESS_KEY=
++    S3_MULTI_PART_SIZE=5242880
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-config
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++    # lease-duration is how long non-leaders will wait to try to acquire the
++    # lock; 15 seconds is the value used by core kubernetes controllers.
++    lease-duration: "60s"
++    # renew-deadline is how long a leader will try to renew the lease before
++    # giving up; 10 seconds is the value used by core kubernetes controllers.
++    renew-deadline: "40s"
++    # retry-period is how long the leader election client waits between tries of
++    # actions; 2 seconds is the value used by core kubernetes controllers.
++    retry-period: "10s"
++    # buckets is the number of buckets used to partition key space of each
++    # Reconciler. If this number is M and the replica number of the controller
++    # is N, the N replicas will compete for the M buckets. The owner of a
++    # bucket will take care of the reconciling for the keys partitioned into
++    # that bucket.
++    buckets: "1"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-leader-election
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-leader-election
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  loglevel.controller: info
++  loglevel.watcher: info
++  zap-logger-config: |
++    {
++      "level": "info",
++      "development": false,
++      "outputPaths": ["stdout"],
++      "errorOutputPaths": ["stderr"],
++      "encoding": "json",
++      "encoderConfig": {
++        "timeKey": "ts",
++        "levelKey": "level",
++        "nameKey": "logger",
++        "callerKey": "caller",
++        "messageKey": "msg",
++        "stacktraceKey": "stacktrace",
++        "lineEnding": "",
++        "levelEncoder": "",
++        "timeEncoder": "iso8601",
++        "durationEncoder": "string",
++        "callerEncoder": ""
++      }
++    }
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app.kubernetes.io/name: tekton-results-logging
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-logging
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  _example: |
++    ################################
++    #                              #
++    #    EXAMPLE CONFIGURATION     #
++    #                              #
++    ################################
++
++    # This block is not actually functional configuration,
++    # but serves to illustrate the available configuration
++    # options and document them in a way that is accessible
++    # to users that `kubectl edit` this config map.
++    #
++    # These sample configuration options may be copied out of
++    # this example block and unindented to be in the data block
++    # to actually change the configuration.
++
++    # metrics.backend-destination field specifies the system metrics destination.
++    # It supports either prometheus (the default) or stackdriver.
++    # Note: Using Stackdriver will incur additional charges.
++    metrics.backend-destination: prometheus
++
++    # metrics.stackdriver-project-id field specifies the Stackdriver project ID. This
++    # field is optional. When running on GCE, application default credentials will be
++    # used and metrics will be sent to the cluster's project if this field is
++    # not provided.
++    metrics.stackdriver-project-id: "<your stackdriver project id>"
++
++    # metrics.allow-stackdriver-custom-metrics indicates whether it is allowed
++    # to send metrics to Stackdriver using "global" resource type and custom
++    # metric type. Setting this flag to "true" could cause extra Stackdriver
++    # charge.  If metrics.backend-destination is not Stackdriver, this is
++    # ignored.
++    metrics.allow-stackdriver-custom-metrics: "false"
++    metrics.taskrun.level: "task"
++    metrics.taskrun.duration-type: "histogram"
++    metrics.pipelinerun.level: "pipeline"
++    metrics.pipelinerun.duration-type: "histogram"
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-observability
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-config-observability
++  namespace: tekton-results
++---
++apiVersion: v1
++data:
++  version: devel
++kind: ConfigMap
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  labels:
++    app.kubernetes.io/name: tekton-results-info
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-info
++  namespace: tekton-results
++---
++apiVersion: v1
++kind: Secret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    kubernetes.io/service-account.name: metrics-reader
++  name: metrics-reader
++  namespace: tekton-results
++type: kubernetes.io/service-account-token
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: pipeline-metrics-exporter
++  name: pipeline-metrics-exporter-service
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9117
++    protocol: TCP
++    targetPort: 9117
++  selector:
++    app: pipeline-metrics-exporter
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  labels:
++    app: tekton-chains-controller
++    app.kubernetes.io/component: metrics
++    app.kubernetes.io/part-of: tekton-chains
++  name: tekton-chains
++  namespace: openshift-pipelines
++spec:
++  ports:
++  - name: metrics
++    port: 9090
++    protocol: TCP
++    targetPort: 9090
++  selector:
++    app.kubernetes.io/component: controller
++    app.kubernetes.io/instance: default
++    app.kubernetes.io/part-of: tekton-chains
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    service.beta.openshift.io/serving-cert-secret-name: tekton-results-tls
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api-service
++  namespace: tekton-results
++spec:
++  ports:
++  - name: server
++    port: 8080
++    protocol: TCP
++    targetPort: 8080
++  - name: metrics
++    port: 9443
++    protocol: TCP
++    targetPort: metrics
++  selector:
++    app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: v1
++kind: Service
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  ports:
++  - name: watchermetrics
++    port: 8443
++    targetPort: watchermetrics
++  - name: profiling
++    port: 8008
++  selector:
++    app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-metrics-exporter
++  namespace: openshift-pipelines
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++      labels:
++        app: pipeline-metrics-exporter
++    spec:
++      containers:
++      - args:
++        - -zap-log-level=6
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        name: pipeline-metrics-exporter
++        ports:
++        - containerPort: 9117
++          name: metrics
++        resources:
++          limits:
++            cpu: 500m
++            memory: 512Mi
++          requests:
++            cpu: 250m
++            memory: 128Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      restartPolicy: Always
++      serviceAccountName: pipeline-service-exporter
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  labels:
++    app.kubernetes.io/name: tekton-results-api
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-api
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:9443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 9443
++          name: metrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - env:
++        - name: LOGS_API
++          value: "true"
++        - name: LOGS_TYPE
++          value: S3
++        - name: S3_HOSTNAME_IMMUTABLE
++          value: "true"
++        - name: S3_ACCESS_KEY_ID
++          valueFrom:
++            secretKeyRef:
++              key: aws_access_key_id
++              name: tekton-results-s3
++        - name: S3_SECRET_ACCESS_KEY
++          valueFrom:
++            secretKeyRef:
++              key: aws_secret_access_key
++              name: tekton-results-s3
++        - name: S3_REGION
++          valueFrom:
++            secretKeyRef:
++              key: aws_region
++              name: tekton-results-s3
++        - name: S3_BUCKET_NAME
++          valueFrom:
++            secretKeyRef:
++              key: bucket
++              name: tekton-results-s3
++        - name: S3_ENDPOINT
++          valueFrom:
++            secretKeyRef:
++              key: endpoint
++              name: tekton-results-s3
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        livenessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        name: api
++        readinessProbe:
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        resources:
++          limits:
++            cpu: 100m
++            memory: 512Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        startupProbe:
++          failureThreshold: 10
++          httpGet:
++            path: /healthz
++            port: 8080
++            scheme: HTTPS
++          initialDelaySeconds: 5
++          periodSeconds: 10
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
++      serviceAccountName: tekton-results-api
++      volumes:
++      - configMap:
++          name: tekton-results-api-config
++        name: config
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
++  labels:
++    app.kubernetes.io/name: tekton-results-watcher
++    app.kubernetes.io/part-of: tekton-results
++    app.kubernetes.io/version: devel
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
++      labels:
++        app.kubernetes.io/name: tekton-results-watcher
++        app.kubernetes.io/version: devel
++    spec:
++      containers:
++      - args:
++        - --secure-listen-address=0.0.0.0:8443
++        - --upstream=http://127.0.0.1:9090/
++        - --logtostderr=true
++        - --v=6
++        image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.12
++        name: kube-rbac-proxy
++        ports:
++        - containerPort: 8443
++          name: watchermetrics
++          protocol: TCP
++        resources:
++          limits:
++            cpu: 500m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 64Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++      - args:
++        - -api_addr
++        - tekton-results-api-service.tekton-results.svc.cluster.local:8080
++        - -auth_mode
++        - token
++        - -completed_run_grace_period
++        - 10m
++        env:
++        - name: SYSTEM_NAMESPACE
++          valueFrom:
++            fieldRef:
++              fieldPath: metadata.namespace
++        - name: CONFIG_LOGGING_NAME
++          value: tekton-results-config-logging
++        - name: CONFIG_LEADERELECTION_NAME
++          value: tekton-results-config-leader-election
++        - name: CONFIG_OBSERVABILITY_NAME
++          value: tekton-results-config-observability
++        - name: METRICS_DOMAIN
++          value: tekton.dev/results
++        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
++        name: watcher
++        ports:
++        - containerPort: 9090
++          name: metrics
++        - containerPort: 8008
++          name: profiling
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tls
++          name: tls
++          readOnly: true
++      serviceAccountName: tekton-results-watcher
++      volumes:
++      - name: tls
++        secret:
++          secretName: tekton-results-tls
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pac-secret-reaper
++  namespace: openshift-pipelines
++spec:
++  concurrencyPolicy: Forbid
++  jobTemplate:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      template:
++        metadata:
++          annotations:
++            argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++        spec:
++          containers:
++          - command:
++            - /bin/bash
++            - -c
++            - |
++              # Delete "pac-gitauth-*" secrets older than a day
++              set -o errexit
++              set -o nounset
++              set -o pipefail
++              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
++                echo "$namespace: Cleaning pac-gitauth secrets"
++                kubectl get secrets --namespace $namespace -o json | \
++                  jq -r '.items[] |
++                    select(.metadata.name |
++                    startswith("pac-gitauth-")) |
++                    select(.metadata.creationTimestamp | fromdateiso8601 < (now - 86400)) |
++                    "secret/" + .metadata.name
++                  ' | \
++                  xargs --max-args 1 --no-run-if-empty kubectl delete -n $namespace
++              done
++              echo "Done"
++            image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
++            imagePullPolicy: Always
++            name: delete-pac-secrets
++            securityContext:
++              allowPrivilegeEscalation: false
++              capabilities:
++                drop:
++                - ALL
++              runAsNonRoot: true
++              seccompProfile:
++                type: RuntimeDefault
++          restartPolicy: Never
++          serviceAccountName: pac-secret-manager
++  schedule: '*/10 * * * *'
++---
++apiVersion: batch/v1
++kind: Job
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  template:
++    metadata:
++      annotations:
++        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    spec:
++      containers:
++      - command:
++        - /bin/bash
++        - -c
++        - |
++          set -o errexit
++          set -o nounset
++          set -o pipefail
++
++          namespace="openshift-pipelines"
++          secret="signing-secrets"
++
++          cd /tmp
++
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.data}' --ignore-not-found --allow-missing-template-keys)" != "" ]; then
++            echo "Signing secret exists and is non-empty."
++          else
++            # Delete secret/signing-secrets if already exists since by default cosign creates immutable secrets
++            kubectl delete secrets "$secret" -n "$namespace" --ignore-not-found=true
++
++            # To make this run conveniently without user input let's create a random password
++            RANDOM_PASS=$( openssl rand -base64 30 )
++
++            # Generate the key pair secret directly in the cluster.
++            # The secret should be created as immutable.
++            echo "Generating k8s secret/$secret in $namespace with key-pair"
++            env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
++          fi
++
++          # If the secret is not marked as immutable, make it so.
++          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
++            echo "Making secret immutable"
++            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
++              --patch='{"immutable": true}' \
++            | kubectl apply -f -
++          fi
++
++          echo "Generating/updating the secret with the public key"
++          kubectl create secret generic public-key \
++            --namespace "$namespace" \
++            --from-literal=cosign.pub="$(
++              cosign public-key --key "k8s://$namespace/$secret"
++            )" \
++            --dry-run=client \
++            -o yaml | kubectl apply -f -
++        image: quay.io/redhat-appstudio/appstudio-utils:dbbdd82734232e6289e8fbae5b4c858481a7c057
++        imagePullPolicy: Always
++        name: chains-secret-generation
++        resources:
++          limits:
++            cpu: 100m
++            memory: 250Mi
++          requests:
++            cpu: 10m
++            memory: 10Mi
++        securityContext:
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++      dnsPolicy: ClusterFirst
++      restartPolicy: OnFailure
++      serviceAccount: chains-secrets-admin
++      serviceAccountName: chains-secrets-admin
++      terminationGracePeriodSeconds: 30
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: pipelines-as-code-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: staging/pipeline-service/github-app
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-database
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-staging-plnsvc-rds
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-database
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-results-s3
++  namespace: tekton-results
++spec:
++  dataFrom:
++  - extract:
++      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: tekton-results-s3
++    template:
++      data:
++        aws_access_key_id: '{{ .aws_access_key_id }}'
++        aws_region: '{{ .aws_region }}'
++        aws_secret_access_key: '{{ .aws_secret_access_key }}'
++        bucket: '{{ .bucket }}'
++        endpoint: https://{{ .endpoint }}
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: pipeline-service
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: pipeline-metrics-exporter
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
++  name: tekton-chains-controller
++  namespace: openshift-pipelines
++spec:
++  endpoints:
++  - honorLabels: true
++    interval: 15s
++    path: /metrics
++    port: metrics
++    scheme: http
++  jobLabel: app.kubernetes.io/name
++  namespaceSelector:
++    matchNames:
++    - openshift-pipelines
++  selector:
++    matchLabels:
++      app: tekton-chains-controller
++      app.kubernetes.io/component: metrics
++      app.kubernetes.io/part-of: tekton-chains
++  targetLabels:
++  - app
++  - app.kubernetes.io/component
++  - app.kubernetes.io/part-of
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-api
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: metrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  jobLabel: app.kubernetes.io/name
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-api
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: tekton-results-watcher
++  namespace: tekton-results
++spec:
++  endpoints:
++  - bearerTokenSecret:
++      key: token
++      name: metrics-reader
++    path: /metrics
++    port: watchermetrics
++    scheme: https
++    tlsConfig:
++      insecureSkipVerify: true
++  selector:
++    matchLabels:
++      app.kubernetes.io/name: tekton-results-watcher
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: config
++spec:
++  chain:
++    artifacts.oci.storage: oci
++    artifacts.pipelinerun.format: in-toto
++    artifacts.pipelinerun.storage: oci
++    artifacts.taskrun.format: in-toto
++    artifacts.taskrun.storage: ""
++    transparency.enabled: "false"
++  params:
++  - name: createRbacResource
++    value: "false"
++  pipeline:
++    default-service-account: appstudio-pipeline
++    enable-api-fields: beta
++    enable-bundles-resolver: true
++    enable-cluster-resolver: true
++    enable-git-resolver: true
++    enable-hub-resolver: true
++    enable-tekton-oci-bundles: true
++    performance:
++      kube-api-burst: 50
++      kube-api-qps: 50
++      threads-per-controller: 32
++  platforms:
++    openshift:
++      pipelinesAsCode:
++        enable: true
++        settings:
++          application-name: RHTAP Staging
++          custom-console-name: RHTAP Staging
++          custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
++          custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
++          custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
++  profile: all
++  pruner:
++    keep: 2
++    resources:
++    - pipelinerun
++    schedule: 0/2 * * * *
++  targetNamespace: openshift-pipelines
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: openshift-pipelines-operator
++  namespace: openshift-operators
++spec:
++  channel: pipelines-1.12
++  name: openshift-pipelines-operator-rh
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++    haproxy.router.openshift.io/hsts_header: max-age=63072000
++    haproxy.router.openshift.io/timeout: 86410s
++    openshift.io/host.generated: "true"
++    router.openshift.io/haproxy.health.check.interval: 86400s
++  labels:
++    app.kubernetes.io/part-of: tekton-results
++  name: tekton-results
++  namespace: tekton-results
++spec:
++  port:
++    targetPort: server
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: reencrypt
++  to:
++    kind: Service
++    name: tekton-results-api-service
++    weight: 100
++  wildcardPolicy: None
++---
++allowHostDirVolumePlugin: false
++allowHostIPC: false
++allowHostNetwork: false
++allowHostPID: false
++allowHostPorts: false
++allowPrivilegeEscalation: false
++allowPrivilegedContainer: false
++allowedCapabilities:
++- SETFCAP
++apiVersion: security.openshift.io/v1
++defaultAddCapabilities: null
++fsGroup:
++  type: MustRunAs
++groups:
++- system:cluster-admins
++kind: SecurityContextConstraints
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "0"
++  name: appstudio-pipelines-scc
++priority: 10
++readOnlyRootFilesystem: false
++requiredDropCapabilities:
++- MKNOD
++runAsUser:
++  type: RunAsAny
++seLinuxContext:
++  type: MustRunAs
++supplementalGroups:
++  type: RunAsAny
++users: []
++volumes:
++- configMap
++- downwardAPI
++- emptyDir
++- persistentVolumeClaim
++- projected
++- secret
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/kustomization.yaml b/components/pipeline-service/staging/stone-stg-rh01/kustomization.yaml
+index ec5720c2..ee2da5d8 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/kustomization.yaml
+@@ -1,17 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
+-patches:
+-  - path: tekton-results-database-secret-path.yaml
+-    target:
+-      name: tekton-results-database
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+-  - path: tekton-results-s3-secret-path.yaml
+-    target:
+-      name: tekton-results-s3
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
++  - deploy.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stg-rh01/resources/kustomization.yaml
+new file mode 100644
+index 00000000..dedaea51
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stg-rh01/resources/kustomization.yaml
+@@ -0,0 +1,17 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
++patches:
++  - path: tekton-results-database-secret-path.yaml
++    target:
++      name: tekton-results-database
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++  - path: tekton-results-s3-secret-path.yaml
++    target:
++      name: tekton-results-s3
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/tekton-results-database-secret-path.yaml b/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-database-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/stone-stg-rh01/tekton-results-database-secret-path.yaml
+rename to components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-database-secret-path.yaml
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/tekton-results-s3-secret-path.yaml b/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-s3-secret-path.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/stone-stg-rh01/tekton-results-s3-secret-path.yaml
+rename to components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-s3-secret-path.yaml
+diff --git a/staging-app.yaml b/staging-app.yaml
+new file mode 100644
+index 00000000..24f8bc51
+--- /dev/null
++++ b/staging-app.yaml
+@@ -0,0 +1,11 @@
++---
++# This is the file which contains the argocd applicationset names running as per the component in staging.
++# Using this file to filter out which component has been changed in pull request
++monitoring:
++  - monitoring-workload-grafana
++pipeline-service:
++  - pipeline-service
++build-service:
++  - build-service
++integration:
++  - integration
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6266aab1/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6266aab1/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+./commit-6266aab1/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
+
+./commit-6266aab1/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+./commit-6266aab1/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 538fdd89 to 720f747e on Tue Nov 21 19:34:19 2023 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -1869,7 +30747,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 538fdd89 to 720f747e on Tue Nov 21 19:34:19 2023 </h3>  
+<h3>3: Staging changes from 538fdd89 to 720f747e on Tue Nov 21 19:34:19 2023 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -2067,7 +30945,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 538fdd89 to 720f747e on Tue Nov 21 19:34:19 2023 </h3>  
+<h3>3: Development changes from 538fdd89 to 720f747e on Tue Nov 21 19:34:19 2023 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -2208,7 +31086,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 2a51b92a to 538fdd89 on Tue Nov 21 18:39:20 2023 </h3>  
+<h3>4: Production changes from 2a51b92a to 538fdd89 on Tue Nov 21 18:39:20 2023 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -4071,7 +32949,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 2a51b92a to 538fdd89 on Tue Nov 21 18:39:20 2023 </h3>  
+<h3>4: Staging changes from 2a51b92a to 538fdd89 on Tue Nov 21 18:39:20 2023 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -4269,7 +33147,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 2a51b92a to 538fdd89 on Tue Nov 21 18:39:20 2023 </h3>  
+<h3>4: Development changes from 2a51b92a to 538fdd89 on Tue Nov 21 18:39:20 2023 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -4397,1216 +33275,6 @@ KubeLinter v0.6.1-0-gc6177366a3
 ./commit-538fdd89/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 
 ./commit-538fdd89/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 9b159cd0 to 2a51b92a on Tue Nov 21 15:10:34 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 3eb9f3cc..bbd10b4d 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=1c09614c43e1e50c768b5ddce35e344290e420ff
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=169329939d92d6345e2eaa6882527dea6b027c54
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 1c09614c43e1e50c768b5ddce35e344290e420ff
-+  newTag: 169329939d92d6345e2eaa6882527dea6b027c54
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
-index 3eb9f3cc..bbd10b4d 100644
---- a/components/integration/staging/kustomization.yaml
-+++ b/components/integration/staging/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=1c09614c43e1e50c768b5ddce35e344290e420ff
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=169329939d92d6345e2eaa6882527dea6b027c54
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 1c09614c43e1e50c768b5ddce35e344290e420ff
-+  newTag: 169329939d92d6345e2eaa6882527dea6b027c54
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2a51b92a/production/components/image-controller/production/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2a51b92a/production/components/has/production/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 9b159cd0 to 2a51b92a on Tue Nov 21 15:10:34 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 3eb9f3cc..bbd10b4d 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=1c09614c43e1e50c768b5ddce35e344290e420ff
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=169329939d92d6345e2eaa6882527dea6b027c54
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 1c09614c43e1e50c768b5ddce35e344290e420ff
-+  newTag: 169329939d92d6345e2eaa6882527dea6b027c54
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
-index 3eb9f3cc..bbd10b4d 100644
---- a/components/integration/staging/kustomization.yaml
-+++ b/components/integration/staging/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=1c09614c43e1e50c768b5ddce35e344290e420ff
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=169329939d92d6345e2eaa6882527dea6b027c54
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 1c09614c43e1e50c768b5ddce35e344290e420ff
-+  newTag: 169329939d92d6345e2eaa6882527dea6b027c54
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-9b159cd0/staging/components/integration/staging/kustomize.out.yaml
-1100c1100
-<         image: quay.io/redhat-appstudio/integration-service:169329939d92d6345e2eaa6882527dea6b027c54
----
->         image: quay.io/redhat-appstudio/integration-service:1c09614c43e1e50c768b5ddce35e344290e420ff 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2a51b92a/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2a51b92a/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 9b159cd0 to 2a51b92a on Tue Nov 21 15:10:34 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 3eb9f3cc..bbd10b4d 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=1c09614c43e1e50c768b5ddce35e344290e420ff
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=169329939d92d6345e2eaa6882527dea6b027c54
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 1c09614c43e1e50c768b5ddce35e344290e420ff
-+  newTag: 169329939d92d6345e2eaa6882527dea6b027c54
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
-index 3eb9f3cc..bbd10b4d 100644
---- a/components/integration/staging/kustomization.yaml
-+++ b/components/integration/staging/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=1c09614c43e1e50c768b5ddce35e344290e420ff
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=169329939d92d6345e2eaa6882527dea6b027c54
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 1c09614c43e1e50c768b5ddce35e344290e420ff
-+  newTag: 169329939d92d6345e2eaa6882527dea6b027c54
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-9b159cd0/development/components/integration/development/kustomize.out.yaml
-1100c1100
-<         image: quay.io/redhat-appstudio/integration-service:169329939d92d6345e2eaa6882527dea6b027c54
----
->         image: quay.io/redhat-appstudio/integration-service:1c09614c43e1e50c768b5ddce35e344290e420ff 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2a51b92a/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2a51b92a/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-2a51b92a/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-2a51b92a/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-2a51b92a/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 4f61affb to 9b159cd0 on Tue Nov 21 14:18:04 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (74 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index fb2d9453..b288acda 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -23,7 +23,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -44,7 +44,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -67,7 +67,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -88,7 +88,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -110,4 +110,4 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index 0e57cc1c..eb5b552b 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=830b71ea12be4d3ffd16742338804c9fb7ed70d2
-+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=8208107306c96568a274113816b1e54108bc0bc3
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -11,11 +11,11 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:ece604c4939992abadc77762014affbe67c433a1@sha256:1955a41c18dac0af5a702ff1fd16168891d798223760390f9aa56ed787dd1fc7
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:c97b84a2b9c0ff0e553de0ade2a60fbc18fde370@sha256:d6c979c3b65544bac825580748c9a5f62a505c74071cf7ad8d2c98c8d8ee18b4
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=ece604c4939992abadc77762014affbe67c433a1
-+      - verify_ec_task_git_revision=c97b84a2b9c0ff0e553de0ade2a60fbc18fde370
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml
- images:
-   - name: quay.io/redhat-appstudio/enterprise-contract-controller
-     newName: quay.io/redhat-appstudio/enterprise-contract-controller
--    newTag: 830b71ea12be4d3ffd16742338804c9fb7ed70d2
-+    newTag: 8208107306c96568a274113816b1e54108bc0bc3 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (29 lines)</summary>  
-
-``` 
-./commit-4f61affb/production/components/enterprise-contract/kustomize.out.yaml
-302c302
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:c97b84a2b9c0ff0e553de0ade2a60fbc18fde370@sha256:d6c979c3b65544bac825580748c9a5f62a505c74071cf7ad8d2c98c8d8ee18b4
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:ece604c4939992abadc77762014affbe67c433a1@sha256:1955a41c18dac0af5a702ff1fd16168891d798223760390f9aa56ed787dd1fc7
-304c304
-<   verify_ec_task_git_revision: c97b84a2b9c0ff0e553de0ade2a60fbc18fde370
----
->   verify_ec_task_git_revision: ece604c4939992abadc77762014affbe67c433a1
-334c334
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-358c358
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-382c382
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-409c409
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-435c435
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-9b159cd0/production/components/image-controller/production/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-9b159cd0/production/components/has/production/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 4f61affb to 9b159cd0 on Tue Nov 21 14:18:04 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (74 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index fb2d9453..b288acda 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -23,7 +23,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -44,7 +44,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -67,7 +67,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -88,7 +88,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -110,4 +110,4 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index 0e57cc1c..eb5b552b 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=830b71ea12be4d3ffd16742338804c9fb7ed70d2
-+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=8208107306c96568a274113816b1e54108bc0bc3
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -11,11 +11,11 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:ece604c4939992abadc77762014affbe67c433a1@sha256:1955a41c18dac0af5a702ff1fd16168891d798223760390f9aa56ed787dd1fc7
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:c97b84a2b9c0ff0e553de0ade2a60fbc18fde370@sha256:d6c979c3b65544bac825580748c9a5f62a505c74071cf7ad8d2c98c8d8ee18b4
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=ece604c4939992abadc77762014affbe67c433a1
-+      - verify_ec_task_git_revision=c97b84a2b9c0ff0e553de0ade2a60fbc18fde370
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml
- images:
-   - name: quay.io/redhat-appstudio/enterprise-contract-controller
-     newName: quay.io/redhat-appstudio/enterprise-contract-controller
--    newTag: 830b71ea12be4d3ffd16742338804c9fb7ed70d2
-+    newTag: 8208107306c96568a274113816b1e54108bc0bc3 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (29 lines)</summary>  
-
-``` 
-./commit-4f61affb/staging/components/enterprise-contract/kustomize.out.yaml
-302c302
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:c97b84a2b9c0ff0e553de0ade2a60fbc18fde370@sha256:d6c979c3b65544bac825580748c9a5f62a505c74071cf7ad8d2c98c8d8ee18b4
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:ece604c4939992abadc77762014affbe67c433a1@sha256:1955a41c18dac0af5a702ff1fd16168891d798223760390f9aa56ed787dd1fc7
-304c304
-<   verify_ec_task_git_revision: c97b84a2b9c0ff0e553de0ade2a60fbc18fde370
----
->   verify_ec_task_git_revision: ece604c4939992abadc77762014affbe67c433a1
-334c334
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-358c358
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-382c382
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-409c409
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-435c435
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-9b159cd0/staging/components/image-controller/staging/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-9b159cd0/staging/components/has/staging/kustomize.out.yaml: (object: application-service/application-service-controller-manager apps/v1, Kind=Deployment) object has 3 replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity in your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods for the deployment, and set the topologyKey to kubernetes.io/hostname. Refer to https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 4f61affb to 9b159cd0 on Tue Nov 21 14:18:04 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (74 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index fb2d9453..b288acda 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -23,7 +23,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -44,7 +44,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -67,7 +67,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -88,7 +88,7 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-@@ -110,4 +110,4 @@ spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
--        - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-+        - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index 0e57cc1c..eb5b552b 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=830b71ea12be4d3ffd16742338804c9fb7ed70d2
-+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=8208107306c96568a274113816b1e54108bc0bc3
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-@@ -11,11 +11,11 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:ece604c4939992abadc77762014affbe67c433a1@sha256:1955a41c18dac0af5a702ff1fd16168891d798223760390f9aa56ed787dd1fc7
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:c97b84a2b9c0ff0e553de0ade2a60fbc18fde370@sha256:d6c979c3b65544bac825580748c9a5f62a505c74071cf7ad8d2c98c8d8ee18b4
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=ece604c4939992abadc77762014affbe67c433a1
-+      - verify_ec_task_git_revision=c97b84a2b9c0ff0e553de0ade2a60fbc18fde370
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml
- images:
-   - name: quay.io/redhat-appstudio/enterprise-contract-controller
-     newName: quay.io/redhat-appstudio/enterprise-contract-controller
--    newTag: 830b71ea12be4d3ffd16742338804c9fb7ed70d2
-+    newTag: 8208107306c96568a274113816b1e54108bc0bc3 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (29 lines)</summary>  
-
-``` 
-./commit-4f61affb/development/components/enterprise-contract/kustomize.out.yaml
-302c302
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:c97b84a2b9c0ff0e553de0ade2a60fbc18fde370@sha256:d6c979c3b65544bac825580748c9a5f62a505c74071cf7ad8d2c98c8d8ee18b4
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:ece604c4939992abadc77762014affbe67c433a1@sha256:1955a41c18dac0af5a702ff1fd16168891d798223760390f9aa56ed787dd1fc7
-304c304
-<   verify_ec_task_git_revision: c97b84a2b9c0ff0e553de0ade2a60fbc18fde370
----
->   verify_ec_task_git_revision: ece604c4939992abadc77762014affbe67c433a1
-334c334
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-358c358
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-382c382
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-409c409
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074
-435c435
-<     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
----
->     - oci::quay.io/enterprise-contract/ec-release-policy:git-b0cecf9@sha256:ed9516b838d5fad0c7e60762e87a40b033d6ca3bdf9368b791d19b59b61b9074 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-9b159cd0/development/components/image-controller/development/kustomize.out.yaml: (object: image-controller/image-controller-image-pruner-cronjob batch/v1, Kind=CronJob) container "image-pruner" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-9b159cd0/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-9b159cd0/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/development/components/pipeline-service/development/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-9b159cd0/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-9b159cd0/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
 
 KubeLinter v0.6.1-0-gc6177366a3
 
