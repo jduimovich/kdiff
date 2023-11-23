@@ -10,12 +10,508 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-thu-nov-23-040152-utc-2023">This file generated at Thu Nov 23 04:01:52 UTC 2023</h3>
+<h3 id="this-file-generated-at-thu-nov-23-080310-utc-2023">This file generated at Thu Nov 23 08:03:10 UTC 2023</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 706614bb to 08a3a610 on Wed Nov 22 18:18:10 2023 </h3>  
+<h3>1: Production changes from 08a3a610 to a9d3845a on Thu Nov 23 07:11:16 2023 </h3>  
+
+<details> 
+<summary>Git Diff (32 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/build-service/base/kustomization.yaml b/components/build-service/base/kustomization.yaml</span>
+<span class="hljs-comment">index 02282214..7b64c95b 100644</span>
+<span class="hljs-comment">--- a/components/build-service/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/build-service/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,6 +1,6 @@</span>
+ resources:
+ - allow-argocd-to-manage.yaml
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/build-service/config/default?ref=7a247f9ccb6f63a7b7260571b69908747451f655</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/build-service/config/default?ref=9e87bc42e8f1963fa685cf8e01b15219cae1cdbe</span>
+ - build-pipeline-selectors/build-pipeline-selector.yaml
+ - monitoring.yaml
+ - rbac
+<span class="hljs-meta">@@ -16,7 +16,7 @@</span> namespace: build-service
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+<span class="hljs-deletion">-  newTag: 7a247f9ccb6f63a7b7260571b69908747451f655</span>
+<span class="hljs-addition">+  newTag: 9e87bc42e8f1963fa685cf8e01b15219cae1cdbe</span>
+
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml</span>
+<span class="hljs-comment">index 08e663dd..b6150ddc 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,5 +1,5 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/build-service/config/monitoring/grafana-dashboards/?ref=7a247f9ccb6f63a7b7260571b69908747451f655</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/build-service/config/monitoring/grafana-dashboards/?ref=9e87bc42e8f1963fa685cf8e01b15219cae1cdbe</span>
+ - dashboard.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (11 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-08a3a610/production/components/build-service/production/kustomize.out.yaml</span>
+<span class="hljs-string">650c650</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/build-service:9e87bc42e8f1963fa685cf8e01b15219cae1cdbe</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/build-service:7a247f9ccb6f63a7b7260571b69908747451f655</span>
+<span class="hljs-string">679d678</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">--http2-disable</span>
+<span class="hljs-string">684c683</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/im</span>age-controller<span class="hljs-regexp">/production/</span>kustomize.out.yaml: (object: image-controller<span class="hljs-regexp">/image-controller-image-pruner-cronjob batch/</span>v1, Kind=CronJob) container <span class="hljs-string">&quot;image-pruner&quot;</span> does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true <span class="hljs-keyword">in</span> the container securityContext.)
+
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>has<span class="hljs-regexp">/production/</span>kustomize.out.yaml: (object: application-service<span class="hljs-regexp">/application-service-controller-manager apps/</span>v1, Kind=Deployment) object has <span class="hljs-number">3</span> replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity <span class="hljs-keyword">in</span> your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods <span class="hljs-keyword">for</span> the deployment, and set the topologyKey to kubernetes.io<span class="hljs-regexp">/hostname. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>scheduling-eviction<span class="hljs-regexp">/assign-pod-node/</span><span class="hljs-comment">#inter-pod-affinity-and-anti-affinity for details.)</span>
+
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>tekton-chains <span class="hljs-regexp">/v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+./</span>commit-a9d3845a<span class="hljs-regexp">/production/</span>components<span class="hljs-regexp">/pipeline-service/</span>production<span class="hljs-regexp">/stone-prd-m01/</span>kustomize.out.yaml: (object: tekton-results<span class="hljs-regexp">/tekton-results-watcher apps/</span>v1, Kind=Deployment) container <span class="hljs-string">&quot;watcher&quot;</span> has cpu request <span class="hljs-number">0</span> (check: unset-cpu-requirements, remediation: Set CPU requests and limits <span class="hljs-keyword">for</span> your container based on its requirements. Refer to https:<span class="hljs-regexp">//</span>kubernetes.io<span class="hljs-regexp">/docs/</span>concepts<span class="hljs-regexp">/configuration/m</span>anage-resources-containers/<span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch/v1, Kind=CronJob) container <span class="hljs-string">&quot;delete-pac-secrets&quot;</span> does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true <span class="hljs-keyword">in</span> the container securityContext.)
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>tekton-chains <span class="hljs-regexp">/v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+./</span>commit-a9d3845a<span class="hljs-regexp">/production/</span>components<span class="hljs-regexp">/pipeline-service/</span>production<span class="hljs-regexp">/stone-prd-rh01/</span>kustomize.out.yaml: (object: tekton-results<span class="hljs-regexp">/tekton-results-watcher apps/</span>v1, Kind=Deployment) container <span class="hljs-string">&quot;watcher&quot;</span> has cpu request <span class="hljs-number">0</span> (check: unset-cpu-requirements, remediation: Set CPU requests and limits <span class="hljs-keyword">for</span> your container based on its requirements. Refer to https:<span class="hljs-regexp">//</span>kubernetes.io<span class="hljs-regexp">/docs/</span>concepts<span class="hljs-regexp">/configuration/m</span>anage-resources-containers/<span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch/v1, Kind=CronJob) container <span class="hljs-string">&quot;delete-pac-secrets&quot;</span> does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true <span class="hljs-keyword">in</span> the container securityContext.)
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from 08a3a610 to a9d3845a on Thu Nov 23 07:11:16 2023 </h3>  
+
+<details> 
+<summary>Git Diff (32 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/build-service/base/kustomization.yaml b/components/build-service/base/kustomization.yaml</span>
+<span class="hljs-comment">index 02282214..7b64c95b 100644</span>
+<span class="hljs-comment">--- a/components/build-service/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/build-service/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,6 +1,6 @@</span>
+ resources:
+ - allow-argocd-to-manage.yaml
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/build-service/config/default?ref=7a247f9ccb6f63a7b7260571b69908747451f655</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/build-service/config/default?ref=9e87bc42e8f1963fa685cf8e01b15219cae1cdbe</span>
+ - build-pipeline-selectors/build-pipeline-selector.yaml
+ - monitoring.yaml
+ - rbac
+<span class="hljs-meta">@@ -16,7 +16,7 @@</span> namespace: build-service
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+<span class="hljs-deletion">-  newTag: 7a247f9ccb6f63a7b7260571b69908747451f655</span>
+<span class="hljs-addition">+  newTag: 9e87bc42e8f1963fa685cf8e01b15219cae1cdbe</span>
+
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml</span>
+<span class="hljs-comment">index 08e663dd..b6150ddc 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,5 +1,5 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/build-service/config/monitoring/grafana-dashboards/?ref=7a247f9ccb6f63a7b7260571b69908747451f655</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/build-service/config/monitoring/grafana-dashboards/?ref=9e87bc42e8f1963fa685cf8e01b15219cae1cdbe</span>
+ - dashboard.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (11 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-08a3a610/staging/components/build-service/staging/kustomize.out.yaml</span>
+<span class="hljs-string">650c650</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/build-service:9e87bc42e8f1963fa685cf8e01b15219cae1cdbe</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/build-service:7a247f9ccb6f63a7b7260571b69908747451f655</span>
+<span class="hljs-string">679d678</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">--http2-disable</span>
+<span class="hljs-string">684c683</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/im</span>age-controller<span class="hljs-regexp">/staging/</span>kustomize.out.yaml: (object: image-controller<span class="hljs-regexp">/image-controller-image-pruner-cronjob batch/</span>v1, Kind=CronJob) container <span class="hljs-string">&quot;image-pruner&quot;</span> does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true <span class="hljs-keyword">in</span> the container securityContext.)
+
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>has<span class="hljs-regexp">/staging/</span>kustomize.out.yaml: (object: application-service<span class="hljs-regexp">/application-service-controller-manager apps/</span>v1, Kind=Deployment) object has <span class="hljs-number">3</span> replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity <span class="hljs-keyword">in</span> your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods <span class="hljs-keyword">for</span> the deployment, and set the topologyKey to kubernetes.io<span class="hljs-regexp">/hostname. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>scheduling-eviction<span class="hljs-regexp">/assign-pod-node/</span><span class="hljs-comment">#inter-pod-affinity-and-anti-affinity for details.)</span>
+
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>tekton-chains <span class="hljs-regexp">/v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+./</span>commit-a9d3845a<span class="hljs-regexp">/staging/</span>components<span class="hljs-regexp">/pipeline-service/</span>staging<span class="hljs-regexp">/stone-stg-m01/</span>kustomize.out.yaml: (object: tekton-results<span class="hljs-regexp">/tekton-results-watcher apps/</span>v1, Kind=Deployment) container <span class="hljs-string">&quot;watcher&quot;</span> has cpu request <span class="hljs-number">0</span> (check: unset-cpu-requirements, remediation: Set CPU requests and limits <span class="hljs-keyword">for</span> your container based on its requirements. Refer to https:<span class="hljs-regexp">//</span>kubernetes.io<span class="hljs-regexp">/docs/</span>concepts<span class="hljs-regexp">/configuration/m</span>anage-resources-containers/<span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch/v1, Kind=CronJob) container <span class="hljs-string">&quot;delete-pac-secrets&quot;</span> does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true <span class="hljs-keyword">in</span> the container securityContext.)
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>tekton-chains <span class="hljs-regexp">/v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+./</span>commit-a9d3845a<span class="hljs-regexp">/staging/</span>components<span class="hljs-regexp">/pipeline-service/</span>staging<span class="hljs-regexp">/stone-stg-rh01/</span>kustomize.out.yaml: (object: tekton-results<span class="hljs-regexp">/tekton-results-watcher apps/</span>v1, Kind=Deployment) container <span class="hljs-string">&quot;watcher&quot;</span> has cpu request <span class="hljs-number">0</span> (check: unset-cpu-requirements, remediation: Set CPU requests and limits <span class="hljs-keyword">for</span> your container based on its requirements. Refer to https:<span class="hljs-regexp">//</span>kubernetes.io<span class="hljs-regexp">/docs/</span>concepts<span class="hljs-regexp">/configuration/m</span>anage-resources-containers/<span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch/v1, Kind=CronJob) container <span class="hljs-string">&quot;delete-pac-secrets&quot;</span> does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true <span class="hljs-keyword">in</span> the container securityContext.)
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+.<span class="hljs-regexp">/commit-a9d3845a/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
+
+KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+No lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from 08a3a610 to a9d3845a on Thu Nov 23 07:11:16 2023 </h3>  
+
+<details> 
+<summary>Git Diff (32 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/build-service/base/kustomization.yaml b/components/build-service/base/kustomization.yaml</span>
+<span class="hljs-comment">index 02282214..7b64c95b 100644</span>
+<span class="hljs-comment">--- a/components/build-service/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/build-service/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,6 +1,6 @@</span>
+ resources:
+ - allow-argocd-to-manage.yaml
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/build-service/config/default?ref=7a247f9ccb6f63a7b7260571b69908747451f655</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/build-service/config/default?ref=9e87bc42e8f1963fa685cf8e01b15219cae1cdbe</span>
+ - build-pipeline-selectors/build-pipeline-selector.yaml
+ - monitoring.yaml
+ - rbac
+<span class="hljs-meta">@@ -16,7 +16,7 @@</span> namespace: build-service
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+<span class="hljs-deletion">-  newTag: 7a247f9ccb6f63a7b7260571b69908747451f655</span>
+<span class="hljs-addition">+  newTag: 9e87bc42e8f1963fa685cf8e01b15219cae1cdbe</span>
+
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml</span>
+<span class="hljs-comment">index 08e663dd..b6150ddc 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,5 +1,5 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/build-service/config/monitoring/grafana-dashboards/?ref=7a247f9ccb6f63a7b7260571b69908747451f655</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/build-service/config/monitoring/grafana-dashboards/?ref=9e87bc42e8f1963fa685cf8e01b15219cae1cdbe</span>
+ - dashboard.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (11 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-08a3a610/development/components/build-service/development/kustomize.out.yaml</span>
+<span class="hljs-string">656c656</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/build-service:9e87bc42e8f1963fa685cf8e01b15219cae1cdbe</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/build-service:7a247f9ccb6f63a7b7260571b69908747451f655</span>
+<span class="hljs-string">685d684</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">--http2-disable</span>
+<span class="hljs-string">690c689</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">gcr.io/kubebuilder/kube-rbac-proxy:v0.15.0</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>a9d3845a<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/image-controller/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: image-controller/</span>image<span class="hljs-operator">-</span>controller<span class="hljs-operator">-</span>image<span class="hljs-operator">-</span>pruner<span class="hljs-operator">-</span>cronjob batch<span class="hljs-operator">/</span>v1, <span class="hljs-type">Kind</span><span class="hljs-operator">=</span><span class="hljs-type">CronJob</span>) container <span class="hljs-string">&quot;image-pruner&quot;</span> does not have a read<span class="hljs-operator">-</span>only root file system (check: no<span class="hljs-operator">-</span>read<span class="hljs-operator">-</span>only<span class="hljs-operator">-</span>root<span class="hljs-operator">-</span>fs, remediation: <span class="hljs-type">Set</span> readOnlyRootFilesystem to <span class="hljs-literal">true</span> <span class="hljs-keyword">in</span> the container securityContext.)
+
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>a9d3845a<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>tekton<span class="hljs-operator">-</span>chains <span class="hljs-regexp">/v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+./</span>commit<span class="hljs-operator">-</span>a9d3845a<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton<span class="hljs-operator">-</span>results<span class="hljs-operator">-</span>watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
+
+<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>a9d3845a<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton<span class="hljs-operator">-</span>results<span class="hljs-operator">-</span>watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
+
+<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>a9d3845a<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton<span class="hljs-operator">-</span>results<span class="hljs-operator">-</span>watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
+
+<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>a9d3845a<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton<span class="hljs-operator">-</span>results<span class="hljs-operator">-</span>watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
+
+<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>a9d3845a<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac<span class="hljs-operator">-</span>secret<span class="hljs-operator">-</span>reaper batch<span class="hljs-operator">/</span>v1, <span class="hljs-type">Kind</span><span class="hljs-operator">=</span><span class="hljs-type">CronJob</span>) container <span class="hljs-string">&quot;delete-pac-secrets&quot;</span> does not have a read<span class="hljs-operator">-</span>only root file system (check: no<span class="hljs-operator">-</span>read<span class="hljs-operator">-</span>only<span class="hljs-operator">-</span>root<span class="hljs-operator">-</span>fs, remediation: <span class="hljs-type">Set</span> readOnlyRootFilesystem to <span class="hljs-literal">true</span> <span class="hljs-keyword">in</span> the container securityContext.)
+
+<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>a9d3845a<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac<span class="hljs-operator">-</span>secret<span class="hljs-operator">-</span>reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
+
+<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>a9d3845a<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac<span class="hljs-operator">-</span>secret<span class="hljs-operator">-</span>reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
+
+<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>a9d3845a<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac<span class="hljs-operator">-</span>secret<span class="hljs-operator">-</span>reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
+
+<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>a9d3845a<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac<span class="hljs-operator">-</span>secret<span class="hljs-operator">-</span>reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
+
+<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
+
+<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span> 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 706614bb to 08a3a610 on Wed Nov 22 18:18:10 2023 </h3>  
 
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -194,7 +690,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>1: Staging changes from 706614bb to 08a3a610 on Wed Nov 22 18:18:10 2023 </h3>  
+<h3>2: Staging changes from 706614bb to 08a3a610 on Wed Nov 22 18:18:10 2023 </h3>  
 
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -376,7 +872,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>1: Development changes from 706614bb to 08a3a610 on Wed Nov 22 18:18:10 2023 </h3>  
+<h3>2: Development changes from 706614bb to 08a3a610 on Wed Nov 22 18:18:10 2023 </h3>  
 
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -520,7 +1016,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>2: Production changes from ba00156a to 706614bb on Wed Nov 22 16:55:52 2023 </h3>  
+<h3>3: Production changes from ba00156a to 706614bb on Wed Nov 22 16:55:52 2023 </h3>  
 
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -728,7 +1224,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>2: Staging changes from ba00156a to 706614bb on Wed Nov 22 16:55:52 2023 </h3>  
+<h3>3: Staging changes from ba00156a to 706614bb on Wed Nov 22 16:55:52 2023 </h3>  
 
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -939,7 +1435,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>2: Development changes from ba00156a to 706614bb on Wed Nov 22 16:55:52 2023 </h3>  
+<h3>3: Development changes from ba00156a to 706614bb on Wed Nov 22 16:55:52 2023 </h3>  
 
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -1112,7 +1608,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>3: Production changes from aa6e7104 to ba00156a on Wed Nov 22 16:55:45 2023 </h3>  
+<h3>4: Production changes from aa6e7104 to ba00156a on Wed Nov 22 16:55:45 2023 </h3>  
 
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1283,7 +1779,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>3: Staging changes from aa6e7104 to ba00156a on Wed Nov 22 16:55:45 2023 </h3>  
+<h3>4: Staging changes from aa6e7104 to ba00156a on Wed Nov 22 16:55:45 2023 </h3>  
 
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1461,7 +1957,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>3: Development changes from aa6e7104 to ba00156a on Wed Nov 22 16:55:45 2023 </h3>  
+<h3>4: Development changes from aa6e7104 to ba00156a on Wed Nov 22 16:55:45 2023 </h3>  
 
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1589,670 +2085,6 @@ No lint errors found!
 <span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>ba00156a<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac<span class="hljs-operator">-</span>secret<span class="hljs-operator">-</span>reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
 
 <span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>ba00156a<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac<span class="hljs-operator">-</span>secret<span class="hljs-operator">-</span>reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
-
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span> 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from c26fd578 to aa6e7104 on Wed Nov 22 15:24:41 2023 </h3>  
-
-<details> 
-<summary>Git Diff (80 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/build-templates/production/e2e-quay-push-secret.yaml b/components/build-templates/production/e2e-quay-push-secret.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..c2591eb6</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/e2e-quay-push-secret.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,25 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: quay-push-secret</span>
-<span class="hljs-addition">+  namespace: build-templates-e2e</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: production/build/tekton-ci/quay-push-secret</span>
-<span class="hljs-addition">+  refreshInterval: 15m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: quay-push-secret</span>
-<span class="hljs-addition">+    template:</span>
-<span class="hljs-addition">+      engineVersion: v2</span>
-<span class="hljs-addition">+      type: kubernetes.io/dockerconfigjson</span>
-<span class="hljs-addition">+      data:</span>
-<span class="hljs-addition">+        .dockerconfigjson: &quot;{{ .config }}&quot;</span>
-<span class="hljs-comment">diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-comment">index 27bb5cb0..018960de 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,3 +2,4 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-<span class="hljs-addition">+  - e2e-quay-push-secret.yaml</span>
-<span class="hljs-comment">diff --git a/components/build-templates/staging/e2e-quay-push-secret.yaml b/components/build-templates/staging/e2e-quay-push-secret.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..5581b80e</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/build-templates/staging/e2e-quay-push-secret.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,25 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: quay-push-secret</span>
-<span class="hljs-addition">+  namespace: build-templates-e2e</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: staging/build/tekton-ci/quay-push-secret</span>
-<span class="hljs-addition">+  refreshInterval: 15m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: quay-push-secret</span>
-<span class="hljs-addition">+    template:</span>
-<span class="hljs-addition">+      engineVersion: v2</span>
-<span class="hljs-addition">+      type: kubernetes.io/dockerconfigjson</span>
-<span class="hljs-addition">+      data:</span>
-<span class="hljs-addition">+        .dockerconfigjson: &quot;{{ .config }}&quot;</span>
-<span class="hljs-comment">diff --git a/components/build-templates/staging/kustomization.yaml b/components/build-templates/staging/kustomization.yaml</span>
-<span class="hljs-comment">index 27bb5cb0..018960de 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/staging/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/staging/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,3 +2,4 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-<span class="hljs-addition">+  - e2e-quay-push-secret.yaml </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (28 lines)</summary>  
-<pre><code>  <span class="hljs-attribute">./commit-c26fd578/production/components/build-templates/production/kustomize.out.yaml
-104,129d103
-&lt; ---
-&lt; apiVersion</span><span class="hljs-punctuation">:</span> <span class="hljs-string">external-secrets.io/v1beta1</span>
-<span class="hljs-attribute">&lt; kind</span><span class="hljs-punctuation">:</span> <span class="hljs-string">ExternalSecret</span>
-<span class="hljs-attribute">&lt; metadata</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;   annotations</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;     argocd.argoproj.io/sync-options</span><span class="hljs-punctuation">:</span> <span class="hljs-string">SkipDryRunOnMissingResource=true</span>
-<span class="hljs-attribute">&lt;     argocd.argoproj.io/sync-wave</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;-1&quot;</span>
-<span class="hljs-attribute">&lt;   name</span><span class="hljs-punctuation">:</span> <span class="hljs-string">quay-push-secret</span>
-<span class="hljs-attribute">&lt;   namespace</span><span class="hljs-punctuation">:</span> <span class="hljs-string">build-templates-e2e</span>
-<span class="hljs-attribute">&lt; spec</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;   dataFrom</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;   - extract</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;       key</span><span class="hljs-punctuation">:</span> <span class="hljs-string">production/build/tekton-ci/quay-push-secret</span>
-<span class="hljs-attribute">&lt;   refreshInterval</span><span class="hljs-punctuation">:</span> <span class="hljs-string">15m</span>
-<span class="hljs-attribute">&lt;   secretStoreRef</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;     kind</span><span class="hljs-punctuation">:</span> <span class="hljs-string">ClusterSecretStore</span>
-<span class="hljs-attribute">&lt;     name</span><span class="hljs-punctuation">:</span> <span class="hljs-string">appsre-stonesoup-vault</span>
-<span class="hljs-attribute">&lt;   target</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;     creationPolicy</span><span class="hljs-punctuation">:</span> <span class="hljs-string">Owner</span>
-<span class="hljs-attribute">&lt;     deletionPolicy</span><span class="hljs-punctuation">:</span> <span class="hljs-string">Delete</span>
-<span class="hljs-attribute">&lt;     name</span><span class="hljs-punctuation">:</span> <span class="hljs-string">quay-push-secret</span>
-<span class="hljs-attribute">&lt;     template</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;       data</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;         .dockerconfigjson</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&#x27;{{ .config }}&#x27;</span>
-<span class="hljs-attribute">&lt;       engineVersion</span><span class="hljs-punctuation">:</span> <span class="hljs-string">v2</span>
-<span class="hljs-attribute">&lt;       type</span><span class="hljs-punctuation">:</span> <span class="hljs-string">kubernetes.io/dockerconfigjson </span>
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/im</span>age-controller<span class="hljs-regexp">/production/</span>kustomize.out.yaml: (object: image-controller<span class="hljs-regexp">/image-controller-image-pruner-cronjob batch/</span>v1, Kind=CronJob) container <span class="hljs-string">&quot;image-pruner&quot;</span> does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true <span class="hljs-keyword">in</span> the container securityContext.)
-
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>has<span class="hljs-regexp">/production/</span>kustomize.out.yaml: (object: application-service<span class="hljs-regexp">/application-service-controller-manager apps/</span>v1, Kind=Deployment) object has <span class="hljs-number">3</span> replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity <span class="hljs-keyword">in</span> your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods <span class="hljs-keyword">for</span> the deployment, and set the topologyKey to kubernetes.io<span class="hljs-regexp">/hostname. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>scheduling-eviction<span class="hljs-regexp">/assign-pod-node/</span><span class="hljs-comment">#inter-pod-affinity-and-anti-affinity for details.)</span>
-
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>tekton-chains <span class="hljs-regexp">/v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-./</span>commit-aa6e7104<span class="hljs-regexp">/production/</span>components<span class="hljs-regexp">/pipeline-service/</span>production<span class="hljs-regexp">/stone-prd-m01/</span>kustomize.out.yaml: (object: tekton-results<span class="hljs-regexp">/tekton-results-watcher apps/</span>v1, Kind=Deployment) container <span class="hljs-string">&quot;watcher&quot;</span> has cpu request <span class="hljs-number">0</span> (check: unset-cpu-requirements, remediation: Set CPU requests and limits <span class="hljs-keyword">for</span> your container based on its requirements. Refer to https:<span class="hljs-regexp">//</span>kubernetes.io<span class="hljs-regexp">/docs/</span>concepts<span class="hljs-regexp">/configuration/m</span>anage-resources-containers/<span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch/v1, Kind=CronJob) container <span class="hljs-string">&quot;delete-pac-secrets&quot;</span> does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true <span class="hljs-keyword">in</span> the container securityContext.)
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>tekton-chains <span class="hljs-regexp">/v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-./</span>commit-aa6e7104<span class="hljs-regexp">/production/</span>components<span class="hljs-regexp">/pipeline-service/</span>production<span class="hljs-regexp">/stone-prd-rh01/</span>kustomize.out.yaml: (object: tekton-results<span class="hljs-regexp">/tekton-results-watcher apps/</span>v1, Kind=Deployment) container <span class="hljs-string">&quot;watcher&quot;</span> has cpu request <span class="hljs-number">0</span> (check: unset-cpu-requirements, remediation: Set CPU requests and limits <span class="hljs-keyword">for</span> your container based on its requirements. Refer to https:<span class="hljs-regexp">//</span>kubernetes.io<span class="hljs-regexp">/docs/</span>concepts<span class="hljs-regexp">/configuration/m</span>anage-resources-containers/<span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch/v1, Kind=CronJob) container <span class="hljs-string">&quot;delete-pac-secrets&quot;</span> does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true <span class="hljs-keyword">in</span> the container securityContext.)
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>production<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/production/</span>stone-prd-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from c26fd578 to aa6e7104 on Wed Nov 22 15:24:41 2023 </h3>  
-
-<details> 
-<summary>Git Diff (80 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/build-templates/production/e2e-quay-push-secret.yaml b/components/build-templates/production/e2e-quay-push-secret.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..c2591eb6</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/e2e-quay-push-secret.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,25 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: quay-push-secret</span>
-<span class="hljs-addition">+  namespace: build-templates-e2e</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: production/build/tekton-ci/quay-push-secret</span>
-<span class="hljs-addition">+  refreshInterval: 15m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: quay-push-secret</span>
-<span class="hljs-addition">+    template:</span>
-<span class="hljs-addition">+      engineVersion: v2</span>
-<span class="hljs-addition">+      type: kubernetes.io/dockerconfigjson</span>
-<span class="hljs-addition">+      data:</span>
-<span class="hljs-addition">+        .dockerconfigjson: &quot;{{ .config }}&quot;</span>
-<span class="hljs-comment">diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-comment">index 27bb5cb0..018960de 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,3 +2,4 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-<span class="hljs-addition">+  - e2e-quay-push-secret.yaml</span>
-<span class="hljs-comment">diff --git a/components/build-templates/staging/e2e-quay-push-secret.yaml b/components/build-templates/staging/e2e-quay-push-secret.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..5581b80e</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/build-templates/staging/e2e-quay-push-secret.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,25 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: quay-push-secret</span>
-<span class="hljs-addition">+  namespace: build-templates-e2e</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: staging/build/tekton-ci/quay-push-secret</span>
-<span class="hljs-addition">+  refreshInterval: 15m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: quay-push-secret</span>
-<span class="hljs-addition">+    template:</span>
-<span class="hljs-addition">+      engineVersion: v2</span>
-<span class="hljs-addition">+      type: kubernetes.io/dockerconfigjson</span>
-<span class="hljs-addition">+      data:</span>
-<span class="hljs-addition">+        .dockerconfigjson: &quot;{{ .config }}&quot;</span>
-<span class="hljs-comment">diff --git a/components/build-templates/staging/kustomization.yaml b/components/build-templates/staging/kustomization.yaml</span>
-<span class="hljs-comment">index 27bb5cb0..018960de 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/staging/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/staging/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,3 +2,4 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-<span class="hljs-addition">+  - e2e-quay-push-secret.yaml </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (28 lines)</summary>  
-<pre><code>  <span class="hljs-attribute">./commit-c26fd578/staging/components/build-templates/staging/kustomize.out.yaml
-104,129d103
-&lt; ---
-&lt; apiVersion</span><span class="hljs-punctuation">:</span> <span class="hljs-string">external-secrets.io/v1beta1</span>
-<span class="hljs-attribute">&lt; kind</span><span class="hljs-punctuation">:</span> <span class="hljs-string">ExternalSecret</span>
-<span class="hljs-attribute">&lt; metadata</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;   annotations</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;     argocd.argoproj.io/sync-options</span><span class="hljs-punctuation">:</span> <span class="hljs-string">SkipDryRunOnMissingResource=true</span>
-<span class="hljs-attribute">&lt;     argocd.argoproj.io/sync-wave</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;-1&quot;</span>
-<span class="hljs-attribute">&lt;   name</span><span class="hljs-punctuation">:</span> <span class="hljs-string">quay-push-secret</span>
-<span class="hljs-attribute">&lt;   namespace</span><span class="hljs-punctuation">:</span> <span class="hljs-string">build-templates-e2e</span>
-<span class="hljs-attribute">&lt; spec</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;   dataFrom</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;   - extract</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;       key</span><span class="hljs-punctuation">:</span> <span class="hljs-string">staging/build/tekton-ci/quay-push-secret</span>
-<span class="hljs-attribute">&lt;   refreshInterval</span><span class="hljs-punctuation">:</span> <span class="hljs-string">15m</span>
-<span class="hljs-attribute">&lt;   secretStoreRef</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;     kind</span><span class="hljs-punctuation">:</span> <span class="hljs-string">ClusterSecretStore</span>
-<span class="hljs-attribute">&lt;     name</span><span class="hljs-punctuation">:</span> <span class="hljs-string">appsre-stonesoup-vault</span>
-<span class="hljs-attribute">&lt;   target</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;     creationPolicy</span><span class="hljs-punctuation">:</span> <span class="hljs-string">Owner</span>
-<span class="hljs-attribute">&lt;     deletionPolicy</span><span class="hljs-punctuation">:</span> <span class="hljs-string">Delete</span>
-<span class="hljs-attribute">&lt;     name</span><span class="hljs-punctuation">:</span> <span class="hljs-string">quay-push-secret</span>
-<span class="hljs-attribute">&lt;     template</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;       data</span><span class="hljs-punctuation">:</span>
-<span class="hljs-attribute">&lt;         .dockerconfigjson</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&#x27;{{ .config }}&#x27;</span>
-<span class="hljs-attribute">&lt;       engineVersion</span><span class="hljs-punctuation">:</span> <span class="hljs-string">v2</span>
-<span class="hljs-attribute">&lt;       type</span><span class="hljs-punctuation">:</span> <span class="hljs-string">kubernetes.io/dockerconfigjson </span>
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/im</span>age-controller<span class="hljs-regexp">/staging/</span>kustomize.out.yaml: (object: image-controller<span class="hljs-regexp">/image-controller-image-pruner-cronjob batch/</span>v1, Kind=CronJob) container <span class="hljs-string">&quot;image-pruner&quot;</span> does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true <span class="hljs-keyword">in</span> the container securityContext.)
-
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>has<span class="hljs-regexp">/staging/</span>kustomize.out.yaml: (object: application-service<span class="hljs-regexp">/application-service-controller-manager apps/</span>v1, Kind=Deployment) object has <span class="hljs-number">3</span> replicas but does not specify inter pod anti-affinity (check: no-anti-affinity, remediation: Specify anti-affinity <span class="hljs-keyword">in</span> your pod specification to ensure that the orchestrator attempts to schedule replicas on different nodes. Using podAntiAffinity, specify a labelSelector that matches pods <span class="hljs-keyword">for</span> the deployment, and set the topologyKey to kubernetes.io<span class="hljs-regexp">/hostname. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>scheduling-eviction<span class="hljs-regexp">/assign-pod-node/</span><span class="hljs-comment">#inter-pod-affinity-and-anti-affinity for details.)</span>
-
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>tekton-chains <span class="hljs-regexp">/v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-./</span>commit-aa6e7104<span class="hljs-regexp">/staging/</span>components<span class="hljs-regexp">/pipeline-service/</span>staging<span class="hljs-regexp">/stone-stg-m01/</span>kustomize.out.yaml: (object: tekton-results<span class="hljs-regexp">/tekton-results-watcher apps/</span>v1, Kind=Deployment) container <span class="hljs-string">&quot;watcher&quot;</span> has cpu request <span class="hljs-number">0</span> (check: unset-cpu-requirements, remediation: Set CPU requests and limits <span class="hljs-keyword">for</span> your container based on its requirements. Refer to https:<span class="hljs-regexp">//</span>kubernetes.io<span class="hljs-regexp">/docs/</span>concepts<span class="hljs-regexp">/configuration/m</span>anage-resources-containers/<span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch/v1, Kind=CronJob) container <span class="hljs-string">&quot;delete-pac-secrets&quot;</span> does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true <span class="hljs-keyword">in</span> the container securityContext.)
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>tekton-chains <span class="hljs-regexp">/v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-./</span>commit-aa6e7104<span class="hljs-regexp">/staging/</span>components<span class="hljs-regexp">/pipeline-service/</span>staging<span class="hljs-regexp">/stone-stg-rh01/</span>kustomize.out.yaml: (object: tekton-results<span class="hljs-regexp">/tekton-results-watcher apps/</span>v1, Kind=Deployment) container <span class="hljs-string">&quot;watcher&quot;</span> has cpu request <span class="hljs-number">0</span> (check: unset-cpu-requirements, remediation: Set CPU requests and limits <span class="hljs-keyword">for</span> your container based on its requirements. Refer to https:<span class="hljs-regexp">//</span>kubernetes.io<span class="hljs-regexp">/docs/</span>concepts<span class="hljs-regexp">/configuration/m</span>anage-resources-containers/<span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton-results-watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch/v1, Kind=CronJob) container <span class="hljs-string">&quot;delete-pac-secrets&quot;</span> does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true <span class="hljs-keyword">in</span> the container securityContext.)
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-.<span class="hljs-regexp">/commit-aa6e7104/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac-secret-reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span><span class="hljs-comment">#requests-and-limits for details.)</span>
-
-KubeLinter v0.<span class="hljs-number">6.1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-No lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from c26fd578 to aa6e7104 on Wed Nov 22 15:24:41 2023 </h3>  
-
-<details> 
-<summary>Git Diff (80 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/build-templates/production/e2e-quay-push-secret.yaml b/components/build-templates/production/e2e-quay-push-secret.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..c2591eb6</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/e2e-quay-push-secret.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,25 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: quay-push-secret</span>
-<span class="hljs-addition">+  namespace: build-templates-e2e</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: production/build/tekton-ci/quay-push-secret</span>
-<span class="hljs-addition">+  refreshInterval: 15m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: quay-push-secret</span>
-<span class="hljs-addition">+    template:</span>
-<span class="hljs-addition">+      engineVersion: v2</span>
-<span class="hljs-addition">+      type: kubernetes.io/dockerconfigjson</span>
-<span class="hljs-addition">+      data:</span>
-<span class="hljs-addition">+        .dockerconfigjson: &quot;{{ .config }}&quot;</span>
-<span class="hljs-comment">diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-comment">index 27bb5cb0..018960de 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,3 +2,4 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-<span class="hljs-addition">+  - e2e-quay-push-secret.yaml</span>
-<span class="hljs-comment">diff --git a/components/build-templates/staging/e2e-quay-push-secret.yaml b/components/build-templates/staging/e2e-quay-push-secret.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..5581b80e</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/build-templates/staging/e2e-quay-push-secret.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,25 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: quay-push-secret</span>
-<span class="hljs-addition">+  namespace: build-templates-e2e</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: staging/build/tekton-ci/quay-push-secret</span>
-<span class="hljs-addition">+  refreshInterval: 15m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: quay-push-secret</span>
-<span class="hljs-addition">+    template:</span>
-<span class="hljs-addition">+      engineVersion: v2</span>
-<span class="hljs-addition">+      type: kubernetes.io/dockerconfigjson</span>
-<span class="hljs-addition">+      data:</span>
-<span class="hljs-addition">+        .dockerconfigjson: &quot;{{ .config }}&quot;</span>
-<span class="hljs-comment">diff --git a/components/build-templates/staging/kustomization.yaml b/components/build-templates/staging/kustomization.yaml</span>
-<span class="hljs-comment">index 27bb5cb0..018960de 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/staging/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/staging/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,3 +2,4 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-<span class="hljs-addition">+  - e2e-quay-push-secret.yaml </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>aa6e7104<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/image-controller/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: image-controller/</span>image<span class="hljs-operator">-</span>controller<span class="hljs-operator">-</span>image<span class="hljs-operator">-</span>pruner<span class="hljs-operator">-</span>cronjob batch<span class="hljs-operator">/</span>v1, <span class="hljs-type">Kind</span><span class="hljs-operator">=</span><span class="hljs-type">CronJob</span>) container <span class="hljs-string">&quot;image-pruner&quot;</span> does not have a read<span class="hljs-operator">-</span>only root file system (check: no<span class="hljs-operator">-</span>read<span class="hljs-operator">-</span>only<span class="hljs-operator">-</span>root<span class="hljs-operator">-</span>fs, remediation: <span class="hljs-type">Set</span> readOnlyRootFilesystem to <span class="hljs-literal">true</span> <span class="hljs-keyword">in</span> the container securityContext.)
-
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-type">No</span> lint errors found<span class="hljs-operator">!</span>
-<span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
-
-<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>aa6e7104<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>tekton<span class="hljs-operator">-</span>chains <span class="hljs-regexp">/v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-./</span>commit<span class="hljs-operator">-</span>aa6e7104<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton<span class="hljs-operator">-</span>results<span class="hljs-operator">-</span>watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
-
-<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>aa6e7104<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton<span class="hljs-operator">-</span>results<span class="hljs-operator">-</span>watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
-
-<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>aa6e7104<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton<span class="hljs-operator">-</span>results<span class="hljs-operator">-</span>watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
-
-<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>aa6e7104<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: tekton-results/</span>tekton<span class="hljs-operator">-</span>results<span class="hljs-operator">-</span>watcher apps<span class="hljs-regexp">/v1, Kind=Deployment) container &quot;watcher&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
-
-<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>aa6e7104<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac<span class="hljs-operator">-</span>secret<span class="hljs-operator">-</span>reaper batch<span class="hljs-operator">/</span>v1, <span class="hljs-type">Kind</span><span class="hljs-operator">=</span><span class="hljs-type">CronJob</span>) container <span class="hljs-string">&quot;delete-pac-secrets&quot;</span> does not have a read<span class="hljs-operator">-</span>only root file system (check: no<span class="hljs-operator">-</span>read<span class="hljs-operator">-</span>only<span class="hljs-operator">-</span>root<span class="hljs-operator">-</span>fs, remediation: <span class="hljs-type">Set</span> readOnlyRootFilesystem to <span class="hljs-literal">true</span> <span class="hljs-keyword">in</span> the container securityContext.)
-
-<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>aa6e7104<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac<span class="hljs-operator">-</span>secret<span class="hljs-operator">-</span>reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
-
-<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>aa6e7104<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac<span class="hljs-operator">-</span>secret<span class="hljs-operator">-</span>reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
-
-<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>aa6e7104<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac<span class="hljs-operator">-</span>secret<span class="hljs-operator">-</span>reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
-
-<span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>aa6e7104<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/pipeline-service/</span>development<span class="hljs-regexp">/kustomize.out.yaml: (object: openshift-pipelines/</span>pac<span class="hljs-operator">-</span>secret<span class="hljs-operator">-</span>reaper batch<span class="hljs-regexp">/v1, Kind=CronJob) container &quot;delete-pac-secrets&quot; has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https:/</span><span class="hljs-regexp">/kubernetes.io/</span>docs<span class="hljs-regexp">/concepts/</span>configuration<span class="hljs-regexp">/manage-resources-containers/</span>#requests<span class="hljs-operator">-</span>and<span class="hljs-operator">-</span>limits <span class="hljs-keyword">for</span> details.)
 
 <span class="hljs-type">KubeLinter</span> v0.<span class="hljs-number">6.1</span><span class="hljs-operator">-</span><span class="hljs-number">0</span><span class="hljs-operator">-</span>gc6177366a3
 
