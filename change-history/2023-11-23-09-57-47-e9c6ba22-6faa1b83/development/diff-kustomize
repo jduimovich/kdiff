@@ -1,0 +1,171 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6faa1b83/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-e9c6ba22/development/components/build-service/development/kustomize.out.yaml
+196,224d195
+<   name: build-admin
+<   namespace: build-service
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - update
+<   - patch
+<   - delete
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - delete
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+482c453
+<   name: build-admins
+---
+>   name: build-maintainers
+486,487c457,458
+<   kind: Role
+<   name: build-admin
+---
+>   kind: ClusterRole
+>   name: build-maintainer
+490,491c461,477
+<   kind: Group
+<   name: Build Admins team
+---
+>   kind: User
+>   name: cqi
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: mkosiarc
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: mmorhun
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: rcerven
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: susdas
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: tnevrlka
+540,554d525
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: build-maintainers
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: build-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Build team
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6faa1b83/development/components/image-controller/development/kustomize.out.yaml ./kustomized-cache/commit-e9c6ba22/development/components/image-controller/development/kustomize.out.yaml
+170,196d169
+<   name: image-controller-admin
+<   namespace: image-controller
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - update
+<   - patch
+<   - delete
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - delete
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+235,268d207
+<   name: image-controller-maintainer
+< rules:
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - imagerepositories
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - imagerepositories/status
+<   verbs:
+<   - get
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - remotesecrets
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - remotesecrets/status
+<   verbs:
+<   - get
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+375,388d313
+<   name: image-controller-admins
+<   namespace: image-controller
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: image-controller-admin
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Build Admins team
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+399,411d323
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: image-controller-maintainers
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: image-controller-maintainer
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Build team

@@ -1,0 +1,226 @@
+diff --git a/components/build-service/base/rbac/build-admin.yaml b/components/build-service/base/rbac/build-admin.yaml
+new file mode 100644
+index 00000000..bc6862e3
+--- /dev/null
++++ b/components/build-service/base/rbac/build-admin.yaml
+@@ -0,0 +1,42 @@
++kind: Role
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: build-admin
++  namespace: build-service
++rules:
++  - apiGroups:
++      - ''
++    resources:
++      - secrets
++    verbs:
++      - get
++      - list
++      - watch
++      - update
++      - patch
++      - delete
++
++  - apiGroups:
++      - ''
++    resources:
++      - pods
++    verbs:
++      - get
++      - list
++      - watch
++      - delete
++
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: build-admins
++  namespace: build-service
++subjects:
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: Build Admins team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: build-admin
+diff --git a/components/build-service/base/rbac/build-maintainer.yaml b/components/build-service/base/rbac/build-maintainer.yaml
+index a5b2a9ae..f7473ac7 100644
+--- a/components/build-service/base/rbac/build-maintainer.yaml
++++ b/components/build-service/base/rbac/build-maintainer.yaml
+@@ -21,30 +21,14 @@ rules:
+     resources:
+       - secrets
+ ---
+-kind: RoleBinding
++kind: ClusterRoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   name: build-maintainers
+-  namespace: build-service
+ subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: cqi
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: mkosiarc
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: mmorhun
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: rcerven
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: susdas
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: tnevrlka
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: Build team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/build-service/base/rbac/kustomization.yaml b/components/build-service/base/rbac/kustomization.yaml
+index 3eaaff63..302fde5f 100644
+--- a/components/build-service/base/rbac/kustomization.yaml
++++ b/components/build-service/base/rbac/kustomization.yaml
+@@ -1,5 +1,6 @@
+ resources:
+ - build-maintainer.yaml
++- build-admin.yaml
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+diff --git a/components/image-controller/base/kustomization.yaml b/components/image-controller/base/kustomization.yaml
+index 7c8a7c7a..f51eb265 100644
+--- a/components/image-controller/base/kustomization.yaml
++++ b/components/image-controller/base/kustomization.yaml
+@@ -1,6 +1,7 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+ - https://github.com/redhat-appstudio/image-controller/config/default?ref=ece26df1a3b509043cfc74da0f264611830fbf66
++- rbac
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+diff --git a/components/image-controller/base/rbac/image-controller-admin.yaml b/components/image-controller/base/rbac/image-controller-admin.yaml
+new file mode 100644
+index 00000000..eb4e5aed
+--- /dev/null
++++ b/components/image-controller/base/rbac/image-controller-admin.yaml
+@@ -0,0 +1,42 @@
++kind: Role
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: image-controller-admin
++  namespace: image-controller
++rules:
++  - apiGroups:
++      - ''
++    resources:
++      - secrets
++    verbs:
++      - get
++      - list
++      - watch
++      - update
++      - patch
++      - delete
++
++  - apiGroups:
++      - ''
++    resources:
++      - pods
++    verbs:
++      - get
++      - list
++      - watch
++      - delete
++
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: image-controller-admins
++  namespace: image-controller
++subjects:
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: Build Admins team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: image-controller-admin
+diff --git a/components/image-controller/base/rbac/image-controller-maintainer.yaml b/components/image-controller/base/rbac/image-controller-maintainer.yaml
+new file mode 100644
+index 00000000..fd257c42
+--- /dev/null
++++ b/components/image-controller/base/rbac/image-controller-maintainer.yaml
+@@ -0,0 +1,50 @@
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: image-controller-maintainer
++rules:
++  - apiGroups:
++      - 'appstudio.redhat.com'
++    resources:
++      - imagerepositories
++    verbs:
++      - get
++      - list
++      - watch
++
++  - apiGroups:
++      - 'appstudio.redhat.com'
++    resources:
++      - imagerepositories/status
++    verbs:
++      - get
++
++  - apiGroups:
++      - 'appstudio.redhat.com'
++    resources:
++      - remotesecrets
++    verbs:
++      - get
++      - list
++      - watch
++
++  - apiGroups:
++      - 'appstudio.redhat.com'
++    resources:
++      - remotesecrets/status
++    verbs:
++      - get
++
++---
++kind: ClusterRoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: image-controller-maintainers
++subjects:
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: Build team
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: image-controller-maintainer
+diff --git a/components/image-controller/base/rbac/kustomization.yaml b/components/image-controller/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..230f0e44
+--- /dev/null
++++ b/components/image-controller/base/rbac/kustomization.yaml
+@@ -0,0 +1,6 @@
++resources:
++- image-controller-maintainer.yaml
++- image-controller-admin.yaml
++
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
