@@ -1,0 +1,48 @@
+diff --git a/components/spi/overlays/development/config-patch.json b/components/spi/overlays/development/config-patch.json
+index af0dd1c3..7686a1fc 100644
+--- a/components/spi/overlays/development/config-patch.json
++++ b/components/spi/overlays/development/config-patch.json
+@@ -21,12 +21,12 @@
+   },
+   {
+     "op": "add",
+-    "path": "/data/ENABLEREMOTESECRETS",
++    "path": "/data/VAULTINSECURETLS",
+     "value": "true"
+   },
+   {
+     "op": "add",
+-    "path": "/data/VAULTINSECURETLS",
+-    "value": "true"
++    "path": "/data/TOKENSTORAGE",
++    "value": "vault"
+   }
+ ]
+diff --git a/components/spi/overlays/production/base/config-patch.json b/components/spi/overlays/production/base/config-patch.json
+index 064269a6..96bbfe07 100644
+--- a/components/spi/overlays/production/base/config-patch.json
++++ b/components/spi/overlays/production/base/config-patch.json
+@@ -1,7 +1,7 @@
+ [
+   {
+     "op": "add",
+-    "path": "/data/ENABLEREMOTESECRETS",
+-    "value": "true"
++    "path": "/data/TOKENSTORAGE",
++    "value": "aws"
+   }
+ ]
+diff --git a/components/spi/overlays/staging/base/config-patch.json b/components/spi/overlays/staging/base/config-patch.json
+index 064269a6..96bbfe07 100644
+--- a/components/spi/overlays/staging/base/config-patch.json
++++ b/components/spi/overlays/staging/base/config-patch.json
+@@ -1,7 +1,7 @@
+ [
+   {
+     "op": "add",
+-    "path": "/data/ENABLEREMOTESECRETS",
+-    "value": "true"
++    "path": "/data/TOKENSTORAGE",
++    "value": "aws"
+   }
+ ]

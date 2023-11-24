@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5527ddd3/staging/components/build-templates/staging/kustomize.out.yaml ./kustomized-cache/commit-600e1f8d/staging/components/build-templates/staging/kustomize.out.yaml
+16,25d15
+< apiVersion: v1
+< imagePullSecrets:
+< - name: quay-push-secret
+< kind: ServiceAccount
+< metadata:
+<   name: appstudio-pipeline
+<   namespace: build-templates-e2e
+< secrets:
+< - name: quay-push-secret
+< ---
+126a117,119
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: mkosiarc

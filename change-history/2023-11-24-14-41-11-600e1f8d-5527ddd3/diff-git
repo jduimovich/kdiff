@@ -1,0 +1,41 @@
+diff --git a/components/build-templates/base/e2e/kustomization.yaml b/components/build-templates/base/e2e/kustomization.yaml
+index 0ea7fb68..46dd4d91 100644
+--- a/components/build-templates/base/e2e/kustomization.yaml
++++ b/components/build-templates/base/e2e/kustomization.yaml
+@@ -2,6 +2,7 @@ resources:
+ - namespace.yaml
+ - rolebinding.yaml
+ - role.yaml
++- serviceaccount.yaml
+ 
+ namespace: build-templates-e2e
+ 
+diff --git a/components/build-templates/base/e2e/rolebinding.yaml b/components/build-templates/base/e2e/rolebinding.yaml
+index c94d7a80..abaedd3a 100644
+--- a/components/build-templates/base/e2e/rolebinding.yaml
++++ b/components/build-templates/base/e2e/rolebinding.yaml
+@@ -60,10 +60,6 @@ subjects:
+   - apiGroup: rbac.authorization.k8s.io
+     kind: Group
+     name: Build Admins team
+-  # TODO: remove mkosiarc, temporary for setup/debugging
+-  - apiGroup: rbac.authorization.k8s.io
+-    kind: User
+-    name: mkosiarc
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: Role
+diff --git a/components/build-templates/base/e2e/serviceaccount.yaml b/components/build-templates/base/e2e/serviceaccount.yaml
+new file mode 100644
+index 00000000..93d4de83
+--- /dev/null
++++ b/components/build-templates/base/e2e/serviceaccount.yaml
+@@ -0,0 +1,8 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: appstudio-pipeline
++secrets:
++  - name: quay-push-secret
++imagePullSecrets:
++  - name: quay-push-secret
