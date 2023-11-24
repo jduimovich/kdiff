@@ -1,0 +1,67 @@
+diff --git a/components/build-templates/base/e2e/role.yaml b/components/build-templates/base/e2e/role.yaml
+index 9d9d75a6..ffbd6222 100644
+--- a/components/build-templates/base/e2e/role.yaml
++++ b/components/build-templates/base/e2e/role.yaml
+@@ -28,4 +28,32 @@ rules:
+   - list
+   - patch
+   - update
+-  - watch
+\ No newline at end of file
++  - watch
++---
++kind: Role
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: build-admin
++  namespace: build-templates-e2e
++rules:
++  - apiGroups:
++      - ''
++    resources:
++      - secrets
++    verbs:
++      - get
++      - list
++      - watch
++      - update
++      - patch
++      - delete
++
++  - apiGroups:
++      - ''
++    resources:
++      - pods
++    verbs:
++      - get
++      - list
++      - watch
++      - delete
+diff --git a/components/build-templates/base/e2e/rolebinding.yaml b/components/build-templates/base/e2e/rolebinding.yaml
+index 715f5ce7..c94d7a80 100644
+--- a/components/build-templates/base/e2e/rolebinding.yaml
++++ b/components/build-templates/base/e2e/rolebinding.yaml
+@@ -50,3 +50,22 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: appstudio-pipelines-runner
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: build-admins
++  namespace: build-templates-e2e
++subjects:
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: Build Admins team
++  # TODO: remove mkosiarc, temporary for setup/debugging
++  - apiGroup: rbac.authorization.k8s.io
++    kind: User
++    name: mkosiarc
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: build-admin
++  
+\ No newline at end of file

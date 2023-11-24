@@ -1,0 +1,47 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4706e5a4/staging/components/build-templates/staging/kustomize.out.yaml ./kustomized-cache/commit-d8c38f96/staging/components/build-templates/staging/kustomize.out.yaml
+38,64d37
+<   name: build-admin
+<   namespace: build-templates-e2e
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - secrets
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - update
+<   - patch
+<   - delete
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pods
+<   verbs:
+<   - get
+<   - list
+<   - watch
+<   - delete
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+103,119d75
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: build-admins
+<   namespace: build-templates-e2e
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: build-admin
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Build Admins team
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: mkosiarc

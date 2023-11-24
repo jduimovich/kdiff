@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d8c38f96/staging/components/image-controller/staging/kustomize.out.yaml ./kustomized-cache/commit-b8715573/staging/components/image-controller/staging/kustomize.out.yaml
+550a551,552
+>     webhook:
+>       port: 9443
+611c613
+<         image: quay.io/redhat-appstudio/image-controller:6ae4f0b83851bd9aeef9a4cb2f4d3ef6775ed674
+---
+>         image: quay.io/redhat-appstudio/image-controller:ece26df1a3b509043cfc74da0f264611830fbf66
+681,682d682
+<   annotations:
+<     ignore-check.kube-linter.io/no-read-only-root-fs: image pruner writes to disk
