@@ -1,0 +1,497 @@
+diff --git a/components/gitops/base/authentication/gitops-clusterrolebindings.yaml b/components/gitops/base/authentication/gitops-clusterrolebindings.yaml
+index aae9cc3a..b77a4a0b 100644
+--- a/components/gitops/base/authentication/gitops-clusterrolebindings.yaml
++++ b/components/gitops/base/authentication/gitops-clusterrolebindings.yaml
+@@ -5,9 +5,9 @@ metadata:
+   name: gitops-service-gitops-component-maintainers
+   namespace: gitops
+ subjects:
+-  - kind: User
++  - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: jgwest
++    name: GitOps Service Team Admins
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/gitops/base/authentication/gitops-clusterroles.yaml b/components/gitops/base/authentication/gitops-clusterroles.yaml
+index 69e44884..3872e644 100644
+--- a/components/gitops/base/authentication/gitops-clusterroles.yaml
++++ b/components/gitops/base/authentication/gitops-clusterroles.yaml
+@@ -3,102 +3,121 @@ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   name: gitops-component-maintainer
+ rules:
++
+   - apiGroups:
+-      - '*'
++      - apiextensions.k8s.io
++    verbs:
++      - get
++      - list
++      - watch
+     resources:
+-      - '*'
++      - customresourcedefinitions
++
++  - apiGroups:
++      - rbac.authorization.k8s.io
++    resources:
++      - clusterrolebindings
++      - clusterroles
+     verbs:
+       - get
+       - list
+       - watch
+ 
+   - apiGroups:
+-      - appstudio.redhat.com
++      - rbac.authorization.k8s.io
+     resources:
+-      - snapshotenvironmentbindings
++      - rolebindings
++      - roles
+     verbs:
+-      - delete
++      - get
++      - list
++      - watch
++
+ 
+   - apiGroups:
+-    - admissionregistration.k8s.io
++      - ''
++      - 'apps'
+     resources:
+-    - validatingwebhookconfigurations
+-    - mutatingwebhookconfigurations
++      - 'bindings'
++      - 'configmaps'
++      - 'daemonsets'
++      - 'deployments'
++      - 'events'
++      - 'namespaces'
++      - 'nodes'
++      - 'pods'
++      - 'pods/log'
++      - 'replicas'
++      - 'replicasets'
++      - 'routes'
++      - 'secrets'
++      - 'serviceaccounts'
++      - 'services'
++      - 'statefulsets'
+     verbs:
+-    - list
+-    - watch
+-    - create
+-    - update
+-    - patch
+-    - delete
++      - 'get'
++      - 'list'
++      - 'watch'
++
+ 
+   - apiGroups:
+-      - operators.coreos.com
++      - appstudio.redhat.com
+     resources:
+-      - installplans
++      - snapshotenvironmentbindings
++    verbs:
++      - delete
++
++  - apiGroups:
++      - admissionregistration.k8s.io
++    resources:
++      - validatingwebhookconfigurations
++      - mutatingwebhookconfigurations
+     verbs:
+       - get
+       - list
+-      - update
+-      - patch
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+-metadata:
+-  name: gitops-namespaces-all-access
+-rules:
+-  - apiGroups:
+-      - '*'
++      - watch
++      - delete
++
++  - apiGroups: 
++      - operators.coreos.com
+     resources:
+-      - '*'
++      - catalogsources
++      - clusterserviceversions
++      - installplans
++      - operatorgroups
++      - subscriptions
+     verbs:
+-      - '*'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+-metadata:
+-  name: gitops-namespaces-read-all-access
+-rules:
++      - 'get'
++      - 'list'
++      - 'watch'
++
+   - apiGroups:
+-      - '*'
++      - "toolchain.dev.openshift.com"
+     resources:
+-      - '*'
++      - "spacerequests"
+     verbs:
+       - 'get'
+       - 'list'
+       - 'watch'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+-metadata:
+-  name: gitops-namespaces-read-access
+-rules:
++
+   - apiGroups:
+-      - ''
+-      - 'apps'
++      - monitoring.coreos.com
+     resources:
+-      - 'pods'
+-      - 'pods/log'
+-      - 'deployments'
+-      - 'events'
+-      - 'bindings'
+-      - 'replicas'
+-      - 'configmaps'
+-      - 'namespaces'
++      - alertmanagers
++      - prometheuses
++      - prometheusrules
++      - servicemonitors
+     verbs:
+       - 'get'
+       - 'list'
+       - 'watch'
+----
+-apiVersion: rbac.authorization.k8s.io/v1
+-kind: ClusterRole
+-metadata:
+-  name: gitops-namespaces-delete-pods-access
+-rules:
++
+   - apiGroups:
+-      - ''
+-      - 'apps'
++      - operators.coreos.com
+     resources:
+-      - 'pods'
++      - installplans
+     verbs:
+-      - 'delete'
++      - get
++      - list
++      - update
++      - patch
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/gitops-namespace/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/gitops-namespace/kustomization.yaml
+new file mode 100644
+index 00000000..b8baa3f2
+--- /dev/null
++++ b/components/gitops/base/authentication/gitops-namespace-roles/gitops-namespace/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - ../roles
++
++namespace: gitops
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/gitops-service-argocd-namespace/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/gitops-service-argocd-namespace/kustomization.yaml
+new file mode 100644
+index 00000000..845f0f1e
+--- /dev/null
++++ b/components/gitops/base/authentication/gitops-namespace-roles/gitops-service-argocd-namespace/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - ../roles
++
++namespace: gitops-service-argocd
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/jgwest-tenant/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/jgwest-tenant/kustomization.yaml
+new file mode 100644
+index 00000000..6a75b6f8
+--- /dev/null
++++ b/components/gitops/base/authentication/gitops-namespace-roles/jgwest-tenant/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++  - ../roles
++
++namespace: jgwest-tenant
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/kustomization.yaml
+new file mode 100644
+index 00000000..00952847
+--- /dev/null
++++ b/components/gitops/base/authentication/gitops-namespace-roles/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- gitops-namespace
++- gitops-service-argocd-namespace
+\ No newline at end of file
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/roles/kustomization.yaml b/components/gitops/base/authentication/gitops-namespace-roles/roles/kustomization.yaml
+new file mode 100644
+index 00000000..16de7406
+--- /dev/null
++++ b/components/gitops/base/authentication/gitops-namespace-roles/roles/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- roles.yaml
+diff --git a/components/gitops/base/authentication/gitops-namespace-roles/roles/roles.yaml b/components/gitops/base/authentication/gitops-namespace-roles/roles/roles.yaml
+new file mode 100644
+index 00000000..6d6160e8
+--- /dev/null
++++ b/components/gitops/base/authentication/gitops-namespace-roles/roles/roles.yaml
+@@ -0,0 +1,61 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: gitops-namespaces-all-access
++rules:
++  - apiGroups:
++      - '*'
++    resources:
++      - '*'
++    verbs:
++      - '*'
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: gitops-namespaces-read-all-access
++rules:
++  - apiGroups:
++      - '*'
++    resources:
++      - '*'
++    verbs:
++      - 'get'
++      - 'list'
++      - 'watch'
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: gitops-namespaces-read-access
++rules:
++  - apiGroups:
++      - ''
++      - 'apps'
++    resources:
++      - 'pods'
++      - 'pods/log'
++      - 'deployments'
++      - 'events'
++      - 'bindings'
++      - 'replicas'
++      - 'configmaps'
++      - 'namespaces'
++    verbs:
++      - 'get'
++      - 'list'
++      - 'watch'
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: gitops-namespaces-delete-pods-access
++rules:
++  - apiGroups:
++      - ''
++      - 'apps'
++    resources:
++      - 'pods'
++    verbs:
++      - 'delete'
+diff --git a/components/gitops/base/authentication/kustomization.yaml b/components/gitops/base/authentication/kustomization.yaml
+index 5126a16c..4c92317a 100644
+--- a/components/gitops/base/authentication/kustomization.yaml
++++ b/components/gitops/base/authentication/kustomization.yaml
+@@ -2,5 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
++- gitops-namespace-roles
+ - gitops-clusterroles.yaml
+-- gitops-clusterrolebindings.yaml
+\ No newline at end of file
++- gitops-clusterrolebindings.yaml
+diff --git a/components/gitops/production/base/authentication/gitops-rolebindings.yaml b/components/gitops/production/base/authentication/gitops-rolebindings.yaml
+index c64208e8..919f02ba 100644
+--- a/components/gitops/production/base/authentication/gitops-rolebindings.yaml
++++ b/components/gitops/production/base/authentication/gitops-rolebindings.yaml
+@@ -10,7 +10,7 @@ subjects:
+     name: GitOps Service Team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
++  kind: Role
+   name: gitops-namespaces-read-access
+ ---
+ kind: RoleBinding
+@@ -24,7 +24,7 @@ subjects:
+     name: GitOps Service Team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
++  kind: Role
+   name: gitops-namespaces-read-access
+ ---
+ kind: RoleBinding
+@@ -33,12 +33,9 @@ metadata:
+   name: gitops-namespace-all-access
+   namespace: gitops
+ subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jgwest
+-  - kind: User
++  - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: jannfis
++    name: GitOps Service Team Admins
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: Role
+@@ -50,12 +47,9 @@ metadata:
+   name: gitops-service-argocd-namespace-all-access
+   namespace: gitops-service-argocd
+ subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jgwest
+-  - kind: User
++  - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: jannfis
++    name: GitOps Service Team Admins
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: Role
+diff --git a/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml b/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml
+index 574eac2d..e5775334 100644
+--- a/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml
++++ b/components/gitops/production/stone-prd-m01/gitops-team-member-namespaces.yaml
+@@ -5,11 +5,11 @@ metadata:
+   name: gitops-allow-team-access-to-jgwest-tenant
+   namespace: jgwest-tenant
+ subjects:
+-  - kind: User
++  - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: jgwest
++    name: GitOps Service Team Admins
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
++  kind: Role
+   name: gitops-namespaces-all-access
+ ---
+diff --git a/components/gitops/production/stone-prd-m01/kustomization.yaml b/components/gitops/production/stone-prd-m01/kustomization.yaml
+index 047e2d9c..957e5200 100644
+--- a/components/gitops/production/stone-prd-m01/kustomization.yaml
++++ b/components/gitops/production/stone-prd-m01/kustomization.yaml
+@@ -4,6 +4,7 @@ kind: Kustomization
+ resources:
+ - ../base
+ - gitops-team-member-namespaces.yaml
++- ../../base/authentication/gitops-namespace-roles/jgwest-tenant
+ 
+ patches:
+   - path: gitops-service-postgres-rds-config-path.yaml
+diff --git a/components/gitops/staging/base/authentication/gitops-rolebindings.yaml b/components/gitops/staging/base/authentication/gitops-rolebindings.yaml
+index df9ba1d1..afbf4750 100644
+--- a/components/gitops/staging/base/authentication/gitops-rolebindings.yaml
++++ b/components/gitops/staging/base/authentication/gitops-rolebindings.yaml
+@@ -10,7 +10,7 @@ subjects:
+     name: GitOps Service Team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
++  kind: Role
+   name: gitops-namespaces-read-all-access
+ ---
+ kind: RoleBinding
+@@ -24,7 +24,7 @@ subjects:
+     name: GitOps Service Team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
++  kind: Role
+   name: gitops-namespaces-read-all-access
+ ---
+ kind: RoleBinding
+@@ -38,7 +38,7 @@ subjects:
+     name: GitOps Service Team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
++  kind: Role
+   name: gitops-namespaces-delete-pods-access
+ ---
+ kind: RoleBinding
+@@ -52,5 +52,5 @@ subjects:
+     name: GitOps Service Team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
++  kind: Role
+   name: gitops-namespaces-delete-pods-access
+\ No newline at end of file
+diff --git a/components/gitops/staging/stone-stg-m01/gitops-team-member-namespaces.yaml b/components/gitops/staging/stone-stg-m01/gitops-team-member-namespaces.yaml
+index ff36216c..faedb0f6 100644
+--- a/components/gitops/staging/stone-stg-m01/gitops-team-member-namespaces.yaml
++++ b/components/gitops/staging/stone-stg-m01/gitops-team-member-namespaces.yaml
+@@ -14,6 +14,6 @@ subjects:
+     name: GitOps Service Team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
++  kind: Role
+   name: gitops-namespaces-all-access
+ ---
+diff --git a/components/gitops/staging/stone-stg-m01/kustomization.yaml b/components/gitops/staging/stone-stg-m01/kustomization.yaml
+index 047e2d9c..27e25486 100644
+--- a/components/gitops/staging/stone-stg-m01/kustomization.yaml
++++ b/components/gitops/staging/stone-stg-m01/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ 
+ resources:
+ - ../base
++- ../../base/authentication/gitops-namespace-roles/jgwest-tenant
+ - gitops-team-member-namespaces.yaml
+ 
+ patches:

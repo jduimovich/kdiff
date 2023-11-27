@@ -1,0 +1,728 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a343b79/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-24599a6e/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+1112,1184d1111
+<   name: gitops-namespaces-all-access
+<   namespace: gitops-service-argocd
+< rules:
+< - apiGroups:
+<   - '*'
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: gitops-namespaces-delete-pods-access
+<   namespace: gitops-service-argocd
+< rules:
+< - apiGroups:
+<   - ""
+<   - apps
+<   resources:
+<   - pods
+<   verbs:
+<   - delete
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: gitops-namespaces-read-access
+<   namespace: gitops-service-argocd
+< rules:
+< - apiGroups:
+<   - ""
+<   - apps
+<   resources:
+<   - pods
+<   - pods/log
+<   - deployments
+<   - events
+<   - bindings
+<   - replicas
+<   - configmaps
+<   - namespaces
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: gitops-namespaces-read-all-access
+<   namespace: gitops-service-argocd
+< rules:
+< - apiGroups:
+<   - '*'
+<   resources:
+<   - '*'
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1265,1337d1191
+<   name: gitops-namespaces-all-access
+<   namespace: gitops
+< rules:
+< - apiGroups:
+<   - '*'
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: gitops-namespaces-delete-pods-access
+<   namespace: gitops
+< rules:
+< - apiGroups:
+<   - ""
+<   - apps
+<   resources:
+<   - pods
+<   verbs:
+<   - delete
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: gitops-namespaces-read-access
+<   namespace: gitops
+< rules:
+< - apiGroups:
+<   - ""
+<   - apps
+<   resources:
+<   - pods
+<   - pods/log
+<   - deployments
+<   - events
+<   - bindings
+<   - replicas
+<   - configmaps
+<   - namespaces
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: gitops-namespaces-read-all-access
+<   namespace: gitops
+< rules:
+< - apiGroups:
+<   - '*'
+<   resources:
+<   - '*'
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1374,1438d1227
+< kind: Role
+< metadata:
+<   name: gitops-namespaces-all-access
+<   namespace: jgwest-tenant
+< rules:
+< - apiGroups:
+<   - '*'
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   name: gitops-namespaces-delete-pods-access
+<   namespace: jgwest-tenant
+< rules:
+< - apiGroups:
+<   - ""
+<   - apps
+<   resources:
+<   - pods
+<   verbs:
+<   - delete
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   name: gitops-namespaces-read-access
+<   namespace: jgwest-tenant
+< rules:
+< - apiGroups:
+<   - ""
+<   - apps
+<   resources:
+<   - pods
+<   - pods/log
+<   - deployments
+<   - events
+<   - bindings
+<   - replicas
+<   - configmaps
+<   - namespaces
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   name: gitops-namespaces-read-all-access
+<   namespace: jgwest-tenant
+< rules:
+< - apiGroups:
+<   - '*'
+<   resources:
+<   - '*'
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+1852,1879c1641
+<   - apiextensions.k8s.io
+<   resources:
+<   - customresourcedefinitions
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - rbac.authorization.k8s.io
+<   resources:
+<   - clusterrolebindings
+<   - clusterroles
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - rbac.authorization.k8s.io
+<   resources:
+<   - rolebindings
+<   - roles
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - ""
+<   - apps
+---
+>   - '*'
+1881,1896c1643
+<   - bindings
+<   - configmaps
+<   - daemonsets
+<   - deployments
+<   - events
+<   - namespaces
+<   - nodes
+<   - pods
+<   - pods/log
+<   - replicas
+<   - replicasets
+<   - routes
+<   - secrets
+<   - serviceaccounts
+<   - services
+<   - statefulsets
+---
+>   - '*'
+1913d1659
+<   - get
+1915a1662,1664
+>   - create
+>   - update
+>   - patch
+1920,1950d1668
+<   - catalogsources
+<   - clusterserviceversions
+<   - installplans
+<   - operatorgroups
+<   - subscriptions
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+<   - spacerequests
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - monitoring.coreos.com
+<   resources:
+<   - alertmanagers
+<   - prometheuses
+<   - prometheusrules
+<   - servicemonitors
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - operators.coreos.com
+<   resources:
+2211a1930,1998
+>   name: gitops-namespaces-all-access
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - '*'
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: gitops-namespaces-delete-pods-access
+> rules:
+> - apiGroups:
+>   - ""
+>   - apps
+>   resources:
+>   - pods
+>   verbs:
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: gitops-namespaces-read-access
+> rules:
+> - apiGroups:
+>   - ""
+>   - apps
+>   resources:
+>   - pods
+>   - pods/log
+>   - deployments
+>   - events
+>   - bindings
+>   - replicas
+>   - configmaps
+>   - namespaces
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: gitops-namespaces-read-all-access
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2358c2145
+<   kind: Role
+---
+>   kind: ClusterRole
+2374c2161
+<   kind: Role
+---
+>   kind: ClusterRole
+2422c2209
+<   kind: Role
+---
+>   kind: ClusterRole
+2438c2225
+<   kind: Role
+---
+>   kind: ClusterRole
+2468c2255
+<   kind: Role
+---
+>   kind: ClusterRole
+2488,2489c2275,2276
+<   kind: Group
+<   name: GitOps Service Team Admins
+---
+>   kind: User
+>   name: jgwest
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a343b79/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-24599a6e/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml
+1112,1184d1111
+<   name: gitops-namespaces-all-access
+<   namespace: gitops-service-argocd
+< rules:
+< - apiGroups:
+<   - '*'
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: gitops-namespaces-delete-pods-access
+<   namespace: gitops-service-argocd
+< rules:
+< - apiGroups:
+<   - ""
+<   - apps
+<   resources:
+<   - pods
+<   verbs:
+<   - delete
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: gitops-namespaces-read-access
+<   namespace: gitops-service-argocd
+< rules:
+< - apiGroups:
+<   - ""
+<   - apps
+<   resources:
+<   - pods
+<   - pods/log
+<   - deployments
+<   - events
+<   - bindings
+<   - replicas
+<   - configmaps
+<   - namespaces
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: gitops-namespaces-read-all-access
+<   namespace: gitops-service-argocd
+< rules:
+< - apiGroups:
+<   - '*'
+<   resources:
+<   - '*'
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1265,1337d1191
+<   name: gitops-namespaces-all-access
+<   namespace: gitops
+< rules:
+< - apiGroups:
+<   - '*'
+<   resources:
+<   - '*'
+<   verbs:
+<   - '*'
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: gitops-namespaces-delete-pods-access
+<   namespace: gitops
+< rules:
+< - apiGroups:
+<   - ""
+<   - apps
+<   resources:
+<   - pods
+<   verbs:
+<   - delete
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: gitops-namespaces-read-access
+<   namespace: gitops
+< rules:
+< - apiGroups:
+<   - ""
+<   - apps
+<   resources:
+<   - pods
+<   - pods/log
+<   - deployments
+<   - events
+<   - bindings
+<   - replicas
+<   - configmaps
+<   - namespaces
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: gitops-namespaces-read-all-access
+<   namespace: gitops
+< rules:
+< - apiGroups:
+<   - '*'
+<   resources:
+<   - '*'
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+1787,1814c1641
+<   - apiextensions.k8s.io
+<   resources:
+<   - customresourcedefinitions
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - rbac.authorization.k8s.io
+<   resources:
+<   - clusterrolebindings
+<   - clusterroles
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - rbac.authorization.k8s.io
+<   resources:
+<   - rolebindings
+<   - roles
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - ""
+<   - apps
+---
+>   - '*'
+1816,1831c1643
+<   - bindings
+<   - configmaps
+<   - daemonsets
+<   - deployments
+<   - events
+<   - namespaces
+<   - nodes
+<   - pods
+<   - pods/log
+<   - replicas
+<   - replicasets
+<   - routes
+<   - secrets
+<   - serviceaccounts
+<   - services
+<   - statefulsets
+---
+>   - '*'
+1848d1659
+<   - get
+1850a1662,1664
+>   - create
+>   - update
+>   - patch
+1855,1885d1668
+<   - catalogsources
+<   - clusterserviceversions
+<   - installplans
+<   - operatorgroups
+<   - subscriptions
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - toolchain.dev.openshift.com
+<   resources:
+<   - spacerequests
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - monitoring.coreos.com
+<   resources:
+<   - alertmanagers
+<   - prometheuses
+<   - prometheusrules
+<   - servicemonitors
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - operators.coreos.com
+<   resources:
+2146a1930,1998
+>   name: gitops-namespaces-all-access
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - '*'
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: gitops-namespaces-delete-pods-access
+> rules:
+> - apiGroups:
+>   - ""
+>   - apps
+>   resources:
+>   - pods
+>   verbs:
+>   - delete
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: gitops-namespaces-read-access
+> rules:
+> - apiGroups:
+>   - ""
+>   - apps
+>   resources:
+>   - pods
+>   - pods/log
+>   - deployments
+>   - events
+>   - bindings
+>   - replicas
+>   - configmaps
+>   - namespaces
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: gitops-namespaces-read-all-access
+> rules:
+> - apiGroups:
+>   - '*'
+>   resources:
+>   - '*'
+>   verbs:
+>   - get
+>   - list
+>   - watch
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+2293c2145
+<   kind: Role
+---
+>   kind: ClusterRole
+2309c2161
+<   kind: Role
+---
+>   kind: ClusterRole
+2357c2209
+<   kind: Role
+---
+>   kind: ClusterRole
+2373c2225
+<   kind: Role
+---
+>   kind: ClusterRole
+2409,2410c2261,2262
+<   kind: Group
+<   name: GitOps Service Team Admins
+---
+>   kind: User
+>   name: jgwest
