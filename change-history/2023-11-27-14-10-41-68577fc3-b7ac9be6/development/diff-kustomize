@@ -1,0 +1,12 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b7ac9be6/development/components/build-templates/development/kustomize.out.yaml ./kustomized-cache/commit-68577fc3/development/components/build-templates/development/kustomize.out.yaml
+15a16,25
+> apiVersion: v1
+> imagePullSecrets:
+> - name: quay-push-secret
+> kind: ServiceAccount
+> metadata:
+>   name: appstudio-pipeline
+>   namespace: build-templates-e2e
+> secrets:
+> - name: quay-push-secret
+> ---

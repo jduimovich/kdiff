@@ -1,0 +1,8 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-68577fc3/production/components/backup/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-9a343b79/production/components/backup/production/stone-prd-m01/kustomize.out.yaml
+14,15d13
+<       conversionStrategy: Default
+<       decodingStrategy: None
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-68577fc3/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-9a343b79/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml
+14,15d13
+<       conversionStrategy: Default
+<       decodingStrategy: None
