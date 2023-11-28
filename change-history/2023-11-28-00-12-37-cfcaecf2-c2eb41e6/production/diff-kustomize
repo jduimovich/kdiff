@@ -1,0 +1,16 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c2eb41e6/production/components/has/production/kustomize.out.yaml ./kustomized-cache/commit-cfcaecf2/production/components/has/production/kustomize.out.yaml
+785d784
+<         app: application-service-controller-manager
+788,799d786
+<       affinity:
+<         podAntiAffinity:
+<           preferredDuringSchedulingIgnoredDuringExecution:
+<           - podAffinityTerm:
+<               labelSelector:
+<                 matchExpressions:
+<                 - key: app
+<                   operator: In
+<                   values:
+<                   - application-service-controller-manager
+<               topologyKey: kubernetes.io/hostname
+<             weight: 100

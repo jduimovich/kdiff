@@ -1,0 +1,25 @@
+diff --git a/components/has/k-components/replicas-patch/replicas_patch.yaml b/components/has/k-components/replicas-patch/replicas_patch.yaml
+index 9c46ac36..2eead3a1 100644
+--- a/components/has/k-components/replicas-patch/replicas_patch.yaml
++++ b/components/has/k-components/replicas-patch/replicas_patch.yaml
+@@ -5,3 +5,20 @@ metadata:
+   namespace: system
+ spec:
+   replicas: 3
++  template:
++    metadata:
++      labels:
++        app: application-service-controller-manager
++    spec:
++      affinity:
++        podAntiAffinity:
++          preferredDuringSchedulingIgnoredDuringExecution:
++          - weight: 100
++            podAffinityTerm:
++              labelSelector:
++                matchExpressions:
++                - key: app
++                  operator: In
++                  values:
++                  - application-service-controller-manager
++              topologyKey: kubernetes.io/hostname
