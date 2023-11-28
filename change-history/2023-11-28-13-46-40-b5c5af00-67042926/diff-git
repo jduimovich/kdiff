@@ -1,0 +1,116 @@
+diff --git a/components/backup/base/oadp/dpa.yaml b/components/backup/base/oadp/dpa.yaml
+new file mode 100644
+index 00000000..7fc8b200
+--- /dev/null
++++ b/components/backup/base/oadp/dpa.yaml
+@@ -0,0 +1,26 @@
++apiVersion: oadp.openshift.io/v1alpha1
++kind: DataProtectionApplication
++metadata:
++  name: velero-aws
++spec:
++  backupLocations:
++    - velero:
++        config:
++          kmsKeyId: CHANGE_ME
++          profile: default
++          region: us-east-1
++        credential:
++          key: cloud
++          name: backup-s3-credentials
++        default: true
++        objectStorage:
++          bucket: CHANGE_ME
++          prefix: velero
++        provider: aws
++  configuration:
++    restic:
++      enable: false
++    velero:
++      defaultPlugins:
++        - openshift
++        - aws
+diff --git a/components/backup/base/oadp/install-oadp.yaml b/components/backup/base/oadp/install-oadp.yaml
+new file mode 100644
+index 00000000..817b97db
+--- /dev/null
++++ b/components/backup/base/oadp/install-oadp.yaml
+@@ -0,0 +1,20 @@
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  name: redhat-oadp-operator
++spec:
++  channel: stable-1.2
++  installPlanApproval: Automatic
++  name: redhat-oadp-operator
++  source: redhat-operators
++  sourceNamespace: openshift-marketplace
++
++---
++apiVersion: operators.coreos.com/v1
++kind: OperatorGroup
++metadata:
++  name: openshift-adp
++spec:
++  targetNamespaces:
++  - openshift-adp
+diff --git a/components/backup/base/oadp/kustomization.yaml b/components/backup/base/oadp/kustomization.yaml
+new file mode 100644
+index 00000000..e2de0ab9
+--- /dev/null
++++ b/components/backup/base/oadp/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: openshift-adp
++resources:
++  - dpa.yaml
++  - install-oadp.yaml
+diff --git a/components/backup/staging/stone-stg-rh01/dpa-bucket-patch.yaml b/components/backup/staging/stone-stg-rh01/dpa-bucket-patch.yaml
+new file mode 100644
+index 00000000..c7e58b90
+--- /dev/null
++++ b/components/backup/staging/stone-stg-rh01/dpa-bucket-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/objectStorage/bucket
++  value: backup-stone-stg-rh01
+diff --git a/components/backup/staging/stone-stg-rh01/dpa-kmskeyid-patch.yaml b/components/backup/staging/stone-stg-rh01/dpa-kmskeyid-patch.yaml
+new file mode 100644
+index 00000000..de412737
+--- /dev/null
++++ b/components/backup/staging/stone-stg-rh01/dpa-kmskeyid-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/config/kmsKeyId
++  value: f1db03bc-ea5b-48f8-a40b-1afbbe666178
+diff --git a/components/backup/staging/stone-stg-rh01/kustomization.yaml b/components/backup/staging/stone-stg-rh01/kustomization.yaml
+index b2c1cba7..a637bd9e 100644
+--- a/components/backup/staging/stone-stg-rh01/kustomization.yaml
++++ b/components/backup/staging/stone-stg-rh01/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base/
++  - ../../base/oadp
+ patches:
+   - target:
+       group: external-secrets.io
+@@ -9,3 +10,15 @@ patches:
+       kind: ExternalSecret
+       name: backup-s3-credentials
+     path: backup-s3-credentials-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-bucket-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-kmskeyid-patch.yaml
