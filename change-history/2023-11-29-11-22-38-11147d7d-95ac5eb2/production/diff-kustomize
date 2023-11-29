@@ -1,0 +1,29 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-95ac5eb2/production/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-11147d7d/production/components/enterprise-contract/kustomize.out.yaml
+302c302
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:ac4431cf5449deae250a002eb0b5e955a2b87696@sha256:62879c1b54cd9f40525136791099eea73124fd1f3e2c18361c5e68eacf53b080
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:c97b84a2b9c0ff0e553de0ade2a60fbc18fde370@sha256:d6c979c3b65544bac825580748c9a5f62a505c74071cf7ad8d2c98c8d8ee18b4
+304c304
+<   verify_ec_task_git_revision: ac4431cf5449deae250a002eb0b5e955a2b87696
+---
+>   verify_ec_task_git_revision: c97b84a2b9c0ff0e553de0ade2a60fbc18fde370
+334c334
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-fab6481@sha256:757440524b5312a14170ee688e21e973fb1b9510a6a0ed862aabd4957d392f4d
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
+358c358
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-fab6481@sha256:757440524b5312a14170ee688e21e973fb1b9510a6a0ed862aabd4957d392f4d
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
+382c382
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-fab6481@sha256:757440524b5312a14170ee688e21e973fb1b9510a6a0ed862aabd4957d392f4d
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
+409c409
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-fab6481@sha256:757440524b5312a14170ee688e21e973fb1b9510a6a0ed862aabd4957d392f4d
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
+435c435
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-fab6481@sha256:757440524b5312a14170ee688e21e973fb1b9510a6a0ed862aabd4957d392f4d
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-bb96264@sha256:1bc02bc28a9eb029a152016a507800397acd7853f1f8866592ca0eb59593cec1
