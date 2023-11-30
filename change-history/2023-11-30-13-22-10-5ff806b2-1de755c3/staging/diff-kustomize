@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1de755c3/staging/components/build-templates/staging/kustomize.out.yaml ./kustomized-cache/commit-5ff806b2/staging/components/build-templates/staging/kustomize.out.yaml
+22d21
+<   namespace: build-templates-e2e

@@ -1,0 +1,68 @@
+diff --git a/components/build-templates/production/e2e-serviceaccount.yaml b/components/build-templates/production/e2e-serviceaccount.yaml
+new file mode 100644
+index 00000000..339267f6
+--- /dev/null
++++ b/components/build-templates/production/e2e-serviceaccount.yaml
+@@ -0,0 +1,11 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: appstudio-pipeline
++  namespace: build-templates-e2e
++secrets:
++  - name: quay-push-secret
++imagePullSecrets:
++  - name: quay-push-secret
++  # TODO: manage this secret properly via an ExternalSecret
++  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
+diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml
+index cf51f774..3b86be94 100644
+--- a/components/build-templates/production/kustomization.yaml
++++ b/components/build-templates/production/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ resources:
+   - ../base
+   - e2e-quay-push-secret.yaml
+-  - serviceaccount.yaml
++  - e2e-serviceaccount.yaml
+diff --git a/components/build-templates/production/serviceaccount.yaml b/components/build-templates/staging/e2e-serviceaccount.yaml
+similarity index 60%
+rename from components/build-templates/production/serviceaccount.yaml
+rename to components/build-templates/staging/e2e-serviceaccount.yaml
+index 93d4de83..1b2be4b1 100644
+--- a/components/build-templates/production/serviceaccount.yaml
++++ b/components/build-templates/staging/e2e-serviceaccount.yaml
+@@ -2,7 +2,9 @@ apiVersion: v1
+ kind: ServiceAccount
+ metadata:
+   name: appstudio-pipeline
++  namespace: build-templates-e2e
+ secrets:
+   - name: quay-push-secret
+ imagePullSecrets:
+   - name: quay-push-secret
++  # TODO: get a serviceaccount for registry.redhat.io pull access
+diff --git a/components/build-templates/staging/kustomization.yaml b/components/build-templates/staging/kustomization.yaml
+index cf51f774..3b86be94 100644
+--- a/components/build-templates/staging/kustomization.yaml
++++ b/components/build-templates/staging/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ resources:
+   - ../base
+   - e2e-quay-push-secret.yaml
+-  - serviceaccount.yaml
++  - e2e-serviceaccount.yaml
+diff --git a/components/build-templates/staging/serviceaccount.yaml b/components/build-templates/staging/serviceaccount.yaml
+deleted file mode 100644
+index 93d4de83..00000000
+--- a/components/build-templates/staging/serviceaccount.yaml
++++ /dev/null
+@@ -1,8 +0,0 @@
+-apiVersion: v1
+-kind: ServiceAccount
+-metadata:
+-  name: appstudio-pipeline
+-secrets:
+-  - name: quay-push-secret
+-imagePullSecrets:
+-  - name: quay-push-secret

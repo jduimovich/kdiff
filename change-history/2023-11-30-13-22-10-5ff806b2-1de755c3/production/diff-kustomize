@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1de755c3/production/components/build-templates/production/kustomize.out.yaml ./kustomized-cache/commit-5ff806b2/production/components/build-templates/production/kustomize.out.yaml
+19d18
+< - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
+23d21
+<   namespace: build-templates-e2e
