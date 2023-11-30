@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c65f1382/staging/components/backup/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-cfe3565a/staging/components/backup/staging/stone-stg-m01/kustomize.out.yaml
+9,10d8
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "-1"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c65f1382/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-cfe3565a/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml
+9,10d8
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "-1"
+65,66d62
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "-3"
+76,77d71
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "-2"

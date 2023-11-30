@@ -1,0 +1,35 @@
+diff --git a/components/backup/base/external-secret.yaml b/components/backup/base/external-secret.yaml
+index 24e8410b..1d386c30 100644
+--- a/components/backup/base/external-secret.yaml
++++ b/components/backup/base/external-secret.yaml
+@@ -2,6 +2,8 @@ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+   name: backup-s3-credentials
++  annotations:
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+   - extract:
+diff --git a/components/backup/base/oadp/install-oadp.yaml b/components/backup/base/oadp/install-oadp.yaml
+index 817b97db..b21a6669 100644
+--- a/components/backup/base/oadp/install-oadp.yaml
++++ b/components/backup/base/oadp/install-oadp.yaml
+@@ -3,6 +3,8 @@ apiVersion: operators.coreos.com/v1alpha1
+ kind: Subscription
+ metadata:
+   name: redhat-oadp-operator
++  annotations:
++    argocd.argoproj.io/sync-wave: "-2"
+ spec:
+   channel: stable-1.2
+   installPlanApproval: Automatic
+@@ -15,6 +17,8 @@ apiVersion: operators.coreos.com/v1
+ kind: OperatorGroup
+ metadata:
+   name: openshift-adp
++  annotations:
++    argocd.argoproj.io/sync-wave: "-3"
+ spec:
+   targetNamespaces:
+   - openshift-adp
