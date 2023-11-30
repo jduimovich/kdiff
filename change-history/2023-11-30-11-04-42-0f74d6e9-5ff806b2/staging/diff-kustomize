@@ -1,0 +1,27 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5ff806b2/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-0f74d6e9/staging/app-of-apps-staging.yaml
+1235c1235
+<             clusterDir: base
+---
+>             clusterDir: ""
+1239,1241c1239
+<           elements:
+<           - nameNormalized: stone-stg-host
+<             values.clusterDir: stone-stg-host
+---
+>           elements: []
+1283c1281
+<             clusterDir: base
+---
+>             clusterDir: ""
+1287,1291c1285
+<           elements:
+<           - nameNormalized: stone-stg-m01
+<             values.clusterDir: stone-stg-m01
+<           - nameNormalized: stone-stg-rh01
+<             values.clusterDir: stone-stg-rh01
+---
+>           elements: []
+Only in ./kustomized-cache/commit-0f74d6e9/staging/components/segment-bridge/staging: kustomize.out.yaml
+Only in ./kustomized-cache/commit-5ff806b2/staging/components/segment-bridge/staging: stone-stg-host
+Only in ./kustomized-cache/commit-5ff806b2/staging/components/segment-bridge/staging: stone-stg-m01
+Only in ./kustomized-cache/commit-5ff806b2/staging/components/segment-bridge/staging: stone-stg-rh01

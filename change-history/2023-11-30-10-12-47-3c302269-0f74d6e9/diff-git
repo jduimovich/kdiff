@@ -1,0 +1,70 @@
+diff --git a/components/integration/base/external-secrets/kustomization.yaml b/components/integration/base/external-secrets/kustomization.yaml
+new file mode 100644
+index 00000000..b6abc6c0
+--- /dev/null
++++ b/components/integration/base/external-secrets/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- pipelines-as-code-secret.yaml
++namespace: integration-service
+diff --git a/components/integration/base/external-secrets/pipelines-as-code-secret.yaml b/components/integration/base/external-secrets/pipelines-as-code-secret.yaml
+new file mode 100644
+index 00000000..3aa1ec9f
+--- /dev/null
++++ b/components/integration/base/external-secrets/pipelines-as-code-secret.yaml
+@@ -0,0 +1,19 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: pipelines-as-code-secret
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/pipeline-service/github-app
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: pipelines-as-code-secret
+diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
+index f6761555..63ae7bd1 100644
+--- a/components/integration/staging/kustomization.yaml
++++ b/components/integration/staging/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
++- ../base/external-secrets
+ - https://github.com/redhat-appstudio/integration-service/config/default?ref=86d6da5140bf9f3e6394a6bf860e4ae503f83bf9
+ 
+ images:
+diff --git a/hack/build/setup-pac-integration.sh b/hack/build/setup-pac-integration.sh
+index 3676f03b..cc5049b7 100755
+--- a/hack/build/setup-pac-integration.sh
++++ b/hack/build/setup-pac-integration.sh
+@@ -2,6 +2,7 @@
+ 
+ PAC_NAMESPACE='openshift-pipelines'
+ PAC_SECRET_NAME='pipelines-as-code-secret'
++INTEGRATION_NAMESPACE='integration-service'
+ 
+ setup-pac-app() (
+         # Inspired by implementation by Will Haley at:
+@@ -100,7 +101,9 @@ fi
+ 
+ oc create namespace -o yaml --dry-run=client ${PAC_NAMESPACE} | oc apply -f-
+ oc create namespace -o yaml --dry-run=client build-service | oc apply -f-
++oc create namespace -o yaml --dry-run=client ${INTEGRATION_NAMESPACE} | oc apply -f-
+ 
+ eval "oc -n '$PAC_NAMESPACE' create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client" | oc apply -f-
+ eval "oc -n build-service create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client" | oc apply -f-
++eval "oc -n ${INTEGRATION_NAMESPACE} create secret generic '$PAC_SECRET_NAME' $GITHUB_APP_DATA $GITHUB_WEBHOOK_DATA $GITLAB_WEBHOOK_DATA -o yaml --dry-run=client" | oc apply -f-
+ echo "Configured ${PAC_SECRET_NAME} secret in ${PAC_NAMESPACE} namespace"

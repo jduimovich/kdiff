@@ -1,0 +1,158 @@
+diff --git a/argo-cd-apps/base/host/segment-bridge/kustomization.yaml b/argo-cd-apps/base/host/segment-bridge/kustomization.yaml
+index edea222d..9962ba51 100644
+--- a/argo-cd-apps/base/host/segment-bridge/kustomization.yaml
++++ b/argo-cd-apps/base/host/segment-bridge/kustomization.yaml
+@@ -4,4 +4,3 @@ resources:
+   - segment-bridge-host.yaml
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+-
+diff --git a/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml b/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml
+index 59d0703f..0f6b4291 100644
+--- a/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml
++++ b/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml
+@@ -12,9 +12,11 @@ spec:
+               values:
+                 sourceRoot: components/segment-bridge
+                 environment: staging
+-                clusterDir: ""
++                clusterDir: base
+           - list:
+-              elements: []
++              elements:
++                - nameNormalized: stone-stg-host
++                  values.clusterDir: stone-stg-host
+   template:
+     metadata:
+       name: segment-bridge-host-{{nameNormalized}}
+@@ -39,4 +41,3 @@ spec:
+             duration: 10s
+             factor: 2
+             maxDuration: 3m
+-
+diff --git a/argo-cd-apps/base/member/infra-deployments/segment-bridge/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/segment-bridge/kustomization.yaml
+index 3c0d1c85..77b2a152 100644
+--- a/argo-cd-apps/base/member/infra-deployments/segment-bridge/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/segment-bridge/kustomization.yaml
+@@ -4,4 +4,3 @@ resources:
+ - segment-bridge-member.yaml
+ components:
+   - ../../../../k-components/deploy-to-member-cluster-merge-generator
+-
+diff --git a/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml b/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml
+index 8911abdd..d969c766 100644
+--- a/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml
+@@ -12,9 +12,13 @@ spec:
+               values:
+                 sourceRoot: components/segment-bridge
+                 environment: staging
+-                clusterDir: ""
++                clusterDir: base
+           - list:
+-              elements: []
++              elements:
++                - nameNormalized: stone-stg-m01
++                  values.clusterDir: stone-stg-m01
++                - nameNormalized: stone-stg-rh01
++                  values.clusterDir: stone-stg-rh01
+   template:
+     metadata:
+       name: segment-bridge-member-{{nameNormalized}}
+@@ -28,7 +32,7 @@ spec:
+         namespace: segment-bridge
+         server: '{{server}}'
+       syncPolicy:
+-        automated: 
++        automated:
+           prune: true
+           selfHeal: true
+         syncOptions:
+@@ -39,4 +43,3 @@ spec:
+             duration: 10s
+             factor: 2
+             maxDuration: 3m
+-
+diff --git a/components/segment-bridge/base/kustomization.yaml b/components/segment-bridge/base/kustomization.yaml
+index 7fb83529..cf30275b 100644
+--- a/components/segment-bridge/base/kustomization.yaml
++++ b/components/segment-bridge/base/kustomization.yaml
+@@ -1,5 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ./rbac
+-- serviceaccount.yaml
++  - serviceaccount.yaml
+diff --git a/components/segment-bridge/base/rbac/kustomization.yaml b/components/segment-bridge/rbac/kustomization.yaml
+similarity index 76%
+rename from components/segment-bridge/base/rbac/kustomization.yaml
+rename to components/segment-bridge/rbac/kustomization.yaml
+index 549e0eee..9e50ac1b 100644
+--- a/components/segment-bridge/base/rbac/kustomization.yaml
++++ b/components/segment-bridge/rbac/kustomization.yaml
+@@ -2,4 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-  - segment-bridge.yaml
+\ No newline at end of file
++  - segment-bridge.yaml
+diff --git a/components/segment-bridge/base/rbac/segment-bridge.yaml b/components/segment-bridge/rbac/segment-bridge.yaml
+similarity index 100%
+rename from components/segment-bridge/base/rbac/segment-bridge.yaml
+rename to components/segment-bridge/rbac/segment-bridge.yaml
+diff --git a/components/segment-bridge/staging/base/kustomization.yaml b/components/segment-bridge/staging/base/kustomization.yaml
+new file mode 100644
+index 00000000..2333422e
+--- /dev/null
++++ b/components/segment-bridge/staging/base/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
+diff --git a/components/segment-bridge/staging/rbac/kustomization.yaml b/components/segment-bridge/staging/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..ca0045ce
+--- /dev/null
++++ b/components/segment-bridge/staging/rbac/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../rbac
+diff --git a/components/segment-bridge/staging/kustomization.yaml b/components/segment-bridge/staging/stone-stg-host/kustomization.yaml
+similarity index 86%
+rename from components/segment-bridge/staging/kustomization.yaml
+rename to components/segment-bridge/staging/stone-stg-host/kustomization.yaml
+index 8a762793..0248de6a 100644
+--- a/components/segment-bridge/staging/kustomization.yaml
++++ b/components/segment-bridge/staging/stone-stg-host/kustomization.yaml
+@@ -1,5 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base
+-
++  - ../rbac
+diff --git a/components/segment-bridge/staging/stone-stg-m01/kustomization.yaml b/components/segment-bridge/staging/stone-stg-m01/kustomization.yaml
+new file mode 100644
+index 00000000..27bb5cb0
+--- /dev/null
++++ b/components/segment-bridge/staging/stone-stg-m01/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
+diff --git a/components/segment-bridge/staging/stone-stg-rh01/kustomization.yaml b/components/segment-bridge/staging/stone-stg-rh01/kustomization.yaml
+new file mode 100644
+index 00000000..27bb5cb0
+--- /dev/null
++++ b/components/segment-bridge/staging/stone-stg-rh01/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
