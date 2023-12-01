@@ -1,0 +1,8 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a9469e54/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-1f5c505b/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+30d29
+<     - integration-service
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a9469e54/staging/components/integration/staging/kustomize.out.yaml ./kustomized-cache/commit-1f5c505b/staging/components/integration/staging/kustomize.out.yaml
+1175c1175
+<   refreshInterval: 5m
+---
+>   refreshInterval: 1h

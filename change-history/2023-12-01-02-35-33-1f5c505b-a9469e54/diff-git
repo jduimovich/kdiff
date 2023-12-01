@@ -1,0 +1,22 @@
+diff --git a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+index 04ea5665..c3b1d649 100644
+--- a/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
++++ b/components/cluster-secret-store/base/appsre-stonesoup-vault-secret-store.yaml
+@@ -47,3 +47,4 @@ spec:
+         - rhtap-build-tenant
+         - rhtap-o11y-tenant
+         - admin-checker
++        - integration-service
+diff --git a/components/integration/base/external-secrets/pipelines-as-code-secret.yaml b/components/integration/base/external-secrets/pipelines-as-code-secret.yaml
+index 3aa1ec9f..4663435f 100644
+--- a/components/integration/base/external-secrets/pipelines-as-code-secret.yaml
++++ b/components/integration/base/external-secrets/pipelines-as-code-secret.yaml
+@@ -9,7 +9,7 @@ spec:
+   dataFrom:
+     - extract:
+         key: staging/pipeline-service/github-app
+-  refreshInterval: 1h
++  refreshInterval: 5m
+   secretStoreRef:
+     kind: ClusterSecretStore
+     name: appsre-stonesoup-vault
