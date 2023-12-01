@@ -1,0 +1,12 @@
+diff --git a/components/build-templates/production/e2e-serviceaccount.yaml b/components/build-templates/production/e2e-serviceaccount.yaml
+index 339267f6..08309542 100644
+--- a/components/build-templates/production/e2e-serviceaccount.yaml
++++ b/components/build-templates/production/e2e-serviceaccount.yaml
+@@ -5,6 +5,7 @@ metadata:
+   namespace: build-templates-e2e
+ secrets:
+   - name: quay-push-secret
++  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
+ imagePullSecrets:
+   - name: quay-push-secret
+   # TODO: manage this secret properly via an ExternalSecret
