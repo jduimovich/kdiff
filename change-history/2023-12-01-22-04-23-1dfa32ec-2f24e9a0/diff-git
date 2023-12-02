@@ -1,0 +1,99 @@
+diff --git a/components/backup/base/external-secret.yaml b/components/backup/base/external-secret.yaml
+index 1d386c30..7a9f58e8 100644
+--- a/components/backup/base/external-secret.yaml
++++ b/components/backup/base/external-secret.yaml
+@@ -3,7 +3,7 @@ kind: ExternalSecret
+ metadata:
+   name: backup-s3-credentials
+   annotations:
+-    argocd.argoproj.io/sync-wave: "-1"
++    argocd.argoproj.io/sync-wave: "-2"
+ spec:
+   dataFrom:
+   - extract:
+diff --git a/components/backup/base/oadp/backup-tenants-schedule.yaml b/components/backup/base/oadp/backup-tenants-schedule.yaml
+new file mode 100644
+index 00000000..46cbb083
+--- /dev/null
++++ b/components/backup/base/oadp/backup-tenants-schedule.yaml
+@@ -0,0 +1,56 @@
++apiVersion: velero.io/v1
++kind: Schedule
++metadata:
++  name: backup-tenants
++spec:
++  schedule: 30 1,13 * * * # every day 1:30, 13:30 UTC
++  template:
++    excludedNamespaces:
++      - kube-*
++      - openshift*
++      - appstudio*
++      - admin-checker
++      - application-api
++      - application-service
++      - appsre-vault
++      - build-service
++      - build-templates
++      - build-templates-e2e
++      - dedicated-admin
++      - deployment-validation-operator
++      - dora-metrics
++      - enterprise-contract-service
++      - external-secrets-operator
++      - gitops
++      - gitops-service-argocd
++      - group-sync-operator
++      - hac-pact-broker
++      - image-controller
++      - integration-service
++      - internal-services
++      - jvm-build-service
++      - multi-platform-controller
++      - perf-team-prometheus-reader
++      - plnsvc-tests
++      - quality-dashboard
++      - release-service
++      - remotesecret
++      - sandbox-sre-member
++      - segment-bridge
++      - spi-system
++      - tekton-results
++      - toolchain-member-operator
++    includedResources:
++      - applications.appstudio.redhat.com
++      - components.appstudio.redhat.com
++      - environments.appstudio.redhat.com
++      - integrationtestscenarios.appstudio.redhat.com
++      - secrets
++      - snapshots.appstudio.redhat.com
++      - snapshotenvironmentbindings.appstudio.redhat.com
++      - serviceaccounts
++      - namespaces
++    storageLocation: velero-aws-1
++    ttl: 720h0m0s
++status:
++  phase: Enabled
+diff --git a/components/backup/base/oadp/dpa.yaml b/components/backup/base/oadp/dpa.yaml
+index 7fc8b200..4e4d32bc 100644
+--- a/components/backup/base/oadp/dpa.yaml
++++ b/components/backup/base/oadp/dpa.yaml
+@@ -2,6 +2,8 @@ apiVersion: oadp.openshift.io/v1alpha1
+ kind: DataProtectionApplication
+ metadata:
+   name: velero-aws
++  annotations:
++    argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   backupLocations:
+     - velero:
+diff --git a/components/backup/base/oadp/kustomization.yaml b/components/backup/base/oadp/kustomization.yaml
+index e2de0ab9..80e37c9b 100644
+--- a/components/backup/base/oadp/kustomization.yaml
++++ b/components/backup/base/oadp/kustomization.yaml
+@@ -2,5 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ namespace: openshift-adp
+ resources:
++  - backup-tenants-schedule.yaml
+   - dpa.yaml
+   - install-oadp.yaml

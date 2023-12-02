@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2f24e9a0/production/components/backup/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-1dfa32ec/production/components/backup/production/stone-prd-m01/kustomize.out.yaml
+10c10
+<     argocd.argoproj.io/sync-wave: "-2"
+---
+>     argocd.argoproj.io/sync-wave: "-1"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2f24e9a0/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-1dfa32ec/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml
+10c10
+<     argocd.argoproj.io/sync-wave: "-2"
+---
+>     argocd.argoproj.io/sync-wave: "-1"
