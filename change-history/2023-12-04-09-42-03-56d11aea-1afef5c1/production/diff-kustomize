@@ -1,0 +1,23 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1afef5c1/production/components/integration/production/kustomize.out.yaml ./kustomized-cache/commit-56d11aea/production/components/integration/production/kustomize.out.yaml
+1163,1183d1162
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: pipelines-as-code-secret
+<   namespace: integration-service
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/pipeline-service/github-app
+<   refreshInterval: 5m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: pipelines-as-code-secret
+< ---
