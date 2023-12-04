@@ -1,0 +1,26 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-55085816/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-24932cee/staging/components/gitops/staging/stone-stg-m01/kustomize.out.yaml
+2879c2879
+<         image: quay.io/redhat-appstudio/gitops-service:87e1f9acc67bf033d2159951ba6489f0836586ef
+---
+>         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+2996c2996
+<         image: quay.io/redhat-appstudio/gitops-service:87e1f9acc67bf033d2159951ba6489f0836586ef
+---
+>         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+3110c3110
+<         image: quay.io/redhat-appstudio/gitops-service:87e1f9acc67bf033d2159951ba6489f0836586ef
+---
+>         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-55085816/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-24932cee/staging/components/gitops/staging/stone-stg-rh01/kustomize.out.yaml
+2800c2800
+<         image: quay.io/redhat-appstudio/gitops-service:87e1f9acc67bf033d2159951ba6489f0836586ef
+---
+>         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+2917c2917
+<         image: quay.io/redhat-appstudio/gitops-service:87e1f9acc67bf033d2159951ba6489f0836586ef
+---
+>         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
+3031c3031
+<         image: quay.io/redhat-appstudio/gitops-service:87e1f9acc67bf033d2159951ba6489f0836586ef
+---
+>         image: quay.io/redhat-appstudio/gitops-service:c8df66adcc179b7fa1d7855e59dfa91ac6a35c09

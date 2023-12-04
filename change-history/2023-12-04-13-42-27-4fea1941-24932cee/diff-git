@@ -1,0 +1,100 @@
+diff --git a/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml b/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml
+index 0f6b4291..7ac81a20 100644
+--- a/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml
++++ b/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml
+@@ -17,18 +17,20 @@ spec:
+               elements:
+                 - nameNormalized: stone-stg-host
+                   values.clusterDir: stone-stg-host
++                - nameNormalized: stone-prd-host
++                  values.clusterDir: stone-stg-host
+   template:
+     metadata:
+       name: segment-bridge-host-{{nameNormalized}}
+     spec:
+       project: default
+       source:
+-        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        path: "{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}"
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
+         namespace: segment-bridge
+-        server: '{{server}}'
++        server: "{{server}}"
+       syncPolicy:
+         automated:
+           prune: true
+diff --git a/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml b/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml
+index d969c766..9b27900e 100644
+--- a/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml
+@@ -19,18 +19,22 @@ spec:
+                   values.clusterDir: stone-stg-m01
+                 - nameNormalized: stone-stg-rh01
+                   values.clusterDir: stone-stg-rh01
++                - nameNormalized: stone-prd-m01
++                  values.clusterDir: stone-stg-m01
++                - nameNormalized: stone-prd-rh01
++                  values.clusterDir: stone-stg-rh01
+   template:
+     metadata:
+       name: segment-bridge-member-{{nameNormalized}}
+     spec:
+       project: default
+       source:
+-        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        path: "{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}"
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
+         namespace: segment-bridge
+-        server: '{{server}}'
++        server: "{{server}}"
+       syncPolicy:
+         automated:
+           prune: true
+diff --git a/components/segment-bridge/production/rbac/kustomization.yaml b/components/segment-bridge/production/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..ca0045ce
+--- /dev/null
++++ b/components/segment-bridge/production/rbac/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../rbac
+diff --git a/components/segment-bridge/production/kustomization.yaml b/components/segment-bridge/production/stone-prd-host/kustomization.yaml
+similarity index 86%
+rename from components/segment-bridge/production/kustomization.yaml
+rename to components/segment-bridge/production/stone-prd-host/kustomization.yaml
+index 8a762793..0248de6a 100644
+--- a/components/segment-bridge/production/kustomization.yaml
++++ b/components/segment-bridge/production/stone-prd-host/kustomization.yaml
+@@ -1,5 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base
+-
++  - ../rbac
+diff --git a/components/segment-bridge/production/stone-prd-m01/kustomization.yaml b/components/segment-bridge/production/stone-prd-m01/kustomization.yaml
+new file mode 100644
+index 00000000..27bb5cb0
+--- /dev/null
++++ b/components/segment-bridge/production/stone-prd-m01/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
+diff --git a/components/segment-bridge/production/stone-prd-rh01/kustomization.yaml b/components/segment-bridge/production/stone-prd-rh01/kustomization.yaml
+new file mode 100644
+index 00000000..27bb5cb0
+--- /dev/null
++++ b/components/segment-bridge/production/stone-prd-rh01/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base

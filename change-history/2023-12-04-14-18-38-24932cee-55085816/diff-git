@@ -1,0 +1,61 @@
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+index 3fc612eb..322bdd57 100644
+--- a/components/gitops/development/kustomization.yaml
++++ b/components/gitops/development/kustomization.yaml
+@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/appstudio-staging-cluster?ref=87e1f9acc67bf033d2159951ba6489f0836586ef
+ - ../openshift-gitops/overlays/production-and-dev
+ 
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
++    newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+diff --git a/components/gitops/production/base/kustomization.yaml b/components/gitops/production/base/kustomization.yaml
+index 2e3dee78..76d50070 100644
+--- a/components/gitops/production/base/kustomization.yaml
++++ b/components/gitops/production/base/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=87e1f9acc67bf033d2159951ba6489f0836586ef
+ - ../../openshift-gitops/overlays/production-and-dev
+ - ../../base/external-secrets
+ - ../../base/monitoring
+@@ -11,7 +11,7 @@ resources:
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
++    newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/gitops/staging/base/kustomization.yaml b/components/gitops/staging/base/kustomization.yaml
+index 2803fa1c..edbdd2da 100644
+--- a/components/gitops/staging/base/kustomization.yaml
++++ b/components/gitops/staging/base/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ resources:
+-- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
++- https://github.com/redhat-appstudio/managed-gitops/manifests/overlays/stonesoup-member-cluster?ref=87e1f9acc67bf033d2159951ba6489f0836586ef
+ - ../../openshift-gitops/overlays/staging
+ - ../../base/external-secrets
+ - ../../base/monitoring
+@@ -11,7 +11,7 @@ resources:
+ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+-    newTag: c8df66adcc179b7fa1d7855e59dfa91ac6a35c09
++    newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

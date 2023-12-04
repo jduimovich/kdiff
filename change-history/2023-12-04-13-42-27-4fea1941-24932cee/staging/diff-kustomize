@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-24932cee/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-4fea1941/staging/app-of-apps-staging.yaml
+1242,1243d1241
+<           - nameNormalized: stone-prd-host
+<             values.clusterDir: stone-stg-host
+1293,1296d1290
+<             values.clusterDir: stone-stg-rh01
+<           - nameNormalized: stone-prd-m01
+<             values.clusterDir: stone-stg-m01
+<           - nameNormalized: stone-prd-rh01
