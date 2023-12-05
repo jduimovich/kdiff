@@ -1,0 +1,45 @@
+diff --git a/components/remote-secret-controller/overlays/development/kustomization.yaml b/components/remote-secret-controller/overlays/development/kustomization.yaml
+index b05945e7..31239c6a 100644
+--- a/components/remote-secret-controller/overlays/development/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=01b48f030055a68cdc640aae290bb111258b7cbb
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=ee40bf08c9514ad81828a434fd2930f3ef59c36c
+ 
+ namespace: remotesecret
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: 01b48f030055a68cdc640aae290bb111258b7cbb
++    newTag: ee40bf08c9514ad81828a434fd2930f3ef59c36c
+ 
+ patches:
+   - target:
+diff --git a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+index ce2f6573..9b8a5556 100644
+--- a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=01b48f030055a68cdc640aae290bb111258b7cbb
+-  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=01b48f030055a68cdc640aae290bb111258b7cbb
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=ee40bf08c9514ad81828a434fd2930f3ef59c36c
++  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=ee40bf08c9514ad81828a434fd2930f3ef59c36c
+   - aws-credentials-external-secret.yaml
+ 
+ namespace: remotesecret
+@@ -11,7 +11,7 @@ namespace: remotesecret
+ images:
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: 01b48f030055a68cdc640aae290bb111258b7cbb
++    newTag: ee40bf08c9514ad81828a434fd2930f3ef59c36c
+ 
+ patches:
+   - target:
