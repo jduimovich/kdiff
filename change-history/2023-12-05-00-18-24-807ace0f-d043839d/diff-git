@@ -1,0 +1,9 @@
+diff --git a/components/backup/base/oadp/backup-tenants-schedule.yaml b/components/backup/base/oadp/backup-tenants-schedule.yaml
+index 10cd32bc..3ac2f0a9 100644
+--- a/components/backup/base/oadp/backup-tenants-schedule.yaml
++++ b/components/backup/base/oadp/backup-tenants-schedule.yaml
+@@ -52,3 +52,4 @@ spec:
+       - namespaces
+     storageLocation: velero-aws-1
+     ttl: 720h0m0s
++  useOwnerReferencesInBackup: true
