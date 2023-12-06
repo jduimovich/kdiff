@@ -1,0 +1,52 @@
+diff --git a/components/monitoring/logging/base/kustomization.yaml b/components/monitoring/logging/base/kustomization.yaml
+index bd6661da..fb629ba9 100644
+--- a/components/monitoring/logging/base/kustomization.yaml
++++ b/components/monitoring/logging/base/kustomization.yaml
+@@ -3,6 +3,7 @@ kind: Kustomization
+ resources:
+ - install-logging-operator.yaml
+ - ./configure-logging/
++- ./rbac/
+ 
+ generatorOptions:
+   disableNameSuffixHash: true
+diff --git a/components/monitoring/logging/base/rbac/kustomization.yaml b/components/monitoring/logging/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..c766aad2
+--- /dev/null
++++ b/components/monitoring/logging/base/rbac/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- logging-admin.yaml
+diff --git a/components/monitoring/logging/base/rbac/logging-admin.yaml b/components/monitoring/logging/base/rbac/logging-admin.yaml
+new file mode 100644
+index 00000000..91e699f0
+--- /dev/null
++++ b/components/monitoring/logging/base/rbac/logging-admin.yaml
+@@ -0,0 +1,24 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
++metadata:
++  name: all-access-openshift-logging
++  namespace: openshift-logging
++rules:
++- apiGroups: [""]
++  resources: ["*"]
++  verbs: ["*"]
++---
++
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: all-access-openshift-logging
++  namespace: openshift-logging
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: Logging Admins
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: all-access-openshift-logging
