@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ed6366b6/development/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-c5ce5e01/development/components/enterprise-contract/kustomize.out.yaml
+302c302
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:a8ed4c9542640295c91d183565f15dbfcdbc1239@sha256:4fdc6cd21944b9470cb92dd6bddea9e31ecb5dbcd80ed89bac4def3a8b0dd388
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:20144a4eb3ec148bcbec006c093c483e96ec96d2@sha256:89ee96673f52026fdc3e65b1d92eb5e065b7a46a834f5b7209c5650739a1adb6
+304c304
+<   verify_ec_task_git_revision: a8ed4c9542640295c91d183565f15dbfcdbc1239
+---
+>   verify_ec_task_git_revision: 20144a4eb3ec148bcbec006c093c483e96ec96d2
