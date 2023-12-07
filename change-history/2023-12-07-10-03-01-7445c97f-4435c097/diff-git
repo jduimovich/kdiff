@@ -1,0 +1,258 @@
+diff --git a/argo-cd-apps/base/host/kustomization.yaml b/argo-cd-apps/base/host/kustomization.yaml
+index 1f1d0bb8..cd5fc000 100644
+--- a/argo-cd-apps/base/host/kustomization.yaml
++++ b/argo-cd-apps/base/host/kustomization.yaml
+@@ -5,7 +5,7 @@ resources:
+   - toolchain-host-operator
+   - segment-bridge
+   - ingresscontroller
++  - smee
+ components:
+   - ../../k-components/deploy-to-host-cluster-merge-generator
+   - ../../k-components/inject-argocd-namespace
+-
+diff --git a/argo-cd-apps/base/host/smee/kustomization.yaml b/argo-cd-apps/base/host/smee/kustomization.yaml
+new file mode 100644
+index 00000000..54ad71bb
+--- /dev/null
++++ b/argo-cd-apps/base/host/smee/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - smee.yaml
++components:
++  - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/host/smee/smee.yaml b/argo-cd-apps/base/host/smee/smee.yaml
+new file mode 100644
+index 00000000..e2381c60
+--- /dev/null
++++ b/argo-cd-apps/base/host/smee/smee.yaml
+@@ -0,0 +1,41 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: smee
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/smee
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: smee-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: smee
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index 922d0c17..39aeae1c 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -52,3 +52,9 @@ kind: ApplicationSet
+ metadata:
+   name: backup
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: smee
++$patch: delete
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index 50c4152f..10537455 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -102,3 +102,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: integration
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: smee
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index e226401c..4028aa81 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -137,3 +137,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: integration
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: smee
+diff --git a/components/smee/OWNERS b/components/smee/OWNERS
+new file mode 100644
+index 00000000..aade3a48
+--- /dev/null
++++ b/components/smee/OWNERS
+@@ -0,0 +1,6 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- ifireball
++- gbenhaim
++- amisstea
+diff --git a/components/smee/README.md b/components/smee/README.md
+new file mode 100644
+index 00000000..ece3fd13
+--- /dev/null
++++ b/components/smee/README.md
+@@ -0,0 +1,9 @@
++# Smee component
++
++The Smee component deploys [gosmee][gs] in server mode to the host cluster.
++
++This allows our clusters to provide a webhook forwarding service similar to
++[smee.io][sm].
++
++[gs]: https://github.com/chmouel/gosmee
++[sm]: https://smee.io/
+diff --git a/components/smee/base/kustomization.yaml b/components/smee/base/kustomization.yaml
+new file mode 100644
+index 00000000..fe0f332a
+--- /dev/null
++++ b/components/smee/base/kustomization.yaml
+@@ -0,0 +1,4 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources: []
+diff --git a/components/smee/production/kustomization.yaml b/components/smee/production/kustomization.yaml
+new file mode 100644
+index 00000000..fe0f332a
+--- /dev/null
++++ b/components/smee/production/kustomization.yaml
+@@ -0,0 +1,4 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources: []
+diff --git a/components/smee/staging/deployment.yaml b/components/smee/staging/deployment.yaml
+new file mode 100644
+index 00000000..7150f4da
+--- /dev/null
++++ b/components/smee/staging/deployment.yaml
+@@ -0,0 +1,36 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: gosmee
++  labels:
++    app: gosmee
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: gosmee
++  template:
++    metadata:
++      labels:
++        app: gosmee
++    spec:
++      containers:
++        - image: "ghcr.io/chmouel/gosmee:v0.20.2"
++          imagePullPolicy: Always
++          name: gosmee
++          args: ["server", "--address", "0.0.0.0"]
++          ports:
++            - name: "gosmee-http"
++              containerPort: 3333
++              protocol: TCP
++          securityContext:
++            readOnlyRootFilesystem: true
++            runAsNonRoot: true
++          resources:
++            limits:
++              cpu: 1
++              memory: 32Mi
++            requests:
++              cpu: 1
++              memory: 32Mi
+diff --git a/components/smee/staging/kustomization.yaml b/components/smee/staging/kustomization.yaml
+new file mode 100644
+index 00000000..17293f36
+--- /dev/null
++++ b/components/smee/staging/kustomization.yaml
+@@ -0,0 +1,7 @@
++---
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- deployment.yaml
++- route.yaml
++- service.yaml
+diff --git a/components/smee/staging/route.yaml b/components/smee/staging/route.yaml
+new file mode 100644
+index 00000000..49c3d801
+--- /dev/null
++++ b/components/smee/staging/route.yaml
+@@ -0,0 +1,17 @@
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  name: smee
++  annotations:
++    haproxy.router.openshift.io/timeout: 86410s
++    router.openshift.io/haproxy.health.check.interval: 86400s
++spec:
++  port:
++    targetPort: "http"
++  to:
++    kind: Service
++    name: smee
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: edge
+diff --git a/components/smee/staging/service.yaml b/components/smee/staging/service.yaml
+new file mode 100644
+index 00000000..b0e0dbae
+--- /dev/null
++++ b/components/smee/staging/service.yaml
+@@ -0,0 +1,15 @@
++---
++apiVersion: v1
++kind: Service
++metadata:
++  labels:
++    app: gosmee
++  name: smee
++spec:
++  ports:
++  - name: "http"
++    port: 3333
++    protocol: TCP
++    targetPort: "gosmee-http"
++  selector:
++    app: gosmee
