@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a408afa5/production/components/authentication/production/kustomize.out.yaml ./kustomized-cache/commit-50a12dc6/production/components/authentication/production/kustomize.out.yaml
+151a152
+>   - clusterresourcequotas
+366,372d366
+< - apiGroups:
+<   - quota.openshift.io
+<   resources:
+<   - appliedclusterresourcequota
+<   - clusterresourcequotas
+<   verbs:
+<   - '*'

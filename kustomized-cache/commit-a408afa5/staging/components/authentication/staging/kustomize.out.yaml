@@ -1,0 +1,770 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: admin-checker
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: group-sync-operator
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-checker-sa
+  namespace: admin-checker
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: component-maintainer
+rules:
+- apiGroups:
+  - operators.coreos.com
+  resources:
+  - installplans
+  verbs:
+  - get
+  - list
+  - update
+  - patch
+- apiGroups:
+  - ""
+  resourceNames:
+  - pipeline
+  resources:
+  - serviceaccounts
+  verbs:
+  - patch
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+  - get
+  - list
+  - watch
+  - delete
+- apiGroups:
+  - tekton.dev
+  resources:
+  - pipelineruns
+  verbs:
+  - '*'
+- apiGroups:
+  - results.tekton.dev
+  resources:
+  - results
+  - records
+  - logs
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - ""
+  resources:
+  - pods/portforward
+  verbs:
+  - create
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - get
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: groups-reader
+rules:
+- apiGroups:
+  - user.openshift.io
+  resources:
+  - groups
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: results-cluster-viewer
+rules:
+- apiGroups:
+  - results.tekton.dev
+  resources:
+  - results
+  - records
+  - logs
+  verbs:
+  - get
+  - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: rhtap-admins
+rules:
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - applications
+  - buildpipelineselectors
+  - componentdetectionqueries
+  - components
+  - enterprisecontractpolicies
+  - environments
+  - integrationtestscenarios
+  - promotionruns
+  - releaseplanadmissions
+  - releaseplans
+  - releases
+  - releaseserviceconfigs
+  - releasestrategies
+  - snapshotenvironmentbindings
+  - snapshots
+  - spiaccesschecks
+  - spiaccesstokenbindings
+  - spifilecontentrequests
+  - remotesecrets
+  verbs:
+  - '*'
+- apiGroups:
+  - managed-gitops.redhat.com
+  resources:
+  - gitopsdeploymentmanagedenvironments
+  - gitopsdeployments
+  - gitopsdeploymentsyncruns
+  - operations
+  verbs:
+  - '*'
+- apiGroups:
+  - jvmbuildservice.io
+  resources:
+  - artifactbuilds
+  - dependencybuilds
+  - rebuiltartifacts
+  - systemconfigs
+  - tektonwrappers
+  - jbsconfigs
+  verbs:
+  - '*'
+- apiGroups:
+  - pipelinesascode.tekton.dev
+  resources:
+  - repositories
+  verbs:
+  - '*'
+- apiGroups:
+  - ""
+  resources:
+  - clusterpolicybindings
+  - images
+  - netnamespaces
+  - nodes
+  - persistentvolumes
+  - securitycontextconstraints
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apiserver.openshift.io
+  resources:
+  - apirequestcounts
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - machineconfiguration.openshift.io
+  resources:
+  - machineconfigs
+  - machineconfigpools
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - machine.openshift.io
+  resources:
+  - machinesets
+  - machines
+  verbs:
+  - delete
+  - get
+  - list
+  - watch
+- apiGroups:
+  - network.openshift.io
+  resources:
+  - clusternetworks
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - buildconfigs/webhooks
+  - buildlogs
+  - configmaps
+  - deploymentconfigs
+  - deploymentconfigs/scale
+  - egressnetworkpolicies
+  - endpoints
+  - imagestreamimages
+  - imagestreammappings
+  - imagestreams
+  - imagetags
+  - limitranges
+  - namespaces
+  - nodes
+  - persistentvolumeclaims
+  - pods
+  - pods/attach
+  - pods/exec
+  - pods/port-forward
+  - processedtemplates
+  - replicationcontrollers
+  - replicationcontrollers/scale
+  - resourcequotas
+  - roles
+  - routes
+  - serviceaccounts
+  - services
+  - templateconfigs
+  - templateinstances
+  - templates
+  verbs:
+  - '*'
+- apiGroups:
+  - apps
+  resources:
+  - daemonsets
+  - deployments
+  - deployments/scale
+  - replicasets
+  - replicasets/scale
+  - statefulsets
+  - statefulsets/scale
+  verbs:
+  - '*'
+- apiGroups:
+  - batch
+  resources:
+  - cronjobs
+  - jobs
+  verbs:
+  - '*'
+- apiGroups:
+  - extensions
+  resources:
+  - daemonsets
+  - deployments
+  - deployements/rollback
+  - deployments/scale
+  - ingresses
+  - networkpolicies
+  - replicasets
+  - replicasets/scale
+  - replicationcontrollers/scale
+  verbs:
+  - '*'
+- apiGroups:
+  - apps.openshift.io
+  resources:
+  - deploymentconfigs
+  - deploymentconfigs/scale
+  verbs:
+  - '*'
+- apiGroups:
+  - authorization.openshift.io
+  resources:
+  - roles
+  verbs:
+  - '*'
+- apiGroups:
+  - build.openshift.io
+  resources:
+  - builds
+  - buildconfigs
+  - buildconfigs/webhooks
+  - buildlogs
+  verbs:
+  - '*'
+- apiGroups:
+  - config.openshift.io
+  resources:
+  - '*'
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - image.openshift.io
+  resources:
+  - imagestreams
+  - imagestreamimages
+  - imagestreammappings
+  - imagetags
+  verbs:
+  - '*'
+- apiGroups:
+  - operators.coreos.com
+  resources:
+  - '*'
+  verbs:
+  - '*'
+- apiGroups:
+  - route.openshift.io
+  resources:
+  - routes
+  verbs:
+  - '*'
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - roles
+  verbs:
+  - '*'
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - clusterrolebindings
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resources:
+  - rolebindings
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - watch
+- apiGroups:
+  - autoscaling
+  resources:
+  - horizontalpodautoscalers
+  verbs:
+  - '*'
+- apiGroups:
+  - monitoring.coreos.com
+  resources:
+  - alertmanagers
+  - prometheuses
+  - prometheusrules
+  - servicemonitors
+  - podmonitors
+  - thanosrulers
+  verbs:
+  - '*'
+- apiGroups:
+  - oadp.openshift.io
+  resources:
+  - dataprotectionapplications
+  - cloudstorages
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+- apiGroups:
+  - quota.openshift.io
+  resources:
+  - appliedclusterresourcequota
+  - clusterresourcequotas
+  verbs:
+  - '*'
+- apiGroups:
+  - user.openshift.io
+  resources:
+  - groups
+  - identities
+  - useridentitymappings
+  - users
+  verbs:
+  - '*'
+- apiGroups:
+  - velero.io
+  resources:
+  - backups
+  - restores
+  - schedules
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: view-appstudio
+rules:
+- apiGroups:
+  - appstudio.redhat.com
+  resources:
+  - applications
+  - buildpipelineselectors
+  - componentdetectionqueries
+  - components
+  - enterprisecontractpolicies
+  - environments
+  - integrationtestscenarios
+  - internalrequests
+  - promotionruns
+  - releaseplanadmissions
+  - releaseplans
+  - releases
+  - releaseserviceconfigs
+  - releasestrategies
+  - snapshotenvironmentbindings
+  - snapshots
+  - spiaccesschecks
+  - spiaccesstokenbindings
+  - spifilecontentrequests
+  - remotesecrets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - managed-gitops.redhat.com
+  resources:
+  - gitopsdeploymentmanagedenvironments
+  - gitopsdeployments
+  - gitopsdeploymentsyncruns
+  - operations
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - jvmbuildservice.io
+  resources:
+  - artifactbuilds
+  - dependencybuilds
+  - rebuiltartifacts
+  - systemconfigs
+  - tektonwrappers
+  - jbsconfigs
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - pipelinesascode.tekton.dev
+  resources:
+  - repositories
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: view-cluster-version
+rules:
+- apiGroups:
+  - config.openshift.io
+  resources:
+  - clusterversions
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: group-sync-operator-maintainers
+  namespace: group-sync-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: component-maintainer
+subjects:
+- kind: User
+  name: sbose78
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-checker-group-reader
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: groups-reader
+subjects:
+- kind: ServiceAccount
+  name: admin-checker-sa
+  namespace: admin-checker
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: everyone-view
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: stage
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: everyone-view-appstudio
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view-appstudio
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: stage
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: everyone-view-cluster-version
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view-cluster-version
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: stage
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: results-cluster-viewer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: results-cluster-viewer
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: gabemontero
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: sayan-biswas
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: rhtap-admins
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: rhtap-admins
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: RHTAP Admins
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: rhtap-admins-view
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: RHTAP Admins
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: check-cluster-admins
+  namespace: admin-checker
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - command:
+            - /bin/sh
+            - -c
+            - |
+              validate_and_notify_for_group(){
+                local group="$1"
+                local users
+                users=$(oc get group "${group}" -o jsonpath='{.users}' | sed "s/<nil>//g" | tr -d '"[]')
+                if [[ -n "${users}" ]]; then
+                  echo "The list of ${group} is: ${users}"
+                  curl -s -X POST "${ADMIN_CHECKER_WORKFLOW_URL}" \
+                  -H 'Content-Type: application/json' \
+                  -d '{"clusterName": "'$(oc whoami --show-console)'", "userNames": "'${users}'", "groupName": "'${group}'" }'
+                else
+                  echo "The is no one part of ${group}"
+                fi
+              }
+
+              validate_and_notify_for_group "cluster-admins"
+              validate_and_notify_for_group "dedicated-admins"
+            env:
+            - name: ADMIN_CHECKER_WORKFLOW_URL
+              valueFrom:
+                secretKeyRef:
+                  key: admin-checker-workflow-url
+                  name: rhtap-infra-secrets
+            image: registry.redhat.io/openshift4/ose-cli:v4.12
+            name: admin-checker
+            resources:
+              limits:
+                cpu: 100m
+                memory: 100Mi
+              requests:
+                cpu: 100m
+                memory: 10Mi
+            securityContext:
+              readOnlyRootFilesystem: true
+              runAsNonRoot: true
+          restartPolicy: OnFailure
+          serviceAccountName: admin-checker-sa
+  schedule: 30 11 * * 1-5
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: rhtap-infra-secrets
+  namespace: admin-checker
+spec:
+  dataFrom:
+  - extract:
+      conversionStrategy: Default
+      decodingStrategy: None
+      key: staging/platform/rhtap-infra-secrets
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: rhtap-infra-secrets
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: github-redhat-appstudio
+  namespace: group-sync-operator
+spec:
+  dataFrom:
+  - extract:
+      conversionStrategy: Default
+      decodingStrategy: None
+      key: staging/group-sync/github-redhat-appstudio
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: github-redhat-appstudio
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "-1"
+  name: github-redhat-appstudio-sre
+  namespace: group-sync-operator
+spec:
+  dataFrom:
+  - extract:
+      conversionStrategy: Default
+      decodingStrategy: None
+      key: staging/group-sync/github-redhat-appstudio-sre
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: appsre-stonesoup-vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Delete
+    name: github-redhat-appstudio-sre
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: group-sync-operator
+  namespace: group-sync-operator
+spec:
+  targetNamespaces:
+  - group-sync-operator
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: group-sync-operator
+  namespace: group-sync-operator
+spec:
+  channel: alpha
+  installPlanApproval: Automatic
+  name: group-sync-operator
+  source: community-operators
+  sourceNamespace: openshift-marketplace
+---
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: GroupSync
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: github-redhat-appstudio
+  namespace: group-sync-operator
+spec:
+  providers:
+  - github:
+      credentialsSecret:
+        name: github-redhat-appstudio
+        namespace: group-sync-operator
+      organization: redhat-appstudio
+    name: github
+  schedule: '*/15 * * * *'
+---
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: GroupSync
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: github-redhat-appstudio-sre
+  namespace: group-sync-operator
+spec:
+  providers:
+  - github:
+      credentialsSecret:
+        name: github-redhat-appstudio-sre
+        namespace: group-sync-operator
+      organization: redhat-appstudio-sre
+    name: github
+  schedule: '*/15 * * * *'
