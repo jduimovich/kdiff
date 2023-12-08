@@ -1,0 +1,13 @@
+diff --git a/components/authentication/base/rhtap-admins.yaml b/components/authentication/base/rhtap-admins.yaml
+index 39fa155b..5761d241 100644
+--- a/components/authentication/base/rhtap-admins.yaml
++++ b/components/authentication/base/rhtap-admins.yaml
+@@ -276,7 +276,7 @@ rules:
+   - apiGroups:
+       - quota.openshift.io
+     resources:
+-      - appliedclusterresourcequota
++      - appliedclusterresourcequotas
+       - clusterresourcequotas
+     verbs:
+       - '*'
