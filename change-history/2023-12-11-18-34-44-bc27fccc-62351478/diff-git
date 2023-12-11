@@ -1,0 +1,38 @@
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 660c471c..73dc3ccf 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=ed11406a2c6708b02c48ded645ac59f2c7fa6bf0
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=e89a46d1fa14dba9dcf8398a8548de4becec0d0e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: ed11406a2c6708b02c48ded645ac59f2c7fa6bf0
++  newTag: e89a46d1fa14dba9dcf8398a8548de4becec0d0e
+ 
+ namespace: integration-service
+ 
+diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
+index 6d00c9c3..f8f9e387 100644
+--- a/components/integration/staging/kustomization.yaml
++++ b/components/integration/staging/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=ed11406a2c6708b02c48ded645ac59f2c7fa6bf0
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=e89a46d1fa14dba9dcf8398a8548de4becec0d0e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: ed11406a2c6708b02c48ded645ac59f2c7fa6bf0
++  newTag: e89a46d1fa14dba9dcf8398a8548de4becec0d0e
+ 
+ namespace: integration-service
+ 
