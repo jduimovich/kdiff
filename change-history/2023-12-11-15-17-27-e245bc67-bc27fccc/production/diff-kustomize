@@ -1,0 +1,19 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bc27fccc/production/components/build-service/production/kustomize.out.yaml ./kustomized-cache/commit-e245bc67/production/components/build-service/production/kustomize.out.yaml
+82a83,86
+>                         bundle:
+>                           description: 'Bundle url reference to a Tekton Bundle. Deprecated:
+>                             Please use ResolverRef with the bundles resolver instead.'
+>                           type: string
+400,407d403
+<   - namespaces
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - ""
+<   resources:
+683c679
+<         image: quay.io/redhat-appstudio/build-service:c15259110678d6bce1f05d9c5e3c98453ed10090
+---
+>         image: quay.io/redhat-appstudio/build-service:7069c7708a122ad24eabfe67b650e9065ebff942
