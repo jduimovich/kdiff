@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c95e0eed/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-b71f988d/production/components/tekton-ci/production/kustomize.out.yaml
+340a341,349
+>   name: integration-service
+> spec:
+>   url: https://github.com/redhat-appstudio/integration-service
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
