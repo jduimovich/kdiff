@@ -1,0 +1,142 @@
+diff --git a/components/backup/base/external-secret.yaml b/components/backup/base/all-clusters/external-secret.yaml
+similarity index 100%
+rename from components/backup/base/external-secret.yaml
+rename to components/backup/base/all-clusters/external-secret.yaml
+diff --git a/components/backup/base/kustomization.yaml b/components/backup/base/all-clusters/kustomization.yaml
+similarity index 100%
+rename from components/backup/base/kustomization.yaml
+rename to components/backup/base/all-clusters/kustomization.yaml
+diff --git a/components/backup/base/namespace.yaml b/components/backup/base/all-clusters/namespace.yaml
+similarity index 100%
+rename from components/backup/base/namespace.yaml
+rename to components/backup/base/all-clusters/namespace.yaml
+diff --git a/components/backup/base/oadp/dpa.yaml b/components/backup/base/all-clusters/oadp/dpa.yaml
+similarity index 100%
+rename from components/backup/base/oadp/dpa.yaml
+rename to components/backup/base/all-clusters/oadp/dpa.yaml
+diff --git a/components/backup/base/oadp/install-oadp.yaml b/components/backup/base/all-clusters/oadp/install-oadp.yaml
+similarity index 100%
+rename from components/backup/base/oadp/install-oadp.yaml
+rename to components/backup/base/all-clusters/oadp/install-oadp.yaml
+diff --git a/components/backup/base/all-clusters/oadp/kustomization.yaml b/components/backup/base/all-clusters/oadp/kustomization.yaml
+new file mode 100644
+index 00000000..4b956286
+--- /dev/null
++++ b/components/backup/base/all-clusters/oadp/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - dpa.yaml
++  - install-oadp.yaml
+diff --git a/components/backup/base/host/kustomization.yaml b/components/backup/base/host/kustomization.yaml
+new file mode 100644
+index 00000000..50ec2a5f
+--- /dev/null
++++ b/components/backup/base/host/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: openshift-adp
++resources:
++  - ../all-clusters
++  - ../all-clusters/oadp
+diff --git a/components/backup/base/oadp/backup-tenants-schedule.yaml b/components/backup/base/member/backup-tenants-schedule.yaml
+similarity index 100%
+rename from components/backup/base/oadp/backup-tenants-schedule.yaml
+rename to components/backup/base/member/backup-tenants-schedule.yaml
+diff --git a/components/backup/base/oadp/kustomization.yaml b/components/backup/base/member/kustomization.yaml
+similarity index 74%
+rename from components/backup/base/oadp/kustomization.yaml
+rename to components/backup/base/member/kustomization.yaml
+index 80e37c9b..5bf33587 100644
+--- a/components/backup/base/oadp/kustomization.yaml
++++ b/components/backup/base/member/kustomization.yaml
+@@ -2,6 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ namespace: openshift-adp
+ resources:
++  - ../all-clusters
++  - ../all-clusters/oadp
+   - backup-tenants-schedule.yaml
+-  - dpa.yaml
+-  - install-oadp.yaml
+diff --git a/components/backup/production/stone-prd-host1/kustomization.yaml b/components/backup/production/stone-prd-host1/kustomization.yaml
+index b2c1cba7..229a13d9 100644
+--- a/components/backup/production/stone-prd-host1/kustomization.yaml
++++ b/components/backup/production/stone-prd-host1/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/
++  - ../../base/all-clusters
+ patches:
+   - target:
+       group: external-secrets.io
+diff --git a/components/backup/production/stone-prd-m01/kustomization.yaml b/components/backup/production/stone-prd-m01/kustomization.yaml
+index b2c1cba7..229a13d9 100644
+--- a/components/backup/production/stone-prd-m01/kustomization.yaml
++++ b/components/backup/production/stone-prd-m01/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/
++  - ../../base/all-clusters
+ patches:
+   - target:
+       group: external-secrets.io
+diff --git a/components/backup/production/stone-prd-rh01/kustomization.yaml b/components/backup/production/stone-prd-rh01/kustomization.yaml
+index b2c1cba7..229a13d9 100644
+--- a/components/backup/production/stone-prd-rh01/kustomization.yaml
++++ b/components/backup/production/stone-prd-rh01/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/
++  - ../../base/all-clusters
+ patches:
+   - target:
+       group: external-secrets.io
+diff --git a/components/backup/staging/stone-stg-host/kustomization.yaml b/components/backup/staging/stone-stg-host/kustomization.yaml
+index b2c1cba7..229a13d9 100644
+--- a/components/backup/staging/stone-stg-host/kustomization.yaml
++++ b/components/backup/staging/stone-stg-host/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/
++  - ../../base/all-clusters
+ patches:
+   - target:
+       group: external-secrets.io
+diff --git a/components/backup/staging/stone-stg-m01/kustomization.yaml b/components/backup/staging/stone-stg-m01/kustomization.yaml
+index b2c1cba7..229a13d9 100644
+--- a/components/backup/staging/stone-stg-m01/kustomization.yaml
++++ b/components/backup/staging/stone-stg-m01/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/
++  - ../../base/all-clusters
+ patches:
+   - target:
+       group: external-secrets.io
+diff --git a/components/backup/staging/stone-stg-rh01/kustomization.yaml b/components/backup/staging/stone-stg-rh01/kustomization.yaml
+index a637bd9e..4ee8993e 100644
+--- a/components/backup/staging/stone-stg-rh01/kustomization.yaml
++++ b/components/backup/staging/stone-stg-rh01/kustomization.yaml
+@@ -1,8 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/
+-  - ../../base/oadp
++  - ../../base/member
+ patches:
+   - target:
+       group: external-secrets.io

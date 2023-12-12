@@ -1,0 +1,30 @@
+diff --git a/components/tekton-ci/base/external-secrets/integration-github-token.yaml b/components/tekton-ci/base/external-secrets/clair-in-ci-db-github-token.yaml
+similarity index 71%
+rename from components/tekton-ci/base/external-secrets/integration-github-token.yaml
+rename to components/tekton-ci/base/external-secrets/clair-in-ci-db-github-token.yaml
+index 12ae41d0..0763010c 100644
+--- a/components/tekton-ci/base/external-secrets/integration-github-token.yaml
++++ b/components/tekton-ci/base/external-secrets/clair-in-ci-db-github-token.yaml
+@@ -2,14 +2,14 @@
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+-  name: integration-github-token 
++  name: clair-in-ci-db-github-token
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+ spec:
+   dataFrom:
+     - extract:
+-        key: "production/build/tekton-ci/integration-github-token"
++        key: "production/integration-service/tekton-ci/clair-in-ci-db-github-token"
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+@@ -17,4 +17,4 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: integration-github-token
++    name: clair-in-ci-db-github-token
