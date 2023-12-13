@@ -1,0 +1,11 @@
+diff --git a/components/tekton-ci/base/external-secrets/kustomization.yaml b/components/tekton-ci/base/external-secrets/kustomization.yaml
+index 885c1218..f96983a6 100644
+--- a/components/tekton-ci/base/external-secrets/kustomization.yaml
++++ b/components/tekton-ci/base/external-secrets/kustomization.yaml
+@@ -6,5 +6,5 @@ resources:
+ - snyk-shared-token.yaml
+ - slack-webhook-notification-secret.yaml
+ - github-secret.yaml
+-- integration-github-token.yaml
++- clair-in-ci-db-github-token.yaml
+ namespace: tekton-ci
