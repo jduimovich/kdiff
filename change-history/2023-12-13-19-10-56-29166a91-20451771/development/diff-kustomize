@@ -1,0 +1,44 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-20451771/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-29166a91/development/components/pipeline-service/development/kustomize.out.yaml
+1247,1248d1246
+<         - name: DB_SSLMODE
+<           value: disable
+1300c1298
+<         image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+1325a1324,1325
+>             add:
+>             - NET_BIND_SERVICE
+1454c1454
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+1569,1573c1569
+<         - name: TEKTON_RESULTS_API_SERVICE
+<           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+<         - name: AUTH_MODE
+<           value: token
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+1582a1579,1580
+>             add:
+>             - NET_BIND_SERVICE
+1642,1648d1639
+<             resources:
+<               limits:
+<                 cpu: 200m
+<                 memory: 200Mi
+<               requests:
+<                 cpu: 10m
+<                 memory: 10Mi
+1654d1644
+<               readOnlyRootFilesystem: true
+1729c1719
+<     - CreateNamespace=false
+---
+>     - CreateNamespace=true
+1829c1819
+<     minio: false
+---
+>     minio: true

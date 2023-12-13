@@ -1,0 +1,19 @@
+diff --git a/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml b/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml
+index 7ac81a20..de755247 100644
+--- a/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml
++++ b/argo-cd-apps/base/host/segment-bridge/segment-bridge-host.yaml
+@@ -17,8 +17,8 @@ spec:
+               elements:
+                 - nameNormalized: stone-stg-host
+                   values.clusterDir: stone-stg-host
+-                - nameNormalized: stone-prd-host
+-                  values.clusterDir: stone-stg-host
++                - nameNormalized: stone-prd-host1
++                  values.clusterDir: stone-prd-host1
+   template:
+     metadata:
+       name: segment-bridge-host-{{nameNormalized}}
+diff --git a/components/segment-bridge/production/stone-prd-host/kustomization.yaml b/components/segment-bridge/production/stone-prd-host1/kustomization.yaml
+similarity index 100%
+rename from components/segment-bridge/production/stone-prd-host/kustomization.yaml
+rename to components/segment-bridge/production/stone-prd-host1/kustomization.yaml

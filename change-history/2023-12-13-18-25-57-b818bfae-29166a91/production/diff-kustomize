@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-29166a91/production/components/authentication/production/kustomize.out.yaml ./kustomized-cache/commit-b818bfae/production/components/authentication/production/kustomize.out.yaml
+374,382d373
+<   - tekton.dev
+<   resources:
+<   - pipelineruns
+<   verbs:
+<   - get
+<   - list
+<   - patch
+<   - watch
+< - apiGroups:

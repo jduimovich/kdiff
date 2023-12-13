@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b818bfae/production/app-of-apps-production.yaml ./kustomized-cache/commit-659c8352/production/app-of-apps-production.yaml
+1330,1331c1330,1331
+<           - nameNormalized: stone-prd-host1
+<             values.clusterDir: stone-prd-host1
+---
+>           - nameNormalized: stone-prd-host
+>             values.clusterDir: stone-stg-host
+Only in ./kustomized-cache/commit-659c8352/production/components/segment-bridge/production: stone-prd-host
+Only in ./kustomized-cache/commit-b818bfae/production/components/segment-bridge/production: stone-prd-host1

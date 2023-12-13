@@ -1,0 +1,20 @@
+diff --git a/components/authentication/base/rhtap-admins.yaml b/components/authentication/base/rhtap-admins.yaml
+index 5761d241..62b85eaf 100644
+--- a/components/authentication/base/rhtap-admins.yaml
++++ b/components/authentication/base/rhtap-admins.yaml
+@@ -280,6 +280,15 @@ rules:
+       - clusterresourcequotas
+     verbs:
+       - '*'
++  - apiGroups:
++      - tekton.dev
++    resources:
++      - pipelineruns
++    verbs:
++      - get
++      - list
++      - patch
++      - watch
+   - apiGroups:
+     - user.openshift.io
+     resources:
