@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2a6912aa/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-b4cbe625/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+31d30
+<     - rhtap-promotion-staging

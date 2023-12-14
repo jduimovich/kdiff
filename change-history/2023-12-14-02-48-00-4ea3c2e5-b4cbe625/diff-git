@@ -1,0 +1,14 @@
+diff --git a/argo-cd-apps/base/promotion/promotion.yaml b/argo-cd-apps/base/promotion/promotion.yaml
+index 20f98648..ed50c5cd 100644
+--- a/argo-cd-apps/base/promotion/promotion.yaml
++++ b/argo-cd-apps/base/promotion/promotion.yaml
+@@ -13,6 +13,9 @@ spec:
+                 sourceRoot: components/promotion
+                 environment: staging
+                 clusterDir: ""
++              selector:
++                matchLabels:
++                  appstudio.redhat.com/rh-member-cluster: 'true'
+           - list:
+               elements:
+                 - nameNormalized: stone-stg-rh01

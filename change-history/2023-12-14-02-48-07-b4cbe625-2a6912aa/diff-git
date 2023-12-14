@@ -1,0 +1,25 @@
+diff --git a/components/cluster-secret-store/staging/kustomization.yaml b/components/cluster-secret-store/staging/kustomization.yaml
+index 27bb5cb0..1498797b 100644
+--- a/components/cluster-secret-store/staging/kustomization.yaml
++++ b/components/cluster-secret-store/staging/kustomization.yaml
+@@ -2,3 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
++patches:
++  - path: rhtap-promotion-staging-patch.yaml
++    target:
++      name: appsre-stonesoup-vault
++      kind: ClusterSecretStore
++      group: external-secrets.io
++      version: v1beta1
+diff --git a/components/cluster-secret-store/staging/rhtap-promotion-staging-patch.yaml b/components/cluster-secret-store/staging/rhtap-promotion-staging-patch.yaml
+new file mode 100644
+index 00000000..3bc966ec
+--- /dev/null
++++ b/components/cluster-secret-store/staging/rhtap-promotion-staging-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/conditions/0/namespaces/-
++  value: rhtap-promotion-staging
