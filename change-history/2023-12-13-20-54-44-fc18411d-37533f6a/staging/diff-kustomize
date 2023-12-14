@@ -1,0 +1,47 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37533f6a/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-fc18411d/staging/app-of-apps-staging.yaml
+1565,1608d1564
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+<   name: promotion
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           values:
+<             clusterDir: ""
+<             environment: staging
+<             sourceRoot: components/promotion
+<       - list:
+<           elements:
+<           - nameNormalized: stone-stg-rh01
+<             values.clusterDir: stone-stg-rh01
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: promotion-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: rhtap-promotion-staging
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 10s
+<             factor: 2
+<             maxDuration: 3m
+<           limit: -1
+<         syncOptions:
+<         - CreateNamespace=true
+Only in ./kustomized-cache/commit-37533f6a/staging/components: promotion

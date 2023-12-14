@@ -1,0 +1,318 @@
+diff --git a/.tekton/pipeline/rhtap-staging-e2e.yaml b/.tekton/pipeline/rhtap-staging-e2e.yaml
+index d3ad83fe..8b4b0c0f 100644
+--- a/.tekton/pipeline/rhtap-staging-e2e.yaml
++++ b/.tekton/pipeline/rhtap-staging-e2e.yaml
+@@ -145,11 +145,11 @@ spec:
+         name: git-clone
+       params:
+         - name: url
+-          value: 'https://github.com/sawood14012/e2e-tests.git'
++          value: 'https://github.com/redhat-appstudio/e2e-tests.git'
+         - name: deleteExisting
+           value: "true"
+         - name: revision
+-          value: "verify-stage"
++          value: "main"
+       runAfter:
+         - check-merge-label
+       when:
+diff --git a/argo-cd-apps/base/promotion/kustomization.yaml b/argo-cd-apps/base/promotion/kustomization.yaml
+new file mode 100644
+index 00000000..13d00cd4
+--- /dev/null
++++ b/argo-cd-apps/base/promotion/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- promotion.yaml
+diff --git a/argo-cd-apps/base/promotion/promotion.yaml b/argo-cd-apps/base/promotion/promotion.yaml
+new file mode 100644
+index 00000000..20f98648
+--- /dev/null
++++ b/argo-cd-apps/base/promotion/promotion.yaml
+@@ -0,0 +1,43 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: promotion
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/promotion
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements:
++                - nameNormalized: stone-stg-rh01
++                  values.clusterDir: stone-stg-rh01
++  template:
++    metadata:
++      name: promotion-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: rhtap-promotion-staging
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/overlays/staging/kustomization.yaml b/argo-cd-apps/overlays/staging/kustomization.yaml
+index 56f05e5b..b20bf880 100644
+--- a/argo-cd-apps/overlays/staging/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging/kustomization.yaml
+@@ -4,3 +4,4 @@ resources:
+   - ../../base/host
+   - ../../base/member
+   - ../../base/all-clusters
++  - ../../base/promotion
+diff --git a/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml b/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
+new file mode 100644
+index 00000000..3b2117c1
+--- /dev/null
++++ b/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
+@@ -0,0 +1,12 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: appstudio-gitops-service-argocd-argocd-application-clusterrolebinding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: appstudio-gitops-service-argocd-argocd-application-controller
++subjects:
++- kind: ServiceAccount
++  name: appstudio-pipeline
++  namespace: rhtap-promotion-staging
+diff --git a/components/promotion/base/appstudio-pipelines-runner-rolebinding.yaml b/components/promotion/base/appstudio-pipelines-runner-rolebinding.yaml
+new file mode 100644
+index 00000000..98913802
+--- /dev/null
++++ b/components/promotion/base/appstudio-pipelines-runner-rolebinding.yaml
+@@ -0,0 +1,12 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: appstudio-pipelines-runner-rolebinding
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: appstudio-pipelines-runner
++subjects:
++- kind: ServiceAccount
++  name: appstudio-pipeline
++  namespace: rhtap-promotion-staging
+diff --git a/components/promotion/base/external-secrets/infra-deployments-pr-creator.yaml b/components/promotion/base/external-secrets/infra-deployments-pr-creator.yaml
+new file mode 100644
+index 00000000..960444ca
+--- /dev/null
++++ b/components/promotion/base/external-secrets/infra-deployments-pr-creator.yaml
+@@ -0,0 +1,20 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: infra-deployments-pr-creator
++  namespace: rhtap-promotion-staging
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/build/tekton-ci/infra-deployments-pr-creator
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: infra-deployments-pr-creator
+diff --git a/components/promotion/base/external-secrets/kustomization.yaml b/components/promotion/base/external-secrets/kustomization.yaml
+new file mode 100644
+index 00000000..b2f365b3
+--- /dev/null
++++ b/components/promotion/base/external-secrets/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- infra-deployments-pr-creator.yaml
++- stage-test-e2e.yaml
+diff --git a/components/promotion/base/external-secrets/stage-test-e2e.yaml b/components/promotion/base/external-secrets/stage-test-e2e.yaml
+new file mode 100644
+index 00000000..cd49872e
+--- /dev/null
++++ b/components/promotion/base/external-secrets/stage-test-e2e.yaml
+@@ -0,0 +1,20 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: stage-test-e2e
++  namespace: rhtap-promotion-staging
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/promotion/stage-test-e2e
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: stage-test-e2e
+diff --git a/components/promotion/base/kustomization.yaml b/components/promotion/base/kustomization.yaml
+new file mode 100644
+index 00000000..56f7a3bb
+--- /dev/null
++++ b/components/promotion/base/kustomization.yaml
+@@ -0,0 +1,16 @@
++resources:
++- namespace.yaml
++- serviceaccount.yaml
++- repository.yaml
++- promotion-maintainers-rb.yaml
++- appstudio-pipelines-runner-rolebinding.yaml
++- appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
++
++# Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
++# See more information about this option, here: 
++# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types 
++commonAnnotations:
++  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
+diff --git a/components/promotion/base/namespace.yaml b/components/promotion/base/namespace.yaml
+new file mode 100644
+index 00000000..6b63e696
+--- /dev/null
++++ b/components/promotion/base/namespace.yaml
+@@ -0,0 +1,7 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: rhtap-promotion-staging
++  annotations:
++    # Keeps PipelineRuns for 24h.
++    operator.tekton.dev/prune.keep-since: 1440
+diff --git a/components/promotion/base/promotion-maintainers-rb.yaml b/components/promotion/base/promotion-maintainers-rb.yaml
+new file mode 100644
+index 00000000..4b74b4a5
+--- /dev/null
++++ b/components/promotion/base/promotion-maintainers-rb.yaml
+@@ -0,0 +1,22 @@
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: promotion-maintainers
++  namespace: rhtap-promotion-staging
++subjects:
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: prietyc123
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: sawood14012
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: rhopp
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: xinredhat
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: component-maintainer
+diff --git a/components/promotion/base/repository.yaml b/components/promotion/base/repository.yaml
+new file mode 100644
+index 00000000..fa0ee546
+--- /dev/null
++++ b/components/promotion/base/repository.yaml
+@@ -0,0 +1,8 @@
++apiVersion: pipelinesascode.tekton.dev/v1alpha1
++kind: Repository
++metadata:
++  name: infra-deployments
++  namespace: rhtap-promotion-staging
++spec:
++  concurrency_limit: 1
++  url: "https://github.com/redhat-appstudio/infra-deployments"
+diff --git a/components/promotion/base/serviceaccount.yaml b/components/promotion/base/serviceaccount.yaml
+new file mode 100644
+index 00000000..385e273b
+--- /dev/null
++++ b/components/promotion/base/serviceaccount.yaml
+@@ -0,0 +1,5 @@
++apiVersion: v1
++kind: ServiceAccount
++metadata:
++  name: appstudio-pipeline
++  namespace: rhtap-promotion-staging
+diff --git a/components/promotion/staging/stone-stg-rh01/infra-deployments-pr-creator.yaml b/components/promotion/staging/stone-stg-rh01/infra-deployments-pr-creator.yaml
+new file mode 100644
+index 00000000..1d395518
+--- /dev/null
++++ b/components/promotion/staging/stone-stg-rh01/infra-deployments-pr-creator.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/build/tekton-ci/infra-deployments-pr-creator
+diff --git a/components/promotion/staging/stone-stg-rh01/kustomization.yaml b/components/promotion/staging/stone-stg-rh01/kustomization.yaml
+new file mode 100644
+index 00000000..ad0bf0ca
+--- /dev/null
++++ b/components/promotion/staging/stone-stg-rh01/kustomization.yaml
+@@ -0,0 +1,19 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../../base
++- ../../base/external-secrets
++
++patches:
++  - path: stage-test-e2e.yaml
++    target:
++      name: stage-test-e2e
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
++  - path: infra-deployments-pr-creator.yaml
++    target:
++      name: infra-deployments-pr-creator
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
+diff --git a/components/promotion/staging/stone-stg-rh01/stage-test-e2e.yaml b/components/promotion/staging/stone-stg-rh01/stage-test-e2e.yaml
+new file mode 100644
+index 00000000..ecb1f9a7
+--- /dev/null
++++ b/components/promotion/staging/stone-stg-rh01/stage-test-e2e.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/promotion/stage-test-e2e
