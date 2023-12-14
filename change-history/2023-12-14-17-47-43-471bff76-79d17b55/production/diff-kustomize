@@ -1,0 +1,146 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-79d17b55/production/components/segment-bridge/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-471bff76/production/components/segment-bridge/production/stone-prd-m01/kustomize.out.yaml
+1,71d0
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+<   name: segment-bridge-member-sa
+<   namespace: segment-bridge
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   name: segment-bridge-read-member-sa-secret
+<   namespace: segment-bridge
+< rules:
+< - apiGroups:
+<   - ""
+<   resourceNames:
+<   - segment-bridge-member
+<   resources:
+<   - secrets
+<   verbs:
+<   - get
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   name: segment-bridge-read-access-all-namespaces
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - namespaces
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: segment-bridge-read-member-sa-secret-binding
+<   namespace: segment-bridge
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: segment-bridge-read-member-sa-secret
+< subjects:
+< - kind: User
+<   name: Omeramsc
+< - kind: User
+<   name: ifireball
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: sa-read-permissions-all-namespaces
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: segment-bridge-read-access-all-namespaces
+< subjects:
+< - kind: ServiceAccount
+<   name: segment-bridge-member-sa
+<   namespace: segment-bridge
+< ---
+< apiVersion: v1
+< kind: Secret
+< metadata:
+<   annotations:
+<     kubernetes.io/service-account.name: segment-bridge-member-sa
+<   name: segment-bridge-member
+<   namespace: segment-bridge
+< type: kubernetes.io/service-account-token
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-79d17b55/production/components/segment-bridge/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-471bff76/production/components/segment-bridge/production/stone-prd-rh01/kustomize.out.yaml
+1,71d0
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+<   name: segment-bridge-member-sa
+<   namespace: segment-bridge
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   name: segment-bridge-read-member-sa-secret
+<   namespace: segment-bridge
+< rules:
+< - apiGroups:
+<   - ""
+<   resourceNames:
+<   - segment-bridge-member
+<   resources:
+<   - secrets
+<   verbs:
+<   - get
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+<   name: segment-bridge-read-access-all-namespaces
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - namespaces
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: segment-bridge-read-member-sa-secret-binding
+<   namespace: segment-bridge
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: segment-bridge-read-member-sa-secret
+< subjects:
+< - kind: User
+<   name: Omeramsc
+< - kind: User
+<   name: ifireball
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: sa-read-permissions-all-namespaces
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: segment-bridge-read-access-all-namespaces
+< subjects:
+< - kind: ServiceAccount
+<   name: segment-bridge-member-sa
+<   namespace: segment-bridge
+< ---
+< apiVersion: v1
+< kind: Secret
+< metadata:
+<   annotations:
+<     kubernetes.io/service-account.name: segment-bridge-member-sa
+<   name: segment-bridge-member
+<   namespace: segment-bridge
+< type: kubernetes.io/service-account-token

@@ -1,0 +1,10 @@
+diff --git a/components/segment-bridge/production/base/kustomization.yaml b/components/segment-bridge/production/base/kustomization.yaml
+new file mode 100644
+index 00000000..2333422e
+--- /dev/null
++++ b/components/segment-bridge/production/base/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base
