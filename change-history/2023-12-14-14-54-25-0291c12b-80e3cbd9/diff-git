@@ -1,0 +1,18 @@
+diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
+index 4028aa81..df912270 100644
+--- a/argo-cd-apps/overlays/production/kustomization.yaml
++++ b/argo-cd-apps/overlays/production/kustomization.yaml
+@@ -101,7 +101,12 @@ patches:
+     target:
+       kind: ApplicationSet
+       version: v1alpha1
+-      name: segment-bridge
++      name: segment-bridge-host
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: segment-bridge-member
+   - path: production-overlay-patch.yaml
+     target:
+       kind: ApplicationSet

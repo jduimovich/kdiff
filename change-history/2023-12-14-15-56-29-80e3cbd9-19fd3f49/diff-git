@@ -1,0 +1,16 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml b/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml
+index 9b27900e..1b020a66 100644
+--- a/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/segment-bridge/segment-bridge-member.yaml
+@@ -20,9 +20,9 @@ spec:
+                 - nameNormalized: stone-stg-rh01
+                   values.clusterDir: stone-stg-rh01
+                 - nameNormalized: stone-prd-m01
+-                  values.clusterDir: stone-stg-m01
++                  values.clusterDir: stone-prd-m01
+                 - nameNormalized: stone-prd-rh01
+-                  values.clusterDir: stone-stg-rh01
++                  values.clusterDir: stone-prd-rh01
+   template:
+     metadata:
+       name: segment-bridge-member-{{nameNormalized}}
