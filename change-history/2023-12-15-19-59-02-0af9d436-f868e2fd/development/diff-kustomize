@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f868e2fd/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-0af9d436/development/components/pipeline-service/development/kustomize.out.yaml
+1580,1586d1579
+<         resources:
+<           limits:
+<             cpu: 250m
+<             memory: 2Gi
+<           requests:
+<             cpu: 100m
+<             memory: 64Mi
+2043c2036
+<   channel: pipelines-1.13
+---
+>   channel: pipelines-1.12

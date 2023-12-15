@@ -1,0 +1,61 @@
+diff --git a/components/backup/base/host/backup-toolchain-host-schedule.yaml b/components/backup/base/host/backup-toolchain-host-schedule.yaml
+new file mode 100644
+index 00000000..6c32225a
+--- /dev/null
++++ b/components/backup/base/host/backup-toolchain-host-schedule.yaml
+@@ -0,0 +1,18 @@
++apiVersion: velero.io/v1
++kind: Schedule
++metadata:
++  name: backup-toolchain-host
++spec:
++  schedule: 30 1,13 * * * # every day 1:30, 13:30 UTC
++  template:
++    includedNamespaces:
++      - toolchain-host-operator
++    includedResources:
++      - bannedusers.toolchain.dev.openshift.com
++      - masteruserrecords.toolchain.dev.openshift.com
++      - spacebindings.toolchain.dev.openshift.com
++      - spaces.toolchain.dev.openshift.com
++      - usersignups.toolchain.dev.openshift.com
++    storageLocation: velero-aws-1
++    ttl: 720h0m0s
++  useOwnerReferencesInBackup: true
+diff --git a/components/backup/base/host/kustomization.yaml b/components/backup/base/host/kustomization.yaml
+index 50ec2a5f..9df29e8e 100644
+--- a/components/backup/base/host/kustomization.yaml
++++ b/components/backup/base/host/kustomization.yaml
+@@ -4,3 +4,4 @@ namespace: openshift-adp
+ resources:
+   - ../all-clusters
+   - ../all-clusters/oadp
++  - backup-toolchain-host-schedule.yaml
+diff --git a/components/backup/base/member/backup-toolchain-member-schedule.yaml b/components/backup/base/member/backup-toolchain-member-schedule.yaml
+new file mode 100644
+index 00000000..652a9ffc
+--- /dev/null
++++ b/components/backup/base/member/backup-toolchain-member-schedule.yaml
+@@ -0,0 +1,13 @@
++apiVersion: velero.io/v1
++kind: Schedule
++metadata:
++  name: backup-toolchain-member
++spec:
++  schedule: 30 1,13 * * * # every day 1:30, 13:30 UTC
++  template:
++    includedResources:
++      - spacebindingrequests.toolchain.dev.openshift.com
++      - spacerequests.toolchain.dev.openshift.com
++    storageLocation: velero-aws-1
++    ttl: 720h0m0s
++  useOwnerReferencesInBackup: true
+diff --git a/components/backup/base/member/kustomization.yaml b/components/backup/base/member/kustomization.yaml
+index 5bf33587..3381df1f 100644
+--- a/components/backup/base/member/kustomization.yaml
++++ b/components/backup/base/member/kustomization.yaml
+@@ -5,3 +5,4 @@ resources:
+   - ../all-clusters
+   - ../all-clusters/oadp
+   - backup-tenants-schedule.yaml
++  - backup-toolchain-member-schedule.yaml

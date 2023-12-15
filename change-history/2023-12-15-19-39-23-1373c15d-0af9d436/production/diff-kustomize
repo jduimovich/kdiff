@@ -1,0 +1,34 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0af9d436/production/components/backup/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-1373c15d/production/components/backup/production/stone-prd-m01/kustomize.out.yaml
+145,159d144
+< ---
+< apiVersion: velero.io/v1
+< kind: Schedule
+< metadata:
+<   name: backup-toolchain-member
+<   namespace: openshift-adp
+< spec:
+<   schedule: 30 1,13 * * *
+<   template:
+<     includedResources:
+<     - spacebindingrequests.toolchain.dev.openshift.com
+<     - spacerequests.toolchain.dev.openshift.com
+<     storageLocation: velero-aws-1
+<     ttl: 720h0m0s
+<   useOwnerReferencesInBackup: true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0af9d436/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-1373c15d/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml
+145,159d144
+< ---
+< apiVersion: velero.io/v1
+< kind: Schedule
+< metadata:
+<   name: backup-toolchain-member
+<   namespace: openshift-adp
+< spec:
+<   schedule: 30 1,13 * * *
+<   template:
+<     includedResources:
+<     - spacebindingrequests.toolchain.dev.openshift.com
+<     - spacerequests.toolchain.dev.openshift.com
+<     storageLocation: velero-aws-1
+<     ttl: 720h0m0s
+<   useOwnerReferencesInBackup: true
