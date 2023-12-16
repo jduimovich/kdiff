@@ -1,0 +1,47 @@
+diff --git a/components/backup/production/stone-prd-host1/dpa-bucket-patch.yaml b/components/backup/production/stone-prd-host1/dpa-bucket-patch.yaml
+new file mode 100644
+index 00000000..f49874b3
+--- /dev/null
++++ b/components/backup/production/stone-prd-host1/dpa-bucket-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/objectStorage/bucket
++  value: backup-stone-prd-host1
+diff --git a/components/backup/production/stone-prd-host1/dpa-kmskeyid-patch.yaml b/components/backup/production/stone-prd-host1/dpa-kmskeyid-patch.yaml
+new file mode 100644
+index 00000000..0af12f66
+--- /dev/null
++++ b/components/backup/production/stone-prd-host1/dpa-kmskeyid-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/config/kmsKeyId
++  value: 823529d3-e891-45a6-8f87-e63ca75630cf
+diff --git a/components/backup/production/stone-prd-host1/kustomization.yaml b/components/backup/production/stone-prd-host1/kustomization.yaml
+index 229a13d9..98aab871 100644
+--- a/components/backup/production/stone-prd-host1/kustomization.yaml
++++ b/components/backup/production/stone-prd-host1/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/all-clusters
++  - ../../base/host
+ patches:
+   - target:
+       group: external-secrets.io
+@@ -9,3 +9,15 @@ patches:
+       kind: ExternalSecret
+       name: backup-s3-credentials
+     path: backup-s3-credentials-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-bucket-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-kmskeyid-patch.yaml
