@@ -1,0 +1,330 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-034c8e3f/production/components/jvm-build-service/production/kustomize.out.yaml ./kustomized-cache/commit-ee49b48d/production/components/jvm-build-service/production/kustomize.out.yaml
+182,191d181
+<                             gitArchive:
+<                               description: The git archive source information
+<                               properties:
+<                                 sha:
+<                                   type: string
+<                                 tag:
+<                                   type: string
+<                                 url:
+<                                   type: string
+<                               type: object
+211,212d200
+<                             verificationFailures:
+<                               type: string
+225,226d212
+<                     buildId:
+<                       type: string
+260,263d245
+<                         disabledPlugins:
+<                           items:
+<                             type: string
+<                           type: array
+271d252
+<                           description: Deprecated
+372,375d352
+<                     allowed:
+<                       type: boolean
+<                     buildId:
+<                       type: string
+382,385d358
+<                     rebuildAvailable:
+<                       type: boolean
+<                     source:
+<                       type: string
+387a361,420
+>               currentBuildRecipe:
+>                 description: BuildRecipe the current build recipe. If build is done
+>                   then this recipe was used to get to the current state Deprecated
+>                 properties:
+>                   additionalDownloads:
+>                     items:
+>                       properties:
+>                         binaryPath:
+>                           type: string
+>                         fileName:
+>                           type: string
+>                         packageName:
+>                           type: string
+>                         sha256:
+>                           type: string
+>                         type:
+>                           type: string
+>                         uri:
+>                           type: string
+>                       required:
+>                       - type
+>                       type: object
+>                     type: array
+>                   additionalMemory:
+>                     type: integer
+>                   allowedDifferences:
+>                     items:
+>                       type: string
+>                     type: array
+>                   commandLine:
+>                     items:
+>                       type: string
+>                     type: array
+>                   disableSubmodules:
+>                     type: boolean
+>                   enforceVersion:
+>                     type: string
+>                   image:
+>                     type: string
+>                   javaVersion:
+>                     type: string
+>                   pipeline:
+>                     type: string
+>                   postBuildScript:
+>                     type: string
+>                   preBuildScript:
+>                     type: string
+>                   repositories:
+>                     items:
+>                       type: string
+>                     type: array
+>                   tool:
+>                     type: string
+>                   toolVersion:
+>                     type: string
+>                   toolVersions:
+>                     additionalProperties:
+>                       type: string
+>                     type: object
+>                 type: object
+391a425,429
+>               diagnosticDockerFiles:
+>                 description: Deprecated
+>                 items:
+>                   type: string
+>                 type: array
+402a441,503
+>               failedBuildRecipes:
+>                 description: FailedBuildRecipes recipes that resulted in a failure
+>                   if the current state is failed this may include the current BuildRecipe
+>                   Deprecated
+>                 items:
+>                   properties:
+>                     additionalDownloads:
+>                       items:
+>                         properties:
+>                           binaryPath:
+>                             type: string
+>                           fileName:
+>                             type: string
+>                           packageName:
+>                             type: string
+>                           sha256:
+>                             type: string
+>                           type:
+>                             type: string
+>                           uri:
+>                             type: string
+>                         required:
+>                         - type
+>                         type: object
+>                       type: array
+>                     additionalMemory:
+>                       type: integer
+>                     allowedDifferences:
+>                       items:
+>                         type: string
+>                       type: array
+>                     commandLine:
+>                       items:
+>                         type: string
+>                       type: array
+>                     disableSubmodules:
+>                       type: boolean
+>                     enforceVersion:
+>                       type: string
+>                     image:
+>                       type: string
+>                     javaVersion:
+>                       type: string
+>                     pipeline:
+>                       type: string
+>                     postBuildScript:
+>                       type: string
+>                     preBuildScript:
+>                       type: string
+>                     repositories:
+>                       items:
+>                         type: string
+>                       type: array
+>                     tool:
+>                       type: string
+>                     toolVersion:
+>                       type: string
+>                     toolVersions:
+>                       additionalProperties:
+>                         type: string
+>                       type: object
+>                   type: object
+>                 type: array
+406a508,510
+>               lastCompletedBuildPipelineRun:
+>                 description: Deprecated
+>                 type: string
+447,450d550
+<                     disabledPlugins:
+<                       items:
+<                         type: string
+<                       type: array
+458d557
+<                       description: Deprecated
+583,591d681
+<               gitSourceArchive:
+<                 properties:
+<                   disableSSLVerification:
+<                     type: boolean
+<                   identity:
+<                     type: string
+<                   url:
+<                     type: string
+<                 type: object
+593a684,687
+>               host:
+>                 type: string
+>               insecure:
+>                 type: boolean
+604a699,704
+>               owner:
+>                 type: string
+>               port:
+>                 type: string
+>               prependTag:
+>                 type: string
+607,608d706
+<                   dontReuseExisting:
+<                     type: boolean
+656a755,756
+>               repository:
+>                 type: string
+661a762,763
+>               secretName:
+>                 type: string
+727,806d828
+<   name: jvmimagescans.jvmbuildservice.io
+< spec:
+<   group: jvmbuildservice.io
+<   names:
+<     kind: JvmImageScan
+<     listKind: JvmImageScanList
+<     plural: jvmimagescans
+<     singular: jvmimagescan
+<   scope: Namespaced
+<   versions:
+<   - additionalPrinterColumns:
+<     - jsonPath: .spec.image
+<       name: Image
+<       type: string
+<     - jsonPath: .status.state
+<       name: State
+<       type: string
+<     name: v1alpha1
+<     schema:
+<       openAPIV3Schema:
+<         description: JvmImageScan TODO provide godoc description
+<         properties:
+<           apiVersion:
+<             description: 'APIVersion defines the versioned schema of this representation
+<               of an object. Servers should convert recognized schemas to the latest
+<               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+<             type: string
+<           kind:
+<             description: 'Kind is a string value representing the REST resource this
+<               object represents. Servers may infer this from the endpoint the client
+<               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+<             type: string
+<           metadata:
+<             type: object
+<           spec:
+<             properties:
+<               image:
+<                 type: string
+<             type: object
+<           status:
+<             properties:
+<               message:
+<                 type: string
+<               results:
+<                 items:
+<                   properties:
+<                     attributes:
+<                       additionalProperties:
+<                         type: string
+<                       type: object
+<                     gav:
+<                       type: string
+<                     source:
+<                       type: string
+<                   type: object
+<                 type: array
+<               state:
+<                 type: string
+<             type: object
+<         required:
+<         - spec
+<         type: object
+<     served: true
+<     storage: true
+<     subresources:
+<       status: {}
+< status:
+<   acceptedNames:
+<     kind: ""
+<     plural: ""
+<   conditions: []
+<   storedVersions: []
+< ---
+< apiVersion: apiextensions.k8s.io/v1
+< kind: CustomResourceDefinition
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     controller-gen.kubebuilder.io/version: v0.6.2
+<   creationTimestamp: null
+912a935,937
+>               quota:
+>                 description: DEPRECATED
+>                 type: string
+993,1010d1017
+< - apiGroups:
+<   - tekton.dev
+<   resources:
+<   - taskruns
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - tekton.dev
+<   resources:
+<   - taskruns/status
+<   verbs:
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+1035,1036d1041
+<   - jvmimagescans
+<   - jvmimagescans/status
+1387c1392
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
+---
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:6fd473982b260457133bc706af82beb22e721061
+1401a1407,1410
+>         volumeMounts:
+>         - mountPath: /workspace
+>           name: quaytoken
+>           readOnly: true
+1404a1414,1418
+>       volumes:
+>       - name: quaytoken
+>         secret:
+>           optional: false
+>           secretName: quaytoken
