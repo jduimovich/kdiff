@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1825c25a/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-f28e2579/staging/app-of-apps-staging.yaml
+537,538d536
+<           - nameNormalized: stone-stage-p01
+<             values.clusterDir: stone-stage-p01
+961,962d958
+<           - nameNormalized: stone-stg-p01
+<             values.clusterDir: stone-stg-p01
+1107,1108d1102
+<           - nameNormalized: stone-stage-p01
+<             values.clusterDir: stone-stage-p01
+1207,1208d1200
+<           - nameNormalized: stone-stg-p01
+<             values.clusterDir: stone-stg-p01
+1411,1412d1402
+<           - nameNormalized: stone-stg-p01
+<             values.clusterDir: stone-stg-p01
+Only in ./kustomized-cache/commit-1825c25a/staging/components/gitops/staging: stone-stage-p01
+Only in ./kustomized-cache/commit-1825c25a/staging/components/pipeline-service/staging: stone-stage-p01
