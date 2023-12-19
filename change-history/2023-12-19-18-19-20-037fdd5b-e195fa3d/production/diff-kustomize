@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e195fa3d/production/components/release/production/kustomize.out.yaml ./kustomized-cache/commit-037fdd5b/production/components/release/production/kustomize.out.yaml
+833a834
+>   - releasestrategies
+845d845
+<   - delete
