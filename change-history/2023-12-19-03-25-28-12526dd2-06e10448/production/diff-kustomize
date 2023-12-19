@@ -1,0 +1,104 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-06e10448/production/components/release/production/kustomize.out.yaml ./kustomized-cache/commit-12526dd2/production/components/release/production/kustomize.out.yaml
+62c62
+<                   the managed Release Pipeline
+---
+>                   the release Pipeline
+77c77
+<                   by the managed Release PipelineRun
+---
+>                   by the release PipelineRun
+115c115
+<                   use in the managed Release PipelineRun to gain elevated privileges
+---
+>                   use in the release PipelineRun to gain elevated privileges
+199,200c199,200
+<                 description: ReleasePlan is a list of releasePlans matched to the
+<                   ReleasePlanAdmission
+---
+>                 description: ReleasePlan is a list of references to releasePlans matched
+>                   to the ReleasePlanAdmission
+202,213c202
+<                   description: MatchedReleasePlan defines the relevant information
+<                     for a matched ReleasePlan.
+<                   properties:
+<                     active:
+<                       description: Active indicates whether the ReleasePlan is set
+<                         to auto-release or not
+<                       type: boolean
+<                     name:
+<                       description: Name contains the namespaced name of the ReleasePlan
+<                       pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                       type: string
+<                   type: object
+---
+>                   type: string
+280c269
+<                   the managed Release Pipeline
+---
+>                   the release Pipeline
+285c274
+<                   would be executed before the managed Release Pipeline
+---
+>                   would be executed before the release Pipeline
+404,415c393,396
+<                 description: ReleasePlanAdmission contains the information of the
+<                   releasePlanAdmission this ReleasePlan is matched to
+<                 properties:
+<                   active:
+<                     description: Active indicates whether the ReleasePlanAdmission
+<                       is set to auto-release or not
+<                     type: boolean
+<                   name:
+<                     description: Name contains the namespaced name of the releasePlanAdmission
+<                     pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                     type: string
+<                 type: object
+---
+>                 description: ReleasePlanAdmission contains the namespaced name of
+>                   the releasePlanAdmission this ReleasePlan is matched to
+>                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                 type: string
+482c463
+<                   the managed Release Pipeline
+---
+>                   the release Pipeline
+639,640c620,621
+<                     description: PipelineRun contains the namespaced name of the managed
+<                       Release PipelineRun executed as part of this release
+---
+>                     description: PipelineRun contains the namespaced name of the release
+>                       PipelineRun executed as part of this release
+943,958d923
+<   - releaseplanadmissions
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - releaseplanadmissions/status
+<   verbs:
+<   - get
+<   - patch
+<   - update
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+985,996d949
+<   - releaseplansadmissions
+<   verbs:
+<   - create
+<   - delete
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+1677c1630
+<         image: quay.io/redhat-appstudio/release-service:bb760ff178d79b459b3851083b88fdbf4fb9a1bf
+---
+>         image: quay.io/redhat-appstudio/release-service:8f798cd96da264749222fdbc8d3c854f38af5668
