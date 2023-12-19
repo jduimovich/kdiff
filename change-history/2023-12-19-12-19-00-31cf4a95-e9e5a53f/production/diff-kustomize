@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e9e5a53f/production/components/build-service/production/kustomize.out.yaml ./kustomized-cache/commit-31cf4a95/production/components/build-service/production/kustomize.out.yaml
+808,809c808,809
+<       key: production/pipeline-service/github-app
+<   refreshInterval: 15m
+---
+>       key: production/build/build-service
+>   refreshInterval: 1h

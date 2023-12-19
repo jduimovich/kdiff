@@ -1,0 +1,120 @@
+diff --git a/argo-cd-apps/base/smee-client/kustomization.yaml b/argo-cd-apps/base/smee-client/kustomization.yaml
+new file mode 100644
+index 00000000..45d78262
+--- /dev/null
++++ b/argo-cd-apps/base/smee-client/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- smee-client.yaml
+diff --git a/argo-cd-apps/base/smee-client/smee-client.yaml b/argo-cd-apps/base/smee-client/smee-client.yaml
+new file mode 100644
+index 00000000..b40a4524
+--- /dev/null
++++ b/argo-cd-apps/base/smee-client/smee-client.yaml
+@@ -0,0 +1,44 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: smee-client
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/smee-client
++                environment: staging
++                clusterDir: ""
++              selector:
++                matchLabels:
++                  appstudio.redhat.com/internal-member-cluster: "true"
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: smee-client-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: smee-client
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+index ed6fc122..f03eee88 100644
+--- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+@@ -2,5 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../staging
++  - ../../base/smee-client
+ patchesStrategicMerge:
+   - delete-applications.yaml
+diff --git a/components/smee-client/deployment.yaml b/components/smee-client/deployment.yaml
+new file mode 100644
+index 00000000..95cc81b3
+--- /dev/null
++++ b/components/smee-client/deployment.yaml
+@@ -0,0 +1,33 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: gosmee-client
++spec:
++  replicas: 1
++  selector:
++    matchLabels:
++      app: gosmee-client
++  template:
++    metadata:
++      labels:
++        app: gosmee-client
++    spec:
++      containers:
++        - image: "ghcr.io/chmouel/gosmee:v0.20.2"
++          imagePullPolicy: Always
++          name: gosmee
++          args:
++            - "client"
++            - "https://smee-smee.apps.stone-stg-host.qc0p.p1.openshiftapps.com/redhathook12"
++            - "http://pipelines-as-code-controller.openshift-pipelines:8080"
++          securityContext:
++            readOnlyRootFilesystem: true
++            runAsNonRoot: true
++          resources:
++            limits:
++              cpu: 1
++              memory: 32Mi
++            requests:
++              cpu: 1
++              memory: 32Mi
+diff --git a/components/smee-client/kustomization.yaml b/components/smee-client/kustomization.yaml
+new file mode 100644
+index 00000000..9c2d28b0
+--- /dev/null
++++ b/components/smee-client/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - deployment.yaml
