@@ -1,0 +1,80 @@
+diff --git a/components/spi/overlays/development/config-patch.json b/components/spi/overlays/development/config-patch.json
+index 7686a1fc..a9b78908 100644
+--- a/components/spi/overlays/development/config-patch.json
++++ b/components/spi/overlays/development/config-patch.json
+@@ -9,11 +9,6 @@
+     "path": "/data/BASEURL",
+     "value": "https://spi-oauth-spi-system.apps.appstudio-stage.x99m.p1.openshiftapps.com"
+   },
+-  {
+-    "op": "add",
+-    "path": "/data/SPIINSTANCEID",
+-    "value": "spi-dev"
+-  },
+   {
+     "op": "add",
+     "path": "/data/INSTANCEID",
+diff --git a/components/spi/overlays/production/stone-prd-m01/config-patch.json b/components/spi/overlays/production/stone-prd-m01/config-patch.json
+index da5af03b..ca75e7f7 100644
+--- a/components/spi/overlays/production/stone-prd-m01/config-patch.json
++++ b/components/spi/overlays/production/stone-prd-m01/config-patch.json
+@@ -4,11 +4,6 @@
+     "path": "/data/BASEURL",
+     "value": "https://spi-oauth-spi-system.apps.stone-prd-m01.84db.p1.openshiftapps.com"
+   },
+-  {
+-    "op": "add",
+-    "path": "/data/SPIINSTANCEID",
+-    "value": "spi-prod/m01"
+-  },
+   {
+     "op": "add",
+     "path": "/data/INSTANCEID",
+diff --git a/components/spi/overlays/production/stone-prd-rh01/config-patch.json b/components/spi/overlays/production/stone-prd-rh01/config-patch.json
+index 90175b56..135d826c 100644
+--- a/components/spi/overlays/production/stone-prd-rh01/config-patch.json
++++ b/components/spi/overlays/production/stone-prd-rh01/config-patch.json
+@@ -4,11 +4,6 @@
+     "path": "/data/BASEURL",
+     "value": "https://spi-oauth-spi-system.apps.stone-prd-rh01.pg1f.p1.openshiftapps.com"
+   },
+-  {
+-    "op": "add",
+-    "path": "/data/SPIINSTANCEID",
+-    "value": "spi-prod/rh01"
+-  },
+   {
+     "op": "add",
+     "path": "/data/INSTANCEID",
+diff --git a/components/spi/overlays/staging/stone-stg-m01/config-patch.json b/components/spi/overlays/staging/stone-stg-m01/config-patch.json
+index 13eec098..77c2ccca 100644
+--- a/components/spi/overlays/staging/stone-stg-m01/config-patch.json
++++ b/components/spi/overlays/staging/stone-stg-m01/config-patch.json
+@@ -4,11 +4,6 @@
+     "path": "/data/BASEURL",
+     "value": "https://spi-oauth-spi-system.apps.stone-stg-m01.7ayg.p1.openshiftapps.com"
+   },
+-  {
+-    "op": "add",
+-    "path": "/data/SPIINSTANCEID",
+-    "value": "spi-stage/m01"
+-  },
+   {
+     "op": "add",
+     "path": "/data/INSTANCEID",
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/config-patch.json b/components/spi/overlays/staging/stone-stg-rh01/config-patch.json
+index 32275952..2dca0c30 100644
+--- a/components/spi/overlays/staging/stone-stg-rh01/config-patch.json
++++ b/components/spi/overlays/staging/stone-stg-rh01/config-patch.json
+@@ -4,11 +4,6 @@
+     "path": "/data/BASEURL",
+     "value": "https://spi-oauth-spi-system.apps.stone-stg-rh01.l2vh.p1.openshiftapps.com"
+   },
+-  {
+-    "op": "add",
+-    "path": "/data/SPIINSTANCEID",
+-    "value": "spi-stage/rh01"
+-  },
+   {
+     "op": "add",
+     "path": "/data/INSTANCEID",
