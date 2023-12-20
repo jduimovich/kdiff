@@ -1,12 +1,707 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Dec 20 04:03:20 UTC 2023
+### This file generated at Wed Dec 20 08:03:03 UTC 2023
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 89be7354 to 18c77cf6 on Wed Dec 20 00:14:03 2023 </h3>  
+<h3>1: Production changes from 18c77cf6 to f10d1c6d on Wed Dec 20 05:22:07 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (77 lines)</summary>  
+
+``` 
+diff --git a/components/backup/base/all-clusters/kustomization.yaml b/components/backup/base/all-clusters/kustomization.yaml
+index 487d9768..ec0cb80d 100644
+--- a/components/backup/base/all-clusters/kustomization.yaml
++++ b/components/backup/base/all-clusters/kustomization.yaml
+@@ -4,3 +4,4 @@ namespace: openshift-adp
+ resources:
+   - external-secret.yaml
+   - namespace.yaml
++  - oadp
+diff --git a/components/backup/base/host/kustomization.yaml b/components/backup/base/host/kustomization.yaml
+index 9df29e8e..3bcd2317 100644
+--- a/components/backup/base/host/kustomization.yaml
++++ b/components/backup/base/host/kustomization.yaml
+@@ -3,5 +3,4 @@ kind: Kustomization
+ namespace: openshift-adp
+ resources:
+   - ../all-clusters
+-  - ../all-clusters/oadp
+   - backup-toolchain-host-schedule.yaml
+diff --git a/components/backup/base/member/kustomization.yaml b/components/backup/base/member/kustomization.yaml
+index 3381df1f..ffa4ee8a 100644
+--- a/components/backup/base/member/kustomization.yaml
++++ b/components/backup/base/member/kustomization.yaml
+@@ -3,6 +3,5 @@ kind: Kustomization
+ namespace: openshift-adp
+ resources:
+   - ../all-clusters
+-  - ../all-clusters/oadp
+   - backup-tenants-schedule.yaml
+   - backup-toolchain-member-schedule.yaml
+diff --git a/components/backup/staging/stone-stg-m01/dpa-bucket-patch.yaml b/components/backup/staging/stone-stg-m01/dpa-bucket-patch.yaml
+new file mode 100644
+index 00000000..ef2ab3e0
+--- /dev/null
++++ b/components/backup/staging/stone-stg-m01/dpa-bucket-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/objectStorage/bucket
++  value: backup-stone-stg-m01
+diff --git a/components/backup/staging/stone-stg-m01/dpa-kmskeyid-patch.yaml b/components/backup/staging/stone-stg-m01/dpa-kmskeyid-patch.yaml
+new file mode 100644
+index 00000000..e8bef47c
+--- /dev/null
++++ b/components/backup/staging/stone-stg-m01/dpa-kmskeyid-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/config/kmsKeyId
++  value: ce3a05cb-a4c1-4390-a500-0e9eefbffab1
+diff --git a/components/backup/staging/stone-stg-m01/kustomization.yaml b/components/backup/staging/stone-stg-m01/kustomization.yaml
+index 229a13d9..4ee8993e 100644
+--- a/components/backup/staging/stone-stg-m01/kustomization.yaml
++++ b/components/backup/staging/stone-stg-m01/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/all-clusters
++  - ../../base/member
+ patches:
+   - target:
+       group: external-secrets.io
+@@ -9,3 +9,15 @@ patches:
+       kind: ExternalSecret
+       name: backup-s3-credentials
+     path: backup-s3-credentials-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-bucket-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-kmskeyid-patch.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-f10d1c6d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-f10d1c6d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 18c77cf6 to f10d1c6d on Wed Dec 20 05:22:07 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (77 lines)</summary>  
+
+``` 
+diff --git a/components/backup/base/all-clusters/kustomization.yaml b/components/backup/base/all-clusters/kustomization.yaml
+index 487d9768..ec0cb80d 100644
+--- a/components/backup/base/all-clusters/kustomization.yaml
++++ b/components/backup/base/all-clusters/kustomization.yaml
+@@ -4,3 +4,4 @@ namespace: openshift-adp
+ resources:
+   - external-secret.yaml
+   - namespace.yaml
++  - oadp
+diff --git a/components/backup/base/host/kustomization.yaml b/components/backup/base/host/kustomization.yaml
+index 9df29e8e..3bcd2317 100644
+--- a/components/backup/base/host/kustomization.yaml
++++ b/components/backup/base/host/kustomization.yaml
+@@ -3,5 +3,4 @@ kind: Kustomization
+ namespace: openshift-adp
+ resources:
+   - ../all-clusters
+-  - ../all-clusters/oadp
+   - backup-toolchain-host-schedule.yaml
+diff --git a/components/backup/base/member/kustomization.yaml b/components/backup/base/member/kustomization.yaml
+index 3381df1f..ffa4ee8a 100644
+--- a/components/backup/base/member/kustomization.yaml
++++ b/components/backup/base/member/kustomization.yaml
+@@ -3,6 +3,5 @@ kind: Kustomization
+ namespace: openshift-adp
+ resources:
+   - ../all-clusters
+-  - ../all-clusters/oadp
+   - backup-tenants-schedule.yaml
+   - backup-toolchain-member-schedule.yaml
+diff --git a/components/backup/staging/stone-stg-m01/dpa-bucket-patch.yaml b/components/backup/staging/stone-stg-m01/dpa-bucket-patch.yaml
+new file mode 100644
+index 00000000..ef2ab3e0
+--- /dev/null
++++ b/components/backup/staging/stone-stg-m01/dpa-bucket-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/objectStorage/bucket
++  value: backup-stone-stg-m01
+diff --git a/components/backup/staging/stone-stg-m01/dpa-kmskeyid-patch.yaml b/components/backup/staging/stone-stg-m01/dpa-kmskeyid-patch.yaml
+new file mode 100644
+index 00000000..e8bef47c
+--- /dev/null
++++ b/components/backup/staging/stone-stg-m01/dpa-kmskeyid-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/config/kmsKeyId
++  value: ce3a05cb-a4c1-4390-a500-0e9eefbffab1
+diff --git a/components/backup/staging/stone-stg-m01/kustomization.yaml b/components/backup/staging/stone-stg-m01/kustomization.yaml
+index 229a13d9..4ee8993e 100644
+--- a/components/backup/staging/stone-stg-m01/kustomization.yaml
++++ b/components/backup/staging/stone-stg-m01/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/all-clusters
++  - ../../base/member
+ patches:
+   - target:
+       group: external-secrets.io
+@@ -9,3 +9,15 @@ patches:
+       kind: ExternalSecret
+       name: backup-s3-credentials
+     path: backup-s3-credentials-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-bucket-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-kmskeyid-patch.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (129 lines)</summary>  
+
+``` 
+./commit-18c77cf6/staging/components/backup/staging/stone-stg-m01/kustomize.out.yaml
+33,159d32
+< ---
+< apiVersion: oadp.openshift.io/v1alpha1
+< kind: DataProtectionApplication
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: velero-aws
+<   namespace: openshift-adp
+< spec:
+<   backupLocations:
+<   - velero:
+<       config:
+<         kmsKeyId: ce3a05cb-a4c1-4390-a500-0e9eefbffab1
+<         profile: default
+<         region: us-east-1
+<       credential:
+<         key: cloud
+<         name: backup-s3-credentials
+<       default: true
+<       objectStorage:
+<         bucket: backup-stone-stg-m01
+<         prefix: velero
+<       provider: aws
+<   configuration:
+<     restic:
+<       enable: false
+<     velero:
+<       defaultPlugins:
+<       - openshift
+<       - aws
+< ---
+< apiVersion: operators.coreos.com/v1
+< kind: OperatorGroup
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "-3"
+<   name: openshift-adp
+<   namespace: openshift-adp
+< spec:
+<   targetNamespaces:
+<   - openshift-adp
+< ---
+< apiVersion: operators.coreos.com/v1alpha1
+< kind: Subscription
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-wave: "-2"
+<   name: redhat-oadp-operator
+<   namespace: openshift-adp
+< spec:
+<   channel: stable-1.3
+<   installPlanApproval: Automatic
+<   name: redhat-oadp-operator
+<   source: redhat-operators
+<   sourceNamespace: openshift-marketplace
+< ---
+< apiVersion: velero.io/v1
+< kind: Schedule
+< metadata:
+<   name: backup-tenants
+<   namespace: openshift-adp
+< spec:
+<   schedule: 30 1,13 * * *
+<   template:
+<     excludedNamespaces:
+<     - kube-*
+<     - openshift*
+<     - appstudio*
+<     - admin-checker
+<     - application-api
+<     - application-service
+<     - appsre-vault
+<     - build-service
+<     - build-templates
+<     - build-templates-e2e
+<     - dedicated-admin
+<     - deployment-validation-operator
+<     - dora-metrics
+<     - enterprise-contract-service
+<     - external-secrets-operator
+<     - gitops
+<     - gitops-service-argocd
+<     - group-sync-operator
+<     - hac-pact-broker
+<     - image-controller
+<     - integration-service
+<     - internal-services
+<     - jvm-build-service
+<     - multi-platform-controller
+<     - perf-team-prometheus-reader
+<     - plnsvc-tests
+<     - quality-dashboard
+<     - release-service
+<     - remotesecret
+<     - sandbox-sre-member
+<     - segment-bridge
+<     - spi-system
+<     - tekton-results
+<     - toolchain-member-operator
+<     includedResources:
+<     - applications.appstudio.redhat.com
+<     - components.appstudio.redhat.com
+<     - environments.appstudio.redhat.com
+<     - integrationtestscenarios.appstudio.redhat.com
+<     - secrets
+<     - snapshots.appstudio.redhat.com
+<     - snapshotenvironmentbindings.appstudio.redhat.com
+<     - serviceaccounts
+<     - namespaces
+<     storageLocation: velero-aws-1
+<     ttl: 720h0m0s
+<   useOwnerReferencesInBackup: true
+< ---
+< apiVersion: velero.io/v1
+< kind: Schedule
+< metadata:
+<   name: backup-toolchain-member
+<   namespace: openshift-adp
+< spec:
+<   schedule: 30 1,13 * * *
+<   template:
+<     includedResources:
+<     - spacebindingrequests.toolchain.dev.openshift.com
+<     - spacerequests.toolchain.dev.openshift.com
+<     storageLocation: velero-aws-1
+<     ttl: 720h0m0s
+<   useOwnerReferencesInBackup: true 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-f10d1c6d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-f10d1c6d/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-f10d1c6d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 18c77cf6 to f10d1c6d on Wed Dec 20 05:22:07 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (77 lines)</summary>  
+
+``` 
+diff --git a/components/backup/base/all-clusters/kustomization.yaml b/components/backup/base/all-clusters/kustomization.yaml
+index 487d9768..ec0cb80d 100644
+--- a/components/backup/base/all-clusters/kustomization.yaml
++++ b/components/backup/base/all-clusters/kustomization.yaml
+@@ -4,3 +4,4 @@ namespace: openshift-adp
+ resources:
+   - external-secret.yaml
+   - namespace.yaml
++  - oadp
+diff --git a/components/backup/base/host/kustomization.yaml b/components/backup/base/host/kustomization.yaml
+index 9df29e8e..3bcd2317 100644
+--- a/components/backup/base/host/kustomization.yaml
++++ b/components/backup/base/host/kustomization.yaml
+@@ -3,5 +3,4 @@ kind: Kustomization
+ namespace: openshift-adp
+ resources:
+   - ../all-clusters
+-  - ../all-clusters/oadp
+   - backup-toolchain-host-schedule.yaml
+diff --git a/components/backup/base/member/kustomization.yaml b/components/backup/base/member/kustomization.yaml
+index 3381df1f..ffa4ee8a 100644
+--- a/components/backup/base/member/kustomization.yaml
++++ b/components/backup/base/member/kustomization.yaml
+@@ -3,6 +3,5 @@ kind: Kustomization
+ namespace: openshift-adp
+ resources:
+   - ../all-clusters
+-  - ../all-clusters/oadp
+   - backup-tenants-schedule.yaml
+   - backup-toolchain-member-schedule.yaml
+diff --git a/components/backup/staging/stone-stg-m01/dpa-bucket-patch.yaml b/components/backup/staging/stone-stg-m01/dpa-bucket-patch.yaml
+new file mode 100644
+index 00000000..ef2ab3e0
+--- /dev/null
++++ b/components/backup/staging/stone-stg-m01/dpa-bucket-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/objectStorage/bucket
++  value: backup-stone-stg-m01
+diff --git a/components/backup/staging/stone-stg-m01/dpa-kmskeyid-patch.yaml b/components/backup/staging/stone-stg-m01/dpa-kmskeyid-patch.yaml
+new file mode 100644
+index 00000000..e8bef47c
+--- /dev/null
++++ b/components/backup/staging/stone-stg-m01/dpa-kmskeyid-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/config/kmsKeyId
++  value: ce3a05cb-a4c1-4390-a500-0e9eefbffab1
+diff --git a/components/backup/staging/stone-stg-m01/kustomization.yaml b/components/backup/staging/stone-stg-m01/kustomization.yaml
+index 229a13d9..4ee8993e 100644
+--- a/components/backup/staging/stone-stg-m01/kustomization.yaml
++++ b/components/backup/staging/stone-stg-m01/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/all-clusters
++  - ../../base/member
+ patches:
+   - target:
+       group: external-secrets.io
+@@ -9,3 +9,15 @@ patches:
+       kind: ExternalSecret
+       name: backup-s3-credentials
+     path: backup-s3-credentials-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-bucket-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-kmskeyid-patch.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-f10d1c6d/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 89be7354 to 18c77cf6 on Wed Dec 20 00:14:03 2023 </h3>  
  
 <details> 
 <summary>Git Diff (180 lines)</summary>  
@@ -301,7 +996,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 89be7354 to 18c77cf6 on Wed Dec 20 00:14:03 2023 </h3>  
+<h3>2: Staging changes from 89be7354 to 18c77cf6 on Wed Dec 20 00:14:03 2023 </h3>  
  
 <details> 
 <summary>Git Diff (180 lines)</summary>  
@@ -677,7 +1372,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 89be7354 to 18c77cf6 on Wed Dec 20 00:14:03 2023 </h3>  
+<h3>2: Development changes from 89be7354 to 18c77cf6 on Wed Dec 20 00:14:03 2023 </h3>  
  
 <details> 
 <summary>Git Diff (180 lines)</summary>  
@@ -947,7 +1642,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 87aa5351 to 89be7354 on Tue Dec 19 22:57:01 2023 </h3>  
+<h3>3: Production changes from 87aa5351 to 89be7354 on Tue Dec 19 22:57:01 2023 </h3>  
  
 <details> 
 <summary>Git Diff (25 lines)</summary>  
@@ -1087,7 +1782,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 87aa5351 to 89be7354 on Tue Dec 19 22:57:01 2023 </h3>  
+<h3>3: Staging changes from 87aa5351 to 89be7354 on Tue Dec 19 22:57:01 2023 </h3>  
  
 <details> 
 <summary>Git Diff (25 lines)</summary>  
@@ -1261,7 +1956,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 87aa5351 to 89be7354 on Tue Dec 19 22:57:01 2023 </h3>  
+<h3>3: Development changes from 87aa5351 to 89be7354 on Tue Dec 19 22:57:01 2023 </h3>  
  
 <details> 
 <summary>Git Diff (25 lines)</summary>  
@@ -1376,7 +2071,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from e195fa3d to 87aa5351 on Tue Dec 19 21:04:16 2023 </h3>  
+<h3>4: Production changes from e195fa3d to 87aa5351 on Tue Dec 19 21:04:16 2023 </h3>  
  
 <details> 
 <summary>Git Diff (193 lines)</summary>  
@@ -1769,7 +2464,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from e195fa3d to 87aa5351 on Tue Dec 19 21:04:16 2023 </h3>  
+<h3>4: Staging changes from e195fa3d to 87aa5351 on Tue Dec 19 21:04:16 2023 </h3>  
  
 <details> 
 <summary>Git Diff (193 lines)</summary>  
@@ -2111,7 +2806,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from e195fa3d to 87aa5351 on Tue Dec 19 21:04:16 2023 </h3>  
+<h3>4: Development changes from e195fa3d to 87aa5351 on Tue Dec 19 21:04:16 2023 </h3>  
  
 <details> 
 <summary>Git Diff (193 lines)</summary>  
@@ -2360,468 +3055,6 @@ No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
 ./commit-87aa5351/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 037fdd5b to e195fa3d on Tue Dec 19 18:19:20 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/release-pipeline-resources-clusterrole.yaml b/components/release/base/release-pipeline-resources-clusterrole.yaml
-index 4a700c64..cf13b7f6 100644
---- a/components/release/base/release-pipeline-resources-clusterrole.yaml
-+++ b/components/release/base/release-pipeline-resources-clusterrole.yaml
-@@ -10,7 +10,6 @@ rules:
-   - releases
-   - releaseplans
-   - releaseplanadmissions
--  - releasestrategies
-   - snapshots
-   verbs:
-   - get
-@@ -22,6 +21,7 @@ rules:
-   - internalrequests
-   verbs:
-   - create
-+  - delete
-   - get
-   - list
-   - watch 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-037fdd5b/production/components/release/production/kustomize.out.yaml
-833a834
->   - releasestrategies
-845d845
-<   - delete 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 037fdd5b to e195fa3d on Tue Dec 19 18:19:20 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/release-pipeline-resources-clusterrole.yaml b/components/release/base/release-pipeline-resources-clusterrole.yaml
-index 4a700c64..cf13b7f6 100644
---- a/components/release/base/release-pipeline-resources-clusterrole.yaml
-+++ b/components/release/base/release-pipeline-resources-clusterrole.yaml
-@@ -10,7 +10,6 @@ rules:
-   - releases
-   - releaseplans
-   - releaseplanadmissions
--  - releasestrategies
-   - snapshots
-   verbs:
-   - get
-@@ -22,6 +21,7 @@ rules:
-   - internalrequests
-   verbs:
-   - create
-+  - delete
-   - get
-   - list
-   - watch 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-037fdd5b/staging/components/release/staging/kustomize.out.yaml
-833a834
->   - releasestrategies
-845d845
-<   - delete 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-e195fa3d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-e195fa3d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-e195fa3d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-e195fa3d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-e195fa3d/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-e195fa3d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 037fdd5b to e195fa3d on Tue Dec 19 18:19:20 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/release-pipeline-resources-clusterrole.yaml b/components/release/base/release-pipeline-resources-clusterrole.yaml
-index 4a700c64..cf13b7f6 100644
---- a/components/release/base/release-pipeline-resources-clusterrole.yaml
-+++ b/components/release/base/release-pipeline-resources-clusterrole.yaml
-@@ -10,7 +10,6 @@ rules:
-   - releases
-   - releaseplans
-   - releaseplanadmissions
--  - releasestrategies
-   - snapshots
-   verbs:
-   - get
-@@ -22,6 +21,7 @@ rules:
-   - internalrequests
-   verbs:
-   - create
-+  - delete
-   - get
-   - list
-   - watch 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-037fdd5b/development/components/release/development/kustomize.out.yaml
-833a834
->   - releasestrategies
-845d845
-<   - delete 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-e195fa3d/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
 
 KubeLinter v0.6.1-0-gc6177366a3
 
