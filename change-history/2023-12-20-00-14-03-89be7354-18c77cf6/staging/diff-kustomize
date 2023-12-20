@@ -1,0 +1,66 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18c77cf6/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-89be7354/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+319d318
+<   - resolution.tekton.dev
+1324c1323
+<         image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+1349a1349,1350
+>             add:
+>             - NET_BIND_SERVICE
+1393c1394
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+1485,1486d1485
+<         - -check_owner
+<         - "false"
+1502,1506c1501
+<         - name: TEKTON_RESULTS_API_SERVICE
+<           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+<         - name: AUTH_MODE
+<           value: token
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+1513,1519d1507
+<         resources:
+<           limits:
+<             cpu: 250m
+<             memory: 2Gi
+<           requests:
+<             cpu: 100m
+<             memory: 64Mi
+1522a1511,1512
+>             add:
+>             - NET_BIND_SERVICE
+1582,1588d1571
+<             resources:
+<               limits:
+<                 cpu: 200m
+<                 memory: 200Mi
+<               requests:
+<                 cpu: 10m
+<                 memory: 10Mi
+1594d1576
+<               readOnlyRootFilesystem: true
+1712c1694
+<       key: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-staging-plnsvc-rds
+---
+>       key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-staging-plnsvc-rds
+1733c1715
+<       key: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-stg-plnsvc-s3
+---
+>       key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-stg-plnsvc-s3
+1904c1886
+<   channel: pipelines-1.13
+---
+>   channel: pipelines-1.12
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18c77cf6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-89be7354/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1485,1486d1484
+<         - -check_owner
+<         - "false"
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-18c77cf6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-89be7354/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1485,1486d1484
+<         - -check_owner
+<         - "false"
