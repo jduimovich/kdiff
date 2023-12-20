@@ -1,0 +1,25 @@
+diff --git a/components/smee-client/OWNERS b/components/smee-client/OWNERS
+new file mode 100644
+index 00000000..aade3a48
+--- /dev/null
++++ b/components/smee-client/OWNERS
+@@ -0,0 +1,6 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- ifireball
++- gbenhaim
++- amisstea
+diff --git a/components/smee-client/README.md b/components/smee-client/README.md
+new file mode 100644
+index 00000000..df07c3a1
+--- /dev/null
++++ b/components/smee-client/README.md
+@@ -0,0 +1,7 @@
++# Smee-client component
++
++The `smee-client` component deploys [gosmee][gs] in client mode.
++
++This allows a cluster to consume webhooks forwarded via our Smee service.
++
++[gs]: https://github.com/chmouel/gosmee

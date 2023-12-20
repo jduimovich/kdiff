@@ -1,0 +1,39 @@
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 61120be2..9ad508b7 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2f0b4d0f72cc4902bb108ac56172d535de55f9d8
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=edb17034e419d6c4a8de741fdcec036305bd6dfa
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 326c41e7..b964c519 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1899,7 +1899,7 @@ metadata:
+   name: openshift-pipelines-operator
+   namespace: openshift-operators
+ spec:
+-  channel: pipelines-1.12
++  channel: pipelines-1.13
+   name: openshift-pipelines-operator-rh
+   source: redhat-operators
+   sourceNamespace: openshift-marketplace
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index aa763693..7c5df6a6 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1899,7 +1899,7 @@ metadata:
+   name: openshift-pipelines-operator
+   namespace: openshift-operators
+ spec:
+-  channel: pipelines-1.12
++  channel: pipelines-1.13
+   name: openshift-pipelines-operator-rh
+   source: redhat-operators
+   sourceNamespace: openshift-marketplace

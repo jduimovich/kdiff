@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8b35c490/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-dd7312bd/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1901c1901
+<   channel: pipelines-1.13
+---
+>   channel: pipelines-1.12
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8b35c490/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-dd7312bd/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1901c1901
+<   channel: pipelines-1.13
+---
+>   channel: pipelines-1.12
