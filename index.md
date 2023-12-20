@@ -1,12 +1,1082 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Dec 20 08:03:03 UTC 2023
+### This file generated at Wed Dec 20 12:05:02 UTC 2023
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 18c77cf6 to f10d1c6d on Wed Dec 20 05:22:07 2023 </h3>  
+<h3>1: Production changes from 329a36a2 to dd7312bd on Wed Dec 20 11:03:07 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (65 lines)</summary>  
+
+``` 
+diff --git a/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml
+new file mode 100644
+index 00000000..c3eb7cb4
+--- /dev/null
++++ b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml
+@@ -0,0 +1,25 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: registry-redhat-io-pull-secret
++  namespace: build-templates-e2e
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/build-templates-e2e/registry-redhat-io-pull-secret
++  refreshInterval: 15m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: registry-redhat-io-pull-secret
++    template:
++      engineVersion: v2
++      type: kubernetes.io/dockerconfigjson
++      data:
++        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/build-templates/production/e2e-serviceaccount.yaml b/components/build-templates/production/e2e-serviceaccount.yaml
+index 08309542..03b332e3 100644
+--- a/components/build-templates/production/e2e-serviceaccount.yaml
++++ b/components/build-templates/production/e2e-serviceaccount.yaml
+@@ -5,8 +5,7 @@ metadata:
+   namespace: build-templates-e2e
+ secrets:
+   - name: quay-push-secret
+-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
++  - name: registry-redhat-io-pull-secret
+ imagePullSecrets:
+   - name: quay-push-secret
+-  # TODO: manage this secret properly via an ExternalSecret
+-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
++  - name: registry-redhat-io-pull-secret
+diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml
+index 3b86be94..b75196df 100644
+--- a/components/build-templates/production/kustomization.yaml
++++ b/components/build-templates/production/kustomization.yaml
+@@ -3,4 +3,5 @@ kind: Kustomization
+ resources:
+   - ../base
+   - e2e-quay-push-secret.yaml
++  - e2e-registry-redhat-io-pull-secret.yaml
+   - e2e-serviceaccount.yaml
+diff --git a/components/build-templates/staging/e2e-serviceaccount.yaml b/components/build-templates/staging/e2e-serviceaccount.yaml
+index 1b2be4b1..10aef77b 100644
+--- a/components/build-templates/staging/e2e-serviceaccount.yaml
++++ b/components/build-templates/staging/e2e-serviceaccount.yaml
+@@ -7,4 +7,3 @@ secrets:
+   - name: quay-push-secret
+ imagePullSecrets:
+   - name: quay-push-secret
+-  # TODO: get a serviceaccount for registry.redhat.io pull access 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (36 lines)</summary>  
+
+``` 
+./commit-329a36a2/production/components/build-templates/production/kustomize.out.yaml
+19c19
+< - name: registry-redhat-io-pull-secret
+---
+> - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
+26c26
+< - name: registry-redhat-io-pull-secret
+---
+> - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
+178,203d177
+<     template:
+<       data:
+<         .dockerconfigjson: '{{ .config }}'
+<       engineVersion: v2
+<       type: kubernetes.io/dockerconfigjson
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: registry-redhat-io-pull-secret
+<   namespace: build-templates-e2e
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/build-templates-e2e/registry-redhat-io-pull-secret
+<   refreshInterval: 15m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: registry-redhat-io-pull-secret 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-dd7312bd/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-dd7312bd/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 329a36a2 to dd7312bd on Wed Dec 20 11:03:07 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (65 lines)</summary>  
+
+``` 
+diff --git a/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml
+new file mode 100644
+index 00000000..c3eb7cb4
+--- /dev/null
++++ b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml
+@@ -0,0 +1,25 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: registry-redhat-io-pull-secret
++  namespace: build-templates-e2e
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/build-templates-e2e/registry-redhat-io-pull-secret
++  refreshInterval: 15m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: registry-redhat-io-pull-secret
++    template:
++      engineVersion: v2
++      type: kubernetes.io/dockerconfigjson
++      data:
++        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/build-templates/production/e2e-serviceaccount.yaml b/components/build-templates/production/e2e-serviceaccount.yaml
+index 08309542..03b332e3 100644
+--- a/components/build-templates/production/e2e-serviceaccount.yaml
++++ b/components/build-templates/production/e2e-serviceaccount.yaml
+@@ -5,8 +5,7 @@ metadata:
+   namespace: build-templates-e2e
+ secrets:
+   - name: quay-push-secret
+-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
++  - name: registry-redhat-io-pull-secret
+ imagePullSecrets:
+   - name: quay-push-secret
+-  # TODO: manage this secret properly via an ExternalSecret
+-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
++  - name: registry-redhat-io-pull-secret
+diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml
+index 3b86be94..b75196df 100644
+--- a/components/build-templates/production/kustomization.yaml
++++ b/components/build-templates/production/kustomization.yaml
+@@ -3,4 +3,5 @@ kind: Kustomization
+ resources:
+   - ../base
+   - e2e-quay-push-secret.yaml
++  - e2e-registry-redhat-io-pull-secret.yaml
+   - e2e-serviceaccount.yaml
+diff --git a/components/build-templates/staging/e2e-serviceaccount.yaml b/components/build-templates/staging/e2e-serviceaccount.yaml
+index 1b2be4b1..10aef77b 100644
+--- a/components/build-templates/staging/e2e-serviceaccount.yaml
++++ b/components/build-templates/staging/e2e-serviceaccount.yaml
+@@ -7,4 +7,3 @@ secrets:
+   - name: quay-push-secret
+ imagePullSecrets:
+   - name: quay-push-secret
+-  # TODO: get a serviceaccount for registry.redhat.io pull access 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-dd7312bd/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-dd7312bd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-dd7312bd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 329a36a2 to dd7312bd on Wed Dec 20 11:03:07 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (65 lines)</summary>  
+
+``` 
+diff --git a/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml
+new file mode 100644
+index 00000000..c3eb7cb4
+--- /dev/null
++++ b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml
+@@ -0,0 +1,25 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: registry-redhat-io-pull-secret
++  namespace: build-templates-e2e
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/build-templates-e2e/registry-redhat-io-pull-secret
++  refreshInterval: 15m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: registry-redhat-io-pull-secret
++    template:
++      engineVersion: v2
++      type: kubernetes.io/dockerconfigjson
++      data:
++        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/build-templates/production/e2e-serviceaccount.yaml b/components/build-templates/production/e2e-serviceaccount.yaml
+index 08309542..03b332e3 100644
+--- a/components/build-templates/production/e2e-serviceaccount.yaml
++++ b/components/build-templates/production/e2e-serviceaccount.yaml
+@@ -5,8 +5,7 @@ metadata:
+   namespace: build-templates-e2e
+ secrets:
+   - name: quay-push-secret
+-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
++  - name: registry-redhat-io-pull-secret
+ imagePullSecrets:
+   - name: quay-push-secret
+-  # TODO: manage this secret properly via an ExternalSecret
+-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
++  - name: registry-redhat-io-pull-secret
+diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml
+index 3b86be94..b75196df 100644
+--- a/components/build-templates/production/kustomization.yaml
++++ b/components/build-templates/production/kustomization.yaml
+@@ -3,4 +3,5 @@ kind: Kustomization
+ resources:
+   - ../base
+   - e2e-quay-push-secret.yaml
++  - e2e-registry-redhat-io-pull-secret.yaml
+   - e2e-serviceaccount.yaml
+diff --git a/components/build-templates/staging/e2e-serviceaccount.yaml b/components/build-templates/staging/e2e-serviceaccount.yaml
+index 1b2be4b1..10aef77b 100644
+--- a/components/build-templates/staging/e2e-serviceaccount.yaml
++++ b/components/build-templates/staging/e2e-serviceaccount.yaml
+@@ -7,4 +7,3 @@ secrets:
+   - name: quay-push-secret
+ imagePullSecrets:
+   - name: quay-push-secret
+-  # TODO: get a serviceaccount for registry.redhat.io pull access 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-dd7312bd/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from f10d1c6d to 329a36a2 on Wed Dec 20 08:12:33 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (40 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+index b0cba79e..0ae72a28 100644
+--- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+@@ -11,7 +11,7 @@ spec:
+         - name: name
+           value: fbc-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+         - name: kind
+           value: pipeline
+       when:
+@@ -23,7 +23,7 @@ spec:
+         - name: name
+           value: docker-build
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:1e917a0ffe164020513b449f1d67324d2d661fa4
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+         - name: kind
+           value: pipeline
+       when:
+@@ -35,7 +35,7 @@ spec:
+         - name: name
+           value: java-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+         - name: kind
+           value: pipeline
+       when:
+@@ -47,7 +47,7 @@ spec:
+         - name: name
+           value: nodejs-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+         - name: kind
+           value: pipeline
+       when: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+./commit-f10d1c6d/production/components/build-service/production/kustomize.out.yaml
+754c754
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
+766c766
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:1e917a0ffe164020513b449f1d67324d2d661fa4
+778c778
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
+790c790
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:1e917a0ffe164020513b449f1d67324d2d661fa4 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-329a36a2/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-329a36a2/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from f10d1c6d to 329a36a2 on Wed Dec 20 08:12:33 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (40 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+index b0cba79e..0ae72a28 100644
+--- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+@@ -11,7 +11,7 @@ spec:
+         - name: name
+           value: fbc-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+         - name: kind
+           value: pipeline
+       when:
+@@ -23,7 +23,7 @@ spec:
+         - name: name
+           value: docker-build
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:1e917a0ffe164020513b449f1d67324d2d661fa4
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+         - name: kind
+           value: pipeline
+       when:
+@@ -35,7 +35,7 @@ spec:
+         - name: name
+           value: java-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+         - name: kind
+           value: pipeline
+       when:
+@@ -47,7 +47,7 @@ spec:
+         - name: name
+           value: nodejs-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+         - name: kind
+           value: pipeline
+       when: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+./commit-f10d1c6d/staging/components/build-service/staging/kustomize.out.yaml
+754c754
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
+766c766
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:1e917a0ffe164020513b449f1d67324d2d661fa4
+778c778
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
+790c790
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:1e917a0ffe164020513b449f1d67324d2d661fa4 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-329a36a2/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-329a36a2/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-329a36a2/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from f10d1c6d to 329a36a2 on Wed Dec 20 08:12:33 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (40 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+index b0cba79e..0ae72a28 100644
+--- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+@@ -11,7 +11,7 @@ spec:
+         - name: name
+           value: fbc-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+         - name: kind
+           value: pipeline
+       when:
+@@ -23,7 +23,7 @@ spec:
+         - name: name
+           value: docker-build
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:1e917a0ffe164020513b449f1d67324d2d661fa4
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+         - name: kind
+           value: pipeline
+       when:
+@@ -35,7 +35,7 @@ spec:
+         - name: name
+           value: java-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+         - name: kind
+           value: pipeline
+       when:
+@@ -47,7 +47,7 @@ spec:
+         - name: name
+           value: nodejs-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+         - name: kind
+           value: pipeline
+       when: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+./commit-f10d1c6d/development/components/build-service/development/kustomize.out.yaml
+760c760
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
+772c772
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:1e917a0ffe164020513b449f1d67324d2d661fa4
+784c784
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:1e917a0ffe164020513b449f1d67324d2d661fa4
+796c796
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:88b5db85aa9d9faea12d2f89110a7ccd79db77a0
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:1e917a0ffe164020513b449f1d67324d2d661fa4 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-329a36a2/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 18c77cf6 to f10d1c6d on Wed Dec 20 05:22:07 2023 </h3>  
  
 <details> 
 <summary>Git Diff (77 lines)</summary>  
@@ -198,7 +1268,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 18c77cf6 to f10d1c6d on Wed Dec 20 05:22:07 2023 </h3>  
+<h3>3: Staging changes from 18c77cf6 to f10d1c6d on Wed Dec 20 05:22:07 2023 </h3>  
  
 <details> 
 <summary>Git Diff (77 lines)</summary>  
@@ -534,7 +1604,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 18c77cf6 to f10d1c6d on Wed Dec 20 05:22:07 2023 </h3>  
+<h3>3: Development changes from 18c77cf6 to f10d1c6d on Wed Dec 20 05:22:07 2023 </h3>  
  
 <details> 
 <summary>Git Diff (77 lines)</summary>  
@@ -701,7 +1771,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 89be7354 to 18c77cf6 on Wed Dec 20 00:14:03 2023 </h3>  
+<h3>4: Production changes from 89be7354 to 18c77cf6 on Wed Dec 20 00:14:03 2023 </h3>  
  
 <details> 
 <summary>Git Diff (180 lines)</summary>  
@@ -996,7 +2066,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 89be7354 to 18c77cf6 on Wed Dec 20 00:14:03 2023 </h3>  
+<h3>4: Staging changes from 89be7354 to 18c77cf6 on Wed Dec 20 00:14:03 2023 </h3>  
  
 <details> 
 <summary>Git Diff (180 lines)</summary>  
@@ -1372,7 +2442,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 89be7354 to 18c77cf6 on Wed Dec 20 00:14:03 2023 </h3>  
+<h3>4: Development changes from 89be7354 to 18c77cf6 on Wed Dec 20 00:14:03 2023 </h3>  
  
 <details> 
 <summary>Git Diff (180 lines)</summary>  
@@ -1608,1453 +2678,6 @@ No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
 ./commit-18c77cf6/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 87aa5351 to 89be7354 on Tue Dec 19 22:57:01 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (25 lines)</summary>  
-
-``` 
-diff --git a/hack/preview.sh b/hack/preview.sh
-index b365de78..7117e489 100755
---- a/hack/preview.sh
-+++ b/hack/preview.sh
-@@ -337,3 +337,20 @@ if $KEYCLOAK && $TOOLCHAIN ; then
- 	  exit 1
-   fi
- fi
-+
-+# Sometimes Tekton CRDs need a few mins to be ready
-+retry=0
-+while true; do
-+  if [ "$retry" -eq 5 ]; then
-+    printf "Error: Tekton CRDs are not yet available on the cluster.\n" >&2
-+    exit 1
-+  fi
-+  tekton_crds=$(oc api-resources --api-group="tekton.dev" --no-headers)
-+  if [[ $tekton_crds =~ pipelines && $tekton_crds =~ tasks && $tekton_crds =~ pipelineruns && $tekton_crds =~ taskruns ]]; then
-+    echo "Tekton CRDs are ready"
-+    break
-+  fi
-+  sleep $INTERVAL
-+  retry=$((retry + 1))
-+done
-+ 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-89be7354/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-89be7354/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 87aa5351 to 89be7354 on Tue Dec 19 22:57:01 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (25 lines)</summary>  
-
-``` 
-diff --git a/hack/preview.sh b/hack/preview.sh
-index b365de78..7117e489 100755
---- a/hack/preview.sh
-+++ b/hack/preview.sh
-@@ -337,3 +337,20 @@ if $KEYCLOAK && $TOOLCHAIN ; then
- 	  exit 1
-   fi
- fi
-+
-+# Sometimes Tekton CRDs need a few mins to be ready
-+retry=0
-+while true; do
-+  if [ "$retry" -eq 5 ]; then
-+    printf "Error: Tekton CRDs are not yet available on the cluster.\n" >&2
-+    exit 1
-+  fi
-+  tekton_crds=$(oc api-resources --api-group="tekton.dev" --no-headers)
-+  if [[ $tekton_crds =~ pipelines && $tekton_crds =~ tasks && $tekton_crds =~ pipelineruns && $tekton_crds =~ taskruns ]]; then
-+    echo "Tekton CRDs are ready"
-+    break
-+  fi
-+  sleep $INTERVAL
-+  retry=$((retry + 1))
-+done
-+ 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-89be7354/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-89be7354/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-89be7354/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-89be7354/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-89be7354/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-89be7354/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-89be7354/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-89be7354/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-89be7354/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-89be7354/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-89be7354/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-89be7354/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 87aa5351 to 89be7354 on Tue Dec 19 22:57:01 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (25 lines)</summary>  
-
-``` 
-diff --git a/hack/preview.sh b/hack/preview.sh
-index b365de78..7117e489 100755
---- a/hack/preview.sh
-+++ b/hack/preview.sh
-@@ -337,3 +337,20 @@ if $KEYCLOAK && $TOOLCHAIN ; then
- 	  exit 1
-   fi
- fi
-+
-+# Sometimes Tekton CRDs need a few mins to be ready
-+retry=0
-+while true; do
-+  if [ "$retry" -eq 5 ]; then
-+    printf "Error: Tekton CRDs are not yet available on the cluster.\n" >&2
-+    exit 1
-+  fi
-+  tekton_crds=$(oc api-resources --api-group="tekton.dev" --no-headers)
-+  if [[ $tekton_crds =~ pipelines && $tekton_crds =~ tasks && $tekton_crds =~ pipelineruns && $tekton_crds =~ taskruns ]]; then
-+    echo "Tekton CRDs are ready"
-+    break
-+  fi
-+  sleep $INTERVAL
-+  retry=$((retry + 1))
-+done
-+ 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-89be7354/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from e195fa3d to 87aa5351 on Tue Dec 19 21:04:16 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (193 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
-index ab56757b..61120be2 100644
---- a/components/pipeline-service/production/base/kustomization.yaml
-+++ b/components/pipeline-service/production/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=8313c38b61d684562cb93bd7d4757b08401d2c44
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2f0b4d0f72cc4902bb108ac56172d535de55f9d8
-   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index e57368c0..326c41e7 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -317,6 +317,7 @@ rules:
-   - results.tekton.dev
-   - tekton.dev
-   - triggers.tekton.dev
-+  - resolution.tekton.dev
-   resources:
-   - '*'
-   verbs:
-@@ -1320,7 +1321,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1346,8 +1347,6 @@ spec:
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
--            add:
--            - NET_BIND_SERVICE
-             drop:
-             - ALL
-           readOnlyRootFilesystem: true
-@@ -1391,7 +1390,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         name: migrator
-         resources:
-           limits:
-@@ -1498,18 +1497,27 @@ spec:
-           value: tekton-results-config-observability
-         - name: METRICS_DOMAIN
-           value: tekton.dev/results
--        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        - name: TEKTON_RESULTS_API_SERVICE
-+          value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-+        - name: AUTH_MODE
-+          value: token
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         name: watcher
-         ports:
-         - containerPort: 9090
-           name: metrics
-         - containerPort: 8008
-           name: profiling
-+        resources:
-+          limits:
-+            cpu: 250m
-+            memory: 2Gi
-+          requests:
-+            cpu: 100m
-+            memory: 64Mi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
--            add:
--            - NET_BIND_SERVICE
-             drop:
-             - ALL
-           readOnlyRootFilesystem: true
-@@ -1569,11 +1577,19 @@ spec:
-             image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
-             imagePullPolicy: Always
-             name: delete-pac-secrets
-+            resources:
-+              limits:
-+                cpu: 200m
-+                memory: 200Mi
-+              requests:
-+                cpu: 10m
-+                memory: 10Mi
-             securityContext:
-               allowPrivilegeEscalation: false
-               capabilities:
-                 drop:
-                 - ALL
-+              readOnlyRootFilesystem: true
-               runAsNonRoot: true
-               seccompProfile:
-                 type: RuntimeDefault
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 736cb59f..aa763693 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -317,6 +317,7 @@ rules:
-   - results.tekton.dev
-   - tekton.dev
-   - triggers.tekton.dev
-+  - resolution.tekton.dev
-   resources:
-   - '*'
-   verbs:
-@@ -1320,7 +1321,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1346,8 +1347,6 @@ spec:
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
--            add:
--            - NET_BIND_SERVICE
-             drop:
-             - ALL
-           readOnlyRootFilesystem: true
-@@ -1391,7 +1390,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         name: migrator
-         resources:
-           limits:
-@@ -1498,18 +1497,27 @@ spec:
-           value: tekton-results-config-observability
-         - name: METRICS_DOMAIN
-           value: tekton.dev/results
--        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        - name: TEKTON_RESULTS_API_SERVICE
-+          value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-+        - name: AUTH_MODE
-+          value: token
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         name: watcher
-         ports:
-         - containerPort: 9090
-           name: metrics
-         - containerPort: 8008
-           name: profiling
-+        resources:
-+          limits:
-+            cpu: 250m
-+            memory: 2Gi
-+          requests:
-+            cpu: 100m
-+            memory: 64Mi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
--            add:
--            - NET_BIND_SERVICE
-             drop:
-             - ALL
-           readOnlyRootFilesystem: true
-@@ -1569,11 +1577,19 @@ spec:
-             image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
-             imagePullPolicy: Always
-             name: delete-pac-secrets
-+            resources:
-+              limits:
-+                cpu: 200m
-+                memory: 200Mi
-+              requests:
-+                cpu: 10m
-+                memory: 10Mi
-             securityContext:
-               allowPrivilegeEscalation: false
-               capabilities:
-                 drop:
-                 - ALL
-+              readOnlyRootFilesystem: true
-               runAsNonRoot: true
-               seccompProfile:
-                 type: RuntimeDefault 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (86 lines)</summary>  
-
-``` 
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
-319d318
-<   - resolution.tekton.dev
-1323c1322
-<         image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
----
->         image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-1348a1348,1349
->             add:
->             - NET_BIND_SERVICE
-1392c1393
-<         image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
----
->         image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-1499,1503c1500
-<         - name: TEKTON_RESULTS_API_SERVICE
-<           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-<         - name: AUTH_MODE
-<           value: token
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-1510,1516d1506
-<         resources:
-<           limits:
-<             cpu: 250m
-<             memory: 2Gi
-<           requests:
-<             cpu: 100m
-<             memory: 64Mi
-1519a1510,1511
->             add:
->             - NET_BIND_SERVICE
-1579,1585d1570
-<             resources:
-<               limits:
-<                 cpu: 200m
-<                 memory: 200Mi
-<               requests:
-<                 cpu: 10m
-<                 memory: 10Mi
-1591d1575
-<               readOnlyRootFilesystem: true
-./commit-e195fa3d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
-319d318
-<   - resolution.tekton.dev
-1323c1322
-<         image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
----
->         image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-1348a1348,1349
->             add:
->             - NET_BIND_SERVICE
-1392c1393
-<         image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
----
->         image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-1499,1503c1500
-<         - name: TEKTON_RESULTS_API_SERVICE
-<           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-<         - name: AUTH_MODE
-<           value: token
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-1510,1516d1506
-<         resources:
-<           limits:
-<             cpu: 250m
-<             memory: 2Gi
-<           requests:
-<             cpu: 100m
-<             memory: 64Mi
-1519a1510,1511
->             add:
->             - NET_BIND_SERVICE
-1579,1585d1570
-<             resources:
-<               limits:
-<                 cpu: 200m
-<                 memory: 200Mi
-<               requests:
-<                 cpu: 10m
-<                 memory: 10Mi
-1591d1575
-<               readOnlyRootFilesystem: true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-87aa5351/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-87aa5351/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from e195fa3d to 87aa5351 on Tue Dec 19 21:04:16 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (193 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
-index ab56757b..61120be2 100644
---- a/components/pipeline-service/production/base/kustomization.yaml
-+++ b/components/pipeline-service/production/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=8313c38b61d684562cb93bd7d4757b08401d2c44
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2f0b4d0f72cc4902bb108ac56172d535de55f9d8
-   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index e57368c0..326c41e7 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -317,6 +317,7 @@ rules:
-   - results.tekton.dev
-   - tekton.dev
-   - triggers.tekton.dev
-+  - resolution.tekton.dev
-   resources:
-   - '*'
-   verbs:
-@@ -1320,7 +1321,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1346,8 +1347,6 @@ spec:
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
--            add:
--            - NET_BIND_SERVICE
-             drop:
-             - ALL
-           readOnlyRootFilesystem: true
-@@ -1391,7 +1390,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         name: migrator
-         resources:
-           limits:
-@@ -1498,18 +1497,27 @@ spec:
-           value: tekton-results-config-observability
-         - name: METRICS_DOMAIN
-           value: tekton.dev/results
--        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        - name: TEKTON_RESULTS_API_SERVICE
-+          value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-+        - name: AUTH_MODE
-+          value: token
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         name: watcher
-         ports:
-         - containerPort: 9090
-           name: metrics
-         - containerPort: 8008
-           name: profiling
-+        resources:
-+          limits:
-+            cpu: 250m
-+            memory: 2Gi
-+          requests:
-+            cpu: 100m
-+            memory: 64Mi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
--            add:
--            - NET_BIND_SERVICE
-             drop:
-             - ALL
-           readOnlyRootFilesystem: true
-@@ -1569,11 +1577,19 @@ spec:
-             image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
-             imagePullPolicy: Always
-             name: delete-pac-secrets
-+            resources:
-+              limits:
-+                cpu: 200m
-+                memory: 200Mi
-+              requests:
-+                cpu: 10m
-+                memory: 10Mi
-             securityContext:
-               allowPrivilegeEscalation: false
-               capabilities:
-                 drop:
-                 - ALL
-+              readOnlyRootFilesystem: true
-               runAsNonRoot: true
-               seccompProfile:
-                 type: RuntimeDefault
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 736cb59f..aa763693 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -317,6 +317,7 @@ rules:
-   - results.tekton.dev
-   - tekton.dev
-   - triggers.tekton.dev
-+  - resolution.tekton.dev
-   resources:
-   - '*'
-   verbs:
-@@ -1320,7 +1321,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1346,8 +1347,6 @@ spec:
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
--            add:
--            - NET_BIND_SERVICE
-             drop:
-             - ALL
-           readOnlyRootFilesystem: true
-@@ -1391,7 +1390,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         name: migrator
-         resources:
-           limits:
-@@ -1498,18 +1497,27 @@ spec:
-           value: tekton-results-config-observability
-         - name: METRICS_DOMAIN
-           value: tekton.dev/results
--        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        - name: TEKTON_RESULTS_API_SERVICE
-+          value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-+        - name: AUTH_MODE
-+          value: token
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         name: watcher
-         ports:
-         - containerPort: 9090
-           name: metrics
-         - containerPort: 8008
-           name: profiling
-+        resources:
-+          limits:
-+            cpu: 250m
-+            memory: 2Gi
-+          requests:
-+            cpu: 100m
-+            memory: 64Mi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
--            add:
--            - NET_BIND_SERVICE
-             drop:
-             - ALL
-           readOnlyRootFilesystem: true
-@@ -1569,11 +1577,19 @@ spec:
-             image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
-             imagePullPolicy: Always
-             name: delete-pac-secrets
-+            resources:
-+              limits:
-+                cpu: 200m
-+                memory: 200Mi
-+              requests:
-+                cpu: 10m
-+                memory: 10Mi
-             securityContext:
-               allowPrivilegeEscalation: false
-               capabilities:
-                 drop:
-                 - ALL
-+              readOnlyRootFilesystem: true
-               runAsNonRoot: true
-               seccompProfile:
-                 type: RuntimeDefault 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-87aa5351/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-./commit-87aa5351/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-87aa5351/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-87aa5351/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-87aa5351/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: tekton-results/tekton-results-watcher apps/v1, Kind=Deployment) container "watcher" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-87aa5351/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" does not have a read-only root file system (check: no-read-only-root-fs, remediation: Set readOnlyRootFilesystem to true in the container securityContext.)
-
-./commit-87aa5351/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu request 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-87aa5351/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has cpu limit 0 (check: unset-cpu-requirements, remediation: Set CPU requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-87aa5351/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory request 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-./commit-87aa5351/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/pac-secret-reaper batch/v1, Kind=CronJob) container "delete-pac-secrets" has memory limit 0 (check: unset-memory-requirements, remediation: Set memory requests and limits for your container based on its requirements. Refer to https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits for details.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-87aa5351/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-87aa5351/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from e195fa3d to 87aa5351 on Tue Dec 19 21:04:16 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (193 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
-index ab56757b..61120be2 100644
---- a/components/pipeline-service/production/base/kustomization.yaml
-+++ b/components/pipeline-service/production/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=8313c38b61d684562cb93bd7d4757b08401d2c44
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2f0b4d0f72cc4902bb108ac56172d535de55f9d8
-   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index e57368c0..326c41e7 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -317,6 +317,7 @@ rules:
-   - results.tekton.dev
-   - tekton.dev
-   - triggers.tekton.dev
-+  - resolution.tekton.dev
-   resources:
-   - '*'
-   verbs:
-@@ -1320,7 +1321,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1346,8 +1347,6 @@ spec:
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
--            add:
--            - NET_BIND_SERVICE
-             drop:
-             - ALL
-           readOnlyRootFilesystem: true
-@@ -1391,7 +1390,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         name: migrator
-         resources:
-           limits:
-@@ -1498,18 +1497,27 @@ spec:
-           value: tekton-results-config-observability
-         - name: METRICS_DOMAIN
-           value: tekton.dev/results
--        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        - name: TEKTON_RESULTS_API_SERVICE
-+          value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-+        - name: AUTH_MODE
-+          value: token
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         name: watcher
-         ports:
-         - containerPort: 9090
-           name: metrics
-         - containerPort: 8008
-           name: profiling
-+        resources:
-+          limits:
-+            cpu: 250m
-+            memory: 2Gi
-+          requests:
-+            cpu: 100m
-+            memory: 64Mi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
--            add:
--            - NET_BIND_SERVICE
-             drop:
-             - ALL
-           readOnlyRootFilesystem: true
-@@ -1569,11 +1577,19 @@ spec:
-             image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
-             imagePullPolicy: Always
-             name: delete-pac-secrets
-+            resources:
-+              limits:
-+                cpu: 200m
-+                memory: 200Mi
-+              requests:
-+                cpu: 10m
-+                memory: 10Mi
-             securityContext:
-               allowPrivilegeEscalation: false
-               capabilities:
-                 drop:
-                 - ALL
-+              readOnlyRootFilesystem: true
-               runAsNonRoot: true
-               seccompProfile:
-                 type: RuntimeDefault
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 736cb59f..aa763693 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -317,6 +317,7 @@ rules:
-   - results.tekton.dev
-   - tekton.dev
-   - triggers.tekton.dev
-+  - resolution.tekton.dev
-   resources:
-   - '*'
-   verbs:
-@@ -1320,7 +1321,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1346,8 +1347,6 @@ spec:
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
--            add:
--            - NET_BIND_SERVICE
-             drop:
-             - ALL
-           readOnlyRootFilesystem: true
-@@ -1391,7 +1390,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         name: migrator
-         resources:
-           limits:
-@@ -1498,18 +1497,27 @@ spec:
-           value: tekton-results-config-observability
-         - name: METRICS_DOMAIN
-           value: tekton.dev/results
--        image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
-+        - name: TEKTON_RESULTS_API_SERVICE
-+          value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-+        - name: AUTH_MODE
-+          value: token
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
-         name: watcher
-         ports:
-         - containerPort: 9090
-           name: metrics
-         - containerPort: 8008
-           name: profiling
-+        resources:
-+          limits:
-+            cpu: 250m
-+            memory: 2Gi
-+          requests:
-+            cpu: 100m
-+            memory: 64Mi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
--            add:
--            - NET_BIND_SERVICE
-             drop:
-             - ALL
-           readOnlyRootFilesystem: true
-@@ -1569,11 +1577,19 @@ spec:
-             image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:1054e906ee0183531b401d3c0b0d777cecb25ef95b1c9c48387c6cd7b0e57b9d
-             imagePullPolicy: Always
-             name: delete-pac-secrets
-+            resources:
-+              limits:
-+                cpu: 200m
-+                memory: 200Mi
-+              requests:
-+                cpu: 10m
-+                memory: 10Mi
-             securityContext:
-               allowPrivilegeEscalation: false
-               capabilities:
-                 drop:
-                 - ALL
-+              readOnlyRootFilesystem: true
-               runAsNonRoot: true
-               seccompProfile:
-                 type: RuntimeDefault 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-87aa5351/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
 
 KubeLinter v0.6.1-0-gc6177366a3
 

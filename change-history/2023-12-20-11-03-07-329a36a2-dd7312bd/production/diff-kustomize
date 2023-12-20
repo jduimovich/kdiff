@@ -1,0 +1,36 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-dd7312bd/production/components/build-templates/production/kustomize.out.yaml ./kustomized-cache/commit-329a36a2/production/components/build-templates/production/kustomize.out.yaml
+19c19
+< - name: registry-redhat-io-pull-secret
+---
+> - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
+26c26
+< - name: registry-redhat-io-pull-secret
+---
+> - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
+178,203d177
+<     template:
+<       data:
+<         .dockerconfigjson: '{{ .config }}'
+<       engineVersion: v2
+<       type: kubernetes.io/dockerconfigjson
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: registry-redhat-io-pull-secret
+<   namespace: build-templates-e2e
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/build-templates-e2e/registry-redhat-io-pull-secret
+<   refreshInterval: 15m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: registry-redhat-io-pull-secret

@@ -1,0 +1,65 @@
+diff --git a/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml
+new file mode 100644
+index 00000000..c3eb7cb4
+--- /dev/null
++++ b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml
+@@ -0,0 +1,25 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: registry-redhat-io-pull-secret
++  namespace: build-templates-e2e
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/build-templates-e2e/registry-redhat-io-pull-secret
++  refreshInterval: 15m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: registry-redhat-io-pull-secret
++    template:
++      engineVersion: v2
++      type: kubernetes.io/dockerconfigjson
++      data:
++        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/build-templates/production/e2e-serviceaccount.yaml b/components/build-templates/production/e2e-serviceaccount.yaml
+index 08309542..03b332e3 100644
+--- a/components/build-templates/production/e2e-serviceaccount.yaml
++++ b/components/build-templates/production/e2e-serviceaccount.yaml
+@@ -5,8 +5,7 @@ metadata:
+   namespace: build-templates-e2e
+ secrets:
+   - name: quay-push-secret
+-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
++  - name: registry-redhat-io-pull-secret
+ imagePullSecrets:
+   - name: quay-push-secret
+-  # TODO: manage this secret properly via an ExternalSecret
+-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret
++  - name: registry-redhat-io-pull-secret
+diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml
+index 3b86be94..b75196df 100644
+--- a/components/build-templates/production/kustomization.yaml
++++ b/components/build-templates/production/kustomization.yaml
+@@ -3,4 +3,5 @@ kind: Kustomization
+ resources:
+   - ../base
+   - e2e-quay-push-secret.yaml
++  - e2e-registry-redhat-io-pull-secret.yaml
+   - e2e-serviceaccount.yaml
+diff --git a/components/build-templates/staging/e2e-serviceaccount.yaml b/components/build-templates/staging/e2e-serviceaccount.yaml
+index 1b2be4b1..10aef77b 100644
+--- a/components/build-templates/staging/e2e-serviceaccount.yaml
++++ b/components/build-templates/staging/e2e-serviceaccount.yaml
+@@ -7,4 +7,3 @@ secrets:
+   - name: quay-push-secret
+ imagePullSecrets:
+   - name: quay-push-secret
+-  # TODO: get a serviceaccount for registry.redhat.io pull access
