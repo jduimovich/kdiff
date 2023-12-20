@@ -1,0 +1,42 @@
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 230af73c..ee6f8b29 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -900,7 +900,8 @@ data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+-    DB_SSLMODE=require
++    DB_SSLMODE=disable
++    DB_SSLROOTCERT=
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index bf05174f..b741a57f 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -900,7 +900,8 @@ data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+-    DB_SSLMODE=require
++    DB_SSLMODE=disable
++    DB_SSLROOTCERT=
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 3bc9e113..6fb93099 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -900,7 +900,8 @@ data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+-    DB_SSLMODE=require
++    DB_SSLMODE=disable
++    DB_SSLROOTCERT=
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090

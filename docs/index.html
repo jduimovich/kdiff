@@ -10,12 +10,880 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-wed-dec-20-160609-utc-2023">This file generated at Wed Dec 20 16:06:09 UTC 2023</h3>
+<h3 id="this-file-generated-at-wed-dec-20-200455-utc-2023">This file generated at Wed Dec 20 20:04:55 UTC 2023</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 712a095c to 86ca3987 on Wed Dec 20 13:59:06 2023 </h3>  
+<h3>1: Production changes from 1af60b32 to d0bfc290 on Wed Dec 20 18:45:03 2023 </h3>  
+
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
+<span class="hljs-comment">index b964c519..5b071d72 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -901,7 +901,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 7c5df6a6..5ed8cbbf 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -901,7 +901,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (12 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-1af60b32/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml</span>
+<span class="hljs-number">903</span><span class="hljs-string">,904c903</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">DB_SSLMODE=disable</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">DB_SSLROOTCERT=</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-string">DB_SSLMODE=require</span>
+<span class="hljs-string">./commit-1af60b32/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml</span>
+<span class="hljs-number">903</span><span class="hljs-string">,904c903</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">DB_SSLMODE=disable</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">DB_SSLROOTCERT=</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-string">DB_SSLMODE=require</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-d0bfc290/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-d0bfc290/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from 1af60b32 to d0bfc290 on Wed Dec 20 18:45:03 2023 </h3>  
+
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
+<span class="hljs-comment">index b964c519..5b071d72 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -901,7 +901,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 7c5df6a6..5ed8cbbf 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -901,7 +901,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-d0bfc290/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-d0bfc290/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-d0bfc290/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from 1af60b32 to d0bfc290 on Wed Dec 20 18:45:03 2023 </h3>  
+
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
+<span class="hljs-comment">index b964c519..5b071d72 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -901,7 +901,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 7c5df6a6..5ed8cbbf 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -901,7 +901,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-d0bfc290/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 86ca3987 to 1af60b32 on Wed Dec 20 16:55:02 2023 </h3>  
+
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">index 230af73c..ee6f8b29 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-meta">@@ -900,7 +900,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">index bf05174f..b741a57f 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -900,7 +900,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 3bc9e113..6fb93099 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -900,7 +900,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-<span class="hljs-number">1</span>af60b32/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-<span class="hljs-number">1</span>af60b32/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Staging changes from 86ca3987 to 1af60b32 on Wed Dec 20 16:55:02 2023 </h3>  
+
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">index 230af73c..ee6f8b29 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-meta">@@ -900,7 +900,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">index bf05174f..b741a57f 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -900,7 +900,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 3bc9e113..6fb93099 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -900,7 +900,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (18 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-86ca3987/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml</span>
+<span class="hljs-number">903</span><span class="hljs-string">,904c903</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">DB_SSLMODE=disable</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">DB_SSLROOTCERT=</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-string">DB_SSLMODE=require</span>
+<span class="hljs-string">./commit-86ca3987/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml</span>
+<span class="hljs-number">903</span><span class="hljs-string">,904c903</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">DB_SSLMODE=disable</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">DB_SSLROOTCERT=</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-string">DB_SSLMODE=require</span>
+<span class="hljs-string">./commit-86ca3987/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml</span>
+<span class="hljs-number">903</span><span class="hljs-string">,904c903</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">DB_SSLMODE=disable</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-string">DB_SSLROOTCERT=</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-string">DB_SSLMODE=require</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-<span class="hljs-number">1</span>af60b32/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-<span class="hljs-number">1</span>af60b32/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-<span class="hljs-number">1</span>af60b32/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Development changes from 86ca3987 to 1af60b32 on Wed Dec 20 16:55:02 2023 </h3>  
+
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">index 230af73c..ee6f8b29 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-meta">@@ -900,7 +900,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">index bf05174f..b741a57f 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -900,7 +900,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 3bc9e113..6fb93099 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -900,7 +900,8 @@</span> data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+<span class="hljs-deletion">-    DB_SSLMODE=require</span>
+<span class="hljs-addition">+    DB_SSLMODE=disable</span>
+<span class="hljs-addition">+    DB_SSLROOTCERT=</span>
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-<span class="hljs-number">1</span>af60b32/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>3: Production changes from 712a095c to 86ca3987 on Wed Dec 20 13:59:06 2023 </h3>  
 
 <details> 
 <summary>Git Diff (25 lines)</summary>  
@@ -148,7 +1016,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>1: Staging changes from 712a095c to 86ca3987 on Wed Dec 20 13:59:06 2023 </h3>  
+<h3>3: Staging changes from 712a095c to 86ca3987 on Wed Dec 20 13:59:06 2023 </h3>  
 
 <details> 
 <summary>Git Diff (25 lines)</summary>  
@@ -297,7 +1165,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>1: Development changes from 712a095c to 86ca3987 on Wed Dec 20 13:59:06 2023 </h3>  
+<h3>3: Development changes from 712a095c to 86ca3987 on Wed Dec 20 13:59:06 2023 </h3>  
 
 <details> 
 <summary>Git Diff (25 lines)</summary>  
@@ -405,7 +1273,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>2: Production changes from 8b35c490 to 712a095c on Wed Dec 20 13:26:48 2023 </h3>  
+<h3>4: Production changes from 8b35c490 to 712a095c on Wed Dec 20 13:26:48 2023 </h3>  
 
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -558,7 +1426,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>2: Staging changes from 8b35c490 to 712a095c on Wed Dec 20 13:26:48 2023 </h3>  
+<h3>4: Staging changes from 8b35c490 to 712a095c on Wed Dec 20 13:26:48 2023 </h3>  
 
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -727,7 +1595,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>2: Development changes from 8b35c490 to 712a095c on Wed Dec 20 13:26:48 2023 </h3>  
+<h3>4: Development changes from 8b35c490 to 712a095c on Wed Dec 20 13:26:48 2023 </h3>  
 
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -822,992 +1690,6 @@ No lint errors found!
 KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
 
 ./commit-<span class="hljs-number">712</span>a095c/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>3: Production changes from dd7312bd to 8b35c490 on Wed Dec 20 13:20:32 2023 </h3>  
-
-<details> 
-<summary>Git Diff (39 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml</span>
-<span class="hljs-comment">index 61120be2..9ad508b7 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/production/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/production/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -8,7 +8,7 @@</span> commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-
- resources:
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2f0b4d0f72cc4902bb108ac56172d535de55f9d8</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=edb17034e419d6c4a8de741fdcec036305bd6dfa</span>
-   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
-   - ../../base/external-secrets
-   - ../../base/testing
-<span class="hljs-comment">diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
-<span class="hljs-comment">index 326c41e7..b964c519 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1899,7 +1899,7 @@</span> metadata:
-   name: openshift-pipelines-operator
-   namespace: openshift-operators
- spec:
-<span class="hljs-deletion">-  channel: pipelines-1.12</span>
-<span class="hljs-addition">+  channel: pipelines-1.13</span>
-   name: openshift-pipelines-operator-rh
-   source: redhat-operators
-   sourceNamespace: openshift-marketplace
-<span class="hljs-comment">diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
-<span class="hljs-comment">index aa763693..7c5df6a6 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1899,7 +1899,7 @@</span> metadata:
-   name: openshift-pipelines-operator
-   namespace: openshift-operators
- spec:
-<span class="hljs-deletion">-  channel: pipelines-1.12</span>
-<span class="hljs-addition">+  channel: pipelines-1.13</span>
-   name: openshift-pipelines-operator-rh
-   source: redhat-operators
-   sourceNamespace: openshift-marketplace 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-dd7312bd/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml</span>
-<span class="hljs-string">1901c1901</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">channel:</span> <span class="hljs-string">pipelines-1.13</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">channel:</span> <span class="hljs-string">pipelines-1.12</span>
-<span class="hljs-string">./commit-dd7312bd/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml</span>
-<span class="hljs-string">1901c1901</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">channel:</span> <span class="hljs-string">pipelines-1.13</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">channel:</span> <span class="hljs-string">pipelines-1.12</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-<span class="hljs-number">8b35c490</span>/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-<span class="hljs-number">8b35c490</span>/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>3: Staging changes from dd7312bd to 8b35c490 on Wed Dec 20 13:20:32 2023 </h3>  
-
-<details> 
-<summary>Git Diff (39 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml</span>
-<span class="hljs-comment">index 61120be2..9ad508b7 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/production/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/production/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -8,7 +8,7 @@</span> commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-
- resources:
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2f0b4d0f72cc4902bb108ac56172d535de55f9d8</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=edb17034e419d6c4a8de741fdcec036305bd6dfa</span>
-   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
-   - ../../base/external-secrets
-   - ../../base/testing
-<span class="hljs-comment">diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
-<span class="hljs-comment">index 326c41e7..b964c519 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1899,7 +1899,7 @@</span> metadata:
-   name: openshift-pipelines-operator
-   namespace: openshift-operators
- spec:
-<span class="hljs-deletion">-  channel: pipelines-1.12</span>
-<span class="hljs-addition">+  channel: pipelines-1.13</span>
-   name: openshift-pipelines-operator-rh
-   source: redhat-operators
-   sourceNamespace: openshift-marketplace
-<span class="hljs-comment">diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
-<span class="hljs-comment">index aa763693..7c5df6a6 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1899,7 +1899,7 @@</span> metadata:
-   name: openshift-pipelines-operator
-   namespace: openshift-operators
- spec:
-<span class="hljs-deletion">-  channel: pipelines-1.12</span>
-<span class="hljs-addition">+  channel: pipelines-1.13</span>
-   name: openshift-pipelines-operator-rh
-   source: redhat-operators
-   sourceNamespace: openshift-marketplace 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-<span class="hljs-number">8b35c490</span>/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-<span class="hljs-number">8b35c490</span>/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-<span class="hljs-number">8b35c490</span>/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>3: Development changes from dd7312bd to 8b35c490 on Wed Dec 20 13:20:32 2023 </h3>  
-
-<details> 
-<summary>Git Diff (39 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml</span>
-<span class="hljs-comment">index 61120be2..9ad508b7 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/production/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/production/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -8,7 +8,7 @@</span> commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-
- resources:
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2f0b4d0f72cc4902bb108ac56172d535de55f9d8</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=edb17034e419d6c4a8de741fdcec036305bd6dfa</span>
-   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
-   - ../../base/external-secrets
-   - ../../base/testing
-<span class="hljs-comment">diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
-<span class="hljs-comment">index 326c41e7..b964c519 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1899,7 +1899,7 @@</span> metadata:
-   name: openshift-pipelines-operator
-   namespace: openshift-operators
- spec:
-<span class="hljs-deletion">-  channel: pipelines-1.12</span>
-<span class="hljs-addition">+  channel: pipelines-1.13</span>
-   name: openshift-pipelines-operator-rh
-   source: redhat-operators
-   sourceNamespace: openshift-marketplace
-<span class="hljs-comment">diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
-<span class="hljs-comment">index aa763693..7c5df6a6 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1899,7 +1899,7 @@</span> metadata:
-   name: openshift-pipelines-operator
-   namespace: openshift-operators
- spec:
-<span class="hljs-deletion">-  channel: pipelines-1.12</span>
-<span class="hljs-addition">+  channel: pipelines-1.13</span>
-   name: openshift-pipelines-operator-rh
-   source: redhat-operators
-   sourceNamespace: openshift-marketplace 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-<span class="hljs-number">8b35c490</span>/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from 329a36a2 to dd7312bd on Wed Dec 20 11:03:07 2023 </h3>  
-
-<details> 
-<summary>Git Diff (65 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..c3eb7cb4</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,25 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: registry-redhat-io-pull-secret</span>
-<span class="hljs-addition">+  namespace: build-templates-e2e</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: production/build/build-templates-e2e/registry-redhat-io-pull-secret</span>
-<span class="hljs-addition">+  refreshInterval: 15m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: registry-redhat-io-pull-secret</span>
-<span class="hljs-addition">+    template:</span>
-<span class="hljs-addition">+      engineVersion: v2</span>
-<span class="hljs-addition">+      type: kubernetes.io/dockerconfigjson</span>
-<span class="hljs-addition">+      data:</span>
-<span class="hljs-addition">+        .dockerconfigjson: &quot;{{ .config }}&quot;</span>
-<span class="hljs-comment">diff --git a/components/build-templates/production/e2e-serviceaccount.yaml b/components/build-templates/production/e2e-serviceaccount.yaml</span>
-<span class="hljs-comment">index 08309542..03b332e3 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/production/e2e-serviceaccount.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/e2e-serviceaccount.yaml</span>
-<span class="hljs-meta">@@ -5,8 +5,7 @@</span> metadata:
-   namespace: build-templates-e2e
- secrets:
-   - name: quay-push-secret
-<span class="hljs-deletion">-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret</span>
-<span class="hljs-addition">+  - name: registry-redhat-io-pull-secret</span>
- imagePullSecrets:
-   - name: quay-push-secret
-<span class="hljs-deletion">-  # TODO: manage this secret properly via an ExternalSecret</span>
-<span class="hljs-deletion">-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret</span>
-<span class="hljs-addition">+  - name: registry-redhat-io-pull-secret</span>
-<span class="hljs-comment">diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-comment">index 3b86be94..b75196df 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-meta">@@ -3,4 +3,5 @@</span> kind: Kustomization
- resources:
-   - ../base
-   - e2e-quay-push-secret.yaml
-<span class="hljs-addition">+  - e2e-registry-redhat-io-pull-secret.yaml</span>
-   - e2e-serviceaccount.yaml
-<span class="hljs-comment">diff --git a/components/build-templates/staging/e2e-serviceaccount.yaml b/components/build-templates/staging/e2e-serviceaccount.yaml</span>
-<span class="hljs-comment">index 1b2be4b1..10aef77b 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/staging/e2e-serviceaccount.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/staging/e2e-serviceaccount.yaml</span>
-<span class="hljs-meta">@@ -7,4 +7,3 @@</span> secrets:
-   - name: quay-push-secret
- imagePullSecrets:
-   - name: quay-push-secret
-<span class="hljs-deletion">-  # TODO: get a serviceaccount for registry.redhat.io pull access </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (36 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-329a36a2/production/components/build-templates/production/kustomize.out.yaml</span>
-<span class="hljs-string">19c19</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">registry-redhat-io-pull-secret</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-number">6340056</span><span class="hljs-string">-stonesoup-build-definitions-e2e-pull-secret</span>
-<span class="hljs-string">26c26</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">registry-redhat-io-pull-secret</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-number">6340056</span><span class="hljs-string">-stonesoup-build-definitions-e2e-pull-secret</span>
-<span class="hljs-number">178</span><span class="hljs-string">,203d177</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-attr">template:</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">data:</span>
-<span class="hljs-string">&lt;</span>         <span class="hljs-string">.dockerconfigjson:</span> <span class="hljs-string">&#x27;<span class="hljs-template-variable">{{ .config }}</span>&#x27;</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">engineVersion:</span> <span class="hljs-string">v2</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">type:</span> <span class="hljs-string">kubernetes.io/dockerconfigjson</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-string">---</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">external-secrets.io/v1beta1</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">ExternalSecret</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">metadata:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">annotations:</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-attr">argocd.argoproj.io/sync-options:</span> <span class="hljs-string">SkipDryRunOnMissingResource=true</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-attr">argocd.argoproj.io/sync-wave:</span> <span class="hljs-string">&quot;-1&quot;</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">registry-redhat-io-pull-secret</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">namespace:</span> <span class="hljs-string">build-templates-e2e</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-attr">spec:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">dataFrom:</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-attr">extract:</span>
-<span class="hljs-string">&lt;</span>       <span class="hljs-attr">key:</span> <span class="hljs-string">production/build/build-templates-e2e/registry-redhat-io-pull-secret</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">refreshInterval:</span> <span class="hljs-string">15m</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">secretStoreRef:</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-attr">kind:</span> <span class="hljs-string">ClusterSecretStore</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-attr">name:</span> <span class="hljs-string">appsre-stonesoup-vault</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">target:</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-attr">creationPolicy:</span> <span class="hljs-string">Owner</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-attr">deletionPolicy:</span> <span class="hljs-string">Delete</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-attr">name:</span> <span class="hljs-string">registry-redhat-io-pull-secret</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-dd7312bd/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-dd7312bd/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from 329a36a2 to dd7312bd on Wed Dec 20 11:03:07 2023 </h3>  
-
-<details> 
-<summary>Git Diff (65 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..c3eb7cb4</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,25 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: registry-redhat-io-pull-secret</span>
-<span class="hljs-addition">+  namespace: build-templates-e2e</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: production/build/build-templates-e2e/registry-redhat-io-pull-secret</span>
-<span class="hljs-addition">+  refreshInterval: 15m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: registry-redhat-io-pull-secret</span>
-<span class="hljs-addition">+    template:</span>
-<span class="hljs-addition">+      engineVersion: v2</span>
-<span class="hljs-addition">+      type: kubernetes.io/dockerconfigjson</span>
-<span class="hljs-addition">+      data:</span>
-<span class="hljs-addition">+        .dockerconfigjson: &quot;{{ .config }}&quot;</span>
-<span class="hljs-comment">diff --git a/components/build-templates/production/e2e-serviceaccount.yaml b/components/build-templates/production/e2e-serviceaccount.yaml</span>
-<span class="hljs-comment">index 08309542..03b332e3 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/production/e2e-serviceaccount.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/e2e-serviceaccount.yaml</span>
-<span class="hljs-meta">@@ -5,8 +5,7 @@</span> metadata:
-   namespace: build-templates-e2e
- secrets:
-   - name: quay-push-secret
-<span class="hljs-deletion">-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret</span>
-<span class="hljs-addition">+  - name: registry-redhat-io-pull-secret</span>
- imagePullSecrets:
-   - name: quay-push-secret
-<span class="hljs-deletion">-  # TODO: manage this secret properly via an ExternalSecret</span>
-<span class="hljs-deletion">-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret</span>
-<span class="hljs-addition">+  - name: registry-redhat-io-pull-secret</span>
-<span class="hljs-comment">diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-comment">index 3b86be94..b75196df 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-meta">@@ -3,4 +3,5 @@</span> kind: Kustomization
- resources:
-   - ../base
-   - e2e-quay-push-secret.yaml
-<span class="hljs-addition">+  - e2e-registry-redhat-io-pull-secret.yaml</span>
-   - e2e-serviceaccount.yaml
-<span class="hljs-comment">diff --git a/components/build-templates/staging/e2e-serviceaccount.yaml b/components/build-templates/staging/e2e-serviceaccount.yaml</span>
-<span class="hljs-comment">index 1b2be4b1..10aef77b 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/staging/e2e-serviceaccount.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/staging/e2e-serviceaccount.yaml</span>
-<span class="hljs-meta">@@ -7,4 +7,3 @@</span> secrets:
-   - name: quay-push-secret
- imagePullSecrets:
-   - name: quay-push-secret
-<span class="hljs-deletion">-  # TODO: get a serviceaccount for registry.redhat.io pull access </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-dd7312bd/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-dd7312bd/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-dd7312bd/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from 329a36a2 to dd7312bd on Wed Dec 20 11:03:07 2023 </h3>  
-
-<details> 
-<summary>Git Diff (65 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..c3eb7cb4</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/e2e-registry-redhat-io-pull-secret.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,25 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: registry-redhat-io-pull-secret</span>
-<span class="hljs-addition">+  namespace: build-templates-e2e</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: production/build/build-templates-e2e/registry-redhat-io-pull-secret</span>
-<span class="hljs-addition">+  refreshInterval: 15m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: registry-redhat-io-pull-secret</span>
-<span class="hljs-addition">+    template:</span>
-<span class="hljs-addition">+      engineVersion: v2</span>
-<span class="hljs-addition">+      type: kubernetes.io/dockerconfigjson</span>
-<span class="hljs-addition">+      data:</span>
-<span class="hljs-addition">+        .dockerconfigjson: &quot;{{ .config }}&quot;</span>
-<span class="hljs-comment">diff --git a/components/build-templates/production/e2e-serviceaccount.yaml b/components/build-templates/production/e2e-serviceaccount.yaml</span>
-<span class="hljs-comment">index 08309542..03b332e3 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/production/e2e-serviceaccount.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/e2e-serviceaccount.yaml</span>
-<span class="hljs-meta">@@ -5,8 +5,7 @@</span> metadata:
-   namespace: build-templates-e2e
- secrets:
-   - name: quay-push-secret
-<span class="hljs-deletion">-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret</span>
-<span class="hljs-addition">+  - name: registry-redhat-io-pull-secret</span>
- imagePullSecrets:
-   - name: quay-push-secret
-<span class="hljs-deletion">-  # TODO: manage this secret properly via an ExternalSecret</span>
-<span class="hljs-deletion">-  - name: 6340056-stonesoup-build-definitions-e2e-pull-secret</span>
-<span class="hljs-addition">+  - name: registry-redhat-io-pull-secret</span>
-<span class="hljs-comment">diff --git a/components/build-templates/production/kustomization.yaml b/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-comment">index 3b86be94..b75196df 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/production/kustomization.yaml</span>
-<span class="hljs-meta">@@ -3,4 +3,5 @@</span> kind: Kustomization
- resources:
-   - ../base
-   - e2e-quay-push-secret.yaml
-<span class="hljs-addition">+  - e2e-registry-redhat-io-pull-secret.yaml</span>
-   - e2e-serviceaccount.yaml
-<span class="hljs-comment">diff --git a/components/build-templates/staging/e2e-serviceaccount.yaml b/components/build-templates/staging/e2e-serviceaccount.yaml</span>
-<span class="hljs-comment">index 1b2be4b1..10aef77b 100644</span>
-<span class="hljs-comment">--- a/components/build-templates/staging/e2e-serviceaccount.yaml</span>
-<span class="hljs-comment">+++ b/components/build-templates/staging/e2e-serviceaccount.yaml</span>
-<span class="hljs-meta">@@ -7,4 +7,3 @@</span> secrets:
-   - name: quay-push-secret
- imagePullSecrets:
-   - name: quay-push-secret
-<span class="hljs-deletion">-  # TODO: get a serviceaccount for registry.redhat.io pull access </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-dd7312bd/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
 
 KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
 

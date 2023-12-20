@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1af60b32/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-86ca3987/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+903,904c903
+<     DB_SSLMODE=disable
+<     DB_SSLROOTCERT=
+---
+>     DB_SSLMODE=require
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1af60b32/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-86ca3987/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+903,904c903
+<     DB_SSLMODE=disable
+<     DB_SSLROOTCERT=
+---
+>     DB_SSLMODE=require
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1af60b32/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-86ca3987/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+903,904c903
+<     DB_SSLMODE=disable
+<     DB_SSLROOTCERT=
+---
+>     DB_SSLMODE=require

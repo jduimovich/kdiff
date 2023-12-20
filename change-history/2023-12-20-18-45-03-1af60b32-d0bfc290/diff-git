@@ -1,0 +1,28 @@
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index b964c519..5b071d72 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -901,7 +901,8 @@ data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+-    DB_SSLMODE=require
++    DB_SSLMODE=disable
++    DB_SSLROOTCERT=
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 7c5df6a6..5ed8cbbf 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -901,7 +901,8 @@ data:
+     DB_HOST=
+     DB_PORT=5432
+     DB_NAME=
+-    DB_SSLMODE=require
++    DB_SSLMODE=disable
++    DB_SSLROOTCERT=
+     DB_ENABLE_AUTO_MIGRATION=true
+     SERVER_PORT=8080
+     PROMETHEUS_PORT=9090
