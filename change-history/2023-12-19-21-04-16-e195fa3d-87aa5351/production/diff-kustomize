@@ -1,0 +1,86 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-87aa5351/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-e195fa3d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+319d318
+<   - resolution.tekton.dev
+1323c1322
+<         image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+1348a1348,1349
+>             add:
+>             - NET_BIND_SERVICE
+1392c1393
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+1499,1503c1500
+<         - name: TEKTON_RESULTS_API_SERVICE
+<           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+<         - name: AUTH_MODE
+<           value: token
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+1510,1516d1506
+<         resources:
+<           limits:
+<             cpu: 250m
+<             memory: 2Gi
+<           requests:
+<             cpu: 100m
+<             memory: 64Mi
+1519a1510,1511
+>             add:
+>             - NET_BIND_SERVICE
+1579,1585d1570
+<             resources:
+<               limits:
+<                 cpu: 200m
+<                 memory: 200Mi
+<               requests:
+<                 cpu: 10m
+<                 memory: 10Mi
+1591d1575
+<               readOnlyRootFilesystem: true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-87aa5351/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-e195fa3d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+319d318
+<   - resolution.tekton.dev
+1323c1322
+<         image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+1348a1348,1349
+>             add:
+>             - NET_BIND_SERVICE
+1392c1393
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+1499,1503c1500
+<         - name: TEKTON_RESULTS_API_SERVICE
+<           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+<         - name: AUTH_MODE
+<           value: token
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:6c008b21d9bb5000f2e42dbd010b5984095e4d6a
+1510,1516d1506
+<         resources:
+<           limits:
+<             cpu: 250m
+<             memory: 2Gi
+<           requests:
+<             cpu: 100m
+<             memory: 64Mi
+1519a1510,1511
+>             add:
+>             - NET_BIND_SERVICE
+1579,1585d1570
+<             resources:
+<               limits:
+<                 cpu: 200m
+<                 memory: 200Mi
+<               requests:
+<                 cpu: 10m
+<                 memory: 10Mi
+1591d1575
+<               readOnlyRootFilesystem: true
