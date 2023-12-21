@@ -1,0 +1,32 @@
+diff --git a/components/build-service/base/kustomization.yaml b/components/build-service/base/kustomization.yaml
+index dbca6098..25ab2b3a 100644
+--- a/components/build-service/base/kustomization.yaml
++++ b/components/build-service/base/kustomization.yaml
+@@ -1,6 +1,6 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=c15259110678d6bce1f05d9c5e3c98453ed10090
++- https://github.com/redhat-appstudio/build-service/config/default?ref=45e8fe7c3b036d1df3eee11c1d83e0633e451c07
+ - build-pipeline-selectors/build-pipeline-selector.yaml
+ - monitoring.yaml
+ - rbac
+@@ -16,7 +16,7 @@ namespace: build-service
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: c15259110678d6bce1f05d9c5e3c98453ed10090
++  newTag: 45e8fe7c3b036d1df3eee11c1d83e0633e451c07
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+diff --git a/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
+index 83a3a557..b96d64af 100644
+--- a/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/build-service/config/monitoring/grafana-dashboards/?ref=c15259110678d6bce1f05d9c5e3c98453ed10090
++- https://github.com/redhat-appstudio/build-service/config/monitoring/grafana-dashboards/?ref=45e8fe7c3b036d1df3eee11c1d83e0633e451c07
+ - dashboard.yaml

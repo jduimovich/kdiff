@@ -1,0 +1,44 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7fc6aa94/production/components/build-service/production/kustomize.out.yaml ./kustomized-cache/commit-d0bfc290/production/components/build-service/production/kustomize.out.yaml
+275a276,301
+> - apiGroups:
+>   - ""
+>   resources:
+>   - configmaps
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+> - apiGroups:
+>   - ""
+>   resources:
+>   - secrets
+>   verbs:
+>   - create
+>   - delete
+>   - deletecollection
+>   - get
+>   - list
+>   - patch
+>   - update
+>   - watch
+368,370d393
+<   - create
+<   - delete
+<   - deletecollection
+373,374d395
+<   - patch
+<   - update
+391d411
+<   - deletecollection
+427,428d446
+<   - patch
+<   - update
+665c683
+<         image: quay.io/redhat-appstudio/build-service:45e8fe7c3b036d1df3eee11c1d83e0633e451c07
+---
+>         image: quay.io/redhat-appstudio/build-service:c15259110678d6bce1f05d9c5e3c98453ed10090
