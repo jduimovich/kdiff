@@ -1,12 +1,848 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Dec 21 12:07:06 UTC 2023
+### This file generated at Thu Dec 21 16:03:56 UTC 2023
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 5589c8c0 to cff39dc0 on Thu Dec 21 10:50:22 2023 </h3>  
+<h3>1: Production changes from 1a1b1b8c to 6090dece on Thu Dec 21 13:51:47 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index 43559e4a..67e8ff2a 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=67335b740aa29eb0b5c2b096eb7f973dcbaae5a3
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=ec0605c0a954f74cbb479cdb8d82bc8f90752b26
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 10f1b4b6..5042d775 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=edb17034e419d6c4a8de741fdcec036305bd6dfa
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=edb17034e419d6c4a8de741fdcec036305bd6dfa
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=ec0605c0a954f74cbb479cdb8d82bc8f90752b26
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=ec0605c0a954f74cbb479cdb8d82bc8f90752b26
+   - ../base/rbac
+ 
+ patches:
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index c65d6462..f732ac4a 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=67335b740aa29eb0b5c2b096eb7f973dcbaae5a3
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=ec0605c0a954f74cbb479cdb8d82bc8f90752b26
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6090dece/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6090dece/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 1a1b1b8c to 6090dece on Thu Dec 21 13:51:47 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index 43559e4a..67e8ff2a 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=67335b740aa29eb0b5c2b096eb7f973dcbaae5a3
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=ec0605c0a954f74cbb479cdb8d82bc8f90752b26
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 10f1b4b6..5042d775 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=edb17034e419d6c4a8de741fdcec036305bd6dfa
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=edb17034e419d6c4a8de741fdcec036305bd6dfa
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=ec0605c0a954f74cbb479cdb8d82bc8f90752b26
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=ec0605c0a954f74cbb479cdb8d82bc8f90752b26
+   - ../base/rbac
+ 
+ patches:
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index c65d6462..f732ac4a 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=67335b740aa29eb0b5c2b096eb7f973dcbaae5a3
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=ec0605c0a954f74cbb479cdb8d82bc8f90752b26
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6090dece/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6090dece/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6090dece/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 1a1b1b8c to 6090dece on Thu Dec 21 13:51:47 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index 43559e4a..67e8ff2a 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=67335b740aa29eb0b5c2b096eb7f973dcbaae5a3
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=ec0605c0a954f74cbb479cdb8d82bc8f90752b26
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 10f1b4b6..5042d775 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=edb17034e419d6c4a8de741fdcec036305bd6dfa
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=edb17034e419d6c4a8de741fdcec036305bd6dfa
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=ec0605c0a954f74cbb479cdb8d82bc8f90752b26
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=ec0605c0a954f74cbb479cdb8d82bc8f90752b26
+   - ../base/rbac
+ 
+ patches:
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index c65d6462..f732ac4a 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=67335b740aa29eb0b5c2b096eb7f973dcbaae5a3
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=ec0605c0a954f74cbb479cdb8d82bc8f90752b26
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-1a1b1b8c/development/components/pipeline-service/development/kustomize.out.yaml
+904,905c904
+<     DB_SSLMODE=disable
+<     DB_SSLROOTCERT=
+---
+>     DB_SSLMODE=require
+1555,1556d1553
+<         - -check_owner
+<         - "false" 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-6090dece/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from cff39dc0 to 1a1b1b8c on Thu Dec 21 12:38:27 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (14 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index 2f6ccfa9..09828f01 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -24,3 +24,9 @@ kind: ApplicationSet
+ metadata:
+   name: backup
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: ingresscontroller
++$patch: delete 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-1a1b1b8c/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-1a1b1b8c/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from cff39dc0 to 1a1b1b8c on Thu Dec 21 12:38:27 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (14 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index 2f6ccfa9..09828f01 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -24,3 +24,9 @@ kind: ApplicationSet
+ metadata:
+   name: backup
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: ingresscontroller
++$patch: delete 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-1a1b1b8c/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-1a1b1b8c/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-1a1b1b8c/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from cff39dc0 to 1a1b1b8c on Thu Dec 21 12:38:27 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (14 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index 2f6ccfa9..09828f01 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -24,3 +24,9 @@ kind: ApplicationSet
+ metadata:
+   name: backup
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: ingresscontroller
++$patch: delete 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-1a1b1b8c/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 5589c8c0 to cff39dc0 on Thu Dec 21 10:50:22 2023 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -133,7 +969,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 5589c8c0 to cff39dc0 on Thu Dec 21 10:50:22 2023 </h3>  
+<h3>3: Staging changes from 5589c8c0 to cff39dc0 on Thu Dec 21 10:50:22 2023 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -276,7 +1112,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 5589c8c0 to cff39dc0 on Thu Dec 21 10:50:22 2023 </h3>  
+<h3>3: Development changes from 5589c8c0 to cff39dc0 on Thu Dec 21 10:50:22 2023 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -378,7 +1214,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 2901c021 to 5589c8c0 on Thu Dec 21 10:40:55 2023 </h3>  
+<h3>4: Production changes from 2901c021 to 5589c8c0 on Thu Dec 21 10:40:55 2023 </h3>  
  
 <details> 
 <summary>Git Diff (30 lines)</summary>  
@@ -535,7 +1371,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 2901c021 to 5589c8c0 on Thu Dec 21 10:40:55 2023 </h3>  
+<h3>4: Staging changes from 2901c021 to 5589c8c0 on Thu Dec 21 10:40:55 2023 </h3>  
  
 <details> 
 <summary>Git Diff (30 lines)</summary>  
@@ -708,7 +1544,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 2901c021 to 5589c8c0 on Thu Dec 21 10:40:55 2023 </h3>  
+<h3>4: Development changes from 2901c021 to 5589c8c0 on Thu Dec 21 10:40:55 2023 </h3>  
  
 <details> 
 <summary>Git Diff (30 lines)</summary>  
@@ -806,1129 +1642,6 @@ No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
 ./commit-5589c8c0/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from f6347063 to 2901c021 on Thu Dec 21 10:24:07 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (104 lines)</summary>  
-
-``` 
-diff --git a/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-index a6635194..6853c6de 100644
---- a/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-+++ b/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-staging-gitopsvc-rds
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-gitopsvc-rds
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index ee6f8b29..df0b98e4 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1710,7 +1710,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-staging-plnsvc-rds
-+      key: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-rds
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-@@ -1731,7 +1731,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-stg-plnsvc-s3
-+      key: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-s3
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-diff --git a/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-database-secret-path.yaml
-index a5881d81..6eba05bb 100644
---- a/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-database-secret-path.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-database-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-staging-plnsvc-rds
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-rds
-diff --git a/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-s3-secret-path.yaml
-index 546aed46..4dcfb140 100644
---- a/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-s3-secret-path.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-s3-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-stg-plnsvc-s3
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-s3
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml
-index 8326c312..6f46a645 100644
---- a/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/spi-secrets-manager
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json b/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json
-index f1e44f76..f532928c 100644
---- a/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json
-+++ b/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json
-@@ -2,6 +2,6 @@
-   {
-     "op": "add",
-     "path": "/data/INSTANCEID",
--    "value": "spi-stage/rs-p01"
-+    "value": "stone-stage/rs-p01"
-   }
- ]
-diff --git a/components/spi/overlays/staging/stone-stage-p01/config-patch.json b/components/spi/overlays/staging/stone-stage-p01/config-patch.json
-index c0ddd448..e4872e4e 100644
---- a/components/spi/overlays/staging/stone-stage-p01/config-patch.json
-+++ b/components/spi/overlays/staging/stone-stage-p01/config-patch.json
-@@ -7,6 +7,6 @@
-   {
-     "op": "add",
-     "path": "/data/INSTANCEID",
--    "value": "spi-stage/p01"
-+    "value": "stone-stage/spi-p01"
-   }
- ]
-diff --git a/components/spi/overlays/staging/stone-stage-p01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stage-p01/spi-aws-credentials-path-patch.yaml
-index 8326c312..6f46a645 100644
---- a/components/spi/overlays/staging/stone-stage-p01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/staging/stone-stage-p01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/spi-secrets-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2901c021/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2901c021/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from f6347063 to 2901c021 on Thu Dec 21 10:24:07 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (104 lines)</summary>  
-
-``` 
-diff --git a/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-index a6635194..6853c6de 100644
---- a/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-+++ b/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-staging-gitopsvc-rds
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-gitopsvc-rds
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index ee6f8b29..df0b98e4 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1710,7 +1710,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-staging-plnsvc-rds
-+      key: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-rds
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-@@ -1731,7 +1731,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-stg-plnsvc-s3
-+      key: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-s3
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-diff --git a/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-database-secret-path.yaml
-index a5881d81..6eba05bb 100644
---- a/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-database-secret-path.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-database-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-staging-plnsvc-rds
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-rds
-diff --git a/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-s3-secret-path.yaml
-index 546aed46..4dcfb140 100644
---- a/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-s3-secret-path.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-s3-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-stg-plnsvc-s3
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-s3
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml
-index 8326c312..6f46a645 100644
---- a/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/spi-secrets-manager
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json b/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json
-index f1e44f76..f532928c 100644
---- a/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json
-+++ b/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json
-@@ -2,6 +2,6 @@
-   {
-     "op": "add",
-     "path": "/data/INSTANCEID",
--    "value": "spi-stage/rs-p01"
-+    "value": "stone-stage/rs-p01"
-   }
- ]
-diff --git a/components/spi/overlays/staging/stone-stage-p01/config-patch.json b/components/spi/overlays/staging/stone-stage-p01/config-patch.json
-index c0ddd448..e4872e4e 100644
---- a/components/spi/overlays/staging/stone-stage-p01/config-patch.json
-+++ b/components/spi/overlays/staging/stone-stage-p01/config-patch.json
-@@ -7,6 +7,6 @@
-   {
-     "op": "add",
-     "path": "/data/INSTANCEID",
--    "value": "spi-stage/p01"
-+    "value": "stone-stage/spi-p01"
-   }
- ]
-diff --git a/components/spi/overlays/staging/stone-stage-p01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stage-p01/spi-aws-credentials-path-patch.yaml
-index 8326c312..6f46a645 100644
---- a/components/spi/overlays/staging/stone-stage-p01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/staging/stone-stage-p01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/spi-secrets-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (14 lines)</summary>  
-
-``` 
-./commit-f6347063/staging/components/gitops/staging/stone-stage-p01/kustomize.out.yaml
-3293c3293
-<       key: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-gitopsvc-rds
----
->       key: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-staging-gitopsvc-rds
-./commit-f6347063/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1713c1713
-<       key: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-rds
----
->       key: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-staging-plnsvc-rds
-1734c1734
-<       key: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-s3
----
->       key: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-stg-plnsvc-s3 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2901c021/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2901c021/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2901c021/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from f6347063 to 2901c021 on Thu Dec 21 10:24:07 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (104 lines)</summary>  
-
-``` 
-diff --git a/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-index a6635194..6853c6de 100644
---- a/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-+++ b/components/gitops/staging/stone-stage-p01/gitops-service-postgres-rds-config-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-staging-gitopsvc-rds
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-gitopsvc-rds
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index ee6f8b29..df0b98e4 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1710,7 +1710,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-staging-plnsvc-rds
-+      key: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-rds
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-@@ -1731,7 +1731,7 @@ metadata:
- spec:
-   dataFrom:
-   - extract:
--      key: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-stg-plnsvc-s3
-+      key: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-s3
-   refreshInterval: 1h
-   secretStoreRef:
-     kind: ClusterSecretStore
-diff --git a/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-database-secret-path.yaml
-index a5881d81..6eba05bb 100644
---- a/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-database-secret-path.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-database-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-staging-plnsvc-rds
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-rds
-diff --git a/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-s3-secret-path.yaml
-index 546aed46..4dcfb140 100644
---- a/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-s3-secret-path.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/resources/tekton-results-s3-secret-path.yaml
-@@ -1,4 +1,4 @@
- ---
- - op: add
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/redhat-stg-plnsvc-s3
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/stone-stage-p01-plnsvc-s3
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml
-index 8326c312..6f46a645 100644
---- a/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/spi-secrets-manager
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json b/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json
-index f1e44f76..f532928c 100644
---- a/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json
-+++ b/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json
-@@ -2,6 +2,6 @@
-   {
-     "op": "add",
-     "path": "/data/INSTANCEID",
--    "value": "spi-stage/rs-p01"
-+    "value": "stone-stage/rs-p01"
-   }
- ]
-diff --git a/components/spi/overlays/staging/stone-stage-p01/config-patch.json b/components/spi/overlays/staging/stone-stage-p01/config-patch.json
-index c0ddd448..e4872e4e 100644
---- a/components/spi/overlays/staging/stone-stage-p01/config-patch.json
-+++ b/components/spi/overlays/staging/stone-stage-p01/config-patch.json
-@@ -7,6 +7,6 @@
-   {
-     "op": "add",
-     "path": "/data/INSTANCEID",
--    "value": "spi-stage/p01"
-+    "value": "stone-stage/spi-p01"
-   }
- ]
-diff --git a/components/spi/overlays/staging/stone-stage-p01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stage-p01/spi-aws-credentials-path-patch.yaml
-index 8326c312..6f46a645 100644
---- a/components/spi/overlays/staging/stone-stage-p01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/staging/stone-stage-p01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/app-sre-stage-01/stone-stage-p01/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stone-stage-p01/spi-secrets-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-2901c021/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from d7a536e8 to f6347063 on Thu Dec 21 09:58:02 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/OWNERS b/components/build-service/OWNERS
-index ba26bbf1..d6ee8bf0 100644
---- a/components/build-service/OWNERS
-+++ b/components/build-service/OWNERS
-@@ -1,13 +1,16 @@
- # See the OWNERS docs: https://go.k8s.io/owners
-+# Should be kept in sync with components/monitoring/grafana/base/dashboards/build-service/OWNERS
- 
- approvers:
- - mmorhun
- - tkdchen
- - rcerven
- - mkosiarc
-+- stuartwdouglas
- 
- reviewers:
- - mmorhun
- - tkdchen
- - rcerven
- - mkosiarc
-+- stuartwdouglas
-diff --git a/components/monitoring/grafana/base/dashboards/build-service/OWNERS b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-index d5552f0f..d6ee8bf0 100644
---- a/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-+++ b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-@@ -1,7 +1,16 @@
- # See the OWNERS docs: https://go.k8s.io/owners
-+# Should be kept in sync with components/monitoring/grafana/base/dashboards/build-service/OWNERS
- 
- approvers:
- - mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- stuartwdouglas
- 
- reviewers:
- - mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- stuartwdouglas 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-f6347063/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-f6347063/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from d7a536e8 to f6347063 on Thu Dec 21 09:58:02 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/OWNERS b/components/build-service/OWNERS
-index ba26bbf1..d6ee8bf0 100644
---- a/components/build-service/OWNERS
-+++ b/components/build-service/OWNERS
-@@ -1,13 +1,16 @@
- # See the OWNERS docs: https://go.k8s.io/owners
-+# Should be kept in sync with components/monitoring/grafana/base/dashboards/build-service/OWNERS
- 
- approvers:
- - mmorhun
- - tkdchen
- - rcerven
- - mkosiarc
-+- stuartwdouglas
- 
- reviewers:
- - mmorhun
- - tkdchen
- - rcerven
- - mkosiarc
-+- stuartwdouglas
-diff --git a/components/monitoring/grafana/base/dashboards/build-service/OWNERS b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-index d5552f0f..d6ee8bf0 100644
---- a/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-+++ b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-@@ -1,7 +1,16 @@
- # See the OWNERS docs: https://go.k8s.io/owners
-+# Should be kept in sync with components/monitoring/grafana/base/dashboards/build-service/OWNERS
- 
- approvers:
- - mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- stuartwdouglas
- 
- reviewers:
- - mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- stuartwdouglas 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-f6347063/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-f6347063/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-f6347063/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from d7a536e8 to f6347063 on Thu Dec 21 09:58:02 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/OWNERS b/components/build-service/OWNERS
-index ba26bbf1..d6ee8bf0 100644
---- a/components/build-service/OWNERS
-+++ b/components/build-service/OWNERS
-@@ -1,13 +1,16 @@
- # See the OWNERS docs: https://go.k8s.io/owners
-+# Should be kept in sync with components/monitoring/grafana/base/dashboards/build-service/OWNERS
- 
- approvers:
- - mmorhun
- - tkdchen
- - rcerven
- - mkosiarc
-+- stuartwdouglas
- 
- reviewers:
- - mmorhun
- - tkdchen
- - rcerven
- - mkosiarc
-+- stuartwdouglas
-diff --git a/components/monitoring/grafana/base/dashboards/build-service/OWNERS b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-index d5552f0f..d6ee8bf0 100644
---- a/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-+++ b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
-@@ -1,7 +1,16 @@
- # See the OWNERS docs: https://go.k8s.io/owners
-+# Should be kept in sync with components/monitoring/grafana/base/dashboards/build-service/OWNERS
- 
- approvers:
- - mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- stuartwdouglas
- 
- reviewers:
- - mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- stuartwdouglas 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-f6347063/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
 
 KubeLinter v0.6.1-0-gc6177366a3
 

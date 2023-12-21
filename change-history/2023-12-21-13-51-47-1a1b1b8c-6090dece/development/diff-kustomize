@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6090dece/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-1a1b1b8c/development/components/pipeline-service/development/kustomize.out.yaml
+904,905c904
+<     DB_SSLMODE=disable
+<     DB_SSLROOTCERT=
+---
+>     DB_SSLMODE=require
+1555,1556d1553
+<         - -check_owner
+<         - "false"
