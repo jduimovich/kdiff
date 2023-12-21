@@ -1,0 +1,42 @@
+diff --git a/components/build-service/OWNERS b/components/build-service/OWNERS
+index ba26bbf1..d6ee8bf0 100644
+--- a/components/build-service/OWNERS
++++ b/components/build-service/OWNERS
+@@ -1,13 +1,16 @@
+ # See the OWNERS docs: https://go.k8s.io/owners
++# Should be kept in sync with components/monitoring/grafana/base/dashboards/build-service/OWNERS
+ 
+ approvers:
+ - mmorhun
+ - tkdchen
+ - rcerven
+ - mkosiarc
++- stuartwdouglas
+ 
+ reviewers:
+ - mmorhun
+ - tkdchen
+ - rcerven
+ - mkosiarc
++- stuartwdouglas
+diff --git a/components/monitoring/grafana/base/dashboards/build-service/OWNERS b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
+index d5552f0f..d6ee8bf0 100644
+--- a/components/monitoring/grafana/base/dashboards/build-service/OWNERS
++++ b/components/monitoring/grafana/base/dashboards/build-service/OWNERS
+@@ -1,7 +1,16 @@
+ # See the OWNERS docs: https://go.k8s.io/owners
++# Should be kept in sync with components/monitoring/grafana/base/dashboards/build-service/OWNERS
+ 
+ approvers:
+ - mmorhun
++- tkdchen
++- rcerven
++- mkosiarc
++- stuartwdouglas
+ 
+ reviewers:
+ - mmorhun
++- tkdchen
++- rcerven
++- mkosiarc
++- stuartwdouglas

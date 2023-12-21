@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5589c8c0/development/app-of-apps-development.yaml ./kustomized-cache/commit-2901c021/development/app-of-apps-development.yaml
+960,961c960,961
+<           - nameNormalized: stone-stage-p01
+<             values.clusterDir: stone-stage-p01
+---
+>           - nameNormalized: stone-stg-p01
+>             values.clusterDir: stone-stg-p01
+1014,1015c1014,1015
+<           - nameNormalized: stone-stage-p01
+<             values.clusterDir: stone-stage-p01
+---
+>           - nameNormalized: stone-stg-p01
+>             values.clusterDir: stone-stg-p01

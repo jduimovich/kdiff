@@ -1,0 +1,12 @@
+diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stage-p01/aws-credentials-path-patch.yaml
+similarity index 100%
+rename from components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml
+rename to components/remote-secret-controller/overlays/staging/stone-stage-p01/aws-credentials-path-patch.yaml
+diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json b/components/remote-secret-controller/overlays/staging/stone-stage-p01/config-patch.json
+similarity index 100%
+rename from components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json
+rename to components/remote-secret-controller/overlays/staging/stone-stage-p01/config-patch.json
+diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/kustomization.yaml b/components/remote-secret-controller/overlays/staging/stone-stage-p01/kustomization.yaml
+similarity index 100%
+rename from components/remote-secret-controller/overlays/staging/stone-stg-p01/kustomization.yaml
+rename to components/remote-secret-controller/overlays/staging/stone-stage-p01/kustomization.yaml
