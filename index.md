@@ -1,12 +1,436 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Dec 22 08:02:06 UTC 2023
+### This file generated at Fri Dec 22 12:04:59 UTC 2023
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 6090dece to 2b24be15 on Thu Dec 21 16:31:24 2023 </h3>  
+<h3>1: Production changes from 2b24be15 to 1671ddde on Fri Dec 22 08:28:27 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 4ec012f0..da2c9211 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=bb760ff178d79b459b3851083b88fdbf4fb9a1bf
++- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=95e19e23e0cc82add555414245f1895a80b798c1
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 6113e088..fc8de995 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/release-service/config/default?ref=bb760ff178d79b459b3851083b88fdbf4fb9a1bf
++  - https://github.com/redhat-appstudio/release-service/config/default?ref=95e19e23e0cc82add555414245f1895a80b798c1
+ 
+ images:
+   - name: quay.io/redhat-appstudio/release-service
+     newName: quay.io/redhat-appstudio/release-service
+-    newTag: bb760ff178d79b459b3851083b88fdbf4fb9a1bf
++    newTag: 95e19e23e0cc82add555414245f1895a80b798c1
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-1671ddde/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-1671ddde/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 2b24be15 to 1671ddde on Fri Dec 22 08:28:27 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 4ec012f0..da2c9211 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=bb760ff178d79b459b3851083b88fdbf4fb9a1bf
++- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=95e19e23e0cc82add555414245f1895a80b798c1
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 6113e088..fc8de995 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/release-service/config/default?ref=bb760ff178d79b459b3851083b88fdbf4fb9a1bf
++  - https://github.com/redhat-appstudio/release-service/config/default?ref=95e19e23e0cc82add555414245f1895a80b798c1
+ 
+ images:
+   - name: quay.io/redhat-appstudio/release-service
+     newName: quay.io/redhat-appstudio/release-service
+-    newTag: bb760ff178d79b459b3851083b88fdbf4fb9a1bf
++    newTag: 95e19e23e0cc82add555414245f1895a80b798c1
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-1671ddde/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-1671ddde/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-1671ddde/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 2b24be15 to 1671ddde on Fri Dec 22 08:28:27 2023 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index 4ec012f0..da2c9211 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=bb760ff178d79b459b3851083b88fdbf4fb9a1bf
++- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=95e19e23e0cc82add555414245f1895a80b798c1
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 6113e088..fc8de995 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/release-service/config/default?ref=bb760ff178d79b459b3851083b88fdbf4fb9a1bf
++  - https://github.com/redhat-appstudio/release-service/config/default?ref=95e19e23e0cc82add555414245f1895a80b798c1
+ 
+ images:
+   - name: quay.io/redhat-appstudio/release-service
+     newName: quay.io/redhat-appstudio/release-service
+-    newTag: bb760ff178d79b459b3851083b88fdbf4fb9a1bf
++    newTag: 95e19e23e0cc82add555414245f1895a80b798c1
+ 
+ namespace: release-service 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-2b24be15/development/components/release/development/kustomize.out.yaml
+1677c1677
+<         image: quay.io/redhat-appstudio/release-service:95e19e23e0cc82add555414245f1895a80b798c1
+---
+>         image: quay.io/redhat-appstudio/release-service:bb760ff178d79b459b3851083b88fdbf4fb9a1bf 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-1671ddde/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 6090dece to 2b24be15 on Thu Dec 21 16:31:24 2023 </h3>  
  
 <details> 
 <summary>Git Diff (18 lines)</summary>  
@@ -149,7 +573,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 6090dece to 2b24be15 on Thu Dec 21 16:31:24 2023 </h3>  
+<h3>2: Staging changes from 6090dece to 2b24be15 on Thu Dec 21 16:31:24 2023 </h3>  
  
 <details> 
 <summary>Git Diff (18 lines)</summary>  
@@ -308,7 +732,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 6090dece to 2b24be15 on Thu Dec 21 16:31:24 2023 </h3>  
+<h3>2: Development changes from 6090dece to 2b24be15 on Thu Dec 21 16:31:24 2023 </h3>  
  
 <details> 
 <summary>Git Diff (18 lines)</summary>  
@@ -416,7 +840,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 1a1b1b8c to 6090dece on Thu Dec 21 13:51:47 2023 </h3>  
+<h3>3: Production changes from 1a1b1b8c to 6090dece on Thu Dec 21 13:51:47 2023 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -569,7 +993,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 1a1b1b8c to 6090dece on Thu Dec 21 13:51:47 2023 </h3>  
+<h3>3: Staging changes from 1a1b1b8c to 6090dece on Thu Dec 21 13:51:47 2023 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -738,7 +1162,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 1a1b1b8c to 6090dece on Thu Dec 21 13:51:47 2023 </h3>  
+<h3>3: Development changes from 1a1b1b8c to 6090dece on Thu Dec 21 13:51:47 2023 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -874,7 +1298,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from cff39dc0 to 1a1b1b8c on Thu Dec 21 12:38:27 2023 </h3>  
+<h3>4: Production changes from cff39dc0 to 1a1b1b8c on Thu Dec 21 12:38:27 2023 </h3>  
  
 <details> 
 <summary>Git Diff (14 lines)</summary>  
@@ -1003,7 +1427,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from cff39dc0 to 1a1b1b8c on Thu Dec 21 12:38:27 2023 </h3>  
+<h3>4: Staging changes from cff39dc0 to 1a1b1b8c on Thu Dec 21 12:38:27 2023 </h3>  
  
 <details> 
 <summary>Git Diff (14 lines)</summary>  
@@ -1148,7 +1572,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from cff39dc0 to 1a1b1b8c on Thu Dec 21 12:38:27 2023 </h3>  
+<h3>4: Development changes from cff39dc0 to 1a1b1b8c on Thu Dec 21 12:38:27 2023 </h3>  
  
 <details> 
 <summary>Git Diff (14 lines)</summary>  
@@ -1218,378 +1642,6 @@ No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
 ./commit-1a1b1b8c/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 5589c8c0 to cff39dc0 on Thu Dec 21 10:50:22 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (12 lines)</summary>  
-
-``` 
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stage-p01/aws-credentials-path-patch.yaml
-similarity index 100%
-rename from components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml
-rename to components/remote-secret-controller/overlays/staging/stone-stage-p01/aws-credentials-path-patch.yaml
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json b/components/remote-secret-controller/overlays/staging/stone-stage-p01/config-patch.json
-similarity index 100%
-rename from components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json
-rename to components/remote-secret-controller/overlays/staging/stone-stage-p01/config-patch.json
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/kustomization.yaml b/components/remote-secret-controller/overlays/staging/stone-stage-p01/kustomization.yaml
-similarity index 100%
-rename from components/remote-secret-controller/overlays/staging/stone-stg-p01/kustomization.yaml
-rename to components/remote-secret-controller/overlays/staging/stone-stage-p01/kustomization.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-cff39dc0/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-cff39dc0/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 5589c8c0 to cff39dc0 on Thu Dec 21 10:50:22 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (12 lines)</summary>  
-
-``` 
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stage-p01/aws-credentials-path-patch.yaml
-similarity index 100%
-rename from components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml
-rename to components/remote-secret-controller/overlays/staging/stone-stage-p01/aws-credentials-path-patch.yaml
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json b/components/remote-secret-controller/overlays/staging/stone-stage-p01/config-patch.json
-similarity index 100%
-rename from components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json
-rename to components/remote-secret-controller/overlays/staging/stone-stage-p01/config-patch.json
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/kustomization.yaml b/components/remote-secret-controller/overlays/staging/stone-stage-p01/kustomization.yaml
-similarity index 100%
-rename from components/remote-secret-controller/overlays/staging/stone-stg-p01/kustomization.yaml
-rename to components/remote-secret-controller/overlays/staging/stone-stage-p01/kustomization.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-cff39dc0/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-cff39dc0/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-cff39dc0/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 5589c8c0 to cff39dc0 on Thu Dec 21 10:50:22 2023 </h3>  
- 
-<details> 
-<summary>Git Diff (12 lines)</summary>  
-
-``` 
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stage-p01/aws-credentials-path-patch.yaml
-similarity index 100%
-rename from components/remote-secret-controller/overlays/staging/stone-stg-p01/aws-credentials-path-patch.yaml
-rename to components/remote-secret-controller/overlays/staging/stone-stage-p01/aws-credentials-path-patch.yaml
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json b/components/remote-secret-controller/overlays/staging/stone-stage-p01/config-patch.json
-similarity index 100%
-rename from components/remote-secret-controller/overlays/staging/stone-stg-p01/config-patch.json
-rename to components/remote-secret-controller/overlays/staging/stone-stage-p01/config-patch.json
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-p01/kustomization.yaml b/components/remote-secret-controller/overlays/staging/stone-stage-p01/kustomization.yaml
-similarity index 100%
-rename from components/remote-secret-controller/overlays/staging/stone-stg-p01/kustomization.yaml
-rename to components/remote-secret-controller/overlays/staging/stone-stage-p01/kustomization.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-cff39dc0/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
 
 KubeLinter v0.6.1-0-gc6177366a3
 
