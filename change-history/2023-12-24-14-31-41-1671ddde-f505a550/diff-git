@@ -1,0 +1,97 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
+index f82f9b89..158a8fce 100644
+--- a/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/build-service/build-service.yaml
+@@ -12,9 +12,11 @@ spec:
+               values:
+                 sourceRoot: components/build-service
+                 environment: staging
+-                clusterDir: ""
++                clusterDir: base
+           - list:
+-              elements: []
++              elements:
++                - nameNormalized: stone-stage-p01
++                  values.clusterDir: stone-stage-p01
+   template:
+     metadata:
+       name: build-service-{{nameNormalized}}
+diff --git a/components/build-service/staging/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+similarity index 63%
+rename from components/build-service/staging/kustomization.yaml
+rename to components/build-service/staging/base/kustomization.yaml
+index 479bc600..895e4590 100644
+--- a/components/build-service/staging/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base
+-- ../base/external-secrets
++- ../../base
++- ../../base/external-secrets
+diff --git a/components/build-service/staging/stone-stage-p01/kustomization.yaml b/components/build-service/staging/stone-stage-p01/kustomization.yaml
+new file mode 100644
+index 00000000..ed65afa8
+--- /dev/null
++++ b/components/build-service/staging/stone-stage-p01/kustomization.yaml
+@@ -0,0 +1,11 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/build-service/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml b/components/build-service/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..1d08d28a
+--- /dev/null
++++ b/components/build-service/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/build/stone-stage-p01/github-app
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index df0b98e4..84d084c4 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1689,7 +1689,7 @@ metadata:
+ spec:
+   dataFrom:
+   - extract:
+-      key: staging/pipeline-service/github-app
++      key: staging/pipeline-service/stone-stage-p01/github-app
+   refreshInterval: 5m
+   secretStoreRef:
+     kind: ClusterSecretStore
+diff --git a/components/pipeline-service/staging/stone-stage-p01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stage-p01/resources/kustomization.yaml
+index dedaea51..ad4b5a97 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/resources/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/resources/kustomization.yaml
+@@ -15,3 +15,9 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/stone-stage-p01/resources/pipelines-as-code-secret-path.yaml b/components/pipeline-service/staging/stone-stage-p01/resources/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..e589d06d
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stage-p01/resources/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/pipeline-service/stone-stage-p01/github-app

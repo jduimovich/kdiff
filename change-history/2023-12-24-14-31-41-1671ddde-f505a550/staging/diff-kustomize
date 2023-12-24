@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f505a550/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-1671ddde/staging/app-of-apps-staging.yaml
+148c148
+<             clusterDir: base
+---
+>             clusterDir: ""
+152,154c152
+<           elements:
+<           - nameNormalized: stone-stage-p01
+<             values.clusterDir: stone-stage-p01
+---
+>           elements: []
+Only in ./kustomized-cache/commit-1671ddde/staging/components/build-service/staging: kustomize.out.yaml
+Only in ./kustomized-cache/commit-f505a550/staging/components/build-service/staging: stone-stage-p01
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f505a550/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-1671ddde/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1692c1692
+<       key: staging/pipeline-service/stone-stage-p01/github-app
+---
+>       key: staging/pipeline-service/github-app
