@@ -1,0 +1,22 @@
+diff --git a/components/ui/base/proxy/proxy.yaml b/components/ui/base/proxy/proxy.yaml
+index c0d156b0..bbe40298 100644
+--- a/components/ui/base/proxy/proxy.yaml
++++ b/components/ui/base/proxy/proxy.yaml
+@@ -88,6 +88,8 @@ spec:
+             mountPath: /var/log/nginx
+           - name: nginx-tmp
+             mountPath: /var/lib/nginx/tmp
++          - name: run
++            mountPath: /run
+         securityContext:
+           readOnlyRootFilesystem: true
+           runAsNonRoot: true
+@@ -105,6 +107,8 @@ spec:
+           emptyDir: {}
+         - name: nginx-tmp
+           emptyDir: {}
++        - name: run
++          emptyDir: {}
+ ---
+ apiVersion: v1
+ kind: Service

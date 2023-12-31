@@ -1,0 +1,13 @@
+diff --git a/components/ui/base/proxy/proxy.yaml b/components/ui/base/proxy/proxy.yaml
+index 0150d852..c0d156b0 100644
+--- a/components/ui/base/proxy/proxy.yaml
++++ b/components/ui/base/proxy/proxy.yaml
+@@ -85,7 +85,7 @@ spec:
+           - name: chrome-static
+             mountPath: /opt/app-root/src/chrome
+           - name: logs
+-            mountPath: /var/log
++            mountPath: /var/log/nginx
+           - name: nginx-tmp
+             mountPath: /var/lib/nginx/tmp
+         securityContext:
