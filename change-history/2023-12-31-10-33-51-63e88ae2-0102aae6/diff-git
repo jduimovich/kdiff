@@ -1,0 +1,26 @@
+diff --git a/components/ui/base/proxy/proxy.yaml b/components/ui/base/proxy/proxy.yaml
+index 0424e029..0150d852 100644
+--- a/components/ui/base/proxy/proxy.yaml
++++ b/components/ui/base/proxy/proxy.yaml
+@@ -84,6 +84,10 @@ spec:
+             readOnly: true
+           - name: chrome-static
+             mountPath: /opt/app-root/src/chrome
++          - name: logs
++            mountPath: /var/log
++          - name: nginx-tmp
++            mountPath: /var/lib/nginx/tmp
+         securityContext:
+           readOnlyRootFilesystem: true
+           runAsNonRoot: true
+@@ -97,6 +101,10 @@ spec:
+           name: proxy
+         - name: chrome-static
+           emptyDir: {}
++        - name: logs
++          emptyDir: {}
++        - name: nginx-tmp
++          emptyDir: {}
+ ---
+ apiVersion: v1
+ kind: Service

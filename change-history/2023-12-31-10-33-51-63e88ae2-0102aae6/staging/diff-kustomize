@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0102aae6/staging/components/ui/staging/kustomize.out.yaml ./kustomized-cache/commit-63e88ae2/staging/components/ui/staging/kustomize.out.yaml
+573,576d572
+<         - mountPath: /var/log
+<           name: logs
+<         - mountPath: /var/lib/nginx/tmp
+<           name: nginx-tmp
+615,618d610
+<       - emptyDir: {}
+<         name: logs
+<       - emptyDir: {}
+<         name: nginx-tmp

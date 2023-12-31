@@ -1,0 +1,13 @@
+diff --git a/argo-cd-apps/base/ui/ui.yaml b/argo-cd-apps/base/ui/ui.yaml
+index f459cae9..22d3b972 100644
+--- a/argo-cd-apps/base/ui/ui.yaml
++++ b/argo-cd-apps/base/ui/ui.yaml
+@@ -24,7 +24,7 @@ spec:
+     spec:
+       project: default
+       source:
+-        path: '{{values.sourceRoot}}'
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
