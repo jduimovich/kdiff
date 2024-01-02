@@ -1,0 +1,4 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-55b075d5/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-3252d30e/development/components/pipeline-service/development/kustomize.out.yaml
+1114,1115d1113
+<     ignore-check.kube-linter.io/dangling-service: This service is not dangling, it
+<       exposes metric for an OSP deployment
