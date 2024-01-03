@@ -10,12 +10,445 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-wed-jan--3-000630-utc-2024">This file generated at Wed Jan  3 00:06:30 UTC 2024</h3>
+<h3 id="this-file-generated-at-wed-jan--3-040303-utc-2024">This file generated at Wed Jan  3 04:03:03 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 93e323eb to e8e4c65a on Tue Jan 2 20:25:14 2024 </h3>  
+<h3>1: Production changes from e8e4c65a to 02570b31 on Wed Jan 3 02:31:08 2024 </h3>  
+
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml</span>
+<span class="hljs-comment">index 29b84887..23780cfe 100644</span>
+<span class="hljs-comment">--- a/components/integration/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/integration/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,12 +2,12 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/integration-service/config/default?ref=ca9a3f0ff5a690f12c718041118f51c11466a005</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/integration-service/config/default?ref=691f94a16298f295d99e7aa6c573269cd96338c0</span>
+
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+<span class="hljs-deletion">-  newTag: ca9a3f0ff5a690f12c718041118f51c11466a005</span>
+<span class="hljs-addition">+  newTag: 691f94a16298f295d99e7aa6c573269cd96338c0</span>
+
+ namespace: integration-service
+
+<span class="hljs-comment">diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml</span>
+<span class="hljs-comment">index 201edd2a..ea357998 100644</span>
+<span class="hljs-comment">--- a/components/integration/staging/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/integration/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,12 +3,12 @@</span> kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/integration-service/config/default?ref=ca9a3f0ff5a690f12c718041118f51c11466a005</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/integration-service/config/default?ref=691f94a16298f295d99e7aa6c573269cd96338c0</span>
+
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+<span class="hljs-deletion">-  newTag: ca9a3f0ff5a690f12c718041118f51c11466a005</span>
+<span class="hljs-addition">+  newTag: 691f94a16298f295d99e7aa6c573269cd96338c0</span>
+
+ namespace: integration-service
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-<span class="hljs-number">02570b31</span>/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+./commit-<span class="hljs-number">02570b31</span>/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found!
+KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
+
+No lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from e8e4c65a to 02570b31 on Wed Jan 3 02:31:08 2024 </h3>  
+
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml</span>
+<span class="hljs-comment">index 29b84887..23780cfe 100644</span>
+<span class="hljs-comment">--- a/components/integration/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/integration/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,12 +2,12 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/integration-service/config/default?ref=ca9a3f0ff5a690f12c718041118f51c11466a005</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/integration-service/config/default?ref=691f94a16298f295d99e7aa6c573269cd96338c0</span>
+
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+<span class="hljs-deletion">-  newTag: ca9a3f0ff5a690f12c718041118f51c11466a005</span>
+<span class="hljs-addition">+  newTag: 691f94a16298f295d99e7aa6c573269cd96338c0</span>
+
+ namespace: integration-service
+
+<span class="hljs-comment">diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml</span>
+<span class="hljs-comment">index 201edd2a..ea357998 100644</span>
+<span class="hljs-comment">--- a/components/integration/staging/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/integration/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,12 +3,12 @@</span> kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/integration-service/config/default?ref=ca9a3f0ff5a690f12c718041118f51c11466a005</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/integration-service/config/default?ref=691f94a16298f295d99e7aa6c573269cd96338c0</span>
+
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+<span class="hljs-deletion">-  newTag: ca9a3f0ff5a690f12c718041118f51c11466a005</span>
+<span class="hljs-addition">+  newTag: 691f94a16298f295d99e7aa6c573269cd96338c0</span>
+
+ namespace: integration-service
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-e8e4c65a/staging/components/integration/staging/kustomize.out.yaml</span>
+<span class="hljs-string">1102c1102</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/integration-service:691f94a16298f295d99e7aa6c573269cd96338c0</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/integration-service:ca9a3f0ff5a690f12c718041118f51c11466a005</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from e8e4c65a to 02570b31 on Wed Jan 3 02:31:08 2024 </h3>  
+
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml</span>
+<span class="hljs-comment">index 29b84887..23780cfe 100644</span>
+<span class="hljs-comment">--- a/components/integration/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/integration/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,12 +2,12 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/integration-service/config/default?ref=ca9a3f0ff5a690f12c718041118f51c11466a005</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/integration-service/config/default?ref=691f94a16298f295d99e7aa6c573269cd96338c0</span>
+
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+<span class="hljs-deletion">-  newTag: ca9a3f0ff5a690f12c718041118f51c11466a005</span>
+<span class="hljs-addition">+  newTag: 691f94a16298f295d99e7aa6c573269cd96338c0</span>
+
+ namespace: integration-service
+
+<span class="hljs-comment">diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml</span>
+<span class="hljs-comment">index 201edd2a..ea357998 100644</span>
+<span class="hljs-comment">--- a/components/integration/staging/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/integration/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,12 +3,12 @@</span> kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/integration-service/config/default?ref=ca9a3f0ff5a690f12c718041118f51c11466a005</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/integration-service/config/default?ref=691f94a16298f295d99e7aa6c573269cd96338c0</span>
+
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+<span class="hljs-deletion">-  newTag: ca9a3f0ff5a690f12c718041118f51c11466a005</span>
+<span class="hljs-addition">+  newTag: 691f94a16298f295d99e7aa6c573269cd96338c0</span>
+
+ namespace: integration-service
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-e8e4c65a/development/components/integration/development/kustomize.out.yaml</span>
+<span class="hljs-string">1102c1102</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/integration-service:691f94a16298f295d99e7aa6c573269cd96338c0</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/integration-service:ca9a3f0ff5a690f12c718041118f51c11466a005</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 93e323eb to e8e4c65a on Tue Jan 2 20:25:14 2024 </h3>  
 
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -168,7 +601,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>1: Staging changes from 93e323eb to e8e4c65a on Tue Jan 2 20:25:14 2024 </h3>  
+<h3>2: Staging changes from 93e323eb to e8e4c65a on Tue Jan 2 20:25:14 2024 </h3>  
 
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -337,7 +770,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>1: Development changes from 93e323eb to e8e4c65a on Tue Jan 2 20:25:14 2024 </h3>  
+<h3>2: Development changes from 93e323eb to e8e4c65a on Tue Jan 2 20:25:14 2024 </h3>  
 
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -464,7 +897,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>2: Production changes from 55b075d5 to 93e323eb on Tue Jan 2 16:56:16 2024 </h3>  
+<h3>3: Production changes from 55b075d5 to 93e323eb on Tue Jan 2 16:56:16 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -600,7 +1033,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>2: Staging changes from 55b075d5 to 93e323eb on Tue Jan 2 16:56:16 2024 </h3>  
+<h3>3: Staging changes from 55b075d5 to 93e323eb on Tue Jan 2 16:56:16 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -752,7 +1185,7 @@ index fc8de995..<span class="hljs-number">212</span>e0b40 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Development changes from 55b075d5 to 93e323eb on Tue Jan 2 16:56:16 2024 </h3>  
+<h3>3: Development changes from 55b075d5 to 93e323eb on Tue Jan 2 16:56:16 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -866,7 +1299,7 @@ index fc8de995..<span class="hljs-number">212</span>e0b40 <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Production changes from 3252d30e to 55b075d5 on Tue Jan 2 15:11:44 2024 </h3>  
+<h3>4: Production changes from 3252d30e to 55b075d5 on Tue Jan 2 15:11:44 2024 </h3>  
 
 <details> 
 <summary>Git Diff (77 lines)</summary>  
@@ -1051,7 +1484,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>3: Staging changes from 3252d30e to 55b075d5 on Tue Jan 2 15:11:44 2024 </h3>  
+<h3>4: Staging changes from 3252d30e to 55b075d5 on Tue Jan 2 15:11:44 2024 </h3>  
 
 <details> 
 <summary>Git Diff (77 lines)</summary>  
@@ -1263,7 +1696,7 @@ No lint errors found!
 
 </div>
 <div>
-<h3>3: Development changes from 3252d30e to 55b075d5 on Tue Jan 2 15:11:44 2024 </h3>  
+<h3>4: Development changes from 3252d30e to 55b075d5 on Tue Jan 2 15:11:44 2024 </h3>  
 
 <details> 
 <summary>Git Diff (77 lines)</summary>  
@@ -1417,717 +1850,6 @@ No lint errors found!
 <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
 
 <span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from a601cbe7 to 3252d30e on Mon Jan 1 13:23:29 2024 </h3>  
-
-<details> 
-<summary>Git Diff (131 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml</span>
-<span class="hljs-comment">index f3705244..b4503aa0 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml</span>
-<span class="hljs-meta">@@ -7,13 +7,6 @@</span> metadata:
-   name: instance
- spec:
-   outputs:
-<span class="hljs-deletion">-    - cloudwatch:</span>
-<span class="hljs-deletion">-        groupBy: namespaceName</span>
-<span class="hljs-deletion">-        region: us-east-1</span>
-<span class="hljs-deletion">-      name: remote-cloudwatch</span>
-<span class="hljs-deletion">-      secret:</span>
-<span class="hljs-deletion">-        name: cloudwatch-forwarder</span>
-<span class="hljs-deletion">-      type: cloudwatch</span>
-     - name: splunk-receiver-application
-       secret:
-         name: log-forwarder-splunk-rhtap-application-secret
-<span class="hljs-meta">@@ -25,12 +18,6 @@</span> spec:
-       type: splunk
-       url: https://http-inputs-rhcorporate.splunkcloud.com
-   pipelines:
-<span class="hljs-deletion">-    - inputRefs:</span>
-<span class="hljs-deletion">-        - application</span>
-<span class="hljs-deletion">-      name: fluentd-cloudwatch-logforward</span>
-<span class="hljs-deletion">-      outputRefs:</span>
-<span class="hljs-deletion">-        - remote-cloudwatch</span>
-<span class="hljs-deletion">-      parse: json</span>
-     - name: fluentd-forward-logs-to-splunk-rhtap-app-index
-       inputRefs:
-         - application
-<span class="hljs-meta">@@ -38,7 +25,7 @@</span> spec:
-         - splunk-receiver-application
-       parse: json
-     - name: fluentd-forward-logs-to-splunk-rhtap-audit-index
-<span class="hljs-deletion">-      inputRefs:      </span>
-<span class="hljs-addition">+      inputRefs:</span>
-         - infrastructure
-         - audit
-       outputRefs:
-<span class="hljs-comment">diff --git a/components/monitoring/logging/base/external-secrets/kustomization.yaml b/components/monitoring/logging/base/external-secrets/kustomization.yaml</span>
-<span class="hljs-comment">index 2c74e47d..5b894fef 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/base/external-secrets/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/logging/base/external-secrets/kustomization.yaml</span>
-<span class="hljs-meta">@@ -1,6 +1,5 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-- monitoring-logging-cloudwatch-forwarder.yaml</span>
- - splunk-log-forwarder-external-secrets.yaml
- namespace: openshift-logging
-<span class="hljs-comment">diff --git a/components/monitoring/logging/base/external-secrets/monitoring-logging-cloudwatch-forwarder.yaml b/components/monitoring/logging/base/external-secrets/monitoring-logging-cloudwatch-forwarder.yaml</span>
-deleted file mode 100644
-<span class="hljs-comment">index 78f513c1..00000000</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/base/external-secrets/monitoring-logging-cloudwatch-forwarder.yaml</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,19 +0,0 @@</span>
-<span class="hljs-deletion">-apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-deletion">-kind: ExternalSecret</span>
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  name: monitoring-logging-cloudwatch-forwarder</span>
-<span class="hljs-deletion">-  annotations:</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  dataFrom:</span>
-<span class="hljs-deletion">-  - extract:</span>
-<span class="hljs-deletion">-      key: &quot;&quot; # will be added by the overlays</span>
-<span class="hljs-deletion">-  refreshInterval: 1h</span>
-<span class="hljs-deletion">-  secretStoreRef:</span>
-<span class="hljs-deletion">-    kind: ClusterSecretStore</span>
-<span class="hljs-deletion">-    name: appsre-stonesoup-vault</span>
-<span class="hljs-deletion">-  target:</span>
-<span class="hljs-deletion">-    creationPolicy: Owner</span>
-<span class="hljs-deletion">-    deletionPolicy: Delete</span>
-<span class="hljs-deletion">-    name: cloudwatch-forwarder</span>
-\ No newline at end of file
-<span class="hljs-comment">diff --git a/components/monitoring/logging/production/kustomization.yaml b/components/monitoring/logging/production/kustomization.yaml</span>
-<span class="hljs-comment">index dc846a65..3eee4ac5 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/production/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/logging/production/kustomization.yaml</span>
-<span class="hljs-meta">@@ -4,12 +4,6 @@</span> resources:
- - ../base
- - ../base/external-secrets
- patches:
-<span class="hljs-deletion">-  - path: monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-<span class="hljs-deletion">-    target:</span>
-<span class="hljs-deletion">-      name: monitoring-logging-cloudwatch-forwarder</span>
-<span class="hljs-deletion">-      group: external-secrets.io</span>
-<span class="hljs-deletion">-      version: v1beta1</span>
-<span class="hljs-deletion">-      kind: ExternalSecret</span>
-   - target:
-       group: external-secrets.io
-       version: v1beta1
-<span class="hljs-comment">diff --git a/components/monitoring/logging/production/monitoring-logging-cloudwatch-forwarder-path.yaml b/components/monitoring/logging/production/monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-deleted file mode 100644
-<span class="hljs-comment">index a7526b42..00000000</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/production/monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,4 +0,0 @@</span>
-<span class="hljs-comment">----</span>
-<span class="hljs-deletion">-- op: add</span>
-<span class="hljs-deletion">-  path: /spec/dataFrom/0/extract/key</span>
-<span class="hljs-deletion">-  value: production/monitoring/logging/fluentd/cloudwatch-forwarder</span>
-<span class="hljs-comment">diff --git a/components/monitoring/logging/staging/kustomization.yaml b/components/monitoring/logging/staging/kustomization.yaml</span>
-<span class="hljs-comment">index f0114934..2d89aa0c 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/staging/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/logging/staging/kustomization.yaml</span>
-<span class="hljs-meta">@@ -4,12 +4,6 @@</span> resources:
- - ../base
- - ../base/external-secrets
- patches:
-<span class="hljs-deletion">-  - path: monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-<span class="hljs-deletion">-    target:</span>
-<span class="hljs-deletion">-      name: monitoring-logging-cloudwatch-forwarder</span>
-<span class="hljs-deletion">-      group: external-secrets.io</span>
-<span class="hljs-deletion">-      version: v1beta1</span>
-<span class="hljs-deletion">-      kind: ExternalSecret</span>
-   - target:
-       group: external-secrets.io
-       version: v1beta1
-<span class="hljs-comment">diff --git a/components/monitoring/logging/staging/monitoring-logging-cloudwatch-forwarder-path.yaml b/components/monitoring/logging/staging/monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-deleted file mode 100644
-<span class="hljs-comment">index a285a6f3..00000000</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/staging/monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,4 +0,0 @@</span>
-<span class="hljs-comment">----</span>
-<span class="hljs-deletion">-- op: add</span>
-<span class="hljs-deletion">-  path: /spec/dataFrom/0/extract/key</span>
-<span class="hljs-deletion">-  value: staging/monitoring/logging/fluentd/cloudwatch-forwarder </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-<span class="hljs-number">3252d</span>30e/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-<span class="hljs-number">3252d</span>30e/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from a601cbe7 to 3252d30e on Mon Jan 1 13:23:29 2024 </h3>  
-
-<details> 
-<summary>Git Diff (131 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml</span>
-<span class="hljs-comment">index f3705244..b4503aa0 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml</span>
-<span class="hljs-meta">@@ -7,13 +7,6 @@</span> metadata:
-   name: instance
- spec:
-   outputs:
-<span class="hljs-deletion">-    - cloudwatch:</span>
-<span class="hljs-deletion">-        groupBy: namespaceName</span>
-<span class="hljs-deletion">-        region: us-east-1</span>
-<span class="hljs-deletion">-      name: remote-cloudwatch</span>
-<span class="hljs-deletion">-      secret:</span>
-<span class="hljs-deletion">-        name: cloudwatch-forwarder</span>
-<span class="hljs-deletion">-      type: cloudwatch</span>
-     - name: splunk-receiver-application
-       secret:
-         name: log-forwarder-splunk-rhtap-application-secret
-<span class="hljs-meta">@@ -25,12 +18,6 @@</span> spec:
-       type: splunk
-       url: https://http-inputs-rhcorporate.splunkcloud.com
-   pipelines:
-<span class="hljs-deletion">-    - inputRefs:</span>
-<span class="hljs-deletion">-        - application</span>
-<span class="hljs-deletion">-      name: fluentd-cloudwatch-logforward</span>
-<span class="hljs-deletion">-      outputRefs:</span>
-<span class="hljs-deletion">-        - remote-cloudwatch</span>
-<span class="hljs-deletion">-      parse: json</span>
-     - name: fluentd-forward-logs-to-splunk-rhtap-app-index
-       inputRefs:
-         - application
-<span class="hljs-meta">@@ -38,7 +25,7 @@</span> spec:
-         - splunk-receiver-application
-       parse: json
-     - name: fluentd-forward-logs-to-splunk-rhtap-audit-index
-<span class="hljs-deletion">-      inputRefs:      </span>
-<span class="hljs-addition">+      inputRefs:</span>
-         - infrastructure
-         - audit
-       outputRefs:
-<span class="hljs-comment">diff --git a/components/monitoring/logging/base/external-secrets/kustomization.yaml b/components/monitoring/logging/base/external-secrets/kustomization.yaml</span>
-<span class="hljs-comment">index 2c74e47d..5b894fef 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/base/external-secrets/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/logging/base/external-secrets/kustomization.yaml</span>
-<span class="hljs-meta">@@ -1,6 +1,5 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-- monitoring-logging-cloudwatch-forwarder.yaml</span>
- - splunk-log-forwarder-external-secrets.yaml
- namespace: openshift-logging
-<span class="hljs-comment">diff --git a/components/monitoring/logging/base/external-secrets/monitoring-logging-cloudwatch-forwarder.yaml b/components/monitoring/logging/base/external-secrets/monitoring-logging-cloudwatch-forwarder.yaml</span>
-deleted file mode 100644
-<span class="hljs-comment">index 78f513c1..00000000</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/base/external-secrets/monitoring-logging-cloudwatch-forwarder.yaml</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,19 +0,0 @@</span>
-<span class="hljs-deletion">-apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-deletion">-kind: ExternalSecret</span>
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  name: monitoring-logging-cloudwatch-forwarder</span>
-<span class="hljs-deletion">-  annotations:</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  dataFrom:</span>
-<span class="hljs-deletion">-  - extract:</span>
-<span class="hljs-deletion">-      key: &quot;&quot; # will be added by the overlays</span>
-<span class="hljs-deletion">-  refreshInterval: 1h</span>
-<span class="hljs-deletion">-  secretStoreRef:</span>
-<span class="hljs-deletion">-    kind: ClusterSecretStore</span>
-<span class="hljs-deletion">-    name: appsre-stonesoup-vault</span>
-<span class="hljs-deletion">-  target:</span>
-<span class="hljs-deletion">-    creationPolicy: Owner</span>
-<span class="hljs-deletion">-    deletionPolicy: Delete</span>
-<span class="hljs-deletion">-    name: cloudwatch-forwarder</span>
-\ No newline at end of file
-<span class="hljs-comment">diff --git a/components/monitoring/logging/production/kustomization.yaml b/components/monitoring/logging/production/kustomization.yaml</span>
-<span class="hljs-comment">index dc846a65..3eee4ac5 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/production/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/logging/production/kustomization.yaml</span>
-<span class="hljs-meta">@@ -4,12 +4,6 @@</span> resources:
- - ../base
- - ../base/external-secrets
- patches:
-<span class="hljs-deletion">-  - path: monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-<span class="hljs-deletion">-    target:</span>
-<span class="hljs-deletion">-      name: monitoring-logging-cloudwatch-forwarder</span>
-<span class="hljs-deletion">-      group: external-secrets.io</span>
-<span class="hljs-deletion">-      version: v1beta1</span>
-<span class="hljs-deletion">-      kind: ExternalSecret</span>
-   - target:
-       group: external-secrets.io
-       version: v1beta1
-<span class="hljs-comment">diff --git a/components/monitoring/logging/production/monitoring-logging-cloudwatch-forwarder-path.yaml b/components/monitoring/logging/production/monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-deleted file mode 100644
-<span class="hljs-comment">index a7526b42..00000000</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/production/monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,4 +0,0 @@</span>
-<span class="hljs-comment">----</span>
-<span class="hljs-deletion">-- op: add</span>
-<span class="hljs-deletion">-  path: /spec/dataFrom/0/extract/key</span>
-<span class="hljs-deletion">-  value: production/monitoring/logging/fluentd/cloudwatch-forwarder</span>
-<span class="hljs-comment">diff --git a/components/monitoring/logging/staging/kustomization.yaml b/components/monitoring/logging/staging/kustomization.yaml</span>
-<span class="hljs-comment">index f0114934..2d89aa0c 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/staging/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/logging/staging/kustomization.yaml</span>
-<span class="hljs-meta">@@ -4,12 +4,6 @@</span> resources:
- - ../base
- - ../base/external-secrets
- patches:
-<span class="hljs-deletion">-  - path: monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-<span class="hljs-deletion">-    target:</span>
-<span class="hljs-deletion">-      name: monitoring-logging-cloudwatch-forwarder</span>
-<span class="hljs-deletion">-      group: external-secrets.io</span>
-<span class="hljs-deletion">-      version: v1beta1</span>
-<span class="hljs-deletion">-      kind: ExternalSecret</span>
-   - target:
-       group: external-secrets.io
-       version: v1beta1
-<span class="hljs-comment">diff --git a/components/monitoring/logging/staging/monitoring-logging-cloudwatch-forwarder-path.yaml b/components/monitoring/logging/staging/monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-deleted file mode 100644
-<span class="hljs-comment">index a285a6f3..00000000</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/staging/monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,4 +0,0 @@</span>
-<span class="hljs-comment">----</span>
-<span class="hljs-deletion">-- op: add</span>
-<span class="hljs-deletion">-  path: /spec/dataFrom/0/extract/key</span>
-<span class="hljs-deletion">-  value: staging/monitoring/logging/fluentd/cloudwatch-forwarder </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-<span class="hljs-number">3252d</span>30e/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-<span class="hljs-number">3252d</span>30e/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-<span class="hljs-number">3252d</span>30e/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from a601cbe7 to 3252d30e on Mon Jan 1 13:23:29 2024 </h3>  
-
-<details> 
-<summary>Git Diff (131 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml</span>
-<span class="hljs-comment">index f3705244..b4503aa0 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml</span>
-<span class="hljs-meta">@@ -7,13 +7,6 @@</span> metadata:
-   name: instance
- spec:
-   outputs:
-<span class="hljs-deletion">-    - cloudwatch:</span>
-<span class="hljs-deletion">-        groupBy: namespaceName</span>
-<span class="hljs-deletion">-        region: us-east-1</span>
-<span class="hljs-deletion">-      name: remote-cloudwatch</span>
-<span class="hljs-deletion">-      secret:</span>
-<span class="hljs-deletion">-        name: cloudwatch-forwarder</span>
-<span class="hljs-deletion">-      type: cloudwatch</span>
-     - name: splunk-receiver-application
-       secret:
-         name: log-forwarder-splunk-rhtap-application-secret
-<span class="hljs-meta">@@ -25,12 +18,6 @@</span> spec:
-       type: splunk
-       url: https://http-inputs-rhcorporate.splunkcloud.com
-   pipelines:
-<span class="hljs-deletion">-    - inputRefs:</span>
-<span class="hljs-deletion">-        - application</span>
-<span class="hljs-deletion">-      name: fluentd-cloudwatch-logforward</span>
-<span class="hljs-deletion">-      outputRefs:</span>
-<span class="hljs-deletion">-        - remote-cloudwatch</span>
-<span class="hljs-deletion">-      parse: json</span>
-     - name: fluentd-forward-logs-to-splunk-rhtap-app-index
-       inputRefs:
-         - application
-<span class="hljs-meta">@@ -38,7 +25,7 @@</span> spec:
-         - splunk-receiver-application
-       parse: json
-     - name: fluentd-forward-logs-to-splunk-rhtap-audit-index
-<span class="hljs-deletion">-      inputRefs:      </span>
-<span class="hljs-addition">+      inputRefs:</span>
-         - infrastructure
-         - audit
-       outputRefs:
-<span class="hljs-comment">diff --git a/components/monitoring/logging/base/external-secrets/kustomization.yaml b/components/monitoring/logging/base/external-secrets/kustomization.yaml</span>
-<span class="hljs-comment">index 2c74e47d..5b894fef 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/base/external-secrets/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/logging/base/external-secrets/kustomization.yaml</span>
-<span class="hljs-meta">@@ -1,6 +1,5 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-- monitoring-logging-cloudwatch-forwarder.yaml</span>
- - splunk-log-forwarder-external-secrets.yaml
- namespace: openshift-logging
-<span class="hljs-comment">diff --git a/components/monitoring/logging/base/external-secrets/monitoring-logging-cloudwatch-forwarder.yaml b/components/monitoring/logging/base/external-secrets/monitoring-logging-cloudwatch-forwarder.yaml</span>
-deleted file mode 100644
-<span class="hljs-comment">index 78f513c1..00000000</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/base/external-secrets/monitoring-logging-cloudwatch-forwarder.yaml</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,19 +0,0 @@</span>
-<span class="hljs-deletion">-apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-deletion">-kind: ExternalSecret</span>
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  name: monitoring-logging-cloudwatch-forwarder</span>
-<span class="hljs-deletion">-  annotations:</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  dataFrom:</span>
-<span class="hljs-deletion">-  - extract:</span>
-<span class="hljs-deletion">-      key: &quot;&quot; # will be added by the overlays</span>
-<span class="hljs-deletion">-  refreshInterval: 1h</span>
-<span class="hljs-deletion">-  secretStoreRef:</span>
-<span class="hljs-deletion">-    kind: ClusterSecretStore</span>
-<span class="hljs-deletion">-    name: appsre-stonesoup-vault</span>
-<span class="hljs-deletion">-  target:</span>
-<span class="hljs-deletion">-    creationPolicy: Owner</span>
-<span class="hljs-deletion">-    deletionPolicy: Delete</span>
-<span class="hljs-deletion">-    name: cloudwatch-forwarder</span>
-\ No newline at end of file
-<span class="hljs-comment">diff --git a/components/monitoring/logging/production/kustomization.yaml b/components/monitoring/logging/production/kustomization.yaml</span>
-<span class="hljs-comment">index dc846a65..3eee4ac5 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/production/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/logging/production/kustomization.yaml</span>
-<span class="hljs-meta">@@ -4,12 +4,6 @@</span> resources:
- - ../base
- - ../base/external-secrets
- patches:
-<span class="hljs-deletion">-  - path: monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-<span class="hljs-deletion">-    target:</span>
-<span class="hljs-deletion">-      name: monitoring-logging-cloudwatch-forwarder</span>
-<span class="hljs-deletion">-      group: external-secrets.io</span>
-<span class="hljs-deletion">-      version: v1beta1</span>
-<span class="hljs-deletion">-      kind: ExternalSecret</span>
-   - target:
-       group: external-secrets.io
-       version: v1beta1
-<span class="hljs-comment">diff --git a/components/monitoring/logging/production/monitoring-logging-cloudwatch-forwarder-path.yaml b/components/monitoring/logging/production/monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-deleted file mode 100644
-<span class="hljs-comment">index a7526b42..00000000</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/production/monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,4 +0,0 @@</span>
-<span class="hljs-comment">----</span>
-<span class="hljs-deletion">-- op: add</span>
-<span class="hljs-deletion">-  path: /spec/dataFrom/0/extract/key</span>
-<span class="hljs-deletion">-  value: production/monitoring/logging/fluentd/cloudwatch-forwarder</span>
-<span class="hljs-comment">diff --git a/components/monitoring/logging/staging/kustomization.yaml b/components/monitoring/logging/staging/kustomization.yaml</span>
-<span class="hljs-comment">index f0114934..2d89aa0c 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/staging/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/logging/staging/kustomization.yaml</span>
-<span class="hljs-meta">@@ -4,12 +4,6 @@</span> resources:
- - ../base
- - ../base/external-secrets
- patches:
-<span class="hljs-deletion">-  - path: monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-<span class="hljs-deletion">-    target:</span>
-<span class="hljs-deletion">-      name: monitoring-logging-cloudwatch-forwarder</span>
-<span class="hljs-deletion">-      group: external-secrets.io</span>
-<span class="hljs-deletion">-      version: v1beta1</span>
-<span class="hljs-deletion">-      kind: ExternalSecret</span>
-   - target:
-       group: external-secrets.io
-       version: v1beta1
-<span class="hljs-comment">diff --git a/components/monitoring/logging/staging/monitoring-logging-cloudwatch-forwarder-path.yaml b/components/monitoring/logging/staging/monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-deleted file mode 100644
-<span class="hljs-comment">index a285a6f3..00000000</span>
-<span class="hljs-comment">--- a/components/monitoring/logging/staging/monitoring-logging-cloudwatch-forwarder-path.yaml</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,4 +0,0 @@</span>
-<span class="hljs-comment">----</span>
-<span class="hljs-deletion">-- op: add</span>
-<span class="hljs-deletion">-  path: /spec/dataFrom/0/extract/key</span>
-<span class="hljs-deletion">-  value: staging/monitoring/logging/fluentd/cloudwatch-forwarder </span>
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-./commit-<span class="hljs-number">3252d</span>30e/development/components/pipeline-service/development/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service&#x27;s selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found!
-KubeLinter v<span class="hljs-number">0.6.1-0</span>-gc<span class="hljs-number">6177366a3</span>
-
-No lint errors found! 
 </code></pre>
 
 </details> 
