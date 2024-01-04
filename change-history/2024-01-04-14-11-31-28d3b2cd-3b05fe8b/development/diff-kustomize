@@ -1,0 +1,6 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-3b05fe8b/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-28d3b2cd/development/components/pipeline-service/development/kustomize.out.yaml
+1557c1557,1558
+<         - -check_owner=false
+---
+>         - -check_owner
+>         - "false"

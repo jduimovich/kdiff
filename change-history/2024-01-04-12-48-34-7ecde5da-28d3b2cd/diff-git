@@ -1,0 +1,14 @@
+diff --git a/components/sandbox/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/base/rbac/sandbox-sre-admins.yaml
+index 437719dd..e7a2ab48 100644
+--- a/components/sandbox/base/rbac/sandbox-sre-admins.yaml
++++ b/components/sandbox/base/rbac/sandbox-sre-admins.yaml
+@@ -89,6 +89,9 @@ subjects:
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: xcoulon
++  - kind: User
++    apiGroup: rbac.authorization.k8s.io
++    name: mfrancisc
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole

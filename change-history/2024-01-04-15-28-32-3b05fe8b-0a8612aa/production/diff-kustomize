@@ -1,0 +1,12 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0a8612aa/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-3b05fe8b/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1113,1114d1112
+<     ignore-check.kube-linter.io/dangling-service: This service is not dangling, it
+<       exposes metric for an OSP deployment
+1487d1484
+<         - -check_owner=false
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0a8612aa/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-3b05fe8b/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1113,1114d1112
+<     ignore-check.kube-linter.io/dangling-service: This service is not dangling, it
+<       exposes metric for an OSP deployment
+1487d1484
+<         - -check_owner=false
