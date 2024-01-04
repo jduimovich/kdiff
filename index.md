@@ -1,12 +1,496 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Jan  3 20:03:01 UTC 2024
+### This file generated at Thu Jan  4 00:06:37 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from ba9f9cad to 110b7bfa on Wed Jan 3 16:52:00 2024 </h3>  
+<h3>1: Production changes from 110b7bfa to 78cf724d on Wed Jan 3 20:29:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (39 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 01b88791..feb47537 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -30,26 +30,26 @@ data:
+   dynamic.linux-amd64.security-group: "launch-wizard-1"
+   dynamic.linux-amd64.max-instances: "10"
+ 
+-  host.power-rhtap-prod-1.address: "52.117.38.109"
++  host.power-rhtap-prod-1.address: "150.240.147.196"
+   host.power-rhtap-prod-1.platform: "linux/ppc64le"
+   host.power-rhtap-prod-1.user: "root"
+-  host.power-rhtap-prod-1.secret: "ibm-production-ppc64le-ssh-key"
++  host.power-rhtap-prod-1.secret: "ibm-ssh-key"
+   host.power-rhtap-prod-1.concurrency: "4"
+ 
+-  host.power-rhtap-prod-2.address: "52.117.38.109"
++  host.power-rhtap-prod-2.address: "150.240.147.194"
+   host.power-rhtap-prod-2.platform: "linux/ppc64le"
+   host.power-rhtap-prod-2.user: "root"
+-  host.power-rhtap-prod-2.secret: "ibm-production-ppc64le-ssh-key"
++  host.power-rhtap-prod-2.secret: "ibm-ssh-key"
+   host.power-rhtap-prod-2.concurrency: "4"
+ 
+-  host.sysz-rhtap-prod-1.address: "169.63.184.30"
++  host.sysz-rhtap-prod-1.address: "169.59.160.96"
+   host.sysz-rhtap-prod-1.platform: "linux/s390x"
+   host.sysz-rhtap-prod-1.user: "root"
+-  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-1.secret: "ibm-ssh-key"
+   host.sysz-rhtap-prod-1.concurrency: "4"
+ 
+-  host.sysz-rhtap-prod-2.address: "169.59.164.141"
++  host.sysz-rhtap-prod-2.address: "169.63.178.13"
+   host.sysz-rhtap-prod-2.platform: "linux/s390x"
+   host.sysz-rhtap-prod-2.user: "root"
+-  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-2.secret: "ibm-ssh-key"
+   host.sysz-rhtap-prod-2.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+
+``` 
+./commit-110b7bfa/production/components/multi-platform-controller/production/kustomize.out.yaml
+155c155
+<   host.power-rhtap-prod-1.address: 150.240.147.196
+---
+>   host.power-rhtap-prod-1.address: 52.117.38.109
+158c158
+<   host.power-rhtap-prod-1.secret: ibm-ssh-key
+---
+>   host.power-rhtap-prod-1.secret: ibm-production-ppc64le-ssh-key
+160c160
+<   host.power-rhtap-prod-2.address: 150.240.147.194
+---
+>   host.power-rhtap-prod-2.address: 52.117.38.109
+163c163
+<   host.power-rhtap-prod-2.secret: ibm-ssh-key
+---
+>   host.power-rhtap-prod-2.secret: ibm-production-ppc64le-ssh-key
+165c165
+<   host.sysz-rhtap-prod-1.address: 169.59.160.96
+---
+>   host.sysz-rhtap-prod-1.address: 169.63.184.30
+168c168
+<   host.sysz-rhtap-prod-1.secret: ibm-ssh-key
+---
+>   host.sysz-rhtap-prod-1.secret: ibm-production-s390x-ssh-key
+170c170
+<   host.sysz-rhtap-prod-2.address: 169.63.178.13
+---
+>   host.sysz-rhtap-prod-2.address: 169.59.164.141
+173c173
+<   host.sysz-rhtap-prod-2.secret: ibm-ssh-key
+---
+>   host.sysz-rhtap-prod-2.secret: ibm-production-s390x-ssh-key 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-78cf724d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-78cf724d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 110b7bfa to 78cf724d on Wed Jan 3 20:29:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (39 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 01b88791..feb47537 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -30,26 +30,26 @@ data:
+   dynamic.linux-amd64.security-group: "launch-wizard-1"
+   dynamic.linux-amd64.max-instances: "10"
+ 
+-  host.power-rhtap-prod-1.address: "52.117.38.109"
++  host.power-rhtap-prod-1.address: "150.240.147.196"
+   host.power-rhtap-prod-1.platform: "linux/ppc64le"
+   host.power-rhtap-prod-1.user: "root"
+-  host.power-rhtap-prod-1.secret: "ibm-production-ppc64le-ssh-key"
++  host.power-rhtap-prod-1.secret: "ibm-ssh-key"
+   host.power-rhtap-prod-1.concurrency: "4"
+ 
+-  host.power-rhtap-prod-2.address: "52.117.38.109"
++  host.power-rhtap-prod-2.address: "150.240.147.194"
+   host.power-rhtap-prod-2.platform: "linux/ppc64le"
+   host.power-rhtap-prod-2.user: "root"
+-  host.power-rhtap-prod-2.secret: "ibm-production-ppc64le-ssh-key"
++  host.power-rhtap-prod-2.secret: "ibm-ssh-key"
+   host.power-rhtap-prod-2.concurrency: "4"
+ 
+-  host.sysz-rhtap-prod-1.address: "169.63.184.30"
++  host.sysz-rhtap-prod-1.address: "169.59.160.96"
+   host.sysz-rhtap-prod-1.platform: "linux/s390x"
+   host.sysz-rhtap-prod-1.user: "root"
+-  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-1.secret: "ibm-ssh-key"
+   host.sysz-rhtap-prod-1.concurrency: "4"
+ 
+-  host.sysz-rhtap-prod-2.address: "169.59.164.141"
++  host.sysz-rhtap-prod-2.address: "169.63.178.13"
+   host.sysz-rhtap-prod-2.platform: "linux/s390x"
+   host.sysz-rhtap-prod-2.user: "root"
+-  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-2.secret: "ibm-ssh-key"
+   host.sysz-rhtap-prod-2.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 110b7bfa to 78cf724d on Wed Jan 3 20:29:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (39 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 01b88791..feb47537 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -30,26 +30,26 @@ data:
+   dynamic.linux-amd64.security-group: "launch-wizard-1"
+   dynamic.linux-amd64.max-instances: "10"
+ 
+-  host.power-rhtap-prod-1.address: "52.117.38.109"
++  host.power-rhtap-prod-1.address: "150.240.147.196"
+   host.power-rhtap-prod-1.platform: "linux/ppc64le"
+   host.power-rhtap-prod-1.user: "root"
+-  host.power-rhtap-prod-1.secret: "ibm-production-ppc64le-ssh-key"
++  host.power-rhtap-prod-1.secret: "ibm-ssh-key"
+   host.power-rhtap-prod-1.concurrency: "4"
+ 
+-  host.power-rhtap-prod-2.address: "52.117.38.109"
++  host.power-rhtap-prod-2.address: "150.240.147.194"
+   host.power-rhtap-prod-2.platform: "linux/ppc64le"
+   host.power-rhtap-prod-2.user: "root"
+-  host.power-rhtap-prod-2.secret: "ibm-production-ppc64le-ssh-key"
++  host.power-rhtap-prod-2.secret: "ibm-ssh-key"
+   host.power-rhtap-prod-2.concurrency: "4"
+ 
+-  host.sysz-rhtap-prod-1.address: "169.63.184.30"
++  host.sysz-rhtap-prod-1.address: "169.59.160.96"
+   host.sysz-rhtap-prod-1.platform: "linux/s390x"
+   host.sysz-rhtap-prod-1.user: "root"
+-  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-1.secret: "ibm-ssh-key"
+   host.sysz-rhtap-prod-1.concurrency: "4"
+ 
+-  host.sysz-rhtap-prod-2.address: "169.59.164.141"
++  host.sysz-rhtap-prod-2.address: "169.63.178.13"
+   host.sysz-rhtap-prod-2.platform: "linux/s390x"
+   host.sysz-rhtap-prod-2.user: "root"
+-  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
++  host.sysz-rhtap-prod-2.secret: "ibm-ssh-key"
+   host.sysz-rhtap-prod-2.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from ba9f9cad to 110b7bfa on Wed Jan 3 16:52:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -196,7 +680,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from ba9f9cad to 110b7bfa on Wed Jan 3 16:52:00 2024 </h3>  
+<h3>2: Staging changes from ba9f9cad to 110b7bfa on Wed Jan 3 16:52:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -402,7 +886,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from ba9f9cad to 110b7bfa on Wed Jan 3 16:52:00 2024 </h3>  
+<h3>2: Development changes from ba9f9cad to 110b7bfa on Wed Jan 3 16:52:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -566,7 +1050,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 9b26ed39 to ba9f9cad on Wed Jan 3 09:45:40 2024 </h3>  
+<h3>3: Production changes from 9b26ed39 to ba9f9cad on Wed Jan 3 09:45:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (52 lines)</summary>  
@@ -733,7 +1217,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 9b26ed39 to ba9f9cad on Wed Jan 3 09:45:40 2024 </h3>  
+<h3>3: Staging changes from 9b26ed39 to ba9f9cad on Wed Jan 3 09:45:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (52 lines)</summary>  
@@ -916,7 +1400,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 9b26ed39 to ba9f9cad on Wed Jan 3 09:45:40 2024 </h3>  
+<h3>3: Development changes from 9b26ed39 to ba9f9cad on Wed Jan 3 09:45:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (52 lines)</summary>  
@@ -1057,7 +1541,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 02570b31 to 9b26ed39 on Wed Jan 3 07:11:41 2024 </h3>  
+<h3>4: Production changes from 02570b31 to 9b26ed39 on Wed Jan 3 07:11:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (39 lines)</summary>  
@@ -1243,7 +1727,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 02570b31 to 9b26ed39 on Wed Jan 3 07:11:41 2024 </h3>  
+<h3>4: Staging changes from 02570b31 to 9b26ed39 on Wed Jan 3 07:11:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (39 lines)</summary>  
@@ -1413,7 +1897,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 02570b31 to 9b26ed39 on Wed Jan 3 07:11:41 2024 </h3>  
+<h3>4: Development changes from 02570b31 to 9b26ed39 on Wed Jan 3 07:11:41 2024 </h3>  
  
 <details> 
 <summary>Git Diff (39 lines)</summary>  
@@ -1467,463 +1951,6 @@ index feb47537..01b88791 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from e8e4c65a to 02570b31 on Wed Jan 3 02:31:08 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 29b84887..23780cfe 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=ca9a3f0ff5a690f12c718041118f51c11466a005
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=691f94a16298f295d99e7aa6c573269cd96338c0
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: ca9a3f0ff5a690f12c718041118f51c11466a005
-+  newTag: 691f94a16298f295d99e7aa6c573269cd96338c0
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
-index 201edd2a..ea357998 100644
---- a/components/integration/staging/kustomization.yaml
-+++ b/components/integration/staging/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../base
- - ../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=ca9a3f0ff5a690f12c718041118f51c11466a005
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=691f94a16298f295d99e7aa6c573269cd96338c0
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: ca9a3f0ff5a690f12c718041118f51c11466a005
-+  newTag: 691f94a16298f295d99e7aa6c573269cd96338c0
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-02570b31/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-02570b31/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from e8e4c65a to 02570b31 on Wed Jan 3 02:31:08 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 29b84887..23780cfe 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=ca9a3f0ff5a690f12c718041118f51c11466a005
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=691f94a16298f295d99e7aa6c573269cd96338c0
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: ca9a3f0ff5a690f12c718041118f51c11466a005
-+  newTag: 691f94a16298f295d99e7aa6c573269cd96338c0
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
-index 201edd2a..ea357998 100644
---- a/components/integration/staging/kustomization.yaml
-+++ b/components/integration/staging/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../base
- - ../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=ca9a3f0ff5a690f12c718041118f51c11466a005
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=691f94a16298f295d99e7aa6c573269cd96338c0
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: ca9a3f0ff5a690f12c718041118f51c11466a005
-+  newTag: 691f94a16298f295d99e7aa6c573269cd96338c0
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-e8e4c65a/staging/components/integration/staging/kustomize.out.yaml
-1102c1102
-<         image: quay.io/redhat-appstudio/integration-service:691f94a16298f295d99e7aa6c573269cd96338c0
----
->         image: quay.io/redhat-appstudio/integration-service:ca9a3f0ff5a690f12c718041118f51c11466a005 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from e8e4c65a to 02570b31 on Wed Jan 3 02:31:08 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 29b84887..23780cfe 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=ca9a3f0ff5a690f12c718041118f51c11466a005
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=691f94a16298f295d99e7aa6c573269cd96338c0
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: ca9a3f0ff5a690f12c718041118f51c11466a005
-+  newTag: 691f94a16298f295d99e7aa6c573269cd96338c0
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
-index 201edd2a..ea357998 100644
---- a/components/integration/staging/kustomization.yaml
-+++ b/components/integration/staging/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../base
- - ../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=ca9a3f0ff5a690f12c718041118f51c11466a005
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=691f94a16298f295d99e7aa6c573269cd96338c0
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: ca9a3f0ff5a690f12c718041118f51c11466a005
-+  newTag: 691f94a16298f295d99e7aa6c573269cd96338c0
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-e8e4c65a/development/components/integration/development/kustomize.out.yaml
-1102c1102
-<         image: quay.io/redhat-appstudio/integration-service:691f94a16298f295d99e7aa6c573269cd96338c0
----
->         image: quay.io/redhat-appstudio/integration-service:ca9a3f0ff5a690f12c718041118f51c11466a005 
 ```
  
 </details>  
