@@ -1,12 +1,705 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Jan  4 04:01:58 UTC 2024
+### This file generated at Thu Jan  4 08:03:28 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 110b7bfa to 78cf724d on Wed Jan 3 20:29:08 2024 </h3>  
+<h3>1: Production changes from 78cf724d to 7ecde5da on Thu Jan 4 06:18:02 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (93 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/external-secrets.yaml b/components/multi-platform-controller/production/external-secrets.yaml
+index a83c38fd..ff2bf202 100644
+--- a/components/multi-platform-controller/production/external-secrets.yaml
++++ b/components/multi-platform-controller/production/external-secrets.yaml
+@@ -66,3 +66,49 @@ spec:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+     name: aws-account
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: ibm-production-ppc64le-ssh-key
++  namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: "true"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/multi-platform-controller/ibm-production-ppc64le-ssh-key
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: ibm-production-ppc64le-ssh-key
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: ibm-production-s390x-ssh-key
++  namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: "true"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: ibm-production-s390x-ssh-key
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index feb47537..01b88791 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -30,26 +30,26 @@ data:
+   dynamic.linux-amd64.security-group: "launch-wizard-1"
+   dynamic.linux-amd64.max-instances: "10"
+ 
+-  host.power-rhtap-prod-1.address: "150.240.147.196"
++  host.power-rhtap-prod-1.address: "52.117.38.109"
+   host.power-rhtap-prod-1.platform: "linux/ppc64le"
+   host.power-rhtap-prod-1.user: "root"
+-  host.power-rhtap-prod-1.secret: "ibm-ssh-key"
++  host.power-rhtap-prod-1.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-1.concurrency: "4"
+ 
+-  host.power-rhtap-prod-2.address: "150.240.147.194"
++  host.power-rhtap-prod-2.address: "52.117.38.109"
+   host.power-rhtap-prod-2.platform: "linux/ppc64le"
+   host.power-rhtap-prod-2.user: "root"
+-  host.power-rhtap-prod-2.secret: "ibm-ssh-key"
++  host.power-rhtap-prod-2.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-2.concurrency: "4"
+ 
+-  host.sysz-rhtap-prod-1.address: "169.59.160.96"
++  host.sysz-rhtap-prod-1.address: "169.63.184.30"
+   host.sysz-rhtap-prod-1.platform: "linux/s390x"
+   host.sysz-rhtap-prod-1.user: "root"
+-  host.sysz-rhtap-prod-1.secret: "ibm-ssh-key"
++  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
+   host.sysz-rhtap-prod-1.concurrency: "4"
+ 
+-  host.sysz-rhtap-prod-2.address: "169.63.178.13"
++  host.sysz-rhtap-prod-2.address: "169.59.164.141"
+   host.sysz-rhtap-prod-2.platform: "linux/s390x"
+   host.sysz-rhtap-prod-2.user: "root"
+-  host.sysz-rhtap-prod-2.secret: "ibm-ssh-key"
++  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
+   host.sysz-rhtap-prod-2.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (80 lines)</summary>  
+
+``` 
+./commit-78cf724d/production/components/multi-platform-controller/production/kustomize.out.yaml
+155c155
+<   host.power-rhtap-prod-1.address: 52.117.38.109
+---
+>   host.power-rhtap-prod-1.address: 150.240.147.196
+158c158
+<   host.power-rhtap-prod-1.secret: ibm-production-ppc64le-ssh-key
+---
+>   host.power-rhtap-prod-1.secret: ibm-ssh-key
+160c160
+<   host.power-rhtap-prod-2.address: 52.117.38.109
+---
+>   host.power-rhtap-prod-2.address: 150.240.147.194
+163c163
+<   host.power-rhtap-prod-2.secret: ibm-production-ppc64le-ssh-key
+---
+>   host.power-rhtap-prod-2.secret: ibm-ssh-key
+165c165
+<   host.sysz-rhtap-prod-1.address: 169.63.184.30
+---
+>   host.sysz-rhtap-prod-1.address: 169.59.160.96
+168c168
+<   host.sysz-rhtap-prod-1.secret: ibm-production-s390x-ssh-key
+---
+>   host.sysz-rhtap-prod-1.secret: ibm-ssh-key
+170c170
+<   host.sysz-rhtap-prod-2.address: 169.59.164.141
+---
+>   host.sysz-rhtap-prod-2.address: 169.63.178.13
+173c173
+<   host.sysz-rhtap-prod-2.secret: ibm-production-s390x-ssh-key
+---
+>   host.sysz-rhtap-prod-2.secret: ibm-ssh-key
+339,384d338
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     build.appstudio.redhat.com/multi-platform-secret: "true"
+<   name: ibm-production-ppc64le-ssh-key
+<   namespace: multi-platform-controller
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/multi-platform-controller/ibm-production-ppc64le-ssh-key
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: ibm-production-ppc64le-ssh-key
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     build.appstudio.redhat.com/multi-platform-secret: "true"
+<   name: ibm-production-s390x-ssh-key
+<   namespace: multi-platform-controller
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: ibm-production-s390x-ssh-key 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-7ecde5da/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+./commit-7ecde5da/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
+
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 78cf724d to 7ecde5da on Thu Jan 4 06:18:02 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (93 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/external-secrets.yaml b/components/multi-platform-controller/production/external-secrets.yaml
+index a83c38fd..ff2bf202 100644
+--- a/components/multi-platform-controller/production/external-secrets.yaml
++++ b/components/multi-platform-controller/production/external-secrets.yaml
+@@ -66,3 +66,49 @@ spec:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+     name: aws-account
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: ibm-production-ppc64le-ssh-key
++  namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: "true"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/multi-platform-controller/ibm-production-ppc64le-ssh-key
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: ibm-production-ppc64le-ssh-key
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: ibm-production-s390x-ssh-key
++  namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: "true"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: ibm-production-s390x-ssh-key
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index feb47537..01b88791 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -30,26 +30,26 @@ data:
+   dynamic.linux-amd64.security-group: "launch-wizard-1"
+   dynamic.linux-amd64.max-instances: "10"
+ 
+-  host.power-rhtap-prod-1.address: "150.240.147.196"
++  host.power-rhtap-prod-1.address: "52.117.38.109"
+   host.power-rhtap-prod-1.platform: "linux/ppc64le"
+   host.power-rhtap-prod-1.user: "root"
+-  host.power-rhtap-prod-1.secret: "ibm-ssh-key"
++  host.power-rhtap-prod-1.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-1.concurrency: "4"
+ 
+-  host.power-rhtap-prod-2.address: "150.240.147.194"
++  host.power-rhtap-prod-2.address: "52.117.38.109"
+   host.power-rhtap-prod-2.platform: "linux/ppc64le"
+   host.power-rhtap-prod-2.user: "root"
+-  host.power-rhtap-prod-2.secret: "ibm-ssh-key"
++  host.power-rhtap-prod-2.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-2.concurrency: "4"
+ 
+-  host.sysz-rhtap-prod-1.address: "169.59.160.96"
++  host.sysz-rhtap-prod-1.address: "169.63.184.30"
+   host.sysz-rhtap-prod-1.platform: "linux/s390x"
+   host.sysz-rhtap-prod-1.user: "root"
+-  host.sysz-rhtap-prod-1.secret: "ibm-ssh-key"
++  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
+   host.sysz-rhtap-prod-1.concurrency: "4"
+ 
+-  host.sysz-rhtap-prod-2.address: "169.63.178.13"
++  host.sysz-rhtap-prod-2.address: "169.59.164.141"
+   host.sysz-rhtap-prod-2.platform: "linux/s390x"
+   host.sysz-rhtap-prod-2.user: "root"
+-  host.sysz-rhtap-prod-2.secret: "ibm-ssh-key"
++  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
+   host.sysz-rhtap-prod-2.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 78cf724d to 7ecde5da on Thu Jan 4 06:18:02 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (93 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production/external-secrets.yaml b/components/multi-platform-controller/production/external-secrets.yaml
+index a83c38fd..ff2bf202 100644
+--- a/components/multi-platform-controller/production/external-secrets.yaml
++++ b/components/multi-platform-controller/production/external-secrets.yaml
+@@ -66,3 +66,49 @@ spec:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+     name: aws-account
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: ibm-production-ppc64le-ssh-key
++  namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: "true"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/multi-platform-controller/ibm-production-ppc64le-ssh-key
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: ibm-production-ppc64le-ssh-key
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: ibm-production-s390x-ssh-key
++  namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: "true"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: ibm-production-s390x-ssh-key
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index feb47537..01b88791 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -30,26 +30,26 @@ data:
+   dynamic.linux-amd64.security-group: "launch-wizard-1"
+   dynamic.linux-amd64.max-instances: "10"
+ 
+-  host.power-rhtap-prod-1.address: "150.240.147.196"
++  host.power-rhtap-prod-1.address: "52.117.38.109"
+   host.power-rhtap-prod-1.platform: "linux/ppc64le"
+   host.power-rhtap-prod-1.user: "root"
+-  host.power-rhtap-prod-1.secret: "ibm-ssh-key"
++  host.power-rhtap-prod-1.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-1.concurrency: "4"
+ 
+-  host.power-rhtap-prod-2.address: "150.240.147.194"
++  host.power-rhtap-prod-2.address: "52.117.38.109"
+   host.power-rhtap-prod-2.platform: "linux/ppc64le"
+   host.power-rhtap-prod-2.user: "root"
+-  host.power-rhtap-prod-2.secret: "ibm-ssh-key"
++  host.power-rhtap-prod-2.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-2.concurrency: "4"
+ 
+-  host.sysz-rhtap-prod-1.address: "169.59.160.96"
++  host.sysz-rhtap-prod-1.address: "169.63.184.30"
+   host.sysz-rhtap-prod-1.platform: "linux/s390x"
+   host.sysz-rhtap-prod-1.user: "root"
+-  host.sysz-rhtap-prod-1.secret: "ibm-ssh-key"
++  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
+   host.sysz-rhtap-prod-1.concurrency: "4"
+ 
+-  host.sysz-rhtap-prod-2.address: "169.63.178.13"
++  host.sysz-rhtap-prod-2.address: "169.59.164.141"
+   host.sysz-rhtap-prod-2.platform: "linux/s390x"
+   host.sysz-rhtap-prod-2.user: "root"
+-  host.sysz-rhtap-prod-2.secret: "ibm-ssh-key"
++  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
+   host.sysz-rhtap-prod-2.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 110b7bfa to 78cf724d on Wed Jan 3 20:29:08 2024 </h3>  
  
 <details> 
 <summary>Git Diff (39 lines)</summary>  
@@ -192,7 +885,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 110b7bfa to 78cf724d on Wed Jan 3 20:29:08 2024 </h3>  
+<h3>2: Staging changes from 110b7bfa to 78cf724d on Wed Jan 3 20:29:08 2024 </h3>  
  
 <details> 
 <summary>Git Diff (39 lines)</summary>  
@@ -362,7 +1055,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 110b7bfa to 78cf724d on Wed Jan 3 20:29:08 2024 </h3>  
+<h3>2: Development changes from 110b7bfa to 78cf724d on Wed Jan 3 20:29:08 2024 </h3>  
  
 <details> 
 <summary>Git Diff (39 lines)</summary>  
@@ -490,7 +1183,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from ba9f9cad to 110b7bfa on Wed Jan 3 16:52:00 2024 </h3>  
+<h3>3: Production changes from ba9f9cad to 110b7bfa on Wed Jan 3 16:52:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -680,7 +1373,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from ba9f9cad to 110b7bfa on Wed Jan 3 16:52:00 2024 </h3>  
+<h3>3: Staging changes from ba9f9cad to 110b7bfa on Wed Jan 3 16:52:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -886,7 +1579,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from ba9f9cad to 110b7bfa on Wed Jan 3 16:52:00 2024 </h3>  
+<h3>3: Development changes from ba9f9cad to 110b7bfa on Wed Jan 3 16:52:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -1050,7 +1743,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 9b26ed39 to ba9f9cad on Wed Jan 3 09:45:40 2024 </h3>  
+<h3>4: Production changes from 9b26ed39 to ba9f9cad on Wed Jan 3 09:45:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (52 lines)</summary>  
@@ -1217,7 +1910,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 9b26ed39 to ba9f9cad on Wed Jan 3 09:45:40 2024 </h3>  
+<h3>4: Staging changes from 9b26ed39 to ba9f9cad on Wed Jan 3 09:45:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (52 lines)</summary>  
@@ -1400,7 +2093,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 9b26ed39 to ba9f9cad on Wed Jan 3 09:45:40 2024 </h3>  
+<h3>4: Development changes from 9b26ed39 to ba9f9cad on Wed Jan 3 09:45:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (52 lines)</summary>  
@@ -1458,490 +2151,6 @@ index 74425db8..3248f92b 100644
  
  patches:
    - target: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 02570b31 to 9b26ed39 on Wed Jan 3 07:11:41 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (39 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index feb47537..01b88791 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -30,26 +30,26 @@ data:
-   dynamic.linux-amd64.security-group: "launch-wizard-1"
-   dynamic.linux-amd64.max-instances: "10"
- 
--  host.power-rhtap-prod-1.address: "150.240.147.196"
-+  host.power-rhtap-prod-1.address: "52.117.38.109"
-   host.power-rhtap-prod-1.platform: "linux/ppc64le"
-   host.power-rhtap-prod-1.user: "root"
--  host.power-rhtap-prod-1.secret: "ibm-ssh-key"
-+  host.power-rhtap-prod-1.secret: "ibm-production-ppc64le-ssh-key"
-   host.power-rhtap-prod-1.concurrency: "4"
- 
--  host.power-rhtap-prod-2.address: "150.240.147.194"
-+  host.power-rhtap-prod-2.address: "52.117.38.109"
-   host.power-rhtap-prod-2.platform: "linux/ppc64le"
-   host.power-rhtap-prod-2.user: "root"
--  host.power-rhtap-prod-2.secret: "ibm-ssh-key"
-+  host.power-rhtap-prod-2.secret: "ibm-production-ppc64le-ssh-key"
-   host.power-rhtap-prod-2.concurrency: "4"
- 
--  host.sysz-rhtap-prod-1.address: "169.59.160.96"
-+  host.sysz-rhtap-prod-1.address: "169.63.184.30"
-   host.sysz-rhtap-prod-1.platform: "linux/s390x"
-   host.sysz-rhtap-prod-1.user: "root"
--  host.sysz-rhtap-prod-1.secret: "ibm-ssh-key"
-+  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
-   host.sysz-rhtap-prod-1.concurrency: "4"
- 
--  host.sysz-rhtap-prod-2.address: "169.63.178.13"
-+  host.sysz-rhtap-prod-2.address: "169.59.164.141"
-   host.sysz-rhtap-prod-2.platform: "linux/s390x"
-   host.sysz-rhtap-prod-2.user: "root"
--  host.sysz-rhtap-prod-2.secret: "ibm-ssh-key"
-+  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
-   host.sysz-rhtap-prod-2.concurrency: "4" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (33 lines)</summary>  
-
-``` 
-./commit-02570b31/production/components/multi-platform-controller/production/kustomize.out.yaml
-155c155
-<   host.power-rhtap-prod-1.address: 52.117.38.109
----
->   host.power-rhtap-prod-1.address: 150.240.147.196
-158c158
-<   host.power-rhtap-prod-1.secret: ibm-production-ppc64le-ssh-key
----
->   host.power-rhtap-prod-1.secret: ibm-ssh-key
-160c160
-<   host.power-rhtap-prod-2.address: 52.117.38.109
----
->   host.power-rhtap-prod-2.address: 150.240.147.194
-163c163
-<   host.power-rhtap-prod-2.secret: ibm-production-ppc64le-ssh-key
----
->   host.power-rhtap-prod-2.secret: ibm-ssh-key
-165c165
-<   host.sysz-rhtap-prod-1.address: 169.63.184.30
----
->   host.sysz-rhtap-prod-1.address: 169.59.160.96
-168c168
-<   host.sysz-rhtap-prod-1.secret: ibm-production-s390x-ssh-key
----
->   host.sysz-rhtap-prod-1.secret: ibm-ssh-key
-170c170
-<   host.sysz-rhtap-prod-2.address: 169.59.164.141
----
->   host.sysz-rhtap-prod-2.address: 169.63.178.13
-173c173
-<   host.sysz-rhtap-prod-2.secret: ibm-production-s390x-ssh-key
----
->   host.sysz-rhtap-prod-2.secret: ibm-ssh-key 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-9b26ed39/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-./commit-9b26ed39/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml: (object: openshift-pipelines/tekton-chains /v1, Kind=Service) no pods found matching service labels (map[app.kubernetes.io/component:controller app.kubernetes.io/instance:default app.kubernetes.io/part-of:tekton-chains]) (check: dangling-service, remediation: Confirm that your service's selector correctly matches the labels on one of your deployments.)
-
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 02570b31 to 9b26ed39 on Wed Jan 3 07:11:41 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (39 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index feb47537..01b88791 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -30,26 +30,26 @@ data:
-   dynamic.linux-amd64.security-group: "launch-wizard-1"
-   dynamic.linux-amd64.max-instances: "10"
- 
--  host.power-rhtap-prod-1.address: "150.240.147.196"
-+  host.power-rhtap-prod-1.address: "52.117.38.109"
-   host.power-rhtap-prod-1.platform: "linux/ppc64le"
-   host.power-rhtap-prod-1.user: "root"
--  host.power-rhtap-prod-1.secret: "ibm-ssh-key"
-+  host.power-rhtap-prod-1.secret: "ibm-production-ppc64le-ssh-key"
-   host.power-rhtap-prod-1.concurrency: "4"
- 
--  host.power-rhtap-prod-2.address: "150.240.147.194"
-+  host.power-rhtap-prod-2.address: "52.117.38.109"
-   host.power-rhtap-prod-2.platform: "linux/ppc64le"
-   host.power-rhtap-prod-2.user: "root"
--  host.power-rhtap-prod-2.secret: "ibm-ssh-key"
-+  host.power-rhtap-prod-2.secret: "ibm-production-ppc64le-ssh-key"
-   host.power-rhtap-prod-2.concurrency: "4"
- 
--  host.sysz-rhtap-prod-1.address: "169.59.160.96"
-+  host.sysz-rhtap-prod-1.address: "169.63.184.30"
-   host.sysz-rhtap-prod-1.platform: "linux/s390x"
-   host.sysz-rhtap-prod-1.user: "root"
--  host.sysz-rhtap-prod-1.secret: "ibm-ssh-key"
-+  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
-   host.sysz-rhtap-prod-1.concurrency: "4"
- 
--  host.sysz-rhtap-prod-2.address: "169.63.178.13"
-+  host.sysz-rhtap-prod-2.address: "169.59.164.141"
-   host.sysz-rhtap-prod-2.platform: "linux/s390x"
-   host.sysz-rhtap-prod-2.user: "root"
--  host.sysz-rhtap-prod-2.secret: "ibm-ssh-key"
-+  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
-   host.sysz-rhtap-prod-2.concurrency: "4" 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 02570b31 to 9b26ed39 on Wed Jan 3 07:11:41 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (39 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
-index feb47537..01b88791 100644
---- a/components/multi-platform-controller/production/host-config.yaml
-+++ b/components/multi-platform-controller/production/host-config.yaml
-@@ -30,26 +30,26 @@ data:
-   dynamic.linux-amd64.security-group: "launch-wizard-1"
-   dynamic.linux-amd64.max-instances: "10"
- 
--  host.power-rhtap-prod-1.address: "150.240.147.196"
-+  host.power-rhtap-prod-1.address: "52.117.38.109"
-   host.power-rhtap-prod-1.platform: "linux/ppc64le"
-   host.power-rhtap-prod-1.user: "root"
--  host.power-rhtap-prod-1.secret: "ibm-ssh-key"
-+  host.power-rhtap-prod-1.secret: "ibm-production-ppc64le-ssh-key"
-   host.power-rhtap-prod-1.concurrency: "4"
- 
--  host.power-rhtap-prod-2.address: "150.240.147.194"
-+  host.power-rhtap-prod-2.address: "52.117.38.109"
-   host.power-rhtap-prod-2.platform: "linux/ppc64le"
-   host.power-rhtap-prod-2.user: "root"
--  host.power-rhtap-prod-2.secret: "ibm-ssh-key"
-+  host.power-rhtap-prod-2.secret: "ibm-production-ppc64le-ssh-key"
-   host.power-rhtap-prod-2.concurrency: "4"
- 
--  host.sysz-rhtap-prod-1.address: "169.59.160.96"
-+  host.sysz-rhtap-prod-1.address: "169.63.184.30"
-   host.sysz-rhtap-prod-1.platform: "linux/s390x"
-   host.sysz-rhtap-prod-1.user: "root"
--  host.sysz-rhtap-prod-1.secret: "ibm-ssh-key"
-+  host.sysz-rhtap-prod-1.secret: "ibm-production-s390x-ssh-key"
-   host.sysz-rhtap-prod-1.concurrency: "4"
- 
--  host.sysz-rhtap-prod-2.address: "169.63.178.13"
-+  host.sysz-rhtap-prod-2.address: "169.59.164.141"
-   host.sysz-rhtap-prod-2.platform: "linux/s390x"
-   host.sysz-rhtap-prod-2.user: "root"
--  host.sysz-rhtap-prod-2.secret: "ibm-ssh-key"
-+  host.sysz-rhtap-prod-2.secret: "ibm-production-s390x-ssh-key"
-   host.sysz-rhtap-prod-2.concurrency: "4" 
 ```
  
 </details> 
