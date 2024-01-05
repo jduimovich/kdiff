@@ -1,0 +1,12 @@
+diff --git a/components/authentication/base/rhtap-admins.yaml b/components/authentication/base/rhtap-admins.yaml
+index 62b85eaf..d3949d7f 100644
+--- a/components/authentication/base/rhtap-admins.yaml
++++ b/components/authentication/base/rhtap-admins.yaml
+@@ -242,6 +242,7 @@ rules:
+       - rolebindings
+     verbs:
+       - create
++      - update
+       - delete
+       - get
+       - list
