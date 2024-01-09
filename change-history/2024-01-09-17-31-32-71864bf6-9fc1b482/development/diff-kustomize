@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9fc1b482/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-71864bf6/development/components/pipeline-service/development/kustomize.out.yaml
+1325c1325
+<             memory: 128Mi
+---
+>             memory: 32Mi
