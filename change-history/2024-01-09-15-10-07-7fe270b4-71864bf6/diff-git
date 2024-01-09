@@ -1,0 +1,22 @@
+diff --git a/components/build-service/production/kustomization.yaml b/components/build-service/production/base/kustomization.yaml
+similarity index 85%
+rename from components/build-service/production/kustomization.yaml
+rename to components/build-service/production/base/kustomization.yaml
+index 18c942f5..b044ae23 100644
+--- a/components/build-service/production/kustomization.yaml
++++ b/components/build-service/production/base/kustomization.yaml
+@@ -1,8 +1,8 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base
+-- ../base/external-secrets
++- ../../base
++- ../../base/external-secrets
+ patches:
+   - path: pipelines-as-code-secret-patch.yaml
+     target:
+diff --git a/components/build-service/production/pipelines-as-code-secret-patch.yaml b/components/build-service/production/base/pipelines-as-code-secret-patch.yaml
+similarity index 100%
+rename from components/build-service/production/pipelines-as-code-secret-patch.yaml
+rename to components/build-service/production/base/pipelines-as-code-secret-patch.yaml
