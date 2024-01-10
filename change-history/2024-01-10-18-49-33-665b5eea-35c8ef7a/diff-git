@@ -1,0 +1,12 @@
+diff --git a/OWNERS b/OWNERS
+index 84cbefac..103bf7a3 100644
+--- a/OWNERS
++++ b/OWNERS
+@@ -23,7 +23,6 @@ approvers:
+ - adambkaplan
+ - gbenhaim
+ - hugares
+-- spartidarh
+ - manish-jangra
+ - mmorhun
+ - tisutisu
