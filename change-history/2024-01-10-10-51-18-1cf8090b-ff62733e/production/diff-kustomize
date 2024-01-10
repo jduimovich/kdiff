@@ -1,0 +1,38 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ff62733e/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-1cf8090b/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1326c1326
+<         image: quay.io/redhat-appstudio/tekton-results-api:dd067cad783501dc87fdec7285ca62e573fd85e3
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+1348c1348
+<             memory: 128Mi
+---
+>             memory: 32Mi
+1395c1395
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:dd067cad783501dc87fdec7285ca62e573fd85e3
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+1487d1486
+<         - -check_owner=false
+1507c1506
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:dd067cad783501dc87fdec7285ca62e573fd85e3
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ff62733e/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-1cf8090b/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1326c1326
+<         image: quay.io/redhat-appstudio/tekton-results-api:dd067cad783501dc87fdec7285ca62e573fd85e3
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+1348c1348
+<             memory: 128Mi
+---
+>             memory: 32Mi
+1395c1395
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:dd067cad783501dc87fdec7285ca62e573fd85e3
+---
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:f6bf1d11b428f1411a42dd608e56f09f79a7de31
+1487d1486
+<         - -check_owner=false
+1507c1506
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:dd067cad783501dc87fdec7285ca62e573fd85e3
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:f6bf1d11b428f1411a42dd608e56f09f79a7de31
