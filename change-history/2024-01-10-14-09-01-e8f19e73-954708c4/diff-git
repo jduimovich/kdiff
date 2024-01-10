@@ -1,0 +1,13 @@
+diff --git a/.tekton/tasks/verify-smoke-e2e.yaml b/.tekton/tasks/verify-smoke-e2e.yaml
+index 0b6445c9..de9e2e5e 100644
+--- a/.tekton/tasks/verify-smoke-e2e.yaml
++++ b/.tekton/tasks/verify-smoke-e2e.yaml
+@@ -9,7 +9,7 @@ spec:
+   params:
+   - name: PLATFORM
+     description: which environment the test is running on.
+-    default: "stage"
++    default: "verify-stage"
+   - name: TASK_RETRIES
+     description: number of times the task will be rerun
+     default: "0"

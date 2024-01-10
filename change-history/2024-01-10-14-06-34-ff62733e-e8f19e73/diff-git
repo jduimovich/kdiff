@@ -1,0 +1,48 @@
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 871b4848..485c7da1 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1881,11 +1881,11 @@ spec:
+       pipelinesAsCode:
+         enable: true
+         settings:
+-          application-name: RHTAP Staging
+-          custom-console-name: RHTAP Staging
+-          custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
+-          custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
+-          custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
++          application-name: Konflux Staging Internal
++          custom-console-name: Konflux Staging Internal
++          custom-console-url: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
++          custom-console-url-pr-details: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
++          custom-console-url-pr-tasklog: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
+   profile: all
+   pruner:
+     keep: 2
+diff --git a/components/pipeline-service/staging/stone-stage-p01/resources/kustomization.yaml b/components/pipeline-service/staging/stone-stage-p01/resources/kustomization.yaml
+index ad4b5a97..005a25ee 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/resources/kustomization.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/resources/kustomization.yaml
+@@ -21,3 +21,7 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: update-tekton-config-pac.yaml
++    target:
++      kind: TektonConfig
++      name: config
+diff --git a/components/pipeline-service/staging/stone-stage-p01/resources/update-tekton-config-pac.yaml b/components/pipeline-service/staging/stone-stage-p01/resources/update-tekton-config-pac.yaml
+new file mode 100644
+index 00000000..d0e15f63
+--- /dev/null
++++ b/components/pipeline-service/staging/stone-stage-p01/resources/update-tekton-config-pac.yaml
+@@ -0,0 +1,9 @@
++---
++- op: add
++  path: /spec/platforms/openshift/pipelinesAsCode/settings
++  value:
++    application-name: Konflux Staging Internal
++    custom-console-name: Konflux Staging Internal
++    custom-console-url: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
++    custom-console-url-pr-details: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
++    custom-console-url-pr-tasklog: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
