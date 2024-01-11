@@ -1,0 +1,35 @@
+diff --git a/components/build-service/staging/stone-stage-p01/add-webhook-target-patch.yaml b/components/build-service/staging/stone-stage-p01/add-webhook-target-patch.yaml
+new file mode 100644
+index 00000000..c5c18f90
+--- /dev/null
++++ b/components/build-service/staging/stone-stage-p01/add-webhook-target-patch.yaml
+@@ -0,0 +1,14 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: build-service-controller-manager
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        env:
++          - name: PAC_WEBHOOK_URL
++            value: https://smee-smee.apps.stone-stg-host.qc0p.p1.openshiftapps.com/redhathook12
++
+diff --git a/components/build-service/staging/stone-stage-p01/kustomization.yaml b/components/build-service/staging/stone-stage-p01/kustomization.yaml
+index 6729e3f0..b7362bc8 100644
+--- a/components/build-service/staging/stone-stage-p01/kustomization.yaml
++++ b/components/build-service/staging/stone-stage-p01/kustomization.yaml
+@@ -9,5 +9,10 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
++  - path: add-webhook-target-patch.yaml
++    target:
++      name: build-service-controller-manager
++      kind: Deployment
+ components:
+   - ../../components/rh-certs
++

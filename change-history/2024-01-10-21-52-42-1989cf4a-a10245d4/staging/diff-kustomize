@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a10245d4/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-1989cf4a/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
+743,745d742
+<         env:
+<         - name: PAC_WEBHOOK_URL
+<           value: https://smee-smee.apps.stone-stg-host.qc0p.p1.openshiftapps.com/redhathook12
