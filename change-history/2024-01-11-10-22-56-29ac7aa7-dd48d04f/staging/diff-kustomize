@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-dd48d04f/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-29ac7aa7/staging/app-of-apps-staging.yaml
+897c897
+<             clusterDir: base
+---
+>             clusterDir: ""
+901,903c901
+<           elements:
+<           - nameNormalized: stone-stage-p01
+<             values.clusterDir: stone-stage-p01
+---
+>           elements: []

@@ -1,0 +1,143 @@
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+index dbcd1695..312c5b46 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
+@@ -12,9 +12,11 @@ spec:
+               values:
+                 sourceRoot: components/monitoring/logging
+                 environment: staging
+-                clusterDir: ""
++                clusterDir: "base"
+           - list:
+-              elements: []
++              elements:
++                - nameNormalized: stone-stage-p01
++                  values.clusterDir: stone-stage-p01
+   template:
+     metadata:
+       name: monitoring-workload-logging-{{nameNormalized}}
+diff --git a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
+index c66aa63d..d05b7cf8 100644
+--- a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
++++ b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
+@@ -6,6 +6,7 @@ metadata:
+   annotations:
+     logging.openshift.io/preview-vector-collector: enabled
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "2"
+ spec:
+   collection:
+     logs:
+diff --git a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
+index b4503aa0..9e41cb7d 100644
+--- a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
++++ b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
+@@ -4,6 +4,7 @@ kind: ClusterLogForwarder
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "1"
+   name: instance
+ spec:
+   outputs:
+diff --git a/components/monitoring/logging/base/install-logging-operator.yaml b/components/monitoring/logging/base/install-logging-operator.yaml
+index c092aaee..b87aa484 100644
+--- a/components/monitoring/logging/base/install-logging-operator.yaml
++++ b/components/monitoring/logging/base/install-logging-operator.yaml
+@@ -5,7 +5,9 @@ apiVersion: operators.coreos.com/v1alpha1
+ kind: Subscription
+ metadata:
+   name: cluster-logging
+-  namespace: openshift-logging 
++  namespace: openshift-logging
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
+ spec:
+   channel: "stable" 
+   name: cluster-logging
+diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
+new file mode 100644
+index 00000000..57cef1be
+--- /dev/null
++++ b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- namespace.yaml
++- operatorgroup.yaml
+diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
+new file mode 100644
+index 00000000..22559d14
+--- /dev/null
++++ b/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
+@@ -0,0 +1,6 @@
++apiVersion: v1
++kind: Namespace
++metadata:
++  name: openshift-logging
++  annotations:
++    argocd.argoproj.io/sync-wave: "-1"
+diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/operatorgroup.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/operatorgroup.yaml
+new file mode 100644
+index 00000000..4541359e
+--- /dev/null
++++ b/components/monitoring/logging/base/logging-operator-prerequisite/operatorgroup.yaml
+@@ -0,0 +1,10 @@
++apiVersion: operators.coreos.com/v1
++kind: OperatorGroup
++metadata:
++  name: cluster-logging
++  namespace: openshift-logging
++  annotations:
++    argocd.argoproj.io/sync-wave: "0"
++spec:
++  targetNamespaces:
++  - openshift-logging
+diff --git a/components/monitoring/logging/production/kustomization.yaml b/components/monitoring/logging/production/base/kustomization.yaml
+similarity index 94%
+rename from components/monitoring/logging/production/kustomization.yaml
+rename to components/monitoring/logging/production/base/kustomization.yaml
+index 3eee4ac5..32a56c63 100644
+--- a/components/monitoring/logging/production/kustomization.yaml
++++ b/components/monitoring/logging/production/base/kustomization.yaml
+@@ -1,8 +1,8 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base
+-- ../base/external-secrets
++- ../../base
++- ../../base/external-secrets
+ patches:
+   - target:
+       group: external-secrets.io
+diff --git a/components/monitoring/logging/staging/kustomization.yaml b/components/monitoring/logging/staging/base/kustomization.yaml
+similarity index 94%
+rename from components/monitoring/logging/staging/kustomization.yaml
+rename to components/monitoring/logging/staging/base/kustomization.yaml
+index 2d89aa0c..0b350aa2 100644
+--- a/components/monitoring/logging/staging/kustomization.yaml
++++ b/components/monitoring/logging/staging/base/kustomization.yaml
+@@ -1,8 +1,8 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base
+-- ../base/external-secrets
++- ../../base
++- ../../base/external-secrets
+ patches:
+   - target:
+       group: external-secrets.io
+diff --git a/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml b/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml
+new file mode 100644
+index 00000000..ea2a0a11
+--- /dev/null
++++ b/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- ../../base/logging-operator-prerequisite
