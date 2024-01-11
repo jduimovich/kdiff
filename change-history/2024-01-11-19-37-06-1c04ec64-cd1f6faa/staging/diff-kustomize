@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-cd1f6faa/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-1c04ec64/staging/components/tekton-ci/staging/kustomize.out.yaml
+255a256,273
+>   name: ec-golden-image
+> spec:
+>   url: https://github.com/enterprise-contract/golden-container
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>   name: enterprise-contract
+> spec:
+>   url: https://github.com/enterprise-contract/enterprise-contract-controller
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

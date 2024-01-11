@@ -1,0 +1,32 @@
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index de5e31f4..8b3e558d 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -15,13 +15,6 @@ spec:
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
+-metadata:
+-  name: enterprise-contract
+-spec:
+-  url: "https://github.com/enterprise-contract/enterprise-contract-controller"
+----
+-apiVersion: pipelinesascode.tekton.dev/v1alpha1
+-kind: Repository
+ metadata:
+   name: application-service
+ spec:
+@@ -85,13 +78,6 @@ spec:
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
+-metadata:
+-  name: ec-golden-image
+-spec:
+-  url: "https://github.com/enterprise-contract/golden-container"
+----
+-apiVersion: pipelinesascode.tekton.dev/v1alpha1
+-kind: Repository
+ metadata:
+   name: gitops-repo-pruner
+ spec:
