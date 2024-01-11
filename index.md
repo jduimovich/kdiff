@@ -1,12 +1,1290 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Jan 11 12:08:32 UTC 2024
+### This file generated at Thu Jan 11 16:04:01 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 2badf5e8 to e4b40876 on Thu Jan 11 11:12:22 2024 </h3>  
+<h3>1: Production changes from c40a2a80 to d3594c2c on Thu Jan 11 15:33:42 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/ui/README.md b/components/ui/README.md
+index 234c4e2c..6697cecf 100644
+--- a/components/ui/README.md
++++ b/components/ui/README.md
+@@ -9,7 +9,7 @@ There are four components for the ui.
+ 
+ [hac](https://github.com/openshift/hac-core) - A plugin for `chrome` (loaded by `chrome`).
+ 
+-[hav-dev](https://github.com/openshift/hac-dev) - A plugin for `hac` (loaded by `hac`).
++[hac-dev](https://github.com/openshift/hac-dev) - A plugin for `hac` (loaded by `hac`).
+ 
+ `proxy` - Forwards requests to the kube api, and hosts
+ static files required by the chrome component 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from c40a2a80 to d3594c2c on Thu Jan 11 15:33:42 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/ui/README.md b/components/ui/README.md
+index 234c4e2c..6697cecf 100644
+--- a/components/ui/README.md
++++ b/components/ui/README.md
+@@ -9,7 +9,7 @@ There are four components for the ui.
+ 
+ [hac](https://github.com/openshift/hac-core) - A plugin for `chrome` (loaded by `chrome`).
+ 
+-[hav-dev](https://github.com/openshift/hac-dev) - A plugin for `hac` (loaded by `hac`).
++[hac-dev](https://github.com/openshift/hac-dev) - A plugin for `hac` (loaded by `hac`).
+ 
+ `proxy` - Forwards requests to the kube api, and hosts
+ static files required by the chrome component 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from c40a2a80 to d3594c2c on Thu Jan 11 15:33:42 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/ui/README.md b/components/ui/README.md
+index 234c4e2c..6697cecf 100644
+--- a/components/ui/README.md
++++ b/components/ui/README.md
+@@ -9,7 +9,7 @@ There are four components for the ui.
+ 
+ [hac](https://github.com/openshift/hac-core) - A plugin for `chrome` (loaded by `chrome`).
+ 
+-[hav-dev](https://github.com/openshift/hac-dev) - A plugin for `hac` (loaded by `hac`).
++[hac-dev](https://github.com/openshift/hac-dev) - A plugin for `hac` (loaded by `hac`).
+ 
+ `proxy` - Forwards requests to the kube api, and hosts
+ static files required by the chrome component 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from e4b40876 to c40a2a80 on Thu Jan 11 13:29:52 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (193 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/base/rbac/edit-secrets.yaml b/components/sandbox/base/rbac/edit-secrets.yaml
+deleted file mode 100644
+index 6d5567d8..00000000
+--- a/components/sandbox/base/rbac/edit-secrets.yaml
++++ /dev/null
+@@ -1,37 +0,0 @@
+-kind: Role
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: edit-secrets
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - "secrets"
+-  verbs:
+-  - "get"
+-  - "list"
+-  - "watch"
+-  - "create"
+-  - "update"
+-  - "patch"
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: edit-secrets
+-subjects:
+-  - kind: User
+-    name: mfrancisc
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: MatousJobanek
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: alexeykazakov
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: xcoulon
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: edit-secrets
+diff --git a/components/sandbox/base/rbac/kustomization.yaml b/components/sandbox/base/rbac/kustomization.yaml
+index 0d2d9697..8e00a8b7 100644
+--- a/components/sandbox/base/rbac/kustomization.yaml
++++ b/components/sandbox/base/rbac/kustomization.yaml
+@@ -1,5 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- edit-secrets.yaml
+ - sandbox-sre-admins.yaml
+diff --git a/components/sandbox/base/rbac/view-spacebindingrequests.yaml b/components/sandbox/base/rbac/view-spacebindingrequests.yaml
+deleted file mode 100644
+index a6771ac0..00000000
+--- a/components/sandbox/base/rbac/view-spacebindingrequests.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-kind: ClusterRole
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: view-spacebindingrequests
+-rules:
+-- apiGroups:
+-  - "toolchain.dev.openshift.com"
+-  resources:
+-  - "spacebindingrequests"
+-  verbs:
+-  - "get"
+-  - "list"
+----
+-kind: ClusterRoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: view-spacebindingrequests
+-subjects:
+-  - kind: User
+-    name: mfrancisc
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: view-spacebindingrequests
+diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+index 37501832..c23eb649 100644
+--- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ namespace: toolchain-host-operator
+ resources:
+ - ../../base
+-- rbac
++- ./rbac
+diff --git a/components/sandbox/toolchain-host-operator/base/rbac/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..d7196358
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/base/rbac/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: toolchain-host-operator
++resources:
++- sandbox-sre-admins.yaml
+diff --git a/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
+index feab41c8..84f2295a 100644
+--- a/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
++++ b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
+@@ -1,7 +1,8 @@
++---
+ kind: RoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+-  name: sandbox-sre-admins
++  name: sandbox-sre-host-admins
+   namespace: sandbox-sre-host
+ subjects:
+   - kind: User
+@@ -20,11 +21,11 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: admin
+- ---
++---
+  kind: RoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+-   name: sandbox-sre-admins
++   name: sandbox-sre-host-operator-admins
+    namespace: toolchain-host-operator
+  subjects:
+    - kind: User
+@@ -42,4 +43,4 @@ roleRef:
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+-   name: admin
+\ No newline at end of file
++   name: admin
+diff --git a/components/sandbox/toolchain-member-operator/base/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+index dedf0ead..e4f884a7 100644
+--- a/components/sandbox/toolchain-member-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ namespace: toolchain-member-operator
+ resources:
+ - ../../base
+-- rbac
++- ./rbac
+diff --git a/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml
+index 7c5fc3cc..2c71bbaa 100644
+--- a/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml
+@@ -4,3 +4,4 @@ namespace: toolchain-member-operator
+ resources:
+ - inspect-pods.yaml
+ - register-cluster-extra-member-permissions.yaml
++- sandbox-sre-admins.yaml
+diff --git a/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
+index 1a34b458..6e44eba5 100644
+--- a/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
++++ b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
+@@ -1,7 +1,8 @@
++---
+ kind: RoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+-  name: sandbox-sre-admins
++  name: sandbox-sre-member-admins
+   namespace: sandbox-sre-member
+ subjects:
+   - kind: User
+@@ -20,11 +21,11 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: admin
+- ---
++---
+  kind: RoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+-   name: sandbox-sre-admins
++   name: sandbox-sre-member-operator-admins
+    namespace: toolchain-member-operator
+  subjects:
+    - kind: User
+@@ -42,4 +43,4 @@ roleRef:
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+-   name: admin
+\ No newline at end of file
++   name: admin 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from e4b40876 to c40a2a80 on Thu Jan 11 13:29:52 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (193 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/base/rbac/edit-secrets.yaml b/components/sandbox/base/rbac/edit-secrets.yaml
+deleted file mode 100644
+index 6d5567d8..00000000
+--- a/components/sandbox/base/rbac/edit-secrets.yaml
++++ /dev/null
+@@ -1,37 +0,0 @@
+-kind: Role
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: edit-secrets
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - "secrets"
+-  verbs:
+-  - "get"
+-  - "list"
+-  - "watch"
+-  - "create"
+-  - "update"
+-  - "patch"
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: edit-secrets
+-subjects:
+-  - kind: User
+-    name: mfrancisc
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: MatousJobanek
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: alexeykazakov
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: xcoulon
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: edit-secrets
+diff --git a/components/sandbox/base/rbac/kustomization.yaml b/components/sandbox/base/rbac/kustomization.yaml
+index 0d2d9697..8e00a8b7 100644
+--- a/components/sandbox/base/rbac/kustomization.yaml
++++ b/components/sandbox/base/rbac/kustomization.yaml
+@@ -1,5 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- edit-secrets.yaml
+ - sandbox-sre-admins.yaml
+diff --git a/components/sandbox/base/rbac/view-spacebindingrequests.yaml b/components/sandbox/base/rbac/view-spacebindingrequests.yaml
+deleted file mode 100644
+index a6771ac0..00000000
+--- a/components/sandbox/base/rbac/view-spacebindingrequests.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-kind: ClusterRole
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: view-spacebindingrequests
+-rules:
+-- apiGroups:
+-  - "toolchain.dev.openshift.com"
+-  resources:
+-  - "spacebindingrequests"
+-  verbs:
+-  - "get"
+-  - "list"
+----
+-kind: ClusterRoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: view-spacebindingrequests
+-subjects:
+-  - kind: User
+-    name: mfrancisc
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: view-spacebindingrequests
+diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+index 37501832..c23eb649 100644
+--- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ namespace: toolchain-host-operator
+ resources:
+ - ../../base
+-- rbac
++- ./rbac
+diff --git a/components/sandbox/toolchain-host-operator/base/rbac/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..d7196358
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/base/rbac/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: toolchain-host-operator
++resources:
++- sandbox-sre-admins.yaml
+diff --git a/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
+index feab41c8..84f2295a 100644
+--- a/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
++++ b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
+@@ -1,7 +1,8 @@
++---
+ kind: RoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+-  name: sandbox-sre-admins
++  name: sandbox-sre-host-admins
+   namespace: sandbox-sre-host
+ subjects:
+   - kind: User
+@@ -20,11 +21,11 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: admin
+- ---
++---
+  kind: RoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+-   name: sandbox-sre-admins
++   name: sandbox-sre-host-operator-admins
+    namespace: toolchain-host-operator
+  subjects:
+    - kind: User
+@@ -42,4 +43,4 @@ roleRef:
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+-   name: admin
+\ No newline at end of file
++   name: admin
+diff --git a/components/sandbox/toolchain-member-operator/base/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+index dedf0ead..e4f884a7 100644
+--- a/components/sandbox/toolchain-member-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ namespace: toolchain-member-operator
+ resources:
+ - ../../base
+-- rbac
++- ./rbac
+diff --git a/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml
+index 7c5fc3cc..2c71bbaa 100644
+--- a/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml
+@@ -4,3 +4,4 @@ namespace: toolchain-member-operator
+ resources:
+ - inspect-pods.yaml
+ - register-cluster-extra-member-permissions.yaml
++- sandbox-sre-admins.yaml
+diff --git a/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
+index 1a34b458..6e44eba5 100644
+--- a/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
++++ b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
+@@ -1,7 +1,8 @@
++---
+ kind: RoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+-  name: sandbox-sre-admins
++  name: sandbox-sre-member-admins
+   namespace: sandbox-sre-member
+ subjects:
+   - kind: User
+@@ -20,11 +21,11 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: admin
+- ---
++---
+  kind: RoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+-   name: sandbox-sre-admins
++   name: sandbox-sre-member-operator-admins
+    namespace: toolchain-member-operator
+  subjects:
+    - kind: User
+@@ -42,4 +43,4 @@ roleRef:
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+-   name: admin
+\ No newline at end of file
++   name: admin 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from e4b40876 to c40a2a80 on Thu Jan 11 13:29:52 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (193 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/base/rbac/edit-secrets.yaml b/components/sandbox/base/rbac/edit-secrets.yaml
+deleted file mode 100644
+index 6d5567d8..00000000
+--- a/components/sandbox/base/rbac/edit-secrets.yaml
++++ /dev/null
+@@ -1,37 +0,0 @@
+-kind: Role
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: edit-secrets
+-rules:
+-- apiGroups:
+-  - ""
+-  resources:
+-  - "secrets"
+-  verbs:
+-  - "get"
+-  - "list"
+-  - "watch"
+-  - "create"
+-  - "update"
+-  - "patch"
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: edit-secrets
+-subjects:
+-  - kind: User
+-    name: mfrancisc
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: MatousJobanek
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: alexeykazakov
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: xcoulon
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: edit-secrets
+diff --git a/components/sandbox/base/rbac/kustomization.yaml b/components/sandbox/base/rbac/kustomization.yaml
+index 0d2d9697..8e00a8b7 100644
+--- a/components/sandbox/base/rbac/kustomization.yaml
++++ b/components/sandbox/base/rbac/kustomization.yaml
+@@ -1,5 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- edit-secrets.yaml
+ - sandbox-sre-admins.yaml
+diff --git a/components/sandbox/base/rbac/view-spacebindingrequests.yaml b/components/sandbox/base/rbac/view-spacebindingrequests.yaml
+deleted file mode 100644
+index a6771ac0..00000000
+--- a/components/sandbox/base/rbac/view-spacebindingrequests.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-kind: ClusterRole
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: view-spacebindingrequests
+-rules:
+-- apiGroups:
+-  - "toolchain.dev.openshift.com"
+-  resources:
+-  - "spacebindingrequests"
+-  verbs:
+-  - "get"
+-  - "list"
+----
+-kind: ClusterRoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: view-spacebindingrequests
+-subjects:
+-  - kind: User
+-    name: mfrancisc
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
+-  name: view-spacebindingrequests
+diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+index 37501832..c23eb649 100644
+--- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ namespace: toolchain-host-operator
+ resources:
+ - ../../base
+-- rbac
++- ./rbac
+diff --git a/components/sandbox/toolchain-host-operator/base/rbac/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/rbac/kustomization.yaml
+new file mode 100644
+index 00000000..d7196358
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/base/rbac/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: toolchain-host-operator
++resources:
++- sandbox-sre-admins.yaml
+diff --git a/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
+index feab41c8..84f2295a 100644
+--- a/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
++++ b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
+@@ -1,7 +1,8 @@
++---
+ kind: RoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+-  name: sandbox-sre-admins
++  name: sandbox-sre-host-admins
+   namespace: sandbox-sre-host
+ subjects:
+   - kind: User
+@@ -20,11 +21,11 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: admin
+- ---
++---
+  kind: RoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+-   name: sandbox-sre-admins
++   name: sandbox-sre-host-operator-admins
+    namespace: toolchain-host-operator
+  subjects:
+    - kind: User
+@@ -42,4 +43,4 @@ roleRef:
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+-   name: admin
+\ No newline at end of file
++   name: admin
+diff --git a/components/sandbox/toolchain-member-operator/base/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+index dedf0ead..e4f884a7 100644
+--- a/components/sandbox/toolchain-member-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ namespace: toolchain-member-operator
+ resources:
+ - ../../base
+-- rbac
++- ./rbac
+diff --git a/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml
+index 7c5fc3cc..2c71bbaa 100644
+--- a/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/base/rbac/kustomization.yaml
+@@ -4,3 +4,4 @@ namespace: toolchain-member-operator
+ resources:
+ - inspect-pods.yaml
+ - register-cluster-extra-member-permissions.yaml
++- sandbox-sre-admins.yaml
+diff --git a/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
+index 1a34b458..6e44eba5 100644
+--- a/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
++++ b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
+@@ -1,7 +1,8 @@
++---
+ kind: RoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+-  name: sandbox-sre-admins
++  name: sandbox-sre-member-admins
+   namespace: sandbox-sre-member
+ subjects:
+   - kind: User
+@@ -20,11 +21,11 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: admin
+- ---
++---
+  kind: RoleBinding
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+-   name: sandbox-sre-admins
++   name: sandbox-sre-member-operator-admins
+    namespace: toolchain-member-operator
+  subjects:
+    - kind: User
+@@ -42,4 +43,4 @@ roleRef:
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+-   name: admin
+\ No newline at end of file
++   name: admin 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 2badf5e8 to e4b40876 on Thu Jan 11 11:12:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -154,7 +1432,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 2badf5e8 to e4b40876 on Thu Jan 11 11:12:22 2024 </h3>  
+<h3>3: Staging changes from 2badf5e8 to e4b40876 on Thu Jan 11 11:12:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -327,7 +1605,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 2badf5e8 to e4b40876 on Thu Jan 11 11:12:22 2024 </h3>  
+<h3>3: Development changes from 2badf5e8 to e4b40876 on Thu Jan 11 11:12:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -458,7 +1736,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from dd48d04f to 2badf5e8 on Thu Jan 11 10:23:03 2024 </h3>  
+<h3>4: Production changes from dd48d04f to 2badf5e8 on Thu Jan 11 10:23:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -643,7 +1921,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from dd48d04f to 2badf5e8 on Thu Jan 11 10:23:03 2024 </h3>  
+<h3>4: Staging changes from dd48d04f to 2badf5e8 on Thu Jan 11 10:23:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -849,7 +2127,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from dd48d04f to 2badf5e8 on Thu Jan 11 10:23:03 2024 </h3>  
+<h3>4: Development changes from dd48d04f to 2badf5e8 on Thu Jan 11 10:23:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -930,1493 +2208,6 @@ index eda70283..4e3475e7 100644
  
  patches:
    - target: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 29ac7aa7 to dd48d04f on Thu Jan 11 10:22:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (143 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-index dbcd1695..312c5b46 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-@@ -12,9 +12,11 @@ spec:
-               values:
-                 sourceRoot: components/monitoring/logging
-                 environment: staging
--                clusterDir: ""
-+                clusterDir: "base"
-           - list:
--              elements: []
-+              elements:
-+                - nameNormalized: stone-stage-p01
-+                  values.clusterDir: stone-stage-p01
-   template:
-     metadata:
-       name: monitoring-workload-logging-{{nameNormalized}}
-diff --git a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-index c66aa63d..d05b7cf8 100644
---- a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-+++ b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-@@ -6,6 +6,7 @@ metadata:
-   annotations:
-     logging.openshift.io/preview-vector-collector: enabled
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "2"
- spec:
-   collection:
-     logs:
-diff --git a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
-index b4503aa0..9e41cb7d 100644
---- a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
-+++ b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
-@@ -4,6 +4,7 @@ kind: ClusterLogForwarder
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "1"
-   name: instance
- spec:
-   outputs:
-diff --git a/components/monitoring/logging/base/install-logging-operator.yaml b/components/monitoring/logging/base/install-logging-operator.yaml
-index c092aaee..b87aa484 100644
---- a/components/monitoring/logging/base/install-logging-operator.yaml
-+++ b/components/monitoring/logging/base/install-logging-operator.yaml
-@@ -5,7 +5,9 @@ apiVersion: operators.coreos.com/v1alpha1
- kind: Subscription
- metadata:
-   name: cluster-logging
--  namespace: openshift-logging 
-+  namespace: openshift-logging
-+  annotations:
-+    argocd.argoproj.io/sync-wave: "0"
- spec:
-   channel: "stable" 
-   name: cluster-logging
-diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
-new file mode 100644
-index 00000000..57cef1be
---- /dev/null
-+++ b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- namespace.yaml
-+- operatorgroup.yaml
-diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
-new file mode 100644
-index 00000000..22559d14
---- /dev/null
-+++ b/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: v1
-+kind: Namespace
-+metadata:
-+  name: openshift-logging
-+  annotations:
-+    argocd.argoproj.io/sync-wave: "-1"
-diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/operatorgroup.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/operatorgroup.yaml
-new file mode 100644
-index 00000000..4541359e
---- /dev/null
-+++ b/components/monitoring/logging/base/logging-operator-prerequisite/operatorgroup.yaml
-@@ -0,0 +1,10 @@
-+apiVersion: operators.coreos.com/v1
-+kind: OperatorGroup
-+metadata:
-+  name: cluster-logging
-+  namespace: openshift-logging
-+  annotations:
-+    argocd.argoproj.io/sync-wave: "0"
-+spec:
-+  targetNamespaces:
-+  - openshift-logging
-diff --git a/components/monitoring/logging/production/kustomization.yaml b/components/monitoring/logging/production/base/kustomization.yaml
-similarity index 94%
-rename from components/monitoring/logging/production/kustomization.yaml
-rename to components/monitoring/logging/production/base/kustomization.yaml
-index 3eee4ac5..32a56c63 100644
---- a/components/monitoring/logging/production/kustomization.yaml
-+++ b/components/monitoring/logging/production/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- ../base
--- ../base/external-secrets
-+- ../../base
-+- ../../base/external-secrets
- patches:
-   - target:
-       group: external-secrets.io
-diff --git a/components/monitoring/logging/staging/kustomization.yaml b/components/monitoring/logging/staging/base/kustomization.yaml
-similarity index 94%
-rename from components/monitoring/logging/staging/kustomization.yaml
-rename to components/monitoring/logging/staging/base/kustomization.yaml
-index 2d89aa0c..0b350aa2 100644
---- a/components/monitoring/logging/staging/kustomization.yaml
-+++ b/components/monitoring/logging/staging/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- ../base
--- ../base/external-secrets
-+- ../../base
-+- ../../base/external-secrets
- patches:
-   - target:
-       group: external-secrets.io
-diff --git a/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml b/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml
-new file mode 100644
-index 00000000..ea2a0a11
---- /dev/null
-+++ b/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-+- ../../base/logging-operator-prerequisite 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (11 lines)</summary>  
-
-``` 
-./commit-29ac7aa7/production/app-of-apps-production.yaml
-943c943
-<             clusterDir: base
----
->             clusterDir: ""
-947,949c947
-<           elements:
-<           - nameNormalized: stone-stage-p01
-<             values.clusterDir: stone-stage-p01
----
->           elements: [] 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 29ac7aa7 to dd48d04f on Thu Jan 11 10:22:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (143 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-index dbcd1695..312c5b46 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-@@ -12,9 +12,11 @@ spec:
-               values:
-                 sourceRoot: components/monitoring/logging
-                 environment: staging
--                clusterDir: ""
-+                clusterDir: "base"
-           - list:
--              elements: []
-+              elements:
-+                - nameNormalized: stone-stage-p01
-+                  values.clusterDir: stone-stage-p01
-   template:
-     metadata:
-       name: monitoring-workload-logging-{{nameNormalized}}
-diff --git a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-index c66aa63d..d05b7cf8 100644
---- a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-+++ b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-@@ -6,6 +6,7 @@ metadata:
-   annotations:
-     logging.openshift.io/preview-vector-collector: enabled
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "2"
- spec:
-   collection:
-     logs:
-diff --git a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
-index b4503aa0..9e41cb7d 100644
---- a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
-+++ b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
-@@ -4,6 +4,7 @@ kind: ClusterLogForwarder
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "1"
-   name: instance
- spec:
-   outputs:
-diff --git a/components/monitoring/logging/base/install-logging-operator.yaml b/components/monitoring/logging/base/install-logging-operator.yaml
-index c092aaee..b87aa484 100644
---- a/components/monitoring/logging/base/install-logging-operator.yaml
-+++ b/components/monitoring/logging/base/install-logging-operator.yaml
-@@ -5,7 +5,9 @@ apiVersion: operators.coreos.com/v1alpha1
- kind: Subscription
- metadata:
-   name: cluster-logging
--  namespace: openshift-logging 
-+  namespace: openshift-logging
-+  annotations:
-+    argocd.argoproj.io/sync-wave: "0"
- spec:
-   channel: "stable" 
-   name: cluster-logging
-diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
-new file mode 100644
-index 00000000..57cef1be
---- /dev/null
-+++ b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- namespace.yaml
-+- operatorgroup.yaml
-diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
-new file mode 100644
-index 00000000..22559d14
---- /dev/null
-+++ b/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: v1
-+kind: Namespace
-+metadata:
-+  name: openshift-logging
-+  annotations:
-+    argocd.argoproj.io/sync-wave: "-1"
-diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/operatorgroup.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/operatorgroup.yaml
-new file mode 100644
-index 00000000..4541359e
---- /dev/null
-+++ b/components/monitoring/logging/base/logging-operator-prerequisite/operatorgroup.yaml
-@@ -0,0 +1,10 @@
-+apiVersion: operators.coreos.com/v1
-+kind: OperatorGroup
-+metadata:
-+  name: cluster-logging
-+  namespace: openshift-logging
-+  annotations:
-+    argocd.argoproj.io/sync-wave: "0"
-+spec:
-+  targetNamespaces:
-+  - openshift-logging
-diff --git a/components/monitoring/logging/production/kustomization.yaml b/components/monitoring/logging/production/base/kustomization.yaml
-similarity index 94%
-rename from components/monitoring/logging/production/kustomization.yaml
-rename to components/monitoring/logging/production/base/kustomization.yaml
-index 3eee4ac5..32a56c63 100644
---- a/components/monitoring/logging/production/kustomization.yaml
-+++ b/components/monitoring/logging/production/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- ../base
--- ../base/external-secrets
-+- ../../base
-+- ../../base/external-secrets
- patches:
-   - target:
-       group: external-secrets.io
-diff --git a/components/monitoring/logging/staging/kustomization.yaml b/components/monitoring/logging/staging/base/kustomization.yaml
-similarity index 94%
-rename from components/monitoring/logging/staging/kustomization.yaml
-rename to components/monitoring/logging/staging/base/kustomization.yaml
-index 2d89aa0c..0b350aa2 100644
---- a/components/monitoring/logging/staging/kustomization.yaml
-+++ b/components/monitoring/logging/staging/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- ../base
--- ../base/external-secrets
-+- ../../base
-+- ../../base/external-secrets
- patches:
-   - target:
-       group: external-secrets.io
-diff --git a/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml b/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml
-new file mode 100644
-index 00000000..ea2a0a11
---- /dev/null
-+++ b/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-+- ../../base/logging-operator-prerequisite 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (11 lines)</summary>  
-
-``` 
-./commit-29ac7aa7/staging/app-of-apps-staging.yaml
-897c897
-<             clusterDir: base
----
->             clusterDir: ""
-901,903c901
-<           elements:
-<           - nameNormalized: stone-stage-p01
-<             values.clusterDir: stone-stage-p01
----
->           elements: [] 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 29ac7aa7 to dd48d04f on Thu Jan 11 10:22:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (143 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-index dbcd1695..312c5b46 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/monitoring-workload-logging/monitoring-workload-logging.yaml
-@@ -12,9 +12,11 @@ spec:
-               values:
-                 sourceRoot: components/monitoring/logging
-                 environment: staging
--                clusterDir: ""
-+                clusterDir: "base"
-           - list:
--              elements: []
-+              elements:
-+                - nameNormalized: stone-stage-p01
-+                  values.clusterDir: stone-stage-p01
-   template:
-     metadata:
-       name: monitoring-workload-logging-{{nameNormalized}}
-diff --git a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-index c66aa63d..d05b7cf8 100644
---- a/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-+++ b/components/monitoring/logging/base/configure-logging/configure-log-collectors.yaml
-@@ -6,6 +6,7 @@ metadata:
-   annotations:
-     logging.openshift.io/preview-vector-collector: enabled
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "2"
- spec:
-   collection:
-     logs:
-diff --git a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
-index b4503aa0..9e41cb7d 100644
---- a/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
-+++ b/components/monitoring/logging/base/configure-logging/configure-logforwarder.yaml
-@@ -4,6 +4,7 @@ kind: ClusterLogForwarder
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "1"
-   name: instance
- spec:
-   outputs:
-diff --git a/components/monitoring/logging/base/install-logging-operator.yaml b/components/monitoring/logging/base/install-logging-operator.yaml
-index c092aaee..b87aa484 100644
---- a/components/monitoring/logging/base/install-logging-operator.yaml
-+++ b/components/monitoring/logging/base/install-logging-operator.yaml
-@@ -5,7 +5,9 @@ apiVersion: operators.coreos.com/v1alpha1
- kind: Subscription
- metadata:
-   name: cluster-logging
--  namespace: openshift-logging 
-+  namespace: openshift-logging
-+  annotations:
-+    argocd.argoproj.io/sync-wave: "0"
- spec:
-   channel: "stable" 
-   name: cluster-logging
-diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
-new file mode 100644
-index 00000000..57cef1be
---- /dev/null
-+++ b/components/monitoring/logging/base/logging-operator-prerequisite/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- namespace.yaml
-+- operatorgroup.yaml
-diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
-new file mode 100644
-index 00000000..22559d14
---- /dev/null
-+++ b/components/monitoring/logging/base/logging-operator-prerequisite/namespace.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: v1
-+kind: Namespace
-+metadata:
-+  name: openshift-logging
-+  annotations:
-+    argocd.argoproj.io/sync-wave: "-1"
-diff --git a/components/monitoring/logging/base/logging-operator-prerequisite/operatorgroup.yaml b/components/monitoring/logging/base/logging-operator-prerequisite/operatorgroup.yaml
-new file mode 100644
-index 00000000..4541359e
---- /dev/null
-+++ b/components/monitoring/logging/base/logging-operator-prerequisite/operatorgroup.yaml
-@@ -0,0 +1,10 @@
-+apiVersion: operators.coreos.com/v1
-+kind: OperatorGroup
-+metadata:
-+  name: cluster-logging
-+  namespace: openshift-logging
-+  annotations:
-+    argocd.argoproj.io/sync-wave: "0"
-+spec:
-+  targetNamespaces:
-+  - openshift-logging
-diff --git a/components/monitoring/logging/production/kustomization.yaml b/components/monitoring/logging/production/base/kustomization.yaml
-similarity index 94%
-rename from components/monitoring/logging/production/kustomization.yaml
-rename to components/monitoring/logging/production/base/kustomization.yaml
-index 3eee4ac5..32a56c63 100644
---- a/components/monitoring/logging/production/kustomization.yaml
-+++ b/components/monitoring/logging/production/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- ../base
--- ../base/external-secrets
-+- ../../base
-+- ../../base/external-secrets
- patches:
-   - target:
-       group: external-secrets.io
-diff --git a/components/monitoring/logging/staging/kustomization.yaml b/components/monitoring/logging/staging/base/kustomization.yaml
-similarity index 94%
-rename from components/monitoring/logging/staging/kustomization.yaml
-rename to components/monitoring/logging/staging/base/kustomization.yaml
-index 2d89aa0c..0b350aa2 100644
---- a/components/monitoring/logging/staging/kustomization.yaml
-+++ b/components/monitoring/logging/staging/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- ../base
--- ../base/external-secrets
-+- ../../base
-+- ../../base/external-secrets
- patches:
-   - target:
-       group: external-secrets.io
-diff --git a/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml b/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml
-new file mode 100644
-index 00000000..ea2a0a11
---- /dev/null
-+++ b/components/monitoring/logging/staging/stone-stage-p01/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-+- ../../base/logging-operator-prerequisite 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from a10245d4 to 29ac7aa7 on Thu Jan 11 09:00:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (126 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/base/rbac/sandbox-sre-admins.yaml
-index e7a2ab48..5014b416 100644
---- a/components/sandbox/base/rbac/sandbox-sre-admins.yaml
-+++ b/components/sandbox/base/rbac/sandbox-sre-admins.yaml
-@@ -35,7 +35,7 @@ rules:
- - apiGroups:
-   - "toolchain.dev.openshift.com"
-   resources:
--  - "spacebindingrequests"
-+  - "*"
-   verbs:
-   - "*"
- - apiGroups:
-diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-index 3b3b8a81..37501832 100644
---- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-+++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-@@ -3,3 +3,4 @@ kind: Kustomization
- namespace: toolchain-host-operator
- resources:
- - ../../base
-+- rbac
-diff --git a/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
-new file mode 100644
-index 00000000..feab41c8
---- /dev/null
-+++ b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
-@@ -0,0 +1,45 @@
-+kind: RoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: sandbox-sre-admins
-+  namespace: sandbox-sre-host
-+subjects:
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: MatousJobanek
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: alexeykazakov
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: xcoulon
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: mfrancisc
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: admin
-+ ---
-+ kind: RoleBinding
-+ apiVersion: rbac.authorization.k8s.io/v1
-+ metadata:
-+   name: sandbox-sre-admins
-+   namespace: toolchain-host-operator
-+ subjects:
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: MatousJobanek
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: alexeykazakov
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: xcoulon
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: mfrancisc
-+ roleRef:
-+   apiGroup: rbac.authorization.k8s.io
-+   kind: ClusterRole
-+   name: admin
-\ No newline at end of file
-diff --git a/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
-new file mode 100644
-index 00000000..1a34b458
---- /dev/null
-+++ b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
-@@ -0,0 +1,45 @@
-+kind: RoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: sandbox-sre-admins
-+  namespace: sandbox-sre-member
-+subjects:
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: MatousJobanek
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: alexeykazakov
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: xcoulon
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: mfrancisc
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: admin
-+ ---
-+ kind: RoleBinding
-+ apiVersion: rbac.authorization.k8s.io/v1
-+ metadata:
-+   name: sandbox-sre-admins
-+   namespace: toolchain-member-operator
-+ subjects:
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: MatousJobanek
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: alexeykazakov
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: xcoulon
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: mfrancisc
-+ roleRef:
-+   apiGroup: rbac.authorization.k8s.io
-+   kind: ClusterRole
-+   name: admin
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from a10245d4 to 29ac7aa7 on Thu Jan 11 09:00:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (126 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/base/rbac/sandbox-sre-admins.yaml
-index e7a2ab48..5014b416 100644
---- a/components/sandbox/base/rbac/sandbox-sre-admins.yaml
-+++ b/components/sandbox/base/rbac/sandbox-sre-admins.yaml
-@@ -35,7 +35,7 @@ rules:
- - apiGroups:
-   - "toolchain.dev.openshift.com"
-   resources:
--  - "spacebindingrequests"
-+  - "*"
-   verbs:
-   - "*"
- - apiGroups:
-diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-index 3b3b8a81..37501832 100644
---- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-+++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-@@ -3,3 +3,4 @@ kind: Kustomization
- namespace: toolchain-host-operator
- resources:
- - ../../base
-+- rbac
-diff --git a/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
-new file mode 100644
-index 00000000..feab41c8
---- /dev/null
-+++ b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
-@@ -0,0 +1,45 @@
-+kind: RoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: sandbox-sre-admins
-+  namespace: sandbox-sre-host
-+subjects:
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: MatousJobanek
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: alexeykazakov
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: xcoulon
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: mfrancisc
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: admin
-+ ---
-+ kind: RoleBinding
-+ apiVersion: rbac.authorization.k8s.io/v1
-+ metadata:
-+   name: sandbox-sre-admins
-+   namespace: toolchain-host-operator
-+ subjects:
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: MatousJobanek
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: alexeykazakov
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: xcoulon
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: mfrancisc
-+ roleRef:
-+   apiGroup: rbac.authorization.k8s.io
-+   kind: ClusterRole
-+   name: admin
-\ No newline at end of file
-diff --git a/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
-new file mode 100644
-index 00000000..1a34b458
---- /dev/null
-+++ b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
-@@ -0,0 +1,45 @@
-+kind: RoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: sandbox-sre-admins
-+  namespace: sandbox-sre-member
-+subjects:
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: MatousJobanek
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: alexeykazakov
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: xcoulon
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: mfrancisc
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: admin
-+ ---
-+ kind: RoleBinding
-+ apiVersion: rbac.authorization.k8s.io/v1
-+ metadata:
-+   name: sandbox-sre-admins
-+   namespace: toolchain-member-operator
-+ subjects:
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: MatousJobanek
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: alexeykazakov
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: xcoulon
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: mfrancisc
-+ roleRef:
-+   apiGroup: rbac.authorization.k8s.io
-+   kind: ClusterRole
-+   name: admin
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from a10245d4 to 29ac7aa7 on Thu Jan 11 09:00:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (126 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/base/rbac/sandbox-sre-admins.yaml
-index e7a2ab48..5014b416 100644
---- a/components/sandbox/base/rbac/sandbox-sre-admins.yaml
-+++ b/components/sandbox/base/rbac/sandbox-sre-admins.yaml
-@@ -35,7 +35,7 @@ rules:
- - apiGroups:
-   - "toolchain.dev.openshift.com"
-   resources:
--  - "spacebindingrequests"
-+  - "*"
-   verbs:
-   - "*"
- - apiGroups:
-diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-index 3b3b8a81..37501832 100644
---- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-+++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-@@ -3,3 +3,4 @@ kind: Kustomization
- namespace: toolchain-host-operator
- resources:
- - ../../base
-+- rbac
-diff --git a/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
-new file mode 100644
-index 00000000..feab41c8
---- /dev/null
-+++ b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
-@@ -0,0 +1,45 @@
-+kind: RoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: sandbox-sre-admins
-+  namespace: sandbox-sre-host
-+subjects:
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: MatousJobanek
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: alexeykazakov
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: xcoulon
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: mfrancisc
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: admin
-+ ---
-+ kind: RoleBinding
-+ apiVersion: rbac.authorization.k8s.io/v1
-+ metadata:
-+   name: sandbox-sre-admins
-+   namespace: toolchain-host-operator
-+ subjects:
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: MatousJobanek
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: alexeykazakov
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: xcoulon
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: mfrancisc
-+ roleRef:
-+   apiGroup: rbac.authorization.k8s.io
-+   kind: ClusterRole
-+   name: admin
-\ No newline at end of file
-diff --git a/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
-new file mode 100644
-index 00000000..1a34b458
---- /dev/null
-+++ b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
-@@ -0,0 +1,45 @@
-+kind: RoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: sandbox-sre-admins
-+  namespace: sandbox-sre-member
-+subjects:
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: MatousJobanek
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: alexeykazakov
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: xcoulon
-+  - kind: User
-+    apiGroup: rbac.authorization.k8s.io
-+    name: mfrancisc
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: admin
-+ ---
-+ kind: RoleBinding
-+ apiVersion: rbac.authorization.k8s.io/v1
-+ metadata:
-+   name: sandbox-sre-admins
-+   namespace: toolchain-member-operator
-+ subjects:
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: MatousJobanek
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: alexeykazakov
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: xcoulon
-+   - kind: User
-+     apiGroup: rbac.authorization.k8s.io
-+     name: mfrancisc
-+ roleRef:
-+   apiGroup: rbac.authorization.k8s.io
-+   kind: ClusterRole
-+   name: admin
-\ No newline at end of file 
 ```
  
 </details> 
