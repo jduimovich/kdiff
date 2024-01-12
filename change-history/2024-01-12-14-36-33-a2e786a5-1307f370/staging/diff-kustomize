@@ -1,0 +1,48 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1307f370/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-a2e786a5/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1203c1203
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
+1876,1877d1875
+<       buckets: 1
+<       disable-ha: false
+1880d1877
+<       replicas: 1
+1894d1890
+<     disabled: true
+1895a1892,1894
+>     resources:
+>     - pipelinerun
+>     schedule: 0/2 * * * *
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1307f370/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-a2e786a5/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1203c1203
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
+1876,1877d1875
+<       buckets: 1
+<       disable-ha: false
+1880d1877
+<       replicas: 1
+1894d1890
+<     disabled: true
+1895a1892,1894
+>     resources:
+>     - pipelinerun
+>     schedule: 0/2 * * * *
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1307f370/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-a2e786a5/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1203c1203
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
+1876,1877d1875
+<       buckets: 1
+<       disable-ha: false
+1880d1877
+<       replicas: 1
+1894d1890
+<     disabled: true
+1895a1892,1894
+>     resources:
+>     - pipelinerun
+>     schedule: 0/2 * * * *

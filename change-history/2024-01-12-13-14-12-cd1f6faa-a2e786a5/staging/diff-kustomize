@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a2e786a5/staging/components/promotion/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-cd1f6faa/staging/components/promotion/staging/stone-stg-rh01/kustomize.out.yaml
+62c62
+<   name: appstudio-openshift-gitops-argocd-application-controller-clusterrolebinding
+---
+>   name: appstudio-gitops-service-argocd-argocd-application-clusterrolebinding
+66c66
+<   name: appstudio-openshift-gitops-argocd-application-controller
+---
+>   name: appstudio-gitops-service-argocd-argocd-application-controller

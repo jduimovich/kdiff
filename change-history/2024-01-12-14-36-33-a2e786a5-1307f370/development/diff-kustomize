@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1307f370/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-a2e786a5/development/components/pipeline-service/development/kustomize.out.yaml
+1204c1204
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
+2008,2009d2007
+<       buckets: 1
+<       disable-ha: false
+2012d2009
+<       replicas: 1
+2020c2017,2020
+<     disabled: true
+---
+>     keep: 10
+>     resources:
+>     - pipelinerun
+>     schedule: 0/2 * * * *

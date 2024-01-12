@@ -1,0 +1,35 @@
+diff --git a/.tekton/tasks/rebase-pr.yaml b/.tekton/tasks/rebase-pr.yaml
+index 4cef7934..9ed07a78 100644
+--- a/.tekton/tasks/rebase-pr.yaml
++++ b/.tekton/tasks/rebase-pr.yaml
+@@ -21,6 +21,11 @@ spec:
+         git fetch
+         git config --global user.email "rhtap-ci-bot@redhat.com"
+         git config --global user.name "RHTAP CI Robot"
+-        git rebase origin/main
++
++        if ! git rebase origin/main; then
++          echo "Rebase failed, output the diff in the files"
++          git diff origin/main
++          exit 1
++        fi
+ 
+         echo "successfully rebased"
+diff --git a/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml b/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
+index 3b2117c1..f9f7ee54 100644
+--- a/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
++++ b/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
+@@ -1,11 +1,11 @@
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+ metadata:
+-  name: appstudio-gitops-service-argocd-argocd-application-clusterrolebinding
++  name: appstudio-openshift-gitops-argocd-application-controller-clusterrolebinding
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+-  name: appstudio-gitops-service-argocd-argocd-application-controller
++  name: appstudio-openshift-gitops-argocd-application-controller
+ subjects:
+ - kind: ServiceAccount
+   name: appstudio-pipeline
