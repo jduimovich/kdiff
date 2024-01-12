@@ -1,0 +1,98 @@
+diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml
+index 71faabe4..41788c6d 100644
+--- a/components/pipeline-service/development/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/development/update-tekton-config-performance.yaml
+@@ -16,4 +16,14 @@
+   # default upstream setting
+   # value: 10
+   # upstream large scale env recommendation
+-  value: 50
+\ No newline at end of file
++  value: 50
++- op: replace
++  path: /spec/pipeline/performance/buckets
++  # default pipeline-service setting is 1
++  # we make buckets twice the replica number per the
++  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
++  value: 4
++- op: replace
++  path: /spec/pipeline/performance/replicas
++  # default pipeline-service setting is 1
++  value: 2
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
+index 4620d416..94cf33e1 100644
+--- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
+@@ -16,4 +16,14 @@
+   # default upstream setting
+   #value: 10
+   # upstream large scale env recommendation
+-  value: 50
+\ No newline at end of file
++  value: 50
++- op: replace
++  path: /spec/pipeline/performance/buckets
++  # default pipeline-service setting is 1
++  # we make buckets twice the replica number per the
++  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
++  value: 4
++- op: replace
++  path: /spec/pipeline/performance/replicas
++  # default pipeline-service setting is 1
++  value: 2
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index f1ac2121..acd04240 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1873,11 +1873,11 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     performance:
+-      buckets: 1
++      buckets: 4
+       disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
+-      replicas: 1
++      replicas: 2
+       threads-per-controller: 32
+   platforms:
+     openshift:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index f4e1c607..6af9cb18 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1873,11 +1873,11 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     performance:
+-      buckets: 1
++      buckets: 4
+       disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
+-      replicas: 1
++      replicas: 2
+       threads-per-controller: 32
+   platforms:
+     openshift:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index eaf4a3ce..9de100b3 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1873,11 +1873,11 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     performance:
+-      buckets: 1
++      buckets: 4
+       disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
+-      replicas: 1
++      replicas: 2
+       threads-per-controller: 32
+   platforms:
+     openshift:

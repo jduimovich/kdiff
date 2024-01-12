@@ -1,0 +1,38 @@
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index 91b827ad..aa682463 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee
++- https://github.com/redhat-appstudio/image-controller/config/default?ref=889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 73747651941a35a4f4e1047688f0ca3487893eee
++  newTag: 889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/kustomization.yaml b/components/image-controller/staging/kustomization.yaml
+index 1bc970e2..4f16f731 100644
+--- a/components/image-controller/staging/kustomization.yaml
++++ b/components/image-controller/staging/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee
++- https://github.com/redhat-appstudio/image-controller/config/default?ref=889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 73747651941a35a4f4e1047688f0ca3487893eee
++  newTag: 889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ namespace: image-controller
+ 

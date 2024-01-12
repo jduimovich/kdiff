@@ -1,0 +1,90 @@
+diff --git a/components/monitoring/grafana/base/dashboards/build-service/dashboard.yaml b/components/monitoring/grafana/base/dashboards/build-service/dashboard.yaml
+index 9273d56a..d12ddd51 100644
+--- a/components/monitoring/grafana/base/dashboards/build-service/dashboard.yaml
++++ b/components/monitoring/grafana/base/dashboards/build-service/dashboard.yaml
+@@ -2,22 +2,22 @@
+ apiVersion: grafana.integreatly.org/v1beta1
+ kind: GrafanaDashboard
+ metadata:
+-  name: grafana-dashboard-initial-build-pipeline
+-  labels: 
++  name: grafana-dashboard-component-onboarding
++  labels:
+     app: appstudio-grafana
+ spec:
+   instanceSelector:
+     matchLabels:
+       dashboards: "appstudio-grafana"
+   configMapRef:
+-    name: grafana-dashboard-initial-build-pipeline
+-    key: grafana-dashboard-initial-build-pipeline.json    
++    name: grafana-dashboard-component-onboarding
++    key: grafana-dashboard-component-onboarding.json
+ ---
+ apiVersion: grafana.integreatly.org/v1beta1
+ kind: GrafanaDashboard
+ metadata:
+   name: grafana-dashboard-pac-provision
+-  labels: 
++  labels:
+     app: appstudio-grafana
+ spec:
+   instanceSelector:
+@@ -26,4 +26,46 @@ spec:
+   configMapRef:
+     name: grafana-dashboard-pac-provision
+     key: grafana-dashboard-pac-provision.json
++---
++apiVersion: grafana.integreatly.org/v1beta1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-pac-unprovision
++  labels:
++    app: appstudio-grafana
++spec:
++  instanceSelector:
++    matchLabels:
++      dashboards: "appstudio-grafana"
++  configMapRef:
++    name: grafana-dashboard-pac-unprovision
++    key: grafana-dashboard-pac-unprovision.json
++---
++apiVersion: grafana.integreatly.org/v1beta1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-push-pipeline-rebuild-trigger
++  labels:
++    app: appstudio-grafana
++spec:
++  instanceSelector:
++    matchLabels:
++      dashboards: "appstudio-grafana"
++  configMapRef:
++    name: grafana-dashboard-push-pipeline-rebuild-trigger
++    key: grafana-dashboard-push-pipeline-rebuild-trigger.json
++---
++apiVersion: grafana.integreatly.org/v1beta1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-simple-build-pipeline
++  labels:
++    app: appstudio-grafana
++spec:
++  instanceSelector:
++    matchLabels:
++      dashboards: "appstudio-grafana"
++  configMapRef:
++    name: grafana-dashboard-simple-build-pipeline
++    key: grafana-dashboard-simple-build-pipeline.json
+ 
+diff --git a/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
+index b96d64af..be55a8df 100644
+--- a/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/build-service/config/monitoring/grafana-dashboards/?ref=45e8fe7c3b036d1df3eee11c1d83e0633e451c07
++- https://github.com/redhat-appstudio/build-service/config/monitoring/grafana-dashboards/?ref=76523a64ea661814bfc6eb2b5628a2ed3cedae77
+ - dashboard.yaml

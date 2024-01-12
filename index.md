@@ -1,166 +1,115 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Jan 12 16:03:43 UTC 2024
+### This file generated at Fri Jan 12 20:06:53 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from a2e786a5 to 1307f370 on Fri Jan 12 14:36:33 2024 </h3>  
+<h3>1: Production changes from cd9c293d to 19a845a4 on Fri Jan 12 19:38:26 2024 </h3>  
  
 <details> 
-<summary>Git Diff (149 lines)</summary>  
+<summary>Git Diff (98 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index ab7a2812..48b14fe7 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=867a3e00b4e39f9e0faeeb9d8a31b96896d52b5a
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=de5809f2532b129640c4a00aae76a363be67dcbe
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index adeb58ad..8984b3b1 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=867a3e00b4e39f9e0faeeb9d8a31b96896d52b5a
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=867a3e00b4e39f9e0faeeb9d8a31b96896d52b5a
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=de5809f2532b129640c4a00aae76a363be67dcbe
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=de5809f2532b129640c4a00aae76a363be67dcbe
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 8f41c5f6..3b42d3de 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=867a3e00b4e39f9e0faeeb9d8a31b96896d52b5a
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=de5809f2532b129640c4a00aae76a363be67dcbe
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
+diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml
+index 71faabe4..41788c6d 100644
+--- a/components/pipeline-service/development/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/development/update-tekton-config-performance.yaml
+@@ -16,4 +16,14 @@
+   # default upstream setting
+   # value: 10
+   # upstream large scale env recommendation
+-  value: 50
+\ No newline at end of file
++  value: 50
++- op: replace
++  path: /spec/pipeline/performance/buckets
++  # default pipeline-service setting is 1
++  # we make buckets twice the replica number per the
++  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
++  value: 4
++- op: replace
++  path: /spec/pipeline/performance/replicas
++  # default pipeline-service setting is 1
++  value: 2
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
+index 4620d416..94cf33e1 100644
+--- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
+@@ -16,4 +16,14 @@
+   # default upstream setting
+   #value: 10
+   # upstream large scale env recommendation
+-  value: 50
+\ No newline at end of file
++  value: 50
++- op: replace
++  path: /spec/pipeline/performance/buckets
++  # default pipeline-service setting is 1
++  # we make buckets twice the replica number per the
++  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
++  value: 4
++- op: replace
++  path: /spec/pipeline/performance/replicas
++  # default pipeline-service setting is 1
++  value: 2
+\ No newline at end of file
 diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 485c7da1..f1ac2121 100644
+index f1ac2121..acd04240 100644
 --- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
 +++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1200,7 +1200,7 @@ spec:
-       containers:
-       - args:
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
-+        image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1873,8 +1873,11 @@ spec:
+@@ -1873,11 +1873,11 @@ spec:
      enable-hub-resolver: true
      enable-tekton-oci-bundles: true
      performance:
-+      buckets: 1
-+      disable-ha: false
+-      buckets: 1
++      buckets: 4
+       disable-ha: false
        kube-api-burst: 50
        kube-api-qps: 50
-+      replicas: 1
+-      replicas: 1
++      replicas: 2
        threads-per-controller: 32
    platforms:
      openshift:
-@@ -1888,10 +1891,8 @@ spec:
-           custom-console-url-pr-tasklog: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
-   profile: all
-   pruner:
-+    disabled: true
-     keep: 2
--    resources:
--    - pipelinerun
--    schedule: 0/2 * * * *
-   targetNamespace: openshift-pipelines
- ---
- apiVersion: operators.coreos.com/v1alpha1
 diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 91d5f6ac..f4e1c607 100644
+index f4e1c607..6af9cb18 100644
 --- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
 +++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1200,7 +1200,7 @@ spec:
-       containers:
-       - args:
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
-+        image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1873,8 +1873,11 @@ spec:
+@@ -1873,11 +1873,11 @@ spec:
      enable-hub-resolver: true
      enable-tekton-oci-bundles: true
      performance:
-+      buckets: 1
-+      disable-ha: false
+-      buckets: 1
++      buckets: 4
+       disable-ha: false
        kube-api-burst: 50
        kube-api-qps: 50
-+      replicas: 1
+-      replicas: 1
++      replicas: 2
        threads-per-controller: 32
    platforms:
      openshift:
-@@ -1888,10 +1891,8 @@ spec:
-           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
-   profile: all
-   pruner:
-+    disabled: true
-     keep: 2
--    resources:
--    - pipelinerun
--    schedule: 0/2 * * * *
-   targetNamespace: openshift-pipelines
- ---
- apiVersion: operators.coreos.com/v1alpha1
 diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 856bf7c6..eaf4a3ce 100644
+index eaf4a3ce..9de100b3 100644
 --- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
 +++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1200,7 +1200,7 @@ spec:
-       containers:
-       - args:
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
-+        image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1873,8 +1873,11 @@ spec:
+@@ -1873,11 +1873,11 @@ spec:
      enable-hub-resolver: true
      enable-tekton-oci-bundles: true
      performance:
-+      buckets: 1
-+      disable-ha: false
+-      buckets: 1
++      buckets: 4
+       disable-ha: false
        kube-api-burst: 50
        kube-api-qps: 50
-+      replicas: 1
+-      replicas: 1
++      replicas: 2
        threads-per-controller: 32
    platforms:
-     openshift:
-@@ -1888,10 +1891,8 @@ spec:
-           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
-   profile: all
-   pruner:
-+    disabled: true
-     keep: 2
--    resources:
--    - pipelinerun
--    schedule: 0/2 * * * *
-   targetNamespace: openshift-pipelines
- ---
- apiVersion: operators.coreos.com/v1alpha1 
+     openshift: 
 ```
  
 </details> 
@@ -265,217 +214,145 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from a2e786a5 to 1307f370 on Fri Jan 12 14:36:33 2024 </h3>  
+<h3>1: Staging changes from cd9c293d to 19a845a4 on Fri Jan 12 19:38:26 2024 </h3>  
  
 <details> 
-<summary>Git Diff (149 lines)</summary>  
+<summary>Git Diff (98 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index ab7a2812..48b14fe7 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=867a3e00b4e39f9e0faeeb9d8a31b96896d52b5a
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=de5809f2532b129640c4a00aae76a363be67dcbe
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index adeb58ad..8984b3b1 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=867a3e00b4e39f9e0faeeb9d8a31b96896d52b5a
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=867a3e00b4e39f9e0faeeb9d8a31b96896d52b5a
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=de5809f2532b129640c4a00aae76a363be67dcbe
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=de5809f2532b129640c4a00aae76a363be67dcbe
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 8f41c5f6..3b42d3de 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=867a3e00b4e39f9e0faeeb9d8a31b96896d52b5a
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=de5809f2532b129640c4a00aae76a363be67dcbe
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
+diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml
+index 71faabe4..41788c6d 100644
+--- a/components/pipeline-service/development/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/development/update-tekton-config-performance.yaml
+@@ -16,4 +16,14 @@
+   # default upstream setting
+   # value: 10
+   # upstream large scale env recommendation
+-  value: 50
+\ No newline at end of file
++  value: 50
++- op: replace
++  path: /spec/pipeline/performance/buckets
++  # default pipeline-service setting is 1
++  # we make buckets twice the replica number per the
++  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
++  value: 4
++- op: replace
++  path: /spec/pipeline/performance/replicas
++  # default pipeline-service setting is 1
++  value: 2
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
+index 4620d416..94cf33e1 100644
+--- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
+@@ -16,4 +16,14 @@
+   # default upstream setting
+   #value: 10
+   # upstream large scale env recommendation
+-  value: 50
+\ No newline at end of file
++  value: 50
++- op: replace
++  path: /spec/pipeline/performance/buckets
++  # default pipeline-service setting is 1
++  # we make buckets twice the replica number per the
++  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
++  value: 4
++- op: replace
++  path: /spec/pipeline/performance/replicas
++  # default pipeline-service setting is 1
++  value: 2
+\ No newline at end of file
 diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 485c7da1..f1ac2121 100644
+index f1ac2121..acd04240 100644
 --- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
 +++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1200,7 +1200,7 @@ spec:
-       containers:
-       - args:
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
-+        image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1873,8 +1873,11 @@ spec:
+@@ -1873,11 +1873,11 @@ spec:
      enable-hub-resolver: true
      enable-tekton-oci-bundles: true
      performance:
-+      buckets: 1
-+      disable-ha: false
+-      buckets: 1
++      buckets: 4
+       disable-ha: false
        kube-api-burst: 50
        kube-api-qps: 50
-+      replicas: 1
+-      replicas: 1
++      replicas: 2
        threads-per-controller: 32
    platforms:
      openshift:
-@@ -1888,10 +1891,8 @@ spec:
-           custom-console-url-pr-tasklog: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
-   profile: all
-   pruner:
-+    disabled: true
-     keep: 2
--    resources:
--    - pipelinerun
--    schedule: 0/2 * * * *
-   targetNamespace: openshift-pipelines
- ---
- apiVersion: operators.coreos.com/v1alpha1
 diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 91d5f6ac..f4e1c607 100644
+index f4e1c607..6af9cb18 100644
 --- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
 +++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1200,7 +1200,7 @@ spec:
-       containers:
-       - args:
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
-+        image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1873,8 +1873,11 @@ spec:
+@@ -1873,11 +1873,11 @@ spec:
      enable-hub-resolver: true
      enable-tekton-oci-bundles: true
      performance:
-+      buckets: 1
-+      disable-ha: false
+-      buckets: 1
++      buckets: 4
+       disable-ha: false
        kube-api-burst: 50
        kube-api-qps: 50
-+      replicas: 1
+-      replicas: 1
++      replicas: 2
        threads-per-controller: 32
    platforms:
      openshift:
-@@ -1888,10 +1891,8 @@ spec:
-           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
-   profile: all
-   pruner:
-+    disabled: true
-     keep: 2
--    resources:
--    - pipelinerun
--    schedule: 0/2 * * * *
-   targetNamespace: openshift-pipelines
- ---
- apiVersion: operators.coreos.com/v1alpha1
 diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 856bf7c6..eaf4a3ce 100644
+index eaf4a3ce..9de100b3 100644
 --- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
 +++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1200,7 +1200,7 @@ spec:
-       containers:
-       - args:
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
-+        image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1873,8 +1873,11 @@ spec:
+@@ -1873,11 +1873,11 @@ spec:
      enable-hub-resolver: true
      enable-tekton-oci-bundles: true
      performance:
-+      buckets: 1
-+      disable-ha: false
+-      buckets: 1
++      buckets: 4
+       disable-ha: false
        kube-api-burst: 50
        kube-api-qps: 50
-+      replicas: 1
+-      replicas: 1
++      replicas: 2
        threads-per-controller: 32
    platforms:
-     openshift:
-@@ -1888,10 +1891,8 @@ spec:
-           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
-   profile: all
-   pruner:
-+    disabled: true
-     keep: 2
--    resources:
--    - pipelinerun
--    schedule: 0/2 * * * *
-   targetNamespace: openshift-pipelines
- ---
- apiVersion: operators.coreos.com/v1alpha1 
+     openshift: 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (48 lines)</summary>  
+<summary>Kustomize Generated Diff (27 lines)</summary>  
 
 ``` 
-./commit-a2e786a5/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1203c1203
-<         image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
+./commit-cd9c293d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1876c1876
+<       buckets: 4
 ---
->         image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
-1876,1877d1875
-<       buckets: 1
-<       disable-ha: false
-1880d1877
-<       replicas: 1
-1894d1890
-<     disabled: true
-1895a1892,1894
->     resources:
->     - pipelinerun
->     schedule: 0/2 * * * *
-./commit-a2e786a5/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-1203c1203
-<         image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
+>       buckets: 1
+1880c1880
+<       replicas: 2
 ---
->         image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
-1876,1877d1875
-<       buckets: 1
-<       disable-ha: false
-1880d1877
-<       replicas: 1
-1894d1890
-<     disabled: true
-1895a1892,1894
->     resources:
->     - pipelinerun
->     schedule: 0/2 * * * *
-./commit-a2e786a5/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1203c1203
-<         image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
+>       replicas: 1
+./commit-cd9c293d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1876c1876
+<       buckets: 4
 ---
->         image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
-1876,1877d1875
-<       buckets: 1
-<       disable-ha: false
-1880d1877
-<       replicas: 1
-1894d1890
-<     disabled: true
-1895a1892,1894
->     resources:
->     - pipelinerun
->     schedule: 0/2 * * * * 
+>       buckets: 1
+1880c1880
+<       replicas: 2
+---
+>       replicas: 1
+./commit-cd9c293d/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1876c1876
+<       buckets: 4
+---
+>       buckets: 1
+1880c1880
+<       replicas: 2
+---
+>       replicas: 1 
 ```
  
 </details>  
@@ -592,446 +469,110 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from a2e786a5 to 1307f370 on Fri Jan 12 14:36:33 2024 </h3>  
+<h3>1: Development changes from cd9c293d to 19a845a4 on Fri Jan 12 19:38:26 2024 </h3>  
  
 <details> 
-<summary>Git Diff (149 lines)</summary>  
+<summary>Git Diff (98 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index ab7a2812..48b14fe7 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=867a3e00b4e39f9e0faeeb9d8a31b96896d52b5a
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=de5809f2532b129640c4a00aae76a363be67dcbe
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index adeb58ad..8984b3b1 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=867a3e00b4e39f9e0faeeb9d8a31b96896d52b5a
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=867a3e00b4e39f9e0faeeb9d8a31b96896d52b5a
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=de5809f2532b129640c4a00aae76a363be67dcbe
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=de5809f2532b129640c4a00aae76a363be67dcbe
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 8f41c5f6..3b42d3de 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=867a3e00b4e39f9e0faeeb9d8a31b96896d52b5a
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=de5809f2532b129640c4a00aae76a363be67dcbe
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
+diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml
+index 71faabe4..41788c6d 100644
+--- a/components/pipeline-service/development/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/development/update-tekton-config-performance.yaml
+@@ -16,4 +16,14 @@
+   # default upstream setting
+   # value: 10
+   # upstream large scale env recommendation
+-  value: 50
+\ No newline at end of file
++  value: 50
++- op: replace
++  path: /spec/pipeline/performance/buckets
++  # default pipeline-service setting is 1
++  # we make buckets twice the replica number per the
++  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
++  value: 4
++- op: replace
++  path: /spec/pipeline/performance/replicas
++  # default pipeline-service setting is 1
++  value: 2
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
+index 4620d416..94cf33e1 100644
+--- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
+@@ -16,4 +16,14 @@
+   # default upstream setting
+   #value: 10
+   # upstream large scale env recommendation
+-  value: 50
+\ No newline at end of file
++  value: 50
++- op: replace
++  path: /spec/pipeline/performance/buckets
++  # default pipeline-service setting is 1
++  # we make buckets twice the replica number per the
++  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
++  value: 4
++- op: replace
++  path: /spec/pipeline/performance/replicas
++  # default pipeline-service setting is 1
++  value: 2
+\ No newline at end of file
 diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 485c7da1..f1ac2121 100644
+index f1ac2121..acd04240 100644
 --- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
 +++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1200,7 +1200,7 @@ spec:
-       containers:
-       - args:
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
-+        image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1873,8 +1873,11 @@ spec:
+@@ -1873,11 +1873,11 @@ spec:
      enable-hub-resolver: true
      enable-tekton-oci-bundles: true
      performance:
-+      buckets: 1
-+      disable-ha: false
+-      buckets: 1
++      buckets: 4
+       disable-ha: false
        kube-api-burst: 50
        kube-api-qps: 50
-+      replicas: 1
+-      replicas: 1
++      replicas: 2
        threads-per-controller: 32
    platforms:
      openshift:
-@@ -1888,10 +1891,8 @@ spec:
-           custom-console-url-pr-tasklog: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline
-   profile: all
-   pruner:
-+    disabled: true
-     keep: 2
--    resources:
--    - pipelinerun
--    schedule: 0/2 * * * *
-   targetNamespace: openshift-pipelines
- ---
- apiVersion: operators.coreos.com/v1alpha1
 diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 91d5f6ac..f4e1c607 100644
+index f4e1c607..6af9cb18 100644
 --- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
 +++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1200,7 +1200,7 @@ spec:
-       containers:
-       - args:
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
-+        image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1873,8 +1873,11 @@ spec:
+@@ -1873,11 +1873,11 @@ spec:
      enable-hub-resolver: true
      enable-tekton-oci-bundles: true
      performance:
-+      buckets: 1
-+      disable-ha: false
+-      buckets: 1
++      buckets: 4
+       disable-ha: false
        kube-api-burst: 50
        kube-api-qps: 50
-+      replicas: 1
+-      replicas: 1
++      replicas: 2
        threads-per-controller: 32
    platforms:
      openshift:
-@@ -1888,10 +1891,8 @@ spec:
-           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
-   profile: all
-   pruner:
-+    disabled: true
-     keep: 2
--    resources:
--    - pipelinerun
--    schedule: 0/2 * * * *
-   targetNamespace: openshift-pipelines
- ---
- apiVersion: operators.coreos.com/v1alpha1
 diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 856bf7c6..eaf4a3ce 100644
+index eaf4a3ce..9de100b3 100644
 --- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
 +++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1200,7 +1200,7 @@ spec:
-       containers:
-       - args:
-         - -zap-log-level=6
--        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
-+        image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
-         name: pipeline-metrics-exporter
-         ports:
-         - containerPort: 9117
-@@ -1873,8 +1873,11 @@ spec:
+@@ -1873,11 +1873,11 @@ spec:
      enable-hub-resolver: true
      enable-tekton-oci-bundles: true
      performance:
-+      buckets: 1
-+      disable-ha: false
+-      buckets: 1
++      buckets: 4
+       disable-ha: false
        kube-api-burst: 50
        kube-api-qps: 50
-+      replicas: 1
+-      replicas: 1
++      replicas: 2
        threads-per-controller: 32
    platforms:
-     openshift:
-@@ -1888,10 +1891,8 @@ spec:
-           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
-   profile: all
-   pruner:
-+    disabled: true
-     keep: 2
--    resources:
--    - pipelinerun
--    schedule: 0/2 * * * *
-   targetNamespace: openshift-pipelines
- ---
- apiVersion: operators.coreos.com/v1alpha1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-a2e786a5/development/components/pipeline-service/development/kustomize.out.yaml
-1204c1204
-<         image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
----
->         image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
-2008,2009d2007
-<       buckets: 1
-<       disable-ha: false
-2012d2009
-<       replicas: 1
-2020c2017,2020
-<     disabled: true
----
->     keep: 10
->     resources:
->     - pipelinerun
->     schedule: 0/2 * * * * 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from cd1f6faa to a2e786a5 on Fri Jan 12 13:14:12 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (35 lines)</summary>  
-
-``` 
-diff --git a/.tekton/tasks/rebase-pr.yaml b/.tekton/tasks/rebase-pr.yaml
-index 4cef7934..9ed07a78 100644
---- a/.tekton/tasks/rebase-pr.yaml
-+++ b/.tekton/tasks/rebase-pr.yaml
-@@ -21,6 +21,11 @@ spec:
-         git fetch
-         git config --global user.email "rhtap-ci-bot@redhat.com"
-         git config --global user.name "RHTAP CI Robot"
--        git rebase origin/main
-+
-+        if ! git rebase origin/main; then
-+          echo "Rebase failed, output the diff in the files"
-+          git diff origin/main
-+          exit 1
-+        fi
- 
-         echo "successfully rebased"
-diff --git a/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml b/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
-index 3b2117c1..f9f7ee54 100644
---- a/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
-+++ b/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
-@@ -1,11 +1,11 @@
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
- metadata:
--  name: appstudio-gitops-service-argocd-argocd-application-clusterrolebinding
-+  name: appstudio-openshift-gitops-argocd-application-controller-clusterrolebinding
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
--  name: appstudio-gitops-service-argocd-argocd-application-controller
-+  name: appstudio-openshift-gitops-argocd-application-controller
- subjects:
- - kind: ServiceAccount
-   name: appstudio-pipeline 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from cd1f6faa to a2e786a5 on Fri Jan 12 13:14:12 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (35 lines)</summary>  
-
-``` 
-diff --git a/.tekton/tasks/rebase-pr.yaml b/.tekton/tasks/rebase-pr.yaml
-index 4cef7934..9ed07a78 100644
---- a/.tekton/tasks/rebase-pr.yaml
-+++ b/.tekton/tasks/rebase-pr.yaml
-@@ -21,6 +21,11 @@ spec:
-         git fetch
-         git config --global user.email "rhtap-ci-bot@redhat.com"
-         git config --global user.name "RHTAP CI Robot"
--        git rebase origin/main
-+
-+        if ! git rebase origin/main; then
-+          echo "Rebase failed, output the diff in the files"
-+          git diff origin/main
-+          exit 1
-+        fi
- 
-         echo "successfully rebased"
-diff --git a/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml b/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
-index 3b2117c1..f9f7ee54 100644
---- a/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
-+++ b/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
-@@ -1,11 +1,11 @@
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
- metadata:
--  name: appstudio-gitops-service-argocd-argocd-application-clusterrolebinding
-+  name: appstudio-openshift-gitops-argocd-application-controller-clusterrolebinding
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
--  name: appstudio-gitops-service-argocd-argocd-application-controller
-+  name: appstudio-openshift-gitops-argocd-application-controller
- subjects:
- - kind: ServiceAccount
-   name: appstudio-pipeline 
+     openshift: 
 ```
  
 </details> 
@@ -1040,15 +581,497 @@ index 3b2117c1..f9f7ee54 100644
 <summary>Kustomize Generated Diff (9 lines)</summary>  
 
 ``` 
-./commit-cd1f6faa/staging/components/promotion/staging/stone-stg-rh01/kustomize.out.yaml
-62c62
-<   name: appstudio-openshift-gitops-argocd-application-controller-clusterrolebinding
+./commit-cd9c293d/development/components/pipeline-service/development/kustomize.out.yaml
+2008c2008
+<       buckets: 4
 ---
->   name: appstudio-gitops-service-argocd-argocd-application-clusterrolebinding
-66c66
-<   name: appstudio-openshift-gitops-argocd-application-controller
+>       buckets: 1
+2012c2012
+<       replicas: 2
 ---
->   name: appstudio-gitops-service-argocd-argocd-application-controller 
+>       replicas: 1 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 6e0a01f5 to cd9c293d on Fri Jan 12 17:46:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index 91b827ad..aa682463 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee
++- https://github.com/redhat-appstudio/image-controller/config/default?ref=889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 73747651941a35a4f4e1047688f0ca3487893eee
++  newTag: 889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/kustomization.yaml b/components/image-controller/staging/kustomization.yaml
+index 1bc970e2..4f16f731 100644
+--- a/components/image-controller/staging/kustomization.yaml
++++ b/components/image-controller/staging/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee
++- https://github.com/redhat-appstudio/image-controller/config/default?ref=889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 73747651941a35a4f4e1047688f0ca3487893eee
++  newTag: 889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ namespace: image-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 6e0a01f5 to cd9c293d on Fri Jan 12 17:46:22 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index 91b827ad..aa682463 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee
++- https://github.com/redhat-appstudio/image-controller/config/default?ref=889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 73747651941a35a4f4e1047688f0ca3487893eee
++  newTag: 889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/kustomization.yaml b/components/image-controller/staging/kustomization.yaml
+index 1bc970e2..4f16f731 100644
+--- a/components/image-controller/staging/kustomization.yaml
++++ b/components/image-controller/staging/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee
++- https://github.com/redhat-appstudio/image-controller/config/default?ref=889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 73747651941a35a4f4e1047688f0ca3487893eee
++  newTag: 889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ namespace: image-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (208 lines)</summary>  
+
+``` 
+./commit-6e0a01f5/staging/components/image-controller/staging/kustomize.out.yaml
+443,445d442
+<     import itertools
+<     import json
+<     import logging
+446a444
+>     import logging
+448,453c446
+< 
+<     from collections.abc import Iterator
+<     from http.client import HTTPResponse
+<     from typing import Any, Dict, List
+<     from urllib.parse import urlencode
+<     from urllib.request import Request, urlopen
+---
+>     import requests
+461,464c454
+<     processed_repos_counter = itertools.count()
+< 
+< 
+<     ImageRepo = Dict[str, Any]
+---
+>     PROCESSED_REPOS = 0
+467,496c457,463
+<     def get_quay_repo(quay_token: str, namespace: str, name: str) -> ImageRepo:
+<         api_url = f"{QUAY_API_URL}/repository/{namespace}/{name}"
+<         request = Request(api_url, headers={
+<             "Authorization": f"Bearer {quay_token}",
+<         })
+<         resp: HTTPResponse
+<         with urlopen(request) as resp:
+<             if resp.status != 200:
+<                 raise RuntimeError(resp.reason)
+<             return json.loads(resp.read())
+< 
+< 
+<     def delete_image_tag(quay_token: str, namespace: str, name: str, tag: str) -> None:
+<         api_url = f"{QUAY_API_URL}/repository/{namespace}/{name}/tag/{tag}"
+<         request = Request(api_url, method="DELETE", headers={
+<             "Authorization": f"Bearer {quay_token}",
+<         })
+<         resp: HTTPResponse
+<         with urlopen(request) as resp:
+<             if resp.status != 200 and resp.status != 204:
+<                 raise RuntimeError(resp.reason)
+< 
+< 
+<     def remove_tags(tags: Dict[str, Any], quay_token: str, namespace: str, name: str, dry_run: bool = False) -> None:
+<         image_digests = [image["manifest_digest"] for image in tags.values()]
+<         tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att)$")
+<         for tag in tags:
+<             # attestation or sbom image
+<             if (match := tag_regex.match(tag)) is not None:
+<                 if f"sha256:{match.group(1)}" not in image_digests:
+---
+>     def remove_images(images, session, repository, dry_run=False):
+>         image_digests = [image["manifest_digest"] for image in images.values()]
+>         for image in images:
+>             # attribute or sbom image
+>             if image.endswith(".att") or image.endswith(".sbom"):
+>                 sha = re.search("sha256-(.*)(.sbom|.att)", image).group(1)
+>                 if f"sha256:{sha}" not in image_digests:
+498c465
+<                         LOGGER.info("Image %s from %s/%s should be removed", tag, namespace, name)
+---
+>                         LOGGER.info("Image %s from %s should be removed", image, repository)
+500,542c467,491
+<                         LOGGER.info("Removing image %s from %s/%s", tag, namespace, name)
+<                         delete_image_tag(quay_token, namespace, name, tag)
+<             else:
+<                 LOGGER.debug("%s is not an image with suffix .att or .sbom", tag)
+< 
+< 
+<     def process_repositories(repos: List[ImageRepo], quay_token: str, dry_run: bool = False) -> None:
+<         for repo in repos:
+<             namespace = repo["namespace"]
+<             name = repo["name"]
+<             LOGGER.info("Processing repository %s: %s/%s", next(processed_repos_counter), namespace, name)
+<             repo_info = get_quay_repo(quay_token, namespace, name)
+<             if (tags := repo_info.get("tags")) is not None:
+<                 remove_tags(tags, quay_token, namespace, name, dry_run=dry_run)
+< 
+< 
+<     def fetch_image_repos(access_token: str, namespace: str) -> Iterator[List[ImageRepo]]:
+<         next_page = None
+<         resp: HTTPResponse
+<         while True:
+<             query_args = {"namespace": namespace}
+<             if next_page is not None:
+<                 query_args["next_page"] = next_page
+< 
+<             api_url = f"{QUAY_API_URL}/repository?{urlencode(query_args)}"
+<             request = Request(api_url, headers={
+<                 "Authorization": f"Bearer {access_token}",
+<             })
+< 
+<             with urlopen(request) as resp:
+<                 if resp.status != 200:
+<                     raise RuntimeError(resp.reason)
+<                 json_data = json.loads(resp.read())
+< 
+<             repos = json_data.get("repositories", [])
+<             if not repos:
+<                 LOGGER.debug("No image repository is found.")
+<                 break
+< 
+<             yield repos
+< 
+<             if (next_page := json_data.get("next_page", None)) is None:
+<                 break
+---
+>                         LOGGER.info("Removing image %s from %s", image, repository)
+>                         delete_image_endpoint = (
+>                             f"{QUAY_API_URL}/repository/{repository}/tag/{image}"
+>                         )
+>                         response = session.delete(delete_image_endpoint)
+>                         response.raise_for_status()
+> 
+> 
+>     def process_repositories(repositories, session, dry_run=False):
+>         global PROCESSED_REPOS
+> 
+>         for repo in repositories:
+>             repository = f"{repo['namespace']}/{repo['name']}"
+> 
+>             PROCESSED_REPOS += 1
+>             LOGGER.info("Processing repository %s: %s", PROCESSED_REPOS, repository)
+> 
+>             repository_endpoint = f"{QUAY_API_URL}/repository/{repository}"
+>             response = session.get(repository_endpoint)
+>             response.raise_for_status()
+>             repository_json = response.json()
+> 
+>             images = repository_json.get("tags")
+>             if images:
+>                 remove_images(images, session, repository, dry_run=dry_run)
+552,553c501,523
+<         for image_repos in fetch_image_repos(token, args.namespace):
+<             process_repositories(image_repos, token, dry_run=args.dry_run)
+---
+>         session = requests.Session()
+>         session.headers = {"Authorization": f"Bearer {token}"}
+>         session.params = {"namespace": args.namespace}
+>         repositories_endpoint = f"{QUAY_API_URL}/repository"
+> 
+>         response = session.get(repositories_endpoint)
+>         response.raise_for_status()
+>         resp_json = response.json()
+> 
+>         repositories = resp_json.get("repositories")
+>         next_page = resp_json.get("next_page")
+> 
+>         if repositories:
+>             process_repositories(repositories, session, dry_run=args.dry_run)
+> 
+>         while next_page:
+>             response = session.get(repositories_endpoint, params={"next_page": next_page})
+>             response.raise_for_status()
+>             resp_json = response.json()
+> 
+>             repositories = resp_json.get("repositories")
+>             next_page = resp_json.get("next_page")
+>             process_repositories(repositories, session, dry_run=args.dry_run)
+565a536
+>   requirements.txt: requests
+568c539
+<   name: image-controller-image-pruner-configmap-5848ggd264
+---
+>   name: image-controller-image-pruner-configmap-8d96cbt85m
+640c611
+<         image: quay.io/redhat-appstudio/image-controller:889c0b1d674feb10123817a4270d0b4cfe39636e
+---
+>         image: quay.io/redhat-appstudio/image-controller:73747651941a35a4f4e1047688f0ca3487893eee
+709a681,682
+>   annotations:
+>     ignore-check.kube-linter.io/no-read-only-root-fs: image pruner writes to disk
+722c695,696
+<             - python /image-pruner/prune_images.py --namespace $(NAMESPACE)
+---
+>             - pip install -r /image-pruner/requirements.txt && python /image-pruner/prune_images.py
+>               --namespace $(NAMESPACE)
+744,745d717
+<             securityContext:
+<               readOnlyRootFilesystem: true
+754c726
+<               name: image-controller-image-pruner-configmap-5848ggd264
+---
+>               name: image-controller-image-pruner-configmap-8d96cbt85m
+781,799d752
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   labels:
+<     control-plane: controller-manager
+<   name: image-controller-controller-manager-metrics-monitor
+<   namespace: image-controller
+< spec:
+<   endpoints:
+<   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+<     path: /metrics
+<     port: https
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+<   selector:
+<     matchLabels:
+<       control-plane: controller-manager 
 ```
  
 </details>  
@@ -1165,675 +1188,785 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from cd1f6faa to a2e786a5 on Fri Jan 12 13:14:12 2024 </h3>  
+<h3>2: Development changes from 6e0a01f5 to cd9c293d on Fri Jan 12 17:46:22 2024 </h3>  
  
 <details> 
-<summary>Git Diff (35 lines)</summary>  
+<summary>Git Diff (38 lines)</summary>  
 
 ``` 
-diff --git a/.tekton/tasks/rebase-pr.yaml b/.tekton/tasks/rebase-pr.yaml
-index 4cef7934..9ed07a78 100644
---- a/.tekton/tasks/rebase-pr.yaml
-+++ b/.tekton/tasks/rebase-pr.yaml
-@@ -21,6 +21,11 @@ spec:
-         git fetch
-         git config --global user.email "rhtap-ci-bot@redhat.com"
-         git config --global user.name "RHTAP CI Robot"
--        git rebase origin/main
+diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
+index 91b827ad..aa682463 100644
+--- a/components/image-controller/development/kustomization.yaml
++++ b/components/image-controller/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee
++- https://github.com/redhat-appstudio/image-controller/config/default?ref=889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 73747651941a35a4f4e1047688f0ca3487893eee
++  newTag: 889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ namespace: image-controller
+ 
+diff --git a/components/image-controller/staging/kustomization.yaml b/components/image-controller/staging/kustomization.yaml
+index 1bc970e2..4f16f731 100644
+--- a/components/image-controller/staging/kustomization.yaml
++++ b/components/image-controller/staging/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee
++- https://github.com/redhat-appstudio/image-controller/config/default?ref=889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 73747651941a35a4f4e1047688f0ca3487893eee
++  newTag: 889c0b1d674feb10123817a4270d0b4cfe39636e
+ 
+ namespace: image-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (209 lines)</summary>  
+
+``` 
+./commit-6e0a01f5/development/components/image-controller/development/kustomize.out.yaml
+443,445d442
+<     import itertools
+<     import json
+<     import logging
+446a444
+>     import logging
+448,453c446
+< 
+<     from collections.abc import Iterator
+<     from http.client import HTTPResponse
+<     from typing import Any, Dict, List
+<     from urllib.parse import urlencode
+<     from urllib.request import Request, urlopen
+---
+>     import requests
+461,462c454
+<     processed_repos_counter = itertools.count()
+< 
+---
+>     PROCESSED_REPOS = 0
+464d455
+<     ImageRepo = Dict[str, Any]
+466,496c457,463
+< 
+<     def get_quay_repo(quay_token: str, namespace: str, name: str) -> ImageRepo:
+<         api_url = f"{QUAY_API_URL}/repository/{namespace}/{name}"
+<         request = Request(api_url, headers={
+<             "Authorization": f"Bearer {quay_token}",
+<         })
+<         resp: HTTPResponse
+<         with urlopen(request) as resp:
+<             if resp.status != 200:
+<                 raise RuntimeError(resp.reason)
+<             return json.loads(resp.read())
+< 
+< 
+<     def delete_image_tag(quay_token: str, namespace: str, name: str, tag: str) -> None:
+<         api_url = f"{QUAY_API_URL}/repository/{namespace}/{name}/tag/{tag}"
+<         request = Request(api_url, method="DELETE", headers={
+<             "Authorization": f"Bearer {quay_token}",
+<         })
+<         resp: HTTPResponse
+<         with urlopen(request) as resp:
+<             if resp.status != 200 and resp.status != 204:
+<                 raise RuntimeError(resp.reason)
+< 
+< 
+<     def remove_tags(tags: Dict[str, Any], quay_token: str, namespace: str, name: str, dry_run: bool = False) -> None:
+<         image_digests = [image["manifest_digest"] for image in tags.values()]
+<         tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att)$")
+<         for tag in tags:
+<             # attestation or sbom image
+<             if (match := tag_regex.match(tag)) is not None:
+<                 if f"sha256:{match.group(1)}" not in image_digests:
+---
+>     def remove_images(images, session, repository, dry_run=False):
+>         image_digests = [image["manifest_digest"] for image in images.values()]
+>         for image in images:
+>             # attribute or sbom image
+>             if image.endswith(".att") or image.endswith(".sbom"):
+>                 sha = re.search("sha256-(.*)(.sbom|.att)", image).group(1)
+>                 if f"sha256:{sha}" not in image_digests:
+498c465
+<                         LOGGER.info("Image %s from %s/%s should be removed", tag, namespace, name)
+---
+>                         LOGGER.info("Image %s from %s should be removed", image, repository)
+500,542c467,491
+<                         LOGGER.info("Removing image %s from %s/%s", tag, namespace, name)
+<                         delete_image_tag(quay_token, namespace, name, tag)
+<             else:
+<                 LOGGER.debug("%s is not an image with suffix .att or .sbom", tag)
+< 
+< 
+<     def process_repositories(repos: List[ImageRepo], quay_token: str, dry_run: bool = False) -> None:
+<         for repo in repos:
+<             namespace = repo["namespace"]
+<             name = repo["name"]
+<             LOGGER.info("Processing repository %s: %s/%s", next(processed_repos_counter), namespace, name)
+<             repo_info = get_quay_repo(quay_token, namespace, name)
+<             if (tags := repo_info.get("tags")) is not None:
+<                 remove_tags(tags, quay_token, namespace, name, dry_run=dry_run)
+< 
+< 
+<     def fetch_image_repos(access_token: str, namespace: str) -> Iterator[List[ImageRepo]]:
+<         next_page = None
+<         resp: HTTPResponse
+<         while True:
+<             query_args = {"namespace": namespace}
+<             if next_page is not None:
+<                 query_args["next_page"] = next_page
+< 
+<             api_url = f"{QUAY_API_URL}/repository?{urlencode(query_args)}"
+<             request = Request(api_url, headers={
+<                 "Authorization": f"Bearer {access_token}",
+<             })
+< 
+<             with urlopen(request) as resp:
+<                 if resp.status != 200:
+<                     raise RuntimeError(resp.reason)
+<                 json_data = json.loads(resp.read())
+< 
+<             repos = json_data.get("repositories", [])
+<             if not repos:
+<                 LOGGER.debug("No image repository is found.")
+<                 break
+< 
+<             yield repos
+< 
+<             if (next_page := json_data.get("next_page", None)) is None:
+<                 break
+---
+>                         LOGGER.info("Removing image %s from %s", image, repository)
+>                         delete_image_endpoint = (
+>                             f"{QUAY_API_URL}/repository/{repository}/tag/{image}"
+>                         )
+>                         response = session.delete(delete_image_endpoint)
+>                         response.raise_for_status()
+> 
+> 
+>     def process_repositories(repositories, session, dry_run=False):
+>         global PROCESSED_REPOS
+> 
+>         for repo in repositories:
+>             repository = f"{repo['namespace']}/{repo['name']}"
+> 
+>             PROCESSED_REPOS += 1
+>             LOGGER.info("Processing repository %s: %s", PROCESSED_REPOS, repository)
+> 
+>             repository_endpoint = f"{QUAY_API_URL}/repository/{repository}"
+>             response = session.get(repository_endpoint)
+>             response.raise_for_status()
+>             repository_json = response.json()
+> 
+>             images = repository_json.get("tags")
+>             if images:
+>                 remove_images(images, session, repository, dry_run=dry_run)
+552,553c501,523
+<         for image_repos in fetch_image_repos(token, args.namespace):
+<             process_repositories(image_repos, token, dry_run=args.dry_run)
+---
+>         session = requests.Session()
+>         session.headers = {"Authorization": f"Bearer {token}"}
+>         session.params = {"namespace": args.namespace}
+>         repositories_endpoint = f"{QUAY_API_URL}/repository"
+> 
+>         response = session.get(repositories_endpoint)
+>         response.raise_for_status()
+>         resp_json = response.json()
+> 
+>         repositories = resp_json.get("repositories")
+>         next_page = resp_json.get("next_page")
+> 
+>         if repositories:
+>             process_repositories(repositories, session, dry_run=args.dry_run)
+> 
+>         while next_page:
+>             response = session.get(repositories_endpoint, params={"next_page": next_page})
+>             response.raise_for_status()
+>             resp_json = response.json()
+> 
+>             repositories = resp_json.get("repositories")
+>             next_page = resp_json.get("next_page")
+>             process_repositories(repositories, session, dry_run=args.dry_run)
+565a536
+>   requirements.txt: requests
+568c539
+<   name: image-controller-image-pruner-configmap-5848ggd264
+---
+>   name: image-controller-image-pruner-configmap-8d96cbt85m
+641c612
+<         image: quay.io/redhat-appstudio/image-controller:889c0b1d674feb10123817a4270d0b4cfe39636e
+---
+>         image: quay.io/redhat-appstudio/image-controller:73747651941a35a4f4e1047688f0ca3487893eee
+710a682,683
+>   annotations:
+>     ignore-check.kube-linter.io/no-read-only-root-fs: image pruner writes to disk
+723c696,697
+<             - python /image-pruner/prune_images.py --namespace $(NAMESPACE)
+---
+>             - pip install -r /image-pruner/requirements.txt && python /image-pruner/prune_images.py
+>               --namespace $(NAMESPACE)
+745,746d718
+<             securityContext:
+<               readOnlyRootFilesystem: true
+755c727
+<               name: image-controller-image-pruner-configmap-5848ggd264
+---
+>               name: image-controller-image-pruner-configmap-8d96cbt85m
+761,779d732
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   labels:
+<     control-plane: controller-manager
+<   name: image-controller-controller-manager-metrics-monitor
+<   namespace: image-controller
+< spec:
+<   endpoints:
+<   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+<     path: /metrics
+<     port: https
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+<   selector:
+<     matchLabels:
+<       control-plane: controller-manager 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from c65bfded to 6e0a01f5 on Fri Jan 12 17:46:15 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (12 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index a00fff83..a6abf9b3 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -16,7 +16,3 @@ configMapGenerator:
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+       - verify_ec_task_git_revision=2f65d22d006597d65f16318c821ad7d9ad7f9d96
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml
+-images:
+-  - name: quay.io/redhat-appstudio/enterprise-contract-controller
+-    newName: quay.io/redhat-appstudio/enterprise-contract-controller
+-    newTag: 4ed0cb3ca999a444536d7fffd0825c9bb3eca993 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from c65bfded to 6e0a01f5 on Fri Jan 12 17:46:15 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (12 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index a00fff83..a6abf9b3 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -16,7 +16,3 @@ configMapGenerator:
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+       - verify_ec_task_git_revision=2f65d22d006597d65f16318c821ad7d9ad7f9d96
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml
+-images:
+-  - name: quay.io/redhat-appstudio/enterprise-contract-controller
+-    newName: quay.io/redhat-appstudio/enterprise-contract-controller
+-    newTag: 4ed0cb3ca999a444536d7fffd0825c9bb3eca993 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from c65bfded to 6e0a01f5 on Fri Jan 12 17:46:15 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (12 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index a00fff83..a6abf9b3 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -16,7 +16,3 @@ configMapGenerator:
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+       - verify_ec_task_git_revision=2f65d22d006597d65f16318c821ad7d9ad7f9d96
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml
+-images:
+-  - name: quay.io/redhat-appstudio/enterprise-contract-controller
+-    newName: quay.io/redhat-appstudio/enterprise-contract-controller
+-    newTag: 4ed0cb3ca999a444536d7fffd0825c9bb3eca993 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from d8a1da85 to c65bfded on Fri Jan 12 16:59:35 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (72 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/image-controller/OWNERS b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS
+new file mode 100644
+index 00000000..01ca66dc
+--- /dev/null
++++ b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS
+@@ -0,0 +1,20 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++# Should be kept in sync with components/monitoring/grafana/base/dashboards/image-controller/OWNERS
 +
-+        if ! git rebase origin/main; then
-+          echo "Rebase failed, output the diff in the files"
-+          git diff origin/main
-+          exit 1
-+        fi
- 
-         echo "successfully rebased"
-diff --git a/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml b/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
-index 3b2117c1..f9f7ee54 100644
---- a/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
-+++ b/components/promotion/base/appstudio-gitops-service-argocd-argocd-application-controller-clusterrolebinding.yaml
-@@ -1,11 +1,11 @@
- apiVersion: rbac.authorization.k8s.io/v1
- kind: ClusterRoleBinding
- metadata:
--  name: appstudio-gitops-service-argocd-argocd-application-clusterrolebinding
-+  name: appstudio-openshift-gitops-argocd-application-controller-clusterrolebinding
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
--  name: appstudio-gitops-service-argocd-argocd-application-controller
-+  name: appstudio-openshift-gitops-argocd-application-controller
- subjects:
- - kind: ServiceAccount
-   name: appstudio-pipeline 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 1c04ec64 to cd1f6faa on Thu Jan 11 19:37:06 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (32 lines)</summary>  
-
-``` 
-diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
-index de5e31f4..8b3e558d 100644
---- a/components/tekton-ci/base/repository.yaml
-+++ b/components/tekton-ci/base/repository.yaml
-@@ -15,13 +15,6 @@ spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
--metadata:
--  name: enterprise-contract
--spec:
--  url: "https://github.com/enterprise-contract/enterprise-contract-controller"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
- metadata:
-   name: application-service
- spec:
-@@ -85,13 +78,6 @@ spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
--metadata:
--  name: ec-golden-image
--spec:
--  url: "https://github.com/enterprise-contract/golden-container"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
- metadata:
-   name: gitops-repo-pruner
- spec: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (20 lines)</summary>  
-
-``` 
-./commit-1c04ec64/production/components/tekton-ci/production/kustomize.out.yaml
-295a296,313
->   name: ec-golden-image
-> spec:
->   url: https://github.com/enterprise-contract/golden-container
-> ---
-> apiVersion: pipelinesascode.tekton.dev/v1alpha1
-> kind: Repository
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
->   name: enterprise-contract
-> spec:
->   url: https://github.com/enterprise-contract/enterprise-contract-controller
-> ---
-> apiVersion: pipelinesascode.tekton.dev/v1alpha1
-> kind: Repository
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 1c04ec64 to cd1f6faa on Thu Jan 11 19:37:06 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (32 lines)</summary>  
-
-``` 
-diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
-index de5e31f4..8b3e558d 100644
---- a/components/tekton-ci/base/repository.yaml
-+++ b/components/tekton-ci/base/repository.yaml
-@@ -15,13 +15,6 @@ spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
--metadata:
--  name: enterprise-contract
--spec:
--  url: "https://github.com/enterprise-contract/enterprise-contract-controller"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
- metadata:
-   name: application-service
- spec:
-@@ -85,13 +78,6 @@ spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
--metadata:
--  name: ec-golden-image
--spec:
--  url: "https://github.com/enterprise-contract/golden-container"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
- metadata:
-   name: gitops-repo-pruner
- spec: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (20 lines)</summary>  
-
-``` 
-./commit-1c04ec64/staging/components/tekton-ci/staging/kustomize.out.yaml
-255a256,273
->   name: ec-golden-image
-> spec:
->   url: https://github.com/enterprise-contract/golden-container
-> ---
-> apiVersion: pipelinesascode.tekton.dev/v1alpha1
-> kind: Repository
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
->   name: enterprise-contract
-> spec:
->   url: https://github.com/enterprise-contract/enterprise-contract-controller
-> ---
-> apiVersion: pipelinesascode.tekton.dev/v1alpha1
-> kind: Repository
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 1c04ec64 to cd1f6faa on Thu Jan 11 19:37:06 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (32 lines)</summary>  
-
-``` 
-diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
-index de5e31f4..8b3e558d 100644
---- a/components/tekton-ci/base/repository.yaml
-+++ b/components/tekton-ci/base/repository.yaml
-@@ -15,13 +15,6 @@ spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
--metadata:
--  name: enterprise-contract
--spec:
--  url: "https://github.com/enterprise-contract/enterprise-contract-controller"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
- metadata:
-   name: application-service
- spec:
-@@ -85,13 +78,6 @@ spec:
- ---
- apiVersion: pipelinesascode.tekton.dev/v1alpha1
- kind: Repository
--metadata:
--  name: ec-golden-image
--spec:
--  url: "https://github.com/enterprise-contract/golden-container"
-----
--apiVersion: pipelinesascode.tekton.dev/v1alpha1
--kind: Repository
- metadata:
-   name: gitops-repo-pruner
- spec: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 211c1c8e to 1c04ec64 on Thu Jan 11 19:12:18 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (75 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-index 3457d6b8..882f49dd 100644
---- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-@@ -1,6 +1,6 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/grafana/base?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/grafana/base?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
- - https://github.com/redhat-appstudio/remote-secret/config/monitoring/grafana/base?ref=c146261dd5441a74b87c302e8528aba1df50f201
- - dashboard.yaml
-diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
-index 275165a4..993bb158 100644
---- a/components/spi-vault/kustomization.yaml
-+++ b/components/spi-vault/kustomization.yaml
-@@ -4,4 +4,4 @@ kind: Kustomization
- namespace: spi-vault
- 
- resources:
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
-diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
-index 3ff30e95..35dbc31d 100644
---- a/components/spi/overlays/development/kustomization.yaml
-+++ b/components/spi/overlays/development/kustomization.yaml
-@@ -2,17 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../base
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
- 
- namespace: spi-system
- 
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: 444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+    newTag: 5194cbefe5e5802e51931e105f15f62472a88ee9
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: 444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+    newTag: 5194cbefe5e5802e51931e105f15f62472a88ee9
- 
- patches:
-   - target:
-diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
-index 4e3475e7..f5b9b117 100644
---- a/components/spi/overlays/staging/base/kustomization.yaml
-+++ b/components/spi/overlays/staging/base/kustomization.yaml
-@@ -3,8 +3,8 @@ kind: Kustomization
- resources:
-   - ../../../base
-   - ../../../base/external-secrets
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
-   - spi-aws-credentials-external-secret.yaml
- 
- namespace: spi-system
-@@ -12,10 +12,10 @@ namespace: spi-system
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: 444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+    newTag: 5194cbefe5e5802e51931e105f15f62472a88ee9
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: 444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+    newTag: 5194cbefe5e5802e51931e105f15f62472a88ee9
- 
- patches:
-   - target: 
++approvers:
++- chmeliik
++- mmorhun
++- tkdchen
++- rcerven
++- mkosiarc
++- stuartwdouglas
++- tisutisu
++
++reviewers:
++- chmeliik
++- mmorhun
++- tkdchen
++- rcerven
++- mkosiarc
++- stuartwdouglas
++- tisutisu
+diff --git a/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml b/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml
+new file mode 100644
+index 00000000..027380de
+--- /dev/null
++++ b/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml
+@@ -0,0 +1,29 @@
++---
++apiVersion: grafana.integreatly.org/v1beta1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-image-repository-provision
++  labels:
++    app: appstudio-grafana
++spec:
++  instanceSelector:
++    matchLabels:
++      dashboards: "appstudio-grafana"
++  configMapRef:
++    name: grafana-dashboard-image-repository-provision
++    key: grafana-dashboard-image-repository-provision.json
++---
++apiVersion: grafana.integreatly.org/v1beta1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-image-repository-provision-failure
++  labels:
++    app: appstudio-grafana
++spec:
++  instanceSelector:
++    matchLabels:
++      dashboards: "appstudio-grafana"
++  configMapRef:
++    name: grafana-dashboard-image-repository-provision-failure
++    key: grafana-dashboard-image-repository-provision-failure.json
++
+diff --git a/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
+new file mode 100644
+index 00000000..fb0c8b10
+--- /dev/null
++++ b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- https://github.com/redhat-appstudio/image-controller/config/monitoring/grafana-dashboards/?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
++- dashboard.yaml 
 ```
  
 </details> 
@@ -1938,87 +2071,84 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from 211c1c8e to 1c04ec64 on Thu Jan 11 19:12:18 2024 </h3>  
+<h3>4: Staging changes from d8a1da85 to c65bfded on Fri Jan 12 16:59:35 2024 </h3>  
  
 <details> 
-<summary>Git Diff (75 lines)</summary>  
+<summary>Git Diff (72 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-index 3457d6b8..882f49dd 100644
---- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-@@ -1,6 +1,6 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/grafana/base?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/grafana/base?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
- - https://github.com/redhat-appstudio/remote-secret/config/monitoring/grafana/base?ref=c146261dd5441a74b87c302e8528aba1df50f201
- - dashboard.yaml
-diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
-index 275165a4..993bb158 100644
---- a/components/spi-vault/kustomization.yaml
-+++ b/components/spi-vault/kustomization.yaml
-@@ -4,4 +4,4 @@ kind: Kustomization
- namespace: spi-vault
- 
- resources:
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
-diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
-index 3ff30e95..35dbc31d 100644
---- a/components/spi/overlays/development/kustomization.yaml
-+++ b/components/spi/overlays/development/kustomization.yaml
-@@ -2,17 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../base
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
- 
- namespace: spi-system
- 
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: 444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+    newTag: 5194cbefe5e5802e51931e105f15f62472a88ee9
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: 444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+    newTag: 5194cbefe5e5802e51931e105f15f62472a88ee9
- 
- patches:
-   - target:
-diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
-index 4e3475e7..f5b9b117 100644
---- a/components/spi/overlays/staging/base/kustomization.yaml
-+++ b/components/spi/overlays/staging/base/kustomization.yaml
-@@ -3,8 +3,8 @@ kind: Kustomization
- resources:
-   - ../../../base
-   - ../../../base/external-secrets
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
-   - spi-aws-credentials-external-secret.yaml
- 
- namespace: spi-system
-@@ -12,10 +12,10 @@ namespace: spi-system
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: 444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+    newTag: 5194cbefe5e5802e51931e105f15f62472a88ee9
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: 444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+    newTag: 5194cbefe5e5802e51931e105f15f62472a88ee9
- 
- patches:
-   - target: 
+diff --git a/components/monitoring/grafana/base/dashboards/image-controller/OWNERS b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS
+new file mode 100644
+index 00000000..01ca66dc
+--- /dev/null
++++ b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS
+@@ -0,0 +1,20 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++# Should be kept in sync with components/monitoring/grafana/base/dashboards/image-controller/OWNERS
++
++approvers:
++- chmeliik
++- mmorhun
++- tkdchen
++- rcerven
++- mkosiarc
++- stuartwdouglas
++- tisutisu
++
++reviewers:
++- chmeliik
++- mmorhun
++- tkdchen
++- rcerven
++- mkosiarc
++- stuartwdouglas
++- tisutisu
+diff --git a/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml b/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml
+new file mode 100644
+index 00000000..027380de
+--- /dev/null
++++ b/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml
+@@ -0,0 +1,29 @@
++---
++apiVersion: grafana.integreatly.org/v1beta1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-image-repository-provision
++  labels:
++    app: appstudio-grafana
++spec:
++  instanceSelector:
++    matchLabels:
++      dashboards: "appstudio-grafana"
++  configMapRef:
++    name: grafana-dashboard-image-repository-provision
++    key: grafana-dashboard-image-repository-provision.json
++---
++apiVersion: grafana.integreatly.org/v1beta1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-image-repository-provision-failure
++  labels:
++    app: appstudio-grafana
++spec:
++  instanceSelector:
++    matchLabels:
++      dashboards: "appstudio-grafana"
++  configMapRef:
++    name: grafana-dashboard-image-repository-provision-failure
++    key: grafana-dashboard-image-repository-provision-failure.json
++
+diff --git a/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
+new file mode 100644
+index 00000000..fb0c8b10
+--- /dev/null
++++ b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- https://github.com/redhat-appstudio/image-controller/config/monitoring/grafana-dashboards/?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
++- dashboard.yaml 
 ```
  
 </details> 
@@ -2144,87 +2274,84 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from 211c1c8e to 1c04ec64 on Thu Jan 11 19:12:18 2024 </h3>  
+<h3>4: Development changes from d8a1da85 to c65bfded on Fri Jan 12 16:59:35 2024 </h3>  
  
 <details> 
-<summary>Git Diff (75 lines)</summary>  
+<summary>Git Diff (72 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-index 3457d6b8..882f49dd 100644
---- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-@@ -1,6 +1,6 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/grafana/base?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/grafana/base?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
- - https://github.com/redhat-appstudio/remote-secret/config/monitoring/grafana/base?ref=c146261dd5441a74b87c302e8528aba1df50f201
- - dashboard.yaml
-diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
-index 275165a4..993bb158 100644
---- a/components/spi-vault/kustomization.yaml
-+++ b/components/spi-vault/kustomization.yaml
-@@ -4,4 +4,4 @@ kind: Kustomization
- namespace: spi-vault
- 
- resources:
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
-diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
-index 3ff30e95..35dbc31d 100644
---- a/components/spi/overlays/development/kustomization.yaml
-+++ b/components/spi/overlays/development/kustomization.yaml
-@@ -2,17 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../base
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
- 
- namespace: spi-system
- 
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: 444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+    newTag: 5194cbefe5e5802e51931e105f15f62472a88ee9
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: 444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+    newTag: 5194cbefe5e5802e51931e105f15f62472a88ee9
- 
- patches:
-   - target:
-diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
-index 4e3475e7..f5b9b117 100644
---- a/components/spi/overlays/staging/base/kustomization.yaml
-+++ b/components/spi/overlays/staging/base/kustomization.yaml
-@@ -3,8 +3,8 @@ kind: Kustomization
- resources:
-   - ../../../base
-   - ../../../base/external-secrets
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
--  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
-+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=5194cbefe5e5802e51931e105f15f62472a88ee9
-   - spi-aws-credentials-external-secret.yaml
- 
- namespace: spi-system
-@@ -12,10 +12,10 @@ namespace: spi-system
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: 444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+    newTag: 5194cbefe5e5802e51931e105f15f62472a88ee9
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: 444b8cd04901787c64b2e22fdf64c3cece8b2d55
-+    newTag: 5194cbefe5e5802e51931e105f15f62472a88ee9
- 
- patches:
-   - target: 
+diff --git a/components/monitoring/grafana/base/dashboards/image-controller/OWNERS b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS
+new file mode 100644
+index 00000000..01ca66dc
+--- /dev/null
++++ b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS
+@@ -0,0 +1,20 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++# Should be kept in sync with components/monitoring/grafana/base/dashboards/image-controller/OWNERS
++
++approvers:
++- chmeliik
++- mmorhun
++- tkdchen
++- rcerven
++- mkosiarc
++- stuartwdouglas
++- tisutisu
++
++reviewers:
++- chmeliik
++- mmorhun
++- tkdchen
++- rcerven
++- mkosiarc
++- stuartwdouglas
++- tisutisu
+diff --git a/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml b/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml
+new file mode 100644
+index 00000000..027380de
+--- /dev/null
++++ b/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml
+@@ -0,0 +1,29 @@
++---
++apiVersion: grafana.integreatly.org/v1beta1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-image-repository-provision
++  labels:
++    app: appstudio-grafana
++spec:
++  instanceSelector:
++    matchLabels:
++      dashboards: "appstudio-grafana"
++  configMapRef:
++    name: grafana-dashboard-image-repository-provision
++    key: grafana-dashboard-image-repository-provision.json
++---
++apiVersion: grafana.integreatly.org/v1beta1
++kind: GrafanaDashboard
++metadata:
++  name: grafana-dashboard-image-repository-provision-failure
++  labels:
++    app: appstudio-grafana
++spec:
++  instanceSelector:
++    matchLabels:
++      dashboards: "appstudio-grafana"
++  configMapRef:
++    name: grafana-dashboard-image-repository-provision-failure
++    key: grafana-dashboard-image-repository-provision-failure.json
++
+diff --git a/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
+new file mode 100644
+index 00000000..fb0c8b10
+--- /dev/null
++++ b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- https://github.com/redhat-appstudio/image-controller/config/monitoring/grafana-dashboards/?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
++- dashboard.yaml 
 ```
  
 </details> 

@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-19a845a4/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-cd9c293d/development/components/pipeline-service/development/kustomize.out.yaml
+2008c2008
+<       buckets: 4
+---
+>       buckets: 1
+2012c2012
+<       replicas: 2
+---
+>       replicas: 1
