@@ -1,12 +1,369 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Jan 12 20:06:53 UTC 2024
+### This file generated at Sat Jan 13 00:06:57 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from cd9c293d to 19a845a4 on Fri Jan 12 19:38:26 2024 </h3>  
+<h3>1: Production changes from 19a845a4 to 756cc2d7 on Fri Jan 12 21:39:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (9 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/logging/development/kustomization.yaml b/components/monitoring/logging/development/kustomization.yaml
+index 4ea1bcca..e609fb24 100644
+--- a/components/monitoring/logging/development/kustomization.yaml
++++ b/components/monitoring/logging/development/kustomization.yaml
+@@ -1,2 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++
++resources: [] 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 19a845a4 to 756cc2d7 on Fri Jan 12 21:39:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (9 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/logging/development/kustomization.yaml b/components/monitoring/logging/development/kustomization.yaml
+index 4ea1bcca..e609fb24 100644
+--- a/components/monitoring/logging/development/kustomization.yaml
++++ b/components/monitoring/logging/development/kustomization.yaml
+@@ -1,2 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++
++resources: [] 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 19a845a4 to 756cc2d7 on Fri Jan 12 21:39:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (9 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/logging/development/kustomization.yaml b/components/monitoring/logging/development/kustomization.yaml
+index 4ea1bcca..e609fb24 100644
+--- a/components/monitoring/logging/development/kustomization.yaml
++++ b/components/monitoring/logging/development/kustomization.yaml
+@@ -1,2 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++
++resources: [] 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from cd9c293d to 19a845a4 on Fri Jan 12 19:38:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (98 lines)</summary>  
@@ -214,7 +571,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from cd9c293d to 19a845a4 on Fri Jan 12 19:38:26 2024 </h3>  
+<h3>2: Staging changes from cd9c293d to 19a845a4 on Fri Jan 12 19:38:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (98 lines)</summary>  
@@ -469,7 +826,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from cd9c293d to 19a845a4 on Fri Jan 12 19:38:26 2024 </h3>  
+<h3>2: Development changes from cd9c293d to 19a845a4 on Fri Jan 12 19:38:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (98 lines)</summary>  
@@ -664,7 +1021,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 6e0a01f5 to cd9c293d on Fri Jan 12 17:46:22 2024 </h3>  
+<h3>3: Production changes from 6e0a01f5 to cd9c293d on Fri Jan 12 17:46:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -812,7 +1169,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 6e0a01f5 to cd9c293d on Fri Jan 12 17:46:22 2024 </h3>  
+<h3>3: Staging changes from 6e0a01f5 to cd9c293d on Fri Jan 12 17:46:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1188,7 +1545,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 6e0a01f5 to cd9c293d on Fri Jan 12 17:46:22 2024 </h3>  
+<h3>3: Development changes from 6e0a01f5 to cd9c293d on Fri Jan 12 17:46:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1523,7 +1880,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from c65bfded to 6e0a01f5 on Fri Jan 12 17:46:15 2024 </h3>  
+<h3>4: Production changes from c65bfded to 6e0a01f5 on Fri Jan 12 17:46:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -1645,7 +2002,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from c65bfded to 6e0a01f5 on Fri Jan 12 17:46:15 2024 </h3>  
+<h3>4: Staging changes from c65bfded to 6e0a01f5 on Fri Jan 12 17:46:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -1788,7 +2145,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from c65bfded to 6e0a01f5 on Fri Jan 12 17:46:15 2024 </h3>  
+<h3>4: Development changes from c65bfded to 6e0a01f5 on Fri Jan 12 17:46:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -1806,552 +2163,6 @@ index a00fff83..a6abf9b3 100644
 -  - name: quay.io/redhat-appstudio/enterprise-contract-controller
 -    newName: quay.io/redhat-appstudio/enterprise-contract-controller
 -    newTag: 4ed0cb3ca999a444536d7fffd0825c9bb3eca993 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from d8a1da85 to c65bfded on Fri Jan 12 16:59:35 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (72 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/image-controller/OWNERS b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS
-new file mode 100644
-index 00000000..01ca66dc
---- /dev/null
-+++ b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS
-@@ -0,0 +1,20 @@
-+# See the OWNERS docs: https://go.k8s.io/owners
-+# Should be kept in sync with components/monitoring/grafana/base/dashboards/image-controller/OWNERS
-+
-+approvers:
-+- chmeliik
-+- mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- stuartwdouglas
-+- tisutisu
-+
-+reviewers:
-+- chmeliik
-+- mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- stuartwdouglas
-+- tisutisu
-diff --git a/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml b/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml
-new file mode 100644
-index 00000000..027380de
---- /dev/null
-+++ b/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml
-@@ -0,0 +1,29 @@
-+---
-+apiVersion: grafana.integreatly.org/v1beta1
-+kind: GrafanaDashboard
-+metadata:
-+  name: grafana-dashboard-image-repository-provision
-+  labels:
-+    app: appstudio-grafana
-+spec:
-+  instanceSelector:
-+    matchLabels:
-+      dashboards: "appstudio-grafana"
-+  configMapRef:
-+    name: grafana-dashboard-image-repository-provision
-+    key: grafana-dashboard-image-repository-provision.json
-+---
-+apiVersion: grafana.integreatly.org/v1beta1
-+kind: GrafanaDashboard
-+metadata:
-+  name: grafana-dashboard-image-repository-provision-failure
-+  labels:
-+    app: appstudio-grafana
-+spec:
-+  instanceSelector:
-+    matchLabels:
-+      dashboards: "appstudio-grafana"
-+  configMapRef:
-+    name: grafana-dashboard-image-repository-provision-failure
-+    key: grafana-dashboard-image-repository-provision-failure.json
-+
-diff --git a/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
-new file mode 100644
-index 00000000..fb0c8b10
---- /dev/null
-+++ b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- https://github.com/redhat-appstudio/image-controller/config/monitoring/grafana-dashboards/?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
-+- dashboard.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from d8a1da85 to c65bfded on Fri Jan 12 16:59:35 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (72 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/image-controller/OWNERS b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS
-new file mode 100644
-index 00000000..01ca66dc
---- /dev/null
-+++ b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS
-@@ -0,0 +1,20 @@
-+# See the OWNERS docs: https://go.k8s.io/owners
-+# Should be kept in sync with components/monitoring/grafana/base/dashboards/image-controller/OWNERS
-+
-+approvers:
-+- chmeliik
-+- mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- stuartwdouglas
-+- tisutisu
-+
-+reviewers:
-+- chmeliik
-+- mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- stuartwdouglas
-+- tisutisu
-diff --git a/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml b/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml
-new file mode 100644
-index 00000000..027380de
---- /dev/null
-+++ b/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml
-@@ -0,0 +1,29 @@
-+---
-+apiVersion: grafana.integreatly.org/v1beta1
-+kind: GrafanaDashboard
-+metadata:
-+  name: grafana-dashboard-image-repository-provision
-+  labels:
-+    app: appstudio-grafana
-+spec:
-+  instanceSelector:
-+    matchLabels:
-+      dashboards: "appstudio-grafana"
-+  configMapRef:
-+    name: grafana-dashboard-image-repository-provision
-+    key: grafana-dashboard-image-repository-provision.json
-+---
-+apiVersion: grafana.integreatly.org/v1beta1
-+kind: GrafanaDashboard
-+metadata:
-+  name: grafana-dashboard-image-repository-provision-failure
-+  labels:
-+    app: appstudio-grafana
-+spec:
-+  instanceSelector:
-+    matchLabels:
-+      dashboards: "appstudio-grafana"
-+  configMapRef:
-+    name: grafana-dashboard-image-repository-provision-failure
-+    key: grafana-dashboard-image-repository-provision-failure.json
-+
-diff --git a/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
-new file mode 100644
-index 00000000..fb0c8b10
---- /dev/null
-+++ b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- https://github.com/redhat-appstudio/image-controller/config/monitoring/grafana-dashboards/?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
-+- dashboard.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from d8a1da85 to c65bfded on Fri Jan 12 16:59:35 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (72 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/image-controller/OWNERS b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS
-new file mode 100644
-index 00000000..01ca66dc
---- /dev/null
-+++ b/components/monitoring/grafana/base/dashboards/image-controller/OWNERS
-@@ -0,0 +1,20 @@
-+# See the OWNERS docs: https://go.k8s.io/owners
-+# Should be kept in sync with components/monitoring/grafana/base/dashboards/image-controller/OWNERS
-+
-+approvers:
-+- chmeliik
-+- mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- stuartwdouglas
-+- tisutisu
-+
-+reviewers:
-+- chmeliik
-+- mmorhun
-+- tkdchen
-+- rcerven
-+- mkosiarc
-+- stuartwdouglas
-+- tisutisu
-diff --git a/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml b/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml
-new file mode 100644
-index 00000000..027380de
---- /dev/null
-+++ b/components/monitoring/grafana/base/dashboards/image-controller/dashboard.yaml
-@@ -0,0 +1,29 @@
-+---
-+apiVersion: grafana.integreatly.org/v1beta1
-+kind: GrafanaDashboard
-+metadata:
-+  name: grafana-dashboard-image-repository-provision
-+  labels:
-+    app: appstudio-grafana
-+spec:
-+  instanceSelector:
-+    matchLabels:
-+      dashboards: "appstudio-grafana"
-+  configMapRef:
-+    name: grafana-dashboard-image-repository-provision
-+    key: grafana-dashboard-image-repository-provision.json
-+---
-+apiVersion: grafana.integreatly.org/v1beta1
-+kind: GrafanaDashboard
-+metadata:
-+  name: grafana-dashboard-image-repository-provision-failure
-+  labels:
-+    app: appstudio-grafana
-+spec:
-+  instanceSelector:
-+    matchLabels:
-+      dashboards: "appstudio-grafana"
-+  configMapRef:
-+    name: grafana-dashboard-image-repository-provision-failure
-+    key: grafana-dashboard-image-repository-provision-failure.json
-+
-diff --git a/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
-new file mode 100644
-index 00000000..fb0c8b10
---- /dev/null
-+++ b/components/monitoring/grafana/base/dashboards/image-controller/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- https://github.com/redhat-appstudio/image-controller/config/monitoring/grafana-dashboards/?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
-+- dashboard.yaml 
 ```
  
 </details> 

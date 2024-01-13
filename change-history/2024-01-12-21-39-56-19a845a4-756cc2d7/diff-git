@@ -1,0 +1,9 @@
+diff --git a/components/monitoring/logging/development/kustomization.yaml b/components/monitoring/logging/development/kustomization.yaml
+index 4ea1bcca..e609fb24 100644
+--- a/components/monitoring/logging/development/kustomization.yaml
++++ b/components/monitoring/logging/development/kustomization.yaml
+@@ -1,2 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++
++resources: []
