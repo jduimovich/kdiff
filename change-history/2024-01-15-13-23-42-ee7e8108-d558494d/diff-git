@@ -1,0 +1,14 @@
+diff --git a/.tekton/rhtap-staging-e2e-ci.yaml b/.tekton/rhtap-staging-e2e-ci.yaml
+index b4c0d0b8..4d5cfebf 100644
+--- a/.tekton/rhtap-staging-e2e-ci.yaml
++++ b/.tekton/rhtap-staging-e2e-ci.yaml
+@@ -37,6 +37,9 @@ spec:
+       value: "{{ source_branch }}"
+   pipelineRef:
+     name: rhtap-staging-e2e
++  podTemplate:
++    securityContext:
++      fsGroup: 65532
+   workspaces:
+     - name: git
+       volumeClaimTemplate:
