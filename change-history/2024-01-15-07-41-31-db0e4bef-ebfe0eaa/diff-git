@@ -1,0 +1,92 @@
+diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+index d846d785..a1606a9e 100644
+--- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+@@ -6,3 +6,9 @@ resources:
+   - ../../base/ui
+ patchesStrategicMerge:
+   - delete-applications.yaml
++patches:
++  - path: staging-downstream-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: multi-platform-controller
+diff --git a/argo-cd-apps/overlays/staging-downstream/staging-downstream-overlay-patch.yaml b/argo-cd-apps/overlays/staging-downstream/staging-downstream-overlay-patch.yaml
+new file mode 100644
+index 00000000..ba8e5721
+--- /dev/null
++++ b/argo-cd-apps/overlays/staging-downstream/staging-downstream-overlay-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/generators/0/merge/generators/0/clusters/values/environment
++  value: staging-downstream
+diff --git a/components/multi-platform-controller/staging-downstream/external-secrets.yaml b/components/multi-platform-controller/staging-downstream/external-secrets.yaml
+new file mode 100644
+index 00000000..f8e17704
+--- /dev/null
++++ b/components/multi-platform-controller/staging-downstream/external-secrets.yaml
+@@ -0,0 +1,22 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: aws-ssh-key
++  namespace: multi-platform-controller
++  labels:
++    build.appstudio.redhat.com/multi-platform-secret: "true"
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/build/multi-arch-controller-ssh-key-internal
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: aws-ssh-key
+diff --git a/components/multi-platform-controller/staging-downstream/host-config.yaml b/components/multi-platform-controller/staging-downstream/host-config.yaml
+new file mode 100644
+index 00000000..0a641bf6
+--- /dev/null
++++ b/components/multi-platform-controller/staging-downstream/host-config.yaml
+@@ -0,0 +1,20 @@
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  labels:
++    build.appstudio.redhat.com/multi-platform-config: hosts
++  name: host-config
++  namespace: multi-platform-controller
++data:
++
++  host.ip-10-29-64-251.address: "10.29.64.251"
++  host.ip-10-29-64-251.platform: "linux/amd64"
++  host.ip-10-29-64-251.user: "ec2-user"
++  host.ip-10-29-64-251.secret: "aws-ssh-key"
++  host.ip-10-29-64-251.concurrency: "4"
++
++  host.ip-10-29-64-249.address: "10.29.64.249"
++  host.ip-10-29-64-249.platform: "linux/arm64"
++  host.ip-10-29-64-249.user: "ec2-user"
++  host.ip-10-29-64-249.secret: "aws-ssh-key"
++  host.ip-10-29-64-249.concurrency: "4"
+diff --git a/components/multi-platform-controller/staging-downstream/kustomization.yaml b/components/multi-platform-controller/staging-downstream/kustomization.yaml
+new file mode 100644
+index 00000000..edfa9ff5
+--- /dev/null
++++ b/components/multi-platform-controller/staging-downstream/kustomization.yaml
+@@ -0,0 +1,8 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- host-config.yaml
++- external-secrets.yaml
++
++namespace: multi-platform-controller
