@@ -1,0 +1,36 @@
+diff --git a/components/remote-secret-controller/OWNERS b/components/remote-secret-controller/OWNERS
+index 2d8373d8..ac2205d1 100644
+--- a/components/remote-secret-controller/OWNERS
++++ b/components/remote-secret-controller/OWNERS
+@@ -3,11 +3,9 @@
+ approvers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla
+ 
+ reviewers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla
+diff --git a/components/spi/OWNERS b/components/spi/OWNERS
+index 2d8373d8..ac2205d1 100644
+--- a/components/spi/OWNERS
++++ b/components/spi/OWNERS
+@@ -3,11 +3,9 @@
+ approvers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla
+ 
+ reviewers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla

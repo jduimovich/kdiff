@@ -1,12 +1,450 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Jan 15 08:03:22 UTC 2024
+### This file generated at Mon Jan 15 12:03:51 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from db0e4bef to ebfe0eaa on Mon Jan 15 07:41:31 2024 </h3>  
+<h3>1: Production changes from ebfe0eaa to ee7e8108 on Mon Jan 15 08:39:19 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (36 lines)</summary>  
+
+``` 
+diff --git a/components/remote-secret-controller/OWNERS b/components/remote-secret-controller/OWNERS
+index 2d8373d8..ac2205d1 100644
+--- a/components/remote-secret-controller/OWNERS
++++ b/components/remote-secret-controller/OWNERS
+@@ -3,11 +3,9 @@
+ approvers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla
+ 
+ reviewers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla
+diff --git a/components/spi/OWNERS b/components/spi/OWNERS
+index 2d8373d8..ac2205d1 100644
+--- a/components/spi/OWNERS
++++ b/components/spi/OWNERS
+@@ -3,11 +3,9 @@
+ approvers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla
+ 
+ reviewers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from ebfe0eaa to ee7e8108 on Mon Jan 15 08:39:19 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (36 lines)</summary>  
+
+``` 
+diff --git a/components/remote-secret-controller/OWNERS b/components/remote-secret-controller/OWNERS
+index 2d8373d8..ac2205d1 100644
+--- a/components/remote-secret-controller/OWNERS
++++ b/components/remote-secret-controller/OWNERS
+@@ -3,11 +3,9 @@
+ approvers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla
+ 
+ reviewers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla
+diff --git a/components/spi/OWNERS b/components/spi/OWNERS
+index 2d8373d8..ac2205d1 100644
+--- a/components/spi/OWNERS
++++ b/components/spi/OWNERS
+@@ -3,11 +3,9 @@
+ approvers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla
+ 
+ reviewers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from ebfe0eaa to ee7e8108 on Mon Jan 15 08:39:19 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (36 lines)</summary>  
+
+``` 
+diff --git a/components/remote-secret-controller/OWNERS b/components/remote-secret-controller/OWNERS
+index 2d8373d8..ac2205d1 100644
+--- a/components/remote-secret-controller/OWNERS
++++ b/components/remote-secret-controller/OWNERS
+@@ -3,11 +3,9 @@
+ approvers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla
+ 
+ reviewers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla
+diff --git a/components/spi/OWNERS b/components/spi/OWNERS
+index 2d8373d8..ac2205d1 100644
+--- a/components/spi/OWNERS
++++ b/components/spi/OWNERS
+@@ -3,11 +3,9 @@
+ approvers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla
+ 
+ reviewers:
+ - skabashnyuk
+ - mshaposhnik
+-- metlos
+-- xbaran4
++- mmulholla 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from db0e4bef to ebfe0eaa on Mon Jan 15 07:41:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (92 lines)</summary>  
@@ -208,7 +646,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from db0e4bef to ebfe0eaa on Mon Jan 15 07:41:31 2024 </h3>  
+<h3>2: Staging changes from db0e4bef to ebfe0eaa on Mon Jan 15 07:41:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (92 lines)</summary>  
@@ -431,7 +869,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from db0e4bef to ebfe0eaa on Mon Jan 15 07:41:31 2024 </h3>  
+<h3>2: Development changes from db0e4bef to ebfe0eaa on Mon Jan 15 07:41:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (92 lines)</summary>  
@@ -612,7 +1050,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 756cc2d7 to db0e4bef on Sun Jan 14 15:52:37 2024 </h3>  
+<h3>3: Production changes from 756cc2d7 to db0e4bef on Sun Jan 14 15:52:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -746,7 +1184,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 756cc2d7 to db0e4bef on Sun Jan 14 15:52:37 2024 </h3>  
+<h3>3: Staging changes from 756cc2d7 to db0e4bef on Sun Jan 14 15:52:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -897,7 +1335,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 756cc2d7 to db0e4bef on Sun Jan 14 15:52:37 2024 </h3>  
+<h3>3: Development changes from 756cc2d7 to db0e4bef on Sun Jan 14 15:52:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -1006,7 +1444,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 19a845a4 to 756cc2d7 on Fri Jan 12 21:39:56 2024 </h3>  
+<h3>4: Production changes from 19a845a4 to 756cc2d7 on Fri Jan 12 21:39:56 2024 </h3>  
  
 <details> 
 <summary>Git Diff (9 lines)</summary>  
@@ -1125,7 +1563,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 19a845a4 to 756cc2d7 on Fri Jan 12 21:39:56 2024 </h3>  
+<h3>4: Staging changes from 19a845a4 to 756cc2d7 on Fri Jan 12 21:39:56 2024 </h3>  
  
 <details> 
 <summary>Git Diff (9 lines)</summary>  
@@ -1265,7 +1703,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 19a845a4 to 756cc2d7 on Fri Jan 12 21:39:56 2024 </h3>  
+<h3>4: Development changes from 19a845a4 to 756cc2d7 on Fri Jan 12 21:39:56 2024 </h3>  
  
 <details> 
 <summary>Git Diff (9 lines)</summary>  
@@ -1289,664 +1727,6 @@ index 4ea1bcca..e609fb24 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from cd9c293d to 19a845a4 on Fri Jan 12 19:38:26 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (98 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml
-index 71faabe4..41788c6d 100644
---- a/components/pipeline-service/development/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/development/update-tekton-config-performance.yaml
-@@ -16,4 +16,14 @@
-   # default upstream setting
-   # value: 10
-   # upstream large scale env recommendation
--  value: 50
-\ No newline at end of file
-+  value: 50
-+- op: replace
-+  path: /spec/pipeline/performance/buckets
-+  # default pipeline-service setting is 1
-+  # we make buckets twice the replica number per the
-+  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
-+  value: 4
-+- op: replace
-+  path: /spec/pipeline/performance/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-index 4620d416..94cf33e1 100644
---- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-@@ -16,4 +16,14 @@
-   # default upstream setting
-   #value: 10
-   # upstream large scale env recommendation
--  value: 50
-\ No newline at end of file
-+  value: 50
-+- op: replace
-+  path: /spec/pipeline/performance/buckets
-+  # default pipeline-service setting is 1
-+  # we make buckets twice the replica number per the
-+  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
-+  value: 4
-+- op: replace
-+  path: /spec/pipeline/performance/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index f1ac2121..acd04240 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1873,11 +1873,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index f4e1c607..6af9cb18 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1873,11 +1873,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index eaf4a3ce..9de100b3 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1873,11 +1873,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from cd9c293d to 19a845a4 on Fri Jan 12 19:38:26 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (98 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml
-index 71faabe4..41788c6d 100644
---- a/components/pipeline-service/development/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/development/update-tekton-config-performance.yaml
-@@ -16,4 +16,14 @@
-   # default upstream setting
-   # value: 10
-   # upstream large scale env recommendation
--  value: 50
-\ No newline at end of file
-+  value: 50
-+- op: replace
-+  path: /spec/pipeline/performance/buckets
-+  # default pipeline-service setting is 1
-+  # we make buckets twice the replica number per the
-+  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
-+  value: 4
-+- op: replace
-+  path: /spec/pipeline/performance/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-index 4620d416..94cf33e1 100644
---- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-@@ -16,4 +16,14 @@
-   # default upstream setting
-   #value: 10
-   # upstream large scale env recommendation
--  value: 50
-\ No newline at end of file
-+  value: 50
-+- op: replace
-+  path: /spec/pipeline/performance/buckets
-+  # default pipeline-service setting is 1
-+  # we make buckets twice the replica number per the
-+  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
-+  value: 4
-+- op: replace
-+  path: /spec/pipeline/performance/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index f1ac2121..acd04240 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1873,11 +1873,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index f4e1c607..6af9cb18 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1873,11 +1873,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index eaf4a3ce..9de100b3 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1873,11 +1873,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (27 lines)</summary>  
-
-``` 
-./commit-cd9c293d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1876c1876
-<       buckets: 4
----
->       buckets: 1
-1880c1880
-<       replicas: 2
----
->       replicas: 1
-./commit-cd9c293d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-1876c1876
-<       buckets: 4
----
->       buckets: 1
-1880c1880
-<       replicas: 2
----
->       replicas: 1
-./commit-cd9c293d/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1876c1876
-<       buckets: 4
----
->       buckets: 1
-1880c1880
-<       replicas: 2
----
->       replicas: 1 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from cd9c293d to 19a845a4 on Fri Jan 12 19:38:26 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (98 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml
-index 71faabe4..41788c6d 100644
---- a/components/pipeline-service/development/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/development/update-tekton-config-performance.yaml
-@@ -16,4 +16,14 @@
-   # default upstream setting
-   # value: 10
-   # upstream large scale env recommendation
--  value: 50
-\ No newline at end of file
-+  value: 50
-+- op: replace
-+  path: /spec/pipeline/performance/buckets
-+  # default pipeline-service setting is 1
-+  # we make buckets twice the replica number per the
-+  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
-+  value: 4
-+- op: replace
-+  path: /spec/pipeline/performance/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-index 4620d416..94cf33e1 100644
---- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-@@ -16,4 +16,14 @@
-   # default upstream setting
-   #value: 10
-   # upstream large scale env recommendation
--  value: 50
-\ No newline at end of file
-+  value: 50
-+- op: replace
-+  path: /spec/pipeline/performance/buckets
-+  # default pipeline-service setting is 1
-+  # we make buckets twice the replica number per the
-+  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
-+  value: 4
-+- op: replace
-+  path: /spec/pipeline/performance/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index f1ac2121..acd04240 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1873,11 +1873,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index f4e1c607..6af9cb18 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1873,11 +1873,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index eaf4a3ce..9de100b3 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1873,11 +1873,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-cd9c293d/development/components/pipeline-service/development/kustomize.out.yaml
-2008c2008
-<       buckets: 4
----
->       buckets: 1
-2012c2012
-<       replicas: 2
----
->       replicas: 1 
 ```
  
 </details>  
