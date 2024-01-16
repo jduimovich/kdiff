@@ -1,12 +1,408 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Jan 16 04:02:08 UTC 2024
+### This file generated at Tue Jan 16 08:03:34 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 013da654 to 887ff108 on Mon Jan 15 20:23:13 2024 </h3>  
+<h3>1: Production changes from 887ff108 to 89cca576 on Tue Jan 16 07:21:10 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (22 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/development/kustomization.yaml b/components/sandbox/toolchain-host-operator/development/kustomization.yaml
+index 991a8834..e609fb24 100644
+--- a/components/sandbox/toolchain-host-operator/development/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/development/kustomization.yaml
+@@ -1,2 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+\ No newline at end of file
++kind: Kustomization
++
++resources: []
+diff --git a/components/sandbox/toolchain-member-operator/development/kustomization.yaml b/components/sandbox/toolchain-member-operator/development/kustomization.yaml
+index 991a8834..e609fb24 100644
+--- a/components/sandbox/toolchain-member-operator/development/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/development/kustomization.yaml
+@@ -1,2 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+\ No newline at end of file
++kind: Kustomization
++
++resources: [] 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 887ff108 to 89cca576 on Tue Jan 16 07:21:10 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (22 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/development/kustomization.yaml b/components/sandbox/toolchain-host-operator/development/kustomization.yaml
+index 991a8834..e609fb24 100644
+--- a/components/sandbox/toolchain-host-operator/development/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/development/kustomization.yaml
+@@ -1,2 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+\ No newline at end of file
++kind: Kustomization
++
++resources: []
+diff --git a/components/sandbox/toolchain-member-operator/development/kustomization.yaml b/components/sandbox/toolchain-member-operator/development/kustomization.yaml
+index 991a8834..e609fb24 100644
+--- a/components/sandbox/toolchain-member-operator/development/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/development/kustomization.yaml
+@@ -1,2 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+\ No newline at end of file
++kind: Kustomization
++
++resources: [] 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 887ff108 to 89cca576 on Tue Jan 16 07:21:10 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (22 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/development/kustomization.yaml b/components/sandbox/toolchain-host-operator/development/kustomization.yaml
+index 991a8834..e609fb24 100644
+--- a/components/sandbox/toolchain-host-operator/development/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/development/kustomization.yaml
+@@ -1,2 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+\ No newline at end of file
++kind: Kustomization
++
++resources: []
+diff --git a/components/sandbox/toolchain-member-operator/development/kustomization.yaml b/components/sandbox/toolchain-member-operator/development/kustomization.yaml
+index 991a8834..e609fb24 100644
+--- a/components/sandbox/toolchain-member-operator/development/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/development/kustomization.yaml
+@@ -1,2 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+\ No newline at end of file
++kind: Kustomization
++
++resources: [] 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 013da654 to 887ff108 on Mon Jan 15 20:23:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (87 lines)</summary>  
@@ -236,7 +632,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 013da654 to 887ff108 on Mon Jan 15 20:23:13 2024 </h3>  
+<h3>2: Staging changes from 013da654 to 887ff108 on Mon Jan 15 20:23:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (87 lines)</summary>  
@@ -454,7 +850,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 013da654 to 887ff108 on Mon Jan 15 20:23:13 2024 </h3>  
+<h3>2: Development changes from 013da654 to 887ff108 on Mon Jan 15 20:23:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (87 lines)</summary>  
@@ -630,7 +1026,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from b82af405 to 013da654 on Mon Jan 15 19:22:42 2024 </h3>  
+<h3>3: Production changes from b82af405 to 013da654 on Mon Jan 15 19:22:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -763,7 +1159,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from b82af405 to 013da654 on Mon Jan 15 19:22:42 2024 </h3>  
+<h3>3: Staging changes from b82af405 to 013da654 on Mon Jan 15 19:22:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -913,7 +1309,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from b82af405 to 013da654 on Mon Jan 15 19:22:42 2024 </h3>  
+<h3>3: Development changes from b82af405 to 013da654 on Mon Jan 15 19:22:42 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1021,7 +1417,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from c80fcb63 to b82af405 on Mon Jan 15 18:11:14 2024 </h3>  
+<h3>4: Production changes from c80fcb63 to b82af405 on Mon Jan 15 18:11:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -1205,7 +1601,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from c80fcb63 to b82af405 on Mon Jan 15 18:11:14 2024 </h3>  
+<h3>4: Staging changes from c80fcb63 to b82af405 on Mon Jan 15 18:11:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -1410,7 +1806,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from c80fcb63 to b82af405 on Mon Jan 15 18:11:14 2024 </h3>  
+<h3>4: Development changes from c80fcb63 to b82af405 on Mon Jan 15 18:11:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (70 lines)</summary>  
@@ -1499,458 +1895,6 @@ index b3575441..b2f61059 100644
 <         image: quay.io/redhat-appstudio/application-service:bfdba1defa6d8b42adf343180431da6496841396
 ---
 >         image: quay.io/redhat-appstudio/application-service:1673763aec7559646f615936fc28e22fe501b742 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 3a4dc993 to c80fcb63 on Mon Jan 15 16:39:00 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 420fd02c..8ea4ff09 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=16e419239e99ae9c826be5735eba10e184f87019
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=45f788bbf54a77f50bcb2390545b383de6eff7b8
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 16e419239e99ae9c826be5735eba10e184f87019
-+  newTag: 45f788bbf54a77f50bcb2390545b383de6eff7b8
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
-index 3056b4be..80a325b0 100644
---- a/components/integration/staging/kustomization.yaml
-+++ b/components/integration/staging/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../base
- - ../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=16e419239e99ae9c826be5735eba10e184f87019
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=45f788bbf54a77f50bcb2390545b383de6eff7b8
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 16e419239e99ae9c826be5735eba10e184f87019
-+  newTag: 45f788bbf54a77f50bcb2390545b383de6eff7b8
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 3a4dc993 to c80fcb63 on Mon Jan 15 16:39:00 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 420fd02c..8ea4ff09 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=16e419239e99ae9c826be5735eba10e184f87019
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=45f788bbf54a77f50bcb2390545b383de6eff7b8
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 16e419239e99ae9c826be5735eba10e184f87019
-+  newTag: 45f788bbf54a77f50bcb2390545b383de6eff7b8
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
-index 3056b4be..80a325b0 100644
---- a/components/integration/staging/kustomization.yaml
-+++ b/components/integration/staging/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../base
- - ../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=16e419239e99ae9c826be5735eba10e184f87019
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=45f788bbf54a77f50bcb2390545b383de6eff7b8
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 16e419239e99ae9c826be5735eba10e184f87019
-+  newTag: 45f788bbf54a77f50bcb2390545b383de6eff7b8
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-3a4dc993/staging/components/integration/staging/kustomize.out.yaml
-1102c1102
-<         image: quay.io/redhat-appstudio/integration-service:45f788bbf54a77f50bcb2390545b383de6eff7b8
----
->         image: quay.io/redhat-appstudio/integration-service:16e419239e99ae9c826be5735eba10e184f87019 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 3a4dc993 to c80fcb63 on Mon Jan 15 16:39:00 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 420fd02c..8ea4ff09 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=16e419239e99ae9c826be5735eba10e184f87019
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=45f788bbf54a77f50bcb2390545b383de6eff7b8
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 16e419239e99ae9c826be5735eba10e184f87019
-+  newTag: 45f788bbf54a77f50bcb2390545b383de6eff7b8
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
-index 3056b4be..80a325b0 100644
---- a/components/integration/staging/kustomization.yaml
-+++ b/components/integration/staging/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../base
- - ../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=16e419239e99ae9c826be5735eba10e184f87019
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=45f788bbf54a77f50bcb2390545b383de6eff7b8
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 16e419239e99ae9c826be5735eba10e184f87019
-+  newTag: 45f788bbf54a77f50bcb2390545b383de6eff7b8
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-3a4dc993/development/components/integration/development/kustomize.out.yaml
-1102c1102
-<         image: quay.io/redhat-appstudio/integration-service:45f788bbf54a77f50bcb2390545b383de6eff7b8
----
->         image: quay.io/redhat-appstudio/integration-service:16e419239e99ae9c826be5735eba10e184f87019 
 ```
  
 </details>  
