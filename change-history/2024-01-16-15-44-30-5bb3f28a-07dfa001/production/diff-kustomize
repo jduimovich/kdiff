@@ -1,0 +1,30 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-07dfa001/production/components/integration/production/kustomize.out.yaml ./kustomized-cache/commit-5bb3f28a/production/components/integration/production/kustomize.out.yaml
+541,554d540
+< apiVersion: authorization.openshift.io/v1
+< kind: ClusterRole
+< metadata:
+<   name: delete-snapshots
+<   namespace: integration-service
+< rules:
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - snapshots
+<   verbs:
+<   - delete
+<   - deletecollection
+< ---
+958,970d943
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+<   name: delete-snapshots
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: delete-snapshots
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: Integration Team
