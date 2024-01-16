@@ -1,0 +1,34 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-887ff108/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-013da654/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1202c1202
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
+1875,1876d1874
+<       buckets: 1
+<       disable-ha: false
+1879d1876
+<       replicas: 1
+1893c1890,1893
+<     disabled: true
+---
+>     keep: 10
+>     resources:
+>     - pipelinerun
+>     schedule: 0/2 * * * *
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-887ff108/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-013da654/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1202c1202
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
+1875,1876d1874
+<       buckets: 1
+<       disable-ha: false
+1879d1876
+<       replicas: 1
+1893c1890,1893
+<     disabled: true
+---
+>     keep: 10
+>     resources:
+>     - pipelinerun
+>     schedule: 0/2 * * * *

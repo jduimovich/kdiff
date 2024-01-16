@@ -1,0 +1,87 @@
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 1a5c272a..176de5dc 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=867a3e00b4e39f9e0faeeb9d8a31b96896d52b5a
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=de5809f2532b129640c4a00aae76a363be67dcbe
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 01e4a16a..27226da5 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1199,7 +1199,7 @@ spec:
+     spec:
+       containers:
+       - args: []
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -1872,8 +1872,11 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     performance:
++      buckets: 1
++      disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
++      replicas: 1
+       threads-per-controller: 32
+   platforms:
+     openshift:
+@@ -1887,10 +1890,7 @@ spec:
+           custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline
+   profile: all
+   pruner:
+-    keep: 10
+-    resources:
+-    - pipelinerun
+-    schedule: 0/2 * * * *
++    disabled: true
+   targetNamespace: openshift-pipelines
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index b4970893..e3ced1cc 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1199,7 +1199,7 @@ spec:
+     spec:
+       containers:
+       - args: []
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:8f321cb4da5a2f939199e2bc12924c15de32d5ac
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+@@ -1872,8 +1872,11 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     performance:
++      buckets: 1
++      disable-ha: false
+       kube-api-burst: 50
+       kube-api-qps: 50
++      replicas: 1
+       threads-per-controller: 32
+   platforms:
+     openshift:
+@@ -1887,10 +1890,7 @@ spec:
+           custom-console-url-pr-tasklog: https://console.redhat.com/preview/application-pipeline
+   profile: all
+   pruner:
+-    keep: 10
+-    resources:
+-    - pipelinerun
+-    schedule: 0/2 * * * *
++    disabled: true
+   targetNamespace: openshift-pipelines
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
