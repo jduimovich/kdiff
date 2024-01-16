@@ -1,0 +1,129 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-97ca3637/staging/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-07dfa001/staging/components/enterprise-contract/kustomize.out.yaml
+25,29c25,27
+<             description: |-
+<               APIVersion defines the versioned schema of this representation of an object.
+<               Servers should convert recognized schemas to the latest internal value, and
+<               may reject unrecognized values.
+<               More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+---
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+32,37c30,32
+<             description: |-
+<               Kind is a string value representing the REST resource this object represents.
+<               Servers may infer this from the endpoint the client submits requests to.
+<               Cannot be updated.
+<               In CamelCase.
+<               More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+---
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+50,52c45,46
+<                     description: |-
+<                       Collections set of predefined rules.  DEPRECATED: Collections can be listed in include
+<                       with the "@" prefix.
+---
+>                     description: 'Collections set of predefined rules.  DEPRECATED:
+>                       Collections can be listed in include with the "@" prefix.'
+58,60c52,53
+<                     description: |-
+<                       Exclude set of policy exclusions that, in case of failure, do not block
+<                       the success of the outcome.
+---
+>                     description: Exclude set of policy exclusions that, in case of
+>                       failure, do not block the success of the outcome.
+66,68c59,60
+<                     description: |-
+<                       Include set of policy inclusions that are added to the policy evaluation.
+<                       These override excluded rules.
+---
+>                     description: Include set of policy inclusions that are added to
+>                       the policy evaluation. These override excluded rules.
+86,88c78,79
+<                     description: |-
+<                       IssuerRegExp is a regular expression to match the URL of the certificate OIDC issuer for
+<                       keyless verification.
+---
+>                     description: IssuerRegExp is a regular expression to match the
+>                       URL of the certificate OIDC issuer for keyless verification.
+95,97c86,87
+<                     description: |-
+<                       SubjectRegExp is a regular expression to match the URL of the certificate identity for
+<                       keyless verification.
+---
+>                     description: SubjectRegExp is a regular expression to match the
+>                       URL of the certificate identity for keyless verification.
+118,120c108,109
+<                       description: |-
+<                         Config specifies which policy rules are included, or excluded, from the
+<                         provided policy source urls.
+---
+>                       description: Config specifies which policy rules are included,
+>                         or excluded, from the provided policy source urls.
+123,125c112,113
+<                           description: |-
+<                             Exclude is a set of policy exclusions that, in case of failure, do not block
+<                             the success of the outcome.
+---
+>                           description: Exclude is a set of policy exclusions that,
+>                             in case of failure, do not block the success of the outcome.
+131,133c119,121
+<                           description: |-
+<                             Include is a set of policy inclusions that are added to the policy evaluation.
+<                             These take precedence over policy exclusions.
+---
+>                           description: Include is a set of policy inclusions that
+>                             are added to the policy evaluation. These take precedence
+>                             over policy exclusions.
+159,161c147,148
+<                       description: |-
+<                         Specifies volatile configuration that can include or exclude policy rules
+<                         based on effective time.
+---
+>                       description: Specifies volatile configuration that can include
+>                         or exclude policy rules based on effective time.
+164,166c151,152
+<                           description: |-
+<                             Exclude is a set of policy exclusions that, in case of failure, do not block
+<                             the success of the outcome.
+---
+>                           description: Exclude is a set of policy exclusions that,
+>                             in case of failure, do not block the success of the outcome.
+187,189c173,175
+<                           description: |-
+<                             Include is a set of policy inclusions that are added to the policy evaluation.
+<                             These take precedence over policy exclusions.
+---
+>                           description: Include is a set of policy inclusions that
+>                             are added to the policy evaluation. These take precedence
+>                             over policy exclusions.
+376c362
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:499ef12d7cd9c229a9ade87403bd67c095ad69d9@sha256:778bd7a74a2909e608cd28f15f81078534e86ff99561a0b8fd2fdf01465de153
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:2f65d22d006597d65f16318c821ad7d9ad7f9d96@sha256:962693658bc1ab9e2efd726d34704ffd9ec0951d500f6be78a7bb1d7b3f88c81
+378c364
+<   verify_ec_task_git_revision: 499ef12d7cd9c229a9ade87403bd67c095ad69d9
+---
+>   verify_ec_task_git_revision: 2f65d22d006597d65f16318c821ad7d9ad7f9d96
+611c597
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8
+635c621
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8
+659c645
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8
+686c672
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8
+712c698
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8

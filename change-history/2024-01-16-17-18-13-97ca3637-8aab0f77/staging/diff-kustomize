@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8aab0f77/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-97ca3637/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1894a1895
+>     keep: 2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8aab0f77/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-97ca3637/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1894a1895
+>     keep: 2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8aab0f77/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-97ca3637/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1894a1895
+>     keep: 2

@@ -1,0 +1,61 @@
+diff --git a/components/pipeline-service/staging/base/greedy-pruner.yaml b/components/pipeline-service/staging/base/greedy-pruner.yaml
+deleted file mode 100644
+index 802c8c85..00000000
+--- a/components/pipeline-service/staging/base/greedy-pruner.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: replace
+-  path: /spec/pruner/keep
+-  value: 2
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 3b42d3de..86268c09 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -15,10 +15,6 @@ resources:
+   - ../../base/rbac
+ 
+ patches:
+-  - path: greedy-pruner.yaml
+-    target:
+-      kind: TektonConfig
+-      name: config
+   - path: metrics-exporter-trace.yaml
+     target:
+       kind: Deployment
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index acd04240..eca8b475 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1892,7 +1892,6 @@ spec:
+   profile: all
+   pruner:
+     disabled: true
+-    keep: 2
+   targetNamespace: openshift-pipelines
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 6af9cb18..50cf8d99 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1892,7 +1892,6 @@ spec:
+   profile: all
+   pruner:
+     disabled: true
+-    keep: 2
+   targetNamespace: openshift-pipelines
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 9de100b3..2bdc53b0 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1892,7 +1892,6 @@ spec:
+   profile: all
+   pruner:
+     disabled: true
+-    keep: 2
+   targetNamespace: openshift-pipelines
+ ---
+ apiVersion: operators.coreos.com/v1alpha1

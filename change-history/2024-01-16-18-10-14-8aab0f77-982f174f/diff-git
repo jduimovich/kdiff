@@ -1,0 +1,53 @@
+diff --git a/components/pipeline-service/production/base/bump-exporter-mem.yaml b/components/pipeline-service/production/base/bump-exporter-mem.yaml
+new file mode 100644
+index 00000000..7cf19058
+--- /dev/null
++++ b/components/pipeline-service/production/base/bump-exporter-mem.yaml
+@@ -0,0 +1,4 @@
++---
++- op: replace
++  path: /spec/template/spec/containers/0/resources/limits/memory
++  value: "1Gi"
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 176de5dc..e8516f8d 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -20,6 +20,11 @@ patches:
+   #     kind: Deployment
+   #     name: pipeline-metrics-exporter
+   #     namespace: openshift-pipelines
++  - path: bump-exporter-mem.yaml
++    target:
++      kind: Deployment
++      name: pipeline-metrics-exporter
++      namespace: openshift-pipelines
+   - path: update-tekton-config-pac.yaml
+     target:
+       kind: TektonConfig
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 27226da5..7a22fccc 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1207,7 +1207,7 @@ spec:
+         resources:
+           limits:
+             cpu: 500m
+-            memory: 512Mi
++            memory: 1Gi
+           requests:
+             cpu: 250m
+             memory: 128Mi
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index e3ced1cc..d7d3e3ed 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1207,7 +1207,7 @@ spec:
+         resources:
+           limits:
+             cpu: 500m
+-            memory: 512Mi
++            memory: 1Gi
+           requests:
+             cpu: 250m
+             memory: 128Mi
