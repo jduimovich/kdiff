@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-13daa2ec/production/components/authentication/production/kustomize.out.yaml ./kustomized-cache/commit-d3741e9e/production/components/authentication/production/kustomize.out.yaml
+493,494c493,494
+< - kind: Group
+<   name: Infra Team
+---
+> - kind: User
+>   name: sbose78
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-13daa2ec/production/components/has/production/kustomize.out.yaml ./kustomized-cache/commit-d3741e9e/production/components/has/production/kustomize.out.yaml
+548a549,551
+>   name: sbose78
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-13daa2ec/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-d3741e9e/production/components/tekton-ci/production/kustomize.out.yaml
+33a34,36
+>   name: sbose78
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User

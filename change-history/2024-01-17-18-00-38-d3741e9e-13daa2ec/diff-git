@@ -1,0 +1,85 @@
+diff --git a/OWNERS b/OWNERS
+index 228151f6..f6701f5a 100644
+--- a/OWNERS
++++ b/OWNERS
+@@ -2,7 +2,6 @@
+ 
+ approvers:
+ - jduimovich
+-- sbose78
+ - zregvart
+ - simonbaird
+ - johnmcollier
+diff --git a/components/authentication/base/group-sync/group-sync.yaml b/components/authentication/base/group-sync/group-sync.yaml
+index 8e45f623..63a6a9ee 100644
+--- a/components/authentication/base/group-sync/group-sync.yaml
++++ b/components/authentication/base/group-sync/group-sync.yaml
+@@ -4,8 +4,8 @@ metadata:
+   name: group-sync-operator-maintainers
+   namespace: group-sync-operator
+ subjects:
+-  - kind: User
+-    name: sbose78
++  - kind: Group
++    name: Infra Team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/has/base/rbac/has.yaml b/components/has/base/rbac/has.yaml
+index 5f863e4f..fca9525a 100644
+--- a/components/has/base/rbac/has.yaml
++++ b/components/has/base/rbac/has.yaml
+@@ -4,9 +4,6 @@ metadata:
+   name: application-service-maintainers
+   namespace: application-service
+ subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sbose78
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: johnmcollier
+diff --git a/components/image-controller/base/OWNERS b/components/image-controller/base/OWNERS
+index 853b2766..f3264bb7 100644
+--- a/components/image-controller/base/OWNERS
++++ b/components/image-controller/base/OWNERS
+@@ -5,10 +5,8 @@ approvers:
+ - tkdchen
+ - rcerven
+ - mkosiarc
+-- sbose78
+ 
+ reviewers:
+-- sbose78
+ - mmorhun
+ - tkdchen
+ - mkosiarc
+diff --git a/components/multi-platform-controller/OWNERS b/components/multi-platform-controller/OWNERS
+index 24844681..c9c5d281 100644
+--- a/components/multi-platform-controller/OWNERS
++++ b/components/multi-platform-controller/OWNERS
+@@ -2,10 +2,8 @@
+ 
+ approvers:
+ - stuartwdouglas
+-- sbose78
+ - arewm
+ 
+ reviewers:
+-- sbose78
+ - stuartwdouglas
+ - arewm
+diff --git a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
+index 9709b431..189a395b 100644
+--- a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
++++ b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
+@@ -4,9 +4,6 @@ metadata:
+   name: tekton-ci-maintainers
+   namespace: tekton-ci
+ subjects:
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sbose78
+   - kind: User
+     apiGroup: rbac.authorization.k8s.io
+     name: psturc

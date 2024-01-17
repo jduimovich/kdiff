@@ -1,0 +1,12 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-13daa2ec/development/components/authentication/development/kustomize.out.yaml ./kustomized-cache/commit-d3741e9e/development/components/authentication/development/kustomize.out.yaml
+521,522c521,522
+< - kind: Group
+<   name: Infra Team
+---
+> - kind: User
+>   name: sbose78
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-13daa2ec/development/components/has/development/kustomize.out.yaml ./kustomized-cache/commit-d3741e9e/development/components/has/development/kustomize.out.yaml
+542a543,545
+>   name: sbose78
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User

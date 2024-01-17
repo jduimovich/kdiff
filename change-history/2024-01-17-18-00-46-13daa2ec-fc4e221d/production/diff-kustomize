@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fc4e221d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-13daa2ec/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1875c1875
+<       buckets: 4
+---
+>       buckets: 1
+1879c1879
+<       replicas: 2
+---
+>       replicas: 1
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fc4e221d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-13daa2ec/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1875c1875
+<       buckets: 4
+---
+>       buckets: 1
+1879c1879
+<       replicas: 2
+---
+>       replicas: 1
