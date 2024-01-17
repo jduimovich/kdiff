@@ -1,12 +1,438 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Jan 16 20:05:32 UTC 2024
+### This file generated at Wed Jan 17 00:06:50 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 8aab0f77 to 982f174f on Tue Jan 16 18:10:14 2024 </h3>  
+<h3>1: Production changes from 982f174f to e3fe5ace on Tue Jan 16 22:17:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (32 lines)</summary>  
+
+``` 
+diff --git a/components/gitops-repo-pruner/OWNERS b/components/gitops-repo-pruner/OWNERS
+deleted file mode 100644
+index c3e0bd87..00000000
+--- a/components/gitops-repo-pruner/OWNERS
++++ /dev/null
+@@ -1,16 +0,0 @@
+-# See the OWNERS docs: https://go.k8s.io/owners
+-
+-approvers:
+-- johnmcollier
+-- yangcao77
+-- maysunfaisal
+-- kim-tsao
+-- elsony
+-
+-reviewers:
+-- johnmcollier
+-- yangcao77
+-- maysunfaisal
+-- kim-tsao
+-- elsony
+-
+diff --git a/components/gitops-repo-pruner/kustomization.yaml b/components/gitops-repo-pruner/kustomization.yaml
+deleted file mode 100644
+index 14f2a158..00000000
+--- a/components/gitops-repo-pruner/kustomization.yaml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-982f174f/production/components: gitops-repo-pruner 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 982f174f to e3fe5ace on Tue Jan 16 22:17:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (32 lines)</summary>  
+
+``` 
+diff --git a/components/gitops-repo-pruner/OWNERS b/components/gitops-repo-pruner/OWNERS
+deleted file mode 100644
+index c3e0bd87..00000000
+--- a/components/gitops-repo-pruner/OWNERS
++++ /dev/null
+@@ -1,16 +0,0 @@
+-# See the OWNERS docs: https://go.k8s.io/owners
+-
+-approvers:
+-- johnmcollier
+-- yangcao77
+-- maysunfaisal
+-- kim-tsao
+-- elsony
+-
+-reviewers:
+-- johnmcollier
+-- yangcao77
+-- maysunfaisal
+-- kim-tsao
+-- elsony
+-
+diff --git a/components/gitops-repo-pruner/kustomization.yaml b/components/gitops-repo-pruner/kustomization.yaml
+deleted file mode 100644
+index 14f2a158..00000000
+--- a/components/gitops-repo-pruner/kustomization.yaml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-982f174f/staging/components: gitops-repo-pruner 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 982f174f to e3fe5ace on Tue Jan 16 22:17:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (32 lines)</summary>  
+
+``` 
+diff --git a/components/gitops-repo-pruner/OWNERS b/components/gitops-repo-pruner/OWNERS
+deleted file mode 100644
+index c3e0bd87..00000000
+--- a/components/gitops-repo-pruner/OWNERS
++++ /dev/null
+@@ -1,16 +0,0 @@
+-# See the OWNERS docs: https://go.k8s.io/owners
+-
+-approvers:
+-- johnmcollier
+-- yangcao77
+-- maysunfaisal
+-- kim-tsao
+-- elsony
+-
+-reviewers:
+-- johnmcollier
+-- yangcao77
+-- maysunfaisal
+-- kim-tsao
+-- elsony
+-
+diff --git a/components/gitops-repo-pruner/kustomization.yaml b/components/gitops-repo-pruner/kustomization.yaml
+deleted file mode 100644
+index 14f2a158..00000000
+--- a/components/gitops-repo-pruner/kustomization.yaml
++++ /dev/null
+@@ -1,3 +0,0 @@
+-
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-982f174f/development/components: gitops-repo-pruner 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 8aab0f77 to 982f174f on Tue Jan 16 18:10:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -178,7 +604,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 8aab0f77 to 982f174f on Tue Jan 16 18:10:14 2024 </h3>  
+<h3>2: Staging changes from 8aab0f77 to 982f174f on Tue Jan 16 18:10:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -362,7 +788,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 8aab0f77 to 982f174f on Tue Jan 16 18:10:14 2024 </h3>  
+<h3>2: Development changes from 8aab0f77 to 982f174f on Tue Jan 16 18:10:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -504,7 +930,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 97ca3637 to 8aab0f77 on Tue Jan 16 17:18:13 2024 </h3>  
+<h3>3: Production changes from 97ca3637 to 8aab0f77 on Tue Jan 16 17:18:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (61 lines)</summary>  
@@ -675,7 +1101,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 97ca3637 to 8aab0f77 on Tue Jan 16 17:18:13 2024 </h3>  
+<h3>3: Staging changes from 97ca3637 to 8aab0f77 on Tue Jan 16 17:18:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (61 lines)</summary>  
@@ -875,7 +1301,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 97ca3637 to 8aab0f77 on Tue Jan 16 17:18:13 2024 </h3>  
+<h3>3: Development changes from 97ca3637 to 8aab0f77 on Tue Jan 16 17:18:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (61 lines)</summary>  
@@ -1025,7 +1451,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 07dfa001 to 97ca3637 on Tue Jan 16 17:18:07 2024 </h3>  
+<h3>4: Production changes from 07dfa001 to 97ca3637 on Tue Jan 16 17:18:07 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -1332,7 +1758,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 07dfa001 to 97ca3637 on Tue Jan 16 17:18:07 2024 </h3>  
+<h3>4: Staging changes from 07dfa001 to 97ca3637 on Tue Jan 16 17:18:07 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -1660,7 +2086,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 07dfa001 to 97ca3637 on Tue Jan 16 17:18:07 2024 </h3>  
+<h3>4: Development changes from 07dfa001 to 97ca3637 on Tue Jan 16 17:18:07 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -1872,552 +2298,6 @@ index a6abf9b3..46945111 100644
 <     - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2
 ---
 >     - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 5bb3f28a to 07dfa001 on Tue Jan 16 15:44:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (43 lines)</summary>  
-
-``` 
-diff --git a/components/integration/base/delete-snapshots.yaml b/components/integration/base/delete-snapshots.yaml
-new file mode 100644
-index 00000000..22bd6308
---- /dev/null
-+++ b/components/integration/base/delete-snapshots.yaml
-@@ -0,0 +1,25 @@
-+kind: ClusterRole
-+apiVersion: authorization.openshift.io/v1
-+metadata:
-+  name: delete-snapshots
-+rules:
-+  - apiGroups:
-+    - "appstudio.redhat.com"
-+    resources:
-+      - "snapshots"
-+    verbs:
-+      - "delete"
-+      - "deletecollection"
-+---
-+kind: ClusterRoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: delete-snapshots
-+subjects:
-+  - kind: Group
-+    apiGroup: rbac.authorization.k8s.io
-+    name: Integration Team
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: delete-snapshots
-diff --git a/components/integration/base/kustomization.yaml b/components/integration/base/kustomization.yaml
-index 6b588710..dc4db592 100644
---- a/components/integration/base/kustomization.yaml
-+++ b/components/integration/base/kustomization.yaml
-@@ -1,6 +1,7 @@
- resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
-+- delete-snapshots.yaml
- - integration.yaml
- 
- apiVersion: kustomize.config.k8s.io/v1beta1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (30 lines)</summary>  
-
-``` 
-./commit-5bb3f28a/production/components/integration/production/kustomize.out.yaml
-541,554d540
-< apiVersion: authorization.openshift.io/v1
-< kind: ClusterRole
-< metadata:
-<   name: delete-snapshots
-<   namespace: integration-service
-< rules:
-< - apiGroups:
-<   - appstudio.redhat.com
-<   resources:
-<   - snapshots
-<   verbs:
-<   - delete
-<   - deletecollection
-< ---
-958,970d943
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   name: delete-snapshots
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: delete-snapshots
-< subjects:
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-<   name: Integration Team 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 5bb3f28a to 07dfa001 on Tue Jan 16 15:44:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (43 lines)</summary>  
-
-``` 
-diff --git a/components/integration/base/delete-snapshots.yaml b/components/integration/base/delete-snapshots.yaml
-new file mode 100644
-index 00000000..22bd6308
---- /dev/null
-+++ b/components/integration/base/delete-snapshots.yaml
-@@ -0,0 +1,25 @@
-+kind: ClusterRole
-+apiVersion: authorization.openshift.io/v1
-+metadata:
-+  name: delete-snapshots
-+rules:
-+  - apiGroups:
-+    - "appstudio.redhat.com"
-+    resources:
-+      - "snapshots"
-+    verbs:
-+      - "delete"
-+      - "deletecollection"
-+---
-+kind: ClusterRoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: delete-snapshots
-+subjects:
-+  - kind: Group
-+    apiGroup: rbac.authorization.k8s.io
-+    name: Integration Team
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: delete-snapshots
-diff --git a/components/integration/base/kustomization.yaml b/components/integration/base/kustomization.yaml
-index 6b588710..dc4db592 100644
---- a/components/integration/base/kustomization.yaml
-+++ b/components/integration/base/kustomization.yaml
-@@ -1,6 +1,7 @@
- resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
-+- delete-snapshots.yaml
- - integration.yaml
- 
- apiVersion: kustomize.config.k8s.io/v1beta1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (30 lines)</summary>  
-
-``` 
-./commit-5bb3f28a/staging/components/integration/staging/kustomize.out.yaml
-541,554d540
-< apiVersion: authorization.openshift.io/v1
-< kind: ClusterRole
-< metadata:
-<   name: delete-snapshots
-<   namespace: integration-service
-< rules:
-< - apiGroups:
-<   - appstudio.redhat.com
-<   resources:
-<   - snapshots
-<   verbs:
-<   - delete
-<   - deletecollection
-< ---
-958,970d943
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   name: delete-snapshots
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: delete-snapshots
-< subjects:
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-<   name: Integration Team 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 5bb3f28a to 07dfa001 on Tue Jan 16 15:44:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (43 lines)</summary>  
-
-``` 
-diff --git a/components/integration/base/delete-snapshots.yaml b/components/integration/base/delete-snapshots.yaml
-new file mode 100644
-index 00000000..22bd6308
---- /dev/null
-+++ b/components/integration/base/delete-snapshots.yaml
-@@ -0,0 +1,25 @@
-+kind: ClusterRole
-+apiVersion: authorization.openshift.io/v1
-+metadata:
-+  name: delete-snapshots
-+rules:
-+  - apiGroups:
-+    - "appstudio.redhat.com"
-+    resources:
-+      - "snapshots"
-+    verbs:
-+      - "delete"
-+      - "deletecollection"
-+---
-+kind: ClusterRoleBinding
-+apiVersion: rbac.authorization.k8s.io/v1
-+metadata:
-+  name: delete-snapshots
-+subjects:
-+  - kind: Group
-+    apiGroup: rbac.authorization.k8s.io
-+    name: Integration Team
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: delete-snapshots
-diff --git a/components/integration/base/kustomization.yaml b/components/integration/base/kustomization.yaml
-index 6b588710..dc4db592 100644
---- a/components/integration/base/kustomization.yaml
-+++ b/components/integration/base/kustomization.yaml
-@@ -1,6 +1,7 @@
- resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
-+- delete-snapshots.yaml
- - integration.yaml
- 
- apiVersion: kustomize.config.k8s.io/v1beta1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (30 lines)</summary>  
-
-``` 
-./commit-5bb3f28a/development/components/integration/development/kustomize.out.yaml
-541,554d540
-< apiVersion: authorization.openshift.io/v1
-< kind: ClusterRole
-< metadata:
-<   name: delete-snapshots
-<   namespace: integration-service
-< rules:
-< - apiGroups:
-<   - appstudio.redhat.com
-<   resources:
-<   - snapshots
-<   verbs:
-<   - delete
-<   - deletecollection
-< ---
-958,970d943
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   name: delete-snapshots
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: delete-snapshots
-< subjects:
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-<   name: Integration Team 
 ```
  
 </details>  
