@@ -10,12 +10,379 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-wed-jan-17-040207-utc-2024">This file generated at Wed Jan 17 04:02:07 UTC 2024</h3>
+<h3 id="this-file-generated-at-wed-jan-17-080328-utc-2024">This file generated at Wed Jan 17 08:03:28 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 982f174f to e3fe5ace on Tue Jan 16 22:17:44 2024 </h3>  
+<h3>1: Production changes from e3fe5ace to b8762c63 on Wed Jan 17 06:46:37 2024 </h3>  
+
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/image-controller/production/kustomization.yaml b/components/image-controller/production/kustomization.yaml</span>
+<span class="hljs-comment">index 30d19f15..35dd5520 100644</span>
+<span class="hljs-comment">--- a/components/image-controller/production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/image-controller/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,12 +3,12 @@</span> kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/image-controller/config/default?ref=8208ff372b880773b911062dc828f050e45c5312</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee</span>
+
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+<span class="hljs-deletion">-  newTag: 8208ff372b880773b911062dc828f050e45c5312</span>
+<span class="hljs-addition">+  newTag: 73747651941a35a4f4e1047688f0ca3487893eee</span>
+
+ namespace: image-controller
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-e3fe5ace/production/components/image-controller/production/kustomize.out.yaml</span>
+<span class="hljs-string">611c611</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/image-controller:73747651941a35a4f4e1047688f0ca3487893eee</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/image-controller:8208ff372b880773b911062dc828f050e45c5312</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from e3fe5ace to b8762c63 on Wed Jan 17 06:46:37 2024 </h3>  
+
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/image-controller/production/kustomization.yaml b/components/image-controller/production/kustomization.yaml</span>
+<span class="hljs-comment">index 30d19f15..35dd5520 100644</span>
+<span class="hljs-comment">--- a/components/image-controller/production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/image-controller/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,12 +3,12 @@</span> kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/image-controller/config/default?ref=8208ff372b880773b911062dc828f050e45c5312</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee</span>
+
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+<span class="hljs-deletion">-  newTag: 8208ff372b880773b911062dc828f050e45c5312</span>
+<span class="hljs-addition">+  newTag: 73747651941a35a4f4e1047688f0ca3487893eee</span>
+
+ namespace: image-controller
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from e3fe5ace to b8762c63 on Wed Jan 17 06:46:37 2024 </h3>  
+
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/image-controller/production/kustomization.yaml b/components/image-controller/production/kustomization.yaml</span>
+<span class="hljs-comment">index 30d19f15..35dd5520 100644</span>
+<span class="hljs-comment">--- a/components/image-controller/production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/image-controller/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,12 +3,12 @@</span> kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/image-controller/config/default?ref=8208ff372b880773b911062dc828f050e45c5312</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee</span>
+
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+<span class="hljs-deletion">-  newTag: 8208ff372b880773b911062dc828f050e45c5312</span>
+<span class="hljs-addition">+  newTag: 73747651941a35a4f4e1047688f0ca3487893eee</span>
+
+ namespace: image-controller
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 982f174f to e3fe5ace on Tue Jan 16 22:17:44 2024 </h3>  
 
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -150,7 +517,7 @@ deleted file mode 100644
 
 </div>
 <div>
-<h3>1: Staging changes from 982f174f to e3fe5ace on Tue Jan 16 22:17:44 2024 </h3>  
+<h3>2: Staging changes from 982f174f to e3fe5ace on Tue Jan 16 22:17:44 2024 </h3>  
 
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -306,7 +673,7 @@ deleted file mode 100644
 
 </div>
 <div>
-<h3>1: Development changes from 982f174f to e3fe5ace on Tue Jan 16 22:17:44 2024 </h3>  
+<h3>2: Development changes from 982f174f to e3fe5ace on Tue Jan 16 22:17:44 2024 </h3>  
 
 <details> 
 <summary>Git Diff (32 lines)</summary>  
@@ -420,7 +787,7 @@ deleted file mode 100644
 
 </div>
 <div>
-<h3>2: Production changes from 8aab0f77 to 982f174f on Tue Jan 16 18:10:14 2024 </h3>  
+<h3>3: Production changes from 8aab0f77 to 982f174f on Tue Jan 16 18:10:14 2024 </h3>  
 
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -585,7 +952,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>2: Staging changes from 8aab0f77 to 982f174f on Tue Jan 16 18:10:14 2024 </h3>  
+<h3>3: Staging changes from 8aab0f77 to 982f174f on Tue Jan 16 18:10:14 2024 </h3>  
 
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -762,7 +1129,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>2: Development changes from 8aab0f77 to 982f174f on Tue Jan 16 18:10:14 2024 </h3>  
+<h3>3: Development changes from 8aab0f77 to 982f174f on Tue Jan 16 18:10:14 2024 </h3>  
 
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -897,7 +1264,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Production changes from 97ca3637 to 8aab0f77 on Tue Jan 16 17:18:13 2024 </h3>  
+<h3>4: Production changes from 97ca3637 to 8aab0f77 on Tue Jan 16 17:18:13 2024 </h3>  
 
 <details> 
 <summary>Git Diff (61 lines)</summary>  
@@ -1061,7 +1428,7 @@ deleted file mode 100644
 
 </div>
 <div>
-<h3>3: Staging changes from 97ca3637 to 8aab0f77 on Tue Jan 16 17:18:13 2024 </h3>  
+<h3>4: Staging changes from 97ca3637 to 8aab0f77 on Tue Jan 16 17:18:13 2024 </h3>  
 
 <details> 
 <summary>Git Diff (61 lines)</summary>  
@@ -1254,7 +1621,7 @@ deleted file mode 100644
 
 </div>
 <div>
-<h3>3: Development changes from 97ca3637 to 8aab0f77 on Tue Jan 16 17:18:13 2024 </h3>  
+<h3>4: Development changes from 97ca3637 to 8aab0f77 on Tue Jan 16 17:18:13 2024 </h3>  
 
 <details> 
 <summary>Git Diff (61 lines)</summary>  
@@ -1326,906 +1693,6 @@ deleted file mode 100644
 <details> 
 <summary>Kustomize Generated Diff (0 lines)</summary>  
 <pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from 07dfa001 to 97ca3637 on Tue Jan 16 17:18:07 2024 </h3>  
-
-<details> 
-<summary>Git Diff (69 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml</span>
-<span class="hljs-comment">index 57d8ed54..2046bd85 100644</span>
-<span class="hljs-comment">--- a/components/enterprise-contract/ecp.yaml</span>
-<span class="hljs-comment">+++ b/components/enterprise-contract/ecp.yaml</span>
-<span class="hljs-meta">@@ -23,7 +23,7 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-<span class="hljs-meta">@@ -44,7 +44,7 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-<span class="hljs-meta">@@ -67,7 +67,7 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-<span class="hljs-meta">@@ -88,7 +88,7 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-<span class="hljs-meta">@@ -110,4 +110,4 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-comment">diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml</span>
-<span class="hljs-comment">index a6abf9b3..46945111 100644</span>
-<span class="hljs-comment">--- a/components/enterprise-contract/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/enterprise-contract/kustomization.yaml</span>
-<span class="hljs-meta">@@ -1,7 +1,7 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=4ed0cb3ca999a444536d7fffd0825c9bb3eca993</span>
-<span class="hljs-addition">+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=1dc52afca1dbaead3e70a43ea122c2289ca95966</span>
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-<span class="hljs-meta">@@ -12,7 +12,7 @@</span> configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
-<span class="hljs-deletion">-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:2f65d22d006597d65f16318c821ad7d9ad7f9d96@sha256:962693658bc1ab9e2efd726d34704ffd9ec0951d500f6be78a7bb1d7b3f88c81</span>
-<span class="hljs-addition">+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:499ef12d7cd9c229a9ade87403bd67c095ad69d9@sha256:778bd7a74a2909e608cd28f15f81078534e86ff99561a0b8fd2fdf01465de153</span>
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
-<span class="hljs-deletion">-      - verify_ec_task_git_revision=2f65d22d006597d65f16318c821ad7d9ad7f9d96</span>
-<span class="hljs-addition">+      - verify_ec_task_git_revision=499ef12d7cd9c229a9ade87403bd67c095ad69d9</span>
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (129 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-07dfa001/production/components/enterprise-contract/kustomize.out.yaml</span>
-<span class="hljs-number">25</span><span class="hljs-string">,29c25,27</span>
-<span class="hljs-string">&lt;</span>             <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">APIVersion</span> <span class="hljs-string">defines</span> <span class="hljs-string">the</span> <span class="hljs-string">versioned</span> <span class="hljs-string">schema</span> <span class="hljs-string">of</span> <span class="hljs-string">this</span> <span class="hljs-string">representation</span> <span class="hljs-string">of</span> <span class="hljs-string">an</span> <span class="hljs-string">object.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">Servers</span> <span class="hljs-string">should</span> <span class="hljs-string">convert</span> <span class="hljs-string">recognized</span> <span class="hljs-string">schemas</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">latest</span> <span class="hljs-string">internal</span> <span class="hljs-string">value,</span> <span class="hljs-string">and</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">may</span> <span class="hljs-string">reject</span> <span class="hljs-string">unrecognized</span> <span class="hljs-string">values.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-attr">More info:</span> <span class="hljs-string">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>             <span class="hljs-attr">description:</span> <span class="hljs-string">&#x27;APIVersion defines the versioned schema of this representation
-&gt;               of an object. Servers should convert recognized schemas to the latest
-&gt;               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources&#x27;</span>
-<span class="hljs-number">32</span><span class="hljs-string">,37c30,32</span>
-<span class="hljs-string">&lt;</span>             <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">Kind</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">string</span> <span class="hljs-string">value</span> <span class="hljs-string">representing</span> <span class="hljs-string">the</span> <span class="hljs-string">REST</span> <span class="hljs-string">resource</span> <span class="hljs-string">this</span> <span class="hljs-string">object</span> <span class="hljs-string">represents.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">Servers</span> <span class="hljs-string">may</span> <span class="hljs-string">infer</span> <span class="hljs-string">this</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span> <span class="hljs-string">endpoint</span> <span class="hljs-string">the</span> <span class="hljs-string">client</span> <span class="hljs-string">submits</span> <span class="hljs-string">requests</span> <span class="hljs-string">to.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">Cannot</span> <span class="hljs-string">be</span> <span class="hljs-string">updated.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">In</span> <span class="hljs-string">CamelCase.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-attr">More info:</span> <span class="hljs-string">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>             <span class="hljs-attr">description:</span> <span class="hljs-string">&#x27;Kind is a string value representing the REST resource this
-&gt;               object represents. Servers may infer this from the endpoint the client
-&gt;               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds&#x27;</span>
-<span class="hljs-number">50</span><span class="hljs-string">,52c45,46</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">Collections set of predefined rules.  DEPRECATED:</span> <span class="hljs-string">Collections</span> <span class="hljs-string">can</span> <span class="hljs-string">be</span> <span class="hljs-string">listed</span> <span class="hljs-string">in</span> <span class="hljs-string">include</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">with</span> <span class="hljs-string">the</span> <span class="hljs-string">&quot;@&quot;</span> <span class="hljs-string">prefix.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">&#x27;Collections set of predefined rules.  DEPRECATED:
-&gt;                       Collections can be listed in include with the &quot;@&quot; prefix.&#x27;</span>
-<span class="hljs-number">58</span><span class="hljs-string">,60c52,53</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">Exclude</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span> <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">Exclude</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span> <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span> <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-number">66</span><span class="hljs-string">,68c59,60</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">Include</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">These</span> <span class="hljs-string">override</span> <span class="hljs-string">excluded</span> <span class="hljs-string">rules.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">Include</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span> <span class="hljs-string">These</span> <span class="hljs-string">override</span> <span class="hljs-string">excluded</span> <span class="hljs-string">rules.</span>
-<span class="hljs-number">86</span><span class="hljs-string">,88c78,79</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">IssuerRegExp</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">regular</span> <span class="hljs-string">expression</span> <span class="hljs-string">to</span> <span class="hljs-string">match</span> <span class="hljs-string">the</span> <span class="hljs-string">URL</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">certificate</span> <span class="hljs-string">OIDC</span> <span class="hljs-string">issuer</span> <span class="hljs-string">for</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">keyless</span> <span class="hljs-string">verification.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">IssuerRegExp</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">regular</span> <span class="hljs-string">expression</span> <span class="hljs-string">to</span> <span class="hljs-string">match</span> <span class="hljs-string">the</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-string">URL</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">certificate</span> <span class="hljs-string">OIDC</span> <span class="hljs-string">issuer</span> <span class="hljs-string">for</span> <span class="hljs-string">keyless</span> <span class="hljs-string">verification.</span>
-<span class="hljs-number">95</span><span class="hljs-string">,97c86,87</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">SubjectRegExp</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">regular</span> <span class="hljs-string">expression</span> <span class="hljs-string">to</span> <span class="hljs-string">match</span> <span class="hljs-string">the</span> <span class="hljs-string">URL</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">certificate</span> <span class="hljs-string">identity</span> <span class="hljs-string">for</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">keyless</span> <span class="hljs-string">verification.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">SubjectRegExp</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">regular</span> <span class="hljs-string">expression</span> <span class="hljs-string">to</span> <span class="hljs-string">match</span> <span class="hljs-string">the</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-string">URL</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">certificate</span> <span class="hljs-string">identity</span> <span class="hljs-string">for</span> <span class="hljs-string">keyless</span> <span class="hljs-string">verification.</span>
-<span class="hljs-number">118</span><span class="hljs-string">,120c108,109</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                         <span class="hljs-string">Config</span> <span class="hljs-string">specifies</span> <span class="hljs-string">which</span> <span class="hljs-string">policy</span> <span class="hljs-string">rules</span> <span class="hljs-string">are</span> <span class="hljs-string">included,</span> <span class="hljs-string">or</span> <span class="hljs-string">excluded,</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span>
-<span class="hljs-string">&lt;</span>                         <span class="hljs-string">provided</span> <span class="hljs-string">policy</span> <span class="hljs-string">source</span> <span class="hljs-string">urls.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-attr">description:</span> <span class="hljs-string">Config</span> <span class="hljs-string">specifies</span> <span class="hljs-string">which</span> <span class="hljs-string">policy</span> <span class="hljs-string">rules</span> <span class="hljs-string">are</span> <span class="hljs-string">included,</span>
-<span class="hljs-string">&gt;</span>                         <span class="hljs-string">or</span> <span class="hljs-string">excluded,</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span> <span class="hljs-string">provided</span> <span class="hljs-string">policy</span> <span class="hljs-string">source</span> <span class="hljs-string">urls.</span>
-<span class="hljs-number">123</span><span class="hljs-string">,125c112,113</span>
-<span class="hljs-string">&lt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">Exclude</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span> <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">Exclude</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span> <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-number">131</span><span class="hljs-string">,133c119,121</span>
-<span class="hljs-string">&lt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">Include</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">These</span> <span class="hljs-string">take</span> <span class="hljs-string">precedence</span> <span class="hljs-string">over</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">Include</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span> <span class="hljs-string">These</span> <span class="hljs-string">take</span> <span class="hljs-string">precedence</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">over</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions.</span>
-<span class="hljs-number">159</span><span class="hljs-string">,161c147,148</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                         <span class="hljs-string">Specifies</span> <span class="hljs-string">volatile</span> <span class="hljs-string">configuration</span> <span class="hljs-string">that</span> <span class="hljs-string">can</span> <span class="hljs-string">include</span> <span class="hljs-string">or</span> <span class="hljs-string">exclude</span> <span class="hljs-string">policy</span> <span class="hljs-string">rules</span>
-<span class="hljs-string">&lt;</span>                         <span class="hljs-string">based</span> <span class="hljs-string">on</span> <span class="hljs-string">effective</span> <span class="hljs-string">time.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-attr">description:</span> <span class="hljs-string">Specifies</span> <span class="hljs-string">volatile</span> <span class="hljs-string">configuration</span> <span class="hljs-string">that</span> <span class="hljs-string">can</span> <span class="hljs-string">include</span>
-<span class="hljs-string">&gt;</span>                         <span class="hljs-string">or</span> <span class="hljs-string">exclude</span> <span class="hljs-string">policy</span> <span class="hljs-string">rules</span> <span class="hljs-string">based</span> <span class="hljs-string">on</span> <span class="hljs-string">effective</span> <span class="hljs-string">time.</span>
-<span class="hljs-number">164</span><span class="hljs-string">,166c151,152</span>
-<span class="hljs-string">&lt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">Exclude</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span> <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">Exclude</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span> <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-number">187</span><span class="hljs-string">,189c173,175</span>
-<span class="hljs-string">&lt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">Include</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">These</span> <span class="hljs-string">take</span> <span class="hljs-string">precedence</span> <span class="hljs-string">over</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">Include</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span> <span class="hljs-string">These</span> <span class="hljs-string">take</span> <span class="hljs-string">precedence</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">over</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions.</span>
-<span class="hljs-string">376c362</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:499ef12d7cd9c229a9ade87403bd67c095ad69d9@sha256:778bd7a74a2909e608cd28f15f81078534e86ff99561a0b8fd2fdf01465de153</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:2f65d22d006597d65f16318c821ad7d9ad7f9d96@sha256:962693658bc1ab9e2efd726d34704ffd9ec0951d500f6be78a7bb1d7b3f88c81</span>
-<span class="hljs-string">378c364</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">499ef12d7cd9c229a9ade87403bd67c095ad69d9</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">2f65d22d006597d65f16318c821ad7d9ad7f9d96</span>
-<span class="hljs-string">611c597</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-string">635c621</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-string">659c645</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-string">686c672</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-string">712c698</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from 07dfa001 to 97ca3637 on Tue Jan 16 17:18:07 2024 </h3>  
-
-<details> 
-<summary>Git Diff (69 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml</span>
-<span class="hljs-comment">index 57d8ed54..2046bd85 100644</span>
-<span class="hljs-comment">--- a/components/enterprise-contract/ecp.yaml</span>
-<span class="hljs-comment">+++ b/components/enterprise-contract/ecp.yaml</span>
-<span class="hljs-meta">@@ -23,7 +23,7 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-<span class="hljs-meta">@@ -44,7 +44,7 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-<span class="hljs-meta">@@ -67,7 +67,7 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-<span class="hljs-meta">@@ -88,7 +88,7 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-<span class="hljs-meta">@@ -110,4 +110,4 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-comment">diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml</span>
-<span class="hljs-comment">index a6abf9b3..46945111 100644</span>
-<span class="hljs-comment">--- a/components/enterprise-contract/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/enterprise-contract/kustomization.yaml</span>
-<span class="hljs-meta">@@ -1,7 +1,7 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=4ed0cb3ca999a444536d7fffd0825c9bb3eca993</span>
-<span class="hljs-addition">+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=1dc52afca1dbaead3e70a43ea122c2289ca95966</span>
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-<span class="hljs-meta">@@ -12,7 +12,7 @@</span> configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
-<span class="hljs-deletion">-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:2f65d22d006597d65f16318c821ad7d9ad7f9d96@sha256:962693658bc1ab9e2efd726d34704ffd9ec0951d500f6be78a7bb1d7b3f88c81</span>
-<span class="hljs-addition">+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:499ef12d7cd9c229a9ade87403bd67c095ad69d9@sha256:778bd7a74a2909e608cd28f15f81078534e86ff99561a0b8fd2fdf01465de153</span>
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
-<span class="hljs-deletion">-      - verify_ec_task_git_revision=2f65d22d006597d65f16318c821ad7d9ad7f9d96</span>
-<span class="hljs-addition">+      - verify_ec_task_git_revision=499ef12d7cd9c229a9ade87403bd67c095ad69d9</span>
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (129 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-07dfa001/staging/components/enterprise-contract/kustomize.out.yaml</span>
-<span class="hljs-number">25</span><span class="hljs-string">,29c25,27</span>
-<span class="hljs-string">&lt;</span>             <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">APIVersion</span> <span class="hljs-string">defines</span> <span class="hljs-string">the</span> <span class="hljs-string">versioned</span> <span class="hljs-string">schema</span> <span class="hljs-string">of</span> <span class="hljs-string">this</span> <span class="hljs-string">representation</span> <span class="hljs-string">of</span> <span class="hljs-string">an</span> <span class="hljs-string">object.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">Servers</span> <span class="hljs-string">should</span> <span class="hljs-string">convert</span> <span class="hljs-string">recognized</span> <span class="hljs-string">schemas</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">latest</span> <span class="hljs-string">internal</span> <span class="hljs-string">value,</span> <span class="hljs-string">and</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">may</span> <span class="hljs-string">reject</span> <span class="hljs-string">unrecognized</span> <span class="hljs-string">values.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-attr">More info:</span> <span class="hljs-string">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>             <span class="hljs-attr">description:</span> <span class="hljs-string">&#x27;APIVersion defines the versioned schema of this representation
-&gt;               of an object. Servers should convert recognized schemas to the latest
-&gt;               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources&#x27;</span>
-<span class="hljs-number">32</span><span class="hljs-string">,37c30,32</span>
-<span class="hljs-string">&lt;</span>             <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">Kind</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">string</span> <span class="hljs-string">value</span> <span class="hljs-string">representing</span> <span class="hljs-string">the</span> <span class="hljs-string">REST</span> <span class="hljs-string">resource</span> <span class="hljs-string">this</span> <span class="hljs-string">object</span> <span class="hljs-string">represents.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">Servers</span> <span class="hljs-string">may</span> <span class="hljs-string">infer</span> <span class="hljs-string">this</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span> <span class="hljs-string">endpoint</span> <span class="hljs-string">the</span> <span class="hljs-string">client</span> <span class="hljs-string">submits</span> <span class="hljs-string">requests</span> <span class="hljs-string">to.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">Cannot</span> <span class="hljs-string">be</span> <span class="hljs-string">updated.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">In</span> <span class="hljs-string">CamelCase.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-attr">More info:</span> <span class="hljs-string">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>             <span class="hljs-attr">description:</span> <span class="hljs-string">&#x27;Kind is a string value representing the REST resource this
-&gt;               object represents. Servers may infer this from the endpoint the client
-&gt;               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds&#x27;</span>
-<span class="hljs-number">50</span><span class="hljs-string">,52c45,46</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">Collections set of predefined rules.  DEPRECATED:</span> <span class="hljs-string">Collections</span> <span class="hljs-string">can</span> <span class="hljs-string">be</span> <span class="hljs-string">listed</span> <span class="hljs-string">in</span> <span class="hljs-string">include</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">with</span> <span class="hljs-string">the</span> <span class="hljs-string">&quot;@&quot;</span> <span class="hljs-string">prefix.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">&#x27;Collections set of predefined rules.  DEPRECATED:
-&gt;                       Collections can be listed in include with the &quot;@&quot; prefix.&#x27;</span>
-<span class="hljs-number">58</span><span class="hljs-string">,60c52,53</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">Exclude</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span> <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">Exclude</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span> <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span> <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-number">66</span><span class="hljs-string">,68c59,60</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">Include</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">These</span> <span class="hljs-string">override</span> <span class="hljs-string">excluded</span> <span class="hljs-string">rules.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">Include</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span> <span class="hljs-string">These</span> <span class="hljs-string">override</span> <span class="hljs-string">excluded</span> <span class="hljs-string">rules.</span>
-<span class="hljs-number">86</span><span class="hljs-string">,88c78,79</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">IssuerRegExp</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">regular</span> <span class="hljs-string">expression</span> <span class="hljs-string">to</span> <span class="hljs-string">match</span> <span class="hljs-string">the</span> <span class="hljs-string">URL</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">certificate</span> <span class="hljs-string">OIDC</span> <span class="hljs-string">issuer</span> <span class="hljs-string">for</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">keyless</span> <span class="hljs-string">verification.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">IssuerRegExp</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">regular</span> <span class="hljs-string">expression</span> <span class="hljs-string">to</span> <span class="hljs-string">match</span> <span class="hljs-string">the</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-string">URL</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">certificate</span> <span class="hljs-string">OIDC</span> <span class="hljs-string">issuer</span> <span class="hljs-string">for</span> <span class="hljs-string">keyless</span> <span class="hljs-string">verification.</span>
-<span class="hljs-number">95</span><span class="hljs-string">,97c86,87</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">SubjectRegExp</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">regular</span> <span class="hljs-string">expression</span> <span class="hljs-string">to</span> <span class="hljs-string">match</span> <span class="hljs-string">the</span> <span class="hljs-string">URL</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">certificate</span> <span class="hljs-string">identity</span> <span class="hljs-string">for</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">keyless</span> <span class="hljs-string">verification.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">SubjectRegExp</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">regular</span> <span class="hljs-string">expression</span> <span class="hljs-string">to</span> <span class="hljs-string">match</span> <span class="hljs-string">the</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-string">URL</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">certificate</span> <span class="hljs-string">identity</span> <span class="hljs-string">for</span> <span class="hljs-string">keyless</span> <span class="hljs-string">verification.</span>
-<span class="hljs-number">118</span><span class="hljs-string">,120c108,109</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                         <span class="hljs-string">Config</span> <span class="hljs-string">specifies</span> <span class="hljs-string">which</span> <span class="hljs-string">policy</span> <span class="hljs-string">rules</span> <span class="hljs-string">are</span> <span class="hljs-string">included,</span> <span class="hljs-string">or</span> <span class="hljs-string">excluded,</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span>
-<span class="hljs-string">&lt;</span>                         <span class="hljs-string">provided</span> <span class="hljs-string">policy</span> <span class="hljs-string">source</span> <span class="hljs-string">urls.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-attr">description:</span> <span class="hljs-string">Config</span> <span class="hljs-string">specifies</span> <span class="hljs-string">which</span> <span class="hljs-string">policy</span> <span class="hljs-string">rules</span> <span class="hljs-string">are</span> <span class="hljs-string">included,</span>
-<span class="hljs-string">&gt;</span>                         <span class="hljs-string">or</span> <span class="hljs-string">excluded,</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span> <span class="hljs-string">provided</span> <span class="hljs-string">policy</span> <span class="hljs-string">source</span> <span class="hljs-string">urls.</span>
-<span class="hljs-number">123</span><span class="hljs-string">,125c112,113</span>
-<span class="hljs-string">&lt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">Exclude</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span> <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">Exclude</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span> <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-number">131</span><span class="hljs-string">,133c119,121</span>
-<span class="hljs-string">&lt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">Include</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">These</span> <span class="hljs-string">take</span> <span class="hljs-string">precedence</span> <span class="hljs-string">over</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">Include</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span> <span class="hljs-string">These</span> <span class="hljs-string">take</span> <span class="hljs-string">precedence</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">over</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions.</span>
-<span class="hljs-number">159</span><span class="hljs-string">,161c147,148</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                         <span class="hljs-string">Specifies</span> <span class="hljs-string">volatile</span> <span class="hljs-string">configuration</span> <span class="hljs-string">that</span> <span class="hljs-string">can</span> <span class="hljs-string">include</span> <span class="hljs-string">or</span> <span class="hljs-string">exclude</span> <span class="hljs-string">policy</span> <span class="hljs-string">rules</span>
-<span class="hljs-string">&lt;</span>                         <span class="hljs-string">based</span> <span class="hljs-string">on</span> <span class="hljs-string">effective</span> <span class="hljs-string">time.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-attr">description:</span> <span class="hljs-string">Specifies</span> <span class="hljs-string">volatile</span> <span class="hljs-string">configuration</span> <span class="hljs-string">that</span> <span class="hljs-string">can</span> <span class="hljs-string">include</span>
-<span class="hljs-string">&gt;</span>                         <span class="hljs-string">or</span> <span class="hljs-string">exclude</span> <span class="hljs-string">policy</span> <span class="hljs-string">rules</span> <span class="hljs-string">based</span> <span class="hljs-string">on</span> <span class="hljs-string">effective</span> <span class="hljs-string">time.</span>
-<span class="hljs-number">164</span><span class="hljs-string">,166c151,152</span>
-<span class="hljs-string">&lt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">Exclude</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span> <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">Exclude</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span> <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-number">187</span><span class="hljs-string">,189c173,175</span>
-<span class="hljs-string">&lt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">Include</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">These</span> <span class="hljs-string">take</span> <span class="hljs-string">precedence</span> <span class="hljs-string">over</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">Include</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span> <span class="hljs-string">These</span> <span class="hljs-string">take</span> <span class="hljs-string">precedence</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">over</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions.</span>
-<span class="hljs-string">376c362</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:499ef12d7cd9c229a9ade87403bd67c095ad69d9@sha256:778bd7a74a2909e608cd28f15f81078534e86ff99561a0b8fd2fdf01465de153</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:2f65d22d006597d65f16318c821ad7d9ad7f9d96@sha256:962693658bc1ab9e2efd726d34704ffd9ec0951d500f6be78a7bb1d7b3f88c81</span>
-<span class="hljs-string">378c364</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">499ef12d7cd9c229a9ade87403bd67c095ad69d9</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">2f65d22d006597d65f16318c821ad7d9ad7f9d96</span>
-<span class="hljs-string">611c597</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-string">635c621</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-string">659c645</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-string">686c672</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-string">712c698</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from 07dfa001 to 97ca3637 on Tue Jan 16 17:18:07 2024 </h3>  
-
-<details> 
-<summary>Git Diff (69 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml</span>
-<span class="hljs-comment">index 57d8ed54..2046bd85 100644</span>
-<span class="hljs-comment">--- a/components/enterprise-contract/ecp.yaml</span>
-<span class="hljs-comment">+++ b/components/enterprise-contract/ecp.yaml</span>
-<span class="hljs-meta">@@ -23,7 +23,7 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-<span class="hljs-meta">@@ -44,7 +44,7 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-<span class="hljs-meta">@@ -67,7 +67,7 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-<span class="hljs-meta">@@ -88,7 +88,7 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
- ---
- apiVersion: appstudio.redhat.com/v1alpha1
- kind: EnterpriseContractPolicy
-<span class="hljs-meta">@@ -110,4 +110,4 @@</span> spec:
-         - github.com/release-engineering/rhtap-ec-policy//data
-       name: Default
-       policy:
-<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-comment">diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml</span>
-<span class="hljs-comment">index a6abf9b3..46945111 100644</span>
-<span class="hljs-comment">--- a/components/enterprise-contract/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/enterprise-contract/kustomization.yaml</span>
-<span class="hljs-meta">@@ -1,7 +1,7 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=4ed0cb3ca999a444536d7fffd0825c9bb3eca993</span>
-<span class="hljs-addition">+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=1dc52afca1dbaead3e70a43ea122c2289ca95966</span>
-   - ecp.yaml
-   - role.yaml
-   - rolebinding.yaml
-<span class="hljs-meta">@@ -12,7 +12,7 @@</span> configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
-<span class="hljs-deletion">-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:2f65d22d006597d65f16318c821ad7d9ad7f9d96@sha256:962693658bc1ab9e2efd726d34704ffd9ec0951d500f6be78a7bb1d7b3f88c81</span>
-<span class="hljs-addition">+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:499ef12d7cd9c229a9ade87403bd67c095ad69d9@sha256:778bd7a74a2909e608cd28f15f81078534e86ff99561a0b8fd2fdf01465de153</span>
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
-<span class="hljs-deletion">-      - verify_ec_task_git_revision=2f65d22d006597d65f16318c821ad7d9ad7f9d96</span>
-<span class="hljs-addition">+      - verify_ec_task_git_revision=499ef12d7cd9c229a9ade87403bd67c095ad69d9</span>
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (129 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-07dfa001/development/components/enterprise-contract/kustomize.out.yaml</span>
-<span class="hljs-number">25</span><span class="hljs-string">,29c25,27</span>
-<span class="hljs-string">&lt;</span>             <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">APIVersion</span> <span class="hljs-string">defines</span> <span class="hljs-string">the</span> <span class="hljs-string">versioned</span> <span class="hljs-string">schema</span> <span class="hljs-string">of</span> <span class="hljs-string">this</span> <span class="hljs-string">representation</span> <span class="hljs-string">of</span> <span class="hljs-string">an</span> <span class="hljs-string">object.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">Servers</span> <span class="hljs-string">should</span> <span class="hljs-string">convert</span> <span class="hljs-string">recognized</span> <span class="hljs-string">schemas</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">latest</span> <span class="hljs-string">internal</span> <span class="hljs-string">value,</span> <span class="hljs-string">and</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">may</span> <span class="hljs-string">reject</span> <span class="hljs-string">unrecognized</span> <span class="hljs-string">values.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-attr">More info:</span> <span class="hljs-string">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>             <span class="hljs-attr">description:</span> <span class="hljs-string">&#x27;APIVersion defines the versioned schema of this representation
-&gt;               of an object. Servers should convert recognized schemas to the latest
-&gt;               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources&#x27;</span>
-<span class="hljs-number">32</span><span class="hljs-string">,37c30,32</span>
-<span class="hljs-string">&lt;</span>             <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">Kind</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">string</span> <span class="hljs-string">value</span> <span class="hljs-string">representing</span> <span class="hljs-string">the</span> <span class="hljs-string">REST</span> <span class="hljs-string">resource</span> <span class="hljs-string">this</span> <span class="hljs-string">object</span> <span class="hljs-string">represents.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">Servers</span> <span class="hljs-string">may</span> <span class="hljs-string">infer</span> <span class="hljs-string">this</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span> <span class="hljs-string">endpoint</span> <span class="hljs-string">the</span> <span class="hljs-string">client</span> <span class="hljs-string">submits</span> <span class="hljs-string">requests</span> <span class="hljs-string">to.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">Cannot</span> <span class="hljs-string">be</span> <span class="hljs-string">updated.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-string">In</span> <span class="hljs-string">CamelCase.</span>
-<span class="hljs-string">&lt;</span>               <span class="hljs-attr">More info:</span> <span class="hljs-string">https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>             <span class="hljs-attr">description:</span> <span class="hljs-string">&#x27;Kind is a string value representing the REST resource this
-&gt;               object represents. Servers may infer this from the endpoint the client
-&gt;               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds&#x27;</span>
-<span class="hljs-number">50</span><span class="hljs-string">,52c45,46</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">Collections set of predefined rules.  DEPRECATED:</span> <span class="hljs-string">Collections</span> <span class="hljs-string">can</span> <span class="hljs-string">be</span> <span class="hljs-string">listed</span> <span class="hljs-string">in</span> <span class="hljs-string">include</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">with</span> <span class="hljs-string">the</span> <span class="hljs-string">&quot;@&quot;</span> <span class="hljs-string">prefix.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">&#x27;Collections set of predefined rules.  DEPRECATED:
-&gt;                       Collections can be listed in include with the &quot;@&quot; prefix.&#x27;</span>
-<span class="hljs-number">58</span><span class="hljs-string">,60c52,53</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">Exclude</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span> <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">Exclude</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span> <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span> <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-number">66</span><span class="hljs-string">,68c59,60</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">Include</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">These</span> <span class="hljs-string">override</span> <span class="hljs-string">excluded</span> <span class="hljs-string">rules.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">Include</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span> <span class="hljs-string">These</span> <span class="hljs-string">override</span> <span class="hljs-string">excluded</span> <span class="hljs-string">rules.</span>
-<span class="hljs-number">86</span><span class="hljs-string">,88c78,79</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">IssuerRegExp</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">regular</span> <span class="hljs-string">expression</span> <span class="hljs-string">to</span> <span class="hljs-string">match</span> <span class="hljs-string">the</span> <span class="hljs-string">URL</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">certificate</span> <span class="hljs-string">OIDC</span> <span class="hljs-string">issuer</span> <span class="hljs-string">for</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">keyless</span> <span class="hljs-string">verification.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">IssuerRegExp</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">regular</span> <span class="hljs-string">expression</span> <span class="hljs-string">to</span> <span class="hljs-string">match</span> <span class="hljs-string">the</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-string">URL</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">certificate</span> <span class="hljs-string">OIDC</span> <span class="hljs-string">issuer</span> <span class="hljs-string">for</span> <span class="hljs-string">keyless</span> <span class="hljs-string">verification.</span>
-<span class="hljs-number">95</span><span class="hljs-string">,97c86,87</span>
-<span class="hljs-string">&lt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">SubjectRegExp</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">regular</span> <span class="hljs-string">expression</span> <span class="hljs-string">to</span> <span class="hljs-string">match</span> <span class="hljs-string">the</span> <span class="hljs-string">URL</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">certificate</span> <span class="hljs-string">identity</span> <span class="hljs-string">for</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-string">keyless</span> <span class="hljs-string">verification.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                     <span class="hljs-attr">description:</span> <span class="hljs-string">SubjectRegExp</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">regular</span> <span class="hljs-string">expression</span> <span class="hljs-string">to</span> <span class="hljs-string">match</span> <span class="hljs-string">the</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-string">URL</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">certificate</span> <span class="hljs-string">identity</span> <span class="hljs-string">for</span> <span class="hljs-string">keyless</span> <span class="hljs-string">verification.</span>
-<span class="hljs-number">118</span><span class="hljs-string">,120c108,109</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                         <span class="hljs-string">Config</span> <span class="hljs-string">specifies</span> <span class="hljs-string">which</span> <span class="hljs-string">policy</span> <span class="hljs-string">rules</span> <span class="hljs-string">are</span> <span class="hljs-string">included,</span> <span class="hljs-string">or</span> <span class="hljs-string">excluded,</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span>
-<span class="hljs-string">&lt;</span>                         <span class="hljs-string">provided</span> <span class="hljs-string">policy</span> <span class="hljs-string">source</span> <span class="hljs-string">urls.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-attr">description:</span> <span class="hljs-string">Config</span> <span class="hljs-string">specifies</span> <span class="hljs-string">which</span> <span class="hljs-string">policy</span> <span class="hljs-string">rules</span> <span class="hljs-string">are</span> <span class="hljs-string">included,</span>
-<span class="hljs-string">&gt;</span>                         <span class="hljs-string">or</span> <span class="hljs-string">excluded,</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span> <span class="hljs-string">provided</span> <span class="hljs-string">policy</span> <span class="hljs-string">source</span> <span class="hljs-string">urls.</span>
-<span class="hljs-number">123</span><span class="hljs-string">,125c112,113</span>
-<span class="hljs-string">&lt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">Exclude</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span> <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">Exclude</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span> <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-number">131</span><span class="hljs-string">,133c119,121</span>
-<span class="hljs-string">&lt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">Include</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">These</span> <span class="hljs-string">take</span> <span class="hljs-string">precedence</span> <span class="hljs-string">over</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">Include</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span> <span class="hljs-string">These</span> <span class="hljs-string">take</span> <span class="hljs-string">precedence</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">over</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions.</span>
-<span class="hljs-number">159</span><span class="hljs-string">,161c147,148</span>
-<span class="hljs-string">&lt;</span>                       <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                         <span class="hljs-string">Specifies</span> <span class="hljs-string">volatile</span> <span class="hljs-string">configuration</span> <span class="hljs-string">that</span> <span class="hljs-string">can</span> <span class="hljs-string">include</span> <span class="hljs-string">or</span> <span class="hljs-string">exclude</span> <span class="hljs-string">policy</span> <span class="hljs-string">rules</span>
-<span class="hljs-string">&lt;</span>                         <span class="hljs-string">based</span> <span class="hljs-string">on</span> <span class="hljs-string">effective</span> <span class="hljs-string">time.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                       <span class="hljs-attr">description:</span> <span class="hljs-string">Specifies</span> <span class="hljs-string">volatile</span> <span class="hljs-string">configuration</span> <span class="hljs-string">that</span> <span class="hljs-string">can</span> <span class="hljs-string">include</span>
-<span class="hljs-string">&gt;</span>                         <span class="hljs-string">or</span> <span class="hljs-string">exclude</span> <span class="hljs-string">policy</span> <span class="hljs-string">rules</span> <span class="hljs-string">based</span> <span class="hljs-string">on</span> <span class="hljs-string">effective</span> <span class="hljs-string">time.</span>
-<span class="hljs-number">164</span><span class="hljs-string">,166c151,152</span>
-<span class="hljs-string">&lt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">Exclude</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span> <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">Exclude</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions</span> <span class="hljs-string">that,</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">in</span> <span class="hljs-string">case</span> <span class="hljs-string">of</span> <span class="hljs-string">failure,</span> <span class="hljs-string">do</span> <span class="hljs-string">not</span> <span class="hljs-string">block</span> <span class="hljs-string">the</span> <span class="hljs-string">success</span> <span class="hljs-string">of</span> <span class="hljs-string">the</span> <span class="hljs-string">outcome.</span>
-<span class="hljs-number">187</span><span class="hljs-string">,189c173,175</span>
-<span class="hljs-string">&lt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">|-</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">Include</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span>
-<span class="hljs-string">&lt;</span>                             <span class="hljs-string">These</span> <span class="hljs-string">take</span> <span class="hljs-string">precedence</span> <span class="hljs-string">over</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>                           <span class="hljs-attr">description:</span> <span class="hljs-string">Include</span> <span class="hljs-string">is</span> <span class="hljs-string">a</span> <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">policy</span> <span class="hljs-string">inclusions</span> <span class="hljs-string">that</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">are</span> <span class="hljs-string">added</span> <span class="hljs-string">to</span> <span class="hljs-string">the</span> <span class="hljs-string">policy</span> <span class="hljs-string">evaluation.</span> <span class="hljs-string">These</span> <span class="hljs-string">take</span> <span class="hljs-string">precedence</span>
-<span class="hljs-string">&gt;</span>                             <span class="hljs-string">over</span> <span class="hljs-string">policy</span> <span class="hljs-string">exclusions.</span>
-<span class="hljs-string">376c362</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:499ef12d7cd9c229a9ade87403bd67c095ad69d9@sha256:778bd7a74a2909e608cd28f15f81078534e86ff99561a0b8fd2fdf01465de153</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:2f65d22d006597d65f16318c821ad7d9ad7f9d96@sha256:962693658bc1ab9e2efd726d34704ffd9ec0951d500f6be78a7bb1d7b3f88c81</span>
-<span class="hljs-string">378c364</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">499ef12d7cd9c229a9ade87403bd67c095ad69d9</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">2f65d22d006597d65f16318c821ad7d9ad7f9d96</span>
-<span class="hljs-string">611c597</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-string">635c621</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-string">659c645</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-string">686c672</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span>
-<span class="hljs-string">712c698</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a35a607@sha256:e587432bf1ade7bfa1dd88a0472ca502929be9de2ff943518ac250bb699848a8</span> 
 </code></pre>
 
 </details>  
