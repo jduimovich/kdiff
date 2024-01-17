@@ -1,0 +1,18 @@
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index 8b3e558d..21350ab7 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -15,13 +15,6 @@ spec:
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
+-metadata:
+-  name: application-service
+-spec:
+-  url: "https://github.com/redhat-appstudio/application-service"
+----
+-apiVersion: pipelinesascode.tekton.dev/v1alpha1
+-kind: Repository
+ metadata:
+   name: application-api
+ spec:
