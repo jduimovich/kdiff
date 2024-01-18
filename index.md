@@ -1,12 +1,814 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Jan 18 12:04:09 UTC 2024
+### This file generated at Thu Jan 18 16:03:59 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 7cc42c2c to 72e7d6eb on Thu Jan 18 08:20:03 2024 </h3>  
+<h3>1: Production changes from c2ff6e6a to 1379915f on Thu Jan 18 14:41:26 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/production/kustomization.yaml b/components/image-controller/production/kustomization.yaml
+index 35dd5520..7094d370 100644
+--- a/components/image-controller/production/kustomization.yaml
++++ b/components/image-controller/production/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee
++- https://github.com/redhat-appstudio/image-controller/config/default?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 73747651941a35a4f4e1047688f0ca3487893eee
++  newTag: 88e3b1cede3a4cb6871b75d92bd4da408122d991
+ 
+ namespace: image-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (25 lines)</summary>  
+
+``` 
+./commit-c2ff6e6a/production/components/image-controller/production/kustomize.out.yaml
+611c611
+<         image: quay.io/redhat-appstudio/image-controller:88e3b1cede3a4cb6871b75d92bd4da408122d991
+---
+>         image: quay.io/redhat-appstudio/image-controller:73747651941a35a4f4e1047688f0ca3487893eee
+753,771d752
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   labels:
+<     control-plane: controller-manager
+<   name: image-controller-controller-manager-metrics-monitor
+<   namespace: image-controller
+< spec:
+<   endpoints:
+<   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+<     path: /metrics
+<     port: https
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+<   selector:
+<     matchLabels:
+<       control-plane: controller-manager 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from c2ff6e6a to 1379915f on Thu Jan 18 14:41:26 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/production/kustomization.yaml b/components/image-controller/production/kustomization.yaml
+index 35dd5520..7094d370 100644
+--- a/components/image-controller/production/kustomization.yaml
++++ b/components/image-controller/production/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee
++- https://github.com/redhat-appstudio/image-controller/config/default?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 73747651941a35a4f4e1047688f0ca3487893eee
++  newTag: 88e3b1cede3a4cb6871b75d92bd4da408122d991
+ 
+ namespace: image-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from c2ff6e6a to 1379915f on Thu Jan 18 14:41:26 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/image-controller/production/kustomization.yaml b/components/image-controller/production/kustomization.yaml
+index 35dd5520..7094d370 100644
+--- a/components/image-controller/production/kustomization.yaml
++++ b/components/image-controller/production/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/image-controller/config/default?ref=73747651941a35a4f4e1047688f0ca3487893eee
++- https://github.com/redhat-appstudio/image-controller/config/default?ref=88e3b1cede3a4cb6871b75d92bd4da408122d991
+ 
+ images:
+ - name: quay.io/redhat-appstudio/image-controller
+   newName: quay.io/redhat-appstudio/image-controller
+-  newTag: 73747651941a35a4f4e1047688f0ca3487893eee
++  newTag: 88e3b1cede3a4cb6871b75d92bd4da408122d991
+ 
+ namespace: image-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 72e7d6eb to c2ff6e6a on Thu Jan 18 12:03:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+index fb4055ae..1dddb145 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=45f788bbf54a77f50bcb2390545b383de6eff7b8
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=552d67764087321a7a64348ba657161a3febd0bb
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 45f788bbf54a77f50bcb2390545b383de6eff7b8
++  newTag: 552d67764087321a7a64348ba657161a3febd0bb
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-72e7d6eb/production/components/integration/production/kustomize.out.yaml
+1129c1129
+<         image: quay.io/redhat-appstudio/integration-service:552d67764087321a7a64348ba657161a3febd0bb
+---
+>         image: quay.io/redhat-appstudio/integration-service:45f788bbf54a77f50bcb2390545b383de6eff7b8 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 72e7d6eb to c2ff6e6a on Thu Jan 18 12:03:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+index fb4055ae..1dddb145 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=45f788bbf54a77f50bcb2390545b383de6eff7b8
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=552d67764087321a7a64348ba657161a3febd0bb
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 45f788bbf54a77f50bcb2390545b383de6eff7b8
++  newTag: 552d67764087321a7a64348ba657161a3febd0bb
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 72e7d6eb to c2ff6e6a on Thu Jan 18 12:03:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+index fb4055ae..1dddb145 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=45f788bbf54a77f50bcb2390545b383de6eff7b8
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=552d67764087321a7a64348ba657161a3febd0bb
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 45f788bbf54a77f50bcb2390545b383de6eff7b8
++  newTag: 552d67764087321a7a64348ba657161a3febd0bb
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 7cc42c2c to 72e7d6eb on Thu Jan 18 08:20:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (14 lines)</summary>  
@@ -130,7 +932,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 7cc42c2c to 72e7d6eb on Thu Jan 18 08:20:03 2024 </h3>  
+<h3>3: Staging changes from 7cc42c2c to 72e7d6eb on Thu Jan 18 08:20:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (14 lines)</summary>  
@@ -275,7 +1077,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 7cc42c2c to 72e7d6eb on Thu Jan 18 08:20:03 2024 </h3>  
+<h3>3: Development changes from 7cc42c2c to 72e7d6eb on Thu Jan 18 08:20:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (14 lines)</summary>  
@@ -378,7 +1180,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from fc4e221d to 7cc42c2c on Wed Jan 17 18:50:09 2024 </h3>  
+<h3>4: Production changes from fc4e221d to 7cc42c2c on Wed Jan 17 18:50:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -526,7 +1328,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from fc4e221d to 7cc42c2c on Wed Jan 17 18:50:09 2024 </h3>  
+<h3>4: Staging changes from fc4e221d to 7cc42c2c on Wed Jan 17 18:50:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -695,7 +1497,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from fc4e221d to 7cc42c2c on Wed Jan 17 18:50:09 2024 </h3>  
+<h3>4: Development changes from fc4e221d to 7cc42c2c on Wed Jan 17 18:50:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -748,1155 +1550,6 @@ index 6c25d593..e0a6dc89 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 13daa2ec to fc4e221d on Wed Jan 17 18:00:46 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (58 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-index 46346f71..f7d4d7d6 100644
---- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-@@ -16,4 +16,14 @@
-   # default upstream setting
-   # value: 10
-   # upstream large scale env recommendation
--  value: 50
-\ No newline at end of file
-+  value: 50
-+- op: replace
-+  path: /spec/pipeline/performance/buckets
-+  # default pipeline-service setting is 1
-+  # we make buckets twice the replica number per the
-+  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
-+  value: 4
-+- op: replace
-+  path: /spec/pipeline/performance/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 7a22fccc..e3502cdb 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1872,11 +1872,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift:
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index d7d3e3ed..0c9e74a8 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1872,11 +1872,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (18 lines)</summary>  
-
-``` 
-./commit-13daa2ec/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
-1875c1875
-<       buckets: 4
----
->       buckets: 1
-1879c1879
-<       replicas: 2
----
->       replicas: 1
-./commit-13daa2ec/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
-1875c1875
-<       buckets: 4
----
->       buckets: 1
-1879c1879
-<       replicas: 2
----
->       replicas: 1 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 13daa2ec to fc4e221d on Wed Jan 17 18:00:46 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (58 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-index 46346f71..f7d4d7d6 100644
---- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-@@ -16,4 +16,14 @@
-   # default upstream setting
-   # value: 10
-   # upstream large scale env recommendation
--  value: 50
-\ No newline at end of file
-+  value: 50
-+- op: replace
-+  path: /spec/pipeline/performance/buckets
-+  # default pipeline-service setting is 1
-+  # we make buckets twice the replica number per the
-+  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
-+  value: 4
-+- op: replace
-+  path: /spec/pipeline/performance/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 7a22fccc..e3502cdb 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1872,11 +1872,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift:
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index d7d3e3ed..0c9e74a8 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1872,11 +1872,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 13daa2ec to fc4e221d on Wed Jan 17 18:00:46 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (58 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-index 46346f71..f7d4d7d6 100644
---- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-@@ -16,4 +16,14 @@
-   # default upstream setting
-   # value: 10
-   # upstream large scale env recommendation
--  value: 50
-\ No newline at end of file
-+  value: 50
-+- op: replace
-+  path: /spec/pipeline/performance/buckets
-+  # default pipeline-service setting is 1
-+  # we make buckets twice the replica number per the
-+  # convention adopted in https://github.com/openshift-pipelines/performance/blob/main/ci-scripts/setup-cluster.sh
-+  value: 4
-+- op: replace
-+  path: /spec/pipeline/performance/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 7a22fccc..e3502cdb 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1872,11 +1872,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift:
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index d7d3e3ed..0c9e74a8 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1872,11 +1872,11 @@ spec:
-     enable-hub-resolver: true
-     enable-tekton-oci-bundles: true
-     performance:
--      buckets: 1
-+      buckets: 4
-       disable-ha: false
-       kube-api-burst: 50
-       kube-api-qps: 50
--      replicas: 1
-+      replicas: 2
-       threads-per-controller: 32
-   platforms:
-     openshift: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from d3741e9e to 13daa2ec on Wed Jan 17 18:00:38 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (85 lines)</summary>  
-
-``` 
-diff --git a/OWNERS b/OWNERS
-index 228151f6..f6701f5a 100644
---- a/OWNERS
-+++ b/OWNERS
-@@ -2,7 +2,6 @@
- 
- approvers:
- - jduimovich
--- sbose78
- - zregvart
- - simonbaird
- - johnmcollier
-diff --git a/components/authentication/base/group-sync/group-sync.yaml b/components/authentication/base/group-sync/group-sync.yaml
-index 8e45f623..63a6a9ee 100644
---- a/components/authentication/base/group-sync/group-sync.yaml
-+++ b/components/authentication/base/group-sync/group-sync.yaml
-@@ -4,8 +4,8 @@ metadata:
-   name: group-sync-operator-maintainers
-   namespace: group-sync-operator
- subjects:
--  - kind: User
--    name: sbose78
-+  - kind: Group
-+    name: Infra Team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-diff --git a/components/has/base/rbac/has.yaml b/components/has/base/rbac/has.yaml
-index 5f863e4f..fca9525a 100644
---- a/components/has/base/rbac/has.yaml
-+++ b/components/has/base/rbac/has.yaml
-@@ -4,9 +4,6 @@ metadata:
-   name: application-service-maintainers
-   namespace: application-service
- subjects:
--  - kind: User
--    apiGroup: rbac.authorization.k8s.io
--    name: sbose78
-   - kind: User
-     apiGroup: rbac.authorization.k8s.io
-     name: johnmcollier
-diff --git a/components/image-controller/base/OWNERS b/components/image-controller/base/OWNERS
-index 853b2766..f3264bb7 100644
---- a/components/image-controller/base/OWNERS
-+++ b/components/image-controller/base/OWNERS
-@@ -5,10 +5,8 @@ approvers:
- - tkdchen
- - rcerven
- - mkosiarc
--- sbose78
- 
- reviewers:
--- sbose78
- - mmorhun
- - tkdchen
- - mkosiarc
-diff --git a/components/multi-platform-controller/OWNERS b/components/multi-platform-controller/OWNERS
-index 24844681..c9c5d281 100644
---- a/components/multi-platform-controller/OWNERS
-+++ b/components/multi-platform-controller/OWNERS
-@@ -2,10 +2,8 @@
- 
- approvers:
- - stuartwdouglas
--- sbose78
- - arewm
- 
- reviewers:
--- sbose78
- - stuartwdouglas
- - arewm
-diff --git a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
-index 9709b431..189a395b 100644
---- a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
-+++ b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
-@@ -4,9 +4,6 @@ metadata:
-   name: tekton-ci-maintainers
-   namespace: tekton-ci
- subjects:
--  - kind: User
--    apiGroup: rbac.authorization.k8s.io
--    name: sbose78
-   - kind: User
-     apiGroup: rbac.authorization.k8s.io
-     name: psturc 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-d3741e9e/production/components/authentication/production/kustomize.out.yaml
-493,494c493,494
-< - kind: Group
-<   name: Infra Team
----
-> - kind: User
->   name: sbose78
-./commit-d3741e9e/production/components/has/production/kustomize.out.yaml
-548a549,551
->   name: sbose78
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
-./commit-d3741e9e/production/components/tekton-ci/production/kustomize.out.yaml
-33a34,36
->   name: sbose78
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from d3741e9e to 13daa2ec on Wed Jan 17 18:00:38 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (85 lines)</summary>  
-
-``` 
-diff --git a/OWNERS b/OWNERS
-index 228151f6..f6701f5a 100644
---- a/OWNERS
-+++ b/OWNERS
-@@ -2,7 +2,6 @@
- 
- approvers:
- - jduimovich
--- sbose78
- - zregvart
- - simonbaird
- - johnmcollier
-diff --git a/components/authentication/base/group-sync/group-sync.yaml b/components/authentication/base/group-sync/group-sync.yaml
-index 8e45f623..63a6a9ee 100644
---- a/components/authentication/base/group-sync/group-sync.yaml
-+++ b/components/authentication/base/group-sync/group-sync.yaml
-@@ -4,8 +4,8 @@ metadata:
-   name: group-sync-operator-maintainers
-   namespace: group-sync-operator
- subjects:
--  - kind: User
--    name: sbose78
-+  - kind: Group
-+    name: Infra Team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-diff --git a/components/has/base/rbac/has.yaml b/components/has/base/rbac/has.yaml
-index 5f863e4f..fca9525a 100644
---- a/components/has/base/rbac/has.yaml
-+++ b/components/has/base/rbac/has.yaml
-@@ -4,9 +4,6 @@ metadata:
-   name: application-service-maintainers
-   namespace: application-service
- subjects:
--  - kind: User
--    apiGroup: rbac.authorization.k8s.io
--    name: sbose78
-   - kind: User
-     apiGroup: rbac.authorization.k8s.io
-     name: johnmcollier
-diff --git a/components/image-controller/base/OWNERS b/components/image-controller/base/OWNERS
-index 853b2766..f3264bb7 100644
---- a/components/image-controller/base/OWNERS
-+++ b/components/image-controller/base/OWNERS
-@@ -5,10 +5,8 @@ approvers:
- - tkdchen
- - rcerven
- - mkosiarc
--- sbose78
- 
- reviewers:
--- sbose78
- - mmorhun
- - tkdchen
- - mkosiarc
-diff --git a/components/multi-platform-controller/OWNERS b/components/multi-platform-controller/OWNERS
-index 24844681..c9c5d281 100644
---- a/components/multi-platform-controller/OWNERS
-+++ b/components/multi-platform-controller/OWNERS
-@@ -2,10 +2,8 @@
- 
- approvers:
- - stuartwdouglas
--- sbose78
- - arewm
- 
- reviewers:
--- sbose78
- - stuartwdouglas
- - arewm
-diff --git a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
-index 9709b431..189a395b 100644
---- a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
-+++ b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
-@@ -4,9 +4,6 @@ metadata:
-   name: tekton-ci-maintainers
-   namespace: tekton-ci
- subjects:
--  - kind: User
--    apiGroup: rbac.authorization.k8s.io
--    name: sbose78
-   - kind: User
-     apiGroup: rbac.authorization.k8s.io
-     name: psturc 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-d3741e9e/staging/components/authentication/staging/kustomize.out.yaml
-508,509c508,509
-< - kind: Group
-<   name: Infra Team
----
-> - kind: User
->   name: sbose78
-./commit-d3741e9e/staging/components/has/staging/kustomize.out.yaml
-561a562,564
->   name: sbose78
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User
-./commit-d3741e9e/staging/components/tekton-ci/staging/kustomize.out.yaml
-33a34,36
->   name: sbose78
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from d3741e9e to 13daa2ec on Wed Jan 17 18:00:38 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (85 lines)</summary>  
-
-``` 
-diff --git a/OWNERS b/OWNERS
-index 228151f6..f6701f5a 100644
---- a/OWNERS
-+++ b/OWNERS
-@@ -2,7 +2,6 @@
- 
- approvers:
- - jduimovich
--- sbose78
- - zregvart
- - simonbaird
- - johnmcollier
-diff --git a/components/authentication/base/group-sync/group-sync.yaml b/components/authentication/base/group-sync/group-sync.yaml
-index 8e45f623..63a6a9ee 100644
---- a/components/authentication/base/group-sync/group-sync.yaml
-+++ b/components/authentication/base/group-sync/group-sync.yaml
-@@ -4,8 +4,8 @@ metadata:
-   name: group-sync-operator-maintainers
-   namespace: group-sync-operator
- subjects:
--  - kind: User
--    name: sbose78
-+  - kind: Group
-+    name: Infra Team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-diff --git a/components/has/base/rbac/has.yaml b/components/has/base/rbac/has.yaml
-index 5f863e4f..fca9525a 100644
---- a/components/has/base/rbac/has.yaml
-+++ b/components/has/base/rbac/has.yaml
-@@ -4,9 +4,6 @@ metadata:
-   name: application-service-maintainers
-   namespace: application-service
- subjects:
--  - kind: User
--    apiGroup: rbac.authorization.k8s.io
--    name: sbose78
-   - kind: User
-     apiGroup: rbac.authorization.k8s.io
-     name: johnmcollier
-diff --git a/components/image-controller/base/OWNERS b/components/image-controller/base/OWNERS
-index 853b2766..f3264bb7 100644
---- a/components/image-controller/base/OWNERS
-+++ b/components/image-controller/base/OWNERS
-@@ -5,10 +5,8 @@ approvers:
- - tkdchen
- - rcerven
- - mkosiarc
--- sbose78
- 
- reviewers:
--- sbose78
- - mmorhun
- - tkdchen
- - mkosiarc
-diff --git a/components/multi-platform-controller/OWNERS b/components/multi-platform-controller/OWNERS
-index 24844681..c9c5d281 100644
---- a/components/multi-platform-controller/OWNERS
-+++ b/components/multi-platform-controller/OWNERS
-@@ -2,10 +2,8 @@
- 
- approvers:
- - stuartwdouglas
--- sbose78
- - arewm
- 
- reviewers:
--- sbose78
- - stuartwdouglas
- - arewm
-diff --git a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
-index 9709b431..189a395b 100644
---- a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
-+++ b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
-@@ -4,9 +4,6 @@ metadata:
-   name: tekton-ci-maintainers
-   namespace: tekton-ci
- subjects:
--  - kind: User
--    apiGroup: rbac.authorization.k8s.io
--    name: sbose78
-   - kind: User
-     apiGroup: rbac.authorization.k8s.io
-     name: psturc 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (12 lines)</summary>  
-
-``` 
-./commit-d3741e9e/development/components/authentication/development/kustomize.out.yaml
-521,522c521,522
-< - kind: Group
-<   name: Infra Team
----
-> - kind: User
->   name: sbose78
-./commit-d3741e9e/development/components/has/development/kustomize.out.yaml
-542a543,545
->   name: sbose78
-> - apiGroup: rbac.authorization.k8s.io
->   kind: User 
 ```
  
 </details>  

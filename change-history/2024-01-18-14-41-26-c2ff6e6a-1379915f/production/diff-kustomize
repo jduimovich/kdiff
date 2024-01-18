@@ -1,0 +1,25 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1379915f/production/components/image-controller/production/kustomize.out.yaml ./kustomized-cache/commit-c2ff6e6a/production/components/image-controller/production/kustomize.out.yaml
+611c611
+<         image: quay.io/redhat-appstudio/image-controller:88e3b1cede3a4cb6871b75d92bd4da408122d991
+---
+>         image: quay.io/redhat-appstudio/image-controller:73747651941a35a4f4e1047688f0ca3487893eee
+753,771d752
+< ---
+< apiVersion: monitoring.coreos.com/v1
+< kind: ServiceMonitor
+< metadata:
+<   labels:
+<     control-plane: controller-manager
+<   name: image-controller-controller-manager-metrics-monitor
+<   namespace: image-controller
+< spec:
+<   endpoints:
+<   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+<     path: /metrics
+<     port: https
+<     scheme: https
+<     tlsConfig:
+<       insecureSkipVerify: true
+<   selector:
+<     matchLabels:
+<       control-plane: controller-manager
