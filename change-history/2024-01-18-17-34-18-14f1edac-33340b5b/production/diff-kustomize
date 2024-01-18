@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-33340b5b/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-14f1edac/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1517c1517
+<             memory: 3Gi
+---
+>             memory: 2Gi
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-33340b5b/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-14f1edac/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1517c1517
+<             memory: 3Gi
+---
+>             memory: 2Gi
