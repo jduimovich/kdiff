@@ -1,0 +1,15 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-dd88fe8d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-0ef30714/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1203c1203
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:cdff9b19bf4b6e7009412ae6103be882a3a36f9b
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-dd88fe8d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-0ef30714/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1203c1203
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:cdff9b19bf4b6e7009412ae6103be882a3a36f9b
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-dd88fe8d/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-0ef30714/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1203c1203
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:cdff9b19bf4b6e7009412ae6103be882a3a36f9b
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:42a1938a18bf5b999241fafbf0d57a1c7d19e0f2
