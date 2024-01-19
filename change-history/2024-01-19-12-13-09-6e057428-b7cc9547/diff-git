@@ -1,0 +1,104 @@
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 5d8e50e9..8185485e 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -11,5 +11,5 @@ images:
+ 
+ namespace: integration-service
+ 
+-components:
+-  - ../k-components/manager-resources-patch
++patches:
++  - path: manager_resources_patch.yaml
+diff --git a/components/integration/k-components/manager-resources-patch/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
+similarity index 100%
+rename from components/integration/k-components/manager-resources-patch/manager_resources_patch.yaml
+rename to components/integration/development/manager_resources_patch.yaml
+diff --git a/components/integration/k-components/manager-resources-patch/kustomization.yaml b/components/integration/k-components/manager-resources-patch/kustomization.yaml
+deleted file mode 100644
+index 918316c7..00000000
+--- a/components/integration/k-components/manager-resources-patch/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1alpha1
+-kind: Component
+-
+-patches:
+-  - path: manager_resources_patch.yaml
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+index 1dddb145..2061dbc7 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/kustomization.yaml
+@@ -12,9 +12,6 @@ images:
+ 
+ namespace: integration-service
+ 
+-components:
+-  - ../k-components/manager-resources-patch
+-
+ patches:
+   - path: pipelines-as-code-secret.yaml
+     target:
+@@ -22,3 +19,4 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
++  - path: manager_resources_patch.yaml
+diff --git a/components/integration/production/manager_resources_patch.yaml b/components/integration/production/manager_resources_patch.yaml
+new file mode 100644
+index 00000000..5d3aa167
+--- /dev/null
++++ b/components/integration/production/manager_resources_patch.yaml
+@@ -0,0 +1,17 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: integration-service-controller-manager
++  namespace: system
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        resources:
++          limits:
++            cpu: 500m
++            memory: 1Gi
++          requests:
++            cpu: 100m
++            memory: 20Mi
+diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
+index 5ae4929c..f7583390 100644
+--- a/components/integration/staging/kustomization.yaml
++++ b/components/integration/staging/kustomization.yaml
+@@ -12,5 +12,5 @@ images:
+ 
+ namespace: integration-service
+ 
+-components:
+-  - ../k-components/manager-resources-patch
++patches:
++  - path: manager_resources_patch.yaml
+diff --git a/components/integration/staging/manager_resources_patch.yaml b/components/integration/staging/manager_resources_patch.yaml
+new file mode 100644
+index 00000000..5d3aa167
+--- /dev/null
++++ b/components/integration/staging/manager_resources_patch.yaml
+@@ -0,0 +1,17 @@
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: integration-service-controller-manager
++  namespace: system
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        resources:
++          limits:
++            cpu: 500m
++            memory: 1Gi
++          requests:
++            cpu: 100m
++            memory: 20Mi
