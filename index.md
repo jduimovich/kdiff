@@ -1,12 +1,477 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Jan 19 04:03:08 UTC 2024
+### This file generated at Fri Jan 19 08:03:48 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 0ef30714 to dd88fe8d on Fri Jan 19 02:55:26 2024 </h3>  
+<h3>1: Production changes from dd88fe8d to bbabfafd on Fri Jan 19 07:57:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (45 lines)</summary>  
+
+``` 
+diff --git a/components/remote-secret-controller/overlays/development/kustomization.yaml b/components/remote-secret-controller/overlays/development/kustomization.yaml
+index c6958273..31efbc61 100644
+--- a/components/remote-secret-controller/overlays/development/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=9f413da1d4703640b50fb03094f4b39e579c4bdb
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+ 
+ namespace: remotesecret
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: 9f413da1d4703640b50fb03094f4b39e579c4bdb
++    newTag: dbad89ab926ce9f8ee829702abc276e1805c8a97
+ 
+ patches:
+   - target:
+diff --git a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+index b92ea84f..69c3683f 100644
+--- a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=9f413da1d4703640b50fb03094f4b39e579c4bdb
+-  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=9f413da1d4703640b50fb03094f4b39e579c4bdb
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
++  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+   - aws-credentials-external-secret.yaml
+ 
+ namespace: remotesecret
+@@ -11,7 +11,7 @@ namespace: remotesecret
+ images:
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: 9f413da1d4703640b50fb03094f4b39e579c4bdb
++    newTag: dbad89ab926ce9f8ee829702abc276e1805c8a97
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from dd88fe8d to bbabfafd on Fri Jan 19 07:57:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (45 lines)</summary>  
+
+``` 
+diff --git a/components/remote-secret-controller/overlays/development/kustomization.yaml b/components/remote-secret-controller/overlays/development/kustomization.yaml
+index c6958273..31efbc61 100644
+--- a/components/remote-secret-controller/overlays/development/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=9f413da1d4703640b50fb03094f4b39e579c4bdb
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+ 
+ namespace: remotesecret
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: 9f413da1d4703640b50fb03094f4b39e579c4bdb
++    newTag: dbad89ab926ce9f8ee829702abc276e1805c8a97
+ 
+ patches:
+   - target:
+diff --git a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+index b92ea84f..69c3683f 100644
+--- a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=9f413da1d4703640b50fb03094f4b39e579c4bdb
+-  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=9f413da1d4703640b50fb03094f4b39e579c4bdb
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
++  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+   - aws-credentials-external-secret.yaml
+ 
+ namespace: remotesecret
+@@ -11,7 +11,7 @@ namespace: remotesecret
+ images:
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: 9f413da1d4703640b50fb03094f4b39e579c4bdb
++    newTag: dbad89ab926ce9f8ee829702abc276e1805c8a97
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from dd88fe8d to bbabfafd on Fri Jan 19 07:57:21 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (45 lines)</summary>  
+
+``` 
+diff --git a/components/remote-secret-controller/overlays/development/kustomization.yaml b/components/remote-secret-controller/overlays/development/kustomization.yaml
+index c6958273..31efbc61 100644
+--- a/components/remote-secret-controller/overlays/development/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=9f413da1d4703640b50fb03094f4b39e579c4bdb
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+ 
+ namespace: remotesecret
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: 9f413da1d4703640b50fb03094f4b39e579c4bdb
++    newTag: dbad89ab926ce9f8ee829702abc276e1805c8a97
+ 
+ patches:
+   - target:
+diff --git a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+index b92ea84f..69c3683f 100644
+--- a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=9f413da1d4703640b50fb03094f4b39e579c4bdb
+-  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=9f413da1d4703640b50fb03094f4b39e579c4bdb
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
++  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+   - aws-credentials-external-secret.yaml
+ 
+ namespace: remotesecret
+@@ -11,7 +11,7 @@ namespace: remotesecret
+ images:
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: 9f413da1d4703640b50fb03094f4b39e579c4bdb
++    newTag: dbad89ab926ce9f8ee829702abc276e1805c8a97
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 0ef30714 to dd88fe8d on Fri Jan 19 02:55:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (77 lines)</summary>  
@@ -193,7 +658,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 0ef30714 to dd88fe8d on Fri Jan 19 02:55:26 2024 </h3>  
+<h3>2: Staging changes from 0ef30714 to dd88fe8d on Fri Jan 19 02:55:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (77 lines)</summary>  
@@ -415,7 +880,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 0ef30714 to dd88fe8d on Fri Jan 19 02:55:26 2024 </h3>  
+<h3>2: Development changes from 0ef30714 to dd88fe8d on Fri Jan 19 02:55:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (77 lines)</summary>  
@@ -585,7 +1050,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 33340b5b to 0ef30714 on Thu Jan 18 22:46:08 2024 </h3>  
+<h3>3: Production changes from 33340b5b to 0ef30714 on Thu Jan 18 22:46:08 2024 </h3>  
  
 <details> 
 <summary>Git Diff (49 lines)</summary>  
@@ -766,7 +1231,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 33340b5b to 0ef30714 on Thu Jan 18 22:46:08 2024 </h3>  
+<h3>3: Staging changes from 33340b5b to 0ef30714 on Thu Jan 18 22:46:08 2024 </h3>  
  
 <details> 
 <summary>Git Diff (49 lines)</summary>  
@@ -968,7 +1433,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 33340b5b to 0ef30714 on Thu Jan 18 22:46:08 2024 </h3>  
+<h3>3: Development changes from 33340b5b to 0ef30714 on Thu Jan 18 22:46:08 2024 </h3>  
  
 <details> 
 <summary>Git Diff (49 lines)</summary>  
@@ -1128,7 +1593,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 14f1edac to 33340b5b on Thu Jan 18 17:34:18 2024 </h3>  
+<h3>4: Production changes from 14f1edac to 33340b5b on Thu Jan 18 17:34:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -1300,7 +1765,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 14f1edac to 33340b5b on Thu Jan 18 17:34:18 2024 </h3>  
+<h3>4: Staging changes from 14f1edac to 33340b5b on Thu Jan 18 17:34:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -1484,7 +1949,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 14f1edac to 33340b5b on Thu Jan 18 17:34:18 2024 </h3>  
+<h3>4: Development changes from 14f1edac to 33340b5b on Thu Jan 18 17:34:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -1552,672 +2017,6 @@ index 0c9e74a8..d802f90c 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 1379915f to 14f1edac on Thu Jan 18 16:41:28 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (60 lines)</summary>  
-
-``` 
-diff --git a/components/image-controller/base/kustomization.yaml b/components/image-controller/base/kustomization.yaml
-index 303e846d..773df155 100644
---- a/components/image-controller/base/kustomization.yaml
-+++ b/components/image-controller/base/kustomization.yaml
-@@ -1,5 +1,6 @@
- resources:
- - allow-argocd-to-manage.yaml
-+- monitoring.yaml
- - rbac
- 
- namespace: image-controller
-diff --git a/components/image-controller/base/monitoring.yaml b/components/image-controller/base/monitoring.yaml
-new file mode 100644
-index 00000000..37a8fd26
---- /dev/null
-+++ b/components/image-controller/base/monitoring.yaml
-@@ -0,0 +1,43 @@
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  name: metrics-reader
-+---
-+apiVersion: v1
-+kind: Secret
-+metadata:
-+  name: metrics-reader
-+  annotations:
-+    kubernetes.io/service-account.name: metrics-reader
-+type: kubernetes.io/service-account-token
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRoleBinding
-+metadata:
-+  name: prometheus-image-controller-metrics-reader
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: image-controller-metrics-reader
-+subjects:
-+- kind: ServiceAccount
-+  name: metrics-reader
-+---
-+apiVersion: monitoring.coreos.com/v1
-+kind: ServiceMonitor
-+metadata:
-+  name: image-controller
-+spec:
-+  endpoints:
-+  - path: /metrics
-+    interval: 15s
-+    port: https
-+    scheme: https
-+    bearerTokenSecret:
-+      name: "metrics-reader"
-+      key: token
-+    tlsConfig:
-+      insecureSkipVerify: true
-+  selector:
-+    matchLabels:
-+      control-plane: controller-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (53 lines)</summary>  
-
-``` 
-./commit-1379915f/production/components/image-controller/production/kustomize.out.yaml
-167,172d166
-< apiVersion: v1
-< kind: ServiceAccount
-< metadata:
-<   name: metrics-reader
-<   namespace: image-controller
-< ---
-445,457d438
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   name: prometheus-image-controller-metrics-reader
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: image-controller-metrics-reader
-< subjects:
-< - kind: ServiceAccount
-<   name: metrics-reader
-<   namespace: image-controller
-< ---
-589,597d569
-< kind: Secret
-< metadata:
-<   annotations:
-<     kubernetes.io/service-account.name: metrics-reader
-<   name: metrics-reader
-<   namespace: image-controller
-< type: kubernetes.io/service-account-token
-< ---
-< apiVersion: v1
-781,800d752
-< ---
-< apiVersion: monitoring.coreos.com/v1
-< kind: ServiceMonitor
-< metadata:
-<   name: image-controller
-<   namespace: image-controller
-< spec:
-<   endpoints:
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     interval: 15s
-<     path: /metrics
-<     port: https
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
-<   selector:
-<     matchLabels:
-<       control-plane: controller-manager 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 1379915f to 14f1edac on Thu Jan 18 16:41:28 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (60 lines)</summary>  
-
-``` 
-diff --git a/components/image-controller/base/kustomization.yaml b/components/image-controller/base/kustomization.yaml
-index 303e846d..773df155 100644
---- a/components/image-controller/base/kustomization.yaml
-+++ b/components/image-controller/base/kustomization.yaml
-@@ -1,5 +1,6 @@
- resources:
- - allow-argocd-to-manage.yaml
-+- monitoring.yaml
- - rbac
- 
- namespace: image-controller
-diff --git a/components/image-controller/base/monitoring.yaml b/components/image-controller/base/monitoring.yaml
-new file mode 100644
-index 00000000..37a8fd26
---- /dev/null
-+++ b/components/image-controller/base/monitoring.yaml
-@@ -0,0 +1,43 @@
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  name: metrics-reader
-+---
-+apiVersion: v1
-+kind: Secret
-+metadata:
-+  name: metrics-reader
-+  annotations:
-+    kubernetes.io/service-account.name: metrics-reader
-+type: kubernetes.io/service-account-token
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRoleBinding
-+metadata:
-+  name: prometheus-image-controller-metrics-reader
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: image-controller-metrics-reader
-+subjects:
-+- kind: ServiceAccount
-+  name: metrics-reader
-+---
-+apiVersion: monitoring.coreos.com/v1
-+kind: ServiceMonitor
-+metadata:
-+  name: image-controller
-+spec:
-+  endpoints:
-+  - path: /metrics
-+    interval: 15s
-+    port: https
-+    scheme: https
-+    bearerTokenSecret:
-+      name: "metrics-reader"
-+      key: token
-+    tlsConfig:
-+      insecureSkipVerify: true
-+  selector:
-+    matchLabels:
-+      control-plane: controller-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (53 lines)</summary>  
-
-``` 
-./commit-1379915f/staging/components/image-controller/staging/kustomize.out.yaml
-167,172d166
-< apiVersion: v1
-< kind: ServiceAccount
-< metadata:
-<   name: metrics-reader
-<   namespace: image-controller
-< ---
-445,457d438
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   name: prometheus-image-controller-metrics-reader
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: image-controller-metrics-reader
-< subjects:
-< - kind: ServiceAccount
-<   name: metrics-reader
-<   namespace: image-controller
-< ---
-618,626d598
-< kind: Secret
-< metadata:
-<   annotations:
-<     kubernetes.io/service-account.name: metrics-reader
-<   name: metrics-reader
-<   namespace: image-controller
-< type: kubernetes.io/service-account-token
-< ---
-< apiVersion: v1
-809,828d780
-< ---
-< apiVersion: monitoring.coreos.com/v1
-< kind: ServiceMonitor
-< metadata:
-<   name: image-controller
-<   namespace: image-controller
-< spec:
-<   endpoints:
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     interval: 15s
-<     path: /metrics
-<     port: https
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
-<   selector:
-<     matchLabels:
-<       control-plane: controller-manager 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 1379915f to 14f1edac on Thu Jan 18 16:41:28 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (60 lines)</summary>  
-
-``` 
-diff --git a/components/image-controller/base/kustomization.yaml b/components/image-controller/base/kustomization.yaml
-index 303e846d..773df155 100644
---- a/components/image-controller/base/kustomization.yaml
-+++ b/components/image-controller/base/kustomization.yaml
-@@ -1,5 +1,6 @@
- resources:
- - allow-argocd-to-manage.yaml
-+- monitoring.yaml
- - rbac
- 
- namespace: image-controller
-diff --git a/components/image-controller/base/monitoring.yaml b/components/image-controller/base/monitoring.yaml
-new file mode 100644
-index 00000000..37a8fd26
---- /dev/null
-+++ b/components/image-controller/base/monitoring.yaml
-@@ -0,0 +1,43 @@
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  name: metrics-reader
-+---
-+apiVersion: v1
-+kind: Secret
-+metadata:
-+  name: metrics-reader
-+  annotations:
-+    kubernetes.io/service-account.name: metrics-reader
-+type: kubernetes.io/service-account-token
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRoleBinding
-+metadata:
-+  name: prometheus-image-controller-metrics-reader
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: image-controller-metrics-reader
-+subjects:
-+- kind: ServiceAccount
-+  name: metrics-reader
-+---
-+apiVersion: monitoring.coreos.com/v1
-+kind: ServiceMonitor
-+metadata:
-+  name: image-controller
-+spec:
-+  endpoints:
-+  - path: /metrics
-+    interval: 15s
-+    port: https
-+    scheme: https
-+    bearerTokenSecret:
-+      name: "metrics-reader"
-+      key: token
-+    tlsConfig:
-+      insecureSkipVerify: true
-+  selector:
-+    matchLabels:
-+      control-plane: controller-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (53 lines)</summary>  
-
-``` 
-./commit-1379915f/development/components/image-controller/development/kustomize.out.yaml
-167,172d166
-< apiVersion: v1
-< kind: ServiceAccount
-< metadata:
-<   name: metrics-reader
-<   namespace: image-controller
-< ---
-445,457d438
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: ClusterRoleBinding
-< metadata:
-<   name: prometheus-image-controller-metrics-reader
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: image-controller-metrics-reader
-< subjects:
-< - kind: ServiceAccount
-<   name: metrics-reader
-<   namespace: image-controller
-< ---
-618,626d598
-< kind: Secret
-< metadata:
-<   annotations:
-<     kubernetes.io/service-account.name: metrics-reader
-<   name: metrics-reader
-<   namespace: image-controller
-< type: kubernetes.io/service-account-token
-< ---
-< apiVersion: v1
-789,808d760
-< ---
-< apiVersion: monitoring.coreos.com/v1
-< kind: ServiceMonitor
-< metadata:
-<   name: image-controller
-<   namespace: image-controller
-< spec:
-<   endpoints:
-<   - bearerTokenSecret:
-<       key: token
-<       name: metrics-reader
-<     interval: 15s
-<     path: /metrics
-<     port: https
-<     scheme: https
-<     tlsConfig:
-<       insecureSkipVerify: true
-<   selector:
-<     matchLabels:
-<       control-plane: controller-manager 
 ```
  
 </details>  
