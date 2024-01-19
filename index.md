@@ -1,12 +1,555 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Jan 18 20:03:56 UTC 2024
+### This file generated at Fri Jan 19 00:06:55 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 14f1edac to 33340b5b on Thu Jan 18 17:34:18 2024 </h3>  
+<h3>1: Production changes from 33340b5b to 0ef30714 on Thu Jan 18 22:46:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (49 lines)</summary>  
+
+``` 
+diff --git a/components/jvm-build-service/base/kustomization.yaml b/components/jvm-build-service/base/kustomization.yaml
+index c2c4f396..eb08b3d1 100644
+--- a/components/jvm-build-service/base/kustomization.yaml
++++ b/components/jvm-build-service/base/kustomization.yaml
+@@ -1,8 +1,8 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=780d285f12a705da4740c8018e4831c9f6cd79af
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=780d285f12a705da4740c8018e4831c9f6cd79af
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=780d285f12a705da4740c8018e4831c9f6cd79af
+ - monitoring.yaml
+ 
+ # Skip applying the jvm-build-service operands (SystemConfig) while the jvm-build-service operator is being installed.
+@@ -16,7 +16,7 @@ namespace: jvm-build-service
+ images:
+ - name: hacbs-jvm-operator
+   newName: quay.io/redhat-appstudio/hacbs-jvm-controller
+-  newTag: e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
++  newTag: 780d285f12a705da4740c8018e4831c9f6cd79af
+ 
+ patches:
+ - path: ./operator_env_patch.yaml
+diff --git a/components/jvm-build-service/base/operator_env_patch.yaml b/components/jvm-build-service/base/operator_env_patch.yaml
+index 06bfa323..1673f98e 100644
+--- a/components/jvm-build-service/base/operator_env_patch.yaml
++++ b/components/jvm-build-service/base/operator_env_patch.yaml
+@@ -3,7 +3,7 @@
+   path: /spec/template/spec/containers/0/env
+   value:
+   - name: IMAGE_TAG
+-    value: e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
++    value: 780d285f12a705da4740c8018e4831c9f6cd79af
+ - op: add
+   path: /spec/template/spec/containers/0/env
+   value:
+diff --git a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
+index f38a9a0c..f69e9e5e 100644
+--- a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=780d285f12a705da4740c8018e4831c9f6cd79af
+ - dashboard.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (23 lines)</summary>  
+
+``` 
+./commit-33340b5b/production/components/jvm-build-service/production/kustomize.out.yaml
+258,259d257
+<                         contextPath:
+<                           type: string
+447,448d444
+<                     contextPath:
+<                       type: string
+1391c1387
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:780d285f12a705da4740c8018e4831c9f6cd79af
+---
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
+1443c1439
+<       image: quay.io/redhat-appstudio/hacbs-jdk7-builder:3fc9e76797852c06a5546f8636cb66e9d15c5f0a
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk7-builder:bd8e505b3082a03c030b36868a3753df9db15f97
+1447c1443
+<       image: quay.io/redhat-appstudio/hacbs-jdk17-builder:3fc9e76797852c06a5546f8636cb66e9d15c5f0a
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk17-builder:bd8e505b3082a03c030b36868a3753df9db15f97
+1449c1445
+<       tag: jdk:8;11;17;21,maven:3.8.8;3.9.5,gradle:8.4;8.3;8.0.2;7.4.2;7.6.3;7.5.1;6.9.2;5.6.4;4.10.3,sbt:1.8.0,ant:1.10.13
+---
+>       tag: jdk:8;11;17,maven:3.8.8;3.9.5,gradle:8.4;8.3;8.0.2;7.4.2;6.9.2,sbt:1.8.0,ant:1.10.13 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 33340b5b to 0ef30714 on Thu Jan 18 22:46:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (49 lines)</summary>  
+
+``` 
+diff --git a/components/jvm-build-service/base/kustomization.yaml b/components/jvm-build-service/base/kustomization.yaml
+index c2c4f396..eb08b3d1 100644
+--- a/components/jvm-build-service/base/kustomization.yaml
++++ b/components/jvm-build-service/base/kustomization.yaml
+@@ -1,8 +1,8 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=780d285f12a705da4740c8018e4831c9f6cd79af
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=780d285f12a705da4740c8018e4831c9f6cd79af
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=780d285f12a705da4740c8018e4831c9f6cd79af
+ - monitoring.yaml
+ 
+ # Skip applying the jvm-build-service operands (SystemConfig) while the jvm-build-service operator is being installed.
+@@ -16,7 +16,7 @@ namespace: jvm-build-service
+ images:
+ - name: hacbs-jvm-operator
+   newName: quay.io/redhat-appstudio/hacbs-jvm-controller
+-  newTag: e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
++  newTag: 780d285f12a705da4740c8018e4831c9f6cd79af
+ 
+ patches:
+ - path: ./operator_env_patch.yaml
+diff --git a/components/jvm-build-service/base/operator_env_patch.yaml b/components/jvm-build-service/base/operator_env_patch.yaml
+index 06bfa323..1673f98e 100644
+--- a/components/jvm-build-service/base/operator_env_patch.yaml
++++ b/components/jvm-build-service/base/operator_env_patch.yaml
+@@ -3,7 +3,7 @@
+   path: /spec/template/spec/containers/0/env
+   value:
+   - name: IMAGE_TAG
+-    value: e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
++    value: 780d285f12a705da4740c8018e4831c9f6cd79af
+ - op: add
+   path: /spec/template/spec/containers/0/env
+   value:
+diff --git a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
+index f38a9a0c..f69e9e5e 100644
+--- a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=780d285f12a705da4740c8018e4831c9f6cd79af
+ - dashboard.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (23 lines)</summary>  
+
+``` 
+./commit-33340b5b/staging/components/jvm-build-service/staging/kustomize.out.yaml
+258,259d257
+<                         contextPath:
+<                           type: string
+447,448d444
+<                     contextPath:
+<                       type: string
+1391c1387
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:780d285f12a705da4740c8018e4831c9f6cd79af
+---
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
+1443c1439
+<       image: quay.io/redhat-appstudio/hacbs-jdk7-builder:3fc9e76797852c06a5546f8636cb66e9d15c5f0a
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk7-builder:bd8e505b3082a03c030b36868a3753df9db15f97
+1447c1443
+<       image: quay.io/redhat-appstudio/hacbs-jdk17-builder:3fc9e76797852c06a5546f8636cb66e9d15c5f0a
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk17-builder:bd8e505b3082a03c030b36868a3753df9db15f97
+1449c1445
+<       tag: jdk:8;11;17;21,maven:3.8.8;3.9.5,gradle:8.4;8.3;8.0.2;7.4.2;7.6.3;7.5.1;6.9.2;5.6.4;4.10.3,sbt:1.8.0,ant:1.10.13
+---
+>       tag: jdk:8;11;17,maven:3.8.8;3.9.5,gradle:8.4;8.3;8.0.2;7.4.2;6.9.2,sbt:1.8.0,ant:1.10.13 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 33340b5b to 0ef30714 on Thu Jan 18 22:46:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (49 lines)</summary>  
+
+``` 
+diff --git a/components/jvm-build-service/base/kustomization.yaml b/components/jvm-build-service/base/kustomization.yaml
+index c2c4f396..eb08b3d1 100644
+--- a/components/jvm-build-service/base/kustomization.yaml
++++ b/components/jvm-build-service/base/kustomization.yaml
+@@ -1,8 +1,8 @@
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=780d285f12a705da4740c8018e4831c9f6cd79af
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=780d285f12a705da4740c8018e4831c9f6cd79af
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=780d285f12a705da4740c8018e4831c9f6cd79af
+ - monitoring.yaml
+ 
+ # Skip applying the jvm-build-service operands (SystemConfig) while the jvm-build-service operator is being installed.
+@@ -16,7 +16,7 @@ namespace: jvm-build-service
+ images:
+ - name: hacbs-jvm-operator
+   newName: quay.io/redhat-appstudio/hacbs-jvm-controller
+-  newTag: e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
++  newTag: 780d285f12a705da4740c8018e4831c9f6cd79af
+ 
+ patches:
+ - path: ./operator_env_patch.yaml
+diff --git a/components/jvm-build-service/base/operator_env_patch.yaml b/components/jvm-build-service/base/operator_env_patch.yaml
+index 06bfa323..1673f98e 100644
+--- a/components/jvm-build-service/base/operator_env_patch.yaml
++++ b/components/jvm-build-service/base/operator_env_patch.yaml
+@@ -3,7 +3,7 @@
+   path: /spec/template/spec/containers/0/env
+   value:
+   - name: IMAGE_TAG
+-    value: e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
++    value: 780d285f12a705da4740c8018e4831c9f6cd79af
+ - op: add
+   path: /spec/template/spec/containers/0/env
+   value:
+diff --git a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
+index f38a9a0c..f69e9e5e 100644
+--- a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
++- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=780d285f12a705da4740c8018e4831c9f6cd79af
+ - dashboard.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (23 lines)</summary>  
+
+``` 
+./commit-33340b5b/development/components/jvm-build-service/development/kustomize.out.yaml
+258,259d257
+<                         contextPath:
+<                           type: string
+447,448d444
+<                     contextPath:
+<                       type: string
+1391c1387
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:780d285f12a705da4740c8018e4831c9f6cd79af
+---
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:e239d3f51bed23fa893c0a02cc59b02b3d9a3d0f
+1422c1418
+<       image: quay.io/redhat-appstudio/hacbs-jdk7-builder:3fc9e76797852c06a5546f8636cb66e9d15c5f0a
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk7-builder:bd8e505b3082a03c030b36868a3753df9db15f97
+1426c1422
+<       image: quay.io/redhat-appstudio/hacbs-jdk17-builder:3fc9e76797852c06a5546f8636cb66e9d15c5f0a
+---
+>       image: quay.io/redhat-appstudio/hacbs-jdk17-builder:bd8e505b3082a03c030b36868a3753df9db15f97
+1428c1424
+<       tag: jdk:8;11;17;21,maven:3.8.8;3.9.5,gradle:8.4;8.3;8.0.2;7.4.2;7.6.3;7.5.1;6.9.2;5.6.4;4.10.3,sbt:1.8.0,ant:1.10.13
+---
+>       tag: jdk:8;11;17,maven:3.8.8;3.9.5,gradle:8.4;8.3;8.0.2;7.4.2;6.9.2,sbt:1.8.0,ant:1.10.13 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 14f1edac to 33340b5b on Thu Jan 18 17:34:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -178,7 +721,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 14f1edac to 33340b5b on Thu Jan 18 17:34:18 2024 </h3>  
+<h3>2: Staging changes from 14f1edac to 33340b5b on Thu Jan 18 17:34:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -362,7 +905,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 14f1edac to 33340b5b on Thu Jan 18 17:34:18 2024 </h3>  
+<h3>2: Development changes from 14f1edac to 33340b5b on Thu Jan 18 17:34:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (53 lines)</summary>  
@@ -504,7 +1047,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 1379915f to 14f1edac on Thu Jan 18 16:41:28 2024 </h3>  
+<h3>3: Production changes from 1379915f to 14f1edac on Thu Jan 18 16:41:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (60 lines)</summary>  
@@ -726,7 +1269,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 1379915f to 14f1edac on Thu Jan 18 16:41:28 2024 </h3>  
+<h3>3: Staging changes from 1379915f to 14f1edac on Thu Jan 18 16:41:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (60 lines)</summary>  
@@ -969,7 +1512,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 1379915f to 14f1edac on Thu Jan 18 16:41:28 2024 </h3>  
+<h3>3: Development changes from 1379915f to 14f1edac on Thu Jan 18 16:41:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (60 lines)</summary>  
@@ -1170,7 +1713,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from c2ff6e6a to 1379915f on Thu Jan 18 14:41:26 2024 </h3>  
+<h3>4: Production changes from c2ff6e6a to 1379915f on Thu Jan 18 14:41:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1323,7 +1866,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from c2ff6e6a to 1379915f on Thu Jan 18 14:41:26 2024 </h3>  
+<h3>4: Staging changes from c2ff6e6a to 1379915f on Thu Jan 18 14:41:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1473,7 +2016,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from c2ff6e6a to 1379915f on Thu Jan 18 14:41:26 2024 </h3>  
+<h3>4: Development changes from c2ff6e6a to 1379915f on Thu Jan 18 14:41:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1497,397 +2040,6 @@ index 35dd5520..7094d370 100644
 +  newTag: 88e3b1cede3a4cb6871b75d92bd4da408122d991
  
  namespace: image-controller
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 72e7d6eb to c2ff6e6a on Thu Jan 18 12:03:58 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
-index fb4055ae..1dddb145 100644
---- a/components/integration/production/kustomization.yaml
-+++ b/components/integration/production/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../base
- - ../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=45f788bbf54a77f50bcb2390545b383de6eff7b8
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=552d67764087321a7a64348ba657161a3febd0bb
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 45f788bbf54a77f50bcb2390545b383de6eff7b8
-+  newTag: 552d67764087321a7a64348ba657161a3febd0bb
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-72e7d6eb/production/components/integration/production/kustomize.out.yaml
-1129c1129
-<         image: quay.io/redhat-appstudio/integration-service:552d67764087321a7a64348ba657161a3febd0bb
----
->         image: quay.io/redhat-appstudio/integration-service:45f788bbf54a77f50bcb2390545b383de6eff7b8 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 72e7d6eb to c2ff6e6a on Thu Jan 18 12:03:58 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
-index fb4055ae..1dddb145 100644
---- a/components/integration/production/kustomization.yaml
-+++ b/components/integration/production/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../base
- - ../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=45f788bbf54a77f50bcb2390545b383de6eff7b8
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=552d67764087321a7a64348ba657161a3febd0bb
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 45f788bbf54a77f50bcb2390545b383de6eff7b8
-+  newTag: 552d67764087321a7a64348ba657161a3febd0bb
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 72e7d6eb to c2ff6e6a on Thu Jan 18 12:03:58 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (19 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
-index fb4055ae..1dddb145 100644
---- a/components/integration/production/kustomization.yaml
-+++ b/components/integration/production/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../base
- - ../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=45f788bbf54a77f50bcb2390545b383de6eff7b8
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=552d67764087321a7a64348ba657161a3febd0bb
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: 45f788bbf54a77f50bcb2390545b383de6eff7b8
-+  newTag: 552d67764087321a7a64348ba657161a3febd0bb
- 
- namespace: integration-service
   
 ```
  
