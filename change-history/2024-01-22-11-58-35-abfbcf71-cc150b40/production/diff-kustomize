@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-cc150b40/production/components/integration/production/kustomize.out.yaml ./kustomized-cache/commit-abfbcf71/production/components/integration/production/kustomize.out.yaml
+1108c1108
+<   name: integration-service-controller-manager
+---
+>   name: integration-service-integration-service-controller-manager
+1129c1129
+<         image: quay.io/redhat-appstudio/integration-service:576add42606a9551ab7666fc518d59b024ab4c77
+---
+>         image: quay.io/redhat-appstudio/integration-service:552d67764087321a7a64348ba657161a3febd0bb
