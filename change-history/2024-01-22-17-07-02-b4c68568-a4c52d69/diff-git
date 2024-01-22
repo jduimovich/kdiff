@@ -1,0 +1,104 @@
+diff --git a/components/gitops/staging/stone-stg-m01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/staging/stone-stg-m01/gitops-service-postgres-rds-config-path.yaml
+index aa354cf5..2c86d554 100644
+--- a/components/gitops/staging/stone-stg-m01/gitops-service-postgres-rds-config-path.yaml
++++ b/components/gitops/staging/stone-stg-m01/gitops-service-postgres-rds-config-path.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-staging-gitopsvc-rds
++  value: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/multi-tenant-staging-gitopsvc-rds
+diff --git a/components/gitops/staging/stone-stg-rh01/gitops-service-postgres-rds-config-path.yaml b/components/gitops/staging/stone-stg-rh01/gitops-service-postgres-rds-config-path.yaml
+index cd699274..7670f5a7 100644
+--- a/components/gitops/staging/stone-stg-rh01/gitops-service-postgres-rds-config-path.yaml
++++ b/components/gitops/staging/stone-stg-rh01/gitops-service-postgres-rds-config-path.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-staging-gitopsvc-rds
++  value: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-staging-gitopsvc-rds
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 5c98dce1..38fa5b22 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1711,7 +1711,7 @@ metadata:
+ spec:
+   dataFrom:
+   - extract:
+-      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-staging-plnsvc-rds
++      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/multi-tenant-staging-plnsvc-rds
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+@@ -1732,7 +1732,7 @@ metadata:
+ spec:
+   dataFrom:
+   - extract:
+-      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-stg-plnsvc-s3
++      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/multi-tenant-stg-plnsvc-s3
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-database-secret-path.yaml
+index 87a0e75e..be62b7c8 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-database-secret-path.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-database-secret-path.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-staging-plnsvc-rds
++  value: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/multi-tenant-staging-plnsvc-rds
+diff --git a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-s3-secret-path.yaml
+index 43f9044f..c2731fbd 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-s3-secret-path.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/resources/tekton-results-s3-secret-path.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/multi-tenant-stg-plnsvc-s3
++  value: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/multi-tenant-stg-plnsvc-s3
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 095d015d..0081246e 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1711,7 +1711,7 @@ metadata:
+ spec:
+   dataFrom:
+   - extract:
+-      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-staging-plnsvc-rds
++      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-staging-plnsvc-rds
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+@@ -1732,7 +1732,7 @@ metadata:
+ spec:
+   dataFrom:
+   - extract:
+-      key: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++      key: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3
+   refreshInterval: 1h
+   secretStoreRef:
+     kind: ClusterSecretStore
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-database-secret-path.yaml b/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-database-secret-path.yaml
+index aba262a3..265ff842 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-database-secret-path.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-database-secret-path.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-staging-plnsvc-rds
++  value: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-staging-plnsvc-rds
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-s3-secret-path.yaml b/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-s3-secret-path.yaml
+index 3f69d937..da0494f6 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-s3-secret-path.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/resources/tekton-results-s3-secret-path.yaml
+@@ -1,4 +1,4 @@
+ ---
+ - op: add
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/app-sre-stage-01/stonesoup-infra-stage/redhat-stg-plnsvc-s3
++  value: integrations-output/terraform-resources/appsres07ue1/stonesoup-infra-stage/redhat-stg-plnsvc-s3

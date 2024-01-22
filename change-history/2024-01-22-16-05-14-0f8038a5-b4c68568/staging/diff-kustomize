@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b4c68568/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-0f8038a5/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1887,1888c1887,1888
+<           application-name: Konflux Staging
+<           custom-console-name: Konflux Staging
+---
+>           application-name: RHTAP Staging
+>           custom-console-name: RHTAP Staging
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b4c68568/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-0f8038a5/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1887,1888c1887,1888
+<           application-name: Konflux Staging
+<           custom-console-name: Konflux Staging
+---
+>           application-name: RHTAP Staging
+>           custom-console-name: RHTAP Staging
