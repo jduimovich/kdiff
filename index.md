@@ -1,12 +1,1328 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Jan 23 08:02:31 UTC 2024
+### This file generated at Tue Jan 23 12:05:10 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from b4c68568 to a4c52d69 on Mon Jan 22 17:07:02 2024 </h3>  
+<h3>1: Production changes from 63f74424 to c1a8bbb1 on Tue Jan 23 11:23:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
+index 189a395b..50c60d57 100644
+--- a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
++++ b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
+@@ -4,12 +4,9 @@ metadata:
+   name: tekton-ci-maintainers
+   namespace: tekton-ci
+ subjects:
+-  - kind: User
++  - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: psturc
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jinqi7
++    name: Build team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (10 lines)</summary>  
+
+``` 
+./commit-63f74424/production/components/tekton-ci/production/kustomize.out.yaml
+33,34c33,37
+<   kind: Group
+<   name: Build team
+---
+>   kind: User
+>   name: psturc
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jinqi7 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 63f74424 to c1a8bbb1 on Tue Jan 23 11:23:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
+index 189a395b..50c60d57 100644
+--- a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
++++ b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
+@@ -4,12 +4,9 @@ metadata:
+   name: tekton-ci-maintainers
+   namespace: tekton-ci
+ subjects:
+-  - kind: User
++  - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: psturc
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jinqi7
++    name: Build team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (10 lines)</summary>  
+
+``` 
+./commit-63f74424/staging/components/tekton-ci/staging/kustomize.out.yaml
+33,34c33,37
+<   kind: Group
+<   name: Build team
+---
+>   kind: User
+>   name: psturc
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jinqi7 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 63f74424 to c1a8bbb1 on Tue Jan 23 11:23:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
+index 189a395b..50c60d57 100644
+--- a/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
++++ b/components/tekton-ci/base/tekton-ci-maintainers-rb.yaml
+@@ -4,12 +4,9 @@ metadata:
+   name: tekton-ci-maintainers
+   namespace: tekton-ci
+ subjects:
+-  - kind: User
++  - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: psturc
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jinqi7
++    name: Build team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from f7e24241 to 63f74424 on Tue Jan 23 10:03:53 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/.tekton/build-service-prod-overlay-update.yaml b/.tekton/build-service-prod-overlay-update.yaml
+index 14d8b7da..3614bf97 100644
+--- a/.tekton/build-service-prod-overlay-update.yaml
++++ b/.tekton/build-service-prod-overlay-update.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: build-service-prod-overlay-update
+   namespace: rhtap-promotion-staging
+   annotations:
+-     pipelinesascode.tekton.dev/on-cel-expression: |
++    pipelinesascode.tekton.dev/on-cel-expression: |
+       event == "push" && target_branch == "main" && "components/build-service/staging/base/kustomization.yaml".pathChanged()
+     pipelinesascode.tekton.dev/max-keep-runs: "5"
+     pipelinesascode.tekton.dev/task: "[.tekton/tasks/promote-component.yaml]"
+@@ -26,5 +26,3 @@ spec:
+               sed -i "s/$OLD_PROD_SHA/$STAGE_SHA/g" components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
+         taskRef:
+           name: promote-component
+-        
+-
+diff --git a/.tekton/image-controller-prod-overlay-update.yaml b/.tekton/image-controller-prod-overlay-update.yaml
+index 07eb7eb5..b38e36ee 100644
+--- a/.tekton/image-controller-prod-overlay-update.yaml
++++ b/.tekton/image-controller-prod-overlay-update.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: image-controller-prod-overlay-update
+   namespace: rhtap-promotion-staging
+   annotations:
+-     pipelinesascode.tekton.dev/on-cel-expression: |
++    pipelinesascode.tekton.dev/on-cel-expression: |
+       event == "push" && target_branch == "main" && "components/image-controller/staging/kustomization.yaml".pathChanged()
+     pipelinesascode.tekton.dev/max-keep-runs: "5"
+     pipelinesascode.tekton.dev/task: "[.tekton/tasks/promote-component.yaml]"
+@@ -25,5 +25,3 @@ spec:
+               sed -i "s/$OLD_PROD_SHA/$STAGE_SHA/g" components/image-controller/production/kustomization.yaml
+         taskRef:
+           name: promote-component
+-        
+- 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from f7e24241 to 63f74424 on Tue Jan 23 10:03:53 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/.tekton/build-service-prod-overlay-update.yaml b/.tekton/build-service-prod-overlay-update.yaml
+index 14d8b7da..3614bf97 100644
+--- a/.tekton/build-service-prod-overlay-update.yaml
++++ b/.tekton/build-service-prod-overlay-update.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: build-service-prod-overlay-update
+   namespace: rhtap-promotion-staging
+   annotations:
+-     pipelinesascode.tekton.dev/on-cel-expression: |
++    pipelinesascode.tekton.dev/on-cel-expression: |
+       event == "push" && target_branch == "main" && "components/build-service/staging/base/kustomization.yaml".pathChanged()
+     pipelinesascode.tekton.dev/max-keep-runs: "5"
+     pipelinesascode.tekton.dev/task: "[.tekton/tasks/promote-component.yaml]"
+@@ -26,5 +26,3 @@ spec:
+               sed -i "s/$OLD_PROD_SHA/$STAGE_SHA/g" components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
+         taskRef:
+           name: promote-component
+-        
+-
+diff --git a/.tekton/image-controller-prod-overlay-update.yaml b/.tekton/image-controller-prod-overlay-update.yaml
+index 07eb7eb5..b38e36ee 100644
+--- a/.tekton/image-controller-prod-overlay-update.yaml
++++ b/.tekton/image-controller-prod-overlay-update.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: image-controller-prod-overlay-update
+   namespace: rhtap-promotion-staging
+   annotations:
+-     pipelinesascode.tekton.dev/on-cel-expression: |
++    pipelinesascode.tekton.dev/on-cel-expression: |
+       event == "push" && target_branch == "main" && "components/image-controller/staging/kustomization.yaml".pathChanged()
+     pipelinesascode.tekton.dev/max-keep-runs: "5"
+     pipelinesascode.tekton.dev/task: "[.tekton/tasks/promote-component.yaml]"
+@@ -25,5 +25,3 @@ spec:
+               sed -i "s/$OLD_PROD_SHA/$STAGE_SHA/g" components/image-controller/production/kustomization.yaml
+         taskRef:
+           name: promote-component
+-        
+- 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from f7e24241 to 63f74424 on Tue Jan 23 10:03:53 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/.tekton/build-service-prod-overlay-update.yaml b/.tekton/build-service-prod-overlay-update.yaml
+index 14d8b7da..3614bf97 100644
+--- a/.tekton/build-service-prod-overlay-update.yaml
++++ b/.tekton/build-service-prod-overlay-update.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: build-service-prod-overlay-update
+   namespace: rhtap-promotion-staging
+   annotations:
+-     pipelinesascode.tekton.dev/on-cel-expression: |
++    pipelinesascode.tekton.dev/on-cel-expression: |
+       event == "push" && target_branch == "main" && "components/build-service/staging/base/kustomization.yaml".pathChanged()
+     pipelinesascode.tekton.dev/max-keep-runs: "5"
+     pipelinesascode.tekton.dev/task: "[.tekton/tasks/promote-component.yaml]"
+@@ -26,5 +26,3 @@ spec:
+               sed -i "s/$OLD_PROD_SHA/$STAGE_SHA/g" components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
+         taskRef:
+           name: promote-component
+-        
+-
+diff --git a/.tekton/image-controller-prod-overlay-update.yaml b/.tekton/image-controller-prod-overlay-update.yaml
+index 07eb7eb5..b38e36ee 100644
+--- a/.tekton/image-controller-prod-overlay-update.yaml
++++ b/.tekton/image-controller-prod-overlay-update.yaml
+@@ -4,7 +4,7 @@ metadata:
+   name: image-controller-prod-overlay-update
+   namespace: rhtap-promotion-staging
+   annotations:
+-     pipelinesascode.tekton.dev/on-cel-expression: |
++    pipelinesascode.tekton.dev/on-cel-expression: |
+       event == "push" && target_branch == "main" && "components/image-controller/staging/kustomization.yaml".pathChanged()
+     pipelinesascode.tekton.dev/max-keep-runs: "5"
+     pipelinesascode.tekton.dev/task: "[.tekton/tasks/promote-component.yaml]"
+@@ -25,5 +25,3 @@ spec:
+               sed -i "s/$OLD_PROD_SHA/$STAGE_SHA/g" components/image-controller/production/kustomization.yaml
+         taskRef:
+           name: promote-component
+-        
+- 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from a4c52d69 to f7e24241 on Tue Jan 23 08:38:11 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (43 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index 1b041153..b9ccca7c 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=bbec36bdeeb982960017fae072fa9e978014c080
++- https://github.com/redhat-appstudio/build-service/config/default?ref=118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: bbec36bdeeb982960017fae072fa9e978014c080
++  newTag: 118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 73c40457..bc9ef4d8 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=bbec36bdeeb982960017fae072fa9e978014c080
++- https://github.com/redhat-appstudio/build-service/config/default?ref=118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: bbec36bdeeb982960017fae072fa9e978014c080
++  newTag: 118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from a4c52d69 to f7e24241 on Tue Jan 23 08:38:11 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (43 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index 1b041153..b9ccca7c 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=bbec36bdeeb982960017fae072fa9e978014c080
++- https://github.com/redhat-appstudio/build-service/config/default?ref=118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: bbec36bdeeb982960017fae072fa9e978014c080
++  newTag: 118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 73c40457..bc9ef4d8 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=bbec36bdeeb982960017fae072fa9e978014c080
++- https://github.com/redhat-appstudio/build-service/config/default?ref=118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: bbec36bdeeb982960017fae072fa9e978014c080
++  newTag: 118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-a4c52d69/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
+746c746
+<         image: quay.io/redhat-appstudio/build-service:118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+---
+>         image: quay.io/redhat-appstudio/build-service:bbec36bdeeb982960017fae072fa9e978014c080 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from a4c52d69 to f7e24241 on Tue Jan 23 08:38:11 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (43 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index 1b041153..b9ccca7c 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=bbec36bdeeb982960017fae072fa9e978014c080
++- https://github.com/redhat-appstudio/build-service/config/default?ref=118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: bbec36bdeeb982960017fae072fa9e978014c080
++  newTag: 118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 73c40457..bc9ef4d8 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=bbec36bdeeb982960017fae072fa9e978014c080
++- https://github.com/redhat-appstudio/build-service/config/default?ref=118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: bbec36bdeeb982960017fae072fa9e978014c080
++  newTag: 118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-a4c52d69/development/components/build-service/development/kustomize.out.yaml
+753c753
+<         image: quay.io/redhat-appstudio/build-service:118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
+---
+>         image: quay.io/redhat-appstudio/build-service:bbec36bdeeb982960017fae072fa9e978014c080 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from b4c68568 to a4c52d69 on Mon Jan 22 17:07:02 2024 </h3>  
  
 <details> 
 <summary>Git Diff (104 lines)</summary>  
@@ -220,7 +1536,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from b4c68568 to a4c52d69 on Mon Jan 22 17:07:02 2024 </h3>  
+<h3>4: Staging changes from b4c68568 to a4c52d69 on Mon Jan 22 17:07:02 2024 </h3>  
  
 <details> 
 <summary>Git Diff (104 lines)</summary>  
@@ -482,7 +1798,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from b4c68568 to a4c52d69 on Mon Jan 22 17:07:02 2024 </h3>  
+<h3>4: Development changes from b4c68568 to a4c52d69 on Mon Jan 22 17:07:02 2024 </h3>  
  
 <details> 
 <summary>Git Diff (104 lines)</summary>  
@@ -601,1413 +1917,6 @@ index 3f69d937..da0494f6 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from 0f8038a5 to b4c68568 on Mon Jan 22 16:05:14 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (45 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/staging/base/update-tekton-config-pac.yaml b/components/pipeline-service/staging/base/update-tekton-config-pac.yaml
-index 30a00816..cfbff6ed 100644
---- a/components/pipeline-service/staging/base/update-tekton-config-pac.yaml
-+++ b/components/pipeline-service/staging/base/update-tekton-config-pac.yaml
-@@ -2,8 +2,8 @@
- - op: add
-   path: /spec/platforms/openshift/pipelinesAsCode/settings
-   value:
--    application-name: RHTAP Staging
--    custom-console-name: RHTAP Staging
-+    application-name: Konflux Staging
-+    custom-console-name: Konflux Staging
-     custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
-     custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
-     custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 8afccf78..5c98dce1 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1884,8 +1884,8 @@ spec:
-       pipelinesAsCode:
-         enable: true
-         settings:
--          application-name: RHTAP Staging
--          custom-console-name: RHTAP Staging
-+          application-name: Konflux Staging
-+          custom-console-name: Konflux Staging
-           custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
-           custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
-           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 63e92c88..095d015d 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1884,8 +1884,8 @@ spec:
-       pipelinesAsCode:
-         enable: true
-         settings:
--          application-name: RHTAP Staging
--          custom-console-name: RHTAP Staging
-+          application-name: Konflux Staging
-+          custom-console-name: Konflux Staging
-           custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
-           custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
-           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from 0f8038a5 to b4c68568 on Mon Jan 22 16:05:14 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (45 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/staging/base/update-tekton-config-pac.yaml b/components/pipeline-service/staging/base/update-tekton-config-pac.yaml
-index 30a00816..cfbff6ed 100644
---- a/components/pipeline-service/staging/base/update-tekton-config-pac.yaml
-+++ b/components/pipeline-service/staging/base/update-tekton-config-pac.yaml
-@@ -2,8 +2,8 @@
- - op: add
-   path: /spec/platforms/openshift/pipelinesAsCode/settings
-   value:
--    application-name: RHTAP Staging
--    custom-console-name: RHTAP Staging
-+    application-name: Konflux Staging
-+    custom-console-name: Konflux Staging
-     custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
-     custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
-     custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 8afccf78..5c98dce1 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1884,8 +1884,8 @@ spec:
-       pipelinesAsCode:
-         enable: true
-         settings:
--          application-name: RHTAP Staging
--          custom-console-name: RHTAP Staging
-+          application-name: Konflux Staging
-+          custom-console-name: Konflux Staging
-           custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
-           custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
-           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 63e92c88..095d015d 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1884,8 +1884,8 @@ spec:
-       pipelinesAsCode:
-         enable: true
-         settings:
--          application-name: RHTAP Staging
--          custom-console-name: RHTAP Staging
-+          application-name: Konflux Staging
-+          custom-console-name: Konflux Staging
-           custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
-           custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
-           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (14 lines)</summary>  
-
-``` 
-./commit-0f8038a5/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-1887,1888c1887,1888
-<           application-name: Konflux Staging
-<           custom-console-name: Konflux Staging
----
->           application-name: RHTAP Staging
->           custom-console-name: RHTAP Staging
-./commit-0f8038a5/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1887,1888c1887,1888
-<           application-name: Konflux Staging
-<           custom-console-name: Konflux Staging
----
->           application-name: RHTAP Staging
->           custom-console-name: RHTAP Staging 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from 0f8038a5 to b4c68568 on Mon Jan 22 16:05:14 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (45 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/staging/base/update-tekton-config-pac.yaml b/components/pipeline-service/staging/base/update-tekton-config-pac.yaml
-index 30a00816..cfbff6ed 100644
---- a/components/pipeline-service/staging/base/update-tekton-config-pac.yaml
-+++ b/components/pipeline-service/staging/base/update-tekton-config-pac.yaml
-@@ -2,8 +2,8 @@
- - op: add
-   path: /spec/platforms/openshift/pipelinesAsCode/settings
-   value:
--    application-name: RHTAP Staging
--    custom-console-name: RHTAP Staging
-+    application-name: Konflux Staging
-+    custom-console-name: Konflux Staging
-     custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
-     custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
-     custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 8afccf78..5c98dce1 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1884,8 +1884,8 @@ spec:
-       pipelinesAsCode:
-         enable: true
-         settings:
--          application-name: RHTAP Staging
--          custom-console-name: RHTAP Staging
-+          application-name: Konflux Staging
-+          custom-console-name: Konflux Staging
-           custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
-           custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
-           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 63e92c88..095d015d 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1884,8 +1884,8 @@ spec:
-       pipelinesAsCode:
-         enable: true
-         settings:
--          application-name: RHTAP Staging
--          custom-console-name: RHTAP Staging
-+          application-name: Konflux Staging
-+          custom-console-name: Konflux Staging
-           custom-console-url: https://console.dev.redhat.com/preview/application-pipeline
-           custom-console-url-pr-details: https://console.dev.redhat.com/preview/application-pipeline
-           custom-console-url-pr-tasklog: https://console.dev.redhat.com/preview/application-pipeline 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 5945319e to 0f8038a5 on Mon Jan 22 14:37:16 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (43 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
-index 5cc8eaf6..1b041153 100644
---- a/components/build-service/development/kustomization.yaml
-+++ b/components/build-service/development/kustomization.yaml
-@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/build-service/config/default?ref=45e8fe7c3b036d1df3eee11c1d83e0633e451c07
-+- https://github.com/redhat-appstudio/build-service/config/default?ref=bbec36bdeeb982960017fae072fa9e978014c080
- 
- namespace: build-service
- 
- images:
- - name: quay.io/redhat-appstudio/build-service
-   newName: quay.io/redhat-appstudio/build-service
--  newTag: 45e8fe7c3b036d1df3eee11c1d83e0633e451c07
-+  newTag: bbec36bdeeb982960017fae072fa9e978014c080
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
-index 02af01c9..73c40457 100644
---- a/components/build-service/staging/base/kustomization.yaml
-+++ b/components/build-service/staging/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/build-service/config/default?ref=45e8fe7c3b036d1df3eee11c1d83e0633e451c07
-+- https://github.com/redhat-appstudio/build-service/config/default?ref=bbec36bdeeb982960017fae072fa9e978014c080
- 
- namespace: build-service
- 
- images:
- - name: quay.io/redhat-appstudio/build-service
-   newName: quay.io/redhat-appstudio/build-service
--  newTag: 45e8fe7c3b036d1df3eee11c1d83e0633e451c07
-+  newTag: bbec36bdeeb982960017fae072fa9e978014c080
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 5945319e to 0f8038a5 on Mon Jan 22 14:37:16 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (43 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
-index 5cc8eaf6..1b041153 100644
---- a/components/build-service/development/kustomization.yaml
-+++ b/components/build-service/development/kustomization.yaml
-@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/build-service/config/default?ref=45e8fe7c3b036d1df3eee11c1d83e0633e451c07
-+- https://github.com/redhat-appstudio/build-service/config/default?ref=bbec36bdeeb982960017fae072fa9e978014c080
- 
- namespace: build-service
- 
- images:
- - name: quay.io/redhat-appstudio/build-service
-   newName: quay.io/redhat-appstudio/build-service
--  newTag: 45e8fe7c3b036d1df3eee11c1d83e0633e451c07
-+  newTag: bbec36bdeeb982960017fae072fa9e978014c080
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
-index 02af01c9..73c40457 100644
---- a/components/build-service/staging/base/kustomization.yaml
-+++ b/components/build-service/staging/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/build-service/config/default?ref=45e8fe7c3b036d1df3eee11c1d83e0633e451c07
-+- https://github.com/redhat-appstudio/build-service/config/default?ref=bbec36bdeeb982960017fae072fa9e978014c080
- 
- namespace: build-service
- 
- images:
- - name: quay.io/redhat-appstudio/build-service
-   newName: quay.io/redhat-appstudio/build-service
--  newTag: 45e8fe7c3b036d1df3eee11c1d83e0633e451c07
-+  newTag: bbec36bdeeb982960017fae072fa9e978014c080
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-5945319e/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-746c746
-<         image: quay.io/redhat-appstudio/build-service:bbec36bdeeb982960017fae072fa9e978014c080
----
->         image: quay.io/redhat-appstudio/build-service:45e8fe7c3b036d1df3eee11c1d83e0633e451c07 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 5945319e to 0f8038a5 on Mon Jan 22 14:37:16 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (43 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
-index 5cc8eaf6..1b041153 100644
---- a/components/build-service/development/kustomization.yaml
-+++ b/components/build-service/development/kustomization.yaml
-@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/build-service/config/default?ref=45e8fe7c3b036d1df3eee11c1d83e0633e451c07
-+- https://github.com/redhat-appstudio/build-service/config/default?ref=bbec36bdeeb982960017fae072fa9e978014c080
- 
- namespace: build-service
- 
- images:
- - name: quay.io/redhat-appstudio/build-service
-   newName: quay.io/redhat-appstudio/build-service
--  newTag: 45e8fe7c3b036d1df3eee11c1d83e0633e451c07
-+  newTag: bbec36bdeeb982960017fae072fa9e978014c080
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
-index 02af01c9..73c40457 100644
---- a/components/build-service/staging/base/kustomization.yaml
-+++ b/components/build-service/staging/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/build-service/config/default?ref=45e8fe7c3b036d1df3eee11c1d83e0633e451c07
-+- https://github.com/redhat-appstudio/build-service/config/default?ref=bbec36bdeeb982960017fae072fa9e978014c080
- 
- namespace: build-service
- 
- images:
- - name: quay.io/redhat-appstudio/build-service
-   newName: quay.io/redhat-appstudio/build-service
--  newTag: 45e8fe7c3b036d1df3eee11c1d83e0633e451c07
-+  newTag: bbec36bdeeb982960017fae072fa9e978014c080
- 
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-5945319e/development/components/build-service/development/kustomize.out.yaml
-753c753
-<         image: quay.io/redhat-appstudio/build-service:bbec36bdeeb982960017fae072fa9e978014c080
----
->         image: quay.io/redhat-appstudio/build-service:45e8fe7c3b036d1df3eee11c1d83e0633e451c07 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from cc150b40 to 5945319e on Mon Jan 22 13:40:46 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (33 lines)</summary>  
-
-``` 
-diff --git a/components/dev-sso/keycloak-realm.yaml b/components/dev-sso/keycloak-realm.yaml
-index e6c3340d..a5e6e732 100644
---- a/components/dev-sso/keycloak-realm.yaml
-+++ b/components/dev-sso/keycloak-realm.yaml
-@@ -525,6 +525,7 @@ spec:
-           - profile
-           - roles
-           - email
-+          - api.console
-         optionalClientScopes:
-           - address
-           - phone
-@@ -992,6 +993,12 @@ spec:
-         attributes:
-           include.in.token.scope: "true"
-           display.on.consent.screen: "true"
-+      - id: 1d8a366c-3fae-4134-b58a-4ed5dc3b0022
-+        name: api.console
-+        protocol: openid-connect
-+        attributes: 
-+          include.in.token.scope: "true"
-+          display.on.consent.screen: "true"
-       - id: b4120472-4f73-4659-ae6b-d24bd45c4fa3
-         name: address
-         description: 'OpenID Connect built-in scope: address'
-@@ -1023,6 +1030,7 @@ spec:
-       - roles
-       - web-origins
-       - acr
-+      - api.console
-     smtpServer: {}
-     loginTheme: rh-sso
-     eventsEnabled: false 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (12 lines)</summary>  
-
-``` 
-./commit-cc150b40/production/components/dev-sso/kustomize.out.yaml
-807,812d806
-<         display.on.consent.screen: "true"
-<         include.in.token.scope: "true"
-<       id: 1d8a366c-3fae-4134-b58a-4ed5dc3b0022
-<       name: api.console
-<       protocol: openid-connect
-<     - attributes:
-1022d1015
-<       - api.console
-1138d1130
-<     - api.console 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from cc150b40 to 5945319e on Mon Jan 22 13:40:46 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (33 lines)</summary>  
-
-``` 
-diff --git a/components/dev-sso/keycloak-realm.yaml b/components/dev-sso/keycloak-realm.yaml
-index e6c3340d..a5e6e732 100644
---- a/components/dev-sso/keycloak-realm.yaml
-+++ b/components/dev-sso/keycloak-realm.yaml
-@@ -525,6 +525,7 @@ spec:
-           - profile
-           - roles
-           - email
-+          - api.console
-         optionalClientScopes:
-           - address
-           - phone
-@@ -992,6 +993,12 @@ spec:
-         attributes:
-           include.in.token.scope: "true"
-           display.on.consent.screen: "true"
-+      - id: 1d8a366c-3fae-4134-b58a-4ed5dc3b0022
-+        name: api.console
-+        protocol: openid-connect
-+        attributes: 
-+          include.in.token.scope: "true"
-+          display.on.consent.screen: "true"
-       - id: b4120472-4f73-4659-ae6b-d24bd45c4fa3
-         name: address
-         description: 'OpenID Connect built-in scope: address'
-@@ -1023,6 +1030,7 @@ spec:
-       - roles
-       - web-origins
-       - acr
-+      - api.console
-     smtpServer: {}
-     loginTheme: rh-sso
-     eventsEnabled: false 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (12 lines)</summary>  
-
-``` 
-./commit-cc150b40/staging/components/dev-sso/kustomize.out.yaml
-807,812d806
-<         display.on.consent.screen: "true"
-<         include.in.token.scope: "true"
-<       id: 1d8a366c-3fae-4134-b58a-4ed5dc3b0022
-<       name: api.console
-<       protocol: openid-connect
-<     - attributes:
-1022d1015
-<       - api.console
-1138d1130
-<     - api.console 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from cc150b40 to 5945319e on Mon Jan 22 13:40:46 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (33 lines)</summary>  
-
-``` 
-diff --git a/components/dev-sso/keycloak-realm.yaml b/components/dev-sso/keycloak-realm.yaml
-index e6c3340d..a5e6e732 100644
---- a/components/dev-sso/keycloak-realm.yaml
-+++ b/components/dev-sso/keycloak-realm.yaml
-@@ -525,6 +525,7 @@ spec:
-           - profile
-           - roles
-           - email
-+          - api.console
-         optionalClientScopes:
-           - address
-           - phone
-@@ -992,6 +993,12 @@ spec:
-         attributes:
-           include.in.token.scope: "true"
-           display.on.consent.screen: "true"
-+      - id: 1d8a366c-3fae-4134-b58a-4ed5dc3b0022
-+        name: api.console
-+        protocol: openid-connect
-+        attributes: 
-+          include.in.token.scope: "true"
-+          display.on.consent.screen: "true"
-       - id: b4120472-4f73-4659-ae6b-d24bd45c4fa3
-         name: address
-         description: 'OpenID Connect built-in scope: address'
-@@ -1023,6 +1030,7 @@ spec:
-       - roles
-       - web-origins
-       - acr
-+      - api.console
-     smtpServer: {}
-     loginTheme: rh-sso
-     eventsEnabled: false 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (12 lines)</summary>  
-
-``` 
-./commit-cc150b40/development/components/dev-sso/kustomize.out.yaml
-807,812d806
-<         display.on.consent.screen: "true"
-<         include.in.token.scope: "true"
-<       id: 1d8a366c-3fae-4134-b58a-4ed5dc3b0022
-<       name: api.console
-<       protocol: openid-connect
-<     - attributes:
-1022d1015
-<       - api.console
-1138d1130
-<     - api.console 
 ```
  
 </details>  
