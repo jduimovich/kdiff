@@ -1,12 +1,480 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Jan 24 08:05:11 UTC 2024
+### This file generated at Wed Jan 24 12:03:56 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 9a21a84e to b0f8378c on Wed Jan 24 05:53:20 2024 </h3>  
+<h3>1: Production changes from b0f8378c to 2efbf2af on Wed Jan 24 09:47:06 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/dora-metrics/base/rbac/dora-metrics.yaml b/components/dora-metrics/base/rbac/dora-metrics.yaml
+index 20bfae6d..b484eac7 100644
+--- a/components/dora-metrics/base/rbac/dora-metrics.yaml
++++ b/components/dora-metrics/base/rbac/dora-metrics.yaml
+@@ -20,21 +20,9 @@ metadata:
+   name: dora-metrics-maintainers
+   namespace: dora-metrics
+ subjects:
+-  - kind: User
++  - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: rhopp
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: flacatus
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jkopriva
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sawood14012
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: albarbaro
++    name: konflux-qe-admins
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (19 lines)</summary>  
+
+``` 
+./commit-b0f8378c/production/components/dora-metrics/production/kustomize.out.yaml
+69,70c69,82
+<   kind: Group
+<   name: konflux-qe-admins
+---
+>   kind: User
+>   name: rhopp
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: flacatus
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jkopriva
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sawood14012
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: albarbaro 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from b0f8378c to 2efbf2af on Wed Jan 24 09:47:06 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/dora-metrics/base/rbac/dora-metrics.yaml b/components/dora-metrics/base/rbac/dora-metrics.yaml
+index 20bfae6d..b484eac7 100644
+--- a/components/dora-metrics/base/rbac/dora-metrics.yaml
++++ b/components/dora-metrics/base/rbac/dora-metrics.yaml
+@@ -20,21 +20,9 @@ metadata:
+   name: dora-metrics-maintainers
+   namespace: dora-metrics
+ subjects:
+-  - kind: User
++  - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: rhopp
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: flacatus
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jkopriva
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sawood14012
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: albarbaro
++    name: konflux-qe-admins
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (19 lines)</summary>  
+
+``` 
+./commit-b0f8378c/staging/components/dora-metrics/staging/kustomize.out.yaml
+69,70c69,82
+<   kind: Group
+<   name: konflux-qe-admins
+---
+>   kind: User
+>   name: rhopp
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: flacatus
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jkopriva
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sawood14012
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: albarbaro 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from b0f8378c to 2efbf2af on Wed Jan 24 09:47:06 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/dora-metrics/base/rbac/dora-metrics.yaml b/components/dora-metrics/base/rbac/dora-metrics.yaml
+index 20bfae6d..b484eac7 100644
+--- a/components/dora-metrics/base/rbac/dora-metrics.yaml
++++ b/components/dora-metrics/base/rbac/dora-metrics.yaml
+@@ -20,21 +20,9 @@ metadata:
+   name: dora-metrics-maintainers
+   namespace: dora-metrics
+ subjects:
+-  - kind: User
++  - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: rhopp
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: flacatus
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: jkopriva
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: sawood14012
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: albarbaro
++    name: konflux-qe-admins
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (19 lines)</summary>  
+
+``` 
+./commit-b0f8378c/development/components/dora-metrics/development/kustomize.out.yaml
+69,70c69,82
+<   kind: Group
+<   name: konflux-qe-admins
+---
+>   kind: User
+>   name: rhopp
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: flacatus
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jkopriva
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sawood14012
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: albarbaro 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 9a21a84e to b0f8378c on Wed Jan 24 05:53:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -212,7 +680,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 9a21a84e to b0f8378c on Wed Jan 24 05:53:20 2024 </h3>  
+<h3>2: Staging changes from 9a21a84e to b0f8378c on Wed Jan 24 05:53:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -448,7 +916,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 9a21a84e to b0f8378c on Wed Jan 24 05:53:20 2024 </h3>  
+<h3>2: Development changes from 9a21a84e to b0f8378c on Wed Jan 24 05:53:20 2024 </h3>  
  
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -637,7 +1105,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from f54856a2 to 9a21a84e on Wed Jan 24 05:03:58 2024 </h3>  
+<h3>3: Production changes from f54856a2 to 9a21a84e on Wed Jan 24 05:03:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -840,7 +1308,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from f54856a2 to 9a21a84e on Wed Jan 24 05:03:58 2024 </h3>  
+<h3>3: Staging changes from f54856a2 to 9a21a84e on Wed Jan 24 05:03:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -1121,7 +1589,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from f54856a2 to 9a21a84e on Wed Jan 24 05:03:58 2024 </h3>  
+<h3>3: Development changes from f54856a2 to 9a21a84e on Wed Jan 24 05:03:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (69 lines)</summary>  
@@ -1303,7 +1771,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 347a3f35 to f54856a2 on Wed Jan 24 04:50:05 2024 </h3>  
+<h3>4: Production changes from 347a3f35 to f54856a2 on Wed Jan 24 04:50:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1430,7 +1898,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 347a3f35 to f54856a2 on Wed Jan 24 04:50:05 2024 </h3>  
+<h3>4: Staging changes from 347a3f35 to f54856a2 on Wed Jan 24 04:50:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1578,7 +2046,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 347a3f35 to f54856a2 on Wed Jan 24 04:50:05 2024 </h3>  
+<h3>4: Development changes from 347a3f35 to f54856a2 on Wed Jan 24 04:50:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -1610,483 +2078,6 @@ index 63a6a9ee..c21cfbc0 100644
 <   name: konflux-infra
 ---
 >   name: Infra Team 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from a786e7c7 to 347a3f35 on Tue Jan 23 22:16:52 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index 2046bd85..f069fe47 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -111,3 +111,23 @@ spec:
-       name: Default
-       policy:
-         - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2
-+---
-+apiVersion: appstudio.redhat.com/v1alpha1
-+kind: EnterpriseContractPolicy
-+metadata:
-+  name: redhat-trusted-tasks
-+  namespace: enterprise-contract-service
-+spec:
-+  description: Rules used to verify Tekton Task definitions comply to Red Hat's standards.
-+  name: Red Hat Trusted Tasks
-+  sources:
-+    - config:
-+        exclude: []
-+        include:
-+          - kind
-+          - step_image_registries
-+      data:
-+        - github.com/release-engineering/rhtap-ec-policy//data
-+      name: Default
-+      policy:
-+        - oci::quay.io/enterprise-contract/ec-task-policy:git-00f3625@sha256:4d249ef259ebb821dc350ca657b7b053296e902314d6c2821fa893b1f5b6097d 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (22 lines)</summary>  
-
-``` 
-./commit-a786e7c7/production/components/enterprise-contract/kustomize.out.yaml
-691,710d690
-<   name: redhat-trusted-tasks
-<   namespace: enterprise-contract-service
-< spec:
-<   description: Rules used to verify Tekton Task definitions comply to Red Hat's standards.
-<   name: Red Hat Trusted Tasks
-<   sources:
-<   - config:
-<       exclude: []
-<       include:
-<       - kind
-<       - step_image_registries
-<     data:
-<     - github.com/release-engineering/rhtap-ec-policy//data
-<     name: Default
-<     policy:
-<     - oci::quay.io/enterprise-contract/ec-task-policy:git-00f3625@sha256:4d249ef259ebb821dc350ca657b7b053296e902314d6c2821fa893b1f5b6097d
-< ---
-< apiVersion: appstudio.redhat.com/v1alpha1
-< kind: EnterpriseContractPolicy
-< metadata: 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from a786e7c7 to 347a3f35 on Tue Jan 23 22:16:52 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index 2046bd85..f069fe47 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -111,3 +111,23 @@ spec:
-       name: Default
-       policy:
-         - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2
-+---
-+apiVersion: appstudio.redhat.com/v1alpha1
-+kind: EnterpriseContractPolicy
-+metadata:
-+  name: redhat-trusted-tasks
-+  namespace: enterprise-contract-service
-+spec:
-+  description: Rules used to verify Tekton Task definitions comply to Red Hat's standards.
-+  name: Red Hat Trusted Tasks
-+  sources:
-+    - config:
-+        exclude: []
-+        include:
-+          - kind
-+          - step_image_registries
-+      data:
-+        - github.com/release-engineering/rhtap-ec-policy//data
-+      name: Default
-+      policy:
-+        - oci::quay.io/enterprise-contract/ec-task-policy:git-00f3625@sha256:4d249ef259ebb821dc350ca657b7b053296e902314d6c2821fa893b1f5b6097d 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (22 lines)</summary>  
-
-``` 
-./commit-a786e7c7/staging/components/enterprise-contract/kustomize.out.yaml
-691,710d690
-<   name: redhat-trusted-tasks
-<   namespace: enterprise-contract-service
-< spec:
-<   description: Rules used to verify Tekton Task definitions comply to Red Hat's standards.
-<   name: Red Hat Trusted Tasks
-<   sources:
-<   - config:
-<       exclude: []
-<       include:
-<       - kind
-<       - step_image_registries
-<     data:
-<     - github.com/release-engineering/rhtap-ec-policy//data
-<     name: Default
-<     policy:
-<     - oci::quay.io/enterprise-contract/ec-task-policy:git-00f3625@sha256:4d249ef259ebb821dc350ca657b7b053296e902314d6c2821fa893b1f5b6097d
-< ---
-< apiVersion: appstudio.redhat.com/v1alpha1
-< kind: EnterpriseContractPolicy
-< metadata: 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from a786e7c7 to 347a3f35 on Tue Jan 23 22:16:52 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index 2046bd85..f069fe47 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -111,3 +111,23 @@ spec:
-       name: Default
-       policy:
-         - oci::quay.io/enterprise-contract/ec-release-policy:git-0d277bf@sha256:4a78622534901a4563cf5e52a79ca259ce7b6f571ccd0cc201876131742d6ce2
-+---
-+apiVersion: appstudio.redhat.com/v1alpha1
-+kind: EnterpriseContractPolicy
-+metadata:
-+  name: redhat-trusted-tasks
-+  namespace: enterprise-contract-service
-+spec:
-+  description: Rules used to verify Tekton Task definitions comply to Red Hat's standards.
-+  name: Red Hat Trusted Tasks
-+  sources:
-+    - config:
-+        exclude: []
-+        include:
-+          - kind
-+          - step_image_registries
-+      data:
-+        - github.com/release-engineering/rhtap-ec-policy//data
-+      name: Default
-+      policy:
-+        - oci::quay.io/enterprise-contract/ec-task-policy:git-00f3625@sha256:4d249ef259ebb821dc350ca657b7b053296e902314d6c2821fa893b1f5b6097d 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (22 lines)</summary>  
-
-``` 
-./commit-a786e7c7/development/components/enterprise-contract/kustomize.out.yaml
-691,710d690
-<   name: redhat-trusted-tasks
-<   namespace: enterprise-contract-service
-< spec:
-<   description: Rules used to verify Tekton Task definitions comply to Red Hat's standards.
-<   name: Red Hat Trusted Tasks
-<   sources:
-<   - config:
-<       exclude: []
-<       include:
-<       - kind
-<       - step_image_registries
-<     data:
-<     - github.com/release-engineering/rhtap-ec-policy//data
-<     name: Default
-<     policy:
-<     - oci::quay.io/enterprise-contract/ec-task-policy:git-00f3625@sha256:4d249ef259ebb821dc350ca657b7b053296e902314d6c2821fa893b1f5b6097d
-< ---
-< apiVersion: appstudio.redhat.com/v1alpha1
-< kind: EnterpriseContractPolicy
-< metadata: 
 ```
  
 </details>  

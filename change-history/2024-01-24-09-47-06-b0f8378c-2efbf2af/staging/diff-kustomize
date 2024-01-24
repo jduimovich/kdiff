@@ -1,0 +1,19 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-2efbf2af/staging/components/dora-metrics/staging/kustomize.out.yaml ./kustomized-cache/commit-b0f8378c/staging/components/dora-metrics/staging/kustomize.out.yaml
+69,70c69,82
+<   kind: Group
+<   name: konflux-qe-admins
+---
+>   kind: User
+>   name: rhopp
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: flacatus
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jkopriva
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sawood14012
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: albarbaro
