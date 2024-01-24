@@ -1,0 +1,19 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b0f8378c/production/components/build-templates/production/kustomize.out.yaml ./kustomized-cache/commit-9a21a84e/production/components/build-templates/production/kustomize.out.yaml
+128c128
+<   name: konflux-build-admins
+---
+>   name: Build Admins team
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b0f8378c/production/components/image-controller/production/kustomize.out.yaml ./kustomized-cache/commit-9a21a84e/production/components/image-controller/production/kustomize.out.yaml
+390c390
+<   name: konflux-build-admins
+---
+>   name: Build Admins team
+417c417
+<   name: konflux-build
+---
+>   name: Build team
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b0f8378c/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-9a21a84e/production/components/tekton-ci/production/kustomize.out.yaml
+34c34
+<   name: konflux-build
+---
+>   name: Build team

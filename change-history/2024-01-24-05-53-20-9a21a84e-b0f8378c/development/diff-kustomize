@@ -1,0 +1,23 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b0f8378c/development/components/build-service/development/kustomize.out.yaml ./kustomized-cache/commit-9a21a84e/development/components/build-service/development/kustomize.out.yaml
+477c477
+<   name: konflux-build-admins
+---
+>   name: Build Admins team
+540c540
+<   name: konflux-build
+---
+>   name: Build team
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b0f8378c/development/components/build-templates/development/kustomize.out.yaml ./kustomized-cache/commit-9a21a84e/development/components/build-templates/development/kustomize.out.yaml
+116c116
+<   name: konflux-build-admins
+---
+>   name: Build Admins team
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b0f8378c/development/components/image-controller/development/kustomize.out.yaml ./kustomized-cache/commit-9a21a84e/development/components/image-controller/development/kustomize.out.yaml
+390c390
+<   name: konflux-build-admins
+---
+>   name: Build Admins team
+417c417
+<   name: konflux-build
+---
+>   name: Build team

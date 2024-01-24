@@ -1,0 +1,82 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a21a84e/staging/components/authentication/staging/kustomize.out.yaml ./kustomized-cache/commit-f54856a2/staging/components/authentication/staging/kustomize.out.yaml
+96c96,111
+<   name: konflux-admins
+---
+>   name: results-cluster-viewer
+> rules:
+> - apiGroups:
+>   - results.tekton.dev
+>   resources:
+>   - results
+>   - records
+>   - logs
+>   verbs:
+>   - get
+>   - list
+> ---
+> apiVersion: rbac.authorization.k8s.io/v1
+> kind: ClusterRole
+> metadata:
+>   name: rhtap-admins
+407,421d421
+<   name: results-cluster-viewer
+< rules:
+< - apiGroups:
+<   - results.tekton.dev
+<   resources:
+<   - results
+<   - records
+<   - logs
+<   verbs:
+<   - get
+<   - list
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+566c566
+<   name: konflux-admins
+---
+>   name: results-cluster-viewer
+570c570
+<   name: konflux-admins
+---
+>   name: results-cluster-viewer
+573,574c573,577
+<   kind: Group
+<   name: konflux-admins
+---
+>   kind: User
+>   name: gabemontero
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: sayan-biswas
+579c582
+<   name: konflux-admins-view
+---
+>   name: rhtap-admins
+583c586
+<   name: view
+---
+>   name: rhtap-admins
+587c590
+<   name: konflux-admins
+---
+>   name: RHTAP Admins
+592c595
+<   name: results-cluster-viewer
+---
+>   name: rhtap-admins-view
+596c599
+<   name: results-cluster-viewer
+---
+>   name: view
+599,603c602,603
+<   kind: User
+<   name: gabemontero
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: User
+<   name: sayan-biswas
+---
+>   kind: Group
+>   name: RHTAP Admins

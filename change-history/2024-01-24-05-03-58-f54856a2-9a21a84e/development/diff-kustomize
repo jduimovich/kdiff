@@ -1,0 +1,25 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9a21a84e/development/components/authentication/development/kustomize.out.yaml ./kustomized-cache/commit-f54856a2/development/components/authentication/development/kustomize.out.yaml
+124c124
+<   name: konflux-admins
+---
+>   name: rhtap-admins
+596c596
+<   name: konflux-admins
+---
+>   name: rhtap-admins
+600c600
+<   name: konflux-admins
+---
+>   name: rhtap-admins
+604c604
+<   name: konflux-admins
+---
+>   name: RHTAP Admins
+609c609
+<   name: konflux-admins-view
+---
+>   name: rhtap-admins-view
+617c617
+<   name: konflux-admins
+---
+>   name: RHTAP Admins
