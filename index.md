@@ -1,12 +1,522 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Jan 25 12:04:01 UTC 2024
+### This file generated at Thu Jan 25 16:03:03 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 44fb4cae to 1bc83bf1 on Thu Jan 25 08:26:31 2024 </h3>  
+<h3>1: Production changes from 1bc83bf1 to 39eb7067 on Thu Jan 25 13:55:17 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (61 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/development/kustomization.yaml b/components/authentication/development/kustomization.yaml
+deleted file mode 100644
+index d823e3dd..00000000
+--- a/components/authentication/development/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../base
+-  - spi-vault-admin.yaml
+diff --git a/components/authentication/development/spi-vault-admin.yaml b/components/authentication/development/spi-vault-admin.yaml
+deleted file mode 100644
+index 09d1f8bb..00000000
+--- a/components/authentication/development/spi-vault-admin.yaml
++++ /dev/null
+@@ -1,44 +0,0 @@
+-kind: Role
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: vault-admin
+-  namespace: spi-vault
+-rules:
+-  - verbs:
+-      - get
+-      - delete
+-    apiGroups:
+-      - ''
+-    resources:
+-      - pods
+-  - verbs:
+-      - create
+-    apiGroups:
+-      - ''
+-    resources:
+-      - pods/exec
+-  - verbs:
+-      - get
+-      - delete
+-      - create
+-    apiGroups:
+-      - ''
+-    resources:
+-      - secrets
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: vault-admin
+-  namespace: spi-vault
+-subjects:
+-  - kind: User
+-    name: skabashnyuk
+-  - kind: User
+-    name: mshaposhnik
+-  - kind: User
+-    name: metlos
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: vault-admin 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 1bc83bf1 to 39eb7067 on Thu Jan 25 13:55:17 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (61 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/development/kustomization.yaml b/components/authentication/development/kustomization.yaml
+deleted file mode 100644
+index d823e3dd..00000000
+--- a/components/authentication/development/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../base
+-  - spi-vault-admin.yaml
+diff --git a/components/authentication/development/spi-vault-admin.yaml b/components/authentication/development/spi-vault-admin.yaml
+deleted file mode 100644
+index 09d1f8bb..00000000
+--- a/components/authentication/development/spi-vault-admin.yaml
++++ /dev/null
+@@ -1,44 +0,0 @@
+-kind: Role
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: vault-admin
+-  namespace: spi-vault
+-rules:
+-  - verbs:
+-      - get
+-      - delete
+-    apiGroups:
+-      - ''
+-    resources:
+-      - pods
+-  - verbs:
+-      - create
+-    apiGroups:
+-      - ''
+-    resources:
+-      - pods/exec
+-  - verbs:
+-      - get
+-      - delete
+-      - create
+-    apiGroups:
+-      - ''
+-    resources:
+-      - secrets
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: vault-admin
+-  namespace: spi-vault
+-subjects:
+-  - kind: User
+-    name: skabashnyuk
+-  - kind: User
+-    name: mshaposhnik
+-  - kind: User
+-    name: metlos
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: vault-admin 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 1bc83bf1 to 39eb7067 on Thu Jan 25 13:55:17 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (61 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/development/kustomization.yaml b/components/authentication/development/kustomization.yaml
+deleted file mode 100644
+index d823e3dd..00000000
+--- a/components/authentication/development/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../base
+-  - spi-vault-admin.yaml
+diff --git a/components/authentication/development/spi-vault-admin.yaml b/components/authentication/development/spi-vault-admin.yaml
+deleted file mode 100644
+index 09d1f8bb..00000000
+--- a/components/authentication/development/spi-vault-admin.yaml
++++ /dev/null
+@@ -1,44 +0,0 @@
+-kind: Role
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: vault-admin
+-  namespace: spi-vault
+-rules:
+-  - verbs:
+-      - get
+-      - delete
+-    apiGroups:
+-      - ''
+-    resources:
+-      - pods
+-  - verbs:
+-      - create
+-    apiGroups:
+-      - ''
+-    resources:
+-      - pods/exec
+-  - verbs:
+-      - get
+-      - delete
+-      - create
+-    apiGroups:
+-      - ''
+-    resources:
+-      - secrets
+----
+-kind: RoleBinding
+-apiVersion: rbac.authorization.k8s.io/v1
+-metadata:
+-  name: vault-admin
+-  namespace: spi-vault
+-subjects:
+-  - kind: User
+-    name: skabashnyuk
+-  - kind: User
+-    name: mshaposhnik
+-  - kind: User
+-    name: metlos
+-roleRef:
+-  apiGroup: rbac.authorization.k8s.io
+-  kind: Role
+-  name: vault-admin 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-1bc83bf1/development/components: authentication 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 44fb4cae to 1bc83bf1 on Thu Jan 25 08:26:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -161,7 +671,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 44fb4cae to 1bc83bf1 on Thu Jan 25 08:26:31 2024 </h3>  
+<h3>2: Staging changes from 44fb4cae to 1bc83bf1 on Thu Jan 25 08:26:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -337,7 +847,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 44fb4cae to 1bc83bf1 on Thu Jan 25 08:26:31 2024 </h3>  
+<h3>2: Development changes from 44fb4cae to 1bc83bf1 on Thu Jan 25 08:26:31 2024 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -471,7 +981,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from eaf411b5 to 44fb4cae on Thu Jan 25 06:50:15 2024 </h3>  
+<h3>3: Production changes from eaf411b5 to 44fb4cae on Thu Jan 25 06:50:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (265 lines)</summary>  
@@ -884,7 +1394,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from eaf411b5 to 44fb4cae on Thu Jan 25 06:50:15 2024 </h3>  
+<h3>3: Staging changes from eaf411b5 to 44fb4cae on Thu Jan 25 06:50:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (265 lines)</summary>  
@@ -1335,7 +1845,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from eaf411b5 to 44fb4cae on Thu Jan 25 06:50:15 2024 </h3>  
+<h3>3: Development changes from eaf411b5 to 44fb4cae on Thu Jan 25 06:50:15 2024 </h3>  
  
 <details> 
 <summary>Git Diff (265 lines)</summary>  
@@ -1701,7 +2211,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 105b02a9 to eaf411b5 on Thu Jan 25 05:55:18 2024 </h3>  
+<h3>4: Production changes from 105b02a9 to eaf411b5 on Thu Jan 25 05:55:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -1856,7 +2366,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 105b02a9 to eaf411b5 on Thu Jan 25 05:55:18 2024 </h3>  
+<h3>4: Staging changes from 105b02a9 to eaf411b5 on Thu Jan 25 05:55:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -2065,7 +2575,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 105b02a9 to eaf411b5 on Thu Jan 25 05:55:18 2024 </h3>  
+<h3>4: Development changes from 105b02a9 to eaf411b5 on Thu Jan 25 05:55:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -2116,501 +2626,6 @@ index 6f28405b..00000000
 -  - kind: User
 -    name: sayan-biswas
 -    apiGroup: rbac.authorization.k8s.io 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 81ecb471 to 105b02a9 on Wed Jan 24 23:05:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (55 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/kustomization.yaml b/components/monitoring/grafana/base/kustomization.yaml
-index 4d67684a..a68b1c45 100644
---- a/components/monitoring/grafana/base/kustomization.yaml
-+++ b/components/monitoring/grafana/base/kustomization.yaml
-@@ -5,4 +5,3 @@ resources:
- - grafana-app.yaml
- - dashboards
- - https://github.com/redhat-appstudio/o11y/config/probes/monitoring/grafana/base?ref=ff478366bb92b0a9d7e4eb1625194e0cce138185
--- https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-diff --git a/components/monitoring/grafana/development/kustomization.yaml b/components/monitoring/grafana/development/kustomization.yaml
-index cc94de3b..5b9cf788 100644
---- a/components/monitoring/grafana/development/kustomization.yaml
-+++ b/components/monitoring/grafana/development/kustomization.yaml
-@@ -2,6 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-+  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+
-+images:
-+- name: quay.io/redhat-appstudio/o11y
-+  newName: quay.io/redhat-appstudio/o11y
-+  newTag: 8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+
- patches:
-   - path: auto-assign-role-patch.yaml
-     target:
-diff --git a/components/monitoring/grafana/production/kustomization.yaml b/components/monitoring/grafana/production/kustomization.yaml
-index 27bb5cb0..afc8ae34 100644
---- a/components/monitoring/grafana/production/kustomization.yaml
-+++ b/components/monitoring/grafana/production/kustomization.yaml
-@@ -2,3 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-+  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+
-+images:
-+- name: quay.io/redhat-appstudio/o11y
-+  newName: quay.io/redhat-appstudio/o11y
-+  newTag: 8fe41bdea2c5d2616421b69e0bfa4544707828e3
-diff --git a/components/monitoring/grafana/staging/kustomization.yaml b/components/monitoring/grafana/staging/kustomization.yaml
-index 27bb5cb0..afc8ae34 100644
---- a/components/monitoring/grafana/staging/kustomization.yaml
-+++ b/components/monitoring/grafana/staging/kustomization.yaml
-@@ -2,3 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-+  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+
-+images:
-+- name: quay.io/redhat-appstudio/o11y
-+  newName: quay.io/redhat-appstudio/o11y
-+  newTag: 8fe41bdea2c5d2616421b69e0bfa4544707828e3 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 81ecb471 to 105b02a9 on Wed Jan 24 23:05:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (55 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/kustomization.yaml b/components/monitoring/grafana/base/kustomization.yaml
-index 4d67684a..a68b1c45 100644
---- a/components/monitoring/grafana/base/kustomization.yaml
-+++ b/components/monitoring/grafana/base/kustomization.yaml
-@@ -5,4 +5,3 @@ resources:
- - grafana-app.yaml
- - dashboards
- - https://github.com/redhat-appstudio/o11y/config/probes/monitoring/grafana/base?ref=ff478366bb92b0a9d7e4eb1625194e0cce138185
--- https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-diff --git a/components/monitoring/grafana/development/kustomization.yaml b/components/monitoring/grafana/development/kustomization.yaml
-index cc94de3b..5b9cf788 100644
---- a/components/monitoring/grafana/development/kustomization.yaml
-+++ b/components/monitoring/grafana/development/kustomization.yaml
-@@ -2,6 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-+  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+
-+images:
-+- name: quay.io/redhat-appstudio/o11y
-+  newName: quay.io/redhat-appstudio/o11y
-+  newTag: 8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+
- patches:
-   - path: auto-assign-role-patch.yaml
-     target:
-diff --git a/components/monitoring/grafana/production/kustomization.yaml b/components/monitoring/grafana/production/kustomization.yaml
-index 27bb5cb0..afc8ae34 100644
---- a/components/monitoring/grafana/production/kustomization.yaml
-+++ b/components/monitoring/grafana/production/kustomization.yaml
-@@ -2,3 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-+  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+
-+images:
-+- name: quay.io/redhat-appstudio/o11y
-+  newName: quay.io/redhat-appstudio/o11y
-+  newTag: 8fe41bdea2c5d2616421b69e0bfa4544707828e3
-diff --git a/components/monitoring/grafana/staging/kustomization.yaml b/components/monitoring/grafana/staging/kustomization.yaml
-index 27bb5cb0..afc8ae34 100644
---- a/components/monitoring/grafana/staging/kustomization.yaml
-+++ b/components/monitoring/grafana/staging/kustomization.yaml
-@@ -2,3 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-+  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+
-+images:
-+- name: quay.io/redhat-appstudio/o11y
-+  newName: quay.io/redhat-appstudio/o11y
-+  newTag: 8fe41bdea2c5d2616421b69e0bfa4544707828e3 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 81ecb471 to 105b02a9 on Wed Jan 24 23:05:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (55 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/kustomization.yaml b/components/monitoring/grafana/base/kustomization.yaml
-index 4d67684a..a68b1c45 100644
---- a/components/monitoring/grafana/base/kustomization.yaml
-+++ b/components/monitoring/grafana/base/kustomization.yaml
-@@ -5,4 +5,3 @@ resources:
- - grafana-app.yaml
- - dashboards
- - https://github.com/redhat-appstudio/o11y/config/probes/monitoring/grafana/base?ref=ff478366bb92b0a9d7e4eb1625194e0cce138185
--- https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-diff --git a/components/monitoring/grafana/development/kustomization.yaml b/components/monitoring/grafana/development/kustomization.yaml
-index cc94de3b..5b9cf788 100644
---- a/components/monitoring/grafana/development/kustomization.yaml
-+++ b/components/monitoring/grafana/development/kustomization.yaml
-@@ -2,6 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-+  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+
-+images:
-+- name: quay.io/redhat-appstudio/o11y
-+  newName: quay.io/redhat-appstudio/o11y
-+  newTag: 8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+
- patches:
-   - path: auto-assign-role-patch.yaml
-     target:
-diff --git a/components/monitoring/grafana/production/kustomization.yaml b/components/monitoring/grafana/production/kustomization.yaml
-index 27bb5cb0..afc8ae34 100644
---- a/components/monitoring/grafana/production/kustomization.yaml
-+++ b/components/monitoring/grafana/production/kustomization.yaml
-@@ -2,3 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-+  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+
-+images:
-+- name: quay.io/redhat-appstudio/o11y
-+  newName: quay.io/redhat-appstudio/o11y
-+  newTag: 8fe41bdea2c5d2616421b69e0bfa4544707828e3
-diff --git a/components/monitoring/grafana/staging/kustomization.yaml b/components/monitoring/grafana/staging/kustomization.yaml
-index 27bb5cb0..afc8ae34 100644
---- a/components/monitoring/grafana/staging/kustomization.yaml
-+++ b/components/monitoring/grafana/staging/kustomization.yaml
-@@ -2,3 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
-+  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+
-+images:
-+- name: quay.io/redhat-appstudio/o11y
-+  newName: quay.io/redhat-appstudio/o11y
-+  newTag: 8fe41bdea2c5d2616421b69e0bfa4544707828e3 
 ```
  
 </details> 
