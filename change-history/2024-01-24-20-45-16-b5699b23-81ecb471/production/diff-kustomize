@@ -1,0 +1,80 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-81ecb471/production/components/multi-platform-controller/production/kustomize.out.yaml ./kustomized-cache/commit-b5699b23/production/components/multi-platform-controller/production/kustomize.out.yaml
+155c155
+<   host.power-rhtap-prod-1.address: 52.117.38.109
+---
+>   host.power-rhtap-prod-1.address: 150.240.147.196
+158c158
+<   host.power-rhtap-prod-1.secret: ibm-production-ppc64le-ssh-key
+---
+>   host.power-rhtap-prod-1.secret: ibm-ssh-key
+160c160
+<   host.power-rhtap-prod-2.address: 52.117.38.109
+---
+>   host.power-rhtap-prod-2.address: 150.240.147.194
+163c163
+<   host.power-rhtap-prod-2.secret: ibm-production-ppc64le-ssh-key
+---
+>   host.power-rhtap-prod-2.secret: ibm-ssh-key
+165c165
+<   host.sysz-rhtap-prod-1.address: 169.63.184.30
+---
+>   host.sysz-rhtap-prod-1.address: 169.59.160.96
+168c168
+<   host.sysz-rhtap-prod-1.secret: ibm-production-s390x-ssh-key
+---
+>   host.sysz-rhtap-prod-1.secret: ibm-ssh-key
+170c170
+<   host.sysz-rhtap-prod-2.address: 169.59.164.141
+---
+>   host.sysz-rhtap-prod-2.address: 169.63.178.13
+173c173
+<   host.sysz-rhtap-prod-2.secret: ibm-production-s390x-ssh-key
+---
+>   host.sysz-rhtap-prod-2.secret: ibm-ssh-key
+339,384d338
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     build.appstudio.redhat.com/multi-platform-secret: "true"
+<   name: ibm-production-ppc64le-ssh-key
+<   namespace: multi-platform-controller
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/multi-platform-controller/ibm-production-ppc64le-ssh-key
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: ibm-production-ppc64le-ssh-key
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     build.appstudio.redhat.com/multi-platform-secret: "true"
+<   name: ibm-production-s390x-ssh-key
+<   namespace: multi-platform-controller
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/multi-platform-controller/ibm-production-s390x-ssh-key
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: ibm-production-s390x-ssh-key
