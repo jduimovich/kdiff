@@ -1,0 +1,265 @@
+diff --git a/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml b/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
+index 3e2e469b..9b439b81 100644
+--- a/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
++++ b/components/pipeline-service/base/rbac/cluster-role/pipeline-service-sre.yaml
+@@ -87,7 +87,7 @@ metadata:
+ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
++    name: konflux-pipeline-service
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/pipeline-service/base/rbac/openshift-pipelines/pipeline-service-sre.yaml b/components/pipeline-service/base/rbac/openshift-pipelines/pipeline-service-sre.yaml
+index a9b04357..8a97a035 100644
+--- a/components/pipeline-service/base/rbac/openshift-pipelines/pipeline-service-sre.yaml
++++ b/components/pipeline-service/base/rbac/openshift-pipelines/pipeline-service-sre.yaml
+@@ -8,7 +8,7 @@ metadata:
+ subjects:
+   - apiGroup: rbac.authorization.k8s.io
+     kind: Group
+-    name: Pipeline Service
++    name: konflux-pipeline-service
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml b/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
+index ef701b44..032b03cb 100644
+--- a/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
++++ b/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
+@@ -9,7 +9,7 @@ metadata:
+ subjects:
+   - apiGroup: rbac.authorization.k8s.io
+     kind: Group
+-    name: Pipeline Service
++    name: konflux-pipeline-service
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/pipeline-service/base/testing/rbac.yaml b/components/pipeline-service/base/testing/rbac.yaml
+index ce5b840e..ccdf6322 100644
+--- a/components/pipeline-service/base/testing/rbac.yaml
++++ b/components/pipeline-service/base/testing/rbac.yaml
+@@ -29,7 +29,7 @@ metadata:
+ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
++    name: konflux-pipeline-service
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 08631788..f4684e15 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -585,7 +585,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -618,7 +618,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -634,7 +634,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -764,7 +764,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 24be2b08..de5c012b 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -585,7 +585,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -618,7 +618,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -634,7 +634,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -764,7 +764,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index aadeafa8..a25eba6d 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -585,7 +585,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -618,7 +618,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -634,7 +634,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -764,7 +764,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 38fa5b22..2cd4a696 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -585,7 +585,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -618,7 +618,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -634,7 +634,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -764,7 +764,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 0081246e..4fd7a7a3 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -585,7 +585,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -618,7 +618,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -634,7 +634,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
+@@ -764,7 +764,7 @@ roleRef:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Pipeline Service
++  name: konflux-pipeline-service
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+diff --git a/components/sprayproxy/base/rbac/pipeline-service-sre.yaml b/components/sprayproxy/base/rbac/pipeline-service-sre.yaml
+index 2b309b89..a387417b 100644
+--- a/components/sprayproxy/base/rbac/pipeline-service-sre.yaml
++++ b/components/sprayproxy/base/rbac/pipeline-service-sre.yaml
+@@ -7,7 +7,7 @@ metadata:
+ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: Pipeline Service
++    name: konflux-pipeline-service
+ roleRef:
+   kind: ClusterRole
+   name: view

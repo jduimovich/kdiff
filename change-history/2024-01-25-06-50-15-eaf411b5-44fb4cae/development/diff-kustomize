@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-44fb4cae/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-eaf411b5/development/components/pipeline-service/development/kustomize.out.yaml
+605c605
+<   name: konflux-pipeline-service
+---
+>   name: Pipeline Service
+638c638
+<   name: konflux-pipeline-service
+---
+>   name: Pipeline Service
+768c768
+<   name: konflux-pipeline-service
+---
+>   name: Pipeline Service

@@ -1,0 +1,39 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-44fb4cae/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-eaf411b5/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+588c588
+<   name: konflux-pipeline-service
+---
+>   name: Pipeline Service
+621c621
+<   name: konflux-pipeline-service
+---
+>   name: Pipeline Service
+637c637
+<   name: konflux-pipeline-service
+---
+>   name: Pipeline Service
+767c767
+<   name: konflux-pipeline-service
+---
+>   name: Pipeline Service
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-44fb4cae/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-eaf411b5/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+588c588
+<   name: konflux-pipeline-service
+---
+>   name: Pipeline Service
+621c621
+<   name: konflux-pipeline-service
+---
+>   name: Pipeline Service
+637c637
+<   name: konflux-pipeline-service
+---
+>   name: Pipeline Service
+767c767
+<   name: konflux-pipeline-service
+---
+>   name: Pipeline Service
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-44fb4cae/production/components/sprayproxy/production/kustomize.out.yaml ./kustomized-cache/commit-eaf411b5/production/components/sprayproxy/production/kustomize.out.yaml
+70c70
+<   name: konflux-pipeline-service
+---
+>   name: Pipeline Service
