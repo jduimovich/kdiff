@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-334c72ea/staging/components/integration/staging/kustomize.out.yaml ./kustomized-cache/commit-695fdf82/staging/components/integration/staging/kustomize.out.yaml
+1128c1128
+<         image: quay.io/redhat-appstudio/integration-service:81664606d240735d2e58396d046bb3544d0e0d1f
+---
+>         image: quay.io/redhat-appstudio/integration-service:576add42606a9551ab7666fc518d59b024ab4c77
+1139,1141d1138
+<           protocol: TCP
+<         - containerPort: 8081
+<           name: probes
