@@ -1,12 +1,846 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Jan 26 12:04:24 UTC 2024
+### This file generated at Fri Jan 26 16:03:33 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from f55ce4ac to 5bd7f17a on Fri Jan 26 10:30:05 2024 </h3>  
+<h3>1: Production changes from 5bd7f17a to ab742f54 on Fri Jan 26 15:10:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (169 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/README.md b/components/monitoring/README.md
+index 5ce8bae5..1e7a9263 100644
+--- a/components/monitoring/README.md
++++ b/components/monitoring/README.md
+@@ -71,7 +71,7 @@ or imported from other projects.
+   You may copy and edit the `example` dashboard json instead, and test the new dashboard on the staging and production environments. 
+ 
+       The `example` dashboard json definition can be found 
+-      [here](https://github.com/redhat-appstudio/infra-deployments/blob/main/components/monitoring/grafana/base/dashboards/example.json)
++      [here](https://github.com/redhat-appstudio/infra-deployments/blob/main/components/monitoring/grafana/base/dashboards/generic-dashboards/example.json)
+ 
+ 
+   2. Add tiles to the dashboard to track your initial set of service level indicators.  
+diff --git a/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json b/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json
+index 569d73ec..23b3234c 100644
+--- a/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json
++++ b/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json
+@@ -3,10 +3,6 @@
+     "list": [
+       {
+         "builtIn": 1,
+-        "datasource": {
+-          "type": "datasource",
+-          "uid": "grafana"
+-        },
+         "enable": true,
+         "hide": true,
+         "iconColor": "rgba(0, 211, 255, 1)",
+@@ -23,10 +19,6 @@
+   "liveNow": false,
+   "panels": [
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "description": "p95 latency of requests to list workspaces",
+       "fieldConfig": {
+         "defaults": {
+@@ -102,10 +94,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "builder",
+           "expr": "histogram_quantile(0.95, sum by(le, status_code) (rate(sandbox_proxy_workspace_http_request_time_bucket{kube_verb=\"List\"}[5m])))",
+           "legendFormat": "__auto",
+@@ -117,10 +105,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "fieldConfig": {
+         "defaults": {
+           "color": {
+@@ -194,10 +178,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "code",
+           "expr": "sum (rate(sandbox_proxy_workspace_http_request_time_sum{kube_verb=\"List\"}[5m])/rate(sandbox_proxy_workspace_http_request_time_count{kube_verb=\"List\"}[5m])) by (status_code)",
+           "legendFormat": "__auto",
+@@ -209,10 +189,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "description": "p95 latency of requests to get workspace",
+       "fieldConfig": {
+         "defaults": {
+@@ -290,10 +266,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "builder",
+           "expr": "histogram_quantile(0.95, sum by(le, status_code) (rate(sandbox_proxy_workspace_http_request_time_bucket{kube_verb=\"Get\"}[5m])))",
+           "legendFormat": "__auto",
+@@ -305,10 +277,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "fieldConfig": {
+         "defaults": {
+           "color": {
+@@ -382,10 +350,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "code",
+           "expr": "sum (rate(sandbox_proxy_workspace_http_request_time_sum{kube_verb=\"Get\"}[5m])/rate(sandbox_proxy_workspace_http_request_time_count{kube_verb=\"Get\"}[5m])) by (status_code)",
+           "legendFormat": "__auto",
+@@ -397,10 +361,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "description": "p95 latency of proxy api requests which is either accepted (202) or not accepted(406)",
+       "fieldConfig": {
+         "defaults": {
+@@ -484,10 +444,6 @@
+       "pluginVersion": "9.5.1",
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "builder",
+           "expr": "histogram_quantile(0.95, sum by(le, status_code) (rate(sandbox_proxy_api_http_request_time_bucket[5m])))",
+           "legendFormat": "__auto",
+@@ -499,10 +455,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "fieldConfig": {
+         "defaults": {
+           "color": {
+@@ -576,10 +528,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "code",
+           "expr": "sum (rate(sandbox_proxy_api_http_request_time_sum[5m])/rate(sandbox_proxy_api_http_request_time_count[5m])) by (status_code)",
+           "legendFormat": "__auto",
+@@ -604,7 +552,7 @@
+   },
+   "timepicker": {},
+   "timezone": "",
+-  "title": "Proxy Metrics",
++  "title": "Core - Proxy Metrics",
+   "uid": "a2aa66a3-b7b9-42d4-92df-7e4f46ee7bea",
+   "version": 14,
+   "weekStart": "" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 5bd7f17a to ab742f54 on Fri Jan 26 15:10:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (169 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/README.md b/components/monitoring/README.md
+index 5ce8bae5..1e7a9263 100644
+--- a/components/monitoring/README.md
++++ b/components/monitoring/README.md
+@@ -71,7 +71,7 @@ or imported from other projects.
+   You may copy and edit the `example` dashboard json instead, and test the new dashboard on the staging and production environments. 
+ 
+       The `example` dashboard json definition can be found 
+-      [here](https://github.com/redhat-appstudio/infra-deployments/blob/main/components/monitoring/grafana/base/dashboards/example.json)
++      [here](https://github.com/redhat-appstudio/infra-deployments/blob/main/components/monitoring/grafana/base/dashboards/generic-dashboards/example.json)
+ 
+ 
+   2. Add tiles to the dashboard to track your initial set of service level indicators.  
+diff --git a/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json b/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json
+index 569d73ec..23b3234c 100644
+--- a/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json
++++ b/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json
+@@ -3,10 +3,6 @@
+     "list": [
+       {
+         "builtIn": 1,
+-        "datasource": {
+-          "type": "datasource",
+-          "uid": "grafana"
+-        },
+         "enable": true,
+         "hide": true,
+         "iconColor": "rgba(0, 211, 255, 1)",
+@@ -23,10 +19,6 @@
+   "liveNow": false,
+   "panels": [
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "description": "p95 latency of requests to list workspaces",
+       "fieldConfig": {
+         "defaults": {
+@@ -102,10 +94,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "builder",
+           "expr": "histogram_quantile(0.95, sum by(le, status_code) (rate(sandbox_proxy_workspace_http_request_time_bucket{kube_verb=\"List\"}[5m])))",
+           "legendFormat": "__auto",
+@@ -117,10 +105,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "fieldConfig": {
+         "defaults": {
+           "color": {
+@@ -194,10 +178,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "code",
+           "expr": "sum (rate(sandbox_proxy_workspace_http_request_time_sum{kube_verb=\"List\"}[5m])/rate(sandbox_proxy_workspace_http_request_time_count{kube_verb=\"List\"}[5m])) by (status_code)",
+           "legendFormat": "__auto",
+@@ -209,10 +189,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "description": "p95 latency of requests to get workspace",
+       "fieldConfig": {
+         "defaults": {
+@@ -290,10 +266,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "builder",
+           "expr": "histogram_quantile(0.95, sum by(le, status_code) (rate(sandbox_proxy_workspace_http_request_time_bucket{kube_verb=\"Get\"}[5m])))",
+           "legendFormat": "__auto",
+@@ -305,10 +277,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "fieldConfig": {
+         "defaults": {
+           "color": {
+@@ -382,10 +350,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "code",
+           "expr": "sum (rate(sandbox_proxy_workspace_http_request_time_sum{kube_verb=\"Get\"}[5m])/rate(sandbox_proxy_workspace_http_request_time_count{kube_verb=\"Get\"}[5m])) by (status_code)",
+           "legendFormat": "__auto",
+@@ -397,10 +361,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "description": "p95 latency of proxy api requests which is either accepted (202) or not accepted(406)",
+       "fieldConfig": {
+         "defaults": {
+@@ -484,10 +444,6 @@
+       "pluginVersion": "9.5.1",
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "builder",
+           "expr": "histogram_quantile(0.95, sum by(le, status_code) (rate(sandbox_proxy_api_http_request_time_bucket[5m])))",
+           "legendFormat": "__auto",
+@@ -499,10 +455,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "fieldConfig": {
+         "defaults": {
+           "color": {
+@@ -576,10 +528,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "code",
+           "expr": "sum (rate(sandbox_proxy_api_http_request_time_sum[5m])/rate(sandbox_proxy_api_http_request_time_count[5m])) by (status_code)",
+           "legendFormat": "__auto",
+@@ -604,7 +552,7 @@
+   },
+   "timepicker": {},
+   "timezone": "",
+-  "title": "Proxy Metrics",
++  "title": "Core - Proxy Metrics",
+   "uid": "a2aa66a3-b7b9-42d4-92df-7e4f46ee7bea",
+   "version": 14,
+   "weekStart": "" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 5bd7f17a to ab742f54 on Fri Jan 26 15:10:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (169 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/README.md b/components/monitoring/README.md
+index 5ce8bae5..1e7a9263 100644
+--- a/components/monitoring/README.md
++++ b/components/monitoring/README.md
+@@ -71,7 +71,7 @@ or imported from other projects.
+   You may copy and edit the `example` dashboard json instead, and test the new dashboard on the staging and production environments. 
+ 
+       The `example` dashboard json definition can be found 
+-      [here](https://github.com/redhat-appstudio/infra-deployments/blob/main/components/monitoring/grafana/base/dashboards/example.json)
++      [here](https://github.com/redhat-appstudio/infra-deployments/blob/main/components/monitoring/grafana/base/dashboards/generic-dashboards/example.json)
+ 
+ 
+   2. Add tiles to the dashboard to track your initial set of service level indicators.  
+diff --git a/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json b/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json
+index 569d73ec..23b3234c 100644
+--- a/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json
++++ b/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json
+@@ -3,10 +3,6 @@
+     "list": [
+       {
+         "builtIn": 1,
+-        "datasource": {
+-          "type": "datasource",
+-          "uid": "grafana"
+-        },
+         "enable": true,
+         "hide": true,
+         "iconColor": "rgba(0, 211, 255, 1)",
+@@ -23,10 +19,6 @@
+   "liveNow": false,
+   "panels": [
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "description": "p95 latency of requests to list workspaces",
+       "fieldConfig": {
+         "defaults": {
+@@ -102,10 +94,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "builder",
+           "expr": "histogram_quantile(0.95, sum by(le, status_code) (rate(sandbox_proxy_workspace_http_request_time_bucket{kube_verb=\"List\"}[5m])))",
+           "legendFormat": "__auto",
+@@ -117,10 +105,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "fieldConfig": {
+         "defaults": {
+           "color": {
+@@ -194,10 +178,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "code",
+           "expr": "sum (rate(sandbox_proxy_workspace_http_request_time_sum{kube_verb=\"List\"}[5m])/rate(sandbox_proxy_workspace_http_request_time_count{kube_verb=\"List\"}[5m])) by (status_code)",
+           "legendFormat": "__auto",
+@@ -209,10 +189,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "description": "p95 latency of requests to get workspace",
+       "fieldConfig": {
+         "defaults": {
+@@ -290,10 +266,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "builder",
+           "expr": "histogram_quantile(0.95, sum by(le, status_code) (rate(sandbox_proxy_workspace_http_request_time_bucket{kube_verb=\"Get\"}[5m])))",
+           "legendFormat": "__auto",
+@@ -305,10 +277,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "fieldConfig": {
+         "defaults": {
+           "color": {
+@@ -382,10 +350,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "code",
+           "expr": "sum (rate(sandbox_proxy_workspace_http_request_time_sum{kube_verb=\"Get\"}[5m])/rate(sandbox_proxy_workspace_http_request_time_count{kube_verb=\"Get\"}[5m])) by (status_code)",
+           "legendFormat": "__auto",
+@@ -397,10 +361,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "description": "p95 latency of proxy api requests which is either accepted (202) or not accepted(406)",
+       "fieldConfig": {
+         "defaults": {
+@@ -484,10 +444,6 @@
+       "pluginVersion": "9.5.1",
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "builder",
+           "expr": "histogram_quantile(0.95, sum by(le, status_code) (rate(sandbox_proxy_api_http_request_time_bucket[5m])))",
+           "legendFormat": "__auto",
+@@ -499,10 +455,6 @@
+       "type": "timeseries"
+     },
+     {
+-      "datasource": {
+-        "type": "datasource",
+-        "uid": "grafana"
+-      },
+       "fieldConfig": {
+         "defaults": {
+           "color": {
+@@ -576,10 +528,6 @@
+       },
+       "targets": [
+         {
+-          "datasource": {
+-            "type": "datasource",
+-            "uid": "grafana"
+-          },
+           "editorMode": "code",
+           "expr": "sum (rate(sandbox_proxy_api_http_request_time_sum[5m])/rate(sandbox_proxy_api_http_request_time_count[5m])) by (status_code)",
+           "legendFormat": "__auto",
+@@ -604,7 +552,7 @@
+   },
+   "timepicker": {},
+   "timezone": "",
+-  "title": "Proxy Metrics",
++  "title": "Core - Proxy Metrics",
+   "uid": "a2aa66a3-b7b9-42d4-92df-7e4f46ee7bea",
+   "version": 14,
+   "weekStart": "" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from f55ce4ac to 5bd7f17a on Fri Jan 26 10:30:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -154,7 +988,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from f55ce4ac to 5bd7f17a on Fri Jan 26 10:30:05 2024 </h3>  
+<h3>2: Staging changes from f55ce4ac to 5bd7f17a on Fri Jan 26 10:30:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -327,7 +1161,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from f55ce4ac to 5bd7f17a on Fri Jan 26 10:30:05 2024 </h3>  
+<h3>2: Development changes from f55ce4ac to 5bd7f17a on Fri Jan 26 10:30:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -455,7 +1289,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from cc00977c to f55ce4ac on Fri Jan 26 08:09:46 2024 </h3>  
+<h3>3: Production changes from cc00977c to f55ce4ac on Fri Jan 26 08:09:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -610,7 +1444,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from cc00977c to f55ce4ac on Fri Jan 26 08:09:46 2024 </h3>  
+<h3>3: Staging changes from cc00977c to f55ce4ac on Fri Jan 26 08:09:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -786,7 +1620,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from cc00977c to f55ce4ac on Fri Jan 26 08:09:46 2024 </h3>  
+<h3>3: Development changes from cc00977c to f55ce4ac on Fri Jan 26 08:09:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -917,7 +1751,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from b84287cb to cc00977c on Fri Jan 26 05:08:22 2024 </h3>  
+<h3>4: Production changes from b84287cb to cc00977c on Fri Jan 26 05:08:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (30 lines)</summary>  
@@ -1057,7 +1891,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from b84287cb to cc00977c on Fri Jan 26 05:08:22 2024 </h3>  
+<h3>4: Staging changes from b84287cb to cc00977c on Fri Jan 26 05:08:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (30 lines)</summary>  
@@ -1218,7 +2052,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from b84287cb to cc00977c on Fri Jan 26 05:08:22 2024 </h3>  
+<h3>4: Development changes from b84287cb to cc00977c on Fri Jan 26 05:08:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (30 lines)</summary>  
@@ -1263,516 +2097,6 @@ index 8521d836..869c9afc 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 69824e8d to b84287cb on Fri Jan 26 05:08:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (44 lines)</summary>  
-
-``` 
-diff --git a/components/internal-services/internal-services.yaml b/components/internal-services/internal-services.yaml
-index a36f7cd8..65295c83 100644
---- a/components/internal-services/internal-services.yaml
-+++ b/components/internal-services/internal-services.yaml
-@@ -6,7 +6,7 @@ metadata:
- subjects:
-   - kind: Group
-     apiGroup: rbac.authorization.k8s.io
--    name: Release team
-+    name: konflux-release-team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-@@ -19,7 +19,7 @@ metadata:
- subjects:
-   - kind: Group
-     apiGroup: rbac.authorization.k8s.io
--    name: Release team
-+    name: konflux-release-team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-diff --git a/components/release/base/release-team.yaml b/components/release/base/release-team.yaml
-index f36d1519..8baa8329 100644
---- a/components/release/base/release-team.yaml
-+++ b/components/release/base/release-team.yaml
-@@ -6,7 +6,7 @@ metadata:
- subjects:
-   - kind: Group
-     apiGroup: rbac.authorization.k8s.io
--    name: Release team
-+    name: konflux-release-team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-@@ -20,7 +20,7 @@ metadata:
- subjects:
-   - kind: Group
-     apiGroup: rbac.authorization.k8s.io
--    name: Release team
-+    name: konflux-release-team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: Role 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (18 lines)</summary>  
-
-``` 
-./commit-69824e8d/production/components/internal-services/kustomize.out.yaml
-203c203
-<   name: konflux-release-team
----
->   name: Release team
-229c229
-<   name: konflux-release-team
----
->   name: Release team
-./commit-69824e8d/production/components/release/production/kustomize.out.yaml
-1367c1367
-<   name: konflux-release-team
----
->   name: Release team
-1395c1395
-<   name: konflux-release-team
----
->   name: Release team 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 69824e8d to b84287cb on Fri Jan 26 05:08:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (44 lines)</summary>  
-
-``` 
-diff --git a/components/internal-services/internal-services.yaml b/components/internal-services/internal-services.yaml
-index a36f7cd8..65295c83 100644
---- a/components/internal-services/internal-services.yaml
-+++ b/components/internal-services/internal-services.yaml
-@@ -6,7 +6,7 @@ metadata:
- subjects:
-   - kind: Group
-     apiGroup: rbac.authorization.k8s.io
--    name: Release team
-+    name: konflux-release-team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-@@ -19,7 +19,7 @@ metadata:
- subjects:
-   - kind: Group
-     apiGroup: rbac.authorization.k8s.io
--    name: Release team
-+    name: konflux-release-team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-diff --git a/components/release/base/release-team.yaml b/components/release/base/release-team.yaml
-index f36d1519..8baa8329 100644
---- a/components/release/base/release-team.yaml
-+++ b/components/release/base/release-team.yaml
-@@ -6,7 +6,7 @@ metadata:
- subjects:
-   - kind: Group
-     apiGroup: rbac.authorization.k8s.io
--    name: Release team
-+    name: konflux-release-team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-@@ -20,7 +20,7 @@ metadata:
- subjects:
-   - kind: Group
-     apiGroup: rbac.authorization.k8s.io
--    name: Release team
-+    name: konflux-release-team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: Role 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (18 lines)</summary>  
-
-``` 
-./commit-69824e8d/staging/components/internal-services/kustomize.out.yaml
-203c203
-<   name: konflux-release-team
----
->   name: Release team
-229c229
-<   name: konflux-release-team
----
->   name: Release team
-./commit-69824e8d/staging/components/release/staging/kustomize.out.yaml
-1367c1367
-<   name: konflux-release-team
----
->   name: Release team
-1395c1395
-<   name: konflux-release-team
----
->   name: Release team 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 69824e8d to b84287cb on Fri Jan 26 05:08:15 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (44 lines)</summary>  
-
-``` 
-diff --git a/components/internal-services/internal-services.yaml b/components/internal-services/internal-services.yaml
-index a36f7cd8..65295c83 100644
---- a/components/internal-services/internal-services.yaml
-+++ b/components/internal-services/internal-services.yaml
-@@ -6,7 +6,7 @@ metadata:
- subjects:
-   - kind: Group
-     apiGroup: rbac.authorization.k8s.io
--    name: Release team
-+    name: konflux-release-team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-@@ -19,7 +19,7 @@ metadata:
- subjects:
-   - kind: Group
-     apiGroup: rbac.authorization.k8s.io
--    name: Release team
-+    name: konflux-release-team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-diff --git a/components/release/base/release-team.yaml b/components/release/base/release-team.yaml
-index f36d1519..8baa8329 100644
---- a/components/release/base/release-team.yaml
-+++ b/components/release/base/release-team.yaml
-@@ -6,7 +6,7 @@ metadata:
- subjects:
-   - kind: Group
-     apiGroup: rbac.authorization.k8s.io
--    name: Release team
-+    name: konflux-release-team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-@@ -20,7 +20,7 @@ metadata:
- subjects:
-   - kind: Group
-     apiGroup: rbac.authorization.k8s.io
--    name: Release team
-+    name: konflux-release-team
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: Role 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (18 lines)</summary>  
-
-``` 
-./commit-69824e8d/development/components/internal-services/kustomize.out.yaml
-203c203
-<   name: konflux-release-team
----
->   name: Release team
-229c229
-<   name: konflux-release-team
----
->   name: Release team
-./commit-69824e8d/development/components/release/development/kustomize.out.yaml
-1367c1367
-<   name: konflux-release-team
----
->   name: Release team
-1395c1395
-<   name: konflux-release-team
----
->   name: Release team 
 ```
  
 </details>  
