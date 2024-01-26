@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-395c7bc7/staging/components/segment-bridge/staging/stone-stg-host/kustomize.out.yaml ./kustomized-cache/commit-ab742f54/staging/components/segment-bridge/staging/stone-stg-host/kustomize.out.yaml
+61,63c61,64
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-o11y
+---
+> - kind: User
+>   name: Omeramsc
+> - kind: User
+>   name: ifireball

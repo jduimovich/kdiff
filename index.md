@@ -1,12 +1,450 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Jan 26 16:03:33 UTC 2024
+### This file generated at Fri Jan 26 20:03:01 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 5bd7f17a to ab742f54 on Fri Jan 26 15:10:34 2024 </h3>  
+<h3>1: Production changes from ab742f54 to 395c7bc7 on Fri Jan 26 16:34:10 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (31 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/logging/base/rbac/logging-admin.yaml b/components/monitoring/logging/base/rbac/logging-admin.yaml
+index 91e699f0..bc3f8068 100644
+--- a/components/monitoring/logging/base/rbac/logging-admin.yaml
++++ b/components/monitoring/logging/base/rbac/logging-admin.yaml
+@@ -17,7 +17,7 @@ metadata:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Logging Admins
++  name: konflux-o11y-admins
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: Role
+diff --git a/components/segment-bridge/rbac/segment-bridge.yaml b/components/segment-bridge/rbac/segment-bridge.yaml
+index 7d697861..81bf5222 100644
+--- a/components/segment-bridge/rbac/segment-bridge.yaml
++++ b/components/segment-bridge/rbac/segment-bridge.yaml
+@@ -54,10 +54,9 @@ metadata:
+   name: segment-bridge-read-host-sa-secret-binding
+   namespace: toolchain-host-operator
+ subjects:
+-  - kind: User
+-    name: Omeramsc
+-  - kind: User
+-    name: ifireball
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: konflux-o11y
+ roleRef:
+   kind: Role
+   name: segment-bridge-read-host-sa-secret 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (10 lines)</summary>  
+
+``` 
+./commit-ab742f54/production/components/segment-bridge/production/stone-prd-host1/kustomize.out.yaml
+61,63c61,64
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-o11y
+---
+> - kind: User
+>   name: Omeramsc
+> - kind: User
+>   name: ifireball 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from ab742f54 to 395c7bc7 on Fri Jan 26 16:34:10 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (31 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/logging/base/rbac/logging-admin.yaml b/components/monitoring/logging/base/rbac/logging-admin.yaml
+index 91e699f0..bc3f8068 100644
+--- a/components/monitoring/logging/base/rbac/logging-admin.yaml
++++ b/components/monitoring/logging/base/rbac/logging-admin.yaml
+@@ -17,7 +17,7 @@ metadata:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Logging Admins
++  name: konflux-o11y-admins
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: Role
+diff --git a/components/segment-bridge/rbac/segment-bridge.yaml b/components/segment-bridge/rbac/segment-bridge.yaml
+index 7d697861..81bf5222 100644
+--- a/components/segment-bridge/rbac/segment-bridge.yaml
++++ b/components/segment-bridge/rbac/segment-bridge.yaml
+@@ -54,10 +54,9 @@ metadata:
+   name: segment-bridge-read-host-sa-secret-binding
+   namespace: toolchain-host-operator
+ subjects:
+-  - kind: User
+-    name: Omeramsc
+-  - kind: User
+-    name: ifireball
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: konflux-o11y
+ roleRef:
+   kind: Role
+   name: segment-bridge-read-host-sa-secret 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (10 lines)</summary>  
+
+``` 
+./commit-ab742f54/staging/components/segment-bridge/staging/stone-stg-host/kustomize.out.yaml
+61,63c61,64
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-o11y
+---
+> - kind: User
+>   name: Omeramsc
+> - kind: User
+>   name: ifireball 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from ab742f54 to 395c7bc7 on Fri Jan 26 16:34:10 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (31 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/logging/base/rbac/logging-admin.yaml b/components/monitoring/logging/base/rbac/logging-admin.yaml
+index 91e699f0..bc3f8068 100644
+--- a/components/monitoring/logging/base/rbac/logging-admin.yaml
++++ b/components/monitoring/logging/base/rbac/logging-admin.yaml
+@@ -17,7 +17,7 @@ metadata:
+ subjects:
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+-  name: Logging Admins
++  name: konflux-o11y-admins
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: Role
+diff --git a/components/segment-bridge/rbac/segment-bridge.yaml b/components/segment-bridge/rbac/segment-bridge.yaml
+index 7d697861..81bf5222 100644
+--- a/components/segment-bridge/rbac/segment-bridge.yaml
++++ b/components/segment-bridge/rbac/segment-bridge.yaml
+@@ -54,10 +54,9 @@ metadata:
+   name: segment-bridge-read-host-sa-secret-binding
+   namespace: toolchain-host-operator
+ subjects:
+-  - kind: User
+-    name: Omeramsc
+-  - kind: User
+-    name: ifireball
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: konflux-o11y
+ roleRef:
+   kind: Role
+   name: segment-bridge-read-host-sa-secret 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 5bd7f17a to ab742f54 on Fri Jan 26 15:10:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (169 lines)</summary>  
@@ -285,7 +723,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 5bd7f17a to ab742f54 on Fri Jan 26 15:10:34 2024 </h3>  
+<h3>2: Staging changes from 5bd7f17a to ab742f54 on Fri Jan 26 15:10:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (169 lines)</summary>  
@@ -585,7 +1023,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 5bd7f17a to ab742f54 on Fri Jan 26 15:10:34 2024 </h3>  
+<h3>2: Development changes from 5bd7f17a to ab742f54 on Fri Jan 26 15:10:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (169 lines)</summary>  
@@ -840,7 +1278,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from f55ce4ac to 5bd7f17a on Fri Jan 26 10:30:05 2024 </h3>  
+<h3>3: Production changes from f55ce4ac to 5bd7f17a on Fri Jan 26 10:30:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -988,7 +1426,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from f55ce4ac to 5bd7f17a on Fri Jan 26 10:30:05 2024 </h3>  
+<h3>3: Staging changes from f55ce4ac to 5bd7f17a on Fri Jan 26 10:30:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1161,7 +1599,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from f55ce4ac to 5bd7f17a on Fri Jan 26 10:30:05 2024 </h3>  
+<h3>3: Development changes from f55ce4ac to 5bd7f17a on Fri Jan 26 10:30:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1289,7 +1727,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from cc00977c to f55ce4ac on Fri Jan 26 08:09:46 2024 </h3>  
+<h3>4: Production changes from cc00977c to f55ce4ac on Fri Jan 26 08:09:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -1444,7 +1882,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from cc00977c to f55ce4ac on Fri Jan 26 08:09:46 2024 </h3>  
+<h3>4: Staging changes from cc00977c to f55ce4ac on Fri Jan 26 08:09:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -1620,7 +2058,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from cc00977c to f55ce4ac on Fri Jan 26 08:09:46 2024 </h3>  
+<h3>4: Development changes from cc00977c to f55ce4ac on Fri Jan 26 08:09:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (45 lines)</summary>  
@@ -1671,423 +2109,6 @@ index ebeace30..48708917 100644
  
  patches:
    - target: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from b84287cb to cc00977c on Fri Jan 26 05:08:22 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (30 lines)</summary>  
-
-``` 
-diff --git a/components/remote-secret-controller/base/rbac/remote-secret.yaml b/components/remote-secret-controller/base/rbac/remote-secret.yaml
-index 1845fd62..8c55752f 100644
---- a/components/remote-secret-controller/base/rbac/remote-secret.yaml
-+++ b/components/remote-secret-controller/base/rbac/remote-secret.yaml
-@@ -4,8 +4,8 @@ metadata:
-   name: remotesecret-service-maintainers
-   namespace: remotesecret
- subjects:
--  - kind: User
--    name: skabashnyuk
-+  - kind: Group
-+    name: konflux-spi-admins
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-diff --git a/components/spi/base/rbac/spi.yaml b/components/spi/base/rbac/spi.yaml
-index 8521d836..869c9afc 100644
---- a/components/spi/base/rbac/spi.yaml
-+++ b/components/spi/base/rbac/spi.yaml
-@@ -4,8 +4,8 @@ metadata:
-   name: spi-service-maintainers
-   namespace: spi-system
- subjects:
--  - kind: User
--    name: skabashnyuk
-+  - kind: Group
-+    name: konflux-spi-admins
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from b84287cb to cc00977c on Fri Jan 26 05:08:22 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (30 lines)</summary>  
-
-``` 
-diff --git a/components/remote-secret-controller/base/rbac/remote-secret.yaml b/components/remote-secret-controller/base/rbac/remote-secret.yaml
-index 1845fd62..8c55752f 100644
---- a/components/remote-secret-controller/base/rbac/remote-secret.yaml
-+++ b/components/remote-secret-controller/base/rbac/remote-secret.yaml
-@@ -4,8 +4,8 @@ metadata:
-   name: remotesecret-service-maintainers
-   namespace: remotesecret
- subjects:
--  - kind: User
--    name: skabashnyuk
-+  - kind: Group
-+    name: konflux-spi-admins
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-diff --git a/components/spi/base/rbac/spi.yaml b/components/spi/base/rbac/spi.yaml
-index 8521d836..869c9afc 100644
---- a/components/spi/base/rbac/spi.yaml
-+++ b/components/spi/base/rbac/spi.yaml
-@@ -4,8 +4,8 @@ metadata:
-   name: spi-service-maintainers
-   namespace: spi-system
- subjects:
--  - kind: User
--    name: skabashnyuk
-+  - kind: Group
-+    name: konflux-spi-admins
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from b84287cb to cc00977c on Fri Jan 26 05:08:22 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (30 lines)</summary>  
-
-``` 
-diff --git a/components/remote-secret-controller/base/rbac/remote-secret.yaml b/components/remote-secret-controller/base/rbac/remote-secret.yaml
-index 1845fd62..8c55752f 100644
---- a/components/remote-secret-controller/base/rbac/remote-secret.yaml
-+++ b/components/remote-secret-controller/base/rbac/remote-secret.yaml
-@@ -4,8 +4,8 @@ metadata:
-   name: remotesecret-service-maintainers
-   namespace: remotesecret
- subjects:
--  - kind: User
--    name: skabashnyuk
-+  - kind: Group
-+    name: konflux-spi-admins
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-diff --git a/components/spi/base/rbac/spi.yaml b/components/spi/base/rbac/spi.yaml
-index 8521d836..869c9afc 100644
---- a/components/spi/base/rbac/spi.yaml
-+++ b/components/spi/base/rbac/spi.yaml
-@@ -4,8 +4,8 @@ metadata:
-   name: spi-service-maintainers
-   namespace: spi-system
- subjects:
--  - kind: User
--    name: skabashnyuk
-+  - kind: Group
-+    name: konflux-spi-admins
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole 
 ```
  
 </details> 
