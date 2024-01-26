@@ -1,0 +1,30 @@
+diff --git a/components/remote-secret-controller/base/rbac/remote-secret.yaml b/components/remote-secret-controller/base/rbac/remote-secret.yaml
+index 1845fd62..8c55752f 100644
+--- a/components/remote-secret-controller/base/rbac/remote-secret.yaml
++++ b/components/remote-secret-controller/base/rbac/remote-secret.yaml
+@@ -4,8 +4,8 @@ metadata:
+   name: remotesecret-service-maintainers
+   namespace: remotesecret
+ subjects:
+-  - kind: User
+-    name: skabashnyuk
++  - kind: Group
++    name: konflux-spi-admins
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/spi/base/rbac/spi.yaml b/components/spi/base/rbac/spi.yaml
+index 8521d836..869c9afc 100644
+--- a/components/spi/base/rbac/spi.yaml
++++ b/components/spi/base/rbac/spi.yaml
+@@ -4,8 +4,8 @@ metadata:
+   name: spi-service-maintainers
+   namespace: spi-system
+ subjects:
+-  - kind: User
+-    name: skabashnyuk
++  - kind: Group
++    name: konflux-spi-admins
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole

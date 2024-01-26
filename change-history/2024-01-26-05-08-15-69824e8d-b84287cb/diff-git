@@ -1,0 +1,44 @@
+diff --git a/components/internal-services/internal-services.yaml b/components/internal-services/internal-services.yaml
+index a36f7cd8..65295c83 100644
+--- a/components/internal-services/internal-services.yaml
++++ b/components/internal-services/internal-services.yaml
+@@ -6,7 +6,7 @@ metadata:
+ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: Release team
++    name: konflux-release-team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+@@ -19,7 +19,7 @@ metadata:
+ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: Release team
++    name: konflux-release-team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/release/base/release-team.yaml b/components/release/base/release-team.yaml
+index f36d1519..8baa8329 100644
+--- a/components/release/base/release-team.yaml
++++ b/components/release/base/release-team.yaml
+@@ -6,7 +6,7 @@ metadata:
+ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: Release team
++    name: konflux-release-team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+@@ -20,7 +20,7 @@ metadata:
+ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: Release team
++    name: konflux-release-team
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: Role
