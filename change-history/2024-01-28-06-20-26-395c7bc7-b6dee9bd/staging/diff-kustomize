@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b6dee9bd/staging/components/integration/staging/kustomize.out.yaml ./kustomized-cache/commit-395c7bc7/staging/components/integration/staging/kustomize.out.yaml
+969c969
+<   name: konflux-integration
+---
+>   name: Integration Team
