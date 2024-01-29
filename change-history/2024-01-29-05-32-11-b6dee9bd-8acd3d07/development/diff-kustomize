@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8acd3d07/development/app-of-apps-development.yaml ./kustomized-cache/commit-b6dee9bd/development/app-of-apps-development.yaml
+72,73d71
+<           - nameNormalized: stone-prod-p01
+<             values.clusterDir: stone-prod-p01
+345,346d342
+<           - nameNormalized: stone-prod-p01
+<             values.clusterDir: stone-prod-p01
+722,723d717
+<           - nameNormalized: stone-prod-p01
+<             values.clusterDir: stone-prod-p01
+870,871d863
+<           - nameNormalized: stone-prod-p01
+<             values.clusterDir: stone-prod-p01
+972,973d963
+<           - nameNormalized: stone-prod-p01
+<             values.clusterDir: stone-prod-p01
+1028,1029d1017
+<           - nameNormalized: stone-prod-p01
+<             values.clusterDir: stone-prod-p01
+Only in ./kustomized-cache/commit-b6dee9bd/development/components: smee-client

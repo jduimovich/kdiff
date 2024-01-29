@@ -1,0 +1,25 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8acd3d07/production/app-of-apps-production.yaml ./kustomized-cache/commit-b6dee9bd/production/app-of-apps-production.yaml
+155,156d154
+<           - nameNormalized: stone-prod-p01
+<             values.clusterDir: stone-prod-p01
+589,590d586
+<           - nameNormalized: stone-prod-p01
+<             values.clusterDir: stone-prod-p01
+1017,1018d1012
+<           - nameNormalized: stone-prod-p01
+<             values.clusterDir: stone-prod-p01
+1165,1166d1158
+<           - nameNormalized: stone-prod-p01
+<             values.clusterDir: stone-prod-p01
+1267,1268d1258
+<           - nameNormalized: stone-prod-p01
+<             values.clusterDir: stone-prod-p01
+1510,1511d1499
+<           - nameNormalized: stone-prod-p01
+<             values.clusterDir: stone-prod-p01
+Only in ./kustomized-cache/commit-8acd3d07/production/components: build-service
+Only in ./kustomized-cache/commit-8acd3d07/production/components/gitops/production: stone-prod-p01
+Only in ./kustomized-cache/commit-8acd3d07/production/components/pipeline-service/production: stone-prod-p01
+Only in ./kustomized-cache/commit-b6dee9bd/production/components/smee-client: kustomize.out.yaml
+Only in ./kustomized-cache/commit-8acd3d07/production/components/smee-client: production
+Only in ./kustomized-cache/commit-8acd3d07/production/components: ui
