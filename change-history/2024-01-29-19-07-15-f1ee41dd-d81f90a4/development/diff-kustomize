@@ -1,0 +1,7 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d81f90a4/development/components/integration/development/kustomize.out.yaml ./kustomized-cache/commit-f1ee41dd/development/components/integration/development/kustomize.out.yaml
+955,956c955,956
+<   kind: Group
+<   name: konflux-integration
+---
+>   kind: User
+>   name: dirgim
