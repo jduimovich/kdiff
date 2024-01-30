@@ -1,256 +1,417 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Jan 30 08:04:13 UTC 2024
+### This file generated at Tue Jan 30 12:05:23 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from b1041d81 to ad9e458e on Tue Jan 30 07:24:57 2024 </h3>  
+<h3>1: Production changes from 675172c4 to f2f08276 on Tue Jan 30 10:18:14 2024 </h3>  
  
 <details> 
-<summary>Git Diff (239 lines)</summary>  
+<summary>Git Diff (12 lines)</summary>  
 
 ``` 
-diff --git a/components/authentication/base/admin-checker/admin-checker-sa.yaml b/components/authentication/base/all/admin-checker/admin-checker-sa.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/admin-checker-sa.yaml
-rename to components/authentication/base/all/admin-checker/admin-checker-sa.yaml
-diff --git a/components/authentication/base/admin-checker/cronjob.yaml b/components/authentication/base/all/admin-checker/cronjob.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/cronjob.yaml
-rename to components/authentication/base/all/admin-checker/cronjob.yaml
-diff --git a/components/authentication/base/admin-checker/external-secrets/kustomization.yaml b/components/authentication/base/all/admin-checker/external-secrets/kustomization.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/external-secrets/kustomization.yaml
-rename to components/authentication/base/all/admin-checker/external-secrets/kustomization.yaml
-diff --git a/components/authentication/base/admin-checker/external-secrets/rhtap-infra-secrets.yaml b/components/authentication/base/all/admin-checker/external-secrets/rhtap-infra-secrets.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/external-secrets/rhtap-infra-secrets.yaml
-rename to components/authentication/base/all/admin-checker/external-secrets/rhtap-infra-secrets.yaml
-diff --git a/components/authentication/base/admin-checker/kustomization.yaml b/components/authentication/base/all/admin-checker/kustomization.yaml
-similarity index 88%
-rename from components/authentication/base/admin-checker/kustomization.yaml
-rename to components/authentication/base/all/admin-checker/kustomization.yaml
-index d499a597..521a4380 100644
---- a/components/authentication/base/admin-checker/kustomization.yaml
-+++ b/components/authentication/base/all/admin-checker/kustomization.yaml
-@@ -5,4 +5,4 @@ resources:
-   - admin-checker-sa.yaml
-   - cronjob.yaml
-   - namespace.yaml
--  - external-secrets/
-+  - external-secrets
-diff --git a/components/authentication/base/admin-checker/namespace.yaml b/components/authentication/base/all/admin-checker/namespace.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/namespace.yaml
-rename to components/authentication/base/all/admin-checker/namespace.yaml
-diff --git a/components/authentication/base/component-maintainer.yaml b/components/authentication/base/all/component-maintainer.yaml
-similarity index 100%
-rename from components/authentication/base/component-maintainer.yaml
-rename to components/authentication/base/all/component-maintainer.yaml
-diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/all/everyone-can-view.yaml
-similarity index 89%
-rename from components/authentication/base/everyone-can-view.yaml
-rename to components/authentication/base/all/everyone-can-view.yaml
-index eea712c1..baa194e3 100644
---- a/components/authentication/base/everyone-can-view.yaml
-+++ b/components/authentication/base/all/everyone-can-view.yaml
-@@ -81,10 +81,7 @@ kind: ClusterRoleBinding
- apiVersion: rbac.authorization.k8s.io/v1
- metadata:
-   name: everyone-view
--subjects:
--- kind: Group
--  apiGroup: rbac.authorization.k8s.io
--  name: 'stage'
-+subjects: [] # added by auth specific overlay, e.g. github
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-@@ -94,10 +91,7 @@ kind: ClusterRoleBinding
- apiVersion: rbac.authorization.k8s.io/v1
- metadata:
-   name: everyone-view-appstudio
--subjects:
--- kind: Group
--  apiGroup: rbac.authorization.k8s.io
--  name: 'stage'
-+subjects: [] # added by auth specific overlay, e.g. github
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-@@ -107,10 +101,7 @@ kind: ClusterRoleBinding
- apiVersion: rbac.authorization.k8s.io/v1
- metadata:
-   name: everyone-view-cluster-version
--subjects:
--- kind: Group
--  apiGroup: rbac.authorization.k8s.io
--  name: 'stage'
-+subjects: [] # added by auth specific overlay, e.g. github
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-diff --git a/components/authentication/base/group-sync/group-sync.yaml b/components/authentication/base/all/group-sync/group-sync.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/group-sync.yaml
-rename to components/authentication/base/all/group-sync/group-sync.yaml
-diff --git a/components/authentication/base/all/group-sync/kustomization.yaml b/components/authentication/base/all/group-sync/kustomization.yaml
-new file mode 100644
-index 00000000..c7c56631
---- /dev/null
-+++ b/components/authentication/base/all/group-sync/kustomization.yaml
-@@ -0,0 +1,7 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+namespace: group-sync-operator
-+resources:
-+- group-sync.yaml
-+- namespaces.yaml
-+- subscription.yaml
-diff --git a/components/authentication/base/group-sync/namespaces.yaml b/components/authentication/base/all/group-sync/namespaces.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/namespaces.yaml
-rename to components/authentication/base/all/group-sync/namespaces.yaml
-diff --git a/components/authentication/base/group-sync/subscription.yaml b/components/authentication/base/all/group-sync/subscription.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/subscription.yaml
-rename to components/authentication/base/all/group-sync/subscription.yaml
-diff --git a/components/authentication/base/konflux-admins.yaml b/components/authentication/base/all/konflux-admins.yaml
-similarity index 100%
-rename from components/authentication/base/konflux-admins.yaml
-rename to components/authentication/base/all/konflux-admins.yaml
-diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/all/kustomization.yaml
-similarity index 82%
-rename from components/authentication/base/kustomization.yaml
-rename to components/authentication/base/all/kustomization.yaml
-index 3b208818..a979ad78 100644
---- a/components/authentication/base/kustomization.yaml
-+++ b/components/authentication/base/all/kustomization.yaml
-@@ -1,9 +1,8 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
- resources:
--- everyone-can-view.yaml
-+- admin-checker
-+- group-sync
- - component-maintainer.yaml
--- group-sync/
-+- everyone-can-view.yaml
- - konflux-admins.yaml
--- admin-checker/
--
--apiVersion: kustomize.config.k8s.io/v1beta1
--kind: Kustomization
-diff --git a/components/authentication/base/github/everyone-can-view-patch.yaml b/components/authentication/base/github/everyone-can-view-patch.yaml
-new file mode 100644
-index 00000000..88414a0a
---- /dev/null
-+++ b/components/authentication/base/github/everyone-can-view-patch.yaml
-@@ -0,0 +1,7 @@
-+---
-+- op: add
-+  path: /subjects
-+  value:
-+    - kind: Group
-+      apiGroup: rbac.authorization.k8s.io
-+      name: 'stage'
-diff --git a/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml b/components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
-rename to components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
-diff --git a/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml b/components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml
-rename to components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio.yaml
-diff --git a/components/authentication/base/group-sync/external-secrets/kustomization.yaml b/components/authentication/base/github/group-sync/external-secrets/kustomization.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/external-secrets/kustomization.yaml
-rename to components/authentication/base/github/group-sync/external-secrets/kustomization.yaml
-diff --git a/components/authentication/base/group-sync/github-redhat-appstudio-sre.yaml b/components/authentication/base/github/group-sync/github-redhat-appstudio-sre.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/github-redhat-appstudio-sre.yaml
-rename to components/authentication/base/github/group-sync/github-redhat-appstudio-sre.yaml
-diff --git a/components/authentication/base/group-sync/github-redhat-appstudio.yaml b/components/authentication/base/github/group-sync/github-redhat-appstudio.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/github-redhat-appstudio.yaml
-rename to components/authentication/base/github/group-sync/github-redhat-appstudio.yaml
-diff --git a/components/authentication/base/group-sync/kustomization.yaml b/components/authentication/base/github/group-sync/kustomization.yaml
-similarity index 77%
-rename from components/authentication/base/group-sync/kustomization.yaml
-rename to components/authentication/base/github/group-sync/kustomization.yaml
-index 79ea67db..012ecfa8 100644
---- a/components/authentication/base/group-sync/kustomization.yaml
-+++ b/components/authentication/base/github/group-sync/kustomization.yaml
-@@ -1,11 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-+namespace: group-sync-operator
- resources:
--- github-redhat-appstudio.yaml
--- github-redhat-appstudio-sre.yaml
--- group-sync.yaml
--- namespaces.yaml
--- subscription.yaml
- - external-secrets
--
--namespace: group-sync-operator
-+- github-redhat-appstudio-sre.yaml
-+- github-redhat-appstudio.yaml
-diff --git a/components/authentication/base/github/kustomization.yaml b/components/authentication/base/github/kustomization.yaml
-new file mode 100644
-index 00000000..17f11d84
---- /dev/null
-+++ b/components/authentication/base/github/kustomization.yaml
-@@ -0,0 +1,24 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../all
-+- group-sync
-+patches:
-+  - path: everyone-can-view-patch.yaml
-+    target:
-+      name: everyone-view
-+      kind: ClusterRoleBinding
-+      group: rbac.authorization.k8s.io
-+      version: v1
-+  - path: everyone-can-view-patch.yaml
-+    target:
-+      name: everyone-view-appstudio
-+      kind: ClusterRoleBinding
-+      group: rbac.authorization.k8s.io
-+      version: v1
-+  - path: everyone-can-view-patch.yaml
-+    target:
-+      name: everyone-view-cluster-version
-+      kind: ClusterRoleBinding
-+      group: rbac.authorization.k8s.io
-+      version: v1
-diff --git a/components/authentication/production/kustomization.yaml b/components/authentication/production/kustomization.yaml
-index f5efc6b2..c317312e 100644
---- a/components/authentication/production/kustomization.yaml
-+++ b/components/authentication/production/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - ../base
-+  - ../base/github
- patches:
-   - path: github-redhat-appstudio-secret-patch.yaml
-     target:
-diff --git a/components/authentication/staging/kustomization.yaml b/components/authentication/staging/kustomization.yaml
-index 27bb5cb0..ef81af8d 100644
---- a/components/authentication/staging/kustomization.yaml
-+++ b/components/authentication/staging/kustomization.yaml
+diff --git a/components/enterprise-contract/OWNERS b/components/enterprise-contract/OWNERS
+index 4082c04f..b4c10d38 100644
+--- a/components/enterprise-contract/OWNERS
++++ b/components/enterprise-contract/OWNERS
+@@ -4,6 +4,7 @@ approvers:
+ - simonbaird
+ - zregvart
+ - lcarva
++- ec-automation[bot]
+ 
+ 
+ reviewers: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 675172c4 to f2f08276 on Tue Jan 30 10:18:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (12 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/OWNERS b/components/enterprise-contract/OWNERS
+index 4082c04f..b4c10d38 100644
+--- a/components/enterprise-contract/OWNERS
++++ b/components/enterprise-contract/OWNERS
+@@ -4,6 +4,7 @@ approvers:
+ - simonbaird
+ - zregvart
+ - lcarva
++- ec-automation[bot]
+ 
+ 
+ reviewers: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 675172c4 to f2f08276 on Tue Jan 30 10:18:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (12 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/OWNERS b/components/enterprise-contract/OWNERS
+index 4082c04f..b4c10d38 100644
+--- a/components/enterprise-contract/OWNERS
++++ b/components/enterprise-contract/OWNERS
+@@ -4,6 +4,7 @@ approvers:
+ - simonbaird
+ - zregvart
+ - lcarva
++- ec-automation[bot]
+ 
+ 
+ reviewers: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 61f13bfe to 675172c4 on Tue Jan 30 09:23:12 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (28 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index f4b0b005..c1adda0b 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
 @@ -1,4 +1,4 @@
  apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
--  - ../base
-+  - ../base/github 
+-- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=c2b8ead21ffb8ffbeb0cff20cc4e5c0012a45060
++- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=0eb0a4595339e72684c50bcb049c5b0001b7fea5
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 47db22a6..3386d656 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/release-service/config/default?ref=c2b8ead21ffb8ffbeb0cff20cc4e5c0012a45060
++  - https://github.com/redhat-appstudio/release-service/config/default?ref=0eb0a4595339e72684c50bcb049c5b0001b7fea5
+ 
+ images:
+   - name: quay.io/redhat-appstudio/release-service
+     newName: quay.io/redhat-appstudio/release-service
+-    newTag: c2b8ead21ffb8ffbeb0cff20cc4e5c0012a45060
++    newTag: 0eb0a4595339e72684c50bcb049c5b0001b7fea5
+ 
+ namespace: release-service 
 ```
  
 </details> 
@@ -367,251 +528,40 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from b1041d81 to ad9e458e on Tue Jan 30 07:24:57 2024 </h3>  
+<h3>2: Staging changes from 61f13bfe to 675172c4 on Tue Jan 30 09:23:12 2024 </h3>  
  
 <details> 
-<summary>Git Diff (239 lines)</summary>  
+<summary>Git Diff (28 lines)</summary>  
 
 ``` 
-diff --git a/components/authentication/base/admin-checker/admin-checker-sa.yaml b/components/authentication/base/all/admin-checker/admin-checker-sa.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/admin-checker-sa.yaml
-rename to components/authentication/base/all/admin-checker/admin-checker-sa.yaml
-diff --git a/components/authentication/base/admin-checker/cronjob.yaml b/components/authentication/base/all/admin-checker/cronjob.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/cronjob.yaml
-rename to components/authentication/base/all/admin-checker/cronjob.yaml
-diff --git a/components/authentication/base/admin-checker/external-secrets/kustomization.yaml b/components/authentication/base/all/admin-checker/external-secrets/kustomization.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/external-secrets/kustomization.yaml
-rename to components/authentication/base/all/admin-checker/external-secrets/kustomization.yaml
-diff --git a/components/authentication/base/admin-checker/external-secrets/rhtap-infra-secrets.yaml b/components/authentication/base/all/admin-checker/external-secrets/rhtap-infra-secrets.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/external-secrets/rhtap-infra-secrets.yaml
-rename to components/authentication/base/all/admin-checker/external-secrets/rhtap-infra-secrets.yaml
-diff --git a/components/authentication/base/admin-checker/kustomization.yaml b/components/authentication/base/all/admin-checker/kustomization.yaml
-similarity index 88%
-rename from components/authentication/base/admin-checker/kustomization.yaml
-rename to components/authentication/base/all/admin-checker/kustomization.yaml
-index d499a597..521a4380 100644
---- a/components/authentication/base/admin-checker/kustomization.yaml
-+++ b/components/authentication/base/all/admin-checker/kustomization.yaml
-@@ -5,4 +5,4 @@ resources:
-   - admin-checker-sa.yaml
-   - cronjob.yaml
-   - namespace.yaml
--  - external-secrets/
-+  - external-secrets
-diff --git a/components/authentication/base/admin-checker/namespace.yaml b/components/authentication/base/all/admin-checker/namespace.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/namespace.yaml
-rename to components/authentication/base/all/admin-checker/namespace.yaml
-diff --git a/components/authentication/base/component-maintainer.yaml b/components/authentication/base/all/component-maintainer.yaml
-similarity index 100%
-rename from components/authentication/base/component-maintainer.yaml
-rename to components/authentication/base/all/component-maintainer.yaml
-diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/all/everyone-can-view.yaml
-similarity index 89%
-rename from components/authentication/base/everyone-can-view.yaml
-rename to components/authentication/base/all/everyone-can-view.yaml
-index eea712c1..baa194e3 100644
---- a/components/authentication/base/everyone-can-view.yaml
-+++ b/components/authentication/base/all/everyone-can-view.yaml
-@@ -81,10 +81,7 @@ kind: ClusterRoleBinding
- apiVersion: rbac.authorization.k8s.io/v1
- metadata:
-   name: everyone-view
--subjects:
--- kind: Group
--  apiGroup: rbac.authorization.k8s.io
--  name: 'stage'
-+subjects: [] # added by auth specific overlay, e.g. github
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-@@ -94,10 +91,7 @@ kind: ClusterRoleBinding
- apiVersion: rbac.authorization.k8s.io/v1
- metadata:
-   name: everyone-view-appstudio
--subjects:
--- kind: Group
--  apiGroup: rbac.authorization.k8s.io
--  name: 'stage'
-+subjects: [] # added by auth specific overlay, e.g. github
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-@@ -107,10 +101,7 @@ kind: ClusterRoleBinding
- apiVersion: rbac.authorization.k8s.io/v1
- metadata:
-   name: everyone-view-cluster-version
--subjects:
--- kind: Group
--  apiGroup: rbac.authorization.k8s.io
--  name: 'stage'
-+subjects: [] # added by auth specific overlay, e.g. github
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-diff --git a/components/authentication/base/group-sync/group-sync.yaml b/components/authentication/base/all/group-sync/group-sync.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/group-sync.yaml
-rename to components/authentication/base/all/group-sync/group-sync.yaml
-diff --git a/components/authentication/base/all/group-sync/kustomization.yaml b/components/authentication/base/all/group-sync/kustomization.yaml
-new file mode 100644
-index 00000000..c7c56631
---- /dev/null
-+++ b/components/authentication/base/all/group-sync/kustomization.yaml
-@@ -0,0 +1,7 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+namespace: group-sync-operator
-+resources:
-+- group-sync.yaml
-+- namespaces.yaml
-+- subscription.yaml
-diff --git a/components/authentication/base/group-sync/namespaces.yaml b/components/authentication/base/all/group-sync/namespaces.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/namespaces.yaml
-rename to components/authentication/base/all/group-sync/namespaces.yaml
-diff --git a/components/authentication/base/group-sync/subscription.yaml b/components/authentication/base/all/group-sync/subscription.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/subscription.yaml
-rename to components/authentication/base/all/group-sync/subscription.yaml
-diff --git a/components/authentication/base/konflux-admins.yaml b/components/authentication/base/all/konflux-admins.yaml
-similarity index 100%
-rename from components/authentication/base/konflux-admins.yaml
-rename to components/authentication/base/all/konflux-admins.yaml
-diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/all/kustomization.yaml
-similarity index 82%
-rename from components/authentication/base/kustomization.yaml
-rename to components/authentication/base/all/kustomization.yaml
-index 3b208818..a979ad78 100644
---- a/components/authentication/base/kustomization.yaml
-+++ b/components/authentication/base/all/kustomization.yaml
-@@ -1,9 +1,8 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
- resources:
--- everyone-can-view.yaml
-+- admin-checker
-+- group-sync
- - component-maintainer.yaml
--- group-sync/
-+- everyone-can-view.yaml
- - konflux-admins.yaml
--- admin-checker/
--
--apiVersion: kustomize.config.k8s.io/v1beta1
--kind: Kustomization
-diff --git a/components/authentication/base/github/everyone-can-view-patch.yaml b/components/authentication/base/github/everyone-can-view-patch.yaml
-new file mode 100644
-index 00000000..88414a0a
---- /dev/null
-+++ b/components/authentication/base/github/everyone-can-view-patch.yaml
-@@ -0,0 +1,7 @@
-+---
-+- op: add
-+  path: /subjects
-+  value:
-+    - kind: Group
-+      apiGroup: rbac.authorization.k8s.io
-+      name: 'stage'
-diff --git a/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml b/components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
-rename to components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
-diff --git a/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml b/components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml
-rename to components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio.yaml
-diff --git a/components/authentication/base/group-sync/external-secrets/kustomization.yaml b/components/authentication/base/github/group-sync/external-secrets/kustomization.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/external-secrets/kustomization.yaml
-rename to components/authentication/base/github/group-sync/external-secrets/kustomization.yaml
-diff --git a/components/authentication/base/group-sync/github-redhat-appstudio-sre.yaml b/components/authentication/base/github/group-sync/github-redhat-appstudio-sre.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/github-redhat-appstudio-sre.yaml
-rename to components/authentication/base/github/group-sync/github-redhat-appstudio-sre.yaml
-diff --git a/components/authentication/base/group-sync/github-redhat-appstudio.yaml b/components/authentication/base/github/group-sync/github-redhat-appstudio.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/github-redhat-appstudio.yaml
-rename to components/authentication/base/github/group-sync/github-redhat-appstudio.yaml
-diff --git a/components/authentication/base/group-sync/kustomization.yaml b/components/authentication/base/github/group-sync/kustomization.yaml
-similarity index 77%
-rename from components/authentication/base/group-sync/kustomization.yaml
-rename to components/authentication/base/github/group-sync/kustomization.yaml
-index 79ea67db..012ecfa8 100644
---- a/components/authentication/base/group-sync/kustomization.yaml
-+++ b/components/authentication/base/github/group-sync/kustomization.yaml
-@@ -1,11 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-+namespace: group-sync-operator
- resources:
--- github-redhat-appstudio.yaml
--- github-redhat-appstudio-sre.yaml
--- group-sync.yaml
--- namespaces.yaml
--- subscription.yaml
- - external-secrets
--
--namespace: group-sync-operator
-+- github-redhat-appstudio-sre.yaml
-+- github-redhat-appstudio.yaml
-diff --git a/components/authentication/base/github/kustomization.yaml b/components/authentication/base/github/kustomization.yaml
-new file mode 100644
-index 00000000..17f11d84
---- /dev/null
-+++ b/components/authentication/base/github/kustomization.yaml
-@@ -0,0 +1,24 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../all
-+- group-sync
-+patches:
-+  - path: everyone-can-view-patch.yaml
-+    target:
-+      name: everyone-view
-+      kind: ClusterRoleBinding
-+      group: rbac.authorization.k8s.io
-+      version: v1
-+  - path: everyone-can-view-patch.yaml
-+    target:
-+      name: everyone-view-appstudio
-+      kind: ClusterRoleBinding
-+      group: rbac.authorization.k8s.io
-+      version: v1
-+  - path: everyone-can-view-patch.yaml
-+    target:
-+      name: everyone-view-cluster-version
-+      kind: ClusterRoleBinding
-+      group: rbac.authorization.k8s.io
-+      version: v1
-diff --git a/components/authentication/production/kustomization.yaml b/components/authentication/production/kustomization.yaml
-index f5efc6b2..c317312e 100644
---- a/components/authentication/production/kustomization.yaml
-+++ b/components/authentication/production/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - ../base
-+  - ../base/github
- patches:
-   - path: github-redhat-appstudio-secret-patch.yaml
-     target:
-diff --git a/components/authentication/staging/kustomization.yaml b/components/authentication/staging/kustomization.yaml
-index 27bb5cb0..ef81af8d 100644
---- a/components/authentication/staging/kustomization.yaml
-+++ b/components/authentication/staging/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index f4b0b005..c1adda0b 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
 @@ -1,4 +1,4 @@
  apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
--  - ../base
-+  - ../base/github 
+-- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=c2b8ead21ffb8ffbeb0cff20cc4e5c0012a45060
++- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=0eb0a4595339e72684c50bcb049c5b0001b7fea5
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 47db22a6..3386d656 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/release-service/config/default?ref=c2b8ead21ffb8ffbeb0cff20cc4e5c0012a45060
++  - https://github.com/redhat-appstudio/release-service/config/default?ref=0eb0a4595339e72684c50bcb049c5b0001b7fea5
+ 
+ images:
+   - name: quay.io/redhat-appstudio/release-service
+     newName: quay.io/redhat-appstudio/release-service
+-    newTag: c2b8ead21ffb8ffbeb0cff20cc4e5c0012a45060
++    newTag: 0eb0a4595339e72684c50bcb049c5b0001b7fea5
+ 
+ namespace: release-service 
 ```
  
 </details> 
@@ -737,260 +687,136 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from b1041d81 to ad9e458e on Tue Jan 30 07:24:57 2024 </h3>  
+<h3>2: Development changes from 61f13bfe to 675172c4 on Tue Jan 30 09:23:12 2024 </h3>  
  
 <details> 
-<summary>Git Diff (239 lines)</summary>  
+<summary>Git Diff (28 lines)</summary>  
 
 ``` 
-diff --git a/components/authentication/base/admin-checker/admin-checker-sa.yaml b/components/authentication/base/all/admin-checker/admin-checker-sa.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/admin-checker-sa.yaml
-rename to components/authentication/base/all/admin-checker/admin-checker-sa.yaml
-diff --git a/components/authentication/base/admin-checker/cronjob.yaml b/components/authentication/base/all/admin-checker/cronjob.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/cronjob.yaml
-rename to components/authentication/base/all/admin-checker/cronjob.yaml
-diff --git a/components/authentication/base/admin-checker/external-secrets/kustomization.yaml b/components/authentication/base/all/admin-checker/external-secrets/kustomization.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/external-secrets/kustomization.yaml
-rename to components/authentication/base/all/admin-checker/external-secrets/kustomization.yaml
-diff --git a/components/authentication/base/admin-checker/external-secrets/rhtap-infra-secrets.yaml b/components/authentication/base/all/admin-checker/external-secrets/rhtap-infra-secrets.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/external-secrets/rhtap-infra-secrets.yaml
-rename to components/authentication/base/all/admin-checker/external-secrets/rhtap-infra-secrets.yaml
-diff --git a/components/authentication/base/admin-checker/kustomization.yaml b/components/authentication/base/all/admin-checker/kustomization.yaml
-similarity index 88%
-rename from components/authentication/base/admin-checker/kustomization.yaml
-rename to components/authentication/base/all/admin-checker/kustomization.yaml
-index d499a597..521a4380 100644
---- a/components/authentication/base/admin-checker/kustomization.yaml
-+++ b/components/authentication/base/all/admin-checker/kustomization.yaml
-@@ -5,4 +5,4 @@ resources:
-   - admin-checker-sa.yaml
-   - cronjob.yaml
-   - namespace.yaml
--  - external-secrets/
-+  - external-secrets
-diff --git a/components/authentication/base/admin-checker/namespace.yaml b/components/authentication/base/all/admin-checker/namespace.yaml
-similarity index 100%
-rename from components/authentication/base/admin-checker/namespace.yaml
-rename to components/authentication/base/all/admin-checker/namespace.yaml
-diff --git a/components/authentication/base/component-maintainer.yaml b/components/authentication/base/all/component-maintainer.yaml
-similarity index 100%
-rename from components/authentication/base/component-maintainer.yaml
-rename to components/authentication/base/all/component-maintainer.yaml
-diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/all/everyone-can-view.yaml
-similarity index 89%
-rename from components/authentication/base/everyone-can-view.yaml
-rename to components/authentication/base/all/everyone-can-view.yaml
-index eea712c1..baa194e3 100644
---- a/components/authentication/base/everyone-can-view.yaml
-+++ b/components/authentication/base/all/everyone-can-view.yaml
-@@ -81,10 +81,7 @@ kind: ClusterRoleBinding
- apiVersion: rbac.authorization.k8s.io/v1
- metadata:
-   name: everyone-view
--subjects:
--- kind: Group
--  apiGroup: rbac.authorization.k8s.io
--  name: 'stage'
-+subjects: [] # added by auth specific overlay, e.g. github
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-@@ -94,10 +91,7 @@ kind: ClusterRoleBinding
- apiVersion: rbac.authorization.k8s.io/v1
- metadata:
-   name: everyone-view-appstudio
--subjects:
--- kind: Group
--  apiGroup: rbac.authorization.k8s.io
--  name: 'stage'
-+subjects: [] # added by auth specific overlay, e.g. github
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-@@ -107,10 +101,7 @@ kind: ClusterRoleBinding
- apiVersion: rbac.authorization.k8s.io/v1
- metadata:
-   name: everyone-view-cluster-version
--subjects:
--- kind: Group
--  apiGroup: rbac.authorization.k8s.io
--  name: 'stage'
-+subjects: [] # added by auth specific overlay, e.g. github
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: ClusterRole
-diff --git a/components/authentication/base/group-sync/group-sync.yaml b/components/authentication/base/all/group-sync/group-sync.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/group-sync.yaml
-rename to components/authentication/base/all/group-sync/group-sync.yaml
-diff --git a/components/authentication/base/all/group-sync/kustomization.yaml b/components/authentication/base/all/group-sync/kustomization.yaml
-new file mode 100644
-index 00000000..c7c56631
---- /dev/null
-+++ b/components/authentication/base/all/group-sync/kustomization.yaml
-@@ -0,0 +1,7 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+namespace: group-sync-operator
-+resources:
-+- group-sync.yaml
-+- namespaces.yaml
-+- subscription.yaml
-diff --git a/components/authentication/base/group-sync/namespaces.yaml b/components/authentication/base/all/group-sync/namespaces.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/namespaces.yaml
-rename to components/authentication/base/all/group-sync/namespaces.yaml
-diff --git a/components/authentication/base/group-sync/subscription.yaml b/components/authentication/base/all/group-sync/subscription.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/subscription.yaml
-rename to components/authentication/base/all/group-sync/subscription.yaml
-diff --git a/components/authentication/base/konflux-admins.yaml b/components/authentication/base/all/konflux-admins.yaml
-similarity index 100%
-rename from components/authentication/base/konflux-admins.yaml
-rename to components/authentication/base/all/konflux-admins.yaml
-diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/all/kustomization.yaml
-similarity index 82%
-rename from components/authentication/base/kustomization.yaml
-rename to components/authentication/base/all/kustomization.yaml
-index 3b208818..a979ad78 100644
---- a/components/authentication/base/kustomization.yaml
-+++ b/components/authentication/base/all/kustomization.yaml
-@@ -1,9 +1,8 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
- resources:
--- everyone-can-view.yaml
-+- admin-checker
-+- group-sync
- - component-maintainer.yaml
--- group-sync/
-+- everyone-can-view.yaml
- - konflux-admins.yaml
--- admin-checker/
--
--apiVersion: kustomize.config.k8s.io/v1beta1
--kind: Kustomization
-diff --git a/components/authentication/base/github/everyone-can-view-patch.yaml b/components/authentication/base/github/everyone-can-view-patch.yaml
-new file mode 100644
-index 00000000..88414a0a
---- /dev/null
-+++ b/components/authentication/base/github/everyone-can-view-patch.yaml
-@@ -0,0 +1,7 @@
-+---
-+- op: add
-+  path: /subjects
-+  value:
-+    - kind: Group
-+      apiGroup: rbac.authorization.k8s.io
-+      name: 'stage'
-diff --git a/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml b/components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
-rename to components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
-diff --git a/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml b/components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml
-rename to components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio.yaml
-diff --git a/components/authentication/base/group-sync/external-secrets/kustomization.yaml b/components/authentication/base/github/group-sync/external-secrets/kustomization.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/external-secrets/kustomization.yaml
-rename to components/authentication/base/github/group-sync/external-secrets/kustomization.yaml
-diff --git a/components/authentication/base/group-sync/github-redhat-appstudio-sre.yaml b/components/authentication/base/github/group-sync/github-redhat-appstudio-sre.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/github-redhat-appstudio-sre.yaml
-rename to components/authentication/base/github/group-sync/github-redhat-appstudio-sre.yaml
-diff --git a/components/authentication/base/group-sync/github-redhat-appstudio.yaml b/components/authentication/base/github/group-sync/github-redhat-appstudio.yaml
-similarity index 100%
-rename from components/authentication/base/group-sync/github-redhat-appstudio.yaml
-rename to components/authentication/base/github/group-sync/github-redhat-appstudio.yaml
-diff --git a/components/authentication/base/group-sync/kustomization.yaml b/components/authentication/base/github/group-sync/kustomization.yaml
-similarity index 77%
-rename from components/authentication/base/group-sync/kustomization.yaml
-rename to components/authentication/base/github/group-sync/kustomization.yaml
-index 79ea67db..012ecfa8 100644
---- a/components/authentication/base/group-sync/kustomization.yaml
-+++ b/components/authentication/base/github/group-sync/kustomization.yaml
-@@ -1,11 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-+namespace: group-sync-operator
- resources:
--- github-redhat-appstudio.yaml
--- github-redhat-appstudio-sre.yaml
--- group-sync.yaml
--- namespaces.yaml
--- subscription.yaml
- - external-secrets
--
--namespace: group-sync-operator
-+- github-redhat-appstudio-sre.yaml
-+- github-redhat-appstudio.yaml
-diff --git a/components/authentication/base/github/kustomization.yaml b/components/authentication/base/github/kustomization.yaml
-new file mode 100644
-index 00000000..17f11d84
---- /dev/null
-+++ b/components/authentication/base/github/kustomization.yaml
-@@ -0,0 +1,24 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../all
-+- group-sync
-+patches:
-+  - path: everyone-can-view-patch.yaml
-+    target:
-+      name: everyone-view
-+      kind: ClusterRoleBinding
-+      group: rbac.authorization.k8s.io
-+      version: v1
-+  - path: everyone-can-view-patch.yaml
-+    target:
-+      name: everyone-view-appstudio
-+      kind: ClusterRoleBinding
-+      group: rbac.authorization.k8s.io
-+      version: v1
-+  - path: everyone-can-view-patch.yaml
-+    target:
-+      name: everyone-view-cluster-version
-+      kind: ClusterRoleBinding
-+      group: rbac.authorization.k8s.io
-+      version: v1
-diff --git a/components/authentication/production/kustomization.yaml b/components/authentication/production/kustomization.yaml
-index f5efc6b2..c317312e 100644
---- a/components/authentication/production/kustomization.yaml
-+++ b/components/authentication/production/kustomization.yaml
-@@ -1,7 +1,7 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - ../base
-+  - ../base/github
- patches:
-   - path: github-redhat-appstudio-secret-patch.yaml
-     target:
-diff --git a/components/authentication/staging/kustomization.yaml b/components/authentication/staging/kustomization.yaml
-index 27bb5cb0..ef81af8d 100644
---- a/components/authentication/staging/kustomization.yaml
-+++ b/components/authentication/staging/kustomization.yaml
+diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
+index f4b0b005..c1adda0b 100644
+--- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
 @@ -1,4 +1,4 @@
  apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
--  - ../base
-+  - ../base/github 
+-- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=c2b8ead21ffb8ffbeb0cff20cc4e5c0012a45060
++- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=0eb0a4595339e72684c50bcb049c5b0001b7fea5
+diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
+index 47db22a6..3386d656 100644
+--- a/components/release/development/kustomization.yaml
++++ b/components/release/development/kustomization.yaml
+@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/release-service/config/default?ref=c2b8ead21ffb8ffbeb0cff20cc4e5c0012a45060
++  - https://github.com/redhat-appstudio/release-service/config/default?ref=0eb0a4595339e72684c50bcb049c5b0001b7fea5
+ 
+ images:
+   - name: quay.io/redhat-appstudio/release-service
+     newName: quay.io/redhat-appstudio/release-service
+-    newTag: c2b8ead21ffb8ffbeb0cff20cc4e5c0012a45060
++    newTag: 0eb0a4595339e72684c50bcb049c5b0001b7fea5
+ 
+ namespace: release-service 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
+<summary>Kustomize Generated Diff (88 lines)</summary>  
 
 ``` 
- 
+./commit-61f13bfe/development/components/release/development/kustomize.out.yaml
+75,77c75,77
+<               pipeline:
+<                 description: Pipeline contains all the information about the managed
+<                   Pipeline
+---
+>               pipelineRef:
+>                 description: PipelineRef is a reference to the Pipeline to be executed
+>                   by the managed Release PipelineRun
+79,110c79,98
+<                   pipelineRef:
+<                     description: PipelineRef is the reference to the Pipeline
+<                     properties:
+<                       params:
+<                         description: Params is a slice of parameters for a given resolver
+<                         items:
+<                           description: Param defines the parameters for a given resolver
+<                             in PipelineRef
+<                           properties:
+<                             name:
+<                               description: Name is the name of the parameter
+<                               type: string
+<                             value:
+<                               description: Value is the value of the parameter
+<                               type: string
+<                           required:
+<                           - name
+<                           - value
+<                           type: object
+<                         type: array
+<                       resolver:
+<                         description: Resolver is the name of a Tekton resolver to
+<                           be used (e.g. git)
+<                         type: string
+<                     required:
+<                     - params
+<                     - resolver
+<                     type: object
+<                   serviceAccountName:
+<                     description: ServiceAccount is the ServiceAccount to use during
+<                       the execution of the Pipeline
+<                     pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+---
+>                   params:
+>                     description: Params is a slice of parameters for a given resolver
+>                     items:
+>                       description: Param defines the parameters for a given resolver
+>                         in PipelineRef
+>                       properties:
+>                         name:
+>                           description: Name is the name of the parameter
+>                           type: string
+>                         value:
+>                           description: Value is the value of the parameter
+>                           type: string
+>                       required:
+>                       - name
+>                       - value
+>                       type: object
+>                     type: array
+>                   resolver:
+>                     description: Resolver is the name of a Tekton resolver to be used
+>                       (e.g. git)
+118c106,107
+<                 - pipelineRef
+---
+>                 - params
+>                 - resolver
+123a113,117
+>               serviceAccount:
+>                 description: ServiceAccount is the name of the service account to
+>                   use in the managed Release PipelineRun to gain elevated privileges
+>                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                 type: string
+127c121
+<             - pipeline
+---
+>             - pipelineRef
+313a308,312
+>                   timeout:
+>                     default: "0"
+>                     description: Timeout is value to use to override the tekton default
+>                       Pipelinerun timeout
+>                     type: string
+1678c1677
+<         image: quay.io/redhat-appstudio/release-service:0eb0a4595339e72684c50bcb049c5b0001b7fea5
+---
+>         image: quay.io/redhat-appstudio/release-service:c2b8ead21ffb8ffbeb0cff20cc4e5c0012a45060 
 ```
  
 </details>  
@@ -1059,55 +885,57 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from b5c4e40e to b1041d81 on Tue Jan 30 05:43:00 2024 </h3>  
+<h3>3: Production changes from d2cf0b0d to 61f13bfe on Tue Jan 30 08:33:51 2024 </h3>  
  
 <details> 
-<summary>Git Diff (43 lines)</summary>  
+<summary>Git Diff (45 lines)</summary>  
 
 ``` 
-diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
-index b9ccca7c..d37f2bf5 100644
---- a/components/build-service/development/kustomization.yaml
-+++ b/components/build-service/development/kustomization.yaml
+diff --git a/components/remote-secret-controller/overlays/development/kustomization.yaml b/components/remote-secret-controller/overlays/development/kustomization.yaml
+index 2126b87a..e87de695 100644
+--- a/components/remote-secret-controller/overlays/development/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/development/kustomization.yaml
 @@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
- - ../base
--- https://github.com/redhat-appstudio/build-service/config/default?ref=118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
-+- https://github.com/redhat-appstudio/build-service/config/default?ref=f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
+   - ../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=b775f294ad025b00af142479e74a35074ac90019
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=6f2dacc223a951b7eebb0b5994cc58a0683280ae
  
- namespace: build-service
+ namespace: remotesecret
  
  images:
- - name: quay.io/redhat-appstudio/build-service
-   newName: quay.io/redhat-appstudio/build-service
--  newTag: 118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
-+  newTag: f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: b775f294ad025b00af142479e74a35074ac90019
++    newTag: 6f2dacc223a951b7eebb0b5994cc58a0683280ae
  
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
-index bc9ef4d8..0963ce99 100644
---- a/components/build-service/staging/base/kustomization.yaml
-+++ b/components/build-service/staging/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
+ patches:
+   - target:
+diff --git a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+index 48708917..94928b60 100644
+--- a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/build-service/config/default?ref=118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
-+- https://github.com/redhat-appstudio/build-service/config/default?ref=f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
+   - ../../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=b775f294ad025b00af142479e74a35074ac90019
+-  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=b775f294ad025b00af142479e74a35074ac90019
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=6f2dacc223a951b7eebb0b5994cc58a0683280ae
++  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=6f2dacc223a951b7eebb0b5994cc58a0683280ae
+   - aws-credentials-external-secret.yaml
  
- namespace: build-service
- 
+ namespace: remotesecret
+@@ -11,7 +11,7 @@ namespace: remotesecret
  images:
- - name: quay.io/redhat-appstudio/build-service
-   newName: quay.io/redhat-appstudio/build-service
--  newTag: 118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
-+  newTag: f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: b775f294ad025b00af142479e74a35074ac90019
++    newTag: 6f2dacc223a951b7eebb0b5994cc58a0683280ae
  
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-\ No newline at end of file 
+ patches:
+   - target: 
 ```
  
 </details> 
@@ -1224,77 +1052,66 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from b5c4e40e to b1041d81 on Tue Jan 30 05:43:00 2024 </h3>  
+<h3>3: Staging changes from d2cf0b0d to 61f13bfe on Tue Jan 30 08:33:51 2024 </h3>  
  
 <details> 
-<summary>Git Diff (43 lines)</summary>  
+<summary>Git Diff (45 lines)</summary>  
 
 ``` 
-diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
-index b9ccca7c..d37f2bf5 100644
---- a/components/build-service/development/kustomization.yaml
-+++ b/components/build-service/development/kustomization.yaml
+diff --git a/components/remote-secret-controller/overlays/development/kustomization.yaml b/components/remote-secret-controller/overlays/development/kustomization.yaml
+index 2126b87a..e87de695 100644
+--- a/components/remote-secret-controller/overlays/development/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/development/kustomization.yaml
 @@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
- - ../base
--- https://github.com/redhat-appstudio/build-service/config/default?ref=118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
-+- https://github.com/redhat-appstudio/build-service/config/default?ref=f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
+   - ../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=b775f294ad025b00af142479e74a35074ac90019
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=6f2dacc223a951b7eebb0b5994cc58a0683280ae
  
- namespace: build-service
+ namespace: remotesecret
  
  images:
- - name: quay.io/redhat-appstudio/build-service
-   newName: quay.io/redhat-appstudio/build-service
--  newTag: 118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
-+  newTag: f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: b775f294ad025b00af142479e74a35074ac90019
++    newTag: 6f2dacc223a951b7eebb0b5994cc58a0683280ae
  
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
-index bc9ef4d8..0963ce99 100644
---- a/components/build-service/staging/base/kustomization.yaml
-+++ b/components/build-service/staging/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
+ patches:
+   - target:
+diff --git a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+index 48708917..94928b60 100644
+--- a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/build-service/config/default?ref=118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
-+- https://github.com/redhat-appstudio/build-service/config/default?ref=f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
+   - ../../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=b775f294ad025b00af142479e74a35074ac90019
+-  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=b775f294ad025b00af142479e74a35074ac90019
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=6f2dacc223a951b7eebb0b5994cc58a0683280ae
++  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=6f2dacc223a951b7eebb0b5994cc58a0683280ae
+   - aws-credentials-external-secret.yaml
  
- namespace: build-service
- 
+ namespace: remotesecret
+@@ -11,7 +11,7 @@ namespace: remotesecret
  images:
- - name: quay.io/redhat-appstudio/build-service
-   newName: quay.io/redhat-appstudio/build-service
--  newTag: 118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
-+  newTag: f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: b775f294ad025b00af142479e74a35074ac90019
++    newTag: 6f2dacc223a951b7eebb0b5994cc58a0683280ae
  
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-\ No newline at end of file 
+ patches:
+   - target: 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (14 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-b5c4e40e/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-364,371d363
-<   - appstudio.redhat.com
-<   resources:
-<   - releaseplanadmissions
-<   verbs:
-<   - get
-<   - list
-<   - watch
-< - apiGroups:
-754c746
-<         image: quay.io/redhat-appstudio/build-service:f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
----
->         image: quay.io/redhat-appstudio/build-service:118aeb4f8c1c9b187140d8dc17a8beeb4eab2581 
+ 
 ```
  
 </details>  
@@ -1411,596 +1228,178 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from b5c4e40e to b1041d81 on Tue Jan 30 05:43:00 2024 </h3>  
+<h3>3: Development changes from d2cf0b0d to 61f13bfe on Tue Jan 30 08:33:51 2024 </h3>  
  
 <details> 
-<summary>Git Diff (43 lines)</summary>  
+<summary>Git Diff (45 lines)</summary>  
 
 ``` 
-diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
-index b9ccca7c..d37f2bf5 100644
---- a/components/build-service/development/kustomization.yaml
-+++ b/components/build-service/development/kustomization.yaml
+diff --git a/components/remote-secret-controller/overlays/development/kustomization.yaml b/components/remote-secret-controller/overlays/development/kustomization.yaml
+index 2126b87a..e87de695 100644
+--- a/components/remote-secret-controller/overlays/development/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/development/kustomization.yaml
 @@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
- - ../base
--- https://github.com/redhat-appstudio/build-service/config/default?ref=118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
-+- https://github.com/redhat-appstudio/build-service/config/default?ref=f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
+   - ../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=b775f294ad025b00af142479e74a35074ac90019
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_vault?ref=6f2dacc223a951b7eebb0b5994cc58a0683280ae
  
- namespace: build-service
+ namespace: remotesecret
  
  images:
- - name: quay.io/redhat-appstudio/build-service
-   newName: quay.io/redhat-appstudio/build-service
--  newTag: 118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
-+  newTag: f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: b775f294ad025b00af142479e74a35074ac90019
++    newTag: 6f2dacc223a951b7eebb0b5994cc58a0683280ae
  
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
-index bc9ef4d8..0963ce99 100644
---- a/components/build-service/staging/base/kustomization.yaml
-+++ b/components/build-service/staging/base/kustomization.yaml
-@@ -3,14 +3,14 @@ kind: Kustomization
+ patches:
+   - target:
+diff --git a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+index 48708917..94928b60 100644
+--- a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
++++ b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
+@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/build-service/config/default?ref=118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
-+- https://github.com/redhat-appstudio/build-service/config/default?ref=f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
+   - ../../../base
+-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=b775f294ad025b00af142479e74a35074ac90019
+-  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=b775f294ad025b00af142479e74a35074ac90019
++  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=6f2dacc223a951b7eebb0b5994cc58a0683280ae
++  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=6f2dacc223a951b7eebb0b5994cc58a0683280ae
+   - aws-credentials-external-secret.yaml
  
- namespace: build-service
+ namespace: remotesecret
+@@ -11,7 +11,7 @@ namespace: remotesecret
+ images:
+   - name:  quay.io/redhat-appstudio/remote-secret-controller
+     newName: quay.io/redhat-appstudio/remote-secret-controller
+-    newTag: b775f294ad025b00af142479e74a35074ac90019
++    newTag: 6f2dacc223a951b7eebb0b5994cc58a0683280ae
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from ad9e458e to d2cf0b0d on Tue Jan 30 08:33:44 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (38 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 48cc5001..4b8d4699 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=450e2069c048da4e95e3b719ac80310ee9ae03be
  
  images:
- - name: quay.io/redhat-appstudio/build-service
-   newName: quay.io/redhat-appstudio/build-service
--  newTag: 118aeb4f8c1c9b187140d8dc17a8beeb4eab2581
-+  newTag: f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2
++  newTag: 450e2069c048da4e95e3b719ac80310ee9ae03be
  
- commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-\ No newline at end of file 
-```
+ namespace: integration-service
  
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (14 lines)</summary>  
-
-``` 
-./commit-b5c4e40e/development/components/build-service/development/kustomize.out.yaml
-364,371d363
-<   - appstudio.redhat.com
-<   resources:
-<   - releaseplanadmissions
-<   verbs:
-<   - get
-<   - list
-<   - watch
-< - apiGroups:
-761c753
-<         image: quay.io/redhat-appstudio/build-service:f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d
----
->         image: quay.io/redhat-appstudio/build-service:118aeb4f8c1c9b187140d8dc17a8beeb4eab2581 
-```
+diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
+index c26899da..476dda9d 100644
+--- a/components/integration/staging/kustomization.yaml
++++ b/components/integration/staging/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=450e2069c048da4e95e3b719ac80310ee9ae03be
  
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2
++  newTag: 450e2069c048da4e95e3b719ac80310ee9ae03be
  
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from ce11791b to b5c4e40e on Mon Jan 29 22:14:10 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (26 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml b/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
-index 96454936..4663435f 100644
---- a/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
-+++ b/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
-@@ -9,7 +9,7 @@ spec:
-   dataFrom:
-     - extract:
-         key: staging/pipeline-service/github-app
--  refreshInterval: 15m
-+  refreshInterval: 5m
-   secretStoreRef:
-     kind: ClusterSecretStore
-     name: appsre-stonesoup-vault
-diff --git a/components/image-controller/base/external-secrets/quaytoken.yaml b/components/image-controller/base/external-secrets/quaytoken.yaml
-index 8090bee0..23b84142 100644
---- a/components/image-controller/base/external-secrets/quaytoken.yaml
-+++ b/components/image-controller/base/external-secrets/quaytoken.yaml
-@@ -9,7 +9,7 @@ spec:
-   dataFrom:
-     - extract:
-         key: staging/build/image-controller
--  refreshInterval: 15m
-+  refreshInterval: 5m
-   secretStoreRef:
-     kind: ClusterSecretStore
-     name: appsre-stonesoup-vault 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-
-``` 
-./commit-ce11791b/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
-892c892
-<   refreshInterval: 5m
----
->   refreshInterval: 15m
-./commit-ce11791b/production/components/image-controller/production/kustomize.out.yaml
-773c773
-<   refreshInterval: 5m
----
->   refreshInterval: 15m 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from ce11791b to b5c4e40e on Mon Jan 29 22:14:10 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (26 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml b/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
-index 96454936..4663435f 100644
---- a/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
-+++ b/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
-@@ -9,7 +9,7 @@ spec:
-   dataFrom:
-     - extract:
-         key: staging/pipeline-service/github-app
--  refreshInterval: 15m
-+  refreshInterval: 5m
-   secretStoreRef:
-     kind: ClusterSecretStore
-     name: appsre-stonesoup-vault
-diff --git a/components/image-controller/base/external-secrets/quaytoken.yaml b/components/image-controller/base/external-secrets/quaytoken.yaml
-index 8090bee0..23b84142 100644
---- a/components/image-controller/base/external-secrets/quaytoken.yaml
-+++ b/components/image-controller/base/external-secrets/quaytoken.yaml
-@@ -9,7 +9,7 @@ spec:
-   dataFrom:
-     - extract:
-         key: staging/build/image-controller
--  refreshInterval: 15m
-+  refreshInterval: 5m
-   secretStoreRef:
-     kind: ClusterSecretStore
-     name: appsre-stonesoup-vault 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-
-``` 
-./commit-ce11791b/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-892c892
-<   refreshInterval: 5m
----
->   refreshInterval: 15m
-./commit-ce11791b/staging/components/image-controller/staging/kustomize.out.yaml
-801c801
-<   refreshInterval: 5m
----
->   refreshInterval: 15m 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from ce11791b to b5c4e40e on Mon Jan 29 22:14:10 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (26 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml b/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
-index 96454936..4663435f 100644
---- a/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
-+++ b/components/build-service/base/external-secrets/pipelines-as-code-secret.yaml
-@@ -9,7 +9,7 @@ spec:
-   dataFrom:
-     - extract:
-         key: staging/pipeline-service/github-app
--  refreshInterval: 15m
-+  refreshInterval: 5m
-   secretStoreRef:
-     kind: ClusterSecretStore
-     name: appsre-stonesoup-vault
-diff --git a/components/image-controller/base/external-secrets/quaytoken.yaml b/components/image-controller/base/external-secrets/quaytoken.yaml
-index 8090bee0..23b84142 100644
---- a/components/image-controller/base/external-secrets/quaytoken.yaml
-+++ b/components/image-controller/base/external-secrets/quaytoken.yaml
-@@ -9,7 +9,7 @@ spec:
-   dataFrom:
-     - extract:
-         key: staging/build/image-controller
--  refreshInterval: 15m
-+  refreshInterval: 5m
-   secretStoreRef:
-     kind: ClusterSecretStore
-     name: appsre-stonesoup-vault 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from d81f90a4 to ce11791b on Mon Jan 29 20:29:44 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-index 8f9cd171..f918fb73 100644
---- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-+++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-@@ -49,7 +49,7 @@ spec:
-           storageclass|volumename|release_reason|instance|result|deployment_reason|\
-           validation_reason|strategy|succeeded|target|name|method|code|sp|\
-           unexpected_status|failure|hostname|label_app_kubernetes_io_managed_by|status|\
--          pipeline|pipelinename|pipelinerun"
-+          pipeline|pipelinename|pipelinerun|schedule"
- ---
- # Grant permission to Federate In-Cluster Prometheus
- apiVersion: rbac.authorization.k8s.io/v1 
+ namespace: integration-service
+  
 ```
  
 </details> 
@@ -2117,34 +1516,63 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from d81f90a4 to ce11791b on Mon Jan 29 20:29:44 2024 </h3>  
+<h3>4: Staging changes from ad9e458e to d2cf0b0d on Tue Jan 30 08:33:44 2024 </h3>  
  
 <details> 
-<summary>Git Diff (13 lines)</summary>  
+<summary>Git Diff (38 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-index 8f9cd171..f918fb73 100644
---- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-+++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-@@ -49,7 +49,7 @@ spec:
-           storageclass|volumename|release_reason|instance|result|deployment_reason|\
-           validation_reason|strategy|succeeded|target|name|method|code|sp|\
-           unexpected_status|failure|hostname|label_app_kubernetes_io_managed_by|status|\
--          pipeline|pipelinename|pipelinerun"
-+          pipeline|pipelinename|pipelinerun|schedule"
- ---
- # Grant permission to Federate In-Cluster Prometheus
- apiVersion: rbac.authorization.k8s.io/v1 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 48cc5001..4b8d4699 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=450e2069c048da4e95e3b719ac80310ee9ae03be
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2
++  newTag: 450e2069c048da4e95e3b719ac80310ee9ae03be
+ 
+ namespace: integration-service
+ 
+diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
+index c26899da..476dda9d 100644
+--- a/components/integration/staging/kustomization.yaml
++++ b/components/integration/staging/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=450e2069c048da4e95e3b719ac80310ee9ae03be
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2
++  newTag: 450e2069c048da4e95e3b719ac80310ee9ae03be
+ 
+ namespace: integration-service
+  
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
+<summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
- 
+./commit-ad9e458e/staging/components/integration/staging/kustomize.out.yaml
+1128c1128
+<         image: quay.io/redhat-appstudio/integration-service:450e2069c048da4e95e3b719ac80310ee9ae03be
+---
+>         image: quay.io/redhat-appstudio/integration-service:87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2 
 ```
  
 </details>  
@@ -2261,34 +1689,63 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from d81f90a4 to ce11791b on Mon Jan 29 20:29:44 2024 </h3>  
+<h3>4: Development changes from ad9e458e to d2cf0b0d on Tue Jan 30 08:33:44 2024 </h3>  
  
 <details> 
-<summary>Git Diff (13 lines)</summary>  
+<summary>Git Diff (38 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-index 8f9cd171..f918fb73 100644
---- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-+++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-@@ -49,7 +49,7 @@ spec:
-           storageclass|volumename|release_reason|instance|result|deployment_reason|\
-           validation_reason|strategy|succeeded|target|name|method|code|sp|\
-           unexpected_status|failure|hostname|label_app_kubernetes_io_managed_by|status|\
--          pipeline|pipelinename|pipelinerun"
-+          pipeline|pipelinename|pipelinerun|schedule"
- ---
- # Grant permission to Federate In-Cluster Prometheus
- apiVersion: rbac.authorization.k8s.io/v1 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 48cc5001..4b8d4699 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=450e2069c048da4e95e3b719ac80310ee9ae03be
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2
++  newTag: 450e2069c048da4e95e3b719ac80310ee9ae03be
+ 
+ namespace: integration-service
+ 
+diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
+index c26899da..476dda9d 100644
+--- a/components/integration/staging/kustomization.yaml
++++ b/components/integration/staging/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=450e2069c048da4e95e3b719ac80310ee9ae03be
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2
++  newTag: 450e2069c048da4e95e3b719ac80310ee9ae03be
+ 
+ namespace: integration-service
+  
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
+<summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
- 
+./commit-ad9e458e/development/components/integration/development/kustomize.out.yaml
+1128c1128
+<         image: quay.io/redhat-appstudio/integration-service:450e2069c048da4e95e3b719ac80310ee9ae03be
+---
+>         image: quay.io/redhat-appstudio/integration-service:87385ed0e78b1a3dcf5d966b1ccc8f0ba46bd7d2 
 ```
  
 </details>  
