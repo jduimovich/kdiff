@@ -1,0 +1,239 @@
+diff --git a/components/authentication/base/admin-checker/admin-checker-sa.yaml b/components/authentication/base/all/admin-checker/admin-checker-sa.yaml
+similarity index 100%
+rename from components/authentication/base/admin-checker/admin-checker-sa.yaml
+rename to components/authentication/base/all/admin-checker/admin-checker-sa.yaml
+diff --git a/components/authentication/base/admin-checker/cronjob.yaml b/components/authentication/base/all/admin-checker/cronjob.yaml
+similarity index 100%
+rename from components/authentication/base/admin-checker/cronjob.yaml
+rename to components/authentication/base/all/admin-checker/cronjob.yaml
+diff --git a/components/authentication/base/admin-checker/external-secrets/kustomization.yaml b/components/authentication/base/all/admin-checker/external-secrets/kustomization.yaml
+similarity index 100%
+rename from components/authentication/base/admin-checker/external-secrets/kustomization.yaml
+rename to components/authentication/base/all/admin-checker/external-secrets/kustomization.yaml
+diff --git a/components/authentication/base/admin-checker/external-secrets/rhtap-infra-secrets.yaml b/components/authentication/base/all/admin-checker/external-secrets/rhtap-infra-secrets.yaml
+similarity index 100%
+rename from components/authentication/base/admin-checker/external-secrets/rhtap-infra-secrets.yaml
+rename to components/authentication/base/all/admin-checker/external-secrets/rhtap-infra-secrets.yaml
+diff --git a/components/authentication/base/admin-checker/kustomization.yaml b/components/authentication/base/all/admin-checker/kustomization.yaml
+similarity index 88%
+rename from components/authentication/base/admin-checker/kustomization.yaml
+rename to components/authentication/base/all/admin-checker/kustomization.yaml
+index d499a597..521a4380 100644
+--- a/components/authentication/base/admin-checker/kustomization.yaml
++++ b/components/authentication/base/all/admin-checker/kustomization.yaml
+@@ -5,4 +5,4 @@ resources:
+   - admin-checker-sa.yaml
+   - cronjob.yaml
+   - namespace.yaml
+-  - external-secrets/
++  - external-secrets
+diff --git a/components/authentication/base/admin-checker/namespace.yaml b/components/authentication/base/all/admin-checker/namespace.yaml
+similarity index 100%
+rename from components/authentication/base/admin-checker/namespace.yaml
+rename to components/authentication/base/all/admin-checker/namespace.yaml
+diff --git a/components/authentication/base/component-maintainer.yaml b/components/authentication/base/all/component-maintainer.yaml
+similarity index 100%
+rename from components/authentication/base/component-maintainer.yaml
+rename to components/authentication/base/all/component-maintainer.yaml
+diff --git a/components/authentication/base/everyone-can-view.yaml b/components/authentication/base/all/everyone-can-view.yaml
+similarity index 89%
+rename from components/authentication/base/everyone-can-view.yaml
+rename to components/authentication/base/all/everyone-can-view.yaml
+index eea712c1..baa194e3 100644
+--- a/components/authentication/base/everyone-can-view.yaml
++++ b/components/authentication/base/all/everyone-can-view.yaml
+@@ -81,10 +81,7 @@ kind: ClusterRoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   name: everyone-view
+-subjects:
+-- kind: Group
+-  apiGroup: rbac.authorization.k8s.io
+-  name: 'stage'
++subjects: [] # added by auth specific overlay, e.g. github
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+@@ -94,10 +91,7 @@ kind: ClusterRoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   name: everyone-view-appstudio
+-subjects:
+-- kind: Group
+-  apiGroup: rbac.authorization.k8s.io
+-  name: 'stage'
++subjects: [] # added by auth specific overlay, e.g. github
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+@@ -107,10 +101,7 @@ kind: ClusterRoleBinding
+ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   name: everyone-view-cluster-version
+-subjects:
+-- kind: Group
+-  apiGroup: rbac.authorization.k8s.io
+-  name: 'stage'
++subjects: [] # added by auth specific overlay, e.g. github
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/authentication/base/group-sync/group-sync.yaml b/components/authentication/base/all/group-sync/group-sync.yaml
+similarity index 100%
+rename from components/authentication/base/group-sync/group-sync.yaml
+rename to components/authentication/base/all/group-sync/group-sync.yaml
+diff --git a/components/authentication/base/all/group-sync/kustomization.yaml b/components/authentication/base/all/group-sync/kustomization.yaml
+new file mode 100644
+index 00000000..c7c56631
+--- /dev/null
++++ b/components/authentication/base/all/group-sync/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: group-sync-operator
++resources:
++- group-sync.yaml
++- namespaces.yaml
++- subscription.yaml
+diff --git a/components/authentication/base/group-sync/namespaces.yaml b/components/authentication/base/all/group-sync/namespaces.yaml
+similarity index 100%
+rename from components/authentication/base/group-sync/namespaces.yaml
+rename to components/authentication/base/all/group-sync/namespaces.yaml
+diff --git a/components/authentication/base/group-sync/subscription.yaml b/components/authentication/base/all/group-sync/subscription.yaml
+similarity index 100%
+rename from components/authentication/base/group-sync/subscription.yaml
+rename to components/authentication/base/all/group-sync/subscription.yaml
+diff --git a/components/authentication/base/konflux-admins.yaml b/components/authentication/base/all/konflux-admins.yaml
+similarity index 100%
+rename from components/authentication/base/konflux-admins.yaml
+rename to components/authentication/base/all/konflux-admins.yaml
+diff --git a/components/authentication/base/kustomization.yaml b/components/authentication/base/all/kustomization.yaml
+similarity index 82%
+rename from components/authentication/base/kustomization.yaml
+rename to components/authentication/base/all/kustomization.yaml
+index 3b208818..a979ad78 100644
+--- a/components/authentication/base/kustomization.yaml
++++ b/components/authentication/base/all/kustomization.yaml
+@@ -1,9 +1,8 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
+ resources:
+-- everyone-can-view.yaml
++- admin-checker
++- group-sync
+ - component-maintainer.yaml
+-- group-sync/
++- everyone-can-view.yaml
+ - konflux-admins.yaml
+-- admin-checker/
+-
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+diff --git a/components/authentication/base/github/everyone-can-view-patch.yaml b/components/authentication/base/github/everyone-can-view-patch.yaml
+new file mode 100644
+index 00000000..88414a0a
+--- /dev/null
++++ b/components/authentication/base/github/everyone-can-view-patch.yaml
+@@ -0,0 +1,7 @@
++---
++- op: add
++  path: /subjects
++  value:
++    - kind: Group
++      apiGroup: rbac.authorization.k8s.io
++      name: 'stage'
+diff --git a/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml b/components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
+similarity index 100%
+rename from components/authentication/base/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
+rename to components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio-sre.yaml
+diff --git a/components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml b/components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio.yaml
+similarity index 100%
+rename from components/authentication/base/group-sync/external-secrets/github-redhat-appstudio.yaml
+rename to components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio.yaml
+diff --git a/components/authentication/base/group-sync/external-secrets/kustomization.yaml b/components/authentication/base/github/group-sync/external-secrets/kustomization.yaml
+similarity index 100%
+rename from components/authentication/base/group-sync/external-secrets/kustomization.yaml
+rename to components/authentication/base/github/group-sync/external-secrets/kustomization.yaml
+diff --git a/components/authentication/base/group-sync/github-redhat-appstudio-sre.yaml b/components/authentication/base/github/group-sync/github-redhat-appstudio-sre.yaml
+similarity index 100%
+rename from components/authentication/base/group-sync/github-redhat-appstudio-sre.yaml
+rename to components/authentication/base/github/group-sync/github-redhat-appstudio-sre.yaml
+diff --git a/components/authentication/base/group-sync/github-redhat-appstudio.yaml b/components/authentication/base/github/group-sync/github-redhat-appstudio.yaml
+similarity index 100%
+rename from components/authentication/base/group-sync/github-redhat-appstudio.yaml
+rename to components/authentication/base/github/group-sync/github-redhat-appstudio.yaml
+diff --git a/components/authentication/base/group-sync/kustomization.yaml b/components/authentication/base/github/group-sync/kustomization.yaml
+similarity index 77%
+rename from components/authentication/base/group-sync/kustomization.yaml
+rename to components/authentication/base/github/group-sync/kustomization.yaml
+index 79ea67db..012ecfa8 100644
+--- a/components/authentication/base/group-sync/kustomization.yaml
++++ b/components/authentication/base/github/group-sync/kustomization.yaml
+@@ -1,11 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++namespace: group-sync-operator
+ resources:
+-- github-redhat-appstudio.yaml
+-- github-redhat-appstudio-sre.yaml
+-- group-sync.yaml
+-- namespaces.yaml
+-- subscription.yaml
+ - external-secrets
+-
+-namespace: group-sync-operator
++- github-redhat-appstudio-sre.yaml
++- github-redhat-appstudio.yaml
+diff --git a/components/authentication/base/github/kustomization.yaml b/components/authentication/base/github/kustomization.yaml
+new file mode 100644
+index 00000000..17f11d84
+--- /dev/null
++++ b/components/authentication/base/github/kustomization.yaml
+@@ -0,0 +1,24 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../all
++- group-sync
++patches:
++  - path: everyone-can-view-patch.yaml
++    target:
++      name: everyone-view
++      kind: ClusterRoleBinding
++      group: rbac.authorization.k8s.io
++      version: v1
++  - path: everyone-can-view-patch.yaml
++    target:
++      name: everyone-view-appstudio
++      kind: ClusterRoleBinding
++      group: rbac.authorization.k8s.io
++      version: v1
++  - path: everyone-can-view-patch.yaml
++    target:
++      name: everyone-view-cluster-version
++      kind: ClusterRoleBinding
++      group: rbac.authorization.k8s.io
++      version: v1
+diff --git a/components/authentication/production/kustomization.yaml b/components/authentication/production/kustomization.yaml
+index f5efc6b2..c317312e 100644
+--- a/components/authentication/production/kustomization.yaml
++++ b/components/authentication/production/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
++  - ../base/github
+ patches:
+   - path: github-redhat-appstudio-secret-patch.yaml
+     target:
+diff --git a/components/authentication/staging/kustomization.yaml b/components/authentication/staging/kustomization.yaml
+index 27bb5cb0..ef81af8d 100644
+--- a/components/authentication/staging/kustomization.yaml
++++ b/components/authentication/staging/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../base
++  - ../base/github
