@@ -1,0 +1,10 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b5c4e40e/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-ce11791b/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+892c892
+<   refreshInterval: 5m
+---
+>   refreshInterval: 15m
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b5c4e40e/production/components/image-controller/production/kustomize.out.yaml ./kustomized-cache/commit-ce11791b/production/components/image-controller/production/kustomize.out.yaml
+773c773
+<   refreshInterval: 5m
+---
+>   refreshInterval: 15m

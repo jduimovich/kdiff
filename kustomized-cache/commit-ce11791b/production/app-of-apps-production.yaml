@@ -1,0 +1,1775 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: application-api
+  namespace: argocd
+spec:
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          appstudio.redhat.com/member-cluster: "true"
+  template:
+    metadata:
+      name: application-api-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: application-api
+        server: '{{server}}'
+      project: default
+      source:
+        path: components/application-api
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 15s
+          limit: 50
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: authentication
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: NotIn
+              values:
+              - argocd-default-cluster-config
+            matchLabels:
+              argocd.argoproj.io/secret-type: cluster
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/authentication
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: authentication-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: default
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 15s
+          limit: 50
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: backup
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: NotIn
+              values:
+              - argocd-default-cluster-config
+            matchLabels:
+              argocd.argoproj.io/secret-type: cluster
+          values:
+            environment: production
+            sourceRoot: components/backup
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: backup-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: default
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{nameNormalized}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: build-service
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: base
+            environment: production
+            sourceRoot: components/build-service
+      - list:
+          elements:
+          - nameNormalized: stone-stage-p01
+            values.clusterDir: stone-stage-p01
+          - nameNormalized: stone-prod-p01
+            values.clusterDir: stone-prod-p01
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: build-service-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: default
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: build-templates
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/build-templates
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: build-templates-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: default
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-secret-store
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: NotIn
+              values:
+              - argocd-default-cluster-config
+            matchLabels:
+              argocd.argoproj.io/secret-type: cluster
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/cluster-secret-store
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: cluster-secret-store-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: default
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-secret-store-rh
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/rh-member-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/cluster-secret-store-rh
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: cluster-secret-store-rh-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: cluster-secret-store-rh
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: 20
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: disable-csvcopy
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: NotIn
+              values:
+              - argocd-default-cluster-config
+            matchLabels:
+              argocd.argoproj.io/secret-type: cluster
+          values:
+            clusterDir: ""
+            environment: staging
+            sourceRoot: configs/disable-csvcopy-for-all-cluster
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: disable-csvcopy-{{nameNormalized}}
+    spec:
+      destination:
+        server: '{{server}}'
+      project: default
+      source:
+        path: configs/disable-csvcopy-for-all-cluster
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dora-metrics
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: NotIn
+              values:
+              - argocd-default-cluster-config
+            matchLabels:
+              argocd.argoproj.io/secret-type: cluster
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/dora-metrics
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: dora-metrics-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: dora-metrics
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: enable-dvo
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: NotIn
+              values:
+              - argocd-default-cluster-config
+            matchLabels:
+              argocd.argoproj.io/secret-type: cluster
+          values:
+            clusterDir: ""
+            environment: staging
+            sourceRoot: configs/enable-dvo-for-all-cluster
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: enable-dvo-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: deployment-validation-operator
+        server: '{{server}}'
+      project: default
+      source:
+        path: configs/enable-dvo-for-all-cluster
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: enterprise-contract
+  namespace: argocd
+spec:
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          appstudio.redhat.com/member-cluster: "true"
+  template:
+    metadata:
+      name: enterprise-contract-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: enterprise-contract-service
+        server: '{{server}}'
+      project: default
+      source:
+        path: components/enterprise-contract
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 15s
+          limit: 50
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: external-secrets-operator
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: NotIn
+              values:
+              - argocd-default-cluster-config
+            matchLabels:
+              argocd.argoproj.io/secret-type: cluster
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/external-secrets-operator
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: external-secrets-operator-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: external-secrets-operator
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 15s
+          limit: 50
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: gitops
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: base
+            environment: production
+            sourceRoot: components/gitops
+      - list:
+          elements:
+          - nameNormalized: stone-stg-m01
+            values.clusterDir: stone-stg-m01
+          - nameNormalized: stone-stg-rh01
+            values.clusterDir: stone-stg-rh01
+          - nameNormalized: stone-prd-m01
+            values.clusterDir: stone-prd-m01
+          - nameNormalized: stone-prd-rh01
+            values.clusterDir: stone-prd-rh01
+          - nameNormalized: stone-stage-p01
+            values.clusterDir: stone-stage-p01
+          - nameNormalized: stone-prod-p01
+            values.clusterDir: stone-prod-p01
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: gitops-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: gitops
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: has
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/has
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: has-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: application-service
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 15s
+          limit: 50
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: image-controller
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/image-controller
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: image-controller-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: default
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ingresscontroller
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/host-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: ""
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: ingresscontroller-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: openshift-ingress-operator
+        server: '{{server}}'
+      project: default
+      source:
+        path: configs/ingresscontroller
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=false
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: integration
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/integration
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: integration-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: integration-service
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 15s
+          limit: 50
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: internal-services
+  namespace: argocd
+spec:
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          appstudio.redhat.com/member-cluster: "true"
+  template:
+    metadata:
+      name: internal-services-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: internal-services
+        server: '{{server}}'
+      project: default
+      source:
+        path: components/internal-services
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 15s
+          limit: 50
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: jvm-build-service
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: staging
+            sourceRoot: components/jvm-build-service
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: jvm-build-service-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: default
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: monitoring-workload-grafana
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: NotIn
+              values:
+              - argocd-default-cluster-config
+            matchLabels:
+              argocd.argoproj.io/secret-type: cluster
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/monitoring/grafana
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: monitoring-workload-grafana-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: appstudio-grafana
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: 50
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: monitoring-workload-logging
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: NotIn
+              values:
+              - argocd-default-cluster-config
+            matchLabels:
+              argocd.argoproj.io/secret-type: cluster
+          values:
+            clusterDir: base
+            environment: production
+            sourceRoot: components/monitoring/logging
+      - list:
+          elements:
+          - nameNormalized: stone-stage-p01
+            values.clusterDir: stone-stage-p01
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: monitoring-workload-logging-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: appstudio-workload-monitoring
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 15s
+          limit: 50
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: monitoring-workload-prometheus
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: NotIn
+              values:
+              - argocd-default-cluster-config
+            matchLabels:
+              argocd.argoproj.io/secret-type: cluster
+          values:
+            clusterDir: base
+            environment: production
+            sourceRoot: components/monitoring/prometheus
+      - list:
+          elements:
+          - nameNormalized: stone-stg-host
+            values.clusterDir: stone-stg-host
+          - nameNormalized: stone-stg-m01
+            values.clusterDir: stone-stg-m01
+          - nameNormalized: stone-stg-rh01
+            values.clusterDir: stone-stg-rh01
+          - nameNormalized: stone-prd-host1
+            values.clusterDir: stone-prd-host1
+          - nameNormalized: stone-prd-m01
+            values.clusterDir: stone-prd-m01
+          - nameNormalized: stone-prd-rh01
+            values.clusterDir: stone-prd-rh01
+          - nameNormalized: stone-stg-p01
+            values.clusterDir: stone-stg-p01
+          - nameNormalized: stone-prod-p01
+            values.clusterDir: stone-prod-p01
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: monitoring-workload-prometheus-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: appstudio-workload-monitoring
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 15s
+          limit: 50
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: multi-platform-controller
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/multi-platform-controller
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: multi-platform-controller-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: default
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: perf-team-prometheus-reader
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: staging
+            sourceRoot: components/perf-team-prometheus-reader
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: perf-team-prometheus-reader-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: perf-team-prometheus-reader
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: pipeline-service
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: base
+            environment: production
+            sourceRoot: components/pipeline-service
+      - list:
+          elements:
+          - nameNormalized: stone-stg-m01
+            values.clusterDir: stone-stg-m01
+          - nameNormalized: stone-stg-rh01
+            values.clusterDir: stone-stg-rh01
+          - nameNormalized: stone-prd-m01
+            values.clusterDir: stone-prd-m01
+          - nameNormalized: stone-prd-rh01
+            values.clusterDir: stone-prd-rh01
+          - nameNormalized: stone-stage-p01
+            values.clusterDir: stone-stage-p01
+          - nameNormalized: stone-prod-p01
+            values.clusterDir: stone-prod-p01
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: pipeline-service-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: default
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: release
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/release
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: release-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: release-service
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 15s
+          limit: 50
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: remote-secret-controller
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: base
+            environment: production
+            sourceRoot: components/remote-secret-controller/overlays
+      - list:
+          elements:
+          - nameNormalized: stone-stg-m01
+            values.clusterDir: stone-stg-m01
+          - nameNormalized: stone-stg-rh01
+            values.clusterDir: stone-stg-rh01
+          - nameNormalized: stone-prd-m01
+            values.clusterDir: stone-prd-m01
+          - nameNormalized: stone-prd-rh01
+            values.clusterDir: stone-prd-rh01
+          - nameNormalized: stone-stage-p01
+            values.clusterDir: stone-stage-p01
+          - nameNormalized: stone-prod-p01
+            values.clusterDir: stone-prod-p01
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: remote-secret-controller-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: remotesecret
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 15s
+          limit: 50
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: rh-managed-workspaces-config
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      directories:
+      - path: auto-generated/cluster/stone-prd-rh01/managed/*
+      repoURL: https://github.com/redhat-appstudio/tenants-config
+      revision: main
+  template:
+    metadata:
+      name: '{{path.basename}}-{{path[2]}}'
+    spec:
+      destination:
+        name: '{{path[2]}}'
+        namespace: '{{path.basename}}'
+      project: rh-managed-workspaces-config
+      source:
+        path: '{{path}}'
+        repoURL: https://github.com/redhat-appstudio/tenants-config
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: 10
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: segment-bridge-host
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/host-cluster: "true"
+          values:
+            clusterDir: base
+            environment: production
+            sourceRoot: components/segment-bridge
+      - list:
+          elements:
+          - nameNormalized: stone-stg-host
+            values.clusterDir: stone-stg-host
+          - nameNormalized: stone-prd-host1
+            values.clusterDir: stone-prd-host1
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: segment-bridge-host-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: segment-bridge
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: segment-bridge-member
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: base
+            environment: production
+            sourceRoot: components/segment-bridge
+      - list:
+          elements:
+          - nameNormalized: stone-stg-m01
+            values.clusterDir: stone-stg-m01
+          - nameNormalized: stone-stg-rh01
+            values.clusterDir: stone-stg-rh01
+          - nameNormalized: stone-prd-m01
+            values.clusterDir: stone-prd-m01
+          - nameNormalized: stone-prd-rh01
+            values.clusterDir: stone-prd-rh01
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: segment-bridge-member-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: segment-bridge
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: smee
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/host-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/smee
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: smee-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: smee
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: spi
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: base
+            environment: production
+            sourceRoot: components/spi/overlays
+      - list:
+          elements:
+          - nameNormalized: stone-stg-m01
+            values.clusterDir: stone-stg-m01
+          - nameNormalized: stone-stg-rh01
+            values.clusterDir: stone-stg-rh01
+          - nameNormalized: stone-prd-m01
+            values.clusterDir: stone-prd-m01
+          - nameNormalized: stone-prd-rh01
+            values.clusterDir: stone-prd-rh01
+          - nameNormalized: stone-stage-p01
+            values.clusterDir: stone-stage-p01
+          - nameNormalized: stone-prod-p01
+            values.clusterDir: stone-prod-p01
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: spi-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: spi-system
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 15s
+          limit: 50
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: sprayproxy
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/host-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/sprayproxy
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: sprayproxy-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: sprayproxy
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: tekton-ci
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/tekton-ci: "true"
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/tekton-ci
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: tekton-ci-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: tekton-ci
+        server: '{{server}}'
+      ignoreDifferences:
+      - group: ""
+        jqPathExpressions:
+        - .imagePullSecrets[] | select(.name | startswith("appstudio-pipeline-dockercfg"))
+        kind: ServiceAccount
+        name: appstudio-pipeline
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: tenants-config
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      directories:
+      - path: auto-generated/cluster/stone-prd-rh01/tenants/*
+      repoURL: https://github.com/redhat-appstudio/tenants-config
+      revision: main
+  template:
+    metadata:
+      name: '{{path.basename}}-{{path[2]}}'
+    spec:
+      destination:
+        name: '{{path[2]}}'
+        namespace: '{{path.basename}}'
+      ignoreDifferences:
+      - group: appstudio.redhat.com
+        jsonPointers:
+        - /metadata/annotations/build.appstudio.openshift.io~1request
+        - /metadata/annotations/image.redhat.com~1image
+        - /metadata/annotations/image.redhat.com~1generate
+        kind: Component
+      - group: appstudio.redhat.com
+        jsonPointers:
+        - /metadata/labels/release.appstudio.openshift.io~author
+        - /metadata/labels/release.appstudio.openshift.io~standing-attribution
+        kind: ReleasePlan
+      project: tenants-config
+      source:
+        path: '{{path}}'
+        repoURL: https://github.com/redhat-appstudio/tenants-config
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: 10
+        syncOptions:
+        - CreateNamespace=true
+        - RespectIgnoreDifferences=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: toolchain-host-operator
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/host-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/sandbox/toolchain-host-operator
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: toolchain-host-operator-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: toolchain-host-operator
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=false
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: toolchain-member-operator
+  namespace: argocd
+spec:
+  generators:
+  - merge:
+      generators:
+      - clusters:
+          selector:
+            matchLabels:
+              appstudio.redhat.com/member-cluster: "true"
+          values:
+            clusterDir: ""
+            environment: production
+            sourceRoot: components/sandbox/toolchain-member-operator
+      - list:
+          elements: []
+      mergeKeys:
+      - nameNormalized
+  template:
+    metadata:
+      name: toolchain-member-operator-{{nameNormalized}}
+    spec:
+      destination:
+        namespace: toolchain-member-operator
+        server: '{{server}}'
+      project: default
+      source:
+        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        retry:
+          backoff:
+            duration: 10s
+            factor: 2
+            maxDuration: 3m
+          limit: -1
+        syncOptions:
+        - CreateNamespace=false

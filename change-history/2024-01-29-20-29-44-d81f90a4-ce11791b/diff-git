@@ -1,0 +1,13 @@
+diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+index 8f9cd171..f918fb73 100644
+--- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
++++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
+@@ -49,7 +49,7 @@ spec:
+           storageclass|volumename|release_reason|instance|result|deployment_reason|\
+           validation_reason|strategy|succeeded|target|name|method|code|sp|\
+           unexpected_status|failure|hostname|label_app_kubernetes_io_managed_by|status|\
+-          pipeline|pipelinename|pipelinerun"
++          pipeline|pipelinename|pipelinerun|schedule"
+ ---
+ # Grant permission to Federate In-Cluster Prometheus
+ apiVersion: rbac.authorization.k8s.io/v1
