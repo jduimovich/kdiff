@@ -1,0 +1,31 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-88e5a0b0/development/components/release/development/kustomize.out.yaml ./kustomized-cache/commit-f079ce1a/development/components/release/development/kustomize.out.yaml
+114,116c114,115
+<                     description: "Timeout is a value to use to override the tekton
+<                       default Pipelinerun timeout \n This field is DEPRECATED and
+<                       will be replaced by Timeouts in a future change."
+---
+>                     description: Timeout is value to use to override the tekton default
+>                       Pipelinerun timeout
+118,135d116
+<                   timeouts:
+<                     description: Timeouts defines the different Timeouts to use in
+<                       the PipelineRun execution
+<                     properties:
+<                       finally:
+<                         description: Finally sets the maximum allowed duration of
+<                           this pipeline's finally
+<                         type: string
+<                       pipeline:
+<                         description: Pipeline sets the maximum allowed duration for
+<                           execution of the entire pipeline. The sum of individual
+<                           timeouts for tasks and finally must not exceed this value.
+<                         type: string
+<                       tasks:
+<                         description: Tasks sets the maximum allowed duration of this
+<                           pipeline's tasks
+<                         type: string
+<                     type: object
+1697c1678
+<         image: quay.io/redhat-appstudio/release-service:5bb55c88e868015d2b62412eef174bd6c842441c
+---
+>         image: quay.io/redhat-appstudio/release-service:0eb0a4595339e72684c50bcb049c5b0001b7fea5

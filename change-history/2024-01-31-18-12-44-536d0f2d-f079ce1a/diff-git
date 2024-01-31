@@ -1,0 +1,15 @@
+diff --git a/components/remote-secret-controller/overlays/development/config-patch.json b/components/remote-secret-controller/overlays/development/config-patch.json
+index 19a2c1b6..a919ec9f 100644
+--- a/components/remote-secret-controller/overlays/development/config-patch.json
++++ b/components/remote-secret-controller/overlays/development/config-patch.json
+@@ -18,5 +18,10 @@
+     "op": "add",
+     "path": "/data/VAULTINSECURETLS",
+     "value": "true"
++  },
++  {
++    "op": "add",
++    "path": "/data/ZAPLOGLEVEL",
++    "value": "debug"
+   }
+ ]
