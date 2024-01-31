@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ea865661/production/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-80112baf/production/components/enterprise-contract/kustomize.out.yaml
+701a702
+>       - step_image_registries
