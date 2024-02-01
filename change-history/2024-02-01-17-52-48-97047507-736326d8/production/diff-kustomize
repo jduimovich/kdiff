@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-736326d8/production/app-of-apps-production.yaml ./kustomized-cache/commit-97047507/production/app-of-apps-production.yaml
+61,62d60
+<           - nameNormalized: stone-prod-p01
+<             values.clusterDir: stone-prod-p01
+Only in ./kustomized-cache/commit-736326d8/production/components: authentication

@@ -1,0 +1,176 @@
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index 58b7f08f..8589c87e 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=408b2b718e5ca8e17b2b628445c9bff1db4c907d
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=3b297d99c01d1beeb9eda2b93dd69e34ab3b0933
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 41a21540..7b7a0664 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=408b2b718e5ca8e17b2b628445c9bff1db4c907d
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=408b2b718e5ca8e17b2b628445c9bff1db4c907d
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=3b297d99c01d1beeb9eda2b93dd69e34ab3b0933
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=3b297d99c01d1beeb9eda2b93dd69e34ab3b0933
+   - ../base/rbac
+ 
+ patches:
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 6c6b8a1e..b75eb9ed 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=408b2b718e5ca8e17b2b628445c9bff1db4c907d
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=3b297d99c01d1beeb9eda2b93dd69e34ab3b0933
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 2a9d1723..839f3f79 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1,5 +1,15 @@
+ apiVersion: v1
+ kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: openshift-pipelines
++---
++apiVersion: v1
++kind: Namespace
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -10,7 +20,7 @@ kind: Namespace
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
++    argocd.argoproj.io/sync-wave: "-1"
+   labels:
+     argocd.argoproj.io/managed-by: openshift-gitops
+   name: tekton-results
+@@ -267,6 +277,7 @@ rules:
+   - get
+   - list
+   - watch
++  - patch
+ - nonResourceURLs:
+   - /metrics
+   verbs:
+@@ -1200,7 +1211,7 @@ spec:
+       containers:
+       - args:
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:329e1a6617af1740ad133a8338cb4c328dcc7f24
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:089f2e576d31759eca98f78a591deda2cb5f37d4
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 7158552c..8b30ee91 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1,5 +1,15 @@
+ apiVersion: v1
+ kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: openshift-pipelines
++---
++apiVersion: v1
++kind: Namespace
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -10,7 +20,7 @@ kind: Namespace
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
++    argocd.argoproj.io/sync-wave: "-1"
+   labels:
+     argocd.argoproj.io/managed-by: openshift-gitops
+   name: tekton-results
+@@ -267,6 +277,7 @@ rules:
+   - get
+   - list
+   - watch
++  - patch
+ - nonResourceURLs:
+   - /metrics
+   verbs:
+@@ -1200,7 +1211,7 @@ spec:
+       containers:
+       - args:
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:329e1a6617af1740ad133a8338cb4c328dcc7f24
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:089f2e576d31759eca98f78a591deda2cb5f37d4
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index b78f3791..ed6f4856 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1,5 +1,15 @@
+ apiVersion: v1
+ kind: Namespace
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  labels:
++    argocd.argoproj.io/managed-by: openshift-gitops
++  name: openshift-pipelines
++---
++apiVersion: v1
++kind: Namespace
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -10,7 +20,7 @@ kind: Namespace
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "0"
++    argocd.argoproj.io/sync-wave: "-1"
+   labels:
+     argocd.argoproj.io/managed-by: openshift-gitops
+   name: tekton-results
+@@ -267,6 +277,7 @@ rules:
+   - get
+   - list
+   - watch
++  - patch
+ - nonResourceURLs:
+   - /metrics
+   verbs:
+@@ -1200,7 +1211,7 @@ spec:
+       containers:
+       - args:
+         - -zap-log-level=6
+-        image: quay.io/redhat-appstudio/pipeline-service-exporter:329e1a6617af1740ad133a8338cb4c328dcc7f24
++        image: quay.io/redhat-appstudio/pipeline-service-exporter:089f2e576d31759eca98f78a591deda2cb5f37d4
+         name: pipeline-metrics-exporter
+         ports:
+         - containerPort: 9117

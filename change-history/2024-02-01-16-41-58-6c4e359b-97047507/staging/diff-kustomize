@@ -1,0 +1,66 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-97047507/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-6c4e359b/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+6,15d5
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     argocd.argoproj.io/managed-by: openshift-gitops
+<   name: openshift-pipelines
+< ---
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+23c13
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "0"
+280d269
+<   - patch
+1214c1203
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:089f2e576d31759eca98f78a591deda2cb5f37d4
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:329e1a6617af1740ad133a8338cb4c328dcc7f24
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-97047507/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-6c4e359b/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+6,15d5
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     argocd.argoproj.io/managed-by: openshift-gitops
+<   name: openshift-pipelines
+< ---
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+23c13
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "0"
+280d269
+<   - patch
+1214c1203
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:089f2e576d31759eca98f78a591deda2cb5f37d4
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:329e1a6617af1740ad133a8338cb4c328dcc7f24
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-97047507/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-6c4e359b/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+6,15d5
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     argocd.argoproj.io/managed-by: openshift-gitops
+<   name: openshift-pipelines
+< ---
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+23c13
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "0"
+280d269
+<   - patch
+1214c1203
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:089f2e576d31759eca98f78a591deda2cb5f37d4
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:329e1a6617af1740ad133a8338cb4c328dcc7f24

@@ -1,0 +1,84 @@
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+index eada0e12..617ab18e 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+@@ -17,6 +17,8 @@ spec:
+               elements:
+                 - nameNormalized: stone-stage-p01
+                   values.clusterDir: stone-stage-p01
++                - nameNormalized: stone-prod-p01
++                  values.clusterDir: stone-prod-p01
+   template:
+     metadata:
+       name: authentication-{{nameNormalized}}
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 09828f01..aeeb060f 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -1,11 +1,4 @@
+ ---
+-# Github authentication/authorization isn't used downstream
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: authentication
+-$patch: delete
+----
+ # Downstream deployment has the host and member operators deployed on the same cluster
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+diff --git a/components/authentication/production/base/kustomization.yaml b/components/authentication/production/base/kustomization.yaml
+index b08bb10c..6adbabef 100644
+--- a/components/authentication/production/base/kustomization.yaml
++++ b/components/authentication/production/base/kustomization.yaml
+@@ -2,6 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base/github
++components:
++  - ../k-components/rhtap-infra-secrets-patch
+ patches:
+   - path: github-redhat-appstudio-secret-patch.yaml
+     target:
+@@ -15,9 +17,3 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
+-  - path: rhtap-infra-secrets-patch.yaml
+-    target:
+-      name: rhtap-infra-secrets
+-      kind: ExternalSecret
+-      group: external-secrets.io
+-      version: v1beta1
+diff --git a/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml b/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml
+new file mode 100644
+index 00000000..6046aa98
+--- /dev/null
++++ b/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml
+@@ -0,0 +1,10 @@
++---
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++patches:
++  - path: rhtap-infra-secrets-patch.yaml
++    target:
++      name: rhtap-infra-secrets
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
+diff --git a/components/authentication/production/base/rhtap-infra-secrets-patch.yaml b/components/authentication/production/k-components/rhtap-infra-secrets-patch/rhtap-infra-secrets-patch.yaml
+similarity index 100%
+rename from components/authentication/production/base/rhtap-infra-secrets-patch.yaml
+rename to components/authentication/production/k-components/rhtap-infra-secrets-patch/rhtap-infra-secrets-patch.yaml
+diff --git a/components/authentication/production/stone-prod-p01/kustomization.yaml b/components/authentication/production/stone-prod-p01/kustomization.yaml
+new file mode 100644
+index 00000000..2e53febf
+--- /dev/null
++++ b/components/authentication/production/stone-prod-p01/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/rh-idp
++components:
++  - ../k-components/rhtap-infra-secrets-patch
