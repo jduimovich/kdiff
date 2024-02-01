@@ -1,12 +1,383 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Feb  1 04:03:53 UTC 2024
+### This file generated at Thu Feb  1 08:03:14 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 81e83314 to 0c371727 on Thu Feb 1 03:18:22 2024 </h3>  
+<h3>1: Production changes from 0c371727 to 87b87699 on Thu Feb 1 07:12:07 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (12 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+index 1f0f1e86..f4f09109 100644
+--- a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
++++ b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+@@ -13,6 +13,7 @@ spec:
+           name: mtls-ca-validators
+           namespace: group-sync-operator
+         insecure: false
++        prune: true
+         rfc2307:
+           usersQuery:
+             baseDN: 'dc=redhat,dc=com' 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 0c371727 to 87b87699 on Thu Feb 1 07:12:07 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (12 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+index 1f0f1e86..f4f09109 100644
+--- a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
++++ b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+@@ -13,6 +13,7 @@ spec:
+           name: mtls-ca-validators
+           namespace: group-sync-operator
+         insecure: false
++        prune: true
+         rfc2307:
+           usersQuery:
+             baseDN: 'dc=redhat,dc=com' 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (3 lines)</summary>  
+
+``` 
+./commit-0c371727/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+827d826
+<       prune: true 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 0c371727 to 87b87699 on Thu Feb 1 07:12:07 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (12 lines)</summary>  
+
+``` 
+diff --git a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+index 1f0f1e86..f4f09109 100644
+--- a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
++++ b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+@@ -13,6 +13,7 @@ spec:
+           name: mtls-ca-validators
+           namespace: group-sync-operator
+         insecure: false
++        prune: true
+         rfc2307:
+           usersQuery:
+             baseDN: 'dc=redhat,dc=com' 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 81e83314 to 0c371727 on Thu Feb 1 03:18:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -142,7 +513,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 81e83314 to 0c371727 on Thu Feb 1 03:18:22 2024 </h3>  
+<h3>2: Staging changes from 81e83314 to 0c371727 on Thu Feb 1 03:18:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -286,7 +657,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 81e83314 to 0c371727 on Thu Feb 1 03:18:22 2024 </h3>  
+<h3>2: Development changes from 81e83314 to 0c371727 on Thu Feb 1 03:18:22 2024 </h3>  
  
 <details> 
 <summary>Git Diff (13 lines)</summary>  
@@ -382,7 +753,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 88e5a0b0 to 81e83314 on Thu Feb 1 00:00:11 2024 </h3>  
+<h3>3: Production changes from 88e5a0b0 to 81e83314 on Thu Feb 1 00:00:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (49 lines)</summary>  
@@ -573,7 +944,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 88e5a0b0 to 81e83314 on Thu Feb 1 00:00:11 2024 </h3>  
+<h3>3: Staging changes from 88e5a0b0 to 81e83314 on Thu Feb 1 00:00:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (49 lines)</summary>  
@@ -776,7 +1147,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 88e5a0b0 to 81e83314 on Thu Feb 1 00:00:11 2024 </h3>  
+<h3>3: Development changes from 88e5a0b0 to 81e83314 on Thu Feb 1 00:00:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (49 lines)</summary>  
@@ -931,7 +1302,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from f079ce1a to 88e5a0b0 on Wed Jan 31 19:46:28 2024 </h3>  
+<h3>4: Production changes from f079ce1a to 88e5a0b0 on Wed Jan 31 19:46:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1078,7 +1449,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from f079ce1a to 88e5a0b0 on Wed Jan 31 19:46:28 2024 </h3>  
+<h3>4: Staging changes from f079ce1a to 88e5a0b0 on Wed Jan 31 19:46:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1237,7 +1608,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from f079ce1a to 88e5a0b0 on Wed Jan 31 19:46:28 2024 </h3>  
+<h3>4: Development changes from f079ce1a to 88e5a0b0 on Wed Jan 31 19:46:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1310,384 +1681,6 @@ index 3386d656..29db6bc1 100644
 <         image: quay.io/redhat-appstudio/release-service:5bb55c88e868015d2b62412eef174bd6c842441c
 ---
 >         image: quay.io/redhat-appstudio/release-service:0eb0a4595339e72684c50bcb049c5b0001b7fea5 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 536d0f2d to f079ce1a on Wed Jan 31 18:12:44 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (15 lines)</summary>  
-
-``` 
-diff --git a/components/remote-secret-controller/overlays/development/config-patch.json b/components/remote-secret-controller/overlays/development/config-patch.json
-index 19a2c1b6..a919ec9f 100644
---- a/components/remote-secret-controller/overlays/development/config-patch.json
-+++ b/components/remote-secret-controller/overlays/development/config-patch.json
-@@ -18,5 +18,10 @@
-     "op": "add",
-     "path": "/data/VAULTINSECURETLS",
-     "value": "true"
-+  },
-+  {
-+    "op": "add",
-+    "path": "/data/ZAPLOGLEVEL",
-+    "value": "debug"
-   }
- ] 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 536d0f2d to f079ce1a on Wed Jan 31 18:12:44 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (15 lines)</summary>  
-
-``` 
-diff --git a/components/remote-secret-controller/overlays/development/config-patch.json b/components/remote-secret-controller/overlays/development/config-patch.json
-index 19a2c1b6..a919ec9f 100644
---- a/components/remote-secret-controller/overlays/development/config-patch.json
-+++ b/components/remote-secret-controller/overlays/development/config-patch.json
-@@ -18,5 +18,10 @@
-     "op": "add",
-     "path": "/data/VAULTINSECURETLS",
-     "value": "true"
-+  },
-+  {
-+    "op": "add",
-+    "path": "/data/ZAPLOGLEVEL",
-+    "value": "debug"
-   }
- ] 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 536d0f2d to f079ce1a on Wed Jan 31 18:12:44 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (15 lines)</summary>  
-
-``` 
-diff --git a/components/remote-secret-controller/overlays/development/config-patch.json b/components/remote-secret-controller/overlays/development/config-patch.json
-index 19a2c1b6..a919ec9f 100644
---- a/components/remote-secret-controller/overlays/development/config-patch.json
-+++ b/components/remote-secret-controller/overlays/development/config-patch.json
-@@ -18,5 +18,10 @@
-     "op": "add",
-     "path": "/data/VAULTINSECURETLS",
-     "value": "true"
-+  },
-+  {
-+    "op": "add",
-+    "path": "/data/ZAPLOGLEVEL",
-+    "value": "debug"
-   }
- ] 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  

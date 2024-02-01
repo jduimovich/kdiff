@@ -1,0 +1,12 @@
+diff --git a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+index 1f0f1e86..f4f09109 100644
+--- a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
++++ b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+@@ -13,6 +13,7 @@ spec:
+           name: mtls-ca-validators
+           namespace: group-sync-operator
+         insecure: false
++        prune: true
+         rfc2307:
+           usersQuery:
+             baseDN: 'dc=redhat,dc=com'
