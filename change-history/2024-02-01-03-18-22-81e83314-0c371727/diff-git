@@ -1,0 +1,13 @@
+diff --git a/components/multi-platform-controller/production/host-config.yaml b/components/multi-platform-controller/production/host-config.yaml
+index 01b88791..f303651d 100644
+--- a/components/multi-platform-controller/production/host-config.yaml
++++ b/components/multi-platform-controller/production/host-config.yaml
+@@ -36,7 +36,7 @@ data:
+   host.power-rhtap-prod-1.secret: "ibm-production-ppc64le-ssh-key"
+   host.power-rhtap-prod-1.concurrency: "4"
+ 
+-  host.power-rhtap-prod-2.address: "52.117.38.109"
++  host.power-rhtap-prod-2.address: "52.117.38.122"
+   host.power-rhtap-prod-2.platform: "linux/ppc64le"
+   host.power-rhtap-prod-2.user: "root"
+   host.power-rhtap-prod-2.secret: "ibm-production-ppc64le-ssh-key"
