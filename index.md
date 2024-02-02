@@ -1,12 +1,606 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Feb  2 16:01:57 UTC 2024
+### This file generated at Fri Feb  2 20:03:13 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 181208be to 38e866ba on Fri Feb 2 11:47:49 2024 </h3>  
+<h3>1: Production changes from 38e866ba to ab6b2c06 on Fri Feb 2 17:20:33 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (86 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml
+new file mode 100644
+index 00000000..1de7a037
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml
+@@ -0,0 +1,79 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: ToolchainConfig
++metadata:
++  name: config
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true # on the very first install, the CRD will be missing since the operator has not been installed yet
++spec:
++    host:
++      tiers:
++        defaultTier: 'appstudio'
++        defaultSpaceTier: 'appstudio'
++      automaticApproval:
++        enabled: true
++      capacityThresholds:
++        maxNumberOfSpacesPerMemberCluster:
++          member-stone-stg-m01.7ayg.p1.openshiftapps.com: 1500
++          member-stone-stg-rh01.l2vh.p1.openshiftapps.com: -1 # Only manual re-targeting to this cluster is allowed
++        resourceCapacityThreshold:
++          defaultThreshold: 90
++      spaceConfig:
++        spaceRequestEnabled: true
++        spaceBindingRequestEnabled: true
++      deactivation:
++        deactivationDomainsExcluded: '@redhat.com'
++      notifications:
++        adminEmail: rhtap-infra@redhat.com
++        secret:
++          mailgunAPIKey: mailgun.api.key
++          mailgunDomain: mailgun.domain
++          mailgunReplyToEmail: mailgun.replyto.email
++          mailgunSenderEmail: mailgun.sender.email
++          ref: host-operator-secret
++        templateSetName: 'appstudio'
++      registrationService:
++        auth:
++          authClientConfigRaw: '{
++                    "realm": "redhat-external",
++                    "auth-server-url": "https://sso.redhat.com/auth",
++                    "ssl-required": "ALL",
++                    "resource": "appstudio-stage-public",
++                    "clientId": "appstudio-stage-public",
++                    "public-client": true
++                  }'
++          authClientLibraryURL: https://sso.redhat.com/auth/js/keycloak.js
++          authClientPublicKeysURL: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/certs
++          ssoBaseURL: https://sso.redhat.com
++          ssoRealm: redhat-external
++        environment: prod
++        replicas: 10
++        registrationServiceURL: https://console.dev.redhat.com/preview/hac/application-pipeline
++        verification:
++          enabled: true
++          excludedEmailDomains: 'redhat.com'
++          secret:
++            ref: host-operator-secret
++            twilioAccountSID: twilio.account.sid # TODO remove twilio config as phone verification is not needed in Konflux
++            twilioAuthToken: twilio.auth.token  # TODO remove twilio config as phone verification is not needed in Konflux
++            twilioFromNumber: twilio.from_number # TODO remove twilio config as phone verification is not needed in Konflux
++      toolchainStatus:
++        gitHubSecret:
++          ref: host-operator-secret
++          accessTokenKey: github.access.token
++    members:
++      default:
++        skipUserCreation: true
++        auth:
++          idp: DevSandbox
++        autoscaler:
++          bufferMemory: 3Gi
++          bufferReplicas: 10
++          deploy: true
++        che:
++          required: false
++          userDeletionEnabled: false
++        memberStatus:
++          gitHubSecret:
++            ref: member-operator-secret
++            accessTokenKey: github.access.token
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 38e866ba to ab6b2c06 on Fri Feb 2 17:20:33 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (86 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml
+new file mode 100644
+index 00000000..1de7a037
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml
+@@ -0,0 +1,79 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: ToolchainConfig
++metadata:
++  name: config
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true # on the very first install, the CRD will be missing since the operator has not been installed yet
++spec:
++    host:
++      tiers:
++        defaultTier: 'appstudio'
++        defaultSpaceTier: 'appstudio'
++      automaticApproval:
++        enabled: true
++      capacityThresholds:
++        maxNumberOfSpacesPerMemberCluster:
++          member-stone-stg-m01.7ayg.p1.openshiftapps.com: 1500
++          member-stone-stg-rh01.l2vh.p1.openshiftapps.com: -1 # Only manual re-targeting to this cluster is allowed
++        resourceCapacityThreshold:
++          defaultThreshold: 90
++      spaceConfig:
++        spaceRequestEnabled: true
++        spaceBindingRequestEnabled: true
++      deactivation:
++        deactivationDomainsExcluded: '@redhat.com'
++      notifications:
++        adminEmail: rhtap-infra@redhat.com
++        secret:
++          mailgunAPIKey: mailgun.api.key
++          mailgunDomain: mailgun.domain
++          mailgunReplyToEmail: mailgun.replyto.email
++          mailgunSenderEmail: mailgun.sender.email
++          ref: host-operator-secret
++        templateSetName: 'appstudio'
++      registrationService:
++        auth:
++          authClientConfigRaw: '{
++                    "realm": "redhat-external",
++                    "auth-server-url": "https://sso.redhat.com/auth",
++                    "ssl-required": "ALL",
++                    "resource": "appstudio-stage-public",
++                    "clientId": "appstudio-stage-public",
++                    "public-client": true
++                  }'
++          authClientLibraryURL: https://sso.redhat.com/auth/js/keycloak.js
++          authClientPublicKeysURL: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/certs
++          ssoBaseURL: https://sso.redhat.com
++          ssoRealm: redhat-external
++        environment: prod
++        replicas: 10
++        registrationServiceURL: https://console.dev.redhat.com/preview/hac/application-pipeline
++        verification:
++          enabled: true
++          excludedEmailDomains: 'redhat.com'
++          secret:
++            ref: host-operator-secret
++            twilioAccountSID: twilio.account.sid # TODO remove twilio config as phone verification is not needed in Konflux
++            twilioAuthToken: twilio.auth.token  # TODO remove twilio config as phone verification is not needed in Konflux
++            twilioFromNumber: twilio.from_number # TODO remove twilio config as phone verification is not needed in Konflux
++      toolchainStatus:
++        gitHubSecret:
++          ref: host-operator-secret
++          accessTokenKey: github.access.token
++    members:
++      default:
++        skipUserCreation: true
++        auth:
++          idp: DevSandbox
++        autoscaler:
++          bufferMemory: 3Gi
++          bufferReplicas: 10
++          deploy: true
++        che:
++          required: false
++          userDeletionEnabled: false
++        memberStatus:
++          gitHubSecret:
++            ref: member-operator-secret
++            accessTokenKey: github.access.token
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 38e866ba to ab6b2c06 on Fri Feb 2 17:20:33 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (86 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml
+new file mode 100644
+index 00000000..1de7a037
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml
+@@ -0,0 +1,79 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: ToolchainConfig
++metadata:
++  name: config
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true # on the very first install, the CRD will be missing since the operator has not been installed yet
++spec:
++    host:
++      tiers:
++        defaultTier: 'appstudio'
++        defaultSpaceTier: 'appstudio'
++      automaticApproval:
++        enabled: true
++      capacityThresholds:
++        maxNumberOfSpacesPerMemberCluster:
++          member-stone-stg-m01.7ayg.p1.openshiftapps.com: 1500
++          member-stone-stg-rh01.l2vh.p1.openshiftapps.com: -1 # Only manual re-targeting to this cluster is allowed
++        resourceCapacityThreshold:
++          defaultThreshold: 90
++      spaceConfig:
++        spaceRequestEnabled: true
++        spaceBindingRequestEnabled: true
++      deactivation:
++        deactivationDomainsExcluded: '@redhat.com'
++      notifications:
++        adminEmail: rhtap-infra@redhat.com
++        secret:
++          mailgunAPIKey: mailgun.api.key
++          mailgunDomain: mailgun.domain
++          mailgunReplyToEmail: mailgun.replyto.email
++          mailgunSenderEmail: mailgun.sender.email
++          ref: host-operator-secret
++        templateSetName: 'appstudio'
++      registrationService:
++        auth:
++          authClientConfigRaw: '{
++                    "realm": "redhat-external",
++                    "auth-server-url": "https://sso.redhat.com/auth",
++                    "ssl-required": "ALL",
++                    "resource": "appstudio-stage-public",
++                    "clientId": "appstudio-stage-public",
++                    "public-client": true
++                  }'
++          authClientLibraryURL: https://sso.redhat.com/auth/js/keycloak.js
++          authClientPublicKeysURL: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/certs
++          ssoBaseURL: https://sso.redhat.com
++          ssoRealm: redhat-external
++        environment: prod
++        replicas: 10
++        registrationServiceURL: https://console.dev.redhat.com/preview/hac/application-pipeline
++        verification:
++          enabled: true
++          excludedEmailDomains: 'redhat.com'
++          secret:
++            ref: host-operator-secret
++            twilioAccountSID: twilio.account.sid # TODO remove twilio config as phone verification is not needed in Konflux
++            twilioAuthToken: twilio.auth.token  # TODO remove twilio config as phone verification is not needed in Konflux
++            twilioFromNumber: twilio.from_number # TODO remove twilio config as phone verification is not needed in Konflux
++      toolchainStatus:
++        gitHubSecret:
++          ref: host-operator-secret
++          accessTokenKey: github.access.token
++    members:
++      default:
++        skipUserCreation: true
++        auth:
++          idp: DevSandbox
++        autoscaler:
++          bufferMemory: 3Gi
++          bufferReplicas: 10
++          deploy: true
++        che:
++          required: false
++          userDeletionEnabled: false
++        memberStatus:
++          gitHubSecret:
++            ref: member-operator-secret
++            accessTokenKey: github.access.token
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 181208be to 38e866ba on Fri Feb 2 11:47:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -166,7 +760,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 181208be to 38e866ba on Fri Feb 2 11:47:49 2024 </h3>  
+<h3>2: Staging changes from 181208be to 38e866ba on Fri Feb 2 11:47:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -339,7 +933,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 181208be to 38e866ba on Fri Feb 2 11:47:49 2024 </h3>  
+<h3>2: Development changes from 181208be to 38e866ba on Fri Feb 2 11:47:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -464,7 +1058,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 9dc297ad to 181208be on Thu Feb 1 18:45:01 2024 </h3>  
+<h3>3: Production changes from 9dc297ad to 181208be on Thu Feb 1 18:45:01 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -608,7 +1202,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 9dc297ad to 181208be on Thu Feb 1 18:45:01 2024 </h3>  
+<h3>3: Staging changes from 9dc297ad to 181208be on Thu Feb 1 18:45:01 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -791,7 +1385,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 9dc297ad to 181208be on Thu Feb 1 18:45:01 2024 </h3>  
+<h3>3: Development changes from 9dc297ad to 181208be on Thu Feb 1 18:45:01 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -896,7 +1490,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 736326d8 to 9dc297ad on Thu Feb 1 17:52:55 2024 </h3>  
+<h3>4: Production changes from 736326d8 to 9dc297ad on Thu Feb 1 17:52:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1045,7 +1639,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 736326d8 to 9dc297ad on Thu Feb 1 17:52:55 2024 </h3>  
+<h3>4: Staging changes from 736326d8 to 9dc297ad on Thu Feb 1 17:52:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1195,7 +1789,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 736326d8 to 9dc297ad on Thu Feb 1 17:52:55 2024 </h3>  
+<h3>4: Development changes from 736326d8 to 9dc297ad on Thu Feb 1 17:52:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (19 lines)</summary>  
@@ -1220,601 +1814,6 @@ index bdba02b7..2ce93472 100644
  
  namespace: integration-service
   
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 97047507 to 736326d8 on Thu Feb 1 17:52:48 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (84 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-index eada0e12..617ab18e 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-@@ -17,6 +17,8 @@ spec:
-               elements:
-                 - nameNormalized: stone-stage-p01
-                   values.clusterDir: stone-stage-p01
-+                - nameNormalized: stone-prod-p01
-+                  values.clusterDir: stone-prod-p01
-   template:
-     metadata:
-       name: authentication-{{nameNormalized}}
-diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-index 09828f01..aeeb060f 100644
---- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-@@ -1,11 +1,4 @@
- ---
--# Github authentication/authorization isn't used downstream
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: authentication
--$patch: delete
-----
- # Downstream deployment has the host and member operators deployed on the same cluster
- apiVersion: argoproj.io/v1alpha1
- kind: ApplicationSet
-diff --git a/components/authentication/production/base/kustomization.yaml b/components/authentication/production/base/kustomization.yaml
-index b08bb10c..6adbabef 100644
---- a/components/authentication/production/base/kustomization.yaml
-+++ b/components/authentication/production/base/kustomization.yaml
-@@ -2,6 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../base/github
-+components:
-+  - ../k-components/rhtap-infra-secrets-patch
- patches:
-   - path: github-redhat-appstudio-secret-patch.yaml
-     target:
-@@ -15,9 +17,3 @@ patches:
-       kind: ExternalSecret
-       group: external-secrets.io
-       version: v1beta1
--  - path: rhtap-infra-secrets-patch.yaml
--    target:
--      name: rhtap-infra-secrets
--      kind: ExternalSecret
--      group: external-secrets.io
--      version: v1beta1
-diff --git a/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml b/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml
-new file mode 100644
-index 00000000..6046aa98
---- /dev/null
-+++ b/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml
-@@ -0,0 +1,10 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1alpha1
-+kind: Component
-+patches:
-+  - path: rhtap-infra-secrets-patch.yaml
-+    target:
-+      name: rhtap-infra-secrets
-+      kind: ExternalSecret
-+      group: external-secrets.io
-+      version: v1beta1
-diff --git a/components/authentication/production/base/rhtap-infra-secrets-patch.yaml b/components/authentication/production/k-components/rhtap-infra-secrets-patch/rhtap-infra-secrets-patch.yaml
-similarity index 100%
-rename from components/authentication/production/base/rhtap-infra-secrets-patch.yaml
-rename to components/authentication/production/k-components/rhtap-infra-secrets-patch/rhtap-infra-secrets-patch.yaml
-diff --git a/components/authentication/production/stone-prod-p01/kustomization.yaml b/components/authentication/production/stone-prod-p01/kustomization.yaml
-new file mode 100644
-index 00000000..2e53febf
---- /dev/null
-+++ b/components/authentication/production/stone-prod-p01/kustomization.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base/rh-idp
-+components:
-+  - ../k-components/rhtap-infra-secrets-patch 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-97047507/production/app-of-apps-production.yaml
-61,62d60
-<           - nameNormalized: stone-prod-p01
-<             values.clusterDir: stone-prod-p01
-./commit-736326d8/production/components: authentication 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 97047507 to 736326d8 on Thu Feb 1 17:52:48 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (84 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-index eada0e12..617ab18e 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-@@ -17,6 +17,8 @@ spec:
-               elements:
-                 - nameNormalized: stone-stage-p01
-                   values.clusterDir: stone-stage-p01
-+                - nameNormalized: stone-prod-p01
-+                  values.clusterDir: stone-prod-p01
-   template:
-     metadata:
-       name: authentication-{{nameNormalized}}
-diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-index 09828f01..aeeb060f 100644
---- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-@@ -1,11 +1,4 @@
- ---
--# Github authentication/authorization isn't used downstream
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: authentication
--$patch: delete
-----
- # Downstream deployment has the host and member operators deployed on the same cluster
- apiVersion: argoproj.io/v1alpha1
- kind: ApplicationSet
-diff --git a/components/authentication/production/base/kustomization.yaml b/components/authentication/production/base/kustomization.yaml
-index b08bb10c..6adbabef 100644
---- a/components/authentication/production/base/kustomization.yaml
-+++ b/components/authentication/production/base/kustomization.yaml
-@@ -2,6 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../base/github
-+components:
-+  - ../k-components/rhtap-infra-secrets-patch
- patches:
-   - path: github-redhat-appstudio-secret-patch.yaml
-     target:
-@@ -15,9 +17,3 @@ patches:
-       kind: ExternalSecret
-       group: external-secrets.io
-       version: v1beta1
--  - path: rhtap-infra-secrets-patch.yaml
--    target:
--      name: rhtap-infra-secrets
--      kind: ExternalSecret
--      group: external-secrets.io
--      version: v1beta1
-diff --git a/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml b/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml
-new file mode 100644
-index 00000000..6046aa98
---- /dev/null
-+++ b/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml
-@@ -0,0 +1,10 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1alpha1
-+kind: Component
-+patches:
-+  - path: rhtap-infra-secrets-patch.yaml
-+    target:
-+      name: rhtap-infra-secrets
-+      kind: ExternalSecret
-+      group: external-secrets.io
-+      version: v1beta1
-diff --git a/components/authentication/production/base/rhtap-infra-secrets-patch.yaml b/components/authentication/production/k-components/rhtap-infra-secrets-patch/rhtap-infra-secrets-patch.yaml
-similarity index 100%
-rename from components/authentication/production/base/rhtap-infra-secrets-patch.yaml
-rename to components/authentication/production/k-components/rhtap-infra-secrets-patch/rhtap-infra-secrets-patch.yaml
-diff --git a/components/authentication/production/stone-prod-p01/kustomization.yaml b/components/authentication/production/stone-prod-p01/kustomization.yaml
-new file mode 100644
-index 00000000..2e53febf
---- /dev/null
-+++ b/components/authentication/production/stone-prod-p01/kustomization.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base/rh-idp
-+components:
-+  - ../k-components/rhtap-infra-secrets-patch 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (4 lines)</summary>  
-
-``` 
-./commit-97047507/staging/app-of-apps-staging.yaml
-61,62d60
-<           - nameNormalized: stone-prod-p01
-<             values.clusterDir: stone-prod-p01 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 97047507 to 736326d8 on Thu Feb 1 17:52:48 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (84 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-index eada0e12..617ab18e 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
-@@ -17,6 +17,8 @@ spec:
-               elements:
-                 - nameNormalized: stone-stage-p01
-                   values.clusterDir: stone-stage-p01
-+                - nameNormalized: stone-prod-p01
-+                  values.clusterDir: stone-prod-p01
-   template:
-     metadata:
-       name: authentication-{{nameNormalized}}
-diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-index 09828f01..aeeb060f 100644
---- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
-@@ -1,11 +1,4 @@
- ---
--# Github authentication/authorization isn't used downstream
--apiVersion: argoproj.io/v1alpha1
--kind: ApplicationSet
--metadata:
--  name: authentication
--$patch: delete
-----
- # Downstream deployment has the host and member operators deployed on the same cluster
- apiVersion: argoproj.io/v1alpha1
- kind: ApplicationSet
-diff --git a/components/authentication/production/base/kustomization.yaml b/components/authentication/production/base/kustomization.yaml
-index b08bb10c..6adbabef 100644
---- a/components/authentication/production/base/kustomization.yaml
-+++ b/components/authentication/production/base/kustomization.yaml
-@@ -2,6 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../base/github
-+components:
-+  - ../k-components/rhtap-infra-secrets-patch
- patches:
-   - path: github-redhat-appstudio-secret-patch.yaml
-     target:
-@@ -15,9 +17,3 @@ patches:
-       kind: ExternalSecret
-       group: external-secrets.io
-       version: v1beta1
--  - path: rhtap-infra-secrets-patch.yaml
--    target:
--      name: rhtap-infra-secrets
--      kind: ExternalSecret
--      group: external-secrets.io
--      version: v1beta1
-diff --git a/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml b/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml
-new file mode 100644
-index 00000000..6046aa98
---- /dev/null
-+++ b/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml
-@@ -0,0 +1,10 @@
-+---
-+apiVersion: kustomize.config.k8s.io/v1alpha1
-+kind: Component
-+patches:
-+  - path: rhtap-infra-secrets-patch.yaml
-+    target:
-+      name: rhtap-infra-secrets
-+      kind: ExternalSecret
-+      group: external-secrets.io
-+      version: v1beta1
-diff --git a/components/authentication/production/base/rhtap-infra-secrets-patch.yaml b/components/authentication/production/k-components/rhtap-infra-secrets-patch/rhtap-infra-secrets-patch.yaml
-similarity index 100%
-rename from components/authentication/production/base/rhtap-infra-secrets-patch.yaml
-rename to components/authentication/production/k-components/rhtap-infra-secrets-patch/rhtap-infra-secrets-patch.yaml
-diff --git a/components/authentication/production/stone-prod-p01/kustomization.yaml b/components/authentication/production/stone-prod-p01/kustomization.yaml
-new file mode 100644
-index 00000000..2e53febf
---- /dev/null
-+++ b/components/authentication/production/stone-prod-p01/kustomization.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base/rh-idp
-+components:
-+  - ../k-components/rhtap-infra-secrets-patch 
 ```
  
 </details> 
