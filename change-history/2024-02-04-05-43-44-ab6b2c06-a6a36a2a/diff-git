@@ -1,0 +1,182 @@
+diff --git a/components/smee/staging/deployment.yaml b/components/smee/base/deployment.yaml
+similarity index 100%
+rename from components/smee/staging/deployment.yaml
+rename to components/smee/base/deployment.yaml
+diff --git a/components/smee/base/kustomization.yaml b/components/smee/base/kustomization.yaml
+index fe0f332a..17293f36 100644
+--- a/components/smee/base/kustomization.yaml
++++ b/components/smee/base/kustomization.yaml
+@@ -1,4 +1,7 @@
+ ---
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+-resources: []
++resources:
++- deployment.yaml
++- route.yaml
++- service.yaml
+diff --git a/components/smee/base/route.yaml b/components/smee/base/route.yaml
+new file mode 100644
+index 00000000..368256d9
+--- /dev/null
++++ b/components/smee/base/route.yaml
+@@ -0,0 +1,18 @@
++---
++apiVersion: route.openshift.io/v1
++kind: Route
++metadata:
++  name: smee
++  annotations:
++    haproxy.router.openshift.io/timeout: 86410s
++    router.openshift.io/haproxy.health.check.interval: 86400s
++    haproxy.router.openshift.io/ip_whitelist: ""
++spec:
++  port:
++    targetPort: "http"
++  to:
++    kind: Service
++    name: smee
++  tls:
++    insecureEdgeTerminationPolicy: Redirect
++    termination: edge
+diff --git a/components/smee/staging/service.yaml b/components/smee/base/service.yaml
+similarity index 100%
+rename from components/smee/staging/service.yaml
+rename to components/smee/base/service.yaml
+diff --git a/components/smee/production/ip-allow-list.yaml b/components/smee/production/ip-allow-list.yaml
+new file mode 100644
+index 00000000..7957c976
+--- /dev/null
++++ b/components/smee/production/ip-allow-list.yaml
+@@ -0,0 +1,24 @@
++---
++  # The IP whitelist below allows getting webhook traffic from GitHub [1],
++  # GitLab.com [2] and our internal cluster.
++  #
++  # [1]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses
++  # [2]: https://docs.gitlab.com/ee/user/gitlab_com/#ip-range
++  #
++  # Note that the configuration string below is very sensitive. It has to be
++  # a single-space-separated list of IPs and CIDR ranges. Any extra whitespace
++  # added to it makes OpenShift ignore it.
++- op: add
++  path: /metadata/annotations/haproxy.router.openshift.io~1ip_whitelist
++  value: >-
++    192.30.252.0/22
++    185.199.108.0/22
++    140.82.112.0/20
++    143.55.64.0/20
++    2a0a:a440::/29
++    2606:50c0::/32
++    34.74.90.64/28
++    34.74.226.0/24
++    44.217.103.151
++    44.221.194.189
++    54.156.92.180
+diff --git a/components/smee/production/kustomization.yaml b/components/smee/production/kustomization.yaml
+index fe0f332a..b67cd105 100644
+--- a/components/smee/production/kustomization.yaml
++++ b/components/smee/production/kustomization.yaml
+@@ -1,4 +1,10 @@
+ ---
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+-resources: []
++resources:
++- ../base
++patches:
++  - path: ip-allow-list.yaml
++    target:
++      name: smee
++      kind: Route
+diff --git a/components/smee/staging/ip-allow-list.yaml b/components/smee/staging/ip-allow-list.yaml
+new file mode 100644
+index 00000000..728d18a2
+--- /dev/null
++++ b/components/smee/staging/ip-allow-list.yaml
+@@ -0,0 +1,24 @@
++---
++# The IP whitelist below allows getting webhook traffic from GitHub [1],
++# GitLab.com [2] and our internal cluster.
++#
++# [1]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses
++# [2]: https://docs.gitlab.com/ee/user/gitlab_com/#ip-range
++#
++# Note that the configuration string below is very sensitive. It has to be
++# a single-space-separated list of IPs and CIDR ranges. Any extra whitespace
++# added to it makes OpenShift ignore it.
++- op: add
++  path: /metadata/annotations/haproxy.router.openshift.io~1ip_whitelist
++  value: >-
++    192.30.252.0/22
++    185.199.108.0/22
++    140.82.112.0/20
++    143.55.64.0/20
++    2a0a:a440::/29
++    2606:50c0::/32
++    34.74.90.64/28
++    34.74.226.0/24
++    34.200.130.154
++    44.221.157.128
++    54.162.238.133
+diff --git a/components/smee/staging/kustomization.yaml b/components/smee/staging/kustomization.yaml
+index 17293f36..b67cd105 100644
+--- a/components/smee/staging/kustomization.yaml
++++ b/components/smee/staging/kustomization.yaml
+@@ -2,6 +2,9 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- deployment.yaml
+-- route.yaml
+-- service.yaml
++- ../base
++patches:
++  - path: ip-allow-list.yaml
++    target:
++      name: smee
++      kind: Route
+diff --git a/components/smee/staging/route.yaml b/components/smee/staging/route.yaml
+deleted file mode 100644
+index 86519156..00000000
+--- a/components/smee/staging/route.yaml
++++ /dev/null
+@@ -1,38 +0,0 @@
+----
+-apiVersion: route.openshift.io/v1
+-kind: Route
+-metadata:
+-  name: smee
+-  annotations:
+-    haproxy.router.openshift.io/timeout: 86410s
+-    router.openshift.io/haproxy.health.check.interval: 86400s
+-    # The IP whitelist below allows getting webhook traffic from GitHub [1],
+-    # GitLab.com [2] and our internal cluster.
+-    #
+-    # [1]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses
+-    # [2]: https://docs.gitlab.com/ee/user/gitlab_com/#ip-range
+-    #
+-    # Note that the configuration string below is very sensitive. It has to be
+-    # a single-space-separated list of IPs and CIDR ranges. Any extra whitespace
+-    # added to it makes OpenShift ignore it.
+-    haproxy.router.openshift.io/ip_whitelist: >-
+-      192.30.252.0/22
+-      185.199.108.0/22
+-      140.82.112.0/20
+-      143.55.64.0/20
+-      2a0a:a440::/29
+-      2606:50c0::/32
+-      34.74.90.64/28
+-      34.74.226.0/24
+-      34.200.130.154
+-      44.221.157.128
+-      54.162.238.133
+-spec:
+-  port:
+-    targetPort: "http"
+-  to:
+-    kind: Service
+-    name: smee
+-  tls:
+-    insecureEdgeTerminationPolicy: Redirect
+-    termination: edge
