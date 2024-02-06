@@ -1,0 +1,67 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d2106aee/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-9d28cb05/production/components/gitops/production/stone-prd-m01/kustomize.out.yaml
+2363c2363
+<   name: konflux-gitops-admins
+---
+>   name: GitOps Service Team Admins
+2379c2379
+<   name: konflux-gitops
+---
+>   name: GitOps Service Team
+2427c2427
+<   name: konflux-gitops-admins
+---
+>   name: GitOps Service Team Admins
+2443c2443
+<   name: konflux-gitops
+---
+>   name: GitOps Service Team
+2473c2473
+<   name: konflux-gitops-admins
+---
+>   name: GitOps Service Team Admins
+2489c2489
+<   name: konflux-gitops-admins
+---
+>   name: GitOps Service Team Admins
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d2106aee/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-9d28cb05/production/components/gitops/production/stone-prd-rh01/kustomize.out.yaml
+2298c2298
+<   name: konflux-gitops-admins
+---
+>   name: GitOps Service Team Admins
+2314c2314
+<   name: konflux-gitops
+---
+>   name: GitOps Service Team
+2362c2362
+<   name: konflux-gitops-admins
+---
+>   name: GitOps Service Team Admins
+2378c2378
+<   name: konflux-gitops
+---
+>   name: GitOps Service Team
+2410c2410
+<   name: konflux-gitops-admins
+---
+>   name: GitOps Service Team Admins
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d2106aee/production/components/gitops/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-9d28cb05/production/components/gitops/production/stone-prod-p01/kustomize.out.yaml
+2298c2298
+<   name: konflux-gitops-admins
+---
+>   name: GitOps Service Team Admins
+2314c2314
+<   name: konflux-gitops
+---
+>   name: GitOps Service Team
+2362c2362
+<   name: konflux-gitops-admins
+---
+>   name: GitOps Service Team Admins
+2378c2378
+<   name: konflux-gitops
+---
+>   name: GitOps Service Team
+2410c2410
+<   name: konflux-gitops-admins
+---
+>   name: GitOps Service Team Admins

@@ -1,0 +1,49 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-9547d590/staging/components/has/staging/kustomize.out.yaml ./kustomized-cache/commit-13e48c64/staging/components/has/staging/kustomize.out.yaml
+561,562c561,580
+<   kind: Group
+<   name: konflux-has
+---
+>   kind: User
+>   name: johnmcollier
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: jduimovich
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: kim-tsao
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: yangcao77
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: maysunfaisal
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: thepetk
+> - apiGroup: rbac.authorization.k8s.io
+>   kind: User
+>   name: michael-valdron
+588,590c606,617
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-has
+---
+> - kind: User
+>   name: johnmcollier
+> - kind: User
+>   name: kim-tsao
+> - kind: User
+>   name: maysunfaisal
+> - kind: User
+>   name: yangcao77
+> - kind: User
+>   name: thepetk
+> - kind: User
+>   name: michael-valdron
+602,604c629,630
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-has
+---
+> - kind: User
+>   name: johnmcollier
