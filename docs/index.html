@@ -10,97 +10,43 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-tue-feb--6-120447-utc-2024">This file generated at Tue Feb  6 12:04:47 UTC 2024</h3>
+<h3 id="this-file-generated-at-tue-feb--6-160936-utc-2024">This file generated at Tue Feb  6 16:09:36 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from c3c821a7 to 5e55fa04 on Tue Feb 6 12:01:34 2024 </h3>  
+<h3>1: Production changes from de639ec0 to 9d28cb05 on Tue Feb 6 15:37:01 2024 </h3>  
 
 <details> 
-<summary>Git Diff (75 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base<span class="hljs-regexp">/dashboards/</span>spi<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/monitoring/g</span>rafana<span class="hljs-regexp">/base/</span>dashboards<span class="hljs-regexp">/spi/</span>kustomization.yaml
-index <span class="hljs-number">89</span>c11cba..ba2d9569 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base<span class="hljs-regexp">/dashboards/</span>spi/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base<span class="hljs-regexp">/dashboards/</span>spi/kustomization.yaml
-@@ -<span class="hljs-number">1</span>,<span class="hljs-number">6</span> +<span class="hljs-number">1</span>,<span class="hljs-number">6</span> @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
- - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>remote-secret<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
- - dashboard.yaml
-diff --git a<span class="hljs-regexp">/components/</span>spi-vault<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/spi-vault/</span>kustomization.yaml
-index <span class="hljs-number">18</span>a8c7ea..b17f419a <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>spi-vault/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/</span>spi-vault/kustomization.yaml
-@@ -<span class="hljs-number">4</span>,<span class="hljs-number">4</span> +<span class="hljs-number">4</span>,<span class="hljs-number">4</span> @@ kind: Kustomization
- namespace: spi-vault
-
- resources:
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>vault/openshift?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>vault/openshift?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-diff --git a<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>development<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/spi/</span>overlays<span class="hljs-regexp">/development/</span>kustomization.yaml
-index d1524e00..<span class="hljs-number">18</span>ba289b <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>development/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>development/kustomization.yaml
-@@ -<span class="hljs-number">2</span>,<span class="hljs-number">17</span> +<span class="hljs-number">2</span>,<span class="hljs-number">17</span> @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ..<span class="hljs-regexp">/../</span>base
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>overlays/openshift_vault?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>overlays/openshift_vault?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-
- namespace: spi-system
-
- images:
-   - name:  quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator
-     newName: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator
--    newTag: <span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+    newTag: <span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-   - name: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-oauth
-     newName: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-oauth
--    newTag: <span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+    newTag: <span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-
- patches:
-   - target:
-diff --git a<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml b<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml
-index fe09f9f5..e16b183f <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml
-+++ b<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml
-@@ -<span class="hljs-number">3</span>,<span class="hljs-number">8</span> +<span class="hljs-number">3</span>,<span class="hljs-number">8</span> @@ kind: Kustomization
- resources:
-   - ..<span class="hljs-regexp">/../</span>../base
-   - ..<span class="hljs-regexp">/../</span>..<span class="hljs-regexp">/base/</span>external-secrets
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>overlays/openshift_aws?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/prometheus/</span>base?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>overlays/openshift_aws?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/prometheus/</span>base?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-   - spi-aws-credentials-external-secret.yaml
-
- namespace: spi-system
-@@ -<span class="hljs-number">12</span>,<span class="hljs-number">10</span> +<span class="hljs-number">12</span>,<span class="hljs-number">10</span> @@ namespace: spi-system
- images:
-   - name:  quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator
-     newName: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator
--    newTag: <span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+    newTag: <span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-   - name: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-oauth
-     newName: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-oauth
--    newTag: <span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+    newTag: <span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-
- patches:
-   - target: 
+<summary>Git Diff (15 lines)</summary>  
+<pre><code>  diff <span class="hljs-attr">--git</span> <span class="hljs-selector-tag">a</span>/argo-cd-apps/base/<span class="hljs-attribute">all</span>-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus<span class="hljs-selector-class">.yaml</span> <span class="hljs-selector-tag">b</span>/argo-cd-apps/base/<span class="hljs-attribute">all</span>-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus<span class="hljs-selector-class">.yaml</span>
+index <span class="hljs-number">46</span>d6bfa2.<span class="hljs-selector-class">.b8ac6fe9</span> <span class="hljs-number">100644</span>
+--- <span class="hljs-selector-tag">a</span>/argo-cd-apps/base/<span class="hljs-attribute">all</span>-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus<span class="hljs-selector-class">.yaml</span>
++++ <span class="hljs-selector-tag">b</span>/argo-cd-apps/base/<span class="hljs-attribute">all</span>-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus<span class="hljs-selector-class">.yaml</span>
+@@ -<span class="hljs-number">27</span>,<span class="hljs-number">8</span> +<span class="hljs-number">27</span>,<span class="hljs-number">8</span> @@ <span class="hljs-attribute">spec</span>:
+                   values.<span class="hljs-attribute">clusterDir</span>: stone-prd-m01
+                 - <span class="hljs-attribute">nameNormalized</span>: stone-prd-rh01
+                   values.<span class="hljs-attribute">clusterDir</span>: stone-prd-rh01
+-                - <span class="hljs-attribute">nameNormalized</span>: stone-stg-p01
+-                  values.<span class="hljs-attribute">clusterDir</span>: stone-stg-p01
++                - <span class="hljs-attribute">nameNormalized</span>: stone-stage-p01
++                  values.<span class="hljs-attribute">clusterDir</span>: stone-stage-p01
+                 - <span class="hljs-attribute">nameNormalized</span>: stone-prod-p01
+                   values.<span class="hljs-attribute">clusterDir</span>: stone-prod-p01
+   <span class="hljs-attribute">template</span>: 
 </code></pre>
 
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
+<summary>Kustomize Generated Diff (7 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-de639ec0/production/app-of-apps-production.yaml</span>
+<span class="hljs-number">1021</span><span class="hljs-string">,1022c1021,1022</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-stage-p01</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-stage-p01</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-stg-p01</span>
+<span class="hljs-string">&gt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-stg-p01</span> 
 </code></pre>
 
 </details>  
@@ -208,92 +154,38 @@ index fe09f9f5..e16b183f <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>1: Staging changes from c3c821a7 to 5e55fa04 on Tue Feb 6 12:01:34 2024 </h3>  
+<h3>1: Staging changes from de639ec0 to 9d28cb05 on Tue Feb 6 15:37:01 2024 </h3>  
 
 <details> 
-<summary>Git Diff (75 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base<span class="hljs-regexp">/dashboards/</span>spi<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/monitoring/g</span>rafana<span class="hljs-regexp">/base/</span>dashboards<span class="hljs-regexp">/spi/</span>kustomization.yaml
-index <span class="hljs-number">89</span>c11cba..ba2d9569 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base<span class="hljs-regexp">/dashboards/</span>spi/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base<span class="hljs-regexp">/dashboards/</span>spi/kustomization.yaml
-@@ -<span class="hljs-number">1</span>,<span class="hljs-number">6</span> +<span class="hljs-number">1</span>,<span class="hljs-number">6</span> @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
- - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>remote-secret<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
- - dashboard.yaml
-diff --git a<span class="hljs-regexp">/components/</span>spi-vault<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/spi-vault/</span>kustomization.yaml
-index <span class="hljs-number">18</span>a8c7ea..b17f419a <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>spi-vault/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/</span>spi-vault/kustomization.yaml
-@@ -<span class="hljs-number">4</span>,<span class="hljs-number">4</span> +<span class="hljs-number">4</span>,<span class="hljs-number">4</span> @@ kind: Kustomization
- namespace: spi-vault
-
- resources:
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>vault/openshift?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>vault/openshift?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-diff --git a<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>development<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/spi/</span>overlays<span class="hljs-regexp">/development/</span>kustomization.yaml
-index d1524e00..<span class="hljs-number">18</span>ba289b <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>development/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>development/kustomization.yaml
-@@ -<span class="hljs-number">2</span>,<span class="hljs-number">17</span> +<span class="hljs-number">2</span>,<span class="hljs-number">17</span> @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ..<span class="hljs-regexp">/../</span>base
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>overlays/openshift_vault?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>overlays/openshift_vault?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-
- namespace: spi-system
-
- images:
-   - name:  quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator
-     newName: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator
--    newTag: <span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+    newTag: <span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-   - name: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-oauth
-     newName: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-oauth
--    newTag: <span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+    newTag: <span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-
- patches:
-   - target:
-diff --git a<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml b<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml
-index fe09f9f5..e16b183f <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml
-+++ b<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml
-@@ -<span class="hljs-number">3</span>,<span class="hljs-number">8</span> +<span class="hljs-number">3</span>,<span class="hljs-number">8</span> @@ kind: Kustomization
- resources:
-   - ..<span class="hljs-regexp">/../</span>../base
-   - ..<span class="hljs-regexp">/../</span>..<span class="hljs-regexp">/base/</span>external-secrets
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>overlays/openshift_aws?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/prometheus/</span>base?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>overlays/openshift_aws?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/prometheus/</span>base?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-   - spi-aws-credentials-external-secret.yaml
-
- namespace: spi-system
-@@ -<span class="hljs-number">12</span>,<span class="hljs-number">10</span> +<span class="hljs-number">12</span>,<span class="hljs-number">10</span> @@ namespace: spi-system
- images:
-   - name:  quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator
-     newName: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator
--    newTag: <span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+    newTag: <span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-   - name: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-oauth
-     newName: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-oauth
--    newTag: <span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+    newTag: <span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-
- patches:
-   - target: 
+<summary>Git Diff (15 lines)</summary>  
+<pre><code>  diff <span class="hljs-attr">--git</span> <span class="hljs-selector-tag">a</span>/argo-cd-apps/base/<span class="hljs-attribute">all</span>-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus<span class="hljs-selector-class">.yaml</span> <span class="hljs-selector-tag">b</span>/argo-cd-apps/base/<span class="hljs-attribute">all</span>-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus<span class="hljs-selector-class">.yaml</span>
+index <span class="hljs-number">46</span>d6bfa2.<span class="hljs-selector-class">.b8ac6fe9</span> <span class="hljs-number">100644</span>
+--- <span class="hljs-selector-tag">a</span>/argo-cd-apps/base/<span class="hljs-attribute">all</span>-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus<span class="hljs-selector-class">.yaml</span>
++++ <span class="hljs-selector-tag">b</span>/argo-cd-apps/base/<span class="hljs-attribute">all</span>-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus<span class="hljs-selector-class">.yaml</span>
+@@ -<span class="hljs-number">27</span>,<span class="hljs-number">8</span> +<span class="hljs-number">27</span>,<span class="hljs-number">8</span> @@ <span class="hljs-attribute">spec</span>:
+                   values.<span class="hljs-attribute">clusterDir</span>: stone-prd-m01
+                 - <span class="hljs-attribute">nameNormalized</span>: stone-prd-rh01
+                   values.<span class="hljs-attribute">clusterDir</span>: stone-prd-rh01
+-                - <span class="hljs-attribute">nameNormalized</span>: stone-stg-p01
+-                  values.<span class="hljs-attribute">clusterDir</span>: stone-stg-p01
++                - <span class="hljs-attribute">nameNormalized</span>: stone-stage-p01
++                  values.<span class="hljs-attribute">clusterDir</span>: stone-stage-p01
+                 - <span class="hljs-attribute">nameNormalized</span>: stone-prod-p01
+                   values.<span class="hljs-attribute">clusterDir</span>: stone-prod-p01
+   <span class="hljs-attribute">template</span>: 
 </code></pre>
 
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
+<summary>Kustomize Generated Diff (7 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-de639ec0/staging/app-of-apps-staging.yaml</span>
+<span class="hljs-number">975</span><span class="hljs-string">,976c975,976</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-stage-p01</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-stage-p01</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-stg-p01</span>
+<span class="hljs-string">&gt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-stg-p01</span> 
 </code></pre>
 
 </details>  
@@ -407,92 +299,38 @@ index fe09f9f5..e16b183f <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>1: Development changes from c3c821a7 to 5e55fa04 on Tue Feb 6 12:01:34 2024 </h3>  
+<h3>1: Development changes from de639ec0 to 9d28cb05 on Tue Feb 6 15:37:01 2024 </h3>  
 
 <details> 
-<summary>Git Diff (75 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base<span class="hljs-regexp">/dashboards/</span>spi<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/monitoring/g</span>rafana<span class="hljs-regexp">/base/</span>dashboards<span class="hljs-regexp">/spi/</span>kustomization.yaml
-index <span class="hljs-number">89</span>c11cba..ba2d9569 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base<span class="hljs-regexp">/dashboards/</span>spi/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base<span class="hljs-regexp">/dashboards/</span>spi/kustomization.yaml
-@@ -<span class="hljs-number">1</span>,<span class="hljs-number">6</span> +<span class="hljs-number">1</span>,<span class="hljs-number">6</span> @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+- https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
- - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>remote-secret<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/grafana/</span>base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
- - dashboard.yaml
-diff --git a<span class="hljs-regexp">/components/</span>spi-vault<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/spi-vault/</span>kustomization.yaml
-index <span class="hljs-number">18</span>a8c7ea..b17f419a <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>spi-vault/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/</span>spi-vault/kustomization.yaml
-@@ -<span class="hljs-number">4</span>,<span class="hljs-number">4</span> +<span class="hljs-number">4</span>,<span class="hljs-number">4</span> @@ kind: Kustomization
- namespace: spi-vault
-
- resources:
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>vault/openshift?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>vault/openshift?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-diff --git a<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>development<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/spi/</span>overlays<span class="hljs-regexp">/development/</span>kustomization.yaml
-index d1524e00..<span class="hljs-number">18</span>ba289b <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>development/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>development/kustomization.yaml
-@@ -<span class="hljs-number">2</span>,<span class="hljs-number">17</span> +<span class="hljs-number">2</span>,<span class="hljs-number">17</span> @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ..<span class="hljs-regexp">/../</span>base
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>overlays/openshift_vault?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>overlays/openshift_vault?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-
- namespace: spi-system
-
- images:
-   - name:  quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator
-     newName: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator
--    newTag: <span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+    newTag: <span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-   - name: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-oauth
-     newName: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-oauth
--    newTag: <span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+    newTag: <span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-
- patches:
-   - target:
-diff --git a<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml b<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml
-index fe09f9f5..e16b183f <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml
-+++ b<span class="hljs-regexp">/components/</span>spi<span class="hljs-regexp">/overlays/</span>staging<span class="hljs-regexp">/base/</span>kustomization.yaml
-@@ -<span class="hljs-number">3</span>,<span class="hljs-number">8</span> +<span class="hljs-number">3</span>,<span class="hljs-number">8</span> @@ kind: Kustomization
- resources:
-   - ..<span class="hljs-regexp">/../</span>../base
-   - ..<span class="hljs-regexp">/../</span>..<span class="hljs-regexp">/base/</span>external-secrets
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>overlays/openshift_aws?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
--  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/prometheus/</span>base?ref=<span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/</span>overlays/openshift_aws?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-+  - https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator<span class="hljs-regexp">/config/m</span>onitoring<span class="hljs-regexp">/prometheus/</span>base?ref=<span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-   - spi-aws-credentials-external-secret.yaml
-
- namespace: spi-system
-@@ -<span class="hljs-number">12</span>,<span class="hljs-number">10</span> +<span class="hljs-number">12</span>,<span class="hljs-number">10</span> @@ namespace: spi-system
- images:
-   - name:  quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator
-     newName: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-operator
--    newTag: <span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+    newTag: <span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-   - name: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-oauth
-     newName: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>service-provider-integration-oauth
--    newTag: <span class="hljs-number">25192</span>e82fa5ebe94de1ea988e1d43ffe07f77100
-+    newTag: <span class="hljs-number">746</span>d3cd4eabe29ff09d3f33b2f18d8b2496c760e
-
- patches:
-   - target: 
+<summary>Git Diff (15 lines)</summary>  
+<pre><code>  diff <span class="hljs-attr">--git</span> <span class="hljs-selector-tag">a</span>/argo-cd-apps/base/<span class="hljs-attribute">all</span>-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus<span class="hljs-selector-class">.yaml</span> <span class="hljs-selector-tag">b</span>/argo-cd-apps/base/<span class="hljs-attribute">all</span>-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus<span class="hljs-selector-class">.yaml</span>
+index <span class="hljs-number">46</span>d6bfa2.<span class="hljs-selector-class">.b8ac6fe9</span> <span class="hljs-number">100644</span>
+--- <span class="hljs-selector-tag">a</span>/argo-cd-apps/base/<span class="hljs-attribute">all</span>-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus<span class="hljs-selector-class">.yaml</span>
++++ <span class="hljs-selector-tag">b</span>/argo-cd-apps/base/<span class="hljs-attribute">all</span>-clusters/infra-deployments/monitoring-workload-prometheus/monitoring-workload-prometheus<span class="hljs-selector-class">.yaml</span>
+@@ -<span class="hljs-number">27</span>,<span class="hljs-number">8</span> +<span class="hljs-number">27</span>,<span class="hljs-number">8</span> @@ <span class="hljs-attribute">spec</span>:
+                   values.<span class="hljs-attribute">clusterDir</span>: stone-prd-m01
+                 - <span class="hljs-attribute">nameNormalized</span>: stone-prd-rh01
+                   values.<span class="hljs-attribute">clusterDir</span>: stone-prd-rh01
+-                - <span class="hljs-attribute">nameNormalized</span>: stone-stg-p01
+-                  values.<span class="hljs-attribute">clusterDir</span>: stone-stg-p01
++                - <span class="hljs-attribute">nameNormalized</span>: stone-stage-p01
++                  values.<span class="hljs-attribute">clusterDir</span>: stone-stage-p01
+                 - <span class="hljs-attribute">nameNormalized</span>: stone-prod-p01
+                   values.<span class="hljs-attribute">clusterDir</span>: stone-prod-p01
+   <span class="hljs-attribute">template</span>: 
 </code></pre>
 
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
+<summary>Kustomize Generated Diff (7 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-de639ec0/development/app-of-apps-development.yaml</span>
+<span class="hljs-number">720</span><span class="hljs-string">,721c720,721</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-stage-p01</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-stage-p01</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-stg-p01</span>
+<span class="hljs-string">&gt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-stg-p01</span> 
 </code></pre>
 
 </details>  
@@ -558,51 +396,484 @@ index fe09f9f5..e16b183f <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>2: Production changes from 0761c56f to c3c821a7 on Tue Feb 6 09:24:47 2024 </h3>  
+<h3>2: Production changes from 70a19c3a to de639ec0 on Tue Feb 6 15:36:54 2024 </h3>  
 
 <details> 
-<summary>Git Diff (42 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/kustomization.yaml</span>
-<span class="hljs-comment">index ee2fc005..562c699b 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/kustomization.yaml</span>
-<span class="hljs-meta">@@ -3,3 +3,4 @@</span> kind: Kustomization
+<summary>Git Diff (27 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/authentication/base/rh-idp/everyone-can-view-patch.yaml b/components/authentication/base/rh-idp/everyone-can-view-patch.yaml</span>
+<span class="hljs-comment">index 138051b0..2656955b 100644</span>
+<span class="hljs-comment">--- a/components/authentication/base/rh-idp/everyone-can-view-patch.yaml</span>
+<span class="hljs-comment">+++ b/components/authentication/base/rh-idp/everyone-can-view-patch.yaml</span>
+<span class="hljs-meta">@@ -32,6 +32,9 @@</span>
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: &#x27;konflux-o11y&#x27;
+<span class="hljs-addition">+    - kind: Group</span>
+<span class="hljs-addition">+      apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+      name: &#x27;konflux-performance&#x27;</span>
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: &#x27;konflux-pipeline-service&#x27;
+<span class="hljs-comment">diff --git a/components/perf-team-prometheus-reader/base/perf-team.yaml b/components/perf-team-prometheus-reader/base/perf-team.yaml</span>
+<span class="hljs-comment">index 252e2f94..52822c28 100644</span>
+<span class="hljs-comment">--- a/components/perf-team-prometheus-reader/base/perf-team.yaml</span>
+<span class="hljs-comment">+++ b/components/perf-team-prometheus-reader/base/perf-team.yaml</span>
+<span class="hljs-meta">@@ -6,7 +6,7 @@</span> metadata:
+ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+<span class="hljs-deletion">-    name: Performance</span>
+<span class="hljs-addition">+    name: konflux-performance</span>
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (13 lines)</summary>  
+<pre><code>  ./<span class="hljs-keyword">commit</span><span class="hljs-number">-70</span>a19c3a/production/components/authentication/production/stone-prod-p01/kustomize.<span class="hljs-keyword">out</span>.yaml
+<span class="hljs-number">550</span>,<span class="hljs-number">552</span>d549
+&lt;   <span class="hljs-type">name</span>: konflux-performance
+&lt; - apiGroup: rbac.<span class="hljs-keyword">authorization</span>.k8s.io
+&lt;   kind: <span class="hljs-keyword">Group</span>
+<span class="hljs-number">605</span>,<span class="hljs-number">607</span>d601
+&lt;   <span class="hljs-type">name</span>: konflux-performance
+&lt; - apiGroup: rbac.<span class="hljs-keyword">authorization</span>.k8s.io
+&lt;   kind: <span class="hljs-keyword">Group</span>
+<span class="hljs-number">658</span>,<span class="hljs-number">660</span>d651
+&lt; - apiGroup: rbac.<span class="hljs-keyword">authorization</span>.k8s.io
+&lt;   kind: <span class="hljs-keyword">Group</span>
+&lt;   <span class="hljs-type">name</span>: konflux-performance 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Staging changes from 70a19c3a to de639ec0 on Tue Feb 6 15:36:54 2024 </h3>  
+
+<details> 
+<summary>Git Diff (27 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/authentication/base/rh-idp/everyone-can-view-patch.yaml b/components/authentication/base/rh-idp/everyone-can-view-patch.yaml</span>
+<span class="hljs-comment">index 138051b0..2656955b 100644</span>
+<span class="hljs-comment">--- a/components/authentication/base/rh-idp/everyone-can-view-patch.yaml</span>
+<span class="hljs-comment">+++ b/components/authentication/base/rh-idp/everyone-can-view-patch.yaml</span>
+<span class="hljs-meta">@@ -32,6 +32,9 @@</span>
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: &#x27;konflux-o11y&#x27;
+<span class="hljs-addition">+    - kind: Group</span>
+<span class="hljs-addition">+      apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+      name: &#x27;konflux-performance&#x27;</span>
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: &#x27;konflux-pipeline-service&#x27;
+<span class="hljs-comment">diff --git a/components/perf-team-prometheus-reader/base/perf-team.yaml b/components/perf-team-prometheus-reader/base/perf-team.yaml</span>
+<span class="hljs-comment">index 252e2f94..52822c28 100644</span>
+<span class="hljs-comment">--- a/components/perf-team-prometheus-reader/base/perf-team.yaml</span>
+<span class="hljs-comment">+++ b/components/perf-team-prometheus-reader/base/perf-team.yaml</span>
+<span class="hljs-meta">@@ -6,7 +6,7 @@</span> metadata:
+ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+<span class="hljs-deletion">-    name: Performance</span>
+<span class="hljs-addition">+    name: konflux-performance</span>
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (18 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-70a19c3a/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml</span>
+<span class="hljs-number">550</span><span class="hljs-string">,552d549</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">konflux-performance</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">Group</span>
+<span class="hljs-number">605</span><span class="hljs-string">,607d601</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">konflux-performance</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">Group</span>
+<span class="hljs-number">658</span><span class="hljs-string">,660d651</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">Group</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">konflux-performance</span>
+<span class="hljs-string">./commit-70a19c3a/staging/components/perf-team-prometheus-reader/staging/kustomize.out.yaml</span>
+<span class="hljs-string">33c33</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">konflux-performance</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">Performance</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Development changes from 70a19c3a to de639ec0 on Tue Feb 6 15:36:54 2024 </h3>  
+
+<details> 
+<summary>Git Diff (27 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/authentication/base/rh-idp/everyone-can-view-patch.yaml b/components/authentication/base/rh-idp/everyone-can-view-patch.yaml</span>
+<span class="hljs-comment">index 138051b0..2656955b 100644</span>
+<span class="hljs-comment">--- a/components/authentication/base/rh-idp/everyone-can-view-patch.yaml</span>
+<span class="hljs-comment">+++ b/components/authentication/base/rh-idp/everyone-can-view-patch.yaml</span>
+<span class="hljs-meta">@@ -32,6 +32,9 @@</span>
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: &#x27;konflux-o11y&#x27;
+<span class="hljs-addition">+    - kind: Group</span>
+<span class="hljs-addition">+      apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+      name: &#x27;konflux-performance&#x27;</span>
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: &#x27;konflux-pipeline-service&#x27;
+<span class="hljs-comment">diff --git a/components/perf-team-prometheus-reader/base/perf-team.yaml b/components/perf-team-prometheus-reader/base/perf-team.yaml</span>
+<span class="hljs-comment">index 252e2f94..52822c28 100644</span>
+<span class="hljs-comment">--- a/components/perf-team-prometheus-reader/base/perf-team.yaml</span>
+<span class="hljs-comment">+++ b/components/perf-team-prometheus-reader/base/perf-team.yaml</span>
+<span class="hljs-meta">@@ -6,7 +6,7 @@</span> metadata:
+ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+<span class="hljs-deletion">-    name: Performance</span>
+<span class="hljs-addition">+    name: konflux-performance</span>
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-70a19c3a/development/components/perf-team-prometheus-reader/development/kustomize.out.yaml</span>
+<span class="hljs-string">33c33</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">konflux-performance</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">Performance</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>3: Production changes from 3849050e to 70a19c3a on Tue Feb 6 14:35:40 2024 </h3>  
+
+<details> 
+<summary>Git Diff (43 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml</span>
+<span class="hljs-comment">index d37f2bf5..6f41bf65 100644</span>
+<span class="hljs-comment">--- a/components/build-service/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/build-service/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,14 +2,14 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  resources:
  - ../base
- - toolchainconfig.yaml
-<span class="hljs-addition">+- space-provisioner-configs.yaml</span>
-<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..cb443616</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,26 @@</span>
-<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+kind: SpaceProvisionerConfig</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: member-stone-stg-m01.7ayg.p1.openshiftapps.com</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  toolchainCluster: member-stone-stg-m01.7ayg.p1.openshiftapps.com</span>
-<span class="hljs-addition">+  enabled: true</span>
-<span class="hljs-addition">+  capacityThresholds:</span>
-<span class="hljs-addition">+    maxNumberOfSpaces: 1500</span>
-<span class="hljs-addition">+    maxMemoryUtilizationPercent: 90</span>
-<span class="hljs-addition">+  placementRoles:</span>
-<span class="hljs-addition">+  - cluster-role.toolchain.dev.openshift.com/tenant</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+kind: SpaceProvisionerConfig</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: member-stone-stg-rh01.l2vh.p1.openshiftapps.com</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  toolchainCluster: member-stone-stg-rh01.l2vh.p1.openshiftapps.com</span>
-<span class="hljs-addition">+  enabled: false</span>
-<span class="hljs-addition">+  capacityThresholds:</span>
-<span class="hljs-addition">+    maxMemoryUtilizationPercent: 90</span>
-<span class="hljs-addition">+  placementRoles:</span>
-<span class="hljs-addition">+  - cluster-role.toolchain.dev.openshift.com/tenant</span>
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/build-service/config/default?ref=f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/build-service/config/default?ref=1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+
+ namespace: build-service
+
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+<span class="hljs-deletion">-  newTag: f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span>
+<span class="hljs-addition">+  newTag: 1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<span class="hljs-comment">diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index 0963ce99..7cb289a4 100644</span>
+<span class="hljs-comment">--- a/components/build-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/build-service/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,14 +3,14 @@</span> kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/build-service/config/default?ref=f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/build-service/config/default?ref=1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+
+ namespace: build-service
+
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+<span class="hljs-deletion">-  newTag: f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span>
+<span class="hljs-addition">+  newTag: 1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 \ No newline at end of file 
 </code></pre>
 
@@ -718,59 +989,64 @@ new file mode 100644
 
 </div>
 <div>
-<h3>2: Staging changes from 0761c56f to c3c821a7 on Tue Feb 6 09:24:47 2024 </h3>  
+<h3>3: Staging changes from 3849050e to 70a19c3a on Tue Feb 6 14:35:40 2024 </h3>  
 
 <details> 
-<summary>Git Diff (42 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/kustomization.yaml</span>
-<span class="hljs-comment">index ee2fc005..562c699b 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/kustomization.yaml</span>
-<span class="hljs-meta">@@ -3,3 +3,4 @@</span> kind: Kustomization
+<summary>Git Diff (43 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml</span>
+<span class="hljs-comment">index d37f2bf5..6f41bf65 100644</span>
+<span class="hljs-comment">--- a/components/build-service/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/build-service/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,14 +2,14 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  resources:
  - ../base
- - toolchainconfig.yaml
-<span class="hljs-addition">+- space-provisioner-configs.yaml</span>
-<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..cb443616</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,26 @@</span>
-<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+kind: SpaceProvisionerConfig</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: member-stone-stg-m01.7ayg.p1.openshiftapps.com</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  toolchainCluster: member-stone-stg-m01.7ayg.p1.openshiftapps.com</span>
-<span class="hljs-addition">+  enabled: true</span>
-<span class="hljs-addition">+  capacityThresholds:</span>
-<span class="hljs-addition">+    maxNumberOfSpaces: 1500</span>
-<span class="hljs-addition">+    maxMemoryUtilizationPercent: 90</span>
-<span class="hljs-addition">+  placementRoles:</span>
-<span class="hljs-addition">+  - cluster-role.toolchain.dev.openshift.com/tenant</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+kind: SpaceProvisionerConfig</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: member-stone-stg-rh01.l2vh.p1.openshiftapps.com</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  toolchainCluster: member-stone-stg-rh01.l2vh.p1.openshiftapps.com</span>
-<span class="hljs-addition">+  enabled: false</span>
-<span class="hljs-addition">+  capacityThresholds:</span>
-<span class="hljs-addition">+    maxMemoryUtilizationPercent: 90</span>
-<span class="hljs-addition">+  placementRoles:</span>
-<span class="hljs-addition">+  - cluster-role.toolchain.dev.openshift.com/tenant</span>
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/build-service/config/default?ref=f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/build-service/config/default?ref=1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+
+ namespace: build-service
+
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+<span class="hljs-deletion">-  newTag: f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span>
+<span class="hljs-addition">+  newTag: 1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<span class="hljs-comment">diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index 0963ce99..7cb289a4 100644</span>
+<span class="hljs-comment">--- a/components/build-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/build-service/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,14 +3,14 @@</span> kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/build-service/config/default?ref=f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/build-service/config/default?ref=1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+
+ namespace: build-service
+
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+<span class="hljs-deletion">-  newTag: f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span>
+<span class="hljs-addition">+  newTag: 1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 \ No newline at end of file 
 </code></pre>
 
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-3849050e/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml</span>
+<span class="hljs-string">754c754</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/build-service:1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/build-service:f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span> 
 </code></pre>
 
 </details>  
@@ -884,59 +1160,64 @@ new file mode 100644
 
 </div>
 <div>
-<h3>2: Development changes from 0761c56f to c3c821a7 on Tue Feb 6 09:24:47 2024 </h3>  
+<h3>3: Development changes from 3849050e to 70a19c3a on Tue Feb 6 14:35:40 2024 </h3>  
 
 <details> 
-<summary>Git Diff (42 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/kustomization.yaml</span>
-<span class="hljs-comment">index ee2fc005..562c699b 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/kustomization.yaml</span>
-<span class="hljs-meta">@@ -3,3 +3,4 @@</span> kind: Kustomization
+<summary>Git Diff (43 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml</span>
+<span class="hljs-comment">index d37f2bf5..6f41bf65 100644</span>
+<span class="hljs-comment">--- a/components/build-service/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/build-service/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,14 +2,14 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  resources:
  - ../base
- - toolchainconfig.yaml
-<span class="hljs-addition">+- space-provisioner-configs.yaml</span>
-<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..cb443616</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,26 @@</span>
-<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+kind: SpaceProvisionerConfig</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: member-stone-stg-m01.7ayg.p1.openshiftapps.com</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  toolchainCluster: member-stone-stg-m01.7ayg.p1.openshiftapps.com</span>
-<span class="hljs-addition">+  enabled: true</span>
-<span class="hljs-addition">+  capacityThresholds:</span>
-<span class="hljs-addition">+    maxNumberOfSpaces: 1500</span>
-<span class="hljs-addition">+    maxMemoryUtilizationPercent: 90</span>
-<span class="hljs-addition">+  placementRoles:</span>
-<span class="hljs-addition">+  - cluster-role.toolchain.dev.openshift.com/tenant</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
-<span class="hljs-addition">+kind: SpaceProvisionerConfig</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: member-stone-stg-rh01.l2vh.p1.openshiftapps.com</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  toolchainCluster: member-stone-stg-rh01.l2vh.p1.openshiftapps.com</span>
-<span class="hljs-addition">+  enabled: false</span>
-<span class="hljs-addition">+  capacityThresholds:</span>
-<span class="hljs-addition">+    maxMemoryUtilizationPercent: 90</span>
-<span class="hljs-addition">+  placementRoles:</span>
-<span class="hljs-addition">+  - cluster-role.toolchain.dev.openshift.com/tenant</span>
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/build-service/config/default?ref=f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/build-service/config/default?ref=1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+
+ namespace: build-service
+
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+<span class="hljs-deletion">-  newTag: f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span>
+<span class="hljs-addition">+  newTag: 1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<span class="hljs-comment">diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index 0963ce99..7cb289a4 100644</span>
+<span class="hljs-comment">--- a/components/build-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/build-service/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,14 +3,14 @@</span> kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+<span class="hljs-deletion">-- https://github.com/redhat-appstudio/build-service/config/default?ref=f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span>
+<span class="hljs-addition">+- https://github.com/redhat-appstudio/build-service/config/default?ref=1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+
+ namespace: build-service
+
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+<span class="hljs-deletion">-  newTag: f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span>
+<span class="hljs-addition">+  newTag: 1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 \ No newline at end of file 
 </code></pre>
 
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-3849050e/development/components/build-service/development/kustomize.out.yaml</span>
+<span class="hljs-string">761c761</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/build-service:1268e589644feccfed33af1a44beb04f43b5a1b2</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/build-service:f0efbb6ad6e23c0912a61a1b19c7fda8c9fa968d</span> 
 </code></pre>
 
 </details>  
@@ -1002,488 +1283,190 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Production changes from 966cdb9e to 0761c56f on Mon Feb 5 23:09:02 2024 </h3>  
+<h3>4: Production changes from 23ca6757 to 3849050e on Tue Feb 6 14:35:34 2024 </h3>  
 
 <details> 
-<summary>Git Diff (18 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/segment-bridge/base/serviceaccount.yaml b/components/segment-bridge/base/serviceaccount.yaml</span>
-<span class="hljs-comment">index a87c3bb5..41a8831a 100644</span>
-<span class="hljs-comment">--- a/components/segment-bridge/base/serviceaccount.yaml</span>
-<span class="hljs-comment">+++ b/components/segment-bridge/base/serviceaccount.yaml</span>
-<span class="hljs-meta">@@ -52,10 +52,9 @@</span> metadata:
-   name: segment-bridge-read-member-sa-secret-binding
-   namespace: segment-bridge
- subjects:
-<span class="hljs-deletion">-  - kind: User</span>
-<span class="hljs-deletion">-    name: Omeramsc</span>
-<span class="hljs-deletion">-  - kind: User</span>
-<span class="hljs-deletion">-    name: ifireball</span>
-<span class="hljs-addition">+  - apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+    kind: Group</span>
-<span class="hljs-addition">+    name: konflux-o11y</span>
- roleRef:
-   kind: Role
-   name: segment-bridge-read-member-sa-secret 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (20 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-966cdb9e/production/components/segment-bridge/production/stone-prd-m01/kustomize.out.yaml</span>
-<span class="hljs-number">46</span><span class="hljs-string">,48c46,49</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">Group</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">konflux-o11y</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">User</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">Omeramsc</span>
-<span class="hljs-string">&gt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">User</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">ifireball</span>
-<span class="hljs-string">./commit-966cdb9e/production/components/segment-bridge/production/stone-prd-rh01/kustomize.out.yaml</span>
-<span class="hljs-number">46</span><span class="hljs-string">,48c46,49</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">Group</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">konflux-o11y</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">User</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">Omeramsc</span>
-<span class="hljs-string">&gt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">User</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">ifireball</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>3: Staging changes from 966cdb9e to 0761c56f on Mon Feb 5 23:09:02 2024 </h3>  
-
-<details> 
-<summary>Git Diff (18 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/segment-bridge/base/serviceaccount.yaml b/components/segment-bridge/base/serviceaccount.yaml</span>
-<span class="hljs-comment">index a87c3bb5..41a8831a 100644</span>
-<span class="hljs-comment">--- a/components/segment-bridge/base/serviceaccount.yaml</span>
-<span class="hljs-comment">+++ b/components/segment-bridge/base/serviceaccount.yaml</span>
-<span class="hljs-meta">@@ -52,10 +52,9 @@</span> metadata:
-   name: segment-bridge-read-member-sa-secret-binding
-   namespace: segment-bridge
- subjects:
-<span class="hljs-deletion">-  - kind: User</span>
-<span class="hljs-deletion">-    name: Omeramsc</span>
-<span class="hljs-deletion">-  - kind: User</span>
-<span class="hljs-deletion">-    name: ifireball</span>
-<span class="hljs-addition">+  - apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+    kind: Group</span>
-<span class="hljs-addition">+    name: konflux-o11y</span>
- roleRef:
-   kind: Role
-   name: segment-bridge-read-member-sa-secret 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (20 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-966cdb9e/staging/components/segment-bridge/staging/stone-stg-m01/kustomize.out.yaml</span>
-<span class="hljs-number">46</span><span class="hljs-string">,48c46,49</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">Group</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">konflux-o11y</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">User</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">Omeramsc</span>
-<span class="hljs-string">&gt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">User</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">ifireball</span>
-<span class="hljs-string">./commit-966cdb9e/staging/components/segment-bridge/staging/stone-stg-rh01/kustomize.out.yaml</span>
-<span class="hljs-number">46</span><span class="hljs-string">,48c46,49</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">Group</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">konflux-o11y</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">User</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">Omeramsc</span>
-<span class="hljs-string">&gt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">User</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">ifireball</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>3: Development changes from 966cdb9e to 0761c56f on Mon Feb 5 23:09:02 2024 </h3>  
-
-<details> 
-<summary>Git Diff (18 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/segment-bridge/base/serviceaccount.yaml b/components/segment-bridge/base/serviceaccount.yaml</span>
-<span class="hljs-comment">index a87c3bb5..41a8831a 100644</span>
-<span class="hljs-comment">--- a/components/segment-bridge/base/serviceaccount.yaml</span>
-<span class="hljs-comment">+++ b/components/segment-bridge/base/serviceaccount.yaml</span>
-<span class="hljs-meta">@@ -52,10 +52,9 @@</span> metadata:
-   name: segment-bridge-read-member-sa-secret-binding
-   namespace: segment-bridge
- subjects:
-<span class="hljs-deletion">-  - kind: User</span>
-<span class="hljs-deletion">-    name: Omeramsc</span>
-<span class="hljs-deletion">-  - kind: User</span>
-<span class="hljs-deletion">-    name: ifireball</span>
-<span class="hljs-addition">+  - apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+    kind: Group</span>
-<span class="hljs-addition">+    name: konflux-o11y</span>
- roleRef:
-   kind: Role
-   name: segment-bridge-read-member-sa-secret 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (10 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-966cdb9e/development/components/segment-bridge/development/kustomize.out.yaml</span>
-<span class="hljs-number">46</span><span class="hljs-string">,48c46,49</span>
-<span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">Group</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">konflux-o11y</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">User</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">Omeramsc</span>
-<span class="hljs-string">&gt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">User</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">ifireball</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from df2369d5 to 966cdb9e on Mon Feb 5 21:05:22 2024 </h3>  
-
-<details> 
-<summary>Git Diff (52 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/remote-secret-controller/overlays/production/base/kustomization.yaml b/components/remote-secret-controller/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-comment">index 69c3683f..7494ce80 100644</span>
-<span class="hljs-comment">--- a/components/remote-secret-controller/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/remote-secret-controller/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,8 +2,8 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
+<summary>Git Diff (161 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml b/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml</span>
+<span class="hljs-comment">index b9c6225f..3781dae4 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml</span>
+<span class="hljs-meta">@@ -14,7 +14,15 @@</span> spec:
+                 environment: staging
+                 clusterDir: &quot;&quot;
+           - list:
+<span class="hljs-deletion">-              elements: []</span>
+<span class="hljs-addition">+              elements:</span>
+<span class="hljs-addition">+                - nameNormalized: stone-prod-p01</span>
+<span class="hljs-addition">+                  values.clusterDir: stone-prod-p01</span>
+<span class="hljs-addition">+                - nameNormalized: stone-stage-p01</span>
+<span class="hljs-addition">+                  values.clusterDir: stone-stage-p01</span>
+<span class="hljs-addition">+                - nameNormalized: stone-stg-host</span>
+<span class="hljs-addition">+                  values.clusterDir: stone-stg-host</span>
+<span class="hljs-addition">+                - nameNormalized: stone-prd-host1</span>
+<span class="hljs-addition">+                  values.clusterDir: stone-prd-host1</span>
+   template:
+     metadata:
+       name: toolchain-host-operator-{{nameNormalized}}
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/production/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml</span>
+similarity index 85%
+rename from components/sandbox/toolchain-host-operator/production/kustomization.yaml
+rename to components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
+<span class="hljs-comment">index 443762b7..4e4f1976 100644</span>
+<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,4 +1,4 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
-   - ../../../base
-<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97</span>
-<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97</span>
-<span class="hljs-addition">+  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=a4bbfec9e7dcfa4515258146f3ef22404640b02e</span>
-<span class="hljs-addition">+  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=a4bbfec9e7dcfa4515258146f3ef22404640b02e</span>
-   - aws-credentials-external-secret.yaml
-
- namespace: remotesecret
-<span class="hljs-meta">@@ -11,7 +11,7 @@</span> namespace: remotesecret
- images:
-   - name:  quay.io/redhat-appstudio/remote-secret-controller
-     newName: quay.io/redhat-appstudio/remote-secret-controller
-<span class="hljs-deletion">-    newTag: dbad89ab926ce9f8ee829702abc276e1805c8a97</span>
-<span class="hljs-addition">+    newTag: a4bbfec9e7dcfa4515258146f3ef22404640b02e</span>
-
- patches:
-   - target:
-<span class="hljs-comment">diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-comment">index 2fee63cb..c07e5a21 100644</span>
-<span class="hljs-comment">--- a/components/spi/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/spi/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -3,8 +3,8 @@</span> kind: Kustomization
+<span class="hljs-deletion">-- ../base</span>
+\ No newline at end of file
+<span class="hljs-addition">+- ../../base</span>
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..4e4f1976</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,4 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../../base</span>
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..ae43a74e</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../../base</span>
+<span class="hljs-addition">+- toolchainconfig.yaml</span>
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchainconfig.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f47d0651</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchainconfig.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,76 @@</span>
+<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
+<span class="hljs-addition">+kind: ToolchainConfig</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: config</span>
+<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true # on the very first install, the CRD will be missing since the operator has not been installed yet</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+    host:</span>
+<span class="hljs-addition">+      tiers:</span>
+<span class="hljs-addition">+        defaultTier: &#x27;appstudio&#x27;</span>
+<span class="hljs-addition">+        defaultSpaceTier: &#x27;appstudio&#x27;</span>
+<span class="hljs-addition">+      automaticApproval:</span>
+<span class="hljs-addition">+        enabled: true</span>
+<span class="hljs-addition">+      capacityThresholds:</span>
+<span class="hljs-addition">+        resourceCapacityThreshold:</span>
+<span class="hljs-addition">+          defaultThreshold: 90</span>
+<span class="hljs-addition">+      spaceConfig:</span>
+<span class="hljs-addition">+        spaceRequestEnabled: true</span>
+<span class="hljs-addition">+        spaceBindingRequestEnabled: true</span>
+<span class="hljs-addition">+      deactivation:</span>
+<span class="hljs-addition">+        deactivationDomainsExcluded: &#x27;@redhat.com&#x27;</span>
+<span class="hljs-addition">+      notifications:</span>
+<span class="hljs-addition">+        adminEmail: rhtap-infra@redhat.com</span>
+<span class="hljs-addition">+        secret:</span>
+<span class="hljs-addition">+          mailgunAPIKey: mailgun.api.key</span>
+<span class="hljs-addition">+          mailgunDomain: mailgun.domain</span>
+<span class="hljs-addition">+          mailgunReplyToEmail: mailgun.replyto.email</span>
+<span class="hljs-addition">+          mailgunSenderEmail: mailgun.sender.email</span>
+<span class="hljs-addition">+          ref: host-operator-secret</span>
+<span class="hljs-addition">+        templateSetName: &#x27;appstudio&#x27;</span>
+<span class="hljs-addition">+      registrationService:</span>
+<span class="hljs-addition">+        auth:</span>
+<span class="hljs-addition">+          authClientConfigRaw: &#x27;{</span>
+<span class="hljs-addition">+                    &quot;realm&quot;: &quot;redhat-external&quot;,</span>
+<span class="hljs-addition">+                    &quot;auth-server-url&quot;: &quot;https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/auth&quot;,</span>
+<span class="hljs-addition">+                    &quot;ssl-required&quot;: &quot;ALL&quot;,</span>
+<span class="hljs-addition">+                    &quot;resource&quot;: &quot;cloud-services&quot;,</span>
+<span class="hljs-addition">+                    &quot;clientId&quot;: &quot;cloud-services&quot;,</span>
+<span class="hljs-addition">+                    &quot;public-client&quot;: true</span>
+<span class="hljs-addition">+                  }&#x27;</span>
+<span class="hljs-addition">+          authClientLibraryURL: https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/auth/js/keycloak.js</span>
+<span class="hljs-addition">+          authClientPublicKeysURL: https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs</span>
+<span class="hljs-addition">+          ssoBaseURL: https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com</span>
+<span class="hljs-addition">+          ssoRealm: redhat-external</span>
+<span class="hljs-addition">+        environment: prod</span>
+<span class="hljs-addition">+        replicas: 10</span>
+<span class="hljs-addition">+        registrationServiceURL: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline</span>
+<span class="hljs-addition">+        verification:</span>
+<span class="hljs-addition">+          enabled: true</span>
+<span class="hljs-addition">+          excludedEmailDomains: &#x27;redhat.com&#x27;</span>
+<span class="hljs-addition">+          secret:</span>
+<span class="hljs-addition">+            ref: host-operator-secret</span>
+<span class="hljs-addition">+            twilioAccountSID: twilio.account.sid # TODO remove twilio config as phone verification is not needed in Konflux</span>
+<span class="hljs-addition">+            twilioAuthToken: twilio.auth.token  # TODO remove twilio config as phone verification is not needed in Konflux</span>
+<span class="hljs-addition">+            twilioFromNumber: twilio.from_number # TODO remove twilio config as phone verification is not needed in Konflux</span>
+<span class="hljs-addition">+      toolchainStatus:</span>
+<span class="hljs-addition">+        gitHubSecret:</span>
+<span class="hljs-addition">+          ref: host-operator-secret</span>
+<span class="hljs-addition">+          accessTokenKey: github.access.token</span>
+<span class="hljs-addition">+    members:</span>
+<span class="hljs-addition">+      default:</span>
+<span class="hljs-addition">+        skipUserCreation: true</span>
+<span class="hljs-addition">+        auth:</span>
+<span class="hljs-addition">+          idp: DevSandbox</span>
+<span class="hljs-addition">+        autoscaler:</span>
+<span class="hljs-addition">+          bufferMemory: 3Gi</span>
+<span class="hljs-addition">+          bufferReplicas: 10</span>
+<span class="hljs-addition">+          deploy: true</span>
+<span class="hljs-addition">+        che:</span>
+<span class="hljs-addition">+          required: false</span>
+<span class="hljs-addition">+          userDeletionEnabled: false</span>
+<span class="hljs-addition">+        memberStatus:</span>
+<span class="hljs-addition">+          gitHubSecret:</span>
+<span class="hljs-addition">+            ref: member-operator-secret</span>
+<span class="hljs-addition">+            accessTokenKey: github.access.token</span>
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/kustomization.yaml</span>
+similarity index 90%
+rename from components/sandbox/toolchain-host-operator/staging/kustomization.yaml
+rename to components/sandbox/toolchain-host-operator/staging/stone-stg-host/kustomization.yaml
+<span class="hljs-comment">index 562c699b..ee2d63df 100644</span>
+<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,6 +1,6 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  resources:
-   - ../../../base
-   - ../../../base/external-secrets
-<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=99b3d180b4f70fecc99bcee284beffcbe0f92cb7</span>
-<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=99b3d180b4f70fecc99bcee284beffcbe0f92cb7</span>
-<span class="hljs-addition">+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=ba66084e8df4378510014f5a6bf39b0a6ea1211b</span>
-<span class="hljs-addition">+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=ba66084e8df4378510014f5a6bf39b0a6ea1211b</span>
-   - spi-aws-credentials-external-secret.yaml
-
- namespace: spi-system
-<span class="hljs-meta">@@ -12,10 +12,10 @@</span> namespace: spi-system
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
-<span class="hljs-deletion">-    newTag: 99b3d180b4f70fecc99bcee284beffcbe0f92cb7</span>
-<span class="hljs-addition">+    newTag: ba66084e8df4378510014f5a6bf39b0a6ea1211b</span>
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
-<span class="hljs-deletion">-    newTag: 99b3d180b4f70fecc99bcee284beffcbe0f92cb7</span>
-<span class="hljs-addition">+    newTag: ba66084e8df4378510014f5a6bf39b0a6ea1211b</span>
-
- patches:
-   - target: 
+<span class="hljs-deletion">-- ../base</span>
+<span class="hljs-addition">+- ../../base</span>
+ - toolchainconfig.yaml
+ - space-provisioner-configs.yaml
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml</span>
+similarity index 100%
+rename from components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml
+rename to components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml</span>
+similarity index 100%
+rename from components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml
+rename to components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml 
 </code></pre>
 
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
+<summary>Kustomize Generated Diff (13 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-23ca6757/production/app-of-apps-production.yaml</span>
+<span class="hljs-number">1709</span><span class="hljs-string">,1717c1709</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">elements:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-prod-p01</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-prod-p01</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-stage-p01</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-stage-p01</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-stg-host</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-stg-host</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-prd-host1</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-prd-host1</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>           <span class="hljs-attr">elements:</span> [] 
 </code></pre>
 
 </details>  
@@ -1591,69 +1574,190 @@ new file mode 100644
 
 </div>
 <div>
-<h3>4: Staging changes from df2369d5 to 966cdb9e on Mon Feb 5 21:05:22 2024 </h3>  
+<h3>4: Staging changes from 23ca6757 to 3849050e on Tue Feb 6 14:35:34 2024 </h3>  
 
 <details> 
-<summary>Git Diff (52 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/remote-secret-controller/overlays/production/base/kustomization.yaml b/components/remote-secret-controller/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-comment">index 69c3683f..7494ce80 100644</span>
-<span class="hljs-comment">--- a/components/remote-secret-controller/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/remote-secret-controller/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,8 +2,8 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
+<summary>Git Diff (161 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml b/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml</span>
+<span class="hljs-comment">index b9c6225f..3781dae4 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml</span>
+<span class="hljs-meta">@@ -14,7 +14,15 @@</span> spec:
+                 environment: staging
+                 clusterDir: &quot;&quot;
+           - list:
+<span class="hljs-deletion">-              elements: []</span>
+<span class="hljs-addition">+              elements:</span>
+<span class="hljs-addition">+                - nameNormalized: stone-prod-p01</span>
+<span class="hljs-addition">+                  values.clusterDir: stone-prod-p01</span>
+<span class="hljs-addition">+                - nameNormalized: stone-stage-p01</span>
+<span class="hljs-addition">+                  values.clusterDir: stone-stage-p01</span>
+<span class="hljs-addition">+                - nameNormalized: stone-stg-host</span>
+<span class="hljs-addition">+                  values.clusterDir: stone-stg-host</span>
+<span class="hljs-addition">+                - nameNormalized: stone-prd-host1</span>
+<span class="hljs-addition">+                  values.clusterDir: stone-prd-host1</span>
+   template:
+     metadata:
+       name: toolchain-host-operator-{{nameNormalized}}
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/production/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml</span>
+similarity index 85%
+rename from components/sandbox/toolchain-host-operator/production/kustomization.yaml
+rename to components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
+<span class="hljs-comment">index 443762b7..4e4f1976 100644</span>
+<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,4 +1,4 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
-   - ../../../base
-<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97</span>
-<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97</span>
-<span class="hljs-addition">+  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=a4bbfec9e7dcfa4515258146f3ef22404640b02e</span>
-<span class="hljs-addition">+  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=a4bbfec9e7dcfa4515258146f3ef22404640b02e</span>
-   - aws-credentials-external-secret.yaml
-
- namespace: remotesecret
-<span class="hljs-meta">@@ -11,7 +11,7 @@</span> namespace: remotesecret
- images:
-   - name:  quay.io/redhat-appstudio/remote-secret-controller
-     newName: quay.io/redhat-appstudio/remote-secret-controller
-<span class="hljs-deletion">-    newTag: dbad89ab926ce9f8ee829702abc276e1805c8a97</span>
-<span class="hljs-addition">+    newTag: a4bbfec9e7dcfa4515258146f3ef22404640b02e</span>
-
- patches:
-   - target:
-<span class="hljs-comment">diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-comment">index 2fee63cb..c07e5a21 100644</span>
-<span class="hljs-comment">--- a/components/spi/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/spi/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -3,8 +3,8 @@</span> kind: Kustomization
+<span class="hljs-deletion">-- ../base</span>
+\ No newline at end of file
+<span class="hljs-addition">+- ../../base</span>
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..4e4f1976</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,4 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../../base</span>
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..ae43a74e</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../../base</span>
+<span class="hljs-addition">+- toolchainconfig.yaml</span>
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchainconfig.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f47d0651</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchainconfig.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,76 @@</span>
+<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
+<span class="hljs-addition">+kind: ToolchainConfig</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: config</span>
+<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true # on the very first install, the CRD will be missing since the operator has not been installed yet</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+    host:</span>
+<span class="hljs-addition">+      tiers:</span>
+<span class="hljs-addition">+        defaultTier: &#x27;appstudio&#x27;</span>
+<span class="hljs-addition">+        defaultSpaceTier: &#x27;appstudio&#x27;</span>
+<span class="hljs-addition">+      automaticApproval:</span>
+<span class="hljs-addition">+        enabled: true</span>
+<span class="hljs-addition">+      capacityThresholds:</span>
+<span class="hljs-addition">+        resourceCapacityThreshold:</span>
+<span class="hljs-addition">+          defaultThreshold: 90</span>
+<span class="hljs-addition">+      spaceConfig:</span>
+<span class="hljs-addition">+        spaceRequestEnabled: true</span>
+<span class="hljs-addition">+        spaceBindingRequestEnabled: true</span>
+<span class="hljs-addition">+      deactivation:</span>
+<span class="hljs-addition">+        deactivationDomainsExcluded: &#x27;@redhat.com&#x27;</span>
+<span class="hljs-addition">+      notifications:</span>
+<span class="hljs-addition">+        adminEmail: rhtap-infra@redhat.com</span>
+<span class="hljs-addition">+        secret:</span>
+<span class="hljs-addition">+          mailgunAPIKey: mailgun.api.key</span>
+<span class="hljs-addition">+          mailgunDomain: mailgun.domain</span>
+<span class="hljs-addition">+          mailgunReplyToEmail: mailgun.replyto.email</span>
+<span class="hljs-addition">+          mailgunSenderEmail: mailgun.sender.email</span>
+<span class="hljs-addition">+          ref: host-operator-secret</span>
+<span class="hljs-addition">+        templateSetName: &#x27;appstudio&#x27;</span>
+<span class="hljs-addition">+      registrationService:</span>
+<span class="hljs-addition">+        auth:</span>
+<span class="hljs-addition">+          authClientConfigRaw: &#x27;{</span>
+<span class="hljs-addition">+                    &quot;realm&quot;: &quot;redhat-external&quot;,</span>
+<span class="hljs-addition">+                    &quot;auth-server-url&quot;: &quot;https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/auth&quot;,</span>
+<span class="hljs-addition">+                    &quot;ssl-required&quot;: &quot;ALL&quot;,</span>
+<span class="hljs-addition">+                    &quot;resource&quot;: &quot;cloud-services&quot;,</span>
+<span class="hljs-addition">+                    &quot;clientId&quot;: &quot;cloud-services&quot;,</span>
+<span class="hljs-addition">+                    &quot;public-client&quot;: true</span>
+<span class="hljs-addition">+                  }&#x27;</span>
+<span class="hljs-addition">+          authClientLibraryURL: https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/auth/js/keycloak.js</span>
+<span class="hljs-addition">+          authClientPublicKeysURL: https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs</span>
+<span class="hljs-addition">+          ssoBaseURL: https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com</span>
+<span class="hljs-addition">+          ssoRealm: redhat-external</span>
+<span class="hljs-addition">+        environment: prod</span>
+<span class="hljs-addition">+        replicas: 10</span>
+<span class="hljs-addition">+        registrationServiceURL: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline</span>
+<span class="hljs-addition">+        verification:</span>
+<span class="hljs-addition">+          enabled: true</span>
+<span class="hljs-addition">+          excludedEmailDomains: &#x27;redhat.com&#x27;</span>
+<span class="hljs-addition">+          secret:</span>
+<span class="hljs-addition">+            ref: host-operator-secret</span>
+<span class="hljs-addition">+            twilioAccountSID: twilio.account.sid # TODO remove twilio config as phone verification is not needed in Konflux</span>
+<span class="hljs-addition">+            twilioAuthToken: twilio.auth.token  # TODO remove twilio config as phone verification is not needed in Konflux</span>
+<span class="hljs-addition">+            twilioFromNumber: twilio.from_number # TODO remove twilio config as phone verification is not needed in Konflux</span>
+<span class="hljs-addition">+      toolchainStatus:</span>
+<span class="hljs-addition">+        gitHubSecret:</span>
+<span class="hljs-addition">+          ref: host-operator-secret</span>
+<span class="hljs-addition">+          accessTokenKey: github.access.token</span>
+<span class="hljs-addition">+    members:</span>
+<span class="hljs-addition">+      default:</span>
+<span class="hljs-addition">+        skipUserCreation: true</span>
+<span class="hljs-addition">+        auth:</span>
+<span class="hljs-addition">+          idp: DevSandbox</span>
+<span class="hljs-addition">+        autoscaler:</span>
+<span class="hljs-addition">+          bufferMemory: 3Gi</span>
+<span class="hljs-addition">+          bufferReplicas: 10</span>
+<span class="hljs-addition">+          deploy: true</span>
+<span class="hljs-addition">+        che:</span>
+<span class="hljs-addition">+          required: false</span>
+<span class="hljs-addition">+          userDeletionEnabled: false</span>
+<span class="hljs-addition">+        memberStatus:</span>
+<span class="hljs-addition">+          gitHubSecret:</span>
+<span class="hljs-addition">+            ref: member-operator-secret</span>
+<span class="hljs-addition">+            accessTokenKey: github.access.token</span>
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/kustomization.yaml</span>
+similarity index 90%
+rename from components/sandbox/toolchain-host-operator/staging/kustomization.yaml
+rename to components/sandbox/toolchain-host-operator/staging/stone-stg-host/kustomization.yaml
+<span class="hljs-comment">index 562c699b..ee2d63df 100644</span>
+<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,6 +1,6 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  resources:
-   - ../../../base
-   - ../../../base/external-secrets
-<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=99b3d180b4f70fecc99bcee284beffcbe0f92cb7</span>
-<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=99b3d180b4f70fecc99bcee284beffcbe0f92cb7</span>
-<span class="hljs-addition">+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=ba66084e8df4378510014f5a6bf39b0a6ea1211b</span>
-<span class="hljs-addition">+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=ba66084e8df4378510014f5a6bf39b0a6ea1211b</span>
-   - spi-aws-credentials-external-secret.yaml
-
- namespace: spi-system
-<span class="hljs-meta">@@ -12,10 +12,10 @@</span> namespace: spi-system
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
-<span class="hljs-deletion">-    newTag: 99b3d180b4f70fecc99bcee284beffcbe0f92cb7</span>
-<span class="hljs-addition">+    newTag: ba66084e8df4378510014f5a6bf39b0a6ea1211b</span>
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
-<span class="hljs-deletion">-    newTag: 99b3d180b4f70fecc99bcee284beffcbe0f92cb7</span>
-<span class="hljs-addition">+    newTag: ba66084e8df4378510014f5a6bf39b0a6ea1211b</span>
-
- patches:
-   - target: 
+<span class="hljs-deletion">-- ../base</span>
+<span class="hljs-addition">+- ../../base</span>
+ - toolchainconfig.yaml
+ - space-provisioner-configs.yaml
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml</span>
+similarity index 100%
+rename from components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml
+rename to components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml</span>
+similarity index 100%
+rename from components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml
+rename to components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml 
 </code></pre>
 
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
+<summary>Kustomize Generated Diff (13 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-23ca6757/staging/app-of-apps-staging.yaml</span>
+<span class="hljs-number">1524</span><span class="hljs-string">,1532c1524</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">elements:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-prod-p01</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-prod-p01</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-stage-p01</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-stage-p01</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-stg-host</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-stg-host</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-prd-host1</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-prd-host1</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>           <span class="hljs-attr">elements:</span> [] 
 </code></pre>
 
 </details>  
@@ -1767,69 +1871,190 @@ new file mode 100644
 
 </div>
 <div>
-<h3>4: Development changes from df2369d5 to 966cdb9e on Mon Feb 5 21:05:22 2024 </h3>  
+<h3>4: Development changes from 23ca6757 to 3849050e on Tue Feb 6 14:35:34 2024 </h3>  
 
 <details> 
-<summary>Git Diff (52 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/remote-secret-controller/overlays/production/base/kustomization.yaml b/components/remote-secret-controller/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-comment">index 69c3683f..7494ce80 100644</span>
-<span class="hljs-comment">--- a/components/remote-secret-controller/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/remote-secret-controller/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,8 +2,8 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
+<summary>Git Diff (161 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml b/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml</span>
+<span class="hljs-comment">index b9c6225f..3781dae4 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/host/toolchain-host-operator/toolchain-host-operator.yaml</span>
+<span class="hljs-meta">@@ -14,7 +14,15 @@</span> spec:
+                 environment: staging
+                 clusterDir: &quot;&quot;
+           - list:
+<span class="hljs-deletion">-              elements: []</span>
+<span class="hljs-addition">+              elements:</span>
+<span class="hljs-addition">+                - nameNormalized: stone-prod-p01</span>
+<span class="hljs-addition">+                  values.clusterDir: stone-prod-p01</span>
+<span class="hljs-addition">+                - nameNormalized: stone-stage-p01</span>
+<span class="hljs-addition">+                  values.clusterDir: stone-stage-p01</span>
+<span class="hljs-addition">+                - nameNormalized: stone-stg-host</span>
+<span class="hljs-addition">+                  values.clusterDir: stone-stg-host</span>
+<span class="hljs-addition">+                - nameNormalized: stone-prd-host1</span>
+<span class="hljs-addition">+                  values.clusterDir: stone-prd-host1</span>
+   template:
+     metadata:
+       name: toolchain-host-operator-{{nameNormalized}}
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/production/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml</span>
+similarity index 85%
+rename from components/sandbox/toolchain-host-operator/production/kustomization.yaml
+rename to components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
+<span class="hljs-comment">index 443762b7..4e4f1976 100644</span>
+<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,4 +1,4 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
-   - ../../../base
-<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97</span>
-<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97</span>
-<span class="hljs-addition">+  - https://github.com/redhat-appstudio/remote-secret/config/overlays/openshift_aws?ref=a4bbfec9e7dcfa4515258146f3ef22404640b02e</span>
-<span class="hljs-addition">+  - https://github.com/redhat-appstudio/remote-secret/config/monitoring/prometheus?ref=a4bbfec9e7dcfa4515258146f3ef22404640b02e</span>
-   - aws-credentials-external-secret.yaml
-
- namespace: remotesecret
-<span class="hljs-meta">@@ -11,7 +11,7 @@</span> namespace: remotesecret
- images:
-   - name:  quay.io/redhat-appstudio/remote-secret-controller
-     newName: quay.io/redhat-appstudio/remote-secret-controller
-<span class="hljs-deletion">-    newTag: dbad89ab926ce9f8ee829702abc276e1805c8a97</span>
-<span class="hljs-addition">+    newTag: a4bbfec9e7dcfa4515258146f3ef22404640b02e</span>
-
- patches:
-   - target:
-<span class="hljs-comment">diff --git a/components/spi/overlays/production/base/kustomization.yaml b/components/spi/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-comment">index 2fee63cb..c07e5a21 100644</span>
-<span class="hljs-comment">--- a/components/spi/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/spi/overlays/production/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -3,8 +3,8 @@</span> kind: Kustomization
+<span class="hljs-deletion">-- ../base</span>
+\ No newline at end of file
+<span class="hljs-addition">+- ../../base</span>
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..4e4f1976</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,4 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../../base</span>
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..ae43a74e</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../../base</span>
+<span class="hljs-addition">+- toolchainconfig.yaml</span>
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchainconfig.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..f47d0651</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchainconfig.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,76 @@</span>
+<span class="hljs-addition">+apiVersion: toolchain.dev.openshift.com/v1alpha1</span>
+<span class="hljs-addition">+kind: ToolchainConfig</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: config</span>
+<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
+<span class="hljs-addition">+  annotations:</span>
+<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true # on the very first install, the CRD will be missing since the operator has not been installed yet</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+    host:</span>
+<span class="hljs-addition">+      tiers:</span>
+<span class="hljs-addition">+        defaultTier: &#x27;appstudio&#x27;</span>
+<span class="hljs-addition">+        defaultSpaceTier: &#x27;appstudio&#x27;</span>
+<span class="hljs-addition">+      automaticApproval:</span>
+<span class="hljs-addition">+        enabled: true</span>
+<span class="hljs-addition">+      capacityThresholds:</span>
+<span class="hljs-addition">+        resourceCapacityThreshold:</span>
+<span class="hljs-addition">+          defaultThreshold: 90</span>
+<span class="hljs-addition">+      spaceConfig:</span>
+<span class="hljs-addition">+        spaceRequestEnabled: true</span>
+<span class="hljs-addition">+        spaceBindingRequestEnabled: true</span>
+<span class="hljs-addition">+      deactivation:</span>
+<span class="hljs-addition">+        deactivationDomainsExcluded: &#x27;@redhat.com&#x27;</span>
+<span class="hljs-addition">+      notifications:</span>
+<span class="hljs-addition">+        adminEmail: rhtap-infra@redhat.com</span>
+<span class="hljs-addition">+        secret:</span>
+<span class="hljs-addition">+          mailgunAPIKey: mailgun.api.key</span>
+<span class="hljs-addition">+          mailgunDomain: mailgun.domain</span>
+<span class="hljs-addition">+          mailgunReplyToEmail: mailgun.replyto.email</span>
+<span class="hljs-addition">+          mailgunSenderEmail: mailgun.sender.email</span>
+<span class="hljs-addition">+          ref: host-operator-secret</span>
+<span class="hljs-addition">+        templateSetName: &#x27;appstudio&#x27;</span>
+<span class="hljs-addition">+      registrationService:</span>
+<span class="hljs-addition">+        auth:</span>
+<span class="hljs-addition">+          authClientConfigRaw: &#x27;{</span>
+<span class="hljs-addition">+                    &quot;realm&quot;: &quot;redhat-external&quot;,</span>
+<span class="hljs-addition">+                    &quot;auth-server-url&quot;: &quot;https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/auth&quot;,</span>
+<span class="hljs-addition">+                    &quot;ssl-required&quot;: &quot;ALL&quot;,</span>
+<span class="hljs-addition">+                    &quot;resource&quot;: &quot;cloud-services&quot;,</span>
+<span class="hljs-addition">+                    &quot;clientId&quot;: &quot;cloud-services&quot;,</span>
+<span class="hljs-addition">+                    &quot;public-client&quot;: true</span>
+<span class="hljs-addition">+                  }&#x27;</span>
+<span class="hljs-addition">+          authClientLibraryURL: https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/auth/js/keycloak.js</span>
+<span class="hljs-addition">+          authClientPublicKeysURL: https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs</span>
+<span class="hljs-addition">+          ssoBaseURL: https://keycloak-rhtap-auth.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com</span>
+<span class="hljs-addition">+          ssoRealm: redhat-external</span>
+<span class="hljs-addition">+        environment: prod</span>
+<span class="hljs-addition">+        replicas: 10</span>
+<span class="hljs-addition">+        registrationServiceURL: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline</span>
+<span class="hljs-addition">+        verification:</span>
+<span class="hljs-addition">+          enabled: true</span>
+<span class="hljs-addition">+          excludedEmailDomains: &#x27;redhat.com&#x27;</span>
+<span class="hljs-addition">+          secret:</span>
+<span class="hljs-addition">+            ref: host-operator-secret</span>
+<span class="hljs-addition">+            twilioAccountSID: twilio.account.sid # TODO remove twilio config as phone verification is not needed in Konflux</span>
+<span class="hljs-addition">+            twilioAuthToken: twilio.auth.token  # TODO remove twilio config as phone verification is not needed in Konflux</span>
+<span class="hljs-addition">+            twilioFromNumber: twilio.from_number # TODO remove twilio config as phone verification is not needed in Konflux</span>
+<span class="hljs-addition">+      toolchainStatus:</span>
+<span class="hljs-addition">+        gitHubSecret:</span>
+<span class="hljs-addition">+          ref: host-operator-secret</span>
+<span class="hljs-addition">+          accessTokenKey: github.access.token</span>
+<span class="hljs-addition">+    members:</span>
+<span class="hljs-addition">+      default:</span>
+<span class="hljs-addition">+        skipUserCreation: true</span>
+<span class="hljs-addition">+        auth:</span>
+<span class="hljs-addition">+          idp: DevSandbox</span>
+<span class="hljs-addition">+        autoscaler:</span>
+<span class="hljs-addition">+          bufferMemory: 3Gi</span>
+<span class="hljs-addition">+          bufferReplicas: 10</span>
+<span class="hljs-addition">+          deploy: true</span>
+<span class="hljs-addition">+        che:</span>
+<span class="hljs-addition">+          required: false</span>
+<span class="hljs-addition">+          userDeletionEnabled: false</span>
+<span class="hljs-addition">+        memberStatus:</span>
+<span class="hljs-addition">+          gitHubSecret:</span>
+<span class="hljs-addition">+            ref: member-operator-secret</span>
+<span class="hljs-addition">+            accessTokenKey: github.access.token</span>
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/kustomization.yaml</span>
+similarity index 90%
+rename from components/sandbox/toolchain-host-operator/staging/kustomization.yaml
+rename to components/sandbox/toolchain-host-operator/staging/stone-stg-host/kustomization.yaml
+<span class="hljs-comment">index 562c699b..ee2d63df 100644</span>
+<span class="hljs-comment">--- a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,6 +1,6 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
  resources:
-   - ../../../base
-   - ../../../base/external-secrets
-<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=99b3d180b4f70fecc99bcee284beffcbe0f92cb7</span>
-<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=99b3d180b4f70fecc99bcee284beffcbe0f92cb7</span>
-<span class="hljs-addition">+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=ba66084e8df4378510014f5a6bf39b0a6ea1211b</span>
-<span class="hljs-addition">+  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=ba66084e8df4378510014f5a6bf39b0a6ea1211b</span>
-   - spi-aws-credentials-external-secret.yaml
-
- namespace: spi-system
-<span class="hljs-meta">@@ -12,10 +12,10 @@</span> namespace: spi-system
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
-<span class="hljs-deletion">-    newTag: 99b3d180b4f70fecc99bcee284beffcbe0f92cb7</span>
-<span class="hljs-addition">+    newTag: ba66084e8df4378510014f5a6bf39b0a6ea1211b</span>
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
-<span class="hljs-deletion">-    newTag: 99b3d180b4f70fecc99bcee284beffcbe0f92cb7</span>
-<span class="hljs-addition">+    newTag: ba66084e8df4378510014f5a6bf39b0a6ea1211b</span>
-
- patches:
-   - target: 
+<span class="hljs-deletion">-- ../base</span>
+<span class="hljs-addition">+- ../../base</span>
+ - toolchainconfig.yaml
+ - space-provisioner-configs.yaml
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml</span>
+similarity index 100%
+rename from components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml
+rename to components/sandbox/toolchain-host-operator/staging/stone-stg-host/space-provisioner-configs.yaml
+<span class="hljs-comment">diff --git a/components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml</span>
+similarity index 100%
+rename from components/sandbox/toolchain-host-operator/staging/toolchainconfig.yaml
+rename to components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchainconfig.yaml 
 </code></pre>
 
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
+<summary>Kustomize Generated Diff (13 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-23ca6757/development/app-of-apps-development.yaml</span>
+<span class="hljs-number">1107</span><span class="hljs-string">,1115c1107</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">elements:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-prod-p01</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-prod-p01</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-stage-p01</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-stage-p01</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-stg-host</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-stg-host</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-prd-host1</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-prd-host1</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>           <span class="hljs-attr">elements:</span> [] 
 </code></pre>
 
 </details>  

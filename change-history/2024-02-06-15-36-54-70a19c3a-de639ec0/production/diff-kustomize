@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-de639ec0/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-70a19c3a/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml
+550,552d549
+<   name: konflux-performance
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+605,607d601
+<   name: konflux-performance
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+658,660d651
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-performance

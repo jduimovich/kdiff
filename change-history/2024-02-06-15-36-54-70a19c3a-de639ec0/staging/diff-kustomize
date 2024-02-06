@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-de639ec0/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-70a19c3a/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+550,552d549
+<   name: konflux-performance
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+605,607d601
+<   name: konflux-performance
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+658,660d651
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-performance
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-de639ec0/staging/components/perf-team-prometheus-reader/staging/kustomize.out.yaml ./kustomized-cache/commit-70a19c3a/staging/components/perf-team-prometheus-reader/staging/kustomize.out.yaml
+33c33
+<   name: konflux-performance
+---
+>   name: Performance

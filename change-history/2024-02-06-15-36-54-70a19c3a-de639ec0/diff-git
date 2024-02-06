@@ -1,0 +1,27 @@
+diff --git a/components/authentication/base/rh-idp/everyone-can-view-patch.yaml b/components/authentication/base/rh-idp/everyone-can-view-patch.yaml
+index 138051b0..2656955b 100644
+--- a/components/authentication/base/rh-idp/everyone-can-view-patch.yaml
++++ b/components/authentication/base/rh-idp/everyone-can-view-patch.yaml
+@@ -32,6 +32,9 @@
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-o11y'
++    - kind: Group
++      apiGroup: rbac.authorization.k8s.io
++      name: 'konflux-performance'
+     - kind: Group
+       apiGroup: rbac.authorization.k8s.io
+       name: 'konflux-pipeline-service'
+diff --git a/components/perf-team-prometheus-reader/base/perf-team.yaml b/components/perf-team-prometheus-reader/base/perf-team.yaml
+index 252e2f94..52822c28 100644
+--- a/components/perf-team-prometheus-reader/base/perf-team.yaml
++++ b/components/perf-team-prometheus-reader/base/perf-team.yaml
+@@ -6,7 +6,7 @@ metadata:
+ subjects:
+   - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: Performance
++    name: konflux-performance
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
