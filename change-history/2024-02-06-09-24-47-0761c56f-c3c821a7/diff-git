@@ -1,0 +1,42 @@
+diff --git a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/kustomization.yaml
+index ee2fc005..562c699b 100644
+--- a/components/sandbox/toolchain-host-operator/staging/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/kustomization.yaml
+@@ -3,3 +3,4 @@ kind: Kustomization
+ resources:
+ - ../base
+ - toolchainconfig.yaml
++- space-provisioner-configs.yaml
+diff --git a/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml
+new file mode 100644
+index 00000000..cb443616
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/staging/space-provisioner-configs.yaml
+@@ -0,0 +1,26 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-stone-stg-m01.7ayg.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++spec:
++  toolchainCluster: member-stone-stg-m01.7ayg.p1.openshiftapps.com
++  enabled: true
++  capacityThresholds:
++    maxNumberOfSpaces: 1500
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/tenant
++---
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-stone-stg-rh01.l2vh.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++spec:
++  toolchainCluster: member-stone-stg-rh01.l2vh.p1.openshiftapps.com
++  enabled: false
++  capacityThresholds:
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/tenant
+\ No newline at end of file
