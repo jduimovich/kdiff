@@ -1,0 +1,78 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e492811b/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-1179eaca/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+6,15d5
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     argocd.argoproj.io/managed-by: openshift-gitops
+<   name: openshift-pipelines
+< ---
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+23c13
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "0"
+280d269
+<   - patch
+1213c1202
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:089f2e576d31759eca98f78a591deda2cb5f37d4
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:cdff9b19bf4b6e7009412ae6103be882a3a36f9b
+1897,1898c1886,1887
+<           application-name: Red Hat Konflux
+<           custom-console-name: Red Hat Konflux
+---
+>           application-name: Red Hat Trusted App Pipeline
+>           custom-console-name: Red Hat Trusted App Pipeline
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e492811b/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-1179eaca/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+6,15d5
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     argocd.argoproj.io/managed-by: openshift-gitops
+<   name: openshift-pipelines
+< ---
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+23c13
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "0"
+280d269
+<   - patch
+1213c1202
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:089f2e576d31759eca98f78a591deda2cb5f37d4
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:cdff9b19bf4b6e7009412ae6103be882a3a36f9b
+1897,1898c1886,1887
+<           application-name: Red Hat Konflux
+<           custom-console-name: Red Hat Konflux
+---
+>           application-name: Red Hat Trusted App Pipeline
+>           custom-console-name: Red Hat Trusted App Pipeline
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e492811b/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-1179eaca/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+6,15d5
+<     argocd.argoproj.io/sync-wave: "-1"
+<   labels:
+<     argocd.argoproj.io/managed-by: openshift-gitops
+<   name: openshift-pipelines
+< ---
+< apiVersion: v1
+< kind: Namespace
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+23c13
+<     argocd.argoproj.io/sync-wave: "-1"
+---
+>     argocd.argoproj.io/sync-wave: "0"
+280d269
+<   - patch
+1213c1202
+<         image: quay.io/redhat-appstudio/pipeline-service-exporter:089f2e576d31759eca98f78a591deda2cb5f37d4
+---
+>         image: quay.io/redhat-appstudio/pipeline-service-exporter:cdff9b19bf4b6e7009412ae6103be882a3a36f9b
