@@ -1,0 +1,139 @@
+diff --git a/components/sandbox/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/base/rbac/sandbox-sre-admins.yaml
+index 5014b416..373a872f 100644
+--- a/components/sandbox/base/rbac/sandbox-sre-admins.yaml
++++ b/components/sandbox/base/rbac/sandbox-sre-admins.yaml
+@@ -80,18 +80,9 @@ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   name: sandbox-sre-admins-can-register-clusters
+ subjects:
+-  - kind: User
++  - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: MatousJobanek
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: alexeykazakov
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: xcoulon
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: mfrancisc
++    name: konflux-core
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
+index 84f2295a..c006bfd6 100644
+--- a/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
++++ b/components/sandbox/toolchain-host-operator/base/rbac/sandbox-sre-admins.yaml
+@@ -5,18 +5,9 @@ metadata:
+   name: sandbox-sre-host-admins
+   namespace: sandbox-sre-host
+ subjects:
+-  - kind: User
++  - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: MatousJobanek
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: alexeykazakov
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: xcoulon
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: mfrancisc
++    name: konflux-core
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+@@ -28,18 +19,9 @@ roleRef:
+    name: sandbox-sre-host-operator-admins
+    namespace: toolchain-host-operator
+  subjects:
+-   - kind: User
+-     apiGroup: rbac.authorization.k8s.io
+-     name: MatousJobanek
+-   - kind: User
+-     apiGroup: rbac.authorization.k8s.io
+-     name: alexeykazakov
+-   - kind: User
+-     apiGroup: rbac.authorization.k8s.io
+-     name: xcoulon
+-   - kind: User
++   - kind: Group
+      apiGroup: rbac.authorization.k8s.io
+-     name: mfrancisc
++     name: konflux-core
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+diff --git a/components/sandbox/toolchain-member-operator/base/rbac/register-cluster-extra-member-permissions.yaml b/components/sandbox/toolchain-member-operator/base/rbac/register-cluster-extra-member-permissions.yaml
+index 7b1fb4ea..fa418cac 100644
+--- a/components/sandbox/toolchain-member-operator/base/rbac/register-cluster-extra-member-permissions.yaml
++++ b/components/sandbox/toolchain-member-operator/base/rbac/register-cluster-extra-member-permissions.yaml
+@@ -86,15 +86,9 @@ apiVersion: rbac.authorization.k8s.io/v1
+ metadata:
+   name: sandbox-sre-admins-can-register-member-clusters
+ subjects:
+-- kind: User
++- kind: Group
+   apiGroup: rbac.authorization.k8s.io
+-  name: MatousJobanek
+-- kind: User
+-  apiGroup: rbac.authorization.k8s.io
+-  name: alexeykazakov
+-- kind: User
+-  apiGroup: rbac.authorization.k8s.io
+-  name: xcoulon
++  name: konflux-core
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+diff --git a/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
+index 6e44eba5..a565821c 100644
+--- a/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
++++ b/components/sandbox/toolchain-member-operator/base/rbac/sandbox-sre-admins.yaml
+@@ -5,18 +5,9 @@ metadata:
+   name: sandbox-sre-member-admins
+   namespace: sandbox-sre-member
+ subjects:
+-  - kind: User
++  - kind: Group
+     apiGroup: rbac.authorization.k8s.io
+-    name: MatousJobanek
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: alexeykazakov
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: xcoulon
+-  - kind: User
+-    apiGroup: rbac.authorization.k8s.io
+-    name: mfrancisc
++    name: konflux-core
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+@@ -28,18 +19,9 @@ roleRef:
+    name: sandbox-sre-member-operator-admins
+    namespace: toolchain-member-operator
+  subjects:
+-   - kind: User
+-     apiGroup: rbac.authorization.k8s.io
+-     name: MatousJobanek
+-   - kind: User
+-     apiGroup: rbac.authorization.k8s.io
+-     name: alexeykazakov
+-   - kind: User
+-     apiGroup: rbac.authorization.k8s.io
+-     name: xcoulon
+-   - kind: User
++   - kind: Group
+      apiGroup: rbac.authorization.k8s.io
+-     name: mfrancisc
++     name: konflux-core
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
