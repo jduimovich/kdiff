@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-351d090c/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-48e91d5a/staging/components/tekton-ci/staging/kustomize.out.yaml
+268,276d267
+<   name: infra-deployments
+< spec:
+<   url: https://github.com/redhat-appstudio/infra-deployments
+< ---
+< apiVersion: pipelinesascode.tekton.dev/v1alpha1
+< kind: Repository
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
