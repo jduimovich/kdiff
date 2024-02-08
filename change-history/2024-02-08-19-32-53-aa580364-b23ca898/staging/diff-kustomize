@@ -1,0 +1,33 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b23ca898/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-aa580364/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1886,1894d1885
+<     options:
+<       deployments:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             replicas: 1
+<         tekton-pipelines-webhook:
+<           spec:
+<             replicas: 1
+<       disabled: false
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b23ca898/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-aa580364/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1886,1894d1885
+<     options:
+<       deployments:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             replicas: 1
+<         tekton-pipelines-webhook:
+<           spec:
+<             replicas: 1
+<       disabled: false
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b23ca898/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-aa580364/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1886,1894d1885
+<     options:
+<       deployments:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             replicas: 1
+<         tekton-pipelines-webhook:
+<           spec:
+<             replicas: 1
+<       disabled: false

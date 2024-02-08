@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b23ca898/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-aa580364/development/components/pipeline-service/development/kustomize.out.yaml
+2018,2026d2017
+<     options:
+<       deployments:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             replicas: 1
+<         tekton-pipelines-webhook:
+<           spec:
+<             replicas: 1
+<       disabled: false
