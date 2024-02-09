@@ -1,0 +1,67 @@
+diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml
+index 41788c6d..04a535fe 100644
+--- a/components/pipeline-service/development/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/development/update-tekton-config-performance.yaml
+@@ -26,4 +26,8 @@
+ - op: replace
+   path: /spec/pipeline/performance/replicas
+   # default pipeline-service setting is 1
++  value: 2
++- op: replace
++  path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
++  # default pipeline-service setting is 1
+   value: 2
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
+index 94cf33e1..738fdf4c 100644
+--- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
+@@ -26,4 +26,8 @@
+ - op: replace
+   path: /spec/pipeline/performance/replicas
+   # default pipeline-service setting is 1
++  value: 2
++- op: replace
++  path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
++  # default pipeline-service setting is 1
+   value: 2
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 23699e7c..58651ea5 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1887,7 +1887,7 @@ spec:
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+-            replicas: 1
++            replicas: 2
+         tekton-pipelines-webhook:
+           spec:
+             replicas: 1
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 300465a9..754c5dd9 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1887,7 +1887,7 @@ spec:
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+-            replicas: 1
++            replicas: 2
+         tekton-pipelines-webhook:
+           spec:
+             replicas: 1
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index a3b7c49c..efa51225 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1887,7 +1887,7 @@ spec:
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+-            replicas: 1
++            replicas: 2
+         tekton-pipelines-webhook:
+           spec:
+             replicas: 1

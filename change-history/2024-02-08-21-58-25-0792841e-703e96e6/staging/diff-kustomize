@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-703e96e6/staging/components/has/staging/kustomize.out.yaml ./kustomized-cache/commit-0792841e/staging/components/has/staging/kustomize.out.yaml
+845c845
+<         image: quay.io/redhat-appstudio/application-service:30418824c6348bfb0ca549a12139cfcca53e0ab5
+---
+>         image: quay.io/redhat-appstudio/application-service:2d425363673f7c798e29f186e27d24bb9704d004
+857,859d856
+<           protocol: TCP
+<         - containerPort: 8081
+<           name: health
