@@ -1,0 +1,87 @@
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 54e40816..6394cd06 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=3b297d99c01d1beeb9eda2b93dd69e34ab3b0933
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=37dd9bab130381ec03995c34f76514b86c810315
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+index f7d4d7d6..2dce7293 100644
+--- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+@@ -26,4 +26,8 @@
+ - op: replace
+   path: /spec/pipeline/performance/replicas
+   # default pipeline-service setting is 1
++  value: 2
++- op: replace
++  path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
++  # default pipeline-service setting is 1
+   value: 2
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index eefd4141..d3342a0a 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1882,6 +1882,15 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    options:
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            replicas: 1
++      disabled: false
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index fc5da799..91c5a66b 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1882,6 +1882,15 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    options:
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            replicas: 1
++      disabled: false
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index af6ec09e..50145778 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1882,6 +1882,15 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    options:
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            replicas: 1
++      disabled: false
+     performance:
+       buckets: 4
+       disable-ha: false

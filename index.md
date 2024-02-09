@@ -1,12 +1,644 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Feb  9 16:03:11 UTC 2024
+### This file generated at Fri Feb  9 20:02:57 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 24a62905 to 1e232646 on Fri Feb 9 15:59:02 2024 </h3>  
+<h3>1: Production changes from 1e232646 to cb0c690d on Fri Feb 9 17:10:17 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (87 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 54e40816..6394cd06 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=3b297d99c01d1beeb9eda2b93dd69e34ab3b0933
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=37dd9bab130381ec03995c34f76514b86c810315
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+index f7d4d7d6..2dce7293 100644
+--- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+@@ -26,4 +26,8 @@
+ - op: replace
+   path: /spec/pipeline/performance/replicas
+   # default pipeline-service setting is 1
++  value: 2
++- op: replace
++  path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
++  # default pipeline-service setting is 1
+   value: 2
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index eefd4141..d3342a0a 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1882,6 +1882,15 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    options:
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            replicas: 1
++      disabled: false
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index fc5da799..91c5a66b 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1882,6 +1882,15 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    options:
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            replicas: 1
++      disabled: false
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index af6ec09e..50145778 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1882,6 +1882,15 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    options:
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            replicas: 1
++      disabled: false
+     performance:
+       buckets: 4
+       disable-ha: false 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+
+``` 
+./commit-1e232646/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1885,1893d1884
+<     options:
+<       deployments:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             replicas: 2
+<         tekton-pipelines-webhook:
+<           spec:
+<             replicas: 1
+<       disabled: false
+./commit-1e232646/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1885,1893d1884
+<     options:
+<       deployments:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             replicas: 2
+<         tekton-pipelines-webhook:
+<           spec:
+<             replicas: 1
+<       disabled: false
+./commit-1e232646/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1885,1893d1884
+<     options:
+<       deployments:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             replicas: 2
+<         tekton-pipelines-webhook:
+<           spec:
+<             replicas: 1
+<       disabled: false 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 1e232646 to cb0c690d on Fri Feb 9 17:10:17 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (87 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 54e40816..6394cd06 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=3b297d99c01d1beeb9eda2b93dd69e34ab3b0933
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=37dd9bab130381ec03995c34f76514b86c810315
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+index f7d4d7d6..2dce7293 100644
+--- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+@@ -26,4 +26,8 @@
+ - op: replace
+   path: /spec/pipeline/performance/replicas
+   # default pipeline-service setting is 1
++  value: 2
++- op: replace
++  path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
++  # default pipeline-service setting is 1
+   value: 2
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index eefd4141..d3342a0a 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1882,6 +1882,15 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    options:
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            replicas: 1
++      disabled: false
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index fc5da799..91c5a66b 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1882,6 +1882,15 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    options:
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            replicas: 1
++      disabled: false
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index af6ec09e..50145778 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1882,6 +1882,15 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    options:
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            replicas: 1
++      disabled: false
+     performance:
+       buckets: 4
+       disable-ha: false 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 1e232646 to cb0c690d on Fri Feb 9 17:10:17 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (87 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 54e40816..6394cd06 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=3b297d99c01d1beeb9eda2b93dd69e34ab3b0933
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=37dd9bab130381ec03995c34f76514b86c810315
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+index f7d4d7d6..2dce7293 100644
+--- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+@@ -26,4 +26,8 @@
+ - op: replace
+   path: /spec/pipeline/performance/replicas
+   # default pipeline-service setting is 1
++  value: 2
++- op: replace
++  path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
++  # default pipeline-service setting is 1
+   value: 2
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index eefd4141..d3342a0a 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1882,6 +1882,15 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    options:
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            replicas: 1
++      disabled: false
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index fc5da799..91c5a66b 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1882,6 +1882,15 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    options:
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            replicas: 1
++      disabled: false
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index af6ec09e..50145778 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1882,6 +1882,15 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    options:
++      deployments:
++        tekton-operator-proxy-webhook:
++          spec:
++            replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            replicas: 1
++      disabled: false
+     performance:
+       buckets: 4
+       disable-ha: false 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 24a62905 to 1e232646 on Fri Feb 9 15:59:02 2024 </h3>  
  
 <details> 
 <summary>Git Diff (211 lines)</summary>  
@@ -342,7 +974,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 24a62905 to 1e232646 on Fri Feb 9 15:59:02 2024 </h3>  
+<h3>2: Staging changes from 24a62905 to 1e232646 on Fri Feb 9 15:59:02 2024 </h3>  
  
 <details> 
 <summary>Git Diff (211 lines)</summary>  
@@ -749,7 +1381,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 24a62905 to 1e232646 on Fri Feb 9 15:59:02 2024 </h3>  
+<h3>2: Development changes from 24a62905 to 1e232646 on Fri Feb 9 15:59:02 2024 </h3>  
  
 <details> 
 <summary>Git Diff (211 lines)</summary>  
@@ -1043,7 +1675,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 9bba44ba to 24a62905 on Fri Feb 9 11:46:24 2024 </h3>  
+<h3>3: Production changes from 9bba44ba to 24a62905 on Fri Feb 9 11:46:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1206,7 +1838,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 9bba44ba to 24a62905 on Fri Feb 9 11:46:24 2024 </h3>  
+<h3>3: Staging changes from 9bba44ba to 24a62905 on Fri Feb 9 11:46:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1606,7 +2238,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 9bba44ba to 24a62905 on Fri Feb 9 11:46:24 2024 </h3>  
+<h3>3: Development changes from 9bba44ba to 24a62905 on Fri Feb 9 11:46:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -1958,7 +2590,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 34415b28 to 9bba44ba on Fri Feb 9 09:53:37 2024 </h3>  
+<h3>4: Production changes from 34415b28 to 9bba44ba on Fri Feb 9 09:53:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (40 lines)</summary>  
@@ -2139,7 +2771,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 34415b28 to 9bba44ba on Fri Feb 9 09:53:37 2024 </h3>  
+<h3>4: Staging changes from 34415b28 to 9bba44ba on Fri Feb 9 09:53:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (40 lines)</summary>  
@@ -2326,7 +2958,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 34415b28 to 9bba44ba on Fri Feb 9 09:53:37 2024 </h3>  
+<h3>4: Development changes from 34415b28 to 9bba44ba on Fri Feb 9 09:53:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (40 lines)</summary>  
@@ -2397,564 +3029,6 @@ index 78b8a01e..7e29d940 100644
 <         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
 ---
 >         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:de67c11841ae66d35ea656564cfb9c5f270e1f8e 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 703e96e6 to 34415b28 on Thu Feb 8 22:47:53 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (67 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml
-index 41788c6d..04a535fe 100644
---- a/components/pipeline-service/development/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/development/update-tekton-config-performance.yaml
-@@ -26,4 +26,8 @@
- - op: replace
-   path: /spec/pipeline/performance/replicas
-   # default pipeline-service setting is 1
-+  value: 2
-+- op: replace
-+  path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
-+  # default pipeline-service setting is 1
-   value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-index 94cf33e1..738fdf4c 100644
---- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-@@ -26,4 +26,8 @@
- - op: replace
-   path: /spec/pipeline/performance/replicas
-   # default pipeline-service setting is 1
-+  value: 2
-+- op: replace
-+  path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
-+  # default pipeline-service setting is 1
-   value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 23699e7c..58651ea5 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1887,7 +1887,7 @@ spec:
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
--            replicas: 1
-+            replicas: 2
-         tekton-pipelines-webhook:
-           spec:
-             replicas: 1
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 300465a9..754c5dd9 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1887,7 +1887,7 @@ spec:
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
--            replicas: 1
-+            replicas: 2
-         tekton-pipelines-webhook:
-           spec:
-             replicas: 1
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index a3b7c49c..efa51225 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1887,7 +1887,7 @@ spec:
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
--            replicas: 1
-+            replicas: 2
-         tekton-pipelines-webhook:
-           spec:
-             replicas: 1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 703e96e6 to 34415b28 on Thu Feb 8 22:47:53 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (67 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml
-index 41788c6d..04a535fe 100644
---- a/components/pipeline-service/development/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/development/update-tekton-config-performance.yaml
-@@ -26,4 +26,8 @@
- - op: replace
-   path: /spec/pipeline/performance/replicas
-   # default pipeline-service setting is 1
-+  value: 2
-+- op: replace
-+  path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
-+  # default pipeline-service setting is 1
-   value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-index 94cf33e1..738fdf4c 100644
---- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-@@ -26,4 +26,8 @@
- - op: replace
-   path: /spec/pipeline/performance/replicas
-   # default pipeline-service setting is 1
-+  value: 2
-+- op: replace
-+  path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
-+  # default pipeline-service setting is 1
-   value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 23699e7c..58651ea5 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1887,7 +1887,7 @@ spec:
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
--            replicas: 1
-+            replicas: 2
-         tekton-pipelines-webhook:
-           spec:
-             replicas: 1
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 300465a9..754c5dd9 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1887,7 +1887,7 @@ spec:
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
--            replicas: 1
-+            replicas: 2
-         tekton-pipelines-webhook:
-           spec:
-             replicas: 1
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index a3b7c49c..efa51225 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1887,7 +1887,7 @@ spec:
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
--            replicas: 1
-+            replicas: 2
-         tekton-pipelines-webhook:
-           spec:
-             replicas: 1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (15 lines)</summary>  
-
-``` 
-./commit-703e96e6/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1890c1890
-<             replicas: 2
----
->             replicas: 1
-./commit-703e96e6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-1890c1890
-<             replicas: 2
----
->             replicas: 1
-./commit-703e96e6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1890c1890
-<             replicas: 2
----
->             replicas: 1 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 703e96e6 to 34415b28 on Thu Feb 8 22:47:53 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (67 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml
-index 41788c6d..04a535fe 100644
---- a/components/pipeline-service/development/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/development/update-tekton-config-performance.yaml
-@@ -26,4 +26,8 @@
- - op: replace
-   path: /spec/pipeline/performance/replicas
-   # default pipeline-service setting is 1
-+  value: 2
-+- op: replace
-+  path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
-+  # default pipeline-service setting is 1
-   value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-index 94cf33e1..738fdf4c 100644
---- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml
-@@ -26,4 +26,8 @@
- - op: replace
-   path: /spec/pipeline/performance/replicas
-   # default pipeline-service setting is 1
-+  value: 2
-+- op: replace
-+  path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
-+  # default pipeline-service setting is 1
-   value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 23699e7c..58651ea5 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1887,7 +1887,7 @@ spec:
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
--            replicas: 1
-+            replicas: 2
-         tekton-pipelines-webhook:
-           spec:
-             replicas: 1
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 300465a9..754c5dd9 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1887,7 +1887,7 @@ spec:
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
--            replicas: 1
-+            replicas: 2
-         tekton-pipelines-webhook:
-           spec:
-             replicas: 1
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index a3b7c49c..efa51225 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1887,7 +1887,7 @@ spec:
-       deployments:
-         tekton-operator-proxy-webhook:
-           spec:
--            replicas: 1
-+            replicas: 2
-         tekton-pipelines-webhook:
-           spec:
-             replicas: 1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-703e96e6/development/components/pipeline-service/development/kustomize.out.yaml
-2022c2022
-<             replicas: 2
----
->             replicas: 1 
 ```
  
 </details>  
