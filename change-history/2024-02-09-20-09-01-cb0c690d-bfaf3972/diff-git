@@ -1,0 +1,189 @@
+diff --git a/components/pipeline-service/staging/base/chains-signing-secrets.yaml b/components/pipeline-service/staging/base/chains-signing-secrets.yaml
+index 122e7ba0..de39ec17 100644
+--- a/components/pipeline-service/staging/base/chains-signing-secrets.yaml
++++ b/components/pipeline-service/staging/base/chains-signing-secrets.yaml
+@@ -2,6 +2,7 @@ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+ metadata:
+   name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "-1"
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 42abe032..a04f1c23 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1713,6 +1713,27 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: staging/pipeline-service/stone-stage-p01/chains-signing-secret
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: signing-secrets-vault
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1760,26 +1781,6 @@ spec:
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
+ ---
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-  name: tekton-chains-signing-secret
+-spec:
+-  dataFrom:
+-  - extract:
+-      key: staging/pipeline-service/stone-stage-p01/chains-signing-secret
+-  refreshInterval: 5m
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: signing-secrets-vault
+----
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index fa5cc8aa..d6e7b9da 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1713,6 +1713,27 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: staging/pipeline-service/stone-stage-m01/chains-signing-secret
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: signing-secrets-vault
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1760,26 +1781,6 @@ spec:
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
+ ---
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-  name: tekton-chains-signing-secret
+-spec:
+-  dataFrom:
+-  - extract:
+-      key: staging/pipeline-service/stone-stage-m01/chains-signing-secret
+-  refreshInterval: 5m
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: signing-secrets-vault
+----
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 7a724d24..e2e4b72f 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1713,6 +1713,27 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: staging/pipeline-service/stone-stage-rh01/chains-signing-secret
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: signing-secrets-vault
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -1760,26 +1781,6 @@ spec:
+         bucket: '{{ .bucket }}'
+         endpoint: https://{{ .endpoint }}
+ ---
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-  name: tekton-chains-signing-secret
+-spec:
+-  dataFrom:
+-  - extract:
+-      key: staging/pipeline-service/stone-stage-rh01/chains-signing-secret
+-  refreshInterval: 5m
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: signing-secrets-vault
+----
+ apiVersion: monitoring.coreos.com/v1
+ kind: ServiceMonitor
+ metadata:

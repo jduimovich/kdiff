@@ -1,0 +1,132 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bfaf3972/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-cb0c690d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1720,1740d1719
+<   name: tekton-chains-signing-secret
+<   namespace: openshift-pipelines
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: staging/pipeline-service/stone-stage-p01/chains-signing-secret
+<   refreshInterval: 5m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: signing-secrets-vault
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+1782a1762,1781
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   name: tekton-chains-signing-secret
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: staging/pipeline-service/stone-stage-p01/chains-signing-secret
+>   refreshInterval: 5m
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: signing-secrets-vault
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bfaf3972/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-cb0c690d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1720,1740d1719
+<   name: tekton-chains-signing-secret
+<   namespace: openshift-pipelines
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: staging/pipeline-service/stone-stage-m01/chains-signing-secret
+<   refreshInterval: 5m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: signing-secrets-vault
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+1782a1762,1781
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   name: tekton-chains-signing-secret
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: staging/pipeline-service/stone-stage-m01/chains-signing-secret
+>   refreshInterval: 5m
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: signing-secrets-vault
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bfaf3972/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-cb0c690d/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1720,1740d1719
+<   name: tekton-chains-signing-secret
+<   namespace: openshift-pipelines
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: staging/pipeline-service/stone-stage-rh01/chains-signing-secret
+<   refreshInterval: 5m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: signing-secrets-vault
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+1782a1762,1781
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   name: tekton-chains-signing-secret
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: staging/pipeline-service/stone-stage-rh01/chains-signing-secret
+>   refreshInterval: 5m
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: signing-secrets-vault
