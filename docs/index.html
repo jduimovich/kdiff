@@ -10,12 +10,692 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-sun-feb-11-160213-utc-2024">This file generated at Sun Feb 11 16:02:13 UTC 2024</h3>
+<h3 id="this-file-generated-at-sun-feb-11-200309-utc-2024">This file generated at Sun Feb 11 20:03:09 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 37fce0df to d2ea3f21 on Fri Feb 9 23:21:16 2024 </h3>  
+<h3>1: Production changes from d2ea3f21 to 5e22d919 on Sun Feb 11 16:28:15 2024 </h3>  
+
+<details> 
+<summary>Git Diff (112 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-comment">index 9eb60fa4..075d3b5d 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,4 +2,4 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=782bf5ca9d1d4cae40d834a0e16dda477185552b</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=2be0e3a49809ba66bf64625d01833de90c457094</span>
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-comment">index 058458de..b6aa61d2 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -8,8 +8,8 @@</span> commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=782bf5ca9d1d4cae40d834a0e16dda477185552b</span>
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=782bf5ca9d1d4cae40d834a0e16dda477185552b</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=2be0e3a49809ba66bf64625d01833de90c457094</span>
+   - ../base/rbac
+
+ patches:
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml</span>
+<span class="hljs-comment">index a0341f2f..07e0964a 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/development/update-tekton-config-performance.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/update-tekton-config-performance.yaml</span>
+<span class="hljs-meta">@@ -43,7 +43,3 @@</span>
+   path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
+<span class="hljs-deletion">-- op: replace</span>
+<span class="hljs-deletion">-  path: /spec/chain/options/deployments/tekton-chains-controller/spec/replicas</span>
+<span class="hljs-deletion">-  # default pipeline-service setting is 1</span>
+<span class="hljs-deletion">-  value: 2</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index fea3c640..c152e02e 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -8,7 +8,7 @@</span> commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=782bf5ca9d1d4cae40d834a0e16dda477185552b</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094</span>
+   - chains-signing-secrets.yaml
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml</span>
+<span class="hljs-comment">index afcf485b..8d10617c 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml</span>
+<span class="hljs-meta">@@ -43,7 +43,3 @@</span>
+   path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
+<span class="hljs-deletion">-- op: replace</span>
+<span class="hljs-deletion">-  path: /spec/chain/options/deployments/tekton-chains-controller/spec/replicas</span>
+<span class="hljs-deletion">-  # default pipeline-service setting is 1</span>
+<span class="hljs-deletion">-  value: 2</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">index 2a17e6bc..16b6e407 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1893,11 +1893,6 @@</span> spec:
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+     artifacts.taskrun.storage: &quot;&quot;
+<span class="hljs-deletion">-    options:</span>
+<span class="hljs-deletion">-      deployments:</span>
+<span class="hljs-deletion">-        tekton-chains-controller:</span>
+<span class="hljs-deletion">-          spec:</span>
+<span class="hljs-deletion">-            replicas: 2</span>
+     transparency.enabled: &quot;false&quot;
+   params:
+   - name: createRbacResource
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">index a1946e03..d1d8d7e0 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1893,11 +1893,6 @@</span> spec:
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+     artifacts.taskrun.storage: &quot;&quot;
+<span class="hljs-deletion">-    options:</span>
+<span class="hljs-deletion">-      deployments:</span>
+<span class="hljs-deletion">-        tekton-chains-controller:</span>
+<span class="hljs-deletion">-          spec:</span>
+<span class="hljs-deletion">-            replicas: 2</span>
+     transparency.enabled: &quot;false&quot;
+   params:
+   - name: createRbacResource
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 46c37d98..20e67416 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1893,11 +1893,6 @@</span> spec:
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+     artifacts.taskrun.storage: &quot;&quot;
+<span class="hljs-deletion">-    options:</span>
+<span class="hljs-deletion">-      deployments:</span>
+<span class="hljs-deletion">-        tekton-chains-controller:</span>
+<span class="hljs-deletion">-          spec:</span>
+<span class="hljs-deletion">-            replicas: 2</span>
+     transparency.enabled: &quot;false&quot;
+   params:
+   - name: createRbacResource 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from d2ea3f21 to 5e22d919 on Sun Feb 11 16:28:15 2024 </h3>  
+
+<details> 
+<summary>Git Diff (112 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-comment">index 9eb60fa4..075d3b5d 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,4 +2,4 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=782bf5ca9d1d4cae40d834a0e16dda477185552b</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=2be0e3a49809ba66bf64625d01833de90c457094</span>
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-comment">index 058458de..b6aa61d2 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -8,8 +8,8 @@</span> commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=782bf5ca9d1d4cae40d834a0e16dda477185552b</span>
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=782bf5ca9d1d4cae40d834a0e16dda477185552b</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=2be0e3a49809ba66bf64625d01833de90c457094</span>
+   - ../base/rbac
+
+ patches:
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml</span>
+<span class="hljs-comment">index a0341f2f..07e0964a 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/development/update-tekton-config-performance.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/update-tekton-config-performance.yaml</span>
+<span class="hljs-meta">@@ -43,7 +43,3 @@</span>
+   path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
+<span class="hljs-deletion">-- op: replace</span>
+<span class="hljs-deletion">-  path: /spec/chain/options/deployments/tekton-chains-controller/spec/replicas</span>
+<span class="hljs-deletion">-  # default pipeline-service setting is 1</span>
+<span class="hljs-deletion">-  value: 2</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index fea3c640..c152e02e 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -8,7 +8,7 @@</span> commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=782bf5ca9d1d4cae40d834a0e16dda477185552b</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094</span>
+   - chains-signing-secrets.yaml
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml</span>
+<span class="hljs-comment">index afcf485b..8d10617c 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml</span>
+<span class="hljs-meta">@@ -43,7 +43,3 @@</span>
+   path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
+<span class="hljs-deletion">-- op: replace</span>
+<span class="hljs-deletion">-  path: /spec/chain/options/deployments/tekton-chains-controller/spec/replicas</span>
+<span class="hljs-deletion">-  # default pipeline-service setting is 1</span>
+<span class="hljs-deletion">-  value: 2</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">index 2a17e6bc..16b6e407 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1893,11 +1893,6 @@</span> spec:
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+     artifacts.taskrun.storage: &quot;&quot;
+<span class="hljs-deletion">-    options:</span>
+<span class="hljs-deletion">-      deployments:</span>
+<span class="hljs-deletion">-        tekton-chains-controller:</span>
+<span class="hljs-deletion">-          spec:</span>
+<span class="hljs-deletion">-            replicas: 2</span>
+     transparency.enabled: &quot;false&quot;
+   params:
+   - name: createRbacResource
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">index a1946e03..d1d8d7e0 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1893,11 +1893,6 @@</span> spec:
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+     artifacts.taskrun.storage: &quot;&quot;
+<span class="hljs-deletion">-    options:</span>
+<span class="hljs-deletion">-      deployments:</span>
+<span class="hljs-deletion">-        tekton-chains-controller:</span>
+<span class="hljs-deletion">-          spec:</span>
+<span class="hljs-deletion">-            replicas: 2</span>
+     transparency.enabled: &quot;false&quot;
+   params:
+   - name: createRbacResource
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 46c37d98..20e67416 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1893,11 +1893,6 @@</span> spec:
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+     artifacts.taskrun.storage: &quot;&quot;
+<span class="hljs-deletion">-    options:</span>
+<span class="hljs-deletion">-      deployments:</span>
+<span class="hljs-deletion">-        tekton-chains-controller:</span>
+<span class="hljs-deletion">-          spec:</span>
+<span class="hljs-deletion">-            replicas: 2</span>
+     transparency.enabled: &quot;false&quot;
+   params:
+   - name: createRbacResource 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (21 lines)</summary>  
+<pre><code>  ./commit-d2ea3f21/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1895a1896,1900
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">options</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      <span class="hljs-attr">deployments</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        tekton-chains-<span class="hljs-attr">controller</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">spec</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">replicas</span>: <span class="hljs-number">2</span></span>
+./commit-d2ea3f21/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1895a1896,1900
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">options</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      <span class="hljs-attr">deployments</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        tekton-chains-<span class="hljs-attr">controller</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">spec</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">replicas</span>: <span class="hljs-number">2</span></span>
+./commit-d2ea3f21/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1895a1896,1900
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">options</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      <span class="hljs-attr">deployments</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        tekton-chains-<span class="hljs-attr">controller</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">spec</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">replicas</span>: <span class="hljs-number">2</span> </span>
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from d2ea3f21 to 5e22d919 on Sun Feb 11 16:28:15 2024 </h3>  
+
+<details> 
+<summary>Git Diff (112 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-comment">index 9eb60fa4..075d3b5d 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,4 +2,4 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=782bf5ca9d1d4cae40d834a0e16dda477185552b</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=2be0e3a49809ba66bf64625d01833de90c457094</span>
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-comment">index 058458de..b6aa61d2 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -8,8 +8,8 @@</span> commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=782bf5ca9d1d4cae40d834a0e16dda477185552b</span>
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=782bf5ca9d1d4cae40d834a0e16dda477185552b</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=2be0e3a49809ba66bf64625d01833de90c457094</span>
+   - ../base/rbac
+
+ patches:
+<span class="hljs-comment">diff --git a/components/pipeline-service/development/update-tekton-config-performance.yaml b/components/pipeline-service/development/update-tekton-config-performance.yaml</span>
+<span class="hljs-comment">index a0341f2f..07e0964a 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/development/update-tekton-config-performance.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/development/update-tekton-config-performance.yaml</span>
+<span class="hljs-meta">@@ -43,7 +43,3 @@</span>
+   path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
+<span class="hljs-deletion">-- op: replace</span>
+<span class="hljs-deletion">-  path: /spec/chain/options/deployments/tekton-chains-controller/spec/replicas</span>
+<span class="hljs-deletion">-  # default pipeline-service setting is 1</span>
+<span class="hljs-deletion">-  value: 2</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index fea3c640..c152e02e 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -8,7 +8,7 @@</span> commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+ resources:
+<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=782bf5ca9d1d4cae40d834a0e16dda477185552b</span>
+<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094</span>
+   - chains-signing-secrets.yaml
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml</span>
+<span class="hljs-comment">index afcf485b..8d10617c 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/update-tekton-config-performance.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/update-tekton-config-performance.yaml</span>
+<span class="hljs-meta">@@ -43,7 +43,3 @@</span>
+   path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
+<span class="hljs-deletion">-- op: replace</span>
+<span class="hljs-deletion">-  path: /spec/chain/options/deployments/tekton-chains-controller/spec/replicas</span>
+<span class="hljs-deletion">-  # default pipeline-service setting is 1</span>
+<span class="hljs-deletion">-  value: 2</span>
+\ No newline at end of file
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">index 2a17e6bc..16b6e407 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1893,11 +1893,6 @@</span> spec:
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+     artifacts.taskrun.storage: &quot;&quot;
+<span class="hljs-deletion">-    options:</span>
+<span class="hljs-deletion">-      deployments:</span>
+<span class="hljs-deletion">-        tekton-chains-controller:</span>
+<span class="hljs-deletion">-          spec:</span>
+<span class="hljs-deletion">-            replicas: 2</span>
+     transparency.enabled: &quot;false&quot;
+   params:
+   - name: createRbacResource
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">index a1946e03..d1d8d7e0 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1893,11 +1893,6 @@</span> spec:
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+     artifacts.taskrun.storage: &quot;&quot;
+<span class="hljs-deletion">-    options:</span>
+<span class="hljs-deletion">-      deployments:</span>
+<span class="hljs-deletion">-        tekton-chains-controller:</span>
+<span class="hljs-deletion">-          spec:</span>
+<span class="hljs-deletion">-            replicas: 2</span>
+     transparency.enabled: &quot;false&quot;
+   params:
+   - name: createRbacResource
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 46c37d98..20e67416 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1893,11 +1893,6 @@</span> spec:
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+     artifacts.taskrun.storage: &quot;&quot;
+<span class="hljs-deletion">-    options:</span>
+<span class="hljs-deletion">-      deployments:</span>
+<span class="hljs-deletion">-        tekton-chains-controller:</span>
+<span class="hljs-deletion">-          spec:</span>
+<span class="hljs-deletion">-            replicas: 2</span>
+     transparency.enabled: &quot;false&quot;
+   params:
+   - name: createRbacResource 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (7 lines)</summary>  
+<pre><code>  ./commit-d2ea3f21/development/components/pipeline-service/development/kustomize.out.yaml
+2006a2007,2011
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">options</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      <span class="hljs-attr">deployments</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        tekton-chains-<span class="hljs-attr">controller</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">spec</span>:</span>
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">replicas</span>: <span class="hljs-number">2</span> </span>
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 37fce0df to d2ea3f21 on Fri Feb 9 23:21:16 2024 </h3>  
 
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -171,7 +851,7 @@ index d8b7e68a..fea3c640 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>1: Staging changes from 37fce0df to d2ea3f21 on Fri Feb 9 23:21:16 2024 </h3>  
+<h3>2: Staging changes from 37fce0df to d2ea3f21 on Fri Feb 9 23:21:16 2024 </h3>  
 
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -333,7 +1013,7 @@ index d8b7e68a..fea3c640 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>1: Development changes from 37fce0df to d2ea3f21 on Fri Feb 9 23:21:16 2024 </h3>  
+<h3>2: Development changes from 37fce0df to d2ea3f21 on Fri Feb 9 23:21:16 2024 </h3>  
 
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -447,7 +1127,7 @@ index d8b7e68a..fea3c640 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>2: Production changes from 8f29459e to 37fce0df on Fri Feb 9 22:31:46 2024 </h3>  
+<h3>3: Production changes from 8f29459e to 37fce0df on Fri Feb 9 22:31:46 2024 </h3>  
 
 <details> 
 <summary>Git Diff (157 lines)</summary>  
@@ -722,7 +1402,7 @@ index d8b7e68a..fea3c640 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>2: Staging changes from 8f29459e to 37fce0df on Fri Feb 9 22:31:46 2024 </h3>  
+<h3>3: Staging changes from 8f29459e to 37fce0df on Fri Feb 9 22:31:46 2024 </h3>  
 
 <details> 
 <summary>Git Diff (157 lines)</summary>  
@@ -1053,7 +1733,7 @@ index d8b7e68a..fea3c640 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>2: Development changes from 8f29459e to 37fce0df on Fri Feb 9 22:31:46 2024 </h3>  
+<h3>3: Development changes from 8f29459e to 37fce0df on Fri Feb 9 22:31:46 2024 </h3>  
 
 <details> 
 <summary>Git Diff (157 lines)</summary>  
@@ -1302,7 +1982,7 @@ index d8b7e68a..fea3c640 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>3: Production changes from bfaf3972 to 8f29459e on Fri Feb 9 21:23:02 2024 </h3>  
+<h3>4: Production changes from bfaf3972 to 8f29459e on Fri Feb 9 21:23:02 2024 </h3>  
 
 <details> 
 <summary>Git Diff (182 lines)</summary>  
@@ -1602,7 +2282,7 @@ index d8b7e68a..fea3c640 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>3: Staging changes from bfaf3972 to 8f29459e on Fri Feb 9 21:23:02 2024 </h3>  
+<h3>4: Staging changes from bfaf3972 to 8f29459e on Fri Feb 9 21:23:02 2024 </h3>  
 
 <details> 
 <summary>Git Diff (182 lines)</summary>  
@@ -1973,7 +2653,7 @@ index d8b7e68a..fea3c640 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>3: Development changes from bfaf3972 to 8f29459e on Fri Feb 9 21:23:02 2024 </h3>  
+<h3>4: Development changes from bfaf3972 to 8f29459e on Fri Feb 9 21:23:02 2024 </h3>  
 
 <details> 
 <summary>Git Diff (182 lines)</summary>  
@@ -2187,1022 +2867,6 @@ index d8b7e68a..fea3c640 <span class="hljs-number">100644</span>
 <span class="hljs-string">&lt;</span>             <span class="hljs-attr">pipelines-as-code-webhook:</span>
 <span class="hljs-string">&lt;</span>               <span class="hljs-attr">spec:</span>
 <span class="hljs-string">&lt;</span>                 <span class="hljs-attr">replicas:</span> <span class="hljs-number">1</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from cb0c690d to bfaf3972 on Fri Feb 9 20:09:01 2024 </h3>  
-
-<details> 
-<summary>Git Diff (189 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/chains-signing-secrets.yaml b/components/pipeline-service/staging/base/chains-signing-secrets.yaml</span>
-<span class="hljs-comment">index 122e7ba0..de39ec17 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/base/chains-signing-secrets.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/chains-signing-secrets.yaml</span>
-<span class="hljs-meta">@@ -2,6 +2,7 @@</span> apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
- metadata:
-   name: tekton-chains-signing-secret
-<span class="hljs-addition">+  namespace: openshift-pipelines</span>
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-     argocd.argoproj.io/sync-wave: &quot;-1&quot;
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-comment">index 42abe032..a04f1c23 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1713,6 +1713,27 @@</span> spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+  name: tekton-chains-signing-secret</span>
-<span class="hljs-addition">+  namespace: openshift-pipelines</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+  - extract:</span>
-<span class="hljs-addition">+      key: staging/pipeline-service/stone-stage-p01/chains-signing-secret</span>
-<span class="hljs-addition">+  refreshInterval: 5m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: signing-secrets-vault</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<span class="hljs-meta">@@ -1760,26 +1781,6 @@</span> spec:
-         bucket: &#x27;{{ .bucket }}&#x27;
-         endpoint: https://{{ .endpoint }}
- ---
-<span class="hljs-deletion">-apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-deletion">-kind: ExternalSecret</span>
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  annotations:</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-deletion">-  name: tekton-chains-signing-secret</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  dataFrom:</span>
-<span class="hljs-deletion">-  - extract:</span>
-<span class="hljs-deletion">-      key: staging/pipeline-service/stone-stage-p01/chains-signing-secret</span>
-<span class="hljs-deletion">-  refreshInterval: 5m</span>
-<span class="hljs-deletion">-  secretStoreRef:</span>
-<span class="hljs-deletion">-    kind: ClusterSecretStore</span>
-<span class="hljs-deletion">-    name: appsre-stonesoup-vault</span>
-<span class="hljs-deletion">-  target:</span>
-<span class="hljs-deletion">-    creationPolicy: Owner</span>
-<span class="hljs-deletion">-    deletionPolicy: Delete</span>
-<span class="hljs-deletion">-    name: signing-secrets-vault</span>
-<span class="hljs-comment">----</span>
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata:
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-comment">index fa5cc8aa..d6e7b9da 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1713,6 +1713,27 @@</span> spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+  name: tekton-chains-signing-secret</span>
-<span class="hljs-addition">+  namespace: openshift-pipelines</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+  - extract:</span>
-<span class="hljs-addition">+      key: staging/pipeline-service/stone-stage-m01/chains-signing-secret</span>
-<span class="hljs-addition">+  refreshInterval: 5m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: signing-secrets-vault</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<span class="hljs-meta">@@ -1760,26 +1781,6 @@</span> spec:
-         bucket: &#x27;{{ .bucket }}&#x27;
-         endpoint: https://{{ .endpoint }}
- ---
-<span class="hljs-deletion">-apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-deletion">-kind: ExternalSecret</span>
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  annotations:</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-deletion">-  name: tekton-chains-signing-secret</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  dataFrom:</span>
-<span class="hljs-deletion">-  - extract:</span>
-<span class="hljs-deletion">-      key: staging/pipeline-service/stone-stage-m01/chains-signing-secret</span>
-<span class="hljs-deletion">-  refreshInterval: 5m</span>
-<span class="hljs-deletion">-  secretStoreRef:</span>
-<span class="hljs-deletion">-    kind: ClusterSecretStore</span>
-<span class="hljs-deletion">-    name: appsre-stonesoup-vault</span>
-<span class="hljs-deletion">-  target:</span>
-<span class="hljs-deletion">-    creationPolicy: Owner</span>
-<span class="hljs-deletion">-    deletionPolicy: Delete</span>
-<span class="hljs-deletion">-    name: signing-secrets-vault</span>
-<span class="hljs-comment">----</span>
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata:
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-comment">index 7a724d24..e2e4b72f 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1713,6 +1713,27 @@</span> spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+  name: tekton-chains-signing-secret</span>
-<span class="hljs-addition">+  namespace: openshift-pipelines</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+  - extract:</span>
-<span class="hljs-addition">+      key: staging/pipeline-service/stone-stage-rh01/chains-signing-secret</span>
-<span class="hljs-addition">+  refreshInterval: 5m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: signing-secrets-vault</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<span class="hljs-meta">@@ -1760,26 +1781,6 @@</span> spec:
-         bucket: &#x27;{{ .bucket }}&#x27;
-         endpoint: https://{{ .endpoint }}
- ---
-<span class="hljs-deletion">-apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-deletion">-kind: ExternalSecret</span>
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  annotations:</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-deletion">-  name: tekton-chains-signing-secret</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  dataFrom:</span>
-<span class="hljs-deletion">-  - extract:</span>
-<span class="hljs-deletion">-      key: staging/pipeline-service/stone-stage-rh01/chains-signing-secret</span>
-<span class="hljs-deletion">-  refreshInterval: 5m</span>
-<span class="hljs-deletion">-  secretStoreRef:</span>
-<span class="hljs-deletion">-    kind: ClusterSecretStore</span>
-<span class="hljs-deletion">-    name: appsre-stonesoup-vault</span>
-<span class="hljs-deletion">-  target:</span>
-<span class="hljs-deletion">-    creationPolicy: Owner</span>
-<span class="hljs-deletion">-    deletionPolicy: Delete</span>
-<span class="hljs-deletion">-    name: signing-secrets-vault</span>
-<span class="hljs-comment">----</span>
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata: 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from cb0c690d to bfaf3972 on Fri Feb 9 20:09:01 2024 </h3>  
-
-<details> 
-<summary>Git Diff (189 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/chains-signing-secrets.yaml b/components/pipeline-service/staging/base/chains-signing-secrets.yaml</span>
-<span class="hljs-comment">index 122e7ba0..de39ec17 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/base/chains-signing-secrets.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/chains-signing-secrets.yaml</span>
-<span class="hljs-meta">@@ -2,6 +2,7 @@</span> apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
- metadata:
-   name: tekton-chains-signing-secret
-<span class="hljs-addition">+  namespace: openshift-pipelines</span>
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-     argocd.argoproj.io/sync-wave: &quot;-1&quot;
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-comment">index 42abe032..a04f1c23 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1713,6 +1713,27 @@</span> spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+  name: tekton-chains-signing-secret</span>
-<span class="hljs-addition">+  namespace: openshift-pipelines</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+  - extract:</span>
-<span class="hljs-addition">+      key: staging/pipeline-service/stone-stage-p01/chains-signing-secret</span>
-<span class="hljs-addition">+  refreshInterval: 5m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: signing-secrets-vault</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<span class="hljs-meta">@@ -1760,26 +1781,6 @@</span> spec:
-         bucket: &#x27;{{ .bucket }}&#x27;
-         endpoint: https://{{ .endpoint }}
- ---
-<span class="hljs-deletion">-apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-deletion">-kind: ExternalSecret</span>
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  annotations:</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-deletion">-  name: tekton-chains-signing-secret</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  dataFrom:</span>
-<span class="hljs-deletion">-  - extract:</span>
-<span class="hljs-deletion">-      key: staging/pipeline-service/stone-stage-p01/chains-signing-secret</span>
-<span class="hljs-deletion">-  refreshInterval: 5m</span>
-<span class="hljs-deletion">-  secretStoreRef:</span>
-<span class="hljs-deletion">-    kind: ClusterSecretStore</span>
-<span class="hljs-deletion">-    name: appsre-stonesoup-vault</span>
-<span class="hljs-deletion">-  target:</span>
-<span class="hljs-deletion">-    creationPolicy: Owner</span>
-<span class="hljs-deletion">-    deletionPolicy: Delete</span>
-<span class="hljs-deletion">-    name: signing-secrets-vault</span>
-<span class="hljs-comment">----</span>
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata:
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-comment">index fa5cc8aa..d6e7b9da 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1713,6 +1713,27 @@</span> spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+  name: tekton-chains-signing-secret</span>
-<span class="hljs-addition">+  namespace: openshift-pipelines</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+  - extract:</span>
-<span class="hljs-addition">+      key: staging/pipeline-service/stone-stage-m01/chains-signing-secret</span>
-<span class="hljs-addition">+  refreshInterval: 5m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: signing-secrets-vault</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<span class="hljs-meta">@@ -1760,26 +1781,6 @@</span> spec:
-         bucket: &#x27;{{ .bucket }}&#x27;
-         endpoint: https://{{ .endpoint }}
- ---
-<span class="hljs-deletion">-apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-deletion">-kind: ExternalSecret</span>
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  annotations:</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-deletion">-  name: tekton-chains-signing-secret</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  dataFrom:</span>
-<span class="hljs-deletion">-  - extract:</span>
-<span class="hljs-deletion">-      key: staging/pipeline-service/stone-stage-m01/chains-signing-secret</span>
-<span class="hljs-deletion">-  refreshInterval: 5m</span>
-<span class="hljs-deletion">-  secretStoreRef:</span>
-<span class="hljs-deletion">-    kind: ClusterSecretStore</span>
-<span class="hljs-deletion">-    name: appsre-stonesoup-vault</span>
-<span class="hljs-deletion">-  target:</span>
-<span class="hljs-deletion">-    creationPolicy: Owner</span>
-<span class="hljs-deletion">-    deletionPolicy: Delete</span>
-<span class="hljs-deletion">-    name: signing-secrets-vault</span>
-<span class="hljs-comment">----</span>
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata:
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-comment">index 7a724d24..e2e4b72f 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1713,6 +1713,27 @@</span> spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+  name: tekton-chains-signing-secret</span>
-<span class="hljs-addition">+  namespace: openshift-pipelines</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+  - extract:</span>
-<span class="hljs-addition">+      key: staging/pipeline-service/stone-stage-rh01/chains-signing-secret</span>
-<span class="hljs-addition">+  refreshInterval: 5m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: signing-secrets-vault</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<span class="hljs-meta">@@ -1760,26 +1781,6 @@</span> spec:
-         bucket: &#x27;{{ .bucket }}&#x27;
-         endpoint: https://{{ .endpoint }}
- ---
-<span class="hljs-deletion">-apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-deletion">-kind: ExternalSecret</span>
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  annotations:</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-deletion">-  name: tekton-chains-signing-secret</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  dataFrom:</span>
-<span class="hljs-deletion">-  - extract:</span>
-<span class="hljs-deletion">-      key: staging/pipeline-service/stone-stage-rh01/chains-signing-secret</span>
-<span class="hljs-deletion">-  refreshInterval: 5m</span>
-<span class="hljs-deletion">-  secretStoreRef:</span>
-<span class="hljs-deletion">-    kind: ClusterSecretStore</span>
-<span class="hljs-deletion">-    name: appsre-stonesoup-vault</span>
-<span class="hljs-deletion">-  target:</span>
-<span class="hljs-deletion">-    creationPolicy: Owner</span>
-<span class="hljs-deletion">-    deletionPolicy: Delete</span>
-<span class="hljs-deletion">-    name: signing-secrets-vault</span>
-<span class="hljs-comment">----</span>
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata: 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (132 lines)</summary>  
-<pre><code>  ./commit-cb0c690d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1720,1740d1719
-&lt;   name: tekton-chains-signing-secret
-&lt;   namespace: openshift-pipelines
-&lt; spec:
-&lt;   dataFrom:
-&lt;   - extract:
-&lt;       key: staging/pipeline-service/stone-stage-p01/chains-signing-secret
-&lt;   refreshInterval: 5m
-&lt;   secretStoreRef:
-&lt;     kind: ClusterSecretStore
-&lt;     name: appsre-stonesoup-vault
-&lt;   target:
-&lt;     creationPolicy: Owner
-&lt;     deletionPolicy: Delete
-&lt;     name: signing-secrets-vault
-&lt; ---
-&lt; apiVersion: external-secrets.io/v1beta1
-&lt; kind: ExternalSecret
-&lt; metadata:
-&lt;   annotations:
-&lt;     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-&lt;     argocd.argoproj.io/sync-wave: &quot;-1&quot;
-1782a1762,1781
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">---</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">apiVersion</span>: external-secrets.<span class="hljs-property">io</span>/v1beta1</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">kind</span>: <span class="hljs-title class_">ExternalSecret</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">metadata</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">annotations</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    argocd.<span class="hljs-property">argoproj</span>.<span class="hljs-property">io</span>/sync-<span class="hljs-attr">options</span>: <span class="hljs-title class_">SkipDryRunOnMissingResource</span>=<span class="hljs-literal">true</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    argocd.<span class="hljs-property">argoproj</span>.<span class="hljs-property">io</span>/sync-<span class="hljs-attr">wave</span>: <span class="hljs-string">&quot;-1&quot;</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">name</span>: tekton-chains-signing-secret</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">spec</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">dataFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  - <span class="hljs-attr">extract</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      <span class="hljs-attr">key</span>: staging/pipeline-service/stone-stage-p01/chains-signing-secret</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">refreshInterval</span>: 5m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">secretStoreRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">kind</span>: <span class="hljs-title class_">ClusterSecretStore</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">name</span>: appsre-stonesoup-vault</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">target</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">creationPolicy</span>: <span class="hljs-title class_">Owner</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">deletionPolicy</span>: <span class="hljs-title class_">Delete</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">name</span>: signing-secrets-vault</span>
-./commit-cb0c690d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-1720,1740d1719
-&lt;   name: tekton-chains-signing-secret
-&lt;   namespace: openshift-pipelines
-&lt; spec:
-&lt;   dataFrom:
-&lt;   - extract:
-&lt;       key: staging/pipeline-service/stone-stage-m01/chains-signing-secret
-&lt;   refreshInterval: 5m
-&lt;   secretStoreRef:
-&lt;     kind: ClusterSecretStore
-&lt;     name: appsre-stonesoup-vault
-&lt;   target:
-&lt;     creationPolicy: Owner
-&lt;     deletionPolicy: Delete
-&lt;     name: signing-secrets-vault
-&lt; ---
-&lt; apiVersion: external-secrets.io/v1beta1
-&lt; kind: ExternalSecret
-&lt; metadata:
-&lt;   annotations:
-&lt;     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-&lt;     argocd.argoproj.io/sync-wave: &quot;-1&quot;
-1782a1762,1781
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">---</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">apiVersion</span>: external-secrets.<span class="hljs-property">io</span>/v1beta1</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">kind</span>: <span class="hljs-title class_">ExternalSecret</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">metadata</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">annotations</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    argocd.<span class="hljs-property">argoproj</span>.<span class="hljs-property">io</span>/sync-<span class="hljs-attr">options</span>: <span class="hljs-title class_">SkipDryRunOnMissingResource</span>=<span class="hljs-literal">true</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    argocd.<span class="hljs-property">argoproj</span>.<span class="hljs-property">io</span>/sync-<span class="hljs-attr">wave</span>: <span class="hljs-string">&quot;-1&quot;</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">name</span>: tekton-chains-signing-secret</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">spec</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">dataFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  - <span class="hljs-attr">extract</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      <span class="hljs-attr">key</span>: staging/pipeline-service/stone-stage-m01/chains-signing-secret</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">refreshInterval</span>: 5m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">secretStoreRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">kind</span>: <span class="hljs-title class_">ClusterSecretStore</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">name</span>: appsre-stonesoup-vault</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">target</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">creationPolicy</span>: <span class="hljs-title class_">Owner</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">deletionPolicy</span>: <span class="hljs-title class_">Delete</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">name</span>: signing-secrets-vault</span>
-./commit-cb0c690d/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1720,1740d1719
-&lt;   name: tekton-chains-signing-secret
-&lt;   namespace: openshift-pipelines
-&lt; spec:
-&lt;   dataFrom:
-&lt;   - extract:
-&lt;       key: staging/pipeline-service/stone-stage-rh01/chains-signing-secret
-&lt;   refreshInterval: 5m
-&lt;   secretStoreRef:
-&lt;     kind: ClusterSecretStore
-&lt;     name: appsre-stonesoup-vault
-&lt;   target:
-&lt;     creationPolicy: Owner
-&lt;     deletionPolicy: Delete
-&lt;     name: signing-secrets-vault
-&lt; ---
-&lt; apiVersion: external-secrets.io/v1beta1
-&lt; kind: ExternalSecret
-&lt; metadata:
-&lt;   annotations:
-&lt;     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-&lt;     argocd.argoproj.io/sync-wave: &quot;-1&quot;
-1782a1762,1781
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">---</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">apiVersion</span>: external-secrets.<span class="hljs-property">io</span>/v1beta1</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">kind</span>: <span class="hljs-title class_">ExternalSecret</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">metadata</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">annotations</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    argocd.<span class="hljs-property">argoproj</span>.<span class="hljs-property">io</span>/sync-<span class="hljs-attr">options</span>: <span class="hljs-title class_">SkipDryRunOnMissingResource</span>=<span class="hljs-literal">true</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    argocd.<span class="hljs-property">argoproj</span>.<span class="hljs-property">io</span>/sync-<span class="hljs-attr">wave</span>: <span class="hljs-string">&quot;-1&quot;</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">name</span>: tekton-chains-signing-secret</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">spec</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">dataFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  - <span class="hljs-attr">extract</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      <span class="hljs-attr">key</span>: staging/pipeline-service/stone-stage-rh01/chains-signing-secret</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">refreshInterval</span>: 5m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">secretStoreRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">kind</span>: <span class="hljs-title class_">ClusterSecretStore</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">name</span>: appsre-stonesoup-vault</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">target</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">creationPolicy</span>: <span class="hljs-title class_">Owner</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">deletionPolicy</span>: <span class="hljs-title class_">Delete</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-attr">name</span>: signing-secrets-vault </span>
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from cb0c690d to bfaf3972 on Fri Feb 9 20:09:01 2024 </h3>  
-
-<details> 
-<summary>Git Diff (189 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/chains-signing-secrets.yaml b/components/pipeline-service/staging/base/chains-signing-secrets.yaml</span>
-<span class="hljs-comment">index 122e7ba0..de39ec17 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/base/chains-signing-secrets.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/chains-signing-secrets.yaml</span>
-<span class="hljs-meta">@@ -2,6 +2,7 @@</span> apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
- metadata:
-   name: tekton-chains-signing-secret
-<span class="hljs-addition">+  namespace: openshift-pipelines</span>
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-     argocd.argoproj.io/sync-wave: &quot;-1&quot;
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-comment">index 42abe032..a04f1c23 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1713,6 +1713,27 @@</span> spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+  name: tekton-chains-signing-secret</span>
-<span class="hljs-addition">+  namespace: openshift-pipelines</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+  - extract:</span>
-<span class="hljs-addition">+      key: staging/pipeline-service/stone-stage-p01/chains-signing-secret</span>
-<span class="hljs-addition">+  refreshInterval: 5m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: signing-secrets-vault</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<span class="hljs-meta">@@ -1760,26 +1781,6 @@</span> spec:
-         bucket: &#x27;{{ .bucket }}&#x27;
-         endpoint: https://{{ .endpoint }}
- ---
-<span class="hljs-deletion">-apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-deletion">-kind: ExternalSecret</span>
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  annotations:</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-deletion">-  name: tekton-chains-signing-secret</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  dataFrom:</span>
-<span class="hljs-deletion">-  - extract:</span>
-<span class="hljs-deletion">-      key: staging/pipeline-service/stone-stage-p01/chains-signing-secret</span>
-<span class="hljs-deletion">-  refreshInterval: 5m</span>
-<span class="hljs-deletion">-  secretStoreRef:</span>
-<span class="hljs-deletion">-    kind: ClusterSecretStore</span>
-<span class="hljs-deletion">-    name: appsre-stonesoup-vault</span>
-<span class="hljs-deletion">-  target:</span>
-<span class="hljs-deletion">-    creationPolicy: Owner</span>
-<span class="hljs-deletion">-    deletionPolicy: Delete</span>
-<span class="hljs-deletion">-    name: signing-secrets-vault</span>
-<span class="hljs-comment">----</span>
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata:
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-comment">index fa5cc8aa..d6e7b9da 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1713,6 +1713,27 @@</span> spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+  name: tekton-chains-signing-secret</span>
-<span class="hljs-addition">+  namespace: openshift-pipelines</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+  - extract:</span>
-<span class="hljs-addition">+      key: staging/pipeline-service/stone-stage-m01/chains-signing-secret</span>
-<span class="hljs-addition">+  refreshInterval: 5m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: signing-secrets-vault</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<span class="hljs-meta">@@ -1760,26 +1781,6 @@</span> spec:
-         bucket: &#x27;{{ .bucket }}&#x27;
-         endpoint: https://{{ .endpoint }}
- ---
-<span class="hljs-deletion">-apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-deletion">-kind: ExternalSecret</span>
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  annotations:</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-deletion">-  name: tekton-chains-signing-secret</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  dataFrom:</span>
-<span class="hljs-deletion">-  - extract:</span>
-<span class="hljs-deletion">-      key: staging/pipeline-service/stone-stage-m01/chains-signing-secret</span>
-<span class="hljs-deletion">-  refreshInterval: 5m</span>
-<span class="hljs-deletion">-  secretStoreRef:</span>
-<span class="hljs-deletion">-    kind: ClusterSecretStore</span>
-<span class="hljs-deletion">-    name: appsre-stonesoup-vault</span>
-<span class="hljs-deletion">-  target:</span>
-<span class="hljs-deletion">-    creationPolicy: Owner</span>
-<span class="hljs-deletion">-    deletionPolicy: Delete</span>
-<span class="hljs-deletion">-    name: signing-secrets-vault</span>
-<span class="hljs-comment">----</span>
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata:
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-comment">index 7a724d24..e2e4b72f 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1713,6 +1713,27 @@</span> spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+  name: tekton-chains-signing-secret</span>
-<span class="hljs-addition">+  namespace: openshift-pipelines</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+  - extract:</span>
-<span class="hljs-addition">+      key: staging/pipeline-service/stone-stage-rh01/chains-signing-secret</span>
-<span class="hljs-addition">+  refreshInterval: 5m</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: signing-secrets-vault</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<span class="hljs-meta">@@ -1760,26 +1781,6 @@</span> spec:
-         bucket: &#x27;{{ .bucket }}&#x27;
-         endpoint: https://{{ .endpoint }}
- ---
-<span class="hljs-deletion">-apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-deletion">-kind: ExternalSecret</span>
-<span class="hljs-deletion">-metadata:</span>
-<span class="hljs-deletion">-  annotations:</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-deletion">-    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-deletion">-  name: tekton-chains-signing-secret</span>
-<span class="hljs-deletion">-spec:</span>
-<span class="hljs-deletion">-  dataFrom:</span>
-<span class="hljs-deletion">-  - extract:</span>
-<span class="hljs-deletion">-      key: staging/pipeline-service/stone-stage-rh01/chains-signing-secret</span>
-<span class="hljs-deletion">-  refreshInterval: 5m</span>
-<span class="hljs-deletion">-  secretStoreRef:</span>
-<span class="hljs-deletion">-    kind: ClusterSecretStore</span>
-<span class="hljs-deletion">-    name: appsre-stonesoup-vault</span>
-<span class="hljs-deletion">-  target:</span>
-<span class="hljs-deletion">-    creationPolicy: Owner</span>
-<span class="hljs-deletion">-    deletionPolicy: Delete</span>
-<span class="hljs-deletion">-    name: signing-secrets-vault</span>
-<span class="hljs-comment">----</span>
- apiVersion: monitoring.coreos.com/v1
- kind: ServiceMonitor
- metadata: 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
 </code></pre>
 
 </details>  
