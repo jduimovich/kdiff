@@ -1,0 +1,153 @@
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index 6394cd06..3cdd649e 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=37dd9bab130381ec03995c34f76514b86c810315
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+index 2dce7293..fecb5932 100644
+--- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+@@ -30,4 +30,16 @@
+ - op: replace
+   path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
+   # default pipeline-service setting is 1
+-  value: 2
+\ No newline at end of file
++  value: 2
++- op: replace
++  path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec/replicas
++  # default pipeline-service setting is 1
++  value: 2
++- op: replace
++  path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-watcher/spec/replicas
++  # default pipeline-service setting is 1
++  value: 2
++- op: replace
++  path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-webhook/spec/replicas
++  # default pipeline-service setting is 1
++  value: 2
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index d3342a0a..1aa29d7f 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1615,6 +1615,7 @@ apiVersion: batch/v1
+ kind: Job
+ metadata:
+   annotations:
++    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "1"
+   name: tekton-chains-signing-secret
+@@ -1887,9 +1888,9 @@ spec:
+         tekton-operator-proxy-webhook:
+           spec:
+             replicas: 2
+-        tekton-pipelines-webhook:
++        tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+       disabled: false
+     performance:
+       buckets: 4
+@@ -1902,6 +1903,14 @@ spec:
+     openshift:
+       pipelinesAsCode:
+         enable: true
++        options:
++          deployments:
++            pipelines-as-code-watcher:
++              spec:
++                replicas: 2
++            pipelines-as-code-webhook:
++              spec:
++                replicas: 2
+         settings:
+           application-name: Red Hat Konflux
+           custom-console-name: Red Hat Konflux
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 91c5a66b..1b25c9bc 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1615,6 +1615,7 @@ apiVersion: batch/v1
+ kind: Job
+ metadata:
+   annotations:
++    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "1"
+   name: tekton-chains-signing-secret
+@@ -1887,9 +1888,9 @@ spec:
+         tekton-operator-proxy-webhook:
+           spec:
+             replicas: 2
+-        tekton-pipelines-webhook:
++        tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+       disabled: false
+     performance:
+       buckets: 4
+@@ -1902,6 +1903,14 @@ spec:
+     openshift:
+       pipelinesAsCode:
+         enable: true
++        options:
++          deployments:
++            pipelines-as-code-watcher:
++              spec:
++                replicas: 2
++            pipelines-as-code-webhook:
++              spec:
++                replicas: 2
+         settings:
+           application-name: Red Hat Konflux
+           custom-console-name: Red Hat Konflux
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 50145778..39d84a15 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1615,6 +1615,7 @@ apiVersion: batch/v1
+ kind: Job
+ metadata:
+   annotations:
++    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+     argocd.argoproj.io/sync-wave: "1"
+   name: tekton-chains-signing-secret
+@@ -1887,9 +1888,9 @@ spec:
+         tekton-operator-proxy-webhook:
+           spec:
+             replicas: 2
+-        tekton-pipelines-webhook:
++        tekton-pipelines-remote-resolvers:
+           spec:
+-            replicas: 1
++            replicas: 2
+       disabled: false
+     performance:
+       buckets: 4
+@@ -1902,6 +1903,14 @@ spec:
+     openshift:
+       pipelinesAsCode:
+         enable: true
++        options:
++          deployments:
++            pipelines-as-code-watcher:
++              spec:
++                replicas: 2
++            pipelines-as-code-webhook:
++              spec:
++                replicas: 2
+         settings:
+           application-name: Konflux Production Internal
+           custom-console-name: Konflux Production Internal

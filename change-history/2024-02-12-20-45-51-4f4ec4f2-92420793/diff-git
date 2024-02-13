@@ -1,0 +1,213 @@
+diff --git a/components/pipeline-service/base/external-secrets/kustomization.yaml b/components/pipeline-service/base/external-secrets/kustomization.yaml
+index cbd94d62..dc20e2ee 100644
+--- a/components/pipeline-service/base/external-secrets/kustomization.yaml
++++ b/components/pipeline-service/base/external-secrets/kustomization.yaml
+@@ -1,4 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
++  - openshift-pipelines
+   - tekton-results
+diff --git a/components/pipeline-service/staging/base/chains-signing-secrets.yaml b/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
+similarity index 100%
+rename from components/pipeline-service/staging/base/chains-signing-secrets.yaml
+rename to components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
+diff --git a/components/pipeline-service/base/external-secrets/openshift-pipelines/kustomization.yaml b/components/pipeline-service/base/external-secrets/openshift-pipelines/kustomization.yaml
+new file mode 100644
+index 00000000..d68c0f31
+--- /dev/null
++++ b/components/pipeline-service/base/external-secrets/openshift-pipelines/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - chains-signing-secrets.yaml
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 1aa29d7f..d7a82613 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1713,6 +1713,27 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/stone-prod-m01/chains-signing-secret
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: signing-secrets-vault
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+index dedaea51..d9ce3673 100644
+--- a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-signing-secret-path.yaml
++    target:
++      name: tekton-chains-signing-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-results-database-secret-path.yaml
+     target:
+       name: tekton-results-database
+diff --git a/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-signing-secret-path.yaml
+new file mode 100644
+index 00000000..5c38019c
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-signing-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/stone-prod-m01/chains-signing-secret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 1b25c9bc..4a5b86a5 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1713,6 +1713,27 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/stone-prod-rh01/chains-signing-secret
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: signing-secrets-vault
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+index dedaea51..d9ce3673 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-signing-secret-path.yaml
++    target:
++      name: tekton-chains-signing-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-results-database-secret-path.yaml
+     target:
+       name: tekton-results-database
+diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-signing-secret-path.yaml
+new file mode 100644
+index 00000000..7309b760
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-signing-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/stone-prod-rh01/chains-signing-secret
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 39d84a15..7a088c69 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1713,6 +1713,27 @@ spec:
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++  name: tekton-chains-signing-secret
++  namespace: openshift-pipelines
++spec:
++  dataFrom:
++  - extract:
++      key: production/pipeline-service/stone-prod-p01/chains-signing-secret
++  refreshInterval: 5m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: signing-secrets-vault
++---
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
+index 005a25ee..336d1757 100644
+--- a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
+@@ -3,6 +3,12 @@ kind: Kustomization
+ resources:
+   - ../../base
+ patches:
++  - path: tekton-chains-signing-secret-path.yaml
++    target:
++      name: tekton-chains-signing-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: tekton-results-database-secret-path.yaml
+     target:
+       name: tekton-results-database
+diff --git a/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-signing-secret-path.yaml
+new file mode 100644
+index 00000000..ff3f0760
+--- /dev/null
++++ b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-signing-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/stone-prod-p01/chains-signing-secret
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index c152e02e..36fbca8d 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -9,7 +9,6 @@ commonAnnotations:
+ 
+ resources:
+   - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094
+-  - chains-signing-secrets.yaml
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
