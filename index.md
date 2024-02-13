@@ -1,12 +1,2262 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Feb 13 12:03:33 UTC 2024
+### This file generated at Tue Feb 13 16:05:38 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 92420793 to bb50d531 on Tue Feb 13 10:16:52 2024 </h3>  
+<h3>1: Production changes from 15573ccc to ef872bc9 on Tue Feb 13 15:08:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (240 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
+index 4e4f1976..ee2d63df 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
+@@ -2,3 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../../base
++- toolchainconfig.yaml
++- space-provisioner-configs.yaml
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
+new file mode 100644
+index 00000000..325c6e77
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
+@@ -0,0 +1,26 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-stone-prd-m01.84db.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++spec:
++  toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
++  enabled: true
++  capacityThresholds:
++    maxNumberOfSpaces: 1000
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/tenant
++---
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++spec:
++  toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
++  enabled: false
++  capacityThresholds:
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/tenant
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
+new file mode 100644
+index 00000000..26cb9801
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
+@@ -0,0 +1,78 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: ToolchainConfig
++metadata:
++  name: config
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true # on the very first install, the CRD will be missing since the operator has not been installed yet
++spec:
++  host:
++    tiers:
++      defaultSpaceTier: 'appstudio'
++    automaticApproval:
++      enabled: false
++    capacityThresholds:
++      maxNumberOfSpacesPerMemberCluster:
++        member-stone-prd-m01.84db.p1.openshiftapps.com: 1000
++        member-stone-prd-rh01.pg1f.p1.openshiftapps.com: -1 # Only manual re-targeting to this cluster is allowed
++      resourceCapacityThreshold:
++        defaultThreshold: 90
++    spaceConfig:
++      spaceRequestEnabled: true
++      spaceBindingRequestEnabled: true
++    deactivation:
++      deactivationDomainsExcluded: '@redhat.com'
++    notifications:
++      adminEmail: rhtap-infra@redhat.com
++      secret:
++        mailgunAPIKey: mailgun.api.key
++        mailgunDomain: mailgun.domain
++        mailgunReplyToEmail: mailgun.replyto.email
++        mailgunSenderEmail: mailgun.sender.email
++        ref: host-operator-secret
++      templateSetName: 'appstudio'
++    registrationService:
++      auth:
++        authClientConfigRaw: '{
++                  "realm": "redhat-external",
++                  "auth-server-url": "https://sso.redhat.com/auth",
++                  "ssl-required": "ALL",
++                  "resource": "appstudio-stage-public",
++                  "clientId": "appstudio-stage-public",
++                  "public-client": true
++                }'
++        authClientLibraryURL: https://sso.redhat.com/auth/js/keycloak.js
++        authClientPublicKeysURL: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/certs
++        ssoBaseURL: https://sso.redhat.com
++        ssoRealm: redhat-external
++      environment: prod
++      replicas: 10
++      registrationServiceURL: https://console.redhat.com/preview/hac/application-pipeline
++      verification:
++        enabled: false # skip phone verification for now
++        excludedEmailDomains: 'redhat.com'
++        secret:
++          ref: host-operator-secret
++          twilioAccountSID: twilio.account.sid
++          twilioAuthToken: twilio.auth.token
++          twilioFromNumber: twilio.from_number
++    toolchainStatus:
++      gitHubSecret:
++        ref: host-operator-secret
++        accessTokenKey: github.access.token
++  members:
++    default:
++      skipUserCreation: true
++      auth:
++        idp: DevSandbox
++      autoscaler:
++        bufferMemory: 3Gi
++        bufferReplicas: 10
++        deploy: true
++      che:
++        required: false
++        userDeletionEnabled: false
++      memberStatus:
++        gitHubSecret:
++          ref: member-operator-secret
++          accessTokenKey: github.access.token
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml
+index 4e4f1976..ee2d63df 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml
+@@ -2,3 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../../base
++- toolchainconfig.yaml
++- space-provisioner-configs.yaml
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
+new file mode 100644
+index 00000000..852abb1d
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
+@@ -0,0 +1,13 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-stone-prod-p01.wcfb.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++spec:
++  toolchainCluster: member-stone-prod-p01.wcfb.p1.openshiftapps.com
++  enabled: true
++  capacityThresholds:
++    maxNumberOfSpaces: 1000
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/tenant
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
+new file mode 100644
+index 00000000..71aac860
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
+@@ -0,0 +1,75 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: ToolchainConfig
++metadata:
++  name: config
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true # on the very first install, the CRD will be missing since the operator has not been installed yet
++spec:
++  host:
++    tiers:
++      defaultSpaceTier: 'appstudio'
++    automaticApproval:
++      enabled: false
++    capacityThresholds:
++      resourceCapacityThreshold:
++        defaultThreshold: 90
++    spaceConfig:
++      spaceRequestEnabled: true
++      spaceBindingRequestEnabled: true
++    deactivation:
++      deactivationDomainsExcluded: '@redhat.com'
++    notifications:
++      adminEmail: rhtap-infra@redhat.com
++      secret:
++        mailgunAPIKey: mailgun.api.key
++        mailgunDomain: mailgun.domain
++        mailgunReplyToEmail: mailgun.replyto.email
++        mailgunSenderEmail: mailgun.sender.email
++        ref: host-operator-secret
++      templateSetName: 'appstudio'
++    registrationService:
++      auth:
++        authClientConfigRaw: '{
++                  "realm": "redhat-external",
++                  "auth-server-url": "https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth",
++                  "ssl-required": "ALL",
++                  "resource": "cloud-services",
++                  "clientId": "cloud-services",
++                  "public-client": true
++                }'
++        authClientLibraryURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js
++        authClientPublicKeysURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs
++        ssoBaseURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com
++        ssoRealm: redhat-external
++      environment: prod
++      replicas: 10
++      registrationServiceURL: https://rhtap.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/application-pipeline
++      verification:
++        enabled: false # skip phone verification for now
++        excludedEmailDomains: 'redhat.com'
++        secret:
++          ref: host-operator-secret
++          twilioAccountSID: twilio.account.sid
++          twilioAuthToken: twilio.auth.token
++          twilioFromNumber: twilio.from_number
++    toolchainStatus:
++      gitHubSecret:
++        ref: host-operator-secret
++        accessTokenKey: github.access.token
++  members:
++    default:
++      skipUserCreation: true
++      auth:
++        idp: DevSandbox
++      autoscaler:
++        bufferMemory: 3Gi
++        bufferReplicas: 10
++        deploy: true
++      che:
++        required: false
++        userDeletionEnabled: false
++      memberStatus:
++        gitHubSecret:
++          ref: member-operator-secret
++          accessTokenKey: github.access.token
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 15573ccc to ef872bc9 on Tue Feb 13 15:08:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (240 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
+index 4e4f1976..ee2d63df 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
+@@ -2,3 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../../base
++- toolchainconfig.yaml
++- space-provisioner-configs.yaml
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
+new file mode 100644
+index 00000000..325c6e77
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
+@@ -0,0 +1,26 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-stone-prd-m01.84db.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++spec:
++  toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
++  enabled: true
++  capacityThresholds:
++    maxNumberOfSpaces: 1000
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/tenant
++---
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++spec:
++  toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
++  enabled: false
++  capacityThresholds:
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/tenant
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
+new file mode 100644
+index 00000000..26cb9801
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
+@@ -0,0 +1,78 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: ToolchainConfig
++metadata:
++  name: config
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true # on the very first install, the CRD will be missing since the operator has not been installed yet
++spec:
++  host:
++    tiers:
++      defaultSpaceTier: 'appstudio'
++    automaticApproval:
++      enabled: false
++    capacityThresholds:
++      maxNumberOfSpacesPerMemberCluster:
++        member-stone-prd-m01.84db.p1.openshiftapps.com: 1000
++        member-stone-prd-rh01.pg1f.p1.openshiftapps.com: -1 # Only manual re-targeting to this cluster is allowed
++      resourceCapacityThreshold:
++        defaultThreshold: 90
++    spaceConfig:
++      spaceRequestEnabled: true
++      spaceBindingRequestEnabled: true
++    deactivation:
++      deactivationDomainsExcluded: '@redhat.com'
++    notifications:
++      adminEmail: rhtap-infra@redhat.com
++      secret:
++        mailgunAPIKey: mailgun.api.key
++        mailgunDomain: mailgun.domain
++        mailgunReplyToEmail: mailgun.replyto.email
++        mailgunSenderEmail: mailgun.sender.email
++        ref: host-operator-secret
++      templateSetName: 'appstudio'
++    registrationService:
++      auth:
++        authClientConfigRaw: '{
++                  "realm": "redhat-external",
++                  "auth-server-url": "https://sso.redhat.com/auth",
++                  "ssl-required": "ALL",
++                  "resource": "appstudio-stage-public",
++                  "clientId": "appstudio-stage-public",
++                  "public-client": true
++                }'
++        authClientLibraryURL: https://sso.redhat.com/auth/js/keycloak.js
++        authClientPublicKeysURL: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/certs
++        ssoBaseURL: https://sso.redhat.com
++        ssoRealm: redhat-external
++      environment: prod
++      replicas: 10
++      registrationServiceURL: https://console.redhat.com/preview/hac/application-pipeline
++      verification:
++        enabled: false # skip phone verification for now
++        excludedEmailDomains: 'redhat.com'
++        secret:
++          ref: host-operator-secret
++          twilioAccountSID: twilio.account.sid
++          twilioAuthToken: twilio.auth.token
++          twilioFromNumber: twilio.from_number
++    toolchainStatus:
++      gitHubSecret:
++        ref: host-operator-secret
++        accessTokenKey: github.access.token
++  members:
++    default:
++      skipUserCreation: true
++      auth:
++        idp: DevSandbox
++      autoscaler:
++        bufferMemory: 3Gi
++        bufferReplicas: 10
++        deploy: true
++      che:
++        required: false
++        userDeletionEnabled: false
++      memberStatus:
++        gitHubSecret:
++          ref: member-operator-secret
++          accessTokenKey: github.access.token
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml
+index 4e4f1976..ee2d63df 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml
+@@ -2,3 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../../base
++- toolchainconfig.yaml
++- space-provisioner-configs.yaml
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
+new file mode 100644
+index 00000000..852abb1d
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
+@@ -0,0 +1,13 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-stone-prod-p01.wcfb.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++spec:
++  toolchainCluster: member-stone-prod-p01.wcfb.p1.openshiftapps.com
++  enabled: true
++  capacityThresholds:
++    maxNumberOfSpaces: 1000
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/tenant
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
+new file mode 100644
+index 00000000..71aac860
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
+@@ -0,0 +1,75 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: ToolchainConfig
++metadata:
++  name: config
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true # on the very first install, the CRD will be missing since the operator has not been installed yet
++spec:
++  host:
++    tiers:
++      defaultSpaceTier: 'appstudio'
++    automaticApproval:
++      enabled: false
++    capacityThresholds:
++      resourceCapacityThreshold:
++        defaultThreshold: 90
++    spaceConfig:
++      spaceRequestEnabled: true
++      spaceBindingRequestEnabled: true
++    deactivation:
++      deactivationDomainsExcluded: '@redhat.com'
++    notifications:
++      adminEmail: rhtap-infra@redhat.com
++      secret:
++        mailgunAPIKey: mailgun.api.key
++        mailgunDomain: mailgun.domain
++        mailgunReplyToEmail: mailgun.replyto.email
++        mailgunSenderEmail: mailgun.sender.email
++        ref: host-operator-secret
++      templateSetName: 'appstudio'
++    registrationService:
++      auth:
++        authClientConfigRaw: '{
++                  "realm": "redhat-external",
++                  "auth-server-url": "https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth",
++                  "ssl-required": "ALL",
++                  "resource": "cloud-services",
++                  "clientId": "cloud-services",
++                  "public-client": true
++                }'
++        authClientLibraryURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js
++        authClientPublicKeysURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs
++        ssoBaseURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com
++        ssoRealm: redhat-external
++      environment: prod
++      replicas: 10
++      registrationServiceURL: https://rhtap.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/application-pipeline
++      verification:
++        enabled: false # skip phone verification for now
++        excludedEmailDomains: 'redhat.com'
++        secret:
++          ref: host-operator-secret
++          twilioAccountSID: twilio.account.sid
++          twilioAuthToken: twilio.auth.token
++          twilioFromNumber: twilio.from_number
++    toolchainStatus:
++      gitHubSecret:
++        ref: host-operator-secret
++        accessTokenKey: github.access.token
++  members:
++    default:
++      skipUserCreation: true
++      auth:
++        idp: DevSandbox
++      autoscaler:
++        bufferMemory: 3Gi
++        bufferReplicas: 10
++        deploy: true
++      che:
++        required: false
++        userDeletionEnabled: false
++      memberStatus:
++        gitHubSecret:
++          ref: member-operator-secret
++          accessTokenKey: github.access.token
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 15573ccc to ef872bc9 on Tue Feb 13 15:08:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (240 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
+index 4e4f1976..ee2d63df 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/kustomization.yaml
+@@ -2,3 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../../base
++- toolchainconfig.yaml
++- space-provisioner-configs.yaml
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
+new file mode 100644
+index 00000000..325c6e77
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/space-provisioner-configs.yaml
+@@ -0,0 +1,26 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-stone-prd-m01.84db.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++spec:
++  toolchainCluster: member-stone-prd-m01.84db.p1.openshiftapps.com
++  enabled: true
++  capacityThresholds:
++    maxNumberOfSpaces: 1000
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/tenant
++---
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++spec:
++  toolchainCluster: member-stone-prd-rh01.pg1f.p1.openshiftapps.com
++  enabled: false
++  capacityThresholds:
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/tenant
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
+new file mode 100644
+index 00000000..26cb9801
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/production/stone-prd-host1/toolchainconfig.yaml
+@@ -0,0 +1,78 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: ToolchainConfig
++metadata:
++  name: config
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true # on the very first install, the CRD will be missing since the operator has not been installed yet
++spec:
++  host:
++    tiers:
++      defaultSpaceTier: 'appstudio'
++    automaticApproval:
++      enabled: false
++    capacityThresholds:
++      maxNumberOfSpacesPerMemberCluster:
++        member-stone-prd-m01.84db.p1.openshiftapps.com: 1000
++        member-stone-prd-rh01.pg1f.p1.openshiftapps.com: -1 # Only manual re-targeting to this cluster is allowed
++      resourceCapacityThreshold:
++        defaultThreshold: 90
++    spaceConfig:
++      spaceRequestEnabled: true
++      spaceBindingRequestEnabled: true
++    deactivation:
++      deactivationDomainsExcluded: '@redhat.com'
++    notifications:
++      adminEmail: rhtap-infra@redhat.com
++      secret:
++        mailgunAPIKey: mailgun.api.key
++        mailgunDomain: mailgun.domain
++        mailgunReplyToEmail: mailgun.replyto.email
++        mailgunSenderEmail: mailgun.sender.email
++        ref: host-operator-secret
++      templateSetName: 'appstudio'
++    registrationService:
++      auth:
++        authClientConfigRaw: '{
++                  "realm": "redhat-external",
++                  "auth-server-url": "https://sso.redhat.com/auth",
++                  "ssl-required": "ALL",
++                  "resource": "appstudio-stage-public",
++                  "clientId": "appstudio-stage-public",
++                  "public-client": true
++                }'
++        authClientLibraryURL: https://sso.redhat.com/auth/js/keycloak.js
++        authClientPublicKeysURL: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/certs
++        ssoBaseURL: https://sso.redhat.com
++        ssoRealm: redhat-external
++      environment: prod
++      replicas: 10
++      registrationServiceURL: https://console.redhat.com/preview/hac/application-pipeline
++      verification:
++        enabled: false # skip phone verification for now
++        excludedEmailDomains: 'redhat.com'
++        secret:
++          ref: host-operator-secret
++          twilioAccountSID: twilio.account.sid
++          twilioAuthToken: twilio.auth.token
++          twilioFromNumber: twilio.from_number
++    toolchainStatus:
++      gitHubSecret:
++        ref: host-operator-secret
++        accessTokenKey: github.access.token
++  members:
++    default:
++      skipUserCreation: true
++      auth:
++        idp: DevSandbox
++      autoscaler:
++        bufferMemory: 3Gi
++        bufferReplicas: 10
++        deploy: true
++      che:
++        required: false
++        userDeletionEnabled: false
++      memberStatus:
++        gitHubSecret:
++          ref: member-operator-secret
++          accessTokenKey: github.access.token
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml
+index 4e4f1976..ee2d63df 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/kustomization.yaml
+@@ -2,3 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../../base
++- toolchainconfig.yaml
++- space-provisioner-configs.yaml
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
+new file mode 100644
+index 00000000..852abb1d
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/space-provisioner-configs.yaml
+@@ -0,0 +1,13 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: SpaceProvisionerConfig
++metadata:
++  name: member-stone-prod-p01.wcfb.p1.openshiftapps.com
++  namespace: toolchain-host-operator
++spec:
++  toolchainCluster: member-stone-prod-p01.wcfb.p1.openshiftapps.com
++  enabled: true
++  capacityThresholds:
++    maxNumberOfSpaces: 1000
++    maxMemoryUtilizationPercent: 90
++  placementRoles:
++  - cluster-role.toolchain.dev.openshift.com/tenant
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
+new file mode 100644
+index 00000000..71aac860
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
+@@ -0,0 +1,75 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: ToolchainConfig
++metadata:
++  name: config
++  namespace: toolchain-host-operator
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true # on the very first install, the CRD will be missing since the operator has not been installed yet
++spec:
++  host:
++    tiers:
++      defaultSpaceTier: 'appstudio'
++    automaticApproval:
++      enabled: false
++    capacityThresholds:
++      resourceCapacityThreshold:
++        defaultThreshold: 90
++    spaceConfig:
++      spaceRequestEnabled: true
++      spaceBindingRequestEnabled: true
++    deactivation:
++      deactivationDomainsExcluded: '@redhat.com'
++    notifications:
++      adminEmail: rhtap-infra@redhat.com
++      secret:
++        mailgunAPIKey: mailgun.api.key
++        mailgunDomain: mailgun.domain
++        mailgunReplyToEmail: mailgun.replyto.email
++        mailgunSenderEmail: mailgun.sender.email
++        ref: host-operator-secret
++      templateSetName: 'appstudio'
++    registrationService:
++      auth:
++        authClientConfigRaw: '{
++                  "realm": "redhat-external",
++                  "auth-server-url": "https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth",
++                  "ssl-required": "ALL",
++                  "resource": "cloud-services",
++                  "clientId": "cloud-services",
++                  "public-client": true
++                }'
++        authClientLibraryURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js
++        authClientPublicKeysURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs
++        ssoBaseURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com
++        ssoRealm: redhat-external
++      environment: prod
++      replicas: 10
++      registrationServiceURL: https://rhtap.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/application-pipeline
++      verification:
++        enabled: false # skip phone verification for now
++        excludedEmailDomains: 'redhat.com'
++        secret:
++          ref: host-operator-secret
++          twilioAccountSID: twilio.account.sid
++          twilioAuthToken: twilio.auth.token
++          twilioFromNumber: twilio.from_number
++    toolchainStatus:
++      gitHubSecret:
++        ref: host-operator-secret
++        accessTokenKey: github.access.token
++  members:
++    default:
++      skipUserCreation: true
++      auth:
++        idp: DevSandbox
++      autoscaler:
++        bufferMemory: 3Gi
++        bufferReplicas: 10
++        deploy: true
++      che:
++        required: false
++        userDeletionEnabled: false
++      memberStatus:
++        gitHubSecret:
++          ref: member-operator-secret
++          accessTokenKey: github.access.token
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 312df1b0 to 15573ccc on Tue Feb 13 13:13:11 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (75 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+index ba2d9569..a44151ff 100644
+--- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/grafana/base?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/grafana/base?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+ - https://github.com/redhat-appstudio/remote-secret/config/monitoring/grafana/base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+ - dashboard.yaml
+diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
+index b17f419a..0f8b7e5d 100644
+--- a/components/spi-vault/kustomization.yaml
++++ b/components/spi-vault/kustomization.yaml
+@@ -4,4 +4,4 @@ kind: Kustomization
+ namespace: spi-vault
+ 
+ resources:
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
+index 18ba289b..a710340b 100644
+--- a/components/spi/overlays/development/kustomization.yaml
++++ b/components/spi/overlays/development/kustomization.yaml
+@@ -2,17 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+ 
+ namespace: spi-system
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++    newTag: 4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++    newTag: 4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+ 
+ patches:
+   - target:
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index e16b183f..ea9ec4bf 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,10 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++    newTag: 4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++    newTag: 4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 312df1b0 to 15573ccc on Tue Feb 13 13:13:11 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (75 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+index ba2d9569..a44151ff 100644
+--- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/grafana/base?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/grafana/base?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+ - https://github.com/redhat-appstudio/remote-secret/config/monitoring/grafana/base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+ - dashboard.yaml
+diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
+index b17f419a..0f8b7e5d 100644
+--- a/components/spi-vault/kustomization.yaml
++++ b/components/spi-vault/kustomization.yaml
+@@ -4,4 +4,4 @@ kind: Kustomization
+ namespace: spi-vault
+ 
+ resources:
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
+index 18ba289b..a710340b 100644
+--- a/components/spi/overlays/development/kustomization.yaml
++++ b/components/spi/overlays/development/kustomization.yaml
+@@ -2,17 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+ 
+ namespace: spi-system
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++    newTag: 4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++    newTag: 4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+ 
+ patches:
+   - target:
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index e16b183f..ea9ec4bf 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,10 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++    newTag: 4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++    newTag: 4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 312df1b0 to 15573ccc on Tue Feb 13 13:13:11 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (75 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+index ba2d9569..a44151ff 100644
+--- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/grafana/base?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++- https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/grafana/base?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+ - https://github.com/redhat-appstudio/remote-secret/config/monitoring/grafana/base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
+ - dashboard.yaml
+diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
+index b17f419a..0f8b7e5d 100644
+--- a/components/spi-vault/kustomization.yaml
++++ b/components/spi-vault/kustomization.yaml
+@@ -4,4 +4,4 @@ kind: Kustomization
+ namespace: spi-vault
+ 
+ resources:
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/vault/openshift?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
+index 18ba289b..a710340b 100644
+--- a/components/spi/overlays/development/kustomization.yaml
++++ b/components/spi/overlays/development/kustomization.yaml
+@@ -2,17 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_vault?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+ 
+ namespace: spi-system
+ 
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++    newTag: 4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++    newTag: 4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+ 
+ patches:
+   - target:
+diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
+index e16b183f..ea9ec4bf 100644
+--- a/components/spi/overlays/staging/base/kustomization.yaml
++++ b/components/spi/overlays/staging/base/kustomization.yaml
+@@ -3,8 +3,8 @@ kind: Kustomization
+ resources:
+   - ../../../base
+   - ../../../base/external-secrets
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
+-  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/overlays/openshift_aws?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
++  - https://github.com/redhat-appstudio/service-provider-integration-operator/config/monitoring/prometheus/base?ref=4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+   - spi-aws-credentials-external-secret.yaml
+ 
+ namespace: spi-system
+@@ -12,10 +12,10 @@ namespace: spi-system
+ images:
+   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
+     newName: quay.io/redhat-appstudio/service-provider-integration-operator
+-    newTag: 746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++    newTag: 4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
+     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
+-    newTag: 746d3cd4eabe29ff09d3f33b2f18d8b2496c760e
++    newTag: 4cc7d82ee84cbe8b270d7a9c0977cda262535f7c
+ 
+ patches:
+   - target: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from bb50d531 to 312df1b0 on Tue Feb 13 12:10:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+index a11835bb..f317c523 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=cad02429e3133890bcf92b2d7cc1f94233b8037e
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=4b89853a9724bc241412714c3a1cd2e443848f49
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: cad02429e3133890bcf92b2d7cc1f94233b8037e
++  newTag: 4b89853a9724bc241412714c3a1cd2e443848f49
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (232 lines)</summary>  
+
+``` 
+./commit-bb50d531/production/components/integration/production/kustomize.out.yaml
+12a13
+>     service.beta.openshift.io/inject-cabundle: "true"
+15a17,27
+>   conversion:
+>     strategy: Webhook
+>     webhook:
+>       clientConfig:
+>         service:
+>           name: integration-service-webhook-service
+>           namespace: integration-service
+>           path: /convert
+>       conversionReviewVersions:
+>       - v1alpha1
+>       - v1beta1
+29a42,253
+>     deprecated: true
+>     deprecationWarning: The v1alpha1 version is deprecated and will be automatically
+>       migrated to v1beta1
+>     name: v1alpha1
+>     schema:
+>       openAPIV3Schema:
+>         description: IntegrationTestScenario is the Schema for the integrationtestscenarios
+>           API
+>         properties:
+>           apiVersion:
+>             description: 'APIVersion defines the versioned schema of this representation
+>               of an object. Servers should convert recognized schemas to the latest
+>               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+>             type: string
+>           kind:
+>             description: 'Kind is a string value representing the REST resource this
+>               object represents. Servers may infer this from the endpoint the client
+>               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+>             type: string
+>           metadata:
+>             type: object
+>           spec:
+>             description: IntegrationTestScenarioSpec defines the desired state of
+>               IntegrationScenario
+>             properties:
+>               application:
+>                 description: Application that's associated with the IntegrationTestScenario
+>                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+>                 type: string
+>               bundle:
+>                 description: Tekton Bundle where to find the pipeline
+>                 type: string
+>               contexts:
+>                 description: Contexts where this IntegrationTestScenario can be applied
+>                 items:
+>                   description: TestContext contains the name and values of a Test
+>                     context
+>                   properties:
+>                     description:
+>                       type: string
+>                     name:
+>                       type: string
+>                   required:
+>                   - name
+>                   type: object
+>                 type: array
+>               environment:
+>                 description: Environment that will be utilized by the test pipeline
+>                 properties:
+>                   configuration:
+>                     description: EnvironmentConfiguration contains Environment-specific
+>                       configurations details, to be used when generating Component/Application
+>                       GitOps repository resources.
+>                     properties:
+>                       env:
+>                         description: Env is an array of standard environment vairables
+>                         items:
+>                           description: EnvVarPair describes environment variables
+>                             to use for the component
+>                           properties:
+>                             name:
+>                               description: Name is the environment variable name
+>                               type: string
+>                             value:
+>                               description: Value is the environment variable value
+>                               type: string
+>                           required:
+>                           - name
+>                           - value
+>                           type: object
+>                         type: array
+>                       target:
+>                         description: Target is used to reference a DeploymentTargetClaim
+>                           for a target Environment. The Environment controller uses
+>                           the referenced DeploymentTargetClaim to access its bounded
+>                           DeploymentTarget with cluster credential secret.
+>                         properties:
+>                           deploymentTargetClaim:
+>                             description: DeploymentTargetClaimConfig specifies the
+>                               DeploymentTargetClaim details for a given Environment.
+>                             properties:
+>                               claimName:
+>                                 type: string
+>                             required:
+>                             - claimName
+>                             type: object
+>                         required:
+>                         - deploymentTargetClaim
+>                         type: object
+>                     type: object
+>                   name:
+>                     type: string
+>                   type:
+>                     description: 'DEPRECATED: EnvironmentType should no longer be
+>                       used, and has no replacement. - It''s original purpose was to
+>                       indicate whether an environment is POC/Non-POC, but these data
+>                       were ultimately not required.'
+>                     type: string
+>                 required:
+>                 - name
+>                 - type
+>                 type: object
+>               params:
+>                 description: Params to pass to the pipeline
+>                 items:
+>                   description: PipelineParameter contains the name and values of a
+>                     Tekton Pipeline parameter
+>                   properties:
+>                     name:
+>                       type: string
+>                     value:
+>                       type: string
+>                     values:
+>                       items:
+>                         type: string
+>                       type: array
+>                   required:
+>                   - name
+>                   type: object
+>                 type: array
+>               pipeline:
+>                 description: Release Tekton Pipeline to execute
+>                 type: string
+>             required:
+>             - application
+>             - bundle
+>             - pipeline
+>             type: object
+>           status:
+>             description: IntegrationTestScenarioStatus defines the observed state
+>               of IntegrationTestScenario
+>             properties:
+>               conditions:
+>                 items:
+>                   description: "Condition contains details for one aspect of the current
+>                     state of this API Resource. --- This struct is intended for direct
+>                     use as an array at the field path .status.conditions.  For example,
+>                     \n type FooStatus struct{ // Represents the observations of a
+>                     foo's current state. // Known .status.conditions.type are: \"Available\",
+>                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
+>                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
+>                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
+>                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
+>                   properties:
+>                     lastTransitionTime:
+>                       description: lastTransitionTime is the last time the condition
+>                         transitioned from one status to another. This should be when
+>                         the underlying condition changed.  If that is not known, then
+>                         using the time when the API field changed is acceptable.
+>                       format: date-time
+>                       type: string
+>                     message:
+>                       description: message is a human readable message indicating
+>                         details about the transition. This may be an empty string.
+>                       maxLength: 32768
+>                       type: string
+>                     observedGeneration:
+>                       description: observedGeneration represents the .metadata.generation
+>                         that the condition was set based upon. For instance, if .metadata.generation
+>                         is currently 12, but the .status.conditions[x].observedGeneration
+>                         is 9, the condition is out of date with respect to the current
+>                         state of the instance.
+>                       format: int64
+>                       minimum: 0
+>                       type: integer
+>                     reason:
+>                       description: reason contains a programmatic identifier indicating
+>                         the reason for the condition's last transition. Producers
+>                         of specific condition types may define expected values and
+>                         meanings for this field, and whether the values are considered
+>                         a guaranteed API. The value should be a CamelCase string.
+>                         This field may not be empty.
+>                       maxLength: 1024
+>                       minLength: 1
+>                       pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+>                       type: string
+>                     status:
+>                       description: status of the condition, one of True, False, Unknown.
+>                       enum:
+>                       - "True"
+>                       - "False"
+>                       - Unknown
+>                       type: string
+>                     type:
+>                       description: type of condition in CamelCase or in foo.example.com/CamelCase.
+>                         --- Many .condition.type values are consistent across resources
+>                         like Available, but because arbitrary conditions can be useful
+>                         (see .node.status.conditions), the ability to deconflict is
+>                         important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+>                       maxLength: 316
+>                       pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+>                       type: string
+>                   required:
+>                   - lastTransitionTime
+>                   - message
+>                   - reason
+>                   - status
+>                   - type
+>                   type: object
+>                 type: array
+>             required:
+>             - conditions
+>             type: object
+>         type: object
+>     served: true
+>     storage: false
+>     subresources:
+>       status: {}
+>   - additionalPrinterColumns:
+>     - jsonPath: .spec.application
+>       name: Application
+>       type: string
+904c1128
+<         image: quay.io/redhat-appstudio/integration-service:4b89853a9724bc241412714c3a1cd2e443848f49
+---
+>         image: quay.io/redhat-appstudio/integration-service:cad02429e3133890bcf92b2d7cc1f94233b8037e 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from bb50d531 to 312df1b0 on Tue Feb 13 12:10:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+index a11835bb..f317c523 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=cad02429e3133890bcf92b2d7cc1f94233b8037e
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=4b89853a9724bc241412714c3a1cd2e443848f49
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: cad02429e3133890bcf92b2d7cc1f94233b8037e
++  newTag: 4b89853a9724bc241412714c3a1cd2e443848f49
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from bb50d531 to 312df1b0 on Tue Feb 13 12:10:18 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+index a11835bb..f317c523 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=cad02429e3133890bcf92b2d7cc1f94233b8037e
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=4b89853a9724bc241412714c3a1cd2e443848f49
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: cad02429e3133890bcf92b2d7cc1f94233b8037e
++  newTag: 4b89853a9724bc241412714c3a1cd2e443848f49
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from 92420793 to bb50d531 on Tue Feb 13 10:16:52 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -169,7 +2419,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 92420793 to bb50d531 on Tue Feb 13 10:16:52 2024 </h3>  
+<h3>4: Staging changes from 92420793 to bb50d531 on Tue Feb 13 10:16:52 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -342,7 +2592,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 92420793 to bb50d531 on Tue Feb 13 10:16:52 2024 </h3>  
+<h3>4: Development changes from 92420793 to bb50d531 on Tue Feb 13 10:16:52 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -399,2416 +2649,6 @@ index 1ada6c9d..dacf1f3b 100644
 <         image: quay.io/redhat-appstudio/integration-service:17d83481431c3747ba1ca80eed5b254afaf789e7
 ---
 >         image: quay.io/redhat-appstudio/integration-service:4b89853a9724bc241412714c3a1cd2e443848f49 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from 4f4ec4f2 to 92420793 on Mon Feb 12 20:45:51 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (213 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/base/external-secrets/kustomization.yaml b/components/pipeline-service/base/external-secrets/kustomization.yaml
-index cbd94d62..dc20e2ee 100644
---- a/components/pipeline-service/base/external-secrets/kustomization.yaml
-+++ b/components/pipeline-service/base/external-secrets/kustomization.yaml
-@@ -1,4 +1,5 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-+  - openshift-pipelines
-   - tekton-results
-diff --git a/components/pipeline-service/staging/base/chains-signing-secrets.yaml b/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
-similarity index 100%
-rename from components/pipeline-service/staging/base/chains-signing-secrets.yaml
-rename to components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
-diff --git a/components/pipeline-service/base/external-secrets/openshift-pipelines/kustomization.yaml b/components/pipeline-service/base/external-secrets/openshift-pipelines/kustomization.yaml
-new file mode 100644
-index 00000000..d68c0f31
---- /dev/null
-+++ b/components/pipeline-service/base/external-secrets/openshift-pipelines/kustomization.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - chains-signing-secrets.yaml
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 1aa29d7f..d7a82613 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1713,6 +1713,27 @@ spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+  name: tekton-chains-signing-secret
-+  namespace: openshift-pipelines
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/pipeline-service/stone-prod-m01/chains-signing-secret
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: signing-secrets-vault
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-index dedaea51..d9ce3673 100644
---- a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-@@ -3,6 +3,12 @@ kind: Kustomization
- resources:
-   - ../../base
- patches:
-+  - path: tekton-chains-signing-secret-path.yaml
-+    target:
-+      name: tekton-chains-signing-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-   - path: tekton-results-database-secret-path.yaml
-     target:
-       name: tekton-results-database
-diff --git a/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-signing-secret-path.yaml
-new file mode 100644
-index 00000000..5c38019c
---- /dev/null
-+++ b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-signing-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/pipeline-service/stone-prod-m01/chains-signing-secret
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 1b25c9bc..4a5b86a5 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1713,6 +1713,27 @@ spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+  name: tekton-chains-signing-secret
-+  namespace: openshift-pipelines
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/pipeline-service/stone-prod-rh01/chains-signing-secret
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: signing-secrets-vault
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
-index dedaea51..d9ce3673 100644
---- a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
-@@ -3,6 +3,12 @@ kind: Kustomization
- resources:
-   - ../../base
- patches:
-+  - path: tekton-chains-signing-secret-path.yaml
-+    target:
-+      name: tekton-chains-signing-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-   - path: tekton-results-database-secret-path.yaml
-     target:
-       name: tekton-results-database
-diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-signing-secret-path.yaml
-new file mode 100644
-index 00000000..7309b760
---- /dev/null
-+++ b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-signing-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/pipeline-service/stone-prod-rh01/chains-signing-secret
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 39d84a15..7a088c69 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1713,6 +1713,27 @@ spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+  name: tekton-chains-signing-secret
-+  namespace: openshift-pipelines
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/pipeline-service/stone-prod-p01/chains-signing-secret
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: signing-secrets-vault
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
-index 005a25ee..336d1757 100644
---- a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
-@@ -3,6 +3,12 @@ kind: Kustomization
- resources:
-   - ../../base
- patches:
-+  - path: tekton-chains-signing-secret-path.yaml
-+    target:
-+      name: tekton-chains-signing-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-   - path: tekton-results-database-secret-path.yaml
-     target:
-       name: tekton-results-database
-diff --git a/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-signing-secret-path.yaml
-new file mode 100644
-index 00000000..ff3f0760
---- /dev/null
-+++ b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-signing-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/pipeline-service/stone-prod-p01/chains-signing-secret
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index c152e02e..36fbca8d 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -9,7 +9,6 @@ commonAnnotations:
- 
- resources:
-   - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094
--  - chains-signing-secrets.yaml
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (69 lines)</summary>  
-
-``` 
-./commit-4f4ec4f2/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
-1720,1740d1719
-<   name: tekton-chains-signing-secret
-<   namespace: openshift-pipelines
-< spec:
-<   dataFrom:
-<   - extract:
-<       key: production/pipeline-service/stone-prod-m01/chains-signing-secret
-<   refreshInterval: 5m
-<   secretStoreRef:
-<     kind: ClusterSecretStore
-<     name: appsre-stonesoup-vault
-<   target:
-<     creationPolicy: Owner
-<     deletionPolicy: Delete
-<     name: signing-secrets-vault
-< ---
-< apiVersion: external-secrets.io/v1beta1
-< kind: ExternalSecret
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<     argocd.argoproj.io/sync-wave: "-1"
-./commit-4f4ec4f2/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
-1720,1740d1719
-<   name: tekton-chains-signing-secret
-<   namespace: openshift-pipelines
-< spec:
-<   dataFrom:
-<   - extract:
-<       key: production/pipeline-service/stone-prod-rh01/chains-signing-secret
-<   refreshInterval: 5m
-<   secretStoreRef:
-<     kind: ClusterSecretStore
-<     name: appsre-stonesoup-vault
-<   target:
-<     creationPolicy: Owner
-<     deletionPolicy: Delete
-<     name: signing-secrets-vault
-< ---
-< apiVersion: external-secrets.io/v1beta1
-< kind: ExternalSecret
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<     argocd.argoproj.io/sync-wave: "-1"
-./commit-4f4ec4f2/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
-1720,1740d1719
-<   name: tekton-chains-signing-secret
-<   namespace: openshift-pipelines
-< spec:
-<   dataFrom:
-<   - extract:
-<       key: production/pipeline-service/stone-prod-p01/chains-signing-secret
-<   refreshInterval: 5m
-<   secretStoreRef:
-<     kind: ClusterSecretStore
-<     name: appsre-stonesoup-vault
-<   target:
-<     creationPolicy: Owner
-<     deletionPolicy: Delete
-<     name: signing-secrets-vault
-< ---
-< apiVersion: external-secrets.io/v1beta1
-< kind: ExternalSecret
-< metadata:
-<   annotations:
-<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-<     argocd.argoproj.io/sync-wave: "-1" 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from 4f4ec4f2 to 92420793 on Mon Feb 12 20:45:51 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (213 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/base/external-secrets/kustomization.yaml b/components/pipeline-service/base/external-secrets/kustomization.yaml
-index cbd94d62..dc20e2ee 100644
---- a/components/pipeline-service/base/external-secrets/kustomization.yaml
-+++ b/components/pipeline-service/base/external-secrets/kustomization.yaml
-@@ -1,4 +1,5 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-+  - openshift-pipelines
-   - tekton-results
-diff --git a/components/pipeline-service/staging/base/chains-signing-secrets.yaml b/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
-similarity index 100%
-rename from components/pipeline-service/staging/base/chains-signing-secrets.yaml
-rename to components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
-diff --git a/components/pipeline-service/base/external-secrets/openshift-pipelines/kustomization.yaml b/components/pipeline-service/base/external-secrets/openshift-pipelines/kustomization.yaml
-new file mode 100644
-index 00000000..d68c0f31
---- /dev/null
-+++ b/components/pipeline-service/base/external-secrets/openshift-pipelines/kustomization.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - chains-signing-secrets.yaml
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 1aa29d7f..d7a82613 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1713,6 +1713,27 @@ spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+  name: tekton-chains-signing-secret
-+  namespace: openshift-pipelines
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/pipeline-service/stone-prod-m01/chains-signing-secret
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: signing-secrets-vault
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-index dedaea51..d9ce3673 100644
---- a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-@@ -3,6 +3,12 @@ kind: Kustomization
- resources:
-   - ../../base
- patches:
-+  - path: tekton-chains-signing-secret-path.yaml
-+    target:
-+      name: tekton-chains-signing-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-   - path: tekton-results-database-secret-path.yaml
-     target:
-       name: tekton-results-database
-diff --git a/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-signing-secret-path.yaml
-new file mode 100644
-index 00000000..5c38019c
---- /dev/null
-+++ b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-signing-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/pipeline-service/stone-prod-m01/chains-signing-secret
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 1b25c9bc..4a5b86a5 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1713,6 +1713,27 @@ spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+  name: tekton-chains-signing-secret
-+  namespace: openshift-pipelines
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/pipeline-service/stone-prod-rh01/chains-signing-secret
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: signing-secrets-vault
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
-index dedaea51..d9ce3673 100644
---- a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
-@@ -3,6 +3,12 @@ kind: Kustomization
- resources:
-   - ../../base
- patches:
-+  - path: tekton-chains-signing-secret-path.yaml
-+    target:
-+      name: tekton-chains-signing-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-   - path: tekton-results-database-secret-path.yaml
-     target:
-       name: tekton-results-database
-diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-signing-secret-path.yaml
-new file mode 100644
-index 00000000..7309b760
---- /dev/null
-+++ b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-signing-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/pipeline-service/stone-prod-rh01/chains-signing-secret
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 39d84a15..7a088c69 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1713,6 +1713,27 @@ spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+  name: tekton-chains-signing-secret
-+  namespace: openshift-pipelines
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/pipeline-service/stone-prod-p01/chains-signing-secret
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: signing-secrets-vault
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
-index 005a25ee..336d1757 100644
---- a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
-@@ -3,6 +3,12 @@ kind: Kustomization
- resources:
-   - ../../base
- patches:
-+  - path: tekton-chains-signing-secret-path.yaml
-+    target:
-+      name: tekton-chains-signing-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-   - path: tekton-results-database-secret-path.yaml
-     target:
-       name: tekton-results-database
-diff --git a/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-signing-secret-path.yaml
-new file mode 100644
-index 00000000..ff3f0760
---- /dev/null
-+++ b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-signing-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/pipeline-service/stone-prod-p01/chains-signing-secret
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index c152e02e..36fbca8d 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -9,7 +9,6 @@ commonAnnotations:
- 
- resources:
-   - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094
--  - chains-signing-secrets.yaml
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from 4f4ec4f2 to 92420793 on Mon Feb 12 20:45:51 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (213 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/base/external-secrets/kustomization.yaml b/components/pipeline-service/base/external-secrets/kustomization.yaml
-index cbd94d62..dc20e2ee 100644
---- a/components/pipeline-service/base/external-secrets/kustomization.yaml
-+++ b/components/pipeline-service/base/external-secrets/kustomization.yaml
-@@ -1,4 +1,5 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-+  - openshift-pipelines
-   - tekton-results
-diff --git a/components/pipeline-service/staging/base/chains-signing-secrets.yaml b/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
-similarity index 100%
-rename from components/pipeline-service/staging/base/chains-signing-secrets.yaml
-rename to components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
-diff --git a/components/pipeline-service/base/external-secrets/openshift-pipelines/kustomization.yaml b/components/pipeline-service/base/external-secrets/openshift-pipelines/kustomization.yaml
-new file mode 100644
-index 00000000..d68c0f31
---- /dev/null
-+++ b/components/pipeline-service/base/external-secrets/openshift-pipelines/kustomization.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - chains-signing-secrets.yaml
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 1aa29d7f..d7a82613 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1713,6 +1713,27 @@ spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+  name: tekton-chains-signing-secret
-+  namespace: openshift-pipelines
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/pipeline-service/stone-prod-m01/chains-signing-secret
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: signing-secrets-vault
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-index dedaea51..d9ce3673 100644
---- a/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/resources/kustomization.yaml
-@@ -3,6 +3,12 @@ kind: Kustomization
- resources:
-   - ../../base
- patches:
-+  - path: tekton-chains-signing-secret-path.yaml
-+    target:
-+      name: tekton-chains-signing-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-   - path: tekton-results-database-secret-path.yaml
-     target:
-       name: tekton-results-database
-diff --git a/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-signing-secret-path.yaml
-new file mode 100644
-index 00000000..5c38019c
---- /dev/null
-+++ b/components/pipeline-service/production/stone-prd-m01/resources/tekton-chains-signing-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/pipeline-service/stone-prod-m01/chains-signing-secret
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 1b25c9bc..4a5b86a5 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1713,6 +1713,27 @@ spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+  name: tekton-chains-signing-secret
-+  namespace: openshift-pipelines
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/pipeline-service/stone-prod-rh01/chains-signing-secret
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: signing-secrets-vault
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
-index dedaea51..d9ce3673 100644
---- a/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/resources/kustomization.yaml
-@@ -3,6 +3,12 @@ kind: Kustomization
- resources:
-   - ../../base
- patches:
-+  - path: tekton-chains-signing-secret-path.yaml
-+    target:
-+      name: tekton-chains-signing-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-   - path: tekton-results-database-secret-path.yaml
-     target:
-       name: tekton-results-database
-diff --git a/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-signing-secret-path.yaml
-new file mode 100644
-index 00000000..7309b760
---- /dev/null
-+++ b/components/pipeline-service/production/stone-prd-rh01/resources/tekton-chains-signing-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/pipeline-service/stone-prod-rh01/chains-signing-secret
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 39d84a15..7a088c69 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1713,6 +1713,27 @@ spec:
- ---
- apiVersion: external-secrets.io/v1beta1
- kind: ExternalSecret
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+  name: tekton-chains-signing-secret
-+  namespace: openshift-pipelines
-+spec:
-+  dataFrom:
-+  - extract:
-+      key: production/pipeline-service/stone-prod-p01/chains-signing-secret
-+  refreshInterval: 5m
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: signing-secrets-vault
-+---
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
- metadata:
-   annotations:
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-diff --git a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
-index 005a25ee..336d1757 100644
---- a/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/resources/kustomization.yaml
-@@ -3,6 +3,12 @@ kind: Kustomization
- resources:
-   - ../../base
- patches:
-+  - path: tekton-chains-signing-secret-path.yaml
-+    target:
-+      name: tekton-chains-signing-secret
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-   - path: tekton-results-database-secret-path.yaml
-     target:
-       name: tekton-results-database
-diff --git a/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-signing-secret-path.yaml b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-signing-secret-path.yaml
-new file mode 100644
-index 00000000..ff3f0760
---- /dev/null
-+++ b/components/pipeline-service/production/stone-prod-p01/resources/tekton-chains-signing-secret-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/dataFrom/0/extract/key
-+  value: production/pipeline-service/stone-prod-p01/chains-signing-secret
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index c152e02e..36fbca8d 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -9,7 +9,6 @@ commonAnnotations:
- 
- resources:
-   - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094
--  - chains-signing-secrets.yaml
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 8eafd619 to 4f4ec4f2 on Mon Feb 12 20:27:02 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (153 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
-index 6394cd06..3cdd649e 100644
---- a/components/pipeline-service/production/base/kustomization.yaml
-+++ b/components/pipeline-service/production/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=37dd9bab130381ec03995c34f76514b86c810315
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094
-   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-index 2dce7293..fecb5932 100644
---- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-@@ -30,4 +30,16 @@
- - op: replace
-   path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
-   # default pipeline-service setting is 1
--  value: 2
-\ No newline at end of file
-+  value: 2
-+- op: replace
-+  path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-+- op: replace
-+  path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-watcher/spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-+- op: replace
-+  path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-webhook/spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index d3342a0a..1aa29d7f 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1615,6 +1615,7 @@ apiVersion: batch/v1
- kind: Job
- metadata:
-   annotations:
-+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-     argocd.argoproj.io/sync-wave: "1"
-   name: tekton-chains-signing-secret
-@@ -1887,9 +1888,9 @@ spec:
-         tekton-operator-proxy-webhook:
-           spec:
-             replicas: 2
--        tekton-pipelines-webhook:
-+        tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 1
-+            replicas: 2
-       disabled: false
-     performance:
-       buckets: 4
-@@ -1902,6 +1903,14 @@ spec:
-     openshift:
-       pipelinesAsCode:
-         enable: true
-+        options:
-+          deployments:
-+            pipelines-as-code-watcher:
-+              spec:
-+                replicas: 2
-+            pipelines-as-code-webhook:
-+              spec:
-+                replicas: 2
-         settings:
-           application-name: Red Hat Konflux
-           custom-console-name: Red Hat Konflux
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 91c5a66b..1b25c9bc 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1615,6 +1615,7 @@ apiVersion: batch/v1
- kind: Job
- metadata:
-   annotations:
-+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-     argocd.argoproj.io/sync-wave: "1"
-   name: tekton-chains-signing-secret
-@@ -1887,9 +1888,9 @@ spec:
-         tekton-operator-proxy-webhook:
-           spec:
-             replicas: 2
--        tekton-pipelines-webhook:
-+        tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 1
-+            replicas: 2
-       disabled: false
-     performance:
-       buckets: 4
-@@ -1902,6 +1903,14 @@ spec:
-     openshift:
-       pipelinesAsCode:
-         enable: true
-+        options:
-+          deployments:
-+            pipelines-as-code-watcher:
-+              spec:
-+                replicas: 2
-+            pipelines-as-code-webhook:
-+              spec:
-+                replicas: 2
-         settings:
-           application-name: Red Hat Konflux
-           custom-console-name: Red Hat Konflux
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 50145778..39d84a15 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1615,6 +1615,7 @@ apiVersion: batch/v1
- kind: Job
- metadata:
-   annotations:
-+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-     argocd.argoproj.io/sync-wave: "1"
-   name: tekton-chains-signing-secret
-@@ -1887,9 +1888,9 @@ spec:
-         tekton-operator-proxy-webhook:
-           spec:
-             replicas: 2
--        tekton-pipelines-webhook:
-+        tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 1
-+            replicas: 2
-       disabled: false
-     performance:
-       buckets: 4
-@@ -1902,6 +1903,14 @@ spec:
-     openshift:
-       pipelinesAsCode:
-         enable: true
-+        options:
-+          deployments:
-+            pipelines-as-code-watcher:
-+              spec:
-+                replicas: 2
-+            pipelines-as-code-webhook:
-+              spec:
-+                replicas: 2
-         settings:
-           application-name: Konflux Production Internal
-           custom-console-name: Konflux Production Internal 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (60 lines)</summary>  
-
-``` 
-./commit-8eafd619/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
-1618d1617
-<     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-1891c1890
-<         tekton-pipelines-remote-resolvers:
----
->         tekton-pipelines-webhook:
-1893c1892
-<             replicas: 2
----
->             replicas: 1
-1906,1913d1904
-<         options:
-<           deployments:
-<             pipelines-as-code-watcher:
-<               spec:
-<                 replicas: 2
-<             pipelines-as-code-webhook:
-<               spec:
-<                 replicas: 2
-./commit-8eafd619/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
-1618d1617
-<     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-1891c1890
-<         tekton-pipelines-remote-resolvers:
----
->         tekton-pipelines-webhook:
-1893c1892
-<             replicas: 2
----
->             replicas: 1
-1906,1913d1904
-<         options:
-<           deployments:
-<             pipelines-as-code-watcher:
-<               spec:
-<                 replicas: 2
-<             pipelines-as-code-webhook:
-<               spec:
-<                 replicas: 2
-./commit-8eafd619/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
-1618d1617
-<     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-1891c1890
-<         tekton-pipelines-remote-resolvers:
----
->         tekton-pipelines-webhook:
-1893c1892
-<             replicas: 2
----
->             replicas: 1
-1906,1913d1904
-<         options:
-<           deployments:
-<             pipelines-as-code-watcher:
-<               spec:
-<                 replicas: 2
-<             pipelines-as-code-webhook:
-<               spec:
-<                 replicas: 2 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 8eafd619 to 4f4ec4f2 on Mon Feb 12 20:27:02 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (153 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
-index 6394cd06..3cdd649e 100644
---- a/components/pipeline-service/production/base/kustomization.yaml
-+++ b/components/pipeline-service/production/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=37dd9bab130381ec03995c34f76514b86c810315
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094
-   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-index 2dce7293..fecb5932 100644
---- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-@@ -30,4 +30,16 @@
- - op: replace
-   path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
-   # default pipeline-service setting is 1
--  value: 2
-\ No newline at end of file
-+  value: 2
-+- op: replace
-+  path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-+- op: replace
-+  path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-watcher/spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-+- op: replace
-+  path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-webhook/spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index d3342a0a..1aa29d7f 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1615,6 +1615,7 @@ apiVersion: batch/v1
- kind: Job
- metadata:
-   annotations:
-+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-     argocd.argoproj.io/sync-wave: "1"
-   name: tekton-chains-signing-secret
-@@ -1887,9 +1888,9 @@ spec:
-         tekton-operator-proxy-webhook:
-           spec:
-             replicas: 2
--        tekton-pipelines-webhook:
-+        tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 1
-+            replicas: 2
-       disabled: false
-     performance:
-       buckets: 4
-@@ -1902,6 +1903,14 @@ spec:
-     openshift:
-       pipelinesAsCode:
-         enable: true
-+        options:
-+          deployments:
-+            pipelines-as-code-watcher:
-+              spec:
-+                replicas: 2
-+            pipelines-as-code-webhook:
-+              spec:
-+                replicas: 2
-         settings:
-           application-name: Red Hat Konflux
-           custom-console-name: Red Hat Konflux
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 91c5a66b..1b25c9bc 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1615,6 +1615,7 @@ apiVersion: batch/v1
- kind: Job
- metadata:
-   annotations:
-+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-     argocd.argoproj.io/sync-wave: "1"
-   name: tekton-chains-signing-secret
-@@ -1887,9 +1888,9 @@ spec:
-         tekton-operator-proxy-webhook:
-           spec:
-             replicas: 2
--        tekton-pipelines-webhook:
-+        tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 1
-+            replicas: 2
-       disabled: false
-     performance:
-       buckets: 4
-@@ -1902,6 +1903,14 @@ spec:
-     openshift:
-       pipelinesAsCode:
-         enable: true
-+        options:
-+          deployments:
-+            pipelines-as-code-watcher:
-+              spec:
-+                replicas: 2
-+            pipelines-as-code-webhook:
-+              spec:
-+                replicas: 2
-         settings:
-           application-name: Red Hat Konflux
-           custom-console-name: Red Hat Konflux
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 50145778..39d84a15 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1615,6 +1615,7 @@ apiVersion: batch/v1
- kind: Job
- metadata:
-   annotations:
-+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-     argocd.argoproj.io/sync-wave: "1"
-   name: tekton-chains-signing-secret
-@@ -1887,9 +1888,9 @@ spec:
-         tekton-operator-proxy-webhook:
-           spec:
-             replicas: 2
--        tekton-pipelines-webhook:
-+        tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 1
-+            replicas: 2
-       disabled: false
-     performance:
-       buckets: 4
-@@ -1902,6 +1903,14 @@ spec:
-     openshift:
-       pipelinesAsCode:
-         enable: true
-+        options:
-+          deployments:
-+            pipelines-as-code-watcher:
-+              spec:
-+                replicas: 2
-+            pipelines-as-code-webhook:
-+              spec:
-+                replicas: 2
-         settings:
-           application-name: Konflux Production Internal
-           custom-console-name: Konflux Production Internal 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 8eafd619 to 4f4ec4f2 on Mon Feb 12 20:27:02 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (153 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
-index 6394cd06..3cdd649e 100644
---- a/components/pipeline-service/production/base/kustomization.yaml
-+++ b/components/pipeline-service/production/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=37dd9bab130381ec03995c34f76514b86c810315
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=2be0e3a49809ba66bf64625d01833de90c457094
-   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-index 2dce7293..fecb5932 100644
---- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-+++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
-@@ -30,4 +30,16 @@
- - op: replace
-   path: /spec/pipeline/options/deployments/tekton-operator-proxy-webhook/spec/replicas
-   # default pipeline-service setting is 1
--  value: 2
-\ No newline at end of file
-+  value: 2
-+- op: replace
-+  path: /spec/pipeline/options/deployments/tekton-pipelines-remote-resolvers/spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-+- op: replace
-+  path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-watcher/spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-+- op: replace
-+  path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-webhook/spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index d3342a0a..1aa29d7f 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1615,6 +1615,7 @@ apiVersion: batch/v1
- kind: Job
- metadata:
-   annotations:
-+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-     argocd.argoproj.io/sync-wave: "1"
-   name: tekton-chains-signing-secret
-@@ -1887,9 +1888,9 @@ spec:
-         tekton-operator-proxy-webhook:
-           spec:
-             replicas: 2
--        tekton-pipelines-webhook:
-+        tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 1
-+            replicas: 2
-       disabled: false
-     performance:
-       buckets: 4
-@@ -1902,6 +1903,14 @@ spec:
-     openshift:
-       pipelinesAsCode:
-         enable: true
-+        options:
-+          deployments:
-+            pipelines-as-code-watcher:
-+              spec:
-+                replicas: 2
-+            pipelines-as-code-webhook:
-+              spec:
-+                replicas: 2
-         settings:
-           application-name: Red Hat Konflux
-           custom-console-name: Red Hat Konflux
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 91c5a66b..1b25c9bc 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1615,6 +1615,7 @@ apiVersion: batch/v1
- kind: Job
- metadata:
-   annotations:
-+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-     argocd.argoproj.io/sync-wave: "1"
-   name: tekton-chains-signing-secret
-@@ -1887,9 +1888,9 @@ spec:
-         tekton-operator-proxy-webhook:
-           spec:
-             replicas: 2
--        tekton-pipelines-webhook:
-+        tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 1
-+            replicas: 2
-       disabled: false
-     performance:
-       buckets: 4
-@@ -1902,6 +1903,14 @@ spec:
-     openshift:
-       pipelinesAsCode:
-         enable: true
-+        options:
-+          deployments:
-+            pipelines-as-code-watcher:
-+              spec:
-+                replicas: 2
-+            pipelines-as-code-webhook:
-+              spec:
-+                replicas: 2
-         settings:
-           application-name: Red Hat Konflux
-           custom-console-name: Red Hat Konflux
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 50145778..39d84a15 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1615,6 +1615,7 @@ apiVersion: batch/v1
- kind: Job
- metadata:
-   annotations:
-+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-     argocd.argoproj.io/sync-wave: "1"
-   name: tekton-chains-signing-secret
-@@ -1887,9 +1888,9 @@ spec:
-         tekton-operator-proxy-webhook:
-           spec:
-             replicas: 2
--        tekton-pipelines-webhook:
-+        tekton-pipelines-remote-resolvers:
-           spec:
--            replicas: 1
-+            replicas: 2
-       disabled: false
-     performance:
-       buckets: 4
-@@ -1902,6 +1903,14 @@ spec:
-     openshift:
-       pipelinesAsCode:
-         enable: true
-+        options:
-+          deployments:
-+            pipelines-as-code-watcher:
-+              spec:
-+                replicas: 2
-+            pipelines-as-code-webhook:
-+              spec:
-+                replicas: 2
-         settings:
-           application-name: Konflux Production Internal
-           custom-console-name: Konflux Production Internal 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 5e22d919 to 8eafd619 on Mon Feb 12 10:12:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (40 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-index 7e29d940..b7dacd5f 100644
---- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-+++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-@@ -11,7 +11,7 @@ spec:
-         - name: name
-           value: fbc-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-+          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:7b2d78ac0add14a43638750e822f40d1be03145d
-         - name: kind
-           value: pipeline
-       when:
-@@ -23,7 +23,7 @@ spec:
-         - name: name
-           value: docker-build
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:e8d570d18a7a37f4fac18cf27650e508b570c458
-+          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:7b2d78ac0add14a43638750e822f40d1be03145d
-         - name: kind
-           value: pipeline
-       when:
-@@ -35,7 +35,7 @@ spec:
-         - name: name
-           value: java-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-+          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:7b2d78ac0add14a43638750e822f40d1be03145d
-         - name: kind
-           value: pipeline
-       when:
-@@ -47,7 +47,7 @@ spec:
-         - name: name
-           value: nodejs-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-+          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:7b2d78ac0add14a43638750e822f40d1be03145d
-         - name: kind
-           value: pipeline
-       when: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-5e22d919/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
-837c837
-<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:7b2d78ac0add14a43638750e822f40d1be03145d
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-849c849
-<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:7b2d78ac0add14a43638750e822f40d1be03145d
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:e8d570d18a7a37f4fac18cf27650e508b570c458
-861c861
-<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:7b2d78ac0add14a43638750e822f40d1be03145d
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-873c873
-<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:7b2d78ac0add14a43638750e822f40d1be03145d
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:e8d570d18a7a37f4fac18cf27650e508b570c458 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 5e22d919 to 8eafd619 on Mon Feb 12 10:12:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (40 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-index 7e29d940..b7dacd5f 100644
---- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-+++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-@@ -11,7 +11,7 @@ spec:
-         - name: name
-           value: fbc-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-+          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:7b2d78ac0add14a43638750e822f40d1be03145d
-         - name: kind
-           value: pipeline
-       when:
-@@ -23,7 +23,7 @@ spec:
-         - name: name
-           value: docker-build
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:e8d570d18a7a37f4fac18cf27650e508b570c458
-+          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:7b2d78ac0add14a43638750e822f40d1be03145d
-         - name: kind
-           value: pipeline
-       when:
-@@ -35,7 +35,7 @@ spec:
-         - name: name
-           value: java-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-+          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:7b2d78ac0add14a43638750e822f40d1be03145d
-         - name: kind
-           value: pipeline
-       when:
-@@ -47,7 +47,7 @@ spec:
-         - name: name
-           value: nodejs-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-+          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:7b2d78ac0add14a43638750e822f40d1be03145d
-         - name: kind
-           value: pipeline
-       when: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-5e22d919/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-845c845
-<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:7b2d78ac0add14a43638750e822f40d1be03145d
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-857c857
-<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:7b2d78ac0add14a43638750e822f40d1be03145d
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:e8d570d18a7a37f4fac18cf27650e508b570c458
-869c869
-<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:7b2d78ac0add14a43638750e822f40d1be03145d
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-881c881
-<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:7b2d78ac0add14a43638750e822f40d1be03145d
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:e8d570d18a7a37f4fac18cf27650e508b570c458 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 5e22d919 to 8eafd619 on Mon Feb 12 10:12:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (40 lines)</summary>  
-
-``` 
-diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-index 7e29d940..b7dacd5f 100644
---- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-+++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
-@@ -11,7 +11,7 @@ spec:
-         - name: name
-           value: fbc-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-+          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:7b2d78ac0add14a43638750e822f40d1be03145d
-         - name: kind
-           value: pipeline
-       when:
-@@ -23,7 +23,7 @@ spec:
-         - name: name
-           value: docker-build
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:e8d570d18a7a37f4fac18cf27650e508b570c458
-+          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:7b2d78ac0add14a43638750e822f40d1be03145d
-         - name: kind
-           value: pipeline
-       when:
-@@ -35,7 +35,7 @@ spec:
-         - name: name
-           value: java-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-+          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:7b2d78ac0add14a43638750e822f40d1be03145d
-         - name: kind
-           value: pipeline
-       when:
-@@ -47,7 +47,7 @@ spec:
-         - name: name
-           value: nodejs-builder
-         - name: bundle
--          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-+          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:7b2d78ac0add14a43638750e822f40d1be03145d
-         - name: kind
-           value: pipeline
-       when: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-5e22d919/development/components/build-service/development/kustomize.out.yaml
-852c852
-<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:7b2d78ac0add14a43638750e822f40d1be03145d
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-864c864
-<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:7b2d78ac0add14a43638750e822f40d1be03145d
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:e8d570d18a7a37f4fac18cf27650e508b570c458
-876c876
-<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:7b2d78ac0add14a43638750e822f40d1be03145d
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:e8d570d18a7a37f4fac18cf27650e508b570c458
-888c888
-<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:7b2d78ac0add14a43638750e822f40d1be03145d
----
->         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:e8d570d18a7a37f4fac18cf27650e508b570c458 
 ```
  
 </details>  
