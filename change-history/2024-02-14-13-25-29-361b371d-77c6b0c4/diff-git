@@ -1,0 +1,34 @@
+diff --git a/components/sprayproxy/staging/kustomization.yaml b/components/sprayproxy/staging/kustomization.yaml
+index e0be8861..66a93b6b 100644
+--- a/components/sprayproxy/staging/kustomization.yaml
++++ b/components/sprayproxy/staging/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/sprayproxy/config?ref=c6f8bf26007c140d51326760e16eb52ae5072e3b
++  - https://github.com/konflux-ci/sprayproxy/config?ref=53ae76d32a32be7babf32df376b89d0623e78726
+   - pipelines-as-code-secret.yaml
+ 
+ images:
+-  - name: ko://github.com/redhat-appstudio/sprayproxy
++  - name: ko://github.com/konflux-ci/sprayproxy
+     newName: quay.io/redhat-appstudio/sprayproxy
+-    newTag: c6f8bf26007c140d51326760e16eb52ae5072e3b
++    newTag: 53ae76d32a32be7babf32df376b89d0623e78726
+ 
+ patches:
+   - path: change-backends.yaml
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index 8fd610d8..8de64a0a 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -81,7 +81,7 @@ kind: Repository
+ metadata:
+   name: sprayproxy
+ spec:
+-  url: "https://github.com/redhat-appstudio/sprayproxy"
++  url: "https://github.com/konflux-ci/sprayproxy"
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository

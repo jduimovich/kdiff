@@ -1,0 +1,57 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6774856e/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-d7c24f8d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1466,1482d1465
+<       affinity:
+<         nodeAffinity:
+<           requiredDuringSchedulingIgnoredDuringExecution:
+<             nodeSelectorTerms:
+<             - matchExpressions:
+<               - key: kubernetes.io/os
+<                 operator: NotIn
+<                 values:
+<                 - windows
+<         podAntiAffinity:
+<           preferredDuringSchedulingIgnoredDuringExecution:
+<           - podAffinityTerm:
+<               labelSelector:
+<                 matchLabels:
+<                   app.kubernetes.io/name: tekton-results-watcher
+<               topologyKey: kubernetes.io/hostname
+<             weight: 100
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6774856e/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-d7c24f8d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1466,1482d1465
+<       affinity:
+<         nodeAffinity:
+<           requiredDuringSchedulingIgnoredDuringExecution:
+<             nodeSelectorTerms:
+<             - matchExpressions:
+<               - key: kubernetes.io/os
+<                 operator: NotIn
+<                 values:
+<                 - windows
+<         podAntiAffinity:
+<           preferredDuringSchedulingIgnoredDuringExecution:
+<           - podAffinityTerm:
+<               labelSelector:
+<                 matchLabels:
+<                   app.kubernetes.io/name: tekton-results-watcher
+<               topologyKey: kubernetes.io/hostname
+<             weight: 100
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6774856e/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-d7c24f8d/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1466,1482d1465
+<       affinity:
+<         nodeAffinity:
+<           requiredDuringSchedulingIgnoredDuringExecution:
+<             nodeSelectorTerms:
+<             - matchExpressions:
+<               - key: kubernetes.io/os
+<                 operator: NotIn
+<                 values:
+<                 - windows
+<         podAntiAffinity:
+<           preferredDuringSchedulingIgnoredDuringExecution:
+<           - podAffinityTerm:
+<               labelSelector:
+<                 matchLabels:
+<                   app.kubernetes.io/name: tekton-results-watcher
+<               topologyKey: kubernetes.io/hostname
+<             weight: 100
