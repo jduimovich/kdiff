@@ -1,0 +1,66 @@
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 4e71d8a4..f7833aa8 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -15,6 +15,12 @@ resources:
+   - ../../base/rbac
+ 
+ patches:
++  - path: tekton-chains-signing-secret-name.yaml
++    target:
++      name: tekton-chains-signing-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+   - path: metrics-exporter-trace.yaml
+     target:
+       kind: Deployment
+diff --git a/components/pipeline-service/staging/base/tekton-chains-signing-secret-name.yaml b/components/pipeline-service/staging/base/tekton-chains-signing-secret-name.yaml
+new file mode 100644
+index 00000000..e5ec0407
+--- /dev/null
++++ b/components/pipeline-service/staging/base/tekton-chains-signing-secret-name.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/target/name
++  value: signing-secrets
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 59c65054..23a5a80e 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1748,7 +1748,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault
++    name: signing-secrets
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index e12ded56..075374c4 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1748,7 +1748,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault
++    name: signing-secrets
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index bd5330e4..28b19395 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1748,7 +1748,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault
++    name: signing-secrets
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret

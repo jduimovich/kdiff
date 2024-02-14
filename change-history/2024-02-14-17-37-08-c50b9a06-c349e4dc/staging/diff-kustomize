@@ -1,0 +1,35 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c349e4dc/staging/components/integration/staging/kustomize.out.yaml ./kustomized-cache/commit-c50b9a06/staging/components/integration/staging/kustomize.out.yaml
+1017,1049d1016
+< apiVersion: batch/v1
+< kind: CronJob
+< metadata:
+<   name: integration-service-snapshot-garbage-collector
+<   namespace: integration-service
+< spec:
+<   jobTemplate:
+<     spec:
+<       template:
+<         spec:
+<           containers:
+<           - command:
+<             - /snapshotgc
+<             - --zap-log-level=debug
+<             - --pr-snapshots-to-keep=100
+<             - --non-pr-snapshots-to-keep=700
+<             image: quay.io/redhat-appstudio/integration-service:55122d0fd2f488c6ebfb30f17a35de4a510382fe
+<             imagePullPolicy: Always
+<             name: test-gc
+<             resources:
+<               limits:
+<                 cpu: 1000m
+<                 memory: 500Mi
+<               requests:
+<                 cpu: 1000m
+<                 memory: 500Mi
+<             securityContext:
+<               readOnlyRootFilesystem: true
+<               runAsNonRoot: true
+<           restartPolicy: Never
+<           serviceAccountName: integration-service-snapshot-garbage-collector
+<   schedule: 0 5 * * *
+< ---

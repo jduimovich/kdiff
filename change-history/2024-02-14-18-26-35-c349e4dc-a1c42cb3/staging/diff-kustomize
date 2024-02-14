@@ -1,0 +1,15 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a1c42cb3/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-c349e4dc/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1751c1751
+<     name: signing-secrets
+---
+>     name: signing-secrets-vault
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a1c42cb3/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-c349e4dc/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1751c1751
+<     name: signing-secrets
+---
+>     name: signing-secrets-vault
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a1c42cb3/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-c349e4dc/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1751c1751
+<     name: signing-secrets
+---
+>     name: signing-secrets-vault
