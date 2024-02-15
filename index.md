@@ -1,12 +1,636 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Feb 15 12:02:27 UTC 2024
+### This file generated at Thu Feb 15 16:03:21 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 685c9b9d to ebfbb137 on Wed Feb 14 21:08:46 2024 </h3>  
+<h3>1: Production changes from ebfbb137 to 7eabcd77 on Thu Feb 15 14:51:09 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+index f317c523..a11835bb 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=4b89853a9724bc241412714c3a1cd2e443848f49
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=cad02429e3133890bcf92b2d7cc1f94233b8037e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 4b89853a9724bc241412714c3a1cd2e443848f49
++  newTag: cad02429e3133890bcf92b2d7cc1f94233b8037e
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (232 lines)</summary>  
+
+``` 
+./commit-ebfbb137/production/components/integration/production/kustomize.out.yaml
+13d12
+<     service.beta.openshift.io/inject-cabundle: "true"
+17,27d15
+<   conversion:
+<     strategy: Webhook
+<     webhook:
+<       clientConfig:
+<         service:
+<           name: integration-service-webhook-service
+<           namespace: integration-service
+<           path: /convert
+<       conversionReviewVersions:
+<       - v1alpha1
+<       - v1beta1
+42,253d29
+<     deprecated: true
+<     deprecationWarning: The v1alpha1 version is deprecated and will be automatically
+<       migrated to v1beta1
+<     name: v1alpha1
+<     schema:
+<       openAPIV3Schema:
+<         description: IntegrationTestScenario is the Schema for the integrationtestscenarios
+<           API
+<         properties:
+<           apiVersion:
+<             description: 'APIVersion defines the versioned schema of this representation
+<               of an object. Servers should convert recognized schemas to the latest
+<               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+<             type: string
+<           kind:
+<             description: 'Kind is a string value representing the REST resource this
+<               object represents. Servers may infer this from the endpoint the client
+<               submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+<             type: string
+<           metadata:
+<             type: object
+<           spec:
+<             description: IntegrationTestScenarioSpec defines the desired state of
+<               IntegrationScenario
+<             properties:
+<               application:
+<                 description: Application that's associated with the IntegrationTestScenario
+<                 pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                 type: string
+<               bundle:
+<                 description: Tekton Bundle where to find the pipeline
+<                 type: string
+<               contexts:
+<                 description: Contexts where this IntegrationTestScenario can be applied
+<                 items:
+<                   description: TestContext contains the name and values of a Test
+<                     context
+<                   properties:
+<                     description:
+<                       type: string
+<                     name:
+<                       type: string
+<                   required:
+<                   - name
+<                   type: object
+<                 type: array
+<               environment:
+<                 description: Environment that will be utilized by the test pipeline
+<                 properties:
+<                   configuration:
+<                     description: EnvironmentConfiguration contains Environment-specific
+<                       configurations details, to be used when generating Component/Application
+<                       GitOps repository resources.
+<                     properties:
+<                       env:
+<                         description: Env is an array of standard environment vairables
+<                         items:
+<                           description: EnvVarPair describes environment variables
+<                             to use for the component
+<                           properties:
+<                             name:
+<                               description: Name is the environment variable name
+<                               type: string
+<                             value:
+<                               description: Value is the environment variable value
+<                               type: string
+<                           required:
+<                           - name
+<                           - value
+<                           type: object
+<                         type: array
+<                       target:
+<                         description: Target is used to reference a DeploymentTargetClaim
+<                           for a target Environment. The Environment controller uses
+<                           the referenced DeploymentTargetClaim to access its bounded
+<                           DeploymentTarget with cluster credential secret.
+<                         properties:
+<                           deploymentTargetClaim:
+<                             description: DeploymentTargetClaimConfig specifies the
+<                               DeploymentTargetClaim details for a given Environment.
+<                             properties:
+<                               claimName:
+<                                 type: string
+<                             required:
+<                             - claimName
+<                             type: object
+<                         required:
+<                         - deploymentTargetClaim
+<                         type: object
+<                     type: object
+<                   name:
+<                     type: string
+<                   type:
+<                     description: 'DEPRECATED: EnvironmentType should no longer be
+<                       used, and has no replacement. - It''s original purpose was to
+<                       indicate whether an environment is POC/Non-POC, but these data
+<                       were ultimately not required.'
+<                     type: string
+<                 required:
+<                 - name
+<                 - type
+<                 type: object
+<               params:
+<                 description: Params to pass to the pipeline
+<                 items:
+<                   description: PipelineParameter contains the name and values of a
+<                     Tekton Pipeline parameter
+<                   properties:
+<                     name:
+<                       type: string
+<                     value:
+<                       type: string
+<                     values:
+<                       items:
+<                         type: string
+<                       type: array
+<                   required:
+<                   - name
+<                   type: object
+<                 type: array
+<               pipeline:
+<                 description: Release Tekton Pipeline to execute
+<                 type: string
+<             required:
+<             - application
+<             - bundle
+<             - pipeline
+<             type: object
+<           status:
+<             description: IntegrationTestScenarioStatus defines the observed state
+<               of IntegrationTestScenario
+<             properties:
+<               conditions:
+<                 items:
+<                   description: "Condition contains details for one aspect of the current
+<                     state of this API Resource. --- This struct is intended for direct
+<                     use as an array at the field path .status.conditions.  For example,
+<                     \n type FooStatus struct{ // Represents the observations of a
+<                     foo's current state. // Known .status.conditions.type are: \"Available\",
+<                     \"Progressing\", and \"Degraded\" // +patchMergeKey=type // +patchStrategy=merge
+<                     // +listType=map // +listMapKey=type Conditions []metav1.Condition
+<                     `json:\"conditions,omitempty\" patchStrategy:\"merge\" patchMergeKey:\"type\"
+<                     protobuf:\"bytes,1,rep,name=conditions\"` \n // other fields }"
+<                   properties:
+<                     lastTransitionTime:
+<                       description: lastTransitionTime is the last time the condition
+<                         transitioned from one status to another. This should be when
+<                         the underlying condition changed.  If that is not known, then
+<                         using the time when the API field changed is acceptable.
+<                       format: date-time
+<                       type: string
+<                     message:
+<                       description: message is a human readable message indicating
+<                         details about the transition. This may be an empty string.
+<                       maxLength: 32768
+<                       type: string
+<                     observedGeneration:
+<                       description: observedGeneration represents the .metadata.generation
+<                         that the condition was set based upon. For instance, if .metadata.generation
+<                         is currently 12, but the .status.conditions[x].observedGeneration
+<                         is 9, the condition is out of date with respect to the current
+<                         state of the instance.
+<                       format: int64
+<                       minimum: 0
+<                       type: integer
+<                     reason:
+<                       description: reason contains a programmatic identifier indicating
+<                         the reason for the condition's last transition. Producers
+<                         of specific condition types may define expected values and
+<                         meanings for this field, and whether the values are considered
+<                         a guaranteed API. The value should be a CamelCase string.
+<                         This field may not be empty.
+<                       maxLength: 1024
+<                       minLength: 1
+<                       pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+<                       type: string
+<                     status:
+<                       description: status of the condition, one of True, False, Unknown.
+<                       enum:
+<                       - "True"
+<                       - "False"
+<                       - Unknown
+<                       type: string
+<                     type:
+<                       description: type of condition in CamelCase or in foo.example.com/CamelCase.
+<                         --- Many .condition.type values are consistent across resources
+<                         like Available, but because arbitrary conditions can be useful
+<                         (see .node.status.conditions), the ability to deconflict is
+<                         important. The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+<                       maxLength: 316
+<                       pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+<                       type: string
+<                   required:
+<                   - lastTransitionTime
+<                   - message
+<                   - reason
+<                   - status
+<                   - type
+<                   type: object
+<                 type: array
+<             required:
+<             - conditions
+<             type: object
+<         type: object
+<     served: true
+<     storage: false
+<     subresources:
+<       status: {}
+<   - additionalPrinterColumns:
+<     - jsonPath: .spec.application
+<       name: Application
+<       type: string
+1128c904
+<         image: quay.io/redhat-appstudio/integration-service:cad02429e3133890bcf92b2d7cc1f94233b8037e
+---
+>         image: quay.io/redhat-appstudio/integration-service:4b89853a9724bc241412714c3a1cd2e443848f49 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from ebfbb137 to 7eabcd77 on Thu Feb 15 14:51:09 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+index f317c523..a11835bb 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=4b89853a9724bc241412714c3a1cd2e443848f49
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=cad02429e3133890bcf92b2d7cc1f94233b8037e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 4b89853a9724bc241412714c3a1cd2e443848f49
++  newTag: cad02429e3133890bcf92b2d7cc1f94233b8037e
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from ebfbb137 to 7eabcd77 on Thu Feb 15 14:51:09 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (19 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/kustomization.yaml
+index f317c523..a11835bb 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/kustomization.yaml
+@@ -3,12 +3,12 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=4b89853a9724bc241412714c3a1cd2e443848f49
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=cad02429e3133890bcf92b2d7cc1f94233b8037e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 4b89853a9724bc241412714c3a1cd2e443848f49
++  newTag: cad02429e3133890bcf92b2d7cc1f94233b8037e
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 685c9b9d to ebfbb137 on Wed Feb 14 21:08:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (76 lines)</summary>  
@@ -221,7 +845,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 685c9b9d to ebfbb137 on Wed Feb 14 21:08:46 2024 </h3>  
+<h3>2: Staging changes from 685c9b9d to ebfbb137 on Wed Feb 14 21:08:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (76 lines)</summary>  
@@ -425,7 +1049,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 685c9b9d to ebfbb137 on Wed Feb 14 21:08:46 2024 </h3>  
+<h3>2: Development changes from 685c9b9d to ebfbb137 on Wed Feb 14 21:08:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (76 lines)</summary>  
@@ -584,7 +1208,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from a1c42cb3 to 685c9b9d on Wed Feb 14 19:38:00 2024 </h3>  
+<h3>3: Production changes from a1c42cb3 to 685c9b9d on Wed Feb 14 19:38:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (144 lines)</summary>  
@@ -921,7 +1545,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from a1c42cb3 to 685c9b9d on Wed Feb 14 19:38:00 2024 </h3>  
+<h3>3: Staging changes from a1c42cb3 to 685c9b9d on Wed Feb 14 19:38:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (144 lines)</summary>  
@@ -1193,7 +1817,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from a1c42cb3 to 685c9b9d on Wed Feb 14 19:38:00 2024 </h3>  
+<h3>3: Development changes from a1c42cb3 to 685c9b9d on Wed Feb 14 19:38:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (144 lines)</summary>  
@@ -1420,7 +2044,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from c349e4dc to a1c42cb3 on Wed Feb 14 18:26:35 2024 </h3>  
+<h3>4: Production changes from c349e4dc to a1c42cb3 on Wed Feb 14 18:26:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (66 lines)</summary>  
@@ -1611,7 +2235,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from c349e4dc to a1c42cb3 on Wed Feb 14 18:26:35 2024 </h3>  
+<h3>4: Staging changes from c349e4dc to a1c42cb3 on Wed Feb 14 18:26:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (66 lines)</summary>  
@@ -1819,7 +2443,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from c349e4dc to a1c42cb3 on Wed Feb 14 18:26:35 2024 </h3>  
+<h3>4: Development changes from c349e4dc to a1c42cb3 on Wed Feb 14 18:26:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (66 lines)</summary>  
@@ -1900,482 +2524,6 @@ index bd5330e4..28b19395 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from c50b9a06 to c349e4dc on Wed Feb 14 17:37:08 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (24 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index be8a173b..15bbac6b 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -3,6 +3,7 @@ kind: Kustomization
- resources:
- - ../base
- - https://github.com/redhat-appstudio/integration-service/config/default?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
-index 8a0b22fe..bbfc288c 100644
---- a/components/integration/staging/kustomization.yaml
-+++ b/components/integration/staging/kustomization.yaml
-@@ -4,6 +4,7 @@ resources:
- - ../base
- - ../base/external-secrets
- - https://github.com/redhat-appstudio/integration-service/config/default?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from c50b9a06 to c349e4dc on Wed Feb 14 17:37:08 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (24 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index be8a173b..15bbac6b 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -3,6 +3,7 @@ kind: Kustomization
- resources:
- - ../base
- - https://github.com/redhat-appstudio/integration-service/config/default?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
-index 8a0b22fe..bbfc288c 100644
---- a/components/integration/staging/kustomization.yaml
-+++ b/components/integration/staging/kustomization.yaml
-@@ -4,6 +4,7 @@ resources:
- - ../base
- - ../base/external-secrets
- - https://github.com/redhat-appstudio/integration-service/config/default?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (35 lines)</summary>  
-
-``` 
-./commit-c50b9a06/staging/components/integration/staging/kustomize.out.yaml
-1017,1049d1016
-< apiVersion: batch/v1
-< kind: CronJob
-< metadata:
-<   name: integration-service-snapshot-garbage-collector
-<   namespace: integration-service
-< spec:
-<   jobTemplate:
-<     spec:
-<       template:
-<         spec:
-<           containers:
-<           - command:
-<             - /snapshotgc
-<             - --zap-log-level=debug
-<             - --pr-snapshots-to-keep=100
-<             - --non-pr-snapshots-to-keep=700
-<             image: quay.io/redhat-appstudio/integration-service:55122d0fd2f488c6ebfb30f17a35de4a510382fe
-<             imagePullPolicy: Always
-<             name: test-gc
-<             resources:
-<               limits:
-<                 cpu: 1000m
-<                 memory: 500Mi
-<               requests:
-<                 cpu: 1000m
-<                 memory: 500Mi
-<             securityContext:
-<               readOnlyRootFilesystem: true
-<               runAsNonRoot: true
-<           restartPolicy: Never
-<           serviceAccountName: integration-service-snapshot-garbage-collector
-<   schedule: 0 5 * * *
-< --- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from c50b9a06 to c349e4dc on Wed Feb 14 17:37:08 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (24 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index be8a173b..15bbac6b 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -3,6 +3,7 @@ kind: Kustomization
- resources:
- - ../base
- - https://github.com/redhat-appstudio/integration-service/config/default?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
-index 8a0b22fe..bbfc288c 100644
---- a/components/integration/staging/kustomization.yaml
-+++ b/components/integration/staging/kustomization.yaml
-@@ -4,6 +4,7 @@ resources:
- - ../base
- - ../base/external-secrets
- - https://github.com/redhat-appstudio/integration-service/config/default?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (35 lines)</summary>  
-
-``` 
-./commit-c50b9a06/development/components/integration/development/kustomize.out.yaml
-1017,1049d1016
-< apiVersion: batch/v1
-< kind: CronJob
-< metadata:
-<   name: integration-service-snapshot-garbage-collector
-<   namespace: integration-service
-< spec:
-<   jobTemplate:
-<     spec:
-<       template:
-<         spec:
-<           containers:
-<           - command:
-<             - /snapshotgc
-<             - --zap-log-level=debug
-<             - --pr-snapshots-to-keep=100
-<             - --non-pr-snapshots-to-keep=700
-<             image: quay.io/redhat-appstudio/integration-service:55122d0fd2f488c6ebfb30f17a35de4a510382fe
-<             imagePullPolicy: Always
-<             name: test-gc
-<             resources:
-<               limits:
-<                 cpu: 1000m
-<                 memory: 500Mi
-<               requests:
-<                 cpu: 1000m
-<                 memory: 500Mi
-<             securityContext:
-<               readOnlyRootFilesystem: true
-<               runAsNonRoot: true
-<           restartPolicy: Never
-<           serviceAccountName: integration-service-snapshot-garbage-collector
-<   schedule: 0 5 * * *
-< --- 
 ```
  
 </details>  
