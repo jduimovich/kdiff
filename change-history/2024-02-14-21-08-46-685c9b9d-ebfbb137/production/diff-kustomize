@@ -1,0 +1,15 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ebfbb137/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-685c9b9d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1750c1750
+<     name: signing-secrets
+---
+>     name: signing-secrets-vault
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ebfbb137/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-685c9b9d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1750c1750
+<     name: signing-secrets
+---
+>     name: signing-secrets-vault
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ebfbb137/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-685c9b9d/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1750c1750
+<     name: signing-secrets
+---
+>     name: signing-secrets-vault

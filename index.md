@@ -1,12 +1,590 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Feb 14 20:06:32 UTC 2024
+### This file generated at Thu Feb 15 00:07:12 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from a1c42cb3 to 685c9b9d on Wed Feb 14 19:38:00 2024 </h3>  
+<h3>1: Production changes from 685c9b9d to ebfbb137 on Wed Feb 14 21:08:46 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (76 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml b/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
+index de39ec17..8a35cd8d 100644
+--- a/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
++++ b/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
+@@ -17,4 +17,4 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault # Will need to be renamed to signing-secrets to complete the migration
++    name: signing-secrets
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index c799bf10..a851de3a 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1747,7 +1747,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault
++    name: signing-secrets
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index b5642125..209c99db 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1747,7 +1747,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault
++    name: signing-secrets
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 9de825f0..a6db9486 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1747,7 +1747,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault
++    name: signing-secrets
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index f7833aa8..4e71d8a4 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -15,12 +15,6 @@ resources:
+   - ../../base/rbac
+ 
+ patches:
+-  - path: tekton-chains-signing-secret-name.yaml
+-    target:
+-      name: tekton-chains-signing-secret
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+   - path: metrics-exporter-trace.yaml
+     target:
+       kind: Deployment
+diff --git a/components/pipeline-service/staging/base/tekton-chains-signing-secret-name.yaml b/components/pipeline-service/staging/base/tekton-chains-signing-secret-name.yaml
+deleted file mode 100644
+index e5ec0407..00000000
+--- a/components/pipeline-service/staging/base/tekton-chains-signing-secret-name.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/target/name
+-  value: signing-secrets 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (15 lines)</summary>  
+
+``` 
+./commit-685c9b9d/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1750c1750
+<     name: signing-secrets
+---
+>     name: signing-secrets-vault
+./commit-685c9b9d/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1750c1750
+<     name: signing-secrets
+---
+>     name: signing-secrets-vault
+./commit-685c9b9d/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1750c1750
+<     name: signing-secrets
+---
+>     name: signing-secrets-vault 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 685c9b9d to ebfbb137 on Wed Feb 14 21:08:46 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (76 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml b/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
+index de39ec17..8a35cd8d 100644
+--- a/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
++++ b/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
+@@ -17,4 +17,4 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault # Will need to be renamed to signing-secrets to complete the migration
++    name: signing-secrets
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index c799bf10..a851de3a 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1747,7 +1747,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault
++    name: signing-secrets
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index b5642125..209c99db 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1747,7 +1747,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault
++    name: signing-secrets
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 9de825f0..a6db9486 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1747,7 +1747,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault
++    name: signing-secrets
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index f7833aa8..4e71d8a4 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -15,12 +15,6 @@ resources:
+   - ../../base/rbac
+ 
+ patches:
+-  - path: tekton-chains-signing-secret-name.yaml
+-    target:
+-      name: tekton-chains-signing-secret
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+   - path: metrics-exporter-trace.yaml
+     target:
+       kind: Deployment
+diff --git a/components/pipeline-service/staging/base/tekton-chains-signing-secret-name.yaml b/components/pipeline-service/staging/base/tekton-chains-signing-secret-name.yaml
+deleted file mode 100644
+index e5ec0407..00000000
+--- a/components/pipeline-service/staging/base/tekton-chains-signing-secret-name.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/target/name
+-  value: signing-secrets 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 685c9b9d to ebfbb137 on Wed Feb 14 21:08:46 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (76 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml b/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
+index de39ec17..8a35cd8d 100644
+--- a/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
++++ b/components/pipeline-service/base/external-secrets/openshift-pipelines/chains-signing-secrets.yaml
+@@ -17,4 +17,4 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault # Will need to be renamed to signing-secrets to complete the migration
++    name: signing-secrets
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index c799bf10..a851de3a 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1747,7 +1747,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault
++    name: signing-secrets
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index b5642125..209c99db 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1747,7 +1747,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault
++    name: signing-secrets
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 9de825f0..a6db9486 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1747,7 +1747,7 @@ spec:
+   target:
+     creationPolicy: Owner
+     deletionPolicy: Delete
+-    name: signing-secrets-vault
++    name: signing-secrets
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index f7833aa8..4e71d8a4 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -15,12 +15,6 @@ resources:
+   - ../../base/rbac
+ 
+ patches:
+-  - path: tekton-chains-signing-secret-name.yaml
+-    target:
+-      name: tekton-chains-signing-secret
+-      group: external-secrets.io
+-      version: v1beta1
+-      kind: ExternalSecret
+   - path: metrics-exporter-trace.yaml
+     target:
+       kind: Deployment
+diff --git a/components/pipeline-service/staging/base/tekton-chains-signing-secret-name.yaml b/components/pipeline-service/staging/base/tekton-chains-signing-secret-name.yaml
+deleted file mode 100644
+index e5ec0407..00000000
+--- a/components/pipeline-service/staging/base/tekton-chains-signing-secret-name.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/target/name
+-  value: signing-secrets 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from a1c42cb3 to 685c9b9d on Wed Feb 14 19:38:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (144 lines)</summary>  
@@ -343,7 +921,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from a1c42cb3 to 685c9b9d on Wed Feb 14 19:38:00 2024 </h3>  
+<h3>2: Staging changes from a1c42cb3 to 685c9b9d on Wed Feb 14 19:38:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (144 lines)</summary>  
@@ -615,7 +1193,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from a1c42cb3 to 685c9b9d on Wed Feb 14 19:38:00 2024 </h3>  
+<h3>2: Development changes from a1c42cb3 to 685c9b9d on Wed Feb 14 19:38:00 2024 </h3>  
  
 <details> 
 <summary>Git Diff (144 lines)</summary>  
@@ -842,7 +1420,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from c349e4dc to a1c42cb3 on Wed Feb 14 18:26:35 2024 </h3>  
+<h3>3: Production changes from c349e4dc to a1c42cb3 on Wed Feb 14 18:26:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (66 lines)</summary>  
@@ -1033,7 +1611,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from c349e4dc to a1c42cb3 on Wed Feb 14 18:26:35 2024 </h3>  
+<h3>3: Staging changes from c349e4dc to a1c42cb3 on Wed Feb 14 18:26:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (66 lines)</summary>  
@@ -1241,7 +1819,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from c349e4dc to a1c42cb3 on Wed Feb 14 18:26:35 2024 </h3>  
+<h3>3: Development changes from c349e4dc to a1c42cb3 on Wed Feb 14 18:26:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (66 lines)</summary>  
@@ -1390,7 +1968,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from c50b9a06 to c349e4dc on Wed Feb 14 17:37:08 2024 </h3>  
+<h3>4: Production changes from c50b9a06 to c349e4dc on Wed Feb 14 17:37:08 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -1539,7 +2117,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from c50b9a06 to c349e4dc on Wed Feb 14 17:37:08 2024 </h3>  
+<h3>4: Staging changes from c50b9a06 to c349e4dc on Wed Feb 14 17:37:08 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -1725,7 +2303,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from c50b9a06 to c349e4dc on Wed Feb 14 17:37:08 2024 </h3>  
+<h3>4: Development changes from c50b9a06 to c349e4dc on Wed Feb 14 17:37:08 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -1798,621 +2376,6 @@ index 8a0b22fe..bbfc288c 100644
 <           serviceAccountName: integration-service-snapshot-garbage-collector
 <   schedule: 0 5 * * *
 < --- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from d784943e to c50b9a06 on Wed Feb 14 17:37:01 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (87 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/bump-results-watcher-replicas.yaml b/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-new file mode 100644
-index 00000000..bcd64c5f
---- /dev/null
-+++ b/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-@@ -0,0 +1,4 @@
-+- op: replace
-+  path: /spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index d0597a20..eea4e774 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -27,3 +27,8 @@ patches:
-     target:
-       kind: TektonConfig
-       name: config
-+  - path: bump-results-watcher-replicas.yaml
-+    target:
-+      kind: Deployment
-+      namespace: tekton-results
-+      name: tekton-results-watcher
-diff --git a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-new file mode 100644
-index 00000000..bcd64c5f
---- /dev/null
-+++ b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-@@ -0,0 +1,4 @@
-+- op: replace
-+  path: /spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 1182c236..4e71d8a4 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -33,3 +33,8 @@ patches:
-     target:
-       kind: TektonConfig
-       name: config
-+  - path: bump-results-watcher-replicas.yaml
-+    target:
-+      kind: Deployment
-+      namespace: tekton-results
-+      name: tekton-results-watcher
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 158da839..59c65054 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1450,7 +1450,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 1
-+  replicas: 2
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 614160c7..e12ded56 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1450,7 +1450,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 1
-+  replicas: 2
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index dbde99c4..bd5330e4 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1450,7 +1450,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 1
-+  replicas: 2
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from d784943e to c50b9a06 on Wed Feb 14 17:37:01 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (87 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/bump-results-watcher-replicas.yaml b/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-new file mode 100644
-index 00000000..bcd64c5f
---- /dev/null
-+++ b/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-@@ -0,0 +1,4 @@
-+- op: replace
-+  path: /spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index d0597a20..eea4e774 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -27,3 +27,8 @@ patches:
-     target:
-       kind: TektonConfig
-       name: config
-+  - path: bump-results-watcher-replicas.yaml
-+    target:
-+      kind: Deployment
-+      namespace: tekton-results
-+      name: tekton-results-watcher
-diff --git a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-new file mode 100644
-index 00000000..bcd64c5f
---- /dev/null
-+++ b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-@@ -0,0 +1,4 @@
-+- op: replace
-+  path: /spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 1182c236..4e71d8a4 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -33,3 +33,8 @@ patches:
-     target:
-       kind: TektonConfig
-       name: config
-+  - path: bump-results-watcher-replicas.yaml
-+    target:
-+      kind: Deployment
-+      namespace: tekton-results
-+      name: tekton-results-watcher
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 158da839..59c65054 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1450,7 +1450,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 1
-+  replicas: 2
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 614160c7..e12ded56 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1450,7 +1450,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 1
-+  replicas: 2
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index dbde99c4..bd5330e4 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1450,7 +1450,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 1
-+  replicas: 2
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (15 lines)</summary>  
-
-``` 
-./commit-d784943e/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1453c1453
-<   replicas: 2
----
->   replicas: 1
-./commit-d784943e/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-1453c1453
-<   replicas: 2
----
->   replicas: 1
-./commit-d784943e/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1453c1453
-<   replicas: 2
----
->   replicas: 1 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from d784943e to c50b9a06 on Wed Feb 14 17:37:01 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (87 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/development/bump-results-watcher-replicas.yaml b/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-new file mode 100644
-index 00000000..bcd64c5f
---- /dev/null
-+++ b/components/pipeline-service/development/bump-results-watcher-replicas.yaml
-@@ -0,0 +1,4 @@
-+- op: replace
-+  path: /spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index d0597a20..eea4e774 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -27,3 +27,8 @@ patches:
-     target:
-       kind: TektonConfig
-       name: config
-+  - path: bump-results-watcher-replicas.yaml
-+    target:
-+      kind: Deployment
-+      namespace: tekton-results
-+      name: tekton-results-watcher
-diff --git a/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-new file mode 100644
-index 00000000..bcd64c5f
---- /dev/null
-+++ b/components/pipeline-service/staging/base/bump-results-watcher-replicas.yaml
-@@ -0,0 +1,4 @@
-+- op: replace
-+  path: /spec/replicas
-+  # default pipeline-service setting is 1
-+  value: 2
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 1182c236..4e71d8a4 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -33,3 +33,8 @@ patches:
-     target:
-       kind: TektonConfig
-       name: config
-+  - path: bump-results-watcher-replicas.yaml
-+    target:
-+      kind: Deployment
-+      namespace: tekton-results
-+      name: tekton-results-watcher
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 158da839..59c65054 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1450,7 +1450,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 1
-+  replicas: 2
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 614160c7..e12ded56 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1450,7 +1450,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 1
-+  replicas: 2
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index dbde99c4..bd5330e4 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1450,7 +1450,7 @@ metadata:
-   name: tekton-results-watcher
-   namespace: tekton-results
- spec:
--  replicas: 1
-+  replicas: 2
-   selector:
-     matchLabels:
-       app.kubernetes.io/name: tekton-results-watcher 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-d784943e/development/components/pipeline-service/development/kustomize.out.yaml
-1522c1522
-<   replicas: 2
----
->   replicas: 1 
 ```
  
 </details>  
