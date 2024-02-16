@@ -1,0 +1,37 @@
+diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+index d4511980..00887ed9 100644
+--- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+@@ -5,3 +5,4 @@ resources:
+ - ../../base
+ - ./rbac
+ - ./monitoring
++- ./proxy
+diff --git a/components/sandbox/toolchain-host-operator/base/proxy/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/proxy/kustomization.yaml
+new file mode 100644
+index 00000000..bec60a08
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/base/proxy/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: toolchain-host-operator
++resources:
++- proxyplugin.yaml
+diff --git a/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml b/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml
+new file mode 100644
+index 00000000..1a29fe01
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/base/proxy/proxyplugin.yaml
+@@ -0,0 +1,10 @@
++apiVersion: toolchain.dev.openshift.com/v1alpha1
++kind: ProxyPlugin
++metadata:
++  name: tekton-results
++  namespace: toolchain-host-operator
++spec:
++  openShiftRouteTargetEndpoint:
++    # see https://github.com/openshift-pipelines/pipeline-service/blob/main/operator/gitops/argocd/pipeline-service/tekton-results/api-route.yaml
++    namespace: tekton-results
++    name: tekton-result
+\ No newline at end of file
