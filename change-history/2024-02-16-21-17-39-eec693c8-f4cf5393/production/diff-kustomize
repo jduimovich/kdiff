@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f4cf5393/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-eec693c8/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1748c1748,1749
+<     creationPolicy: Orphan
+---
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f4cf5393/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-eec693c8/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1748c1748,1749
+<     creationPolicy: Orphan
+---
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f4cf5393/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-eec693c8/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1748c1748,1749
+<     creationPolicy: Orphan
+---
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
