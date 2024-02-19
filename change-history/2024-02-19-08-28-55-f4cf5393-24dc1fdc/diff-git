@@ -1,0 +1,42 @@
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 15bbac6b..9e334cbf 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=148a490120ae437571cc6ad93be40fcc58862ea7
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=148a490120ae437571cc6ad93be40fcc58862ea7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 55122d0fd2f488c6ebfb30f17a35de4a510382fe
++  newTag: 148a490120ae437571cc6ad93be40fcc58862ea7
+ 
+ namespace: integration-service
+ 
+diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/kustomization.yaml
+index bbfc288c..dcdc871f 100644
+--- a/components/integration/staging/kustomization.yaml
++++ b/components/integration/staging/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../base
+ - ../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=55122d0fd2f488c6ebfb30f17a35de4a510382fe
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=148a490120ae437571cc6ad93be40fcc58862ea7
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=148a490120ae437571cc6ad93be40fcc58862ea7
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 55122d0fd2f488c6ebfb30f17a35de4a510382fe
++  newTag: 148a490120ae437571cc6ad93be40fcc58862ea7
+ 
+ namespace: integration-service
+ 
