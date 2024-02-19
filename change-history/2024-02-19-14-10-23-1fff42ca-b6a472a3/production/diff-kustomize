@@ -1,0 +1,55 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-b6a472a3/production/components/integration/production/kustomize.out.yaml ./kustomized-cache/commit-1fff42ca/production/components/integration/production/kustomize.out.yaml
+503,508d502
+< apiVersion: v1
+< kind: ServiceAccount
+< metadata:
+<   name: integration-service-snapshot-garbage-collector
+<   namespace: integration-service
+< ---
+887,914d880
+<   name: integration-service-snapshot-garbage-collector
+< rules:
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - releases
+<   - snapshotenvironmentbindings
+<   verbs:
+<   - get
+<   - list
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - snapshots
+<   verbs:
+<   - get
+<   - list
+<   - delete
+< - apiGroups:
+<   - ""
+<   resources:
+<   - namespaces
+<   verbs:
+<   - list
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRole
+< metadata:
+1060,1072d1025
+<   name: integration-service-snapshot-garbage-collector
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: integration-service-snapshot-garbage-collector
+< subjects:
+< - kind: ServiceAccount
+<   name: integration-service-snapshot-garbage-collector
+<   namespace: integration-service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: ClusterRoleBinding
+< metadata:
+1175c1128
+<         image: quay.io/redhat-appstudio/integration-service:60be0fd0b8a656cf924431ba30bccdc85ad297b9
+---
+>         image: quay.io/redhat-appstudio/integration-service:cad02429e3133890bcf92b2d7cc1f94233b8037e
