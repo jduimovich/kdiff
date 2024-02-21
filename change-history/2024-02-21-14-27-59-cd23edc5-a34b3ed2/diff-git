@@ -1,0 +1,26 @@
+diff --git a/argo-cd-apps/base/smee-client/smee-client.yaml b/argo-cd-apps/base/smee-client/smee-client.yaml
+index b40a4524..394fc7e3 100644
+--- a/argo-cd-apps/base/smee-client/smee-client.yaml
++++ b/argo-cd-apps/base/smee-client/smee-client.yaml
+@@ -24,7 +24,7 @@ spec:
+     spec:
+       project: default
+       source:
+-        path: '{{values.sourceRoot}}'
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index d2f2a0f9..9c4310c7 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -143,3 +143,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: ui
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: smee-client

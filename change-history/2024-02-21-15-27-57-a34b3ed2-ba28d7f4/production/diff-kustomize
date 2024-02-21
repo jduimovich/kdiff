@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ba28d7f4/production/components/sprayproxy/production/kustomize.out.yaml ./kustomized-cache/commit-a34b3ed2/production/components/sprayproxy/production/kustomize.out.yaml
+184c184
+<         image: quay.io/redhat-appstudio/sprayproxy:2f488f7082df063350cc5a774b61ee3207481a9b
+---
+>         image: quay.io/redhat-appstudio/sprayproxy:c6f8bf26007c140d51326760e16eb52ae5072e3b
