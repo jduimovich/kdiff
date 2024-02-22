@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-cbd153ea/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-18d28296/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+364,371d363
+<   - appstudio.redhat.com
+<   resources:
+<   - releaseplanadmissions
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+754c746
+<         image: quay.io/redhat-appstudio/build-service:b57970c32618ec2bb0170144f530c868dbb1dbd3
+---
+>         image: quay.io/redhat-appstudio/build-service:118aeb4f8c1c9b187140d8dc17a8beeb4eab2581

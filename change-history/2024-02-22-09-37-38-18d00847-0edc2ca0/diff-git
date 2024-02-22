@@ -1,0 +1,12 @@
+diff --git a/OWNERS b/OWNERS
+index 956ed08e..dcc30a99 100644
+--- a/OWNERS
++++ b/OWNERS
+@@ -4,6 +4,7 @@ approvers:
+ - jduimovich
+ - zregvart
+ - simonbaird
++- lcarva
+ - johnmcollier
+ - jgwest
+ - bamachrn
