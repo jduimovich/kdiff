@@ -1,0 +1,77 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-bf986224/development/components/release/development/kustomize.out.yaml ./kustomized-cache/commit-c477e838/development/components/release/development/kustomize.out.yaml
+337,341d336
+<               releaseGracePeriodDays:
+<                 default: 7
+<                 description: ReleaseGracePeriodDays is the number of days a Release
+<                   should be kept This value is used to define the Release ExpirationTime
+<                 type: integer
+510,513d504
+<               gracePeriodDays:
+<                 description: GracePeriodDays is the number of days a Release should
+<                   be kept This value is used to define the Release ExpirationTime
+<                 type: integer
+644,647d634
+<               expirationTime:
+<                 description: ExpirationTime is the time when a Release can be purged
+<                 format: date-time
+<                 type: string
+676,681d662
+<                   roleBinding:
+<                     description: RoleBinding contains the namespaced name of the roleBinding
+<                       created for the managed Release PipelineRun executed as part
+<                       of this release
+<                     pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?\/[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+<                     type: string
+762,765d742
+<               advisoryRepo:
+<                 description: AdvisoryRepo is the repo to create advisories in during
+<                   the managed release PipelineRun
+<                 type: string
+986,995d962
+<   - internalrequests
+<   verbs:
+<   - create
+<   - delete
+<   - get
+<   - list
+<   - watch
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+1089,1100d1055
+< - apiGroups:
+<   - rbac.authorization.k8s.io
+<   resources:
+<   - rolebindings
+<   verbs:
+<   - create
+<   - delete
+<   - get
+<   - list
+<   - patch
+<   - update
+<   - watch
+1742c1697
+<         image: quay.io/redhat-appstudio/release-service:c1e7d287444ebe0d82d78d47f041b55490b50c86
+---
+>         image: quay.io/redhat-appstudio/release-service:a623aa18c794ddc61bc0e0d87ad92bfc9b852e48
+1890,1908d1844
+<   sideEffects: None
+< - admissionReviewVersions:
+<   - v1
+<   clientConfig:
+<     service:
+<       name: release-service-webhook-service
+<       namespace: release-service
+<       path: /mutate-appstudio-redhat-com-v1alpha1-release
+<   failurePolicy: Fail
+<   name: mrelease.kb.io
+<   rules:
+<   - apiGroups:
+<     - appstudio.redhat.com
+<     apiVersions:
+<     - v1alpha1
+<     operations:
+<     - CREATE
+<     resources:
+<     - releases

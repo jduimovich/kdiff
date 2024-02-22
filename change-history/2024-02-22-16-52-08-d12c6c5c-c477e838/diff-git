@@ -1,0 +1,172 @@
+diff --git a/components/backup/base/host/kustomization.yaml b/components/backup/base/host/kustomization.yaml
+index 3bcd2317..dcde4adb 100644
+--- a/components/backup/base/host/kustomization.yaml
++++ b/components/backup/base/host/kustomization.yaml
+@@ -3,4 +3,4 @@ kind: Kustomization
+ namespace: openshift-adp
+ resources:
+   - ../all-clusters
+-  - backup-toolchain-host-schedule.yaml
++  - schedules
+diff --git a/components/backup/base/host/backup-toolchain-host-schedule.yaml b/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
+similarity index 100%
+rename from components/backup/base/host/backup-toolchain-host-schedule.yaml
+rename to components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
+diff --git a/components/backup/base/host/schedules/kustomization.yaml b/components/backup/base/host/schedules/kustomization.yaml
+new file mode 100644
+index 00000000..491fa46f
+--- /dev/null
++++ b/components/backup/base/host/schedules/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: openshift-adp
++resources:
++  - backup-toolchain-host-schedule.yaml
+diff --git a/components/backup/base/member/kustomization.yaml b/components/backup/base/member/kustomization.yaml
+index ffa4ee8a..dcde4adb 100644
+--- a/components/backup/base/member/kustomization.yaml
++++ b/components/backup/base/member/kustomization.yaml
+@@ -3,5 +3,4 @@ kind: Kustomization
+ namespace: openshift-adp
+ resources:
+   - ../all-clusters
+-  - backup-tenants-schedule.yaml
+-  - backup-toolchain-member-schedule.yaml
++  - schedules
+diff --git a/components/backup/base/member/backup-tenants-schedule.yaml b/components/backup/base/member/schedules/backup-tenants-schedule.yaml
+similarity index 100%
+rename from components/backup/base/member/backup-tenants-schedule.yaml
+rename to components/backup/base/member/schedules/backup-tenants-schedule.yaml
+diff --git a/components/backup/base/member/backup-toolchain-member-schedule.yaml b/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
+similarity index 100%
+rename from components/backup/base/member/backup-toolchain-member-schedule.yaml
+rename to components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
+diff --git a/components/backup/base/member/schedules/kustomization.yaml b/components/backup/base/member/schedules/kustomization.yaml
+new file mode 100644
+index 00000000..82489ce2
+--- /dev/null
++++ b/components/backup/base/member/schedules/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++namespace: openshift-adp
++resources:
++  - backup-tenants-schedule.yaml
++  - backup-toolchain-member-schedule.yaml
+diff --git a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
+new file mode 100644
+index 00000000..d0ab2f88
+--- /dev/null
++++ b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/dataFrom/0/extract/key
++  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
+diff --git a/components/backup/production/stone-prod-p01/dpa-bucket-patch.yaml b/components/backup/production/stone-prod-p01/dpa-bucket-patch.yaml
+new file mode 100644
+index 00000000..b846210a
+--- /dev/null
++++ b/components/backup/production/stone-prod-p01/dpa-bucket-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/objectStorage/bucket
++  value: backup-stone-prod-p01
+diff --git a/components/backup/production/stone-prod-p01/dpa-kmskeyid-patch.yaml b/components/backup/production/stone-prod-p01/dpa-kmskeyid-patch.yaml
+new file mode 100644
+index 00000000..720d118c
+--- /dev/null
++++ b/components/backup/production/stone-prod-p01/dpa-kmskeyid-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/config/kmsKeyId
++  value: acab68d3-4bbd-453b-a31e-0ce354f0db4b
+diff --git a/components/backup/production/stone-prod-p01/kustomization.yaml b/components/backup/production/stone-prod-p01/kustomization.yaml
+new file mode 100644
+index 00000000..60a2319d
+--- /dev/null
++++ b/components/backup/production/stone-prod-p01/kustomization.yaml
+@@ -0,0 +1,25 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/all-clusters
++  - ../../base/host/schedules
++  - ../../base/member/schedules
++patches:
++  - target:
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++      name: backup-s3-credentials
++    path: backup-s3-credentials-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-bucket-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-kmskeyid-patch.yaml
+diff --git a/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
+new file mode 100644
+index 00000000..49236b0e
+--- /dev/null
++++ b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/dataFrom/0/extract/key
++  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
+diff --git a/components/backup/staging/stone-stage-p01/dpa-bucket-patch.yaml b/components/backup/staging/stone-stage-p01/dpa-bucket-patch.yaml
+new file mode 100644
+index 00000000..f376eac6
+--- /dev/null
++++ b/components/backup/staging/stone-stage-p01/dpa-bucket-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/objectStorage/bucket
++  value: backup-stone-stage-p01
+diff --git a/components/backup/staging/stone-stage-p01/dpa-kmskeyid-patch.yaml b/components/backup/staging/stone-stage-p01/dpa-kmskeyid-patch.yaml
+new file mode 100644
+index 00000000..ec4ef510
+--- /dev/null
++++ b/components/backup/staging/stone-stage-p01/dpa-kmskeyid-patch.yaml
+@@ -0,0 +1,3 @@
++- op: replace
++  path: /spec/backupLocations/0/velero/config/kmsKeyId
++  value: 71be430c-e08f-4604-a3d6-f660d7b61072
+diff --git a/components/backup/staging/stone-stage-p01/kustomization.yaml b/components/backup/staging/stone-stage-p01/kustomization.yaml
+new file mode 100644
+index 00000000..60a2319d
+--- /dev/null
++++ b/components/backup/staging/stone-stage-p01/kustomization.yaml
+@@ -0,0 +1,25 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/all-clusters
++  - ../../base/host/schedules
++  - ../../base/member/schedules
++patches:
++  - target:
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
++      name: backup-s3-credentials
++    path: backup-s3-credentials-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-bucket-patch.yaml
++  - target:
++      group: oadp.openshift.io
++      version: v1alpha1
++      kind: DataProtectionApplication
++      name: velero-aws
++    path: dpa-kmskeyid-patch.yaml
