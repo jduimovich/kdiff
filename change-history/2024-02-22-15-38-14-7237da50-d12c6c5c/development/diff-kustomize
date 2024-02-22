@@ -1,0 +1,26 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-d12c6c5c/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-7237da50/development/components/pipeline-service/development/kustomize.out.yaml
+2073,2088d2072
+< kind: CatalogSource
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "0"
+<   name: custom-operators
+<   namespace: openshift-marketplace
+< spec:
+<   displayName: custom-operators
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:37310134aafa601207d873f21aca35c7d06631af695cd2e87a975b25971a3cc7
+<   sourceType: grpc
+<   updateStrategy:
+<     registryPoll:
+<       interval: 30m
+< ---
+< apiVersion: operators.coreos.com/v1alpha1
+2112c2096
+<   channel: latest
+---
+>   channel: pipelines-1.13
+2114c2098
+<   source: custom-operators
+---
+>   source: redhat-operators
