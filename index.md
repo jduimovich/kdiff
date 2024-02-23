@@ -1,12 +1,684 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Feb 23 12:02:49 UTC 2024
+### This file generated at Fri Feb 23 16:03:22 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from edb0bcb2 to 6a638b76 on Thu Feb 22 21:43:38 2024 </h3>  
+<h3>1: Production changes from 6a638b76 to 52a80909 on Fri Feb 23 12:20:53 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (78 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index ab475094..d202e77e 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -44,7 +44,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -88,7 +88,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -110,7 +110,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -129,4 +129,4 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-task-policy:git-61c04f6@sha256:4a4ad1d790624f807d8c9fd6fedc19c98577728afea6d714f539b436ba44a760
++        - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 27f59289..0ee86372 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=34351ebdaa15577a2a1f7fd9550018667551fbcb
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=66e45b90362999a5e2e271ec05fe71453dff5426
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -12,7 +12,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:1c76cb3b1fa1a95b156280562ef1ec6022ed9539@sha256:8653d33d0bed21a7fc6ab4f5f911df96d905264bd0dcd9c7d7a4d60939c4e03b
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=1c76cb3b1fa1a95b156280562ef1ec6022ed9539
++      - verify_ec_task_git_revision=0c1a3cb4b810f33ba4c2134a464021f175f61182
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+
+``` 
+./commit-6a638b76/production/components/enterprise-contract/kustomize.out.yaml
+376c376
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:1c76cb3b1fa1a95b156280562ef1ec6022ed9539@sha256:8653d33d0bed21a7fc6ab4f5f911df96d905264bd0dcd9c7d7a4d60939c4e03b
+378c378
+<   verify_ec_task_git_revision: 0c1a3cb4b810f33ba4c2134a464021f175f61182
+---
+>   verify_ec_task_git_revision: 1c76cb3b1fa1a95b156280562ef1ec6022ed9539
+612c612
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
+636c636
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
+660c660
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
+687c687
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
+706c706
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-61c04f6@sha256:4a4ad1d790624f807d8c9fd6fedc19c98577728afea6d714f539b436ba44a760
+732c732
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 6a638b76 to 52a80909 on Fri Feb 23 12:20:53 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (78 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index ab475094..d202e77e 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -44,7 +44,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -88,7 +88,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -110,7 +110,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -129,4 +129,4 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-task-policy:git-61c04f6@sha256:4a4ad1d790624f807d8c9fd6fedc19c98577728afea6d714f539b436ba44a760
++        - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 27f59289..0ee86372 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=34351ebdaa15577a2a1f7fd9550018667551fbcb
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=66e45b90362999a5e2e271ec05fe71453dff5426
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -12,7 +12,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:1c76cb3b1fa1a95b156280562ef1ec6022ed9539@sha256:8653d33d0bed21a7fc6ab4f5f911df96d905264bd0dcd9c7d7a4d60939c4e03b
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=1c76cb3b1fa1a95b156280562ef1ec6022ed9539
++      - verify_ec_task_git_revision=0c1a3cb4b810f33ba4c2134a464021f175f61182
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+
+``` 
+./commit-6a638b76/staging/components/enterprise-contract/kustomize.out.yaml
+376c376
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:1c76cb3b1fa1a95b156280562ef1ec6022ed9539@sha256:8653d33d0bed21a7fc6ab4f5f911df96d905264bd0dcd9c7d7a4d60939c4e03b
+378c378
+<   verify_ec_task_git_revision: 0c1a3cb4b810f33ba4c2134a464021f175f61182
+---
+>   verify_ec_task_git_revision: 1c76cb3b1fa1a95b156280562ef1ec6022ed9539
+612c612
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
+636c636
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
+660c660
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
+687c687
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
+706c706
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-61c04f6@sha256:4a4ad1d790624f807d8c9fd6fedc19c98577728afea6d714f539b436ba44a760
+732c732
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 6a638b76 to 52a80909 on Fri Feb 23 12:20:53 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (78 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index ab475094..d202e77e 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -44,7 +44,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -88,7 +88,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -110,7 +110,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -129,4 +129,4 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-task-policy:git-61c04f6@sha256:4a4ad1d790624f807d8c9fd6fedc19c98577728afea6d714f539b436ba44a760
++        - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 27f59289..0ee86372 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=34351ebdaa15577a2a1f7fd9550018667551fbcb
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=66e45b90362999a5e2e271ec05fe71453dff5426
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -12,7 +12,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:1c76cb3b1fa1a95b156280562ef1ec6022ed9539@sha256:8653d33d0bed21a7fc6ab4f5f911df96d905264bd0dcd9c7d7a4d60939c4e03b
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=1c76cb3b1fa1a95b156280562ef1ec6022ed9539
++      - verify_ec_task_git_revision=0c1a3cb4b810f33ba4c2134a464021f175f61182
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+
+``` 
+./commit-6a638b76/development/components/enterprise-contract/kustomize.out.yaml
+376c376
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:1c76cb3b1fa1a95b156280562ef1ec6022ed9539@sha256:8653d33d0bed21a7fc6ab4f5f911df96d905264bd0dcd9c7d7a4d60939c4e03b
+378c378
+<   verify_ec_task_git_revision: 0c1a3cb4b810f33ba4c2134a464021f175f61182
+---
+>   verify_ec_task_git_revision: 1c76cb3b1fa1a95b156280562ef1ec6022ed9539
+612c612
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
+636c636
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
+660c660
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
+687c687
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6
+706c706
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-61c04f6@sha256:4a4ad1d790624f807d8c9fd6fedc19c98577728afea6d714f539b436ba44a760
+732c732
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-8229928@sha256:0e697db0d42416a23a58cc52597057dd12f7eb71bd8930c95564706126c15df6 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from edb0bcb2 to 6a638b76 on Thu Feb 22 21:43:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -231,7 +903,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from edb0bcb2 to 6a638b76 on Thu Feb 22 21:43:38 2024 </h3>  
+<h3>2: Staging changes from edb0bcb2 to 6a638b76 on Thu Feb 22 21:43:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -383,7 +1055,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from edb0bcb2 to 6a638b76 on Thu Feb 22 21:43:38 2024 </h3>  
+<h3>2: Development changes from edb0bcb2 to 6a638b76 on Thu Feb 22 21:43:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -487,7 +1159,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from bf986224 to edb0bcb2 on Thu Feb 22 20:45:54 2024 </h3>  
+<h3>3: Production changes from bf986224 to edb0bcb2 on Thu Feb 22 20:45:54 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -637,7 +1309,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from bf986224 to edb0bcb2 on Thu Feb 22 20:45:54 2024 </h3>  
+<h3>3: Staging changes from bf986224 to edb0bcb2 on Thu Feb 22 20:45:54 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -866,7 +1538,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from bf986224 to edb0bcb2 on Thu Feb 22 20:45:54 2024 </h3>  
+<h3>3: Development changes from bf986224 to edb0bcb2 on Thu Feb 22 20:45:54 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -971,7 +1643,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from c477e838 to bf986224 on Thu Feb 22 19:34:25 2024 </h3>  
+<h3>4: Production changes from c477e838 to bf986224 on Thu Feb 22 19:34:25 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1127,7 +1799,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from c477e838 to bf986224 on Thu Feb 22 19:34:25 2024 </h3>  
+<h3>4: Staging changes from c477e838 to bf986224 on Thu Feb 22 19:34:25 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1286,7 +1958,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from c477e838 to bf986224 on Thu Feb 22 19:34:25 2024 </h3>  
+<h3>4: Development changes from c477e838 to bf986224 on Thu Feb 22 19:34:25 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1405,864 +2077,6 @@ index ee640cb7..31165cfa 100644
 <     - CREATE
 <     resources:
 <     - releases 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from d12c6c5c to c477e838 on Thu Feb 22 16:52:08 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (172 lines)</summary>  
-
-``` 
-diff --git a/components/backup/base/host/kustomization.yaml b/components/backup/base/host/kustomization.yaml
-index 3bcd2317..dcde4adb 100644
---- a/components/backup/base/host/kustomization.yaml
-+++ b/components/backup/base/host/kustomization.yaml
-@@ -3,4 +3,4 @@ kind: Kustomization
- namespace: openshift-adp
- resources:
-   - ../all-clusters
--  - backup-toolchain-host-schedule.yaml
-+  - schedules
-diff --git a/components/backup/base/host/backup-toolchain-host-schedule.yaml b/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
-similarity index 100%
-rename from components/backup/base/host/backup-toolchain-host-schedule.yaml
-rename to components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
-diff --git a/components/backup/base/host/schedules/kustomization.yaml b/components/backup/base/host/schedules/kustomization.yaml
-new file mode 100644
-index 00000000..491fa46f
---- /dev/null
-+++ b/components/backup/base/host/schedules/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+namespace: openshift-adp
-+resources:
-+  - backup-toolchain-host-schedule.yaml
-diff --git a/components/backup/base/member/kustomization.yaml b/components/backup/base/member/kustomization.yaml
-index ffa4ee8a..dcde4adb 100644
---- a/components/backup/base/member/kustomization.yaml
-+++ b/components/backup/base/member/kustomization.yaml
-@@ -3,5 +3,4 @@ kind: Kustomization
- namespace: openshift-adp
- resources:
-   - ../all-clusters
--  - backup-tenants-schedule.yaml
--  - backup-toolchain-member-schedule.yaml
-+  - schedules
-diff --git a/components/backup/base/member/backup-tenants-schedule.yaml b/components/backup/base/member/schedules/backup-tenants-schedule.yaml
-similarity index 100%
-rename from components/backup/base/member/backup-tenants-schedule.yaml
-rename to components/backup/base/member/schedules/backup-tenants-schedule.yaml
-diff --git a/components/backup/base/member/backup-toolchain-member-schedule.yaml b/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-similarity index 100%
-rename from components/backup/base/member/backup-toolchain-member-schedule.yaml
-rename to components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-diff --git a/components/backup/base/member/schedules/kustomization.yaml b/components/backup/base/member/schedules/kustomization.yaml
-new file mode 100644
-index 00000000..82489ce2
---- /dev/null
-+++ b/components/backup/base/member/schedules/kustomization.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+namespace: openshift-adp
-+resources:
-+  - backup-tenants-schedule.yaml
-+  - backup-toolchain-member-schedule.yaml
-diff --git a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-new file mode 100644
-index 00000000..d0ab2f88
---- /dev/null
-+++ b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/dataFrom/0/extract/key
-+  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
-diff --git a/components/backup/production/stone-prod-p01/dpa-bucket-patch.yaml b/components/backup/production/stone-prod-p01/dpa-bucket-patch.yaml
-new file mode 100644
-index 00000000..b846210a
---- /dev/null
-+++ b/components/backup/production/stone-prod-p01/dpa-bucket-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/backupLocations/0/velero/objectStorage/bucket
-+  value: backup-stone-prod-p01
-diff --git a/components/backup/production/stone-prod-p01/dpa-kmskeyid-patch.yaml b/components/backup/production/stone-prod-p01/dpa-kmskeyid-patch.yaml
-new file mode 100644
-index 00000000..720d118c
---- /dev/null
-+++ b/components/backup/production/stone-prod-p01/dpa-kmskeyid-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/backupLocations/0/velero/config/kmsKeyId
-+  value: acab68d3-4bbd-453b-a31e-0ce354f0db4b
-diff --git a/components/backup/production/stone-prod-p01/kustomization.yaml b/components/backup/production/stone-prod-p01/kustomization.yaml
-new file mode 100644
-index 00000000..60a2319d
---- /dev/null
-+++ b/components/backup/production/stone-prod-p01/kustomization.yaml
-@@ -0,0 +1,25 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base/all-clusters
-+  - ../../base/host/schedules
-+  - ../../base/member/schedules
-+patches:
-+  - target:
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-+      name: backup-s3-credentials
-+    path: backup-s3-credentials-patch.yaml
-+  - target:
-+      group: oadp.openshift.io
-+      version: v1alpha1
-+      kind: DataProtectionApplication
-+      name: velero-aws
-+    path: dpa-bucket-patch.yaml
-+  - target:
-+      group: oadp.openshift.io
-+      version: v1alpha1
-+      kind: DataProtectionApplication
-+      name: velero-aws
-+    path: dpa-kmskeyid-patch.yaml
-diff --git a/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-new file mode 100644
-index 00000000..49236b0e
---- /dev/null
-+++ b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/dataFrom/0/extract/key
-+  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
-diff --git a/components/backup/staging/stone-stage-p01/dpa-bucket-patch.yaml b/components/backup/staging/stone-stage-p01/dpa-bucket-patch.yaml
-new file mode 100644
-index 00000000..f376eac6
---- /dev/null
-+++ b/components/backup/staging/stone-stage-p01/dpa-bucket-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/backupLocations/0/velero/objectStorage/bucket
-+  value: backup-stone-stage-p01
-diff --git a/components/backup/staging/stone-stage-p01/dpa-kmskeyid-patch.yaml b/components/backup/staging/stone-stage-p01/dpa-kmskeyid-patch.yaml
-new file mode 100644
-index 00000000..ec4ef510
---- /dev/null
-+++ b/components/backup/staging/stone-stage-p01/dpa-kmskeyid-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/backupLocations/0/velero/config/kmsKeyId
-+  value: 71be430c-e08f-4604-a3d6-f660d7b61072
-diff --git a/components/backup/staging/stone-stage-p01/kustomization.yaml b/components/backup/staging/stone-stage-p01/kustomization.yaml
-new file mode 100644
-index 00000000..60a2319d
---- /dev/null
-+++ b/components/backup/staging/stone-stage-p01/kustomization.yaml
-@@ -0,0 +1,25 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base/all-clusters
-+  - ../../base/host/schedules
-+  - ../../base/member/schedules
-+patches:
-+  - target:
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-+      name: backup-s3-credentials
-+    path: backup-s3-credentials-patch.yaml
-+  - target:
-+      group: oadp.openshift.io
-+      version: v1alpha1
-+      kind: DataProtectionApplication
-+      name: velero-aws
-+    path: dpa-bucket-patch.yaml
-+  - target:
-+      group: oadp.openshift.io
-+      version: v1alpha1
-+      kind: DataProtectionApplication
-+      name: velero-aws
-+    path: dpa-kmskeyid-patch.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (1 lines)</summary>  
-
-``` 
-./commit-c477e838/production/components/backup/production: stone-prod-p01 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from d12c6c5c to c477e838 on Thu Feb 22 16:52:08 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (172 lines)</summary>  
-
-``` 
-diff --git a/components/backup/base/host/kustomization.yaml b/components/backup/base/host/kustomization.yaml
-index 3bcd2317..dcde4adb 100644
---- a/components/backup/base/host/kustomization.yaml
-+++ b/components/backup/base/host/kustomization.yaml
-@@ -3,4 +3,4 @@ kind: Kustomization
- namespace: openshift-adp
- resources:
-   - ../all-clusters
--  - backup-toolchain-host-schedule.yaml
-+  - schedules
-diff --git a/components/backup/base/host/backup-toolchain-host-schedule.yaml b/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
-similarity index 100%
-rename from components/backup/base/host/backup-toolchain-host-schedule.yaml
-rename to components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
-diff --git a/components/backup/base/host/schedules/kustomization.yaml b/components/backup/base/host/schedules/kustomization.yaml
-new file mode 100644
-index 00000000..491fa46f
---- /dev/null
-+++ b/components/backup/base/host/schedules/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+namespace: openshift-adp
-+resources:
-+  - backup-toolchain-host-schedule.yaml
-diff --git a/components/backup/base/member/kustomization.yaml b/components/backup/base/member/kustomization.yaml
-index ffa4ee8a..dcde4adb 100644
---- a/components/backup/base/member/kustomization.yaml
-+++ b/components/backup/base/member/kustomization.yaml
-@@ -3,5 +3,4 @@ kind: Kustomization
- namespace: openshift-adp
- resources:
-   - ../all-clusters
--  - backup-tenants-schedule.yaml
--  - backup-toolchain-member-schedule.yaml
-+  - schedules
-diff --git a/components/backup/base/member/backup-tenants-schedule.yaml b/components/backup/base/member/schedules/backup-tenants-schedule.yaml
-similarity index 100%
-rename from components/backup/base/member/backup-tenants-schedule.yaml
-rename to components/backup/base/member/schedules/backup-tenants-schedule.yaml
-diff --git a/components/backup/base/member/backup-toolchain-member-schedule.yaml b/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-similarity index 100%
-rename from components/backup/base/member/backup-toolchain-member-schedule.yaml
-rename to components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-diff --git a/components/backup/base/member/schedules/kustomization.yaml b/components/backup/base/member/schedules/kustomization.yaml
-new file mode 100644
-index 00000000..82489ce2
---- /dev/null
-+++ b/components/backup/base/member/schedules/kustomization.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+namespace: openshift-adp
-+resources:
-+  - backup-tenants-schedule.yaml
-+  - backup-toolchain-member-schedule.yaml
-diff --git a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-new file mode 100644
-index 00000000..d0ab2f88
---- /dev/null
-+++ b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/dataFrom/0/extract/key
-+  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
-diff --git a/components/backup/production/stone-prod-p01/dpa-bucket-patch.yaml b/components/backup/production/stone-prod-p01/dpa-bucket-patch.yaml
-new file mode 100644
-index 00000000..b846210a
---- /dev/null
-+++ b/components/backup/production/stone-prod-p01/dpa-bucket-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/backupLocations/0/velero/objectStorage/bucket
-+  value: backup-stone-prod-p01
-diff --git a/components/backup/production/stone-prod-p01/dpa-kmskeyid-patch.yaml b/components/backup/production/stone-prod-p01/dpa-kmskeyid-patch.yaml
-new file mode 100644
-index 00000000..720d118c
---- /dev/null
-+++ b/components/backup/production/stone-prod-p01/dpa-kmskeyid-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/backupLocations/0/velero/config/kmsKeyId
-+  value: acab68d3-4bbd-453b-a31e-0ce354f0db4b
-diff --git a/components/backup/production/stone-prod-p01/kustomization.yaml b/components/backup/production/stone-prod-p01/kustomization.yaml
-new file mode 100644
-index 00000000..60a2319d
---- /dev/null
-+++ b/components/backup/production/stone-prod-p01/kustomization.yaml
-@@ -0,0 +1,25 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base/all-clusters
-+  - ../../base/host/schedules
-+  - ../../base/member/schedules
-+patches:
-+  - target:
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-+      name: backup-s3-credentials
-+    path: backup-s3-credentials-patch.yaml
-+  - target:
-+      group: oadp.openshift.io
-+      version: v1alpha1
-+      kind: DataProtectionApplication
-+      name: velero-aws
-+    path: dpa-bucket-patch.yaml
-+  - target:
-+      group: oadp.openshift.io
-+      version: v1alpha1
-+      kind: DataProtectionApplication
-+      name: velero-aws
-+    path: dpa-kmskeyid-patch.yaml
-diff --git a/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-new file mode 100644
-index 00000000..49236b0e
---- /dev/null
-+++ b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/dataFrom/0/extract/key
-+  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
-diff --git a/components/backup/staging/stone-stage-p01/dpa-bucket-patch.yaml b/components/backup/staging/stone-stage-p01/dpa-bucket-patch.yaml
-new file mode 100644
-index 00000000..f376eac6
---- /dev/null
-+++ b/components/backup/staging/stone-stage-p01/dpa-bucket-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/backupLocations/0/velero/objectStorage/bucket
-+  value: backup-stone-stage-p01
-diff --git a/components/backup/staging/stone-stage-p01/dpa-kmskeyid-patch.yaml b/components/backup/staging/stone-stage-p01/dpa-kmskeyid-patch.yaml
-new file mode 100644
-index 00000000..ec4ef510
---- /dev/null
-+++ b/components/backup/staging/stone-stage-p01/dpa-kmskeyid-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/backupLocations/0/velero/config/kmsKeyId
-+  value: 71be430c-e08f-4604-a3d6-f660d7b61072
-diff --git a/components/backup/staging/stone-stage-p01/kustomization.yaml b/components/backup/staging/stone-stage-p01/kustomization.yaml
-new file mode 100644
-index 00000000..60a2319d
---- /dev/null
-+++ b/components/backup/staging/stone-stage-p01/kustomization.yaml
-@@ -0,0 +1,25 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base/all-clusters
-+  - ../../base/host/schedules
-+  - ../../base/member/schedules
-+patches:
-+  - target:
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-+      name: backup-s3-credentials
-+    path: backup-s3-credentials-patch.yaml
-+  - target:
-+      group: oadp.openshift.io
-+      version: v1alpha1
-+      kind: DataProtectionApplication
-+      name: velero-aws
-+    path: dpa-bucket-patch.yaml
-+  - target:
-+      group: oadp.openshift.io
-+      version: v1alpha1
-+      kind: DataProtectionApplication
-+      name: velero-aws
-+    path: dpa-kmskeyid-patch.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (1 lines)</summary>  
-
-``` 
-./commit-c477e838/staging/components/backup/staging: stone-stage-p01 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from d12c6c5c to c477e838 on Thu Feb 22 16:52:08 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (172 lines)</summary>  
-
-``` 
-diff --git a/components/backup/base/host/kustomization.yaml b/components/backup/base/host/kustomization.yaml
-index 3bcd2317..dcde4adb 100644
---- a/components/backup/base/host/kustomization.yaml
-+++ b/components/backup/base/host/kustomization.yaml
-@@ -3,4 +3,4 @@ kind: Kustomization
- namespace: openshift-adp
- resources:
-   - ../all-clusters
--  - backup-toolchain-host-schedule.yaml
-+  - schedules
-diff --git a/components/backup/base/host/backup-toolchain-host-schedule.yaml b/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
-similarity index 100%
-rename from components/backup/base/host/backup-toolchain-host-schedule.yaml
-rename to components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
-diff --git a/components/backup/base/host/schedules/kustomization.yaml b/components/backup/base/host/schedules/kustomization.yaml
-new file mode 100644
-index 00000000..491fa46f
---- /dev/null
-+++ b/components/backup/base/host/schedules/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+namespace: openshift-adp
-+resources:
-+  - backup-toolchain-host-schedule.yaml
-diff --git a/components/backup/base/member/kustomization.yaml b/components/backup/base/member/kustomization.yaml
-index ffa4ee8a..dcde4adb 100644
---- a/components/backup/base/member/kustomization.yaml
-+++ b/components/backup/base/member/kustomization.yaml
-@@ -3,5 +3,4 @@ kind: Kustomization
- namespace: openshift-adp
- resources:
-   - ../all-clusters
--  - backup-tenants-schedule.yaml
--  - backup-toolchain-member-schedule.yaml
-+  - schedules
-diff --git a/components/backup/base/member/backup-tenants-schedule.yaml b/components/backup/base/member/schedules/backup-tenants-schedule.yaml
-similarity index 100%
-rename from components/backup/base/member/backup-tenants-schedule.yaml
-rename to components/backup/base/member/schedules/backup-tenants-schedule.yaml
-diff --git a/components/backup/base/member/backup-toolchain-member-schedule.yaml b/components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-similarity index 100%
-rename from components/backup/base/member/backup-toolchain-member-schedule.yaml
-rename to components/backup/base/member/schedules/backup-toolchain-member-schedule.yaml
-diff --git a/components/backup/base/member/schedules/kustomization.yaml b/components/backup/base/member/schedules/kustomization.yaml
-new file mode 100644
-index 00000000..82489ce2
---- /dev/null
-+++ b/components/backup/base/member/schedules/kustomization.yaml
-@@ -0,0 +1,6 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+namespace: openshift-adp
-+resources:
-+  - backup-tenants-schedule.yaml
-+  - backup-toolchain-member-schedule.yaml
-diff --git a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-new file mode 100644
-index 00000000..d0ab2f88
---- /dev/null
-+++ b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/dataFrom/0/extract/key
-+  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
-diff --git a/components/backup/production/stone-prod-p01/dpa-bucket-patch.yaml b/components/backup/production/stone-prod-p01/dpa-bucket-patch.yaml
-new file mode 100644
-index 00000000..b846210a
---- /dev/null
-+++ b/components/backup/production/stone-prod-p01/dpa-bucket-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/backupLocations/0/velero/objectStorage/bucket
-+  value: backup-stone-prod-p01
-diff --git a/components/backup/production/stone-prod-p01/dpa-kmskeyid-patch.yaml b/components/backup/production/stone-prod-p01/dpa-kmskeyid-patch.yaml
-new file mode 100644
-index 00000000..720d118c
---- /dev/null
-+++ b/components/backup/production/stone-prod-p01/dpa-kmskeyid-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/backupLocations/0/velero/config/kmsKeyId
-+  value: acab68d3-4bbd-453b-a31e-0ce354f0db4b
-diff --git a/components/backup/production/stone-prod-p01/kustomization.yaml b/components/backup/production/stone-prod-p01/kustomization.yaml
-new file mode 100644
-index 00000000..60a2319d
---- /dev/null
-+++ b/components/backup/production/stone-prod-p01/kustomization.yaml
-@@ -0,0 +1,25 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base/all-clusters
-+  - ../../base/host/schedules
-+  - ../../base/member/schedules
-+patches:
-+  - target:
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-+      name: backup-s3-credentials
-+    path: backup-s3-credentials-patch.yaml
-+  - target:
-+      group: oadp.openshift.io
-+      version: v1alpha1
-+      kind: DataProtectionApplication
-+      name: velero-aws
-+    path: dpa-bucket-patch.yaml
-+  - target:
-+      group: oadp.openshift.io
-+      version: v1alpha1
-+      kind: DataProtectionApplication
-+      name: velero-aws
-+    path: dpa-kmskeyid-patch.yaml
-diff --git a/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-new file mode 100644
-index 00000000..49236b0e
---- /dev/null
-+++ b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/dataFrom/0/extract/key
-+  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
-diff --git a/components/backup/staging/stone-stage-p01/dpa-bucket-patch.yaml b/components/backup/staging/stone-stage-p01/dpa-bucket-patch.yaml
-new file mode 100644
-index 00000000..f376eac6
---- /dev/null
-+++ b/components/backup/staging/stone-stage-p01/dpa-bucket-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/backupLocations/0/velero/objectStorage/bucket
-+  value: backup-stone-stage-p01
-diff --git a/components/backup/staging/stone-stage-p01/dpa-kmskeyid-patch.yaml b/components/backup/staging/stone-stage-p01/dpa-kmskeyid-patch.yaml
-new file mode 100644
-index 00000000..ec4ef510
---- /dev/null
-+++ b/components/backup/staging/stone-stage-p01/dpa-kmskeyid-patch.yaml
-@@ -0,0 +1,3 @@
-+- op: replace
-+  path: /spec/backupLocations/0/velero/config/kmsKeyId
-+  value: 71be430c-e08f-4604-a3d6-f660d7b61072
-diff --git a/components/backup/staging/stone-stage-p01/kustomization.yaml b/components/backup/staging/stone-stage-p01/kustomization.yaml
-new file mode 100644
-index 00000000..60a2319d
---- /dev/null
-+++ b/components/backup/staging/stone-stage-p01/kustomization.yaml
-@@ -0,0 +1,25 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base/all-clusters
-+  - ../../base/host/schedules
-+  - ../../base/member/schedules
-+patches:
-+  - target:
-+      group: external-secrets.io
-+      version: v1beta1
-+      kind: ExternalSecret
-+      name: backup-s3-credentials
-+    path: backup-s3-credentials-patch.yaml
-+  - target:
-+      group: oadp.openshift.io
-+      version: v1alpha1
-+      kind: DataProtectionApplication
-+      name: velero-aws
-+    path: dpa-bucket-patch.yaml
-+  - target:
-+      group: oadp.openshift.io
-+      version: v1alpha1
-+      kind: DataProtectionApplication
-+      name: velero-aws
-+    path: dpa-kmskeyid-patch.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
