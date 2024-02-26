@@ -1,0 +1,152 @@
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml
+index ee2d63df..c1611035 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/kustomization.yaml
+@@ -4,3 +4,4 @@ resources:
+ - ../../base
+ - toolchainconfig.yaml
+ - space-provisioner-configs.yaml
++- toolchain-host-operator.yaml
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchain-host-operator.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchain-host-operator.yaml
+new file mode 100644
+index 00000000..37ff29d7
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchain-host-operator.yaml
+@@ -0,0 +1,35 @@
++apiVersion: operators.coreos.com/v1alpha1
++kind: CatalogSource
++metadata:
++  labels:
++    opsrc-provider: codeready-toolchain
++  name: dev-sandbox-host
++  namespace: toolchain-host-operator
++spec:
++  displayName: Dev Sandbox Operators
++  image: quay.io/codeready-toolchain/host-operator-index:latest
++  sourceType: grpc
++  updateStrategy:
++    registryPoll:
++      interval: 5m0s
++---
++apiVersion: operators.coreos.com/v1
++kind: OperatorGroup
++metadata:
++  name: dev-sandbox-host
++  namespace: toolchain-host-operator
++spec:
++  targetNamespaces:
++  - toolchain-host-operator
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  name: dev-sandbox-host
++  namespace: toolchain-host-operator
++spec:
++  channel: staging
++  installPlanApproval: Automatic
++  name: toolchain-host-operator
++  source: dev-sandbox-host
++  sourceNamespace: toolchain-host-operator
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/kustomization.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/kustomization.yaml
+index ee2d63df..c1611035 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/kustomization.yaml
+@@ -4,3 +4,4 @@ resources:
+ - ../../base
+ - toolchainconfig.yaml
+ - space-provisioner-configs.yaml
++- toolchain-host-operator.yaml
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchain-host-operator.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchain-host-operator.yaml
+new file mode 100644
+index 00000000..37ff29d7
+--- /dev/null
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stg-host/toolchain-host-operator.yaml
+@@ -0,0 +1,35 @@
++apiVersion: operators.coreos.com/v1alpha1
++kind: CatalogSource
++metadata:
++  labels:
++    opsrc-provider: codeready-toolchain
++  name: dev-sandbox-host
++  namespace: toolchain-host-operator
++spec:
++  displayName: Dev Sandbox Operators
++  image: quay.io/codeready-toolchain/host-operator-index:latest
++  sourceType: grpc
++  updateStrategy:
++    registryPoll:
++      interval: 5m0s
++---
++apiVersion: operators.coreos.com/v1
++kind: OperatorGroup
++metadata:
++  name: dev-sandbox-host
++  namespace: toolchain-host-operator
++spec:
++  targetNamespaces:
++  - toolchain-host-operator
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  name: dev-sandbox-host
++  namespace: toolchain-host-operator
++spec:
++  channel: staging
++  installPlanApproval: Automatic
++  name: toolchain-host-operator
++  source: dev-sandbox-host
++  sourceNamespace: toolchain-host-operator
+\ No newline at end of file
+diff --git a/components/sandbox/toolchain-member-operator/staging/kustomization.yaml b/components/sandbox/toolchain-member-operator/staging/kustomization.yaml
+index bdf7ce4f..e97d3866 100644
+--- a/components/sandbox/toolchain-member-operator/staging/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/staging/kustomization.yaml
+@@ -2,3 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
++- toolchain-member-operator.yaml
+diff --git a/components/sandbox/toolchain-member-operator/staging/toolchain-member-operator.yaml b/components/sandbox/toolchain-member-operator/staging/toolchain-member-operator.yaml
+new file mode 100644
+index 00000000..093eb236
+--- /dev/null
++++ b/components/sandbox/toolchain-member-operator/staging/toolchain-member-operator.yaml
+@@ -0,0 +1,35 @@
++apiVersion: operators.coreos.com/v1alpha1
++kind: CatalogSource
++metadata:
++  labels:
++    opsrc-provider: codeready-toolchain
++  name: dev-sandbox-member
++  namespace: toolchain-member-operator
++spec:
++  displayName: Dev Sandbox Operators
++  image: quay.io/codeready-toolchain/member-operator-index:latest
++  sourceType: grpc
++  updateStrategy:
++    registryPoll:
++      interval: 5m0s
++---
++apiVersion: operators.coreos.com/v1
++kind: OperatorGroup
++metadata:
++  name: dev-sandbox-member
++  namespace: toolchain-member-operator
++spec:
++  targetNamespaces:
++  - toolchain-member-operator
++---
++apiVersion: operators.coreos.com/v1alpha1
++kind: Subscription
++metadata:
++  name: dev-sandbox-member
++  namespace: toolchain-member-operator
++spec:
++  channel: staging
++  installPlanApproval: Automatic
++  name: toolchain-member-operator
++  source: dev-sandbox-member
++  sourceNamespace: toolchain-member-operator
