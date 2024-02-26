@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-8637e113/staging/components/sprayproxy/staging/kustomize.out.yaml ./kustomized-cache/commit-d4490267/staging/components/sprayproxy/staging/kustomize.out.yaml
+163c163
+<   replicas: 2
+---
+>   replicas: 1
+170d169
+<         app: sprayproxy
+173,184d171
+<       affinity:
+<         podAntiAffinity:
+<           preferredDuringSchedulingIgnoredDuringExecution:
+<           - podAffinityTerm:
+<               labelSelector:
+<                 matchExpressions:
+<                 - key: app
+<                   operator: In
+<                   values:
+<                   - sprayproxy
+<               topologyKey: kubernetes.io/hostname
+<             weight: 100
