@@ -1,0 +1,66 @@
+diff --git a/components/pipeline-service/production/base/bump-exporter-mem.yaml b/components/pipeline-service/production/base/bump-exporter-mem.yaml
+index 7cf19058..238d183a 100644
+--- a/components/pipeline-service/production/base/bump-exporter-mem.yaml
++++ b/components/pipeline-service/production/base/bump-exporter-mem.yaml
+@@ -1,4 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/template/spec/containers/0/resources/limits/memory
+-  value: "1Gi"
+\ No newline at end of file
++  value: "2Gi"
++- op: replace
++  path: /spec/template/spec/containers/0/resources/requests/memory
++  value: "2Gi"
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 167e06c5..767a507c 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1221,10 +1221,10 @@ spec:
+         resources:
+           limits:
+             cpu: 500m
+-            memory: 1Gi
++            memory: 2Gi
+           requests:
+             cpu: 250m
+-            memory: 128Mi
++            memory: 2Gi
+         securityContext:
+           readOnlyRootFilesystem: true
+           runAsNonRoot: true
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 6b41fe79..d7b922e0 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1221,10 +1221,10 @@ spec:
+         resources:
+           limits:
+             cpu: 500m
+-            memory: 1Gi
++            memory: 2Gi
+           requests:
+             cpu: 250m
+-            memory: 128Mi
++            memory: 2Gi
+         securityContext:
+           readOnlyRootFilesystem: true
+           runAsNonRoot: true
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 485ada63..f6faee3d 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1221,10 +1221,10 @@ spec:
+         resources:
+           limits:
+             cpu: 500m
+-            memory: 1Gi
++            memory: 2Gi
+           requests:
+             cpu: 250m
+-            memory: 128Mi
++            memory: 2Gi
+         securityContext:
+           readOnlyRootFilesystem: true
+           runAsNonRoot: true
