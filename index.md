@@ -1,12 +1,459 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Feb 28 08:03:30 UTC 2024
+### This file generated at Wed Feb 28 12:03:31 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 5edd4c0a to 300eff88 on Wed Feb 28 06:13:33 2024 </h3>  
+<h3>1: Production changes from 300eff88 to e9c04c55 on Wed Feb 28 10:54:20 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (35 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/development/kustomization.yaml b/components/monitoring/grafana/development/kustomization.yaml
+index 772b0111..20c59059 100644
+--- a/components/monitoring/grafana/development/kustomization.yaml
++++ b/components/monitoring/grafana/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8909172b122d9ddc466da90971993ae01d3f0518
++  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=b9e9508a1d1f01b9f561c744f4dac53d9fa24fc1
+ 
+ images:
+ - name: quay.io/redhat-appstudio/o11y
+   newName: quay.io/redhat-appstudio/o11y
+-  newTag: 8909172b122d9ddc466da90971993ae01d3f0518
++  newTag: b9e9508a1d1f01b9f561c744f4dac53d9fa24fc1
+ 
+ patches:
+   - path: auto-assign-role-patch.yaml
+diff --git a/components/monitoring/grafana/staging/kustomization.yaml b/components/monitoring/grafana/staging/kustomization.yaml
+index 23955b95..481e516d 100644
+--- a/components/monitoring/grafana/staging/kustomization.yaml
++++ b/components/monitoring/grafana/staging/kustomization.yaml
+@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8909172b122d9ddc466da90971993ae01d3f0518
++  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=b9e9508a1d1f01b9f561c744f4dac53d9fa24fc1
+ 
+ images:
+ - name: quay.io/redhat-appstudio/o11y
+   newName: quay.io/redhat-appstudio/o11y
+-  newTag: 8909172b122d9ddc466da90971993ae01d3f0518
++  newTag: b9e9508a1d1f01b9f561c744f4dac53d9fa24fc1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 300eff88 to e9c04c55 on Wed Feb 28 10:54:20 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (35 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/development/kustomization.yaml b/components/monitoring/grafana/development/kustomization.yaml
+index 772b0111..20c59059 100644
+--- a/components/monitoring/grafana/development/kustomization.yaml
++++ b/components/monitoring/grafana/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8909172b122d9ddc466da90971993ae01d3f0518
++  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=b9e9508a1d1f01b9f561c744f4dac53d9fa24fc1
+ 
+ images:
+ - name: quay.io/redhat-appstudio/o11y
+   newName: quay.io/redhat-appstudio/o11y
+-  newTag: 8909172b122d9ddc466da90971993ae01d3f0518
++  newTag: b9e9508a1d1f01b9f561c744f4dac53d9fa24fc1
+ 
+ patches:
+   - path: auto-assign-role-patch.yaml
+diff --git a/components/monitoring/grafana/staging/kustomization.yaml b/components/monitoring/grafana/staging/kustomization.yaml
+index 23955b95..481e516d 100644
+--- a/components/monitoring/grafana/staging/kustomization.yaml
++++ b/components/monitoring/grafana/staging/kustomization.yaml
+@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8909172b122d9ddc466da90971993ae01d3f0518
++  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=b9e9508a1d1f01b9f561c744f4dac53d9fa24fc1
+ 
+ images:
+ - name: quay.io/redhat-appstudio/o11y
+   newName: quay.io/redhat-appstudio/o11y
+-  newTag: 8909172b122d9ddc466da90971993ae01d3f0518
++  newTag: b9e9508a1d1f01b9f561c744f4dac53d9fa24fc1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 300eff88 to e9c04c55 on Wed Feb 28 10:54:20 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (35 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/development/kustomization.yaml b/components/monitoring/grafana/development/kustomization.yaml
+index 772b0111..20c59059 100644
+--- a/components/monitoring/grafana/development/kustomization.yaml
++++ b/components/monitoring/grafana/development/kustomization.yaml
+@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8909172b122d9ddc466da90971993ae01d3f0518
++  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=b9e9508a1d1f01b9f561c744f4dac53d9fa24fc1
+ 
+ images:
+ - name: quay.io/redhat-appstudio/o11y
+   newName: quay.io/redhat-appstudio/o11y
+-  newTag: 8909172b122d9ddc466da90971993ae01d3f0518
++  newTag: b9e9508a1d1f01b9f561c744f4dac53d9fa24fc1
+ 
+ patches:
+   - path: auto-assign-role-patch.yaml
+diff --git a/components/monitoring/grafana/staging/kustomization.yaml b/components/monitoring/grafana/staging/kustomization.yaml
+index 23955b95..481e516d 100644
+--- a/components/monitoring/grafana/staging/kustomization.yaml
++++ b/components/monitoring/grafana/staging/kustomization.yaml
+@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../base
+-  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8909172b122d9ddc466da90971993ae01d3f0518
++  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=b9e9508a1d1f01b9f561c744f4dac53d9fa24fc1
+ 
+ images:
+ - name: quay.io/redhat-appstudio/o11y
+   newName: quay.io/redhat-appstudio/o11y
+-  newTag: 8909172b122d9ddc466da90971993ae01d3f0518
++  newTag: b9e9508a1d1f01b9f561c744f4dac53d9fa24fc1 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 5edd4c0a to 300eff88 on Wed Feb 28 06:13:33 2024 </h3>  
  
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -244,7 +691,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 5edd4c0a to 300eff88 on Wed Feb 28 06:13:33 2024 </h3>  
+<h3>2: Staging changes from 5edd4c0a to 300eff88 on Wed Feb 28 06:13:33 2024 </h3>  
  
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -485,7 +932,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 5edd4c0a to 300eff88 on Wed Feb 28 06:13:33 2024 </h3>  
+<h3>2: Development changes from 5edd4c0a to 300eff88 on Wed Feb 28 06:13:33 2024 </h3>  
  
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -678,7 +1125,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
+<h3>3: Production changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -828,7 +1275,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
+<h3>3: Staging changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1021,7 +1468,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
+<h3>3: Development changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -1126,7 +1573,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
+<h3>4: Production changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1282,7 +1729,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
+<h3>4: Staging changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1441,7 +1888,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
+<h3>4: Development changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1524,509 +1971,6 @@ index cd26b792..f10c02f7 100644
 <         image: quay.io/redhat-appstudio/release-service:4a125b85f681fbecde7113e3a5765be8388ba459
 ---
 >         image: quay.io/redhat-appstudio/release-service:b8e29a427e787bfae1125dd9c40cf54c3a7e4755 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (51 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 0e887017..42a40b44 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=7df9ea07e1db7dfe306c7ffbba62aa3e835a15c5
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=f74e7617a84c10459817523d5e857d2885f7783f
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 31474b48..7cd06d73 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=7df9ea07e1db7dfe306c7ffbba62aa3e835a15c5
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=7df9ea07e1db7dfe306c7ffbba62aa3e835a15c5
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=f74e7617a84c10459817523d5e857d2885f7783f
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=f74e7617a84c10459817523d5e857d2885f7783f
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 374aa9d6..4943765e 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=7df9ea07e1db7dfe306c7ffbba62aa3e835a15c5
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=f74e7617a84c10459817523d5e857d2885f7783f
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 754accdc..2ff5dab0 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1975,7 +1975,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:37310134aafa601207d873f21aca35c7d06631af695cd2e87a975b25971a3cc7
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
-   sourceType: grpc
-   updateStrategy:
-     registryPoll: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (51 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 0e887017..42a40b44 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=7df9ea07e1db7dfe306c7ffbba62aa3e835a15c5
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=f74e7617a84c10459817523d5e857d2885f7783f
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 31474b48..7cd06d73 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=7df9ea07e1db7dfe306c7ffbba62aa3e835a15c5
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=7df9ea07e1db7dfe306c7ffbba62aa3e835a15c5
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=f74e7617a84c10459817523d5e857d2885f7783f
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=f74e7617a84c10459817523d5e857d2885f7783f
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 374aa9d6..4943765e 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=7df9ea07e1db7dfe306c7ffbba62aa3e835a15c5
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=f74e7617a84c10459817523d5e857d2885f7783f
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 754accdc..2ff5dab0 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1975,7 +1975,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:37310134aafa601207d873f21aca35c7d06631af695cd2e87a975b25971a3cc7
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
-   sourceType: grpc
-   updateStrategy:
-     registryPoll: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-d22b5867/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1978c1978
-<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
----
->   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:37310134aafa601207d873f21aca35c7d06631af695cd2e87a975b25971a3cc7 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (51 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 0e887017..42a40b44 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=7df9ea07e1db7dfe306c7ffbba62aa3e835a15c5
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=f74e7617a84c10459817523d5e857d2885f7783f
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 31474b48..7cd06d73 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=7df9ea07e1db7dfe306c7ffbba62aa3e835a15c5
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=7df9ea07e1db7dfe306c7ffbba62aa3e835a15c5
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=f74e7617a84c10459817523d5e857d2885f7783f
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=f74e7617a84c10459817523d5e857d2885f7783f
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 374aa9d6..4943765e 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=7df9ea07e1db7dfe306c7ffbba62aa3e835a15c5
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=f74e7617a84c10459817523d5e857d2885f7783f
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 754accdc..2ff5dab0 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1975,7 +1975,7 @@ metadata:
-   namespace: openshift-marketplace
- spec:
-   displayName: custom-operators
--  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:37310134aafa601207d873f21aca35c7d06631af695cd2e87a975b25971a3cc7
-+  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
-   sourceType: grpc
-   updateStrategy:
-     registryPoll: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-d22b5867/development/components/pipeline-service/development/kustomize.out.yaml
-2082c2082
-<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
----
->   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:37310134aafa601207d873f21aca35c7d06631af695cd2e87a975b25971a3cc7 
 ```
  
 </details>  
