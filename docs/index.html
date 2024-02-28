@@ -10,12 +10,663 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-wed-feb-28-040210-utc-2024">This file generated at Wed Feb 28 04:02:10 UTC 2024</h3>
+<h3 id="this-file-generated-at-wed-feb-28-080330-utc-2024">This file generated at Wed Feb 28 08:03:30 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
+<h3>1: Production changes from 5edd4c0a to 300eff88 on Wed Feb 28 06:13:33 2024 </h3>  
+
+<details> 
+<summary>Git Diff (78 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml</span>
+<span class="hljs-comment">index 414c8884..5f4bbe72 100644</span>
+<span class="hljs-comment">--- a/components/enterprise-contract/ecp.yaml</span>
+<span class="hljs-comment">+++ b/components/enterprise-contract/ecp.yaml</span>
+<span class="hljs-meta">@@ -23,7 +23,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -44,7 +44,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -67,7 +67,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -88,7 +88,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -110,7 +110,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -129,4 +129,4 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-task-policy:git-e381903@sha256:594b2d4a807eeef8fdc8bf547b33a42c2fbf41007f3359106aa12a969058b736</span>
+<span class="hljs-comment">diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml</span>
+<span class="hljs-comment">index 14c32f54..39f837e3 100644</span>
+<span class="hljs-comment">--- a/components/enterprise-contract/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/enterprise-contract/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,7 +1,7 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=66e45b90362999a5e2e271ec05fe71453dff5426</span>
+<span class="hljs-addition">+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=2981ac570764e7ad954ab7e97bcaa7c2fed15ceb</span>
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+<span class="hljs-meta">@@ -12,7 +12,7 @@</span> configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+<span class="hljs-deletion">-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686</span>
+<span class="hljs-addition">+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:f1fdfbde74a46100854c3528db0795f7b949eb15@sha256:bfa038ebb99229bddf98b0f50cb90b78c525163a95039f5120098872e3964b3e</span>
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+<span class="hljs-deletion">-      - verify_ec_task_git_revision=d8eb39f4d4019208d4635cbc6226d11af01bd8fd</span>
+<span class="hljs-addition">+      - verify_ec_task_git_revision=f1fdfbde74a46100854c3528db0795f7b949eb15</span>
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-5edd4c0a/production/components/enterprise-contract/kustomize.out.yaml</span>
+<span class="hljs-string">376c376</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:f1fdfbde74a46100854c3528db0795f7b949eb15@sha256:bfa038ebb99229bddf98b0f50cb90b78c525163a95039f5120098872e3964b3e</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686</span>
+<span class="hljs-string">378c378</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">f1fdfbde74a46100854c3528db0795f7b949eb15</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">d8eb39f4d4019208d4635cbc6226d11af01bd8fd</span>
+<span class="hljs-string">612c612</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-string">637c637</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-string">661c661</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-string">688c688</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-string">707c707</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-task-policy:git-e381903@sha256:594b2d4a807eeef8fdc8bf547b33a42c2fbf41007f3359106aa12a969058b736</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000</span>
+<span class="hljs-string">733c733</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from 5edd4c0a to 300eff88 on Wed Feb 28 06:13:33 2024 </h3>  
+
+<details> 
+<summary>Git Diff (78 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml</span>
+<span class="hljs-comment">index 414c8884..5f4bbe72 100644</span>
+<span class="hljs-comment">--- a/components/enterprise-contract/ecp.yaml</span>
+<span class="hljs-comment">+++ b/components/enterprise-contract/ecp.yaml</span>
+<span class="hljs-meta">@@ -23,7 +23,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -44,7 +44,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -67,7 +67,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -88,7 +88,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -110,7 +110,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -129,4 +129,4 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-task-policy:git-e381903@sha256:594b2d4a807eeef8fdc8bf547b33a42c2fbf41007f3359106aa12a969058b736</span>
+<span class="hljs-comment">diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml</span>
+<span class="hljs-comment">index 14c32f54..39f837e3 100644</span>
+<span class="hljs-comment">--- a/components/enterprise-contract/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/enterprise-contract/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,7 +1,7 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=66e45b90362999a5e2e271ec05fe71453dff5426</span>
+<span class="hljs-addition">+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=2981ac570764e7ad954ab7e97bcaa7c2fed15ceb</span>
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+<span class="hljs-meta">@@ -12,7 +12,7 @@</span> configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+<span class="hljs-deletion">-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686</span>
+<span class="hljs-addition">+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:f1fdfbde74a46100854c3528db0795f7b949eb15@sha256:bfa038ebb99229bddf98b0f50cb90b78c525163a95039f5120098872e3964b3e</span>
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+<span class="hljs-deletion">-      - verify_ec_task_git_revision=d8eb39f4d4019208d4635cbc6226d11af01bd8fd</span>
+<span class="hljs-addition">+      - verify_ec_task_git_revision=f1fdfbde74a46100854c3528db0795f7b949eb15</span>
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-5edd4c0a/staging/components/enterprise-contract/kustomize.out.yaml</span>
+<span class="hljs-string">376c376</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:f1fdfbde74a46100854c3528db0795f7b949eb15@sha256:bfa038ebb99229bddf98b0f50cb90b78c525163a95039f5120098872e3964b3e</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686</span>
+<span class="hljs-string">378c378</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">f1fdfbde74a46100854c3528db0795f7b949eb15</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">d8eb39f4d4019208d4635cbc6226d11af01bd8fd</span>
+<span class="hljs-string">612c612</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-string">637c637</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-string">661c661</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-string">688c688</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-string">707c707</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-task-policy:git-e381903@sha256:594b2d4a807eeef8fdc8bf547b33a42c2fbf41007f3359106aa12a969058b736</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000</span>
+<span class="hljs-string">733c733</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from 5edd4c0a to 300eff88 on Wed Feb 28 06:13:33 2024 </h3>  
+
+<details> 
+<summary>Git Diff (78 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml</span>
+<span class="hljs-comment">index 414c8884..5f4bbe72 100644</span>
+<span class="hljs-comment">--- a/components/enterprise-contract/ecp.yaml</span>
+<span class="hljs-comment">+++ b/components/enterprise-contract/ecp.yaml</span>
+<span class="hljs-meta">@@ -23,7 +23,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -44,7 +44,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -67,7 +67,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -88,7 +88,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -110,7 +110,7 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+<span class="hljs-meta">@@ -129,4 +129,4 @@</span> spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+<span class="hljs-deletion">-        - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000</span>
+<span class="hljs-addition">+        - oci::quay.io/enterprise-contract/ec-task-policy:git-e381903@sha256:594b2d4a807eeef8fdc8bf547b33a42c2fbf41007f3359106aa12a969058b736</span>
+<span class="hljs-comment">diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml</span>
+<span class="hljs-comment">index 14c32f54..39f837e3 100644</span>
+<span class="hljs-comment">--- a/components/enterprise-contract/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/enterprise-contract/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,7 +1,7 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=66e45b90362999a5e2e271ec05fe71453dff5426</span>
+<span class="hljs-addition">+  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=2981ac570764e7ad954ab7e97bcaa7c2fed15ceb</span>
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+<span class="hljs-meta">@@ -12,7 +12,7 @@</span> configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+<span class="hljs-deletion">-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686</span>
+<span class="hljs-addition">+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:f1fdfbde74a46100854c3528db0795f7b949eb15@sha256:bfa038ebb99229bddf98b0f50cb90b78c525163a95039f5120098872e3964b3e</span>
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+<span class="hljs-deletion">-      - verify_ec_task_git_revision=d8eb39f4d4019208d4635cbc6226d11af01bd8fd</span>
+<span class="hljs-addition">+      - verify_ec_task_git_revision=f1fdfbde74a46100854c3528db0795f7b949eb15</span>
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-5edd4c0a/development/components/enterprise-contract/kustomize.out.yaml</span>
+<span class="hljs-string">376c376</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:f1fdfbde74a46100854c3528db0795f7b949eb15@sha256:bfa038ebb99229bddf98b0f50cb90b78c525163a95039f5120098872e3964b3e</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686</span>
+<span class="hljs-string">378c378</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">f1fdfbde74a46100854c3528db0795f7b949eb15</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">d8eb39f4d4019208d4635cbc6226d11af01bd8fd</span>
+<span class="hljs-string">612c612</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-string">637c637</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-string">661c661</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-string">688c688</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span>
+<span class="hljs-string">707c707</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-task-policy:git-e381903@sha256:594b2d4a807eeef8fdc8bf547b33a42c2fbf41007f3359106aa12a969058b736</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000</span>
+<span class="hljs-string">733c733</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
 
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -157,7 +808,7 @@
 
 </div>
 <div>
-<h3>1: Staging changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
+<h3>2: Staging changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
 
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -342,7 +993,7 @@
 
 </div>
 <div>
-<h3>1: Development changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
+<h3>2: Development changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
 
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -439,7 +1090,7 @@
 
 </div>
 <div>
-<h3>2: Production changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
+<h3>3: Production changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -588,7 +1239,7 @@ index cd26b792..f10c02f7 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>2: Staging changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
+<h3>3: Staging changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -740,7 +1391,7 @@ index cd26b792..f10c02f7 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>2: Development changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
+<h3>3: Development changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -884,7 +1535,7 @@ index cd26b792..f10c02f7 <span class="hljs-number">100644</span>
 
 </div>
 <div>
-<h3>3: Production changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
+<h3>4: Production changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
 
 <details> 
 <summary>Git Diff (51 lines)</summary>  
@@ -1056,7 +1707,7 @@ index <span class="hljs-number">754</span>accdc..<span class="hljs-number">2</sp
 
 </div>
 <div>
-<h3>3: Staging changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
+<h3>4: Staging changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
 
 <details> 
 <summary>Git Diff (51 lines)</summary>  
@@ -1235,7 +1886,7 @@ index <span class="hljs-number">754</span>accdc..<span class="hljs-number">2</sp
 
 </div>
 <div>
-<h3>3: Development changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
+<h3>4: Development changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
 
 <details> 
 <summary>Git Diff (51 lines)</summary>  
@@ -1301,552 +1952,6 @@ index <span class="hljs-number">754</span>accdc..<span class="hljs-number">2</sp
 <span class="hljs-string">&lt;</span>   <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93</span>
 <span class="hljs-meta">---</span>
 <span class="hljs-string">&gt;</span>   <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:37310134aafa601207d873f21aca35c7d06631af695cd2e87a975b25971a3cc7</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from 55d02fea to d22b5867 on Tue Feb 27 16:01:13 2024 </h3>  
-
-<details> 
-<summary>Git Diff (52 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/</span>enterprise-contract<span class="hljs-regexp">/ecp.yaml b/</span>components<span class="hljs-regexp">/enterprise-contract/</span>ecp.yaml
-index d202e77e..<span class="hljs-number">414</span>c8884 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>enterprise-contract/ecp.yaml
-+++ b<span class="hljs-regexp">/components/</span>enterprise-contract/ecp.yaml
-@@ -<span class="hljs-number">1</span>,<span class="hljs-number">5</span> +<span class="hljs-number">1</span>,<span class="hljs-number">5</span> @@
- #
--# The contents of <span class="hljs-keyword">this</span> <span class="hljs-keyword">file</span> are automatically generated based on the RHTAP configs defined in the
-+# The contents of <span class="hljs-keyword">this</span> <span class="hljs-keyword">file</span> are automatically generated based on the Konflux configs defined in the
- # github.com<span class="hljs-regexp">/enterprise-contract/</span>config repo. <span class="hljs-keyword">Any</span> manual modifications will be overridden.
- #
-
-@@ -<span class="hljs-number">10</span>,<span class="hljs-number">7</span> +<span class="hljs-number">10</span>,<span class="hljs-number">7</span> @@ metadata:
-   name: <span class="hljs-keyword">default</span>
-   namespace: enterprise-contract-service
- spec:
--  <span class="hljs-keyword">description</span>: <span class="hljs-keyword">Includes</span> rules <span class="hljs-keyword">for</span> levels <span class="hljs-number">1</span>, <span class="hljs-number">2</span> &amp; <span class="hljs-number">3</span> of SLSA v0.<span class="hljs-number">1</span>. <span class="hljs-keyword">This</span> is the <span class="hljs-keyword">default</span> config used <span class="hljs-keyword">for</span> <span class="hljs-keyword">new</span> RHTAP applications. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-+  <span class="hljs-keyword">description</span>: <span class="hljs-keyword">Includes</span> rules <span class="hljs-keyword">for</span> levels <span class="hljs-number">1</span>, <span class="hljs-number">2</span> &amp; <span class="hljs-number">3</span> of SLSA v0.<span class="hljs-number">1</span>. <span class="hljs-keyword">This</span> is the <span class="hljs-keyword">default</span> config used <span class="hljs-keyword">for</span> <span class="hljs-keyword">new</span> Konflux applications. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-   name: <span class="hljs-keyword">Default</span>
-   publicKey: k8s:<span class="hljs-comment">//openshift-pipelines/public-key</span>
-   sources:
-@@ -<span class="hljs-number">31</span>,<span class="hljs-number">7</span> +<span class="hljs-number">31</span>,<span class="hljs-number">7</span> @@ metadata:
-   name: all
-   namespace: enterprise-contract-service
- spec:
--  <span class="hljs-keyword">description</span>: <span class="hljs-keyword">Include</span> <span class="hljs-keyword">every</span> rule in the <span class="hljs-keyword">default</span> policy <span class="hljs-keyword">source</span>. <span class="hljs-keyword">For</span> experiments only. <span class="hljs-keyword">This</span> is not expected to pass <span class="hljs-keyword">for</span> RHTAP builds without excluding some rules. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-+  <span class="hljs-keyword">description</span>: <span class="hljs-keyword">Include</span> <span class="hljs-keyword">every</span> rule in the <span class="hljs-keyword">default</span> policy <span class="hljs-keyword">source</span>. <span class="hljs-keyword">For</span> experiments only. <span class="hljs-keyword">This</span> is not expected to pass <span class="hljs-keyword">for</span> Konflux builds without excluding some rules. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-   name: Everything (experimental)
-   publicKey: k8s:<span class="hljs-comment">//openshift-pipelines/public-key</span>
-   sources:
-@@ -<span class="hljs-number">96</span>,<span class="hljs-number">7</span> +<span class="hljs-number">96</span>,<span class="hljs-number">7</span> @@ metadata:
-   name: slsa3
-   namespace: enterprise-contract-service
- spec:
--  <span class="hljs-keyword">description</span>: Rules specifically related to levels <span class="hljs-number">1</span>, <span class="hljs-number">2</span> &amp; <span class="hljs-number">3</span> of SLSA v0.<span class="hljs-number">1</span>, <span class="hljs-keyword">plus</span> a set of basic checks that are expected to pass <span class="hljs-keyword">for</span> all RHTAP builds. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-+  <span class="hljs-keyword">description</span>: Rules specifically related to levels <span class="hljs-number">1</span>, <span class="hljs-number">2</span> &amp; <span class="hljs-number">3</span> of SLSA v0.<span class="hljs-number">1</span>, <span class="hljs-keyword">plus</span> a set of basic checks that are expected to pass <span class="hljs-keyword">for</span> all Konflux builds. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-   name: SLSA3
-   publicKey: k8s:<span class="hljs-comment">//openshift-pipelines/public-key</span>
-   sources:
-diff --git a<span class="hljs-regexp">/components/</span>enterprise-contract<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/enterprise-contract/</span>kustomization.yaml
-index <span class="hljs-number">0</span>ee86372..<span class="hljs-number">14</span>c32f54 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>enterprise-contract/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/</span>enterprise-contract/kustomization.yaml
-@@ -<span class="hljs-number">12</span>,<span class="hljs-number">7</span> +<span class="hljs-number">12</span>,<span class="hljs-number">7</span> @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io<span class="hljs-regexp">/enterprise-contract/</span>ec-<span class="hljs-keyword">task</span>-bundle:<span class="hljs-number">0</span>c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
-+      - verify_ec_task_bundle=quay.io<span class="hljs-regexp">/enterprise-contract/</span>ec-<span class="hljs-keyword">task</span>-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:<span class="hljs-number">36</span>d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
-       - verify_ec_task_git_url=https:<span class="hljs-comment">//github.com/enterprise-contract/ec-cli.git</span>
--      - verify_ec_task_git_revision=<span class="hljs-number">0</span>c1a3cb4b810f33ba4c2134a464021f175f61182
-+      - verify_ec_task_git_revision=d8eb39f4d4019208d4635cbc6226d11af01bd8fd
-       - verify_ec_task_git_pathInRepo=tasks<span class="hljs-regexp">/verify-enterprise-contract/</span><span class="hljs-number">0.1</span>/verify-enterprise-contract.yaml 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (24 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-55d02fea/production/components/enterprise-contract/kustomize.out.yaml</span>
-<span class="hljs-string">376c376</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2</span>
-<span class="hljs-string">378c378</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">d8eb39f4d4019208d4635cbc6226d11af01bd8fd</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">0c1a3cb4b810f33ba4c2134a464021f175f61182</span>
-<span class="hljs-number">596</span><span class="hljs-string">,597c596,597</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">not</span> <span class="hljs-string">expected</span> <span class="hljs-string">to</span> <span class="hljs-string">pass</span> <span class="hljs-string">for</span> <span class="hljs-string">Konflux</span> <span class="hljs-string">builds</span> <span class="hljs-string">without</span> <span class="hljs-string">excluding</span> <span class="hljs-string">some</span> <span class="hljs-string">rules.</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">Available</span> <span class="hljs-string">collections</span> <span class="hljs-string">are</span> <span class="hljs-string">defined</span> <span class="hljs-string">in</span> <span class="hljs-string">https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">not</span> <span class="hljs-string">expected</span> <span class="hljs-string">to</span> <span class="hljs-string">pass</span> <span class="hljs-string">for</span> <span class="hljs-string">RHTAP</span> <span class="hljs-string">builds</span> <span class="hljs-string">without</span> <span class="hljs-string">excluding</span> <span class="hljs-string">some</span> <span class="hljs-string">rules.</span> <span class="hljs-string">Available</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-string">collections</span> <span class="hljs-string">are</span> <span class="hljs-string">defined</span> <span class="hljs-string">in</span> <span class="hljs-string">https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.</span>
-<span class="hljs-number">621</span><span class="hljs-string">,622c621</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">config</span> <span class="hljs-string">used</span> <span class="hljs-string">for</span> <span class="hljs-string">new</span> <span class="hljs-string">Konflux</span> <span class="hljs-string">applications.</span> <span class="hljs-string">Available</span> <span class="hljs-string">collections</span> <span class="hljs-string">are</span> <span class="hljs-string">defined</span> <span class="hljs-string">in</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-string">config</span> <span class="hljs-string">used</span> <span class="hljs-string">for</span> <span class="hljs-string">new</span> <span class="hljs-string">RHTAP</span> <span class="hljs-string">applications.</span> <span class="hljs-string">Available</span> <span class="hljs-string">collections</span> <span class="hljs-string">are</span> <span class="hljs-string">defined</span> <span class="hljs-string">in</span> <span class="hljs-string">https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.</span>
-<span class="hljs-string">716c715</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">basic</span> <span class="hljs-string">checks</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">expected</span> <span class="hljs-string">to</span> <span class="hljs-string">pass</span> <span class="hljs-string">for</span> <span class="hljs-string">all</span> <span class="hljs-string">Konflux</span> <span class="hljs-string">builds.</span> <span class="hljs-string">Available</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">basic</span> <span class="hljs-string">checks</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">expected</span> <span class="hljs-string">to</span> <span class="hljs-string">pass</span> <span class="hljs-string">for</span> <span class="hljs-string">all</span> <span class="hljs-string">RHTAP</span> <span class="hljs-string">builds.</span> <span class="hljs-string">Available</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from 55d02fea to d22b5867 on Tue Feb 27 16:01:13 2024 </h3>  
-
-<details> 
-<summary>Git Diff (52 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/</span>enterprise-contract<span class="hljs-regexp">/ecp.yaml b/</span>components<span class="hljs-regexp">/enterprise-contract/</span>ecp.yaml
-index d202e77e..<span class="hljs-number">414</span>c8884 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>enterprise-contract/ecp.yaml
-+++ b<span class="hljs-regexp">/components/</span>enterprise-contract/ecp.yaml
-@@ -<span class="hljs-number">1</span>,<span class="hljs-number">5</span> +<span class="hljs-number">1</span>,<span class="hljs-number">5</span> @@
- #
--# The contents of <span class="hljs-keyword">this</span> <span class="hljs-keyword">file</span> are automatically generated based on the RHTAP configs defined in the
-+# The contents of <span class="hljs-keyword">this</span> <span class="hljs-keyword">file</span> are automatically generated based on the Konflux configs defined in the
- # github.com<span class="hljs-regexp">/enterprise-contract/</span>config repo. <span class="hljs-keyword">Any</span> manual modifications will be overridden.
- #
-
-@@ -<span class="hljs-number">10</span>,<span class="hljs-number">7</span> +<span class="hljs-number">10</span>,<span class="hljs-number">7</span> @@ metadata:
-   name: <span class="hljs-keyword">default</span>
-   namespace: enterprise-contract-service
- spec:
--  <span class="hljs-keyword">description</span>: <span class="hljs-keyword">Includes</span> rules <span class="hljs-keyword">for</span> levels <span class="hljs-number">1</span>, <span class="hljs-number">2</span> &amp; <span class="hljs-number">3</span> of SLSA v0.<span class="hljs-number">1</span>. <span class="hljs-keyword">This</span> is the <span class="hljs-keyword">default</span> config used <span class="hljs-keyword">for</span> <span class="hljs-keyword">new</span> RHTAP applications. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-+  <span class="hljs-keyword">description</span>: <span class="hljs-keyword">Includes</span> rules <span class="hljs-keyword">for</span> levels <span class="hljs-number">1</span>, <span class="hljs-number">2</span> &amp; <span class="hljs-number">3</span> of SLSA v0.<span class="hljs-number">1</span>. <span class="hljs-keyword">This</span> is the <span class="hljs-keyword">default</span> config used <span class="hljs-keyword">for</span> <span class="hljs-keyword">new</span> Konflux applications. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-   name: <span class="hljs-keyword">Default</span>
-   publicKey: k8s:<span class="hljs-comment">//openshift-pipelines/public-key</span>
-   sources:
-@@ -<span class="hljs-number">31</span>,<span class="hljs-number">7</span> +<span class="hljs-number">31</span>,<span class="hljs-number">7</span> @@ metadata:
-   name: all
-   namespace: enterprise-contract-service
- spec:
--  <span class="hljs-keyword">description</span>: <span class="hljs-keyword">Include</span> <span class="hljs-keyword">every</span> rule in the <span class="hljs-keyword">default</span> policy <span class="hljs-keyword">source</span>. <span class="hljs-keyword">For</span> experiments only. <span class="hljs-keyword">This</span> is not expected to pass <span class="hljs-keyword">for</span> RHTAP builds without excluding some rules. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-+  <span class="hljs-keyword">description</span>: <span class="hljs-keyword">Include</span> <span class="hljs-keyword">every</span> rule in the <span class="hljs-keyword">default</span> policy <span class="hljs-keyword">source</span>. <span class="hljs-keyword">For</span> experiments only. <span class="hljs-keyword">This</span> is not expected to pass <span class="hljs-keyword">for</span> Konflux builds without excluding some rules. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-   name: Everything (experimental)
-   publicKey: k8s:<span class="hljs-comment">//openshift-pipelines/public-key</span>
-   sources:
-@@ -<span class="hljs-number">96</span>,<span class="hljs-number">7</span> +<span class="hljs-number">96</span>,<span class="hljs-number">7</span> @@ metadata:
-   name: slsa3
-   namespace: enterprise-contract-service
- spec:
--  <span class="hljs-keyword">description</span>: Rules specifically related to levels <span class="hljs-number">1</span>, <span class="hljs-number">2</span> &amp; <span class="hljs-number">3</span> of SLSA v0.<span class="hljs-number">1</span>, <span class="hljs-keyword">plus</span> a set of basic checks that are expected to pass <span class="hljs-keyword">for</span> all RHTAP builds. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-+  <span class="hljs-keyword">description</span>: Rules specifically related to levels <span class="hljs-number">1</span>, <span class="hljs-number">2</span> &amp; <span class="hljs-number">3</span> of SLSA v0.<span class="hljs-number">1</span>, <span class="hljs-keyword">plus</span> a set of basic checks that are expected to pass <span class="hljs-keyword">for</span> all Konflux builds. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-   name: SLSA3
-   publicKey: k8s:<span class="hljs-comment">//openshift-pipelines/public-key</span>
-   sources:
-diff --git a<span class="hljs-regexp">/components/</span>enterprise-contract<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/enterprise-contract/</span>kustomization.yaml
-index <span class="hljs-number">0</span>ee86372..<span class="hljs-number">14</span>c32f54 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>enterprise-contract/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/</span>enterprise-contract/kustomization.yaml
-@@ -<span class="hljs-number">12</span>,<span class="hljs-number">7</span> +<span class="hljs-number">12</span>,<span class="hljs-number">7</span> @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io<span class="hljs-regexp">/enterprise-contract/</span>ec-<span class="hljs-keyword">task</span>-bundle:<span class="hljs-number">0</span>c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
-+      - verify_ec_task_bundle=quay.io<span class="hljs-regexp">/enterprise-contract/</span>ec-<span class="hljs-keyword">task</span>-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:<span class="hljs-number">36</span>d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
-       - verify_ec_task_git_url=https:<span class="hljs-comment">//github.com/enterprise-contract/ec-cli.git</span>
--      - verify_ec_task_git_revision=<span class="hljs-number">0</span>c1a3cb4b810f33ba4c2134a464021f175f61182
-+      - verify_ec_task_git_revision=d8eb39f4d4019208d4635cbc6226d11af01bd8fd
-       - verify_ec_task_git_pathInRepo=tasks<span class="hljs-regexp">/verify-enterprise-contract/</span><span class="hljs-number">0.1</span>/verify-enterprise-contract.yaml 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (24 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-55d02fea/staging/components/enterprise-contract/kustomize.out.yaml</span>
-<span class="hljs-string">376c376</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2</span>
-<span class="hljs-string">378c378</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">d8eb39f4d4019208d4635cbc6226d11af01bd8fd</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">0c1a3cb4b810f33ba4c2134a464021f175f61182</span>
-<span class="hljs-number">596</span><span class="hljs-string">,597c596,597</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">not</span> <span class="hljs-string">expected</span> <span class="hljs-string">to</span> <span class="hljs-string">pass</span> <span class="hljs-string">for</span> <span class="hljs-string">Konflux</span> <span class="hljs-string">builds</span> <span class="hljs-string">without</span> <span class="hljs-string">excluding</span> <span class="hljs-string">some</span> <span class="hljs-string">rules.</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">Available</span> <span class="hljs-string">collections</span> <span class="hljs-string">are</span> <span class="hljs-string">defined</span> <span class="hljs-string">in</span> <span class="hljs-string">https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">not</span> <span class="hljs-string">expected</span> <span class="hljs-string">to</span> <span class="hljs-string">pass</span> <span class="hljs-string">for</span> <span class="hljs-string">RHTAP</span> <span class="hljs-string">builds</span> <span class="hljs-string">without</span> <span class="hljs-string">excluding</span> <span class="hljs-string">some</span> <span class="hljs-string">rules.</span> <span class="hljs-string">Available</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-string">collections</span> <span class="hljs-string">are</span> <span class="hljs-string">defined</span> <span class="hljs-string">in</span> <span class="hljs-string">https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.</span>
-<span class="hljs-number">621</span><span class="hljs-string">,622c621</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">config</span> <span class="hljs-string">used</span> <span class="hljs-string">for</span> <span class="hljs-string">new</span> <span class="hljs-string">Konflux</span> <span class="hljs-string">applications.</span> <span class="hljs-string">Available</span> <span class="hljs-string">collections</span> <span class="hljs-string">are</span> <span class="hljs-string">defined</span> <span class="hljs-string">in</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-string">config</span> <span class="hljs-string">used</span> <span class="hljs-string">for</span> <span class="hljs-string">new</span> <span class="hljs-string">RHTAP</span> <span class="hljs-string">applications.</span> <span class="hljs-string">Available</span> <span class="hljs-string">collections</span> <span class="hljs-string">are</span> <span class="hljs-string">defined</span> <span class="hljs-string">in</span> <span class="hljs-string">https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.</span>
-<span class="hljs-string">716c715</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">basic</span> <span class="hljs-string">checks</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">expected</span> <span class="hljs-string">to</span> <span class="hljs-string">pass</span> <span class="hljs-string">for</span> <span class="hljs-string">all</span> <span class="hljs-string">Konflux</span> <span class="hljs-string">builds.</span> <span class="hljs-string">Available</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">basic</span> <span class="hljs-string">checks</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">expected</span> <span class="hljs-string">to</span> <span class="hljs-string">pass</span> <span class="hljs-string">for</span> <span class="hljs-string">all</span> <span class="hljs-string">RHTAP</span> <span class="hljs-string">builds.</span> <span class="hljs-string">Available</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from 55d02fea to d22b5867 on Tue Feb 27 16:01:13 2024 </h3>  
-
-<details> 
-<summary>Git Diff (52 lines)</summary>  
-<pre><code>  diff --git a<span class="hljs-regexp">/components/</span>enterprise-contract<span class="hljs-regexp">/ecp.yaml b/</span>components<span class="hljs-regexp">/enterprise-contract/</span>ecp.yaml
-index d202e77e..<span class="hljs-number">414</span>c8884 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>enterprise-contract/ecp.yaml
-+++ b<span class="hljs-regexp">/components/</span>enterprise-contract/ecp.yaml
-@@ -<span class="hljs-number">1</span>,<span class="hljs-number">5</span> +<span class="hljs-number">1</span>,<span class="hljs-number">5</span> @@
- #
--# The contents of <span class="hljs-keyword">this</span> <span class="hljs-keyword">file</span> are automatically generated based on the RHTAP configs defined in the
-+# The contents of <span class="hljs-keyword">this</span> <span class="hljs-keyword">file</span> are automatically generated based on the Konflux configs defined in the
- # github.com<span class="hljs-regexp">/enterprise-contract/</span>config repo. <span class="hljs-keyword">Any</span> manual modifications will be overridden.
- #
-
-@@ -<span class="hljs-number">10</span>,<span class="hljs-number">7</span> +<span class="hljs-number">10</span>,<span class="hljs-number">7</span> @@ metadata:
-   name: <span class="hljs-keyword">default</span>
-   namespace: enterprise-contract-service
- spec:
--  <span class="hljs-keyword">description</span>: <span class="hljs-keyword">Includes</span> rules <span class="hljs-keyword">for</span> levels <span class="hljs-number">1</span>, <span class="hljs-number">2</span> &amp; <span class="hljs-number">3</span> of SLSA v0.<span class="hljs-number">1</span>. <span class="hljs-keyword">This</span> is the <span class="hljs-keyword">default</span> config used <span class="hljs-keyword">for</span> <span class="hljs-keyword">new</span> RHTAP applications. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-+  <span class="hljs-keyword">description</span>: <span class="hljs-keyword">Includes</span> rules <span class="hljs-keyword">for</span> levels <span class="hljs-number">1</span>, <span class="hljs-number">2</span> &amp; <span class="hljs-number">3</span> of SLSA v0.<span class="hljs-number">1</span>. <span class="hljs-keyword">This</span> is the <span class="hljs-keyword">default</span> config used <span class="hljs-keyword">for</span> <span class="hljs-keyword">new</span> Konflux applications. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-   name: <span class="hljs-keyword">Default</span>
-   publicKey: k8s:<span class="hljs-comment">//openshift-pipelines/public-key</span>
-   sources:
-@@ -<span class="hljs-number">31</span>,<span class="hljs-number">7</span> +<span class="hljs-number">31</span>,<span class="hljs-number">7</span> @@ metadata:
-   name: all
-   namespace: enterprise-contract-service
- spec:
--  <span class="hljs-keyword">description</span>: <span class="hljs-keyword">Include</span> <span class="hljs-keyword">every</span> rule in the <span class="hljs-keyword">default</span> policy <span class="hljs-keyword">source</span>. <span class="hljs-keyword">For</span> experiments only. <span class="hljs-keyword">This</span> is not expected to pass <span class="hljs-keyword">for</span> RHTAP builds without excluding some rules. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-+  <span class="hljs-keyword">description</span>: <span class="hljs-keyword">Include</span> <span class="hljs-keyword">every</span> rule in the <span class="hljs-keyword">default</span> policy <span class="hljs-keyword">source</span>. <span class="hljs-keyword">For</span> experiments only. <span class="hljs-keyword">This</span> is not expected to pass <span class="hljs-keyword">for</span> Konflux builds without excluding some rules. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-   name: Everything (experimental)
-   publicKey: k8s:<span class="hljs-comment">//openshift-pipelines/public-key</span>
-   sources:
-@@ -<span class="hljs-number">96</span>,<span class="hljs-number">7</span> +<span class="hljs-number">96</span>,<span class="hljs-number">7</span> @@ metadata:
-   name: slsa3
-   namespace: enterprise-contract-service
- spec:
--  <span class="hljs-keyword">description</span>: Rules specifically related to levels <span class="hljs-number">1</span>, <span class="hljs-number">2</span> &amp; <span class="hljs-number">3</span> of SLSA v0.<span class="hljs-number">1</span>, <span class="hljs-keyword">plus</span> a set of basic checks that are expected to pass <span class="hljs-keyword">for</span> all RHTAP builds. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-+  <span class="hljs-keyword">description</span>: Rules specifically related to levels <span class="hljs-number">1</span>, <span class="hljs-number">2</span> &amp; <span class="hljs-number">3</span> of SLSA v0.<span class="hljs-number">1</span>, <span class="hljs-keyword">plus</span> a set of basic checks that are expected to pass <span class="hljs-keyword">for</span> all Konflux builds. Available collections are defined in https:<span class="hljs-comment">//redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.</span>
-   name: SLSA3
-   publicKey: k8s:<span class="hljs-comment">//openshift-pipelines/public-key</span>
-   sources:
-diff --git a<span class="hljs-regexp">/components/</span>enterprise-contract<span class="hljs-regexp">/kustomization.yaml b/</span>components<span class="hljs-regexp">/enterprise-contract/</span>kustomization.yaml
-index <span class="hljs-number">0</span>ee86372..<span class="hljs-number">14</span>c32f54 <span class="hljs-number">100644</span>
---- a<span class="hljs-regexp">/components/</span>enterprise-contract/kustomization.yaml
-+++ b<span class="hljs-regexp">/components/</span>enterprise-contract/kustomization.yaml
-@@ -<span class="hljs-number">12</span>,<span class="hljs-number">7</span> +<span class="hljs-number">12</span>,<span class="hljs-number">7</span> @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io<span class="hljs-regexp">/enterprise-contract/</span>ec-<span class="hljs-keyword">task</span>-bundle:<span class="hljs-number">0</span>c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
-+      - verify_ec_task_bundle=quay.io<span class="hljs-regexp">/enterprise-contract/</span>ec-<span class="hljs-keyword">task</span>-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:<span class="hljs-number">36</span>d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
-       - verify_ec_task_git_url=https:<span class="hljs-comment">//github.com/enterprise-contract/ec-cli.git</span>
--      - verify_ec_task_git_revision=<span class="hljs-number">0</span>c1a3cb4b810f33ba4c2134a464021f175f61182
-+      - verify_ec_task_git_revision=d8eb39f4d4019208d4635cbc6226d11af01bd8fd
-       - verify_ec_task_git_pathInRepo=tasks<span class="hljs-regexp">/verify-enterprise-contract/</span><span class="hljs-number">0.1</span>/verify-enterprise-contract.yaml 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (24 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-55d02fea/development/components/enterprise-contract/kustomize.out.yaml</span>
-<span class="hljs-string">376c376</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_bundle:</span> <span class="hljs-string">quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2</span>
-<span class="hljs-string">378c378</span>
-<span class="hljs-string">&lt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">d8eb39f4d4019208d4635cbc6226d11af01bd8fd</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>   <span class="hljs-attr">verify_ec_task_git_revision:</span> <span class="hljs-string">0c1a3cb4b810f33ba4c2134a464021f175f61182</span>
-<span class="hljs-number">596</span><span class="hljs-string">,597c596,597</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">not</span> <span class="hljs-string">expected</span> <span class="hljs-string">to</span> <span class="hljs-string">pass</span> <span class="hljs-string">for</span> <span class="hljs-string">Konflux</span> <span class="hljs-string">builds</span> <span class="hljs-string">without</span> <span class="hljs-string">excluding</span> <span class="hljs-string">some</span> <span class="hljs-string">rules.</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">Available</span> <span class="hljs-string">collections</span> <span class="hljs-string">are</span> <span class="hljs-string">defined</span> <span class="hljs-string">in</span> <span class="hljs-string">https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-string">This</span> <span class="hljs-string">is</span> <span class="hljs-string">not</span> <span class="hljs-string">expected</span> <span class="hljs-string">to</span> <span class="hljs-string">pass</span> <span class="hljs-string">for</span> <span class="hljs-string">RHTAP</span> <span class="hljs-string">builds</span> <span class="hljs-string">without</span> <span class="hljs-string">excluding</span> <span class="hljs-string">some</span> <span class="hljs-string">rules.</span> <span class="hljs-string">Available</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-string">collections</span> <span class="hljs-string">are</span> <span class="hljs-string">defined</span> <span class="hljs-string">in</span> <span class="hljs-string">https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.</span>
-<span class="hljs-number">621</span><span class="hljs-string">,622c621</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">config</span> <span class="hljs-string">used</span> <span class="hljs-string">for</span> <span class="hljs-string">new</span> <span class="hljs-string">Konflux</span> <span class="hljs-string">applications.</span> <span class="hljs-string">Available</span> <span class="hljs-string">collections</span> <span class="hljs-string">are</span> <span class="hljs-string">defined</span> <span class="hljs-string">in</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-string">config</span> <span class="hljs-string">used</span> <span class="hljs-string">for</span> <span class="hljs-string">new</span> <span class="hljs-string">RHTAP</span> <span class="hljs-string">applications.</span> <span class="hljs-string">Available</span> <span class="hljs-string">collections</span> <span class="hljs-string">are</span> <span class="hljs-string">defined</span> <span class="hljs-string">in</span> <span class="hljs-string">https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.</span>
-<span class="hljs-string">716c715</span>
-<span class="hljs-string">&lt;</span>     <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">basic</span> <span class="hljs-string">checks</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">expected</span> <span class="hljs-string">to</span> <span class="hljs-string">pass</span> <span class="hljs-string">for</span> <span class="hljs-string">all</span> <span class="hljs-string">Konflux</span> <span class="hljs-string">builds.</span> <span class="hljs-string">Available</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>     <span class="hljs-string">set</span> <span class="hljs-string">of</span> <span class="hljs-string">basic</span> <span class="hljs-string">checks</span> <span class="hljs-string">that</span> <span class="hljs-string">are</span> <span class="hljs-string">expected</span> <span class="hljs-string">to</span> <span class="hljs-string">pass</span> <span class="hljs-string">for</span> <span class="hljs-string">all</span> <span class="hljs-string">RHTAP</span> <span class="hljs-string">builds.</span> <span class="hljs-string">Available</span> 
 </code></pre>
 
 </details>  

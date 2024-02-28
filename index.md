@@ -1,12 +1,684 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Feb 28 04:02:10 UTC 2024
+### This file generated at Wed Feb 28 08:03:30 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
+<h3>1: Production changes from 5edd4c0a to 300eff88 on Wed Feb 28 06:13:33 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (78 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 414c8884..5f4bbe72 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -44,7 +44,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -88,7 +88,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -110,7 +110,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -129,4 +129,4 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000
++        - oci::quay.io/enterprise-contract/ec-task-policy:git-e381903@sha256:594b2d4a807eeef8fdc8bf547b33a42c2fbf41007f3359106aa12a969058b736
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 14c32f54..39f837e3 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=66e45b90362999a5e2e271ec05fe71453dff5426
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=2981ac570764e7ad954ab7e97bcaa7c2fed15ceb
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -12,7 +12,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:f1fdfbde74a46100854c3528db0795f7b949eb15@sha256:bfa038ebb99229bddf98b0f50cb90b78c525163a95039f5120098872e3964b3e
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=d8eb39f4d4019208d4635cbc6226d11af01bd8fd
++      - verify_ec_task_git_revision=f1fdfbde74a46100854c3528db0795f7b949eb15
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+
+``` 
+./commit-5edd4c0a/production/components/enterprise-contract/kustomize.out.yaml
+376c376
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:f1fdfbde74a46100854c3528db0795f7b949eb15@sha256:bfa038ebb99229bddf98b0f50cb90b78c525163a95039f5120098872e3964b3e
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
+378c378
+<   verify_ec_task_git_revision: f1fdfbde74a46100854c3528db0795f7b949eb15
+---
+>   verify_ec_task_git_revision: d8eb39f4d4019208d4635cbc6226d11af01bd8fd
+612c612
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+637c637
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+661c661
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+688c688
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+707c707
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-e381903@sha256:594b2d4a807eeef8fdc8bf547b33a42c2fbf41007f3359106aa12a969058b736
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000
+733c733
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 5edd4c0a to 300eff88 on Wed Feb 28 06:13:33 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (78 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 414c8884..5f4bbe72 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -44,7 +44,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -88,7 +88,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -110,7 +110,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -129,4 +129,4 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000
++        - oci::quay.io/enterprise-contract/ec-task-policy:git-e381903@sha256:594b2d4a807eeef8fdc8bf547b33a42c2fbf41007f3359106aa12a969058b736
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 14c32f54..39f837e3 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=66e45b90362999a5e2e271ec05fe71453dff5426
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=2981ac570764e7ad954ab7e97bcaa7c2fed15ceb
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -12,7 +12,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:f1fdfbde74a46100854c3528db0795f7b949eb15@sha256:bfa038ebb99229bddf98b0f50cb90b78c525163a95039f5120098872e3964b3e
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=d8eb39f4d4019208d4635cbc6226d11af01bd8fd
++      - verify_ec_task_git_revision=f1fdfbde74a46100854c3528db0795f7b949eb15
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+
+``` 
+./commit-5edd4c0a/staging/components/enterprise-contract/kustomize.out.yaml
+376c376
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:f1fdfbde74a46100854c3528db0795f7b949eb15@sha256:bfa038ebb99229bddf98b0f50cb90b78c525163a95039f5120098872e3964b3e
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
+378c378
+<   verify_ec_task_git_revision: f1fdfbde74a46100854c3528db0795f7b949eb15
+---
+>   verify_ec_task_git_revision: d8eb39f4d4019208d4635cbc6226d11af01bd8fd
+612c612
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+637c637
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+661c661
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+688c688
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+707c707
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-e381903@sha256:594b2d4a807eeef8fdc8bf547b33a42c2fbf41007f3359106aa12a969058b736
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000
+733c733
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 5edd4c0a to 300eff88 on Wed Feb 28 06:13:33 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (78 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 414c8884..5f4bbe72 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -44,7 +44,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -88,7 +88,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -110,7 +110,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -129,4 +129,4 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000
++        - oci::quay.io/enterprise-contract/ec-task-policy:git-e381903@sha256:594b2d4a807eeef8fdc8bf547b33a42c2fbf41007f3359106aa12a969058b736
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 14c32f54..39f837e3 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=66e45b90362999a5e2e271ec05fe71453dff5426
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=2981ac570764e7ad954ab7e97bcaa7c2fed15ceb
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -12,7 +12,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:f1fdfbde74a46100854c3528db0795f7b949eb15@sha256:bfa038ebb99229bddf98b0f50cb90b78c525163a95039f5120098872e3964b3e
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=d8eb39f4d4019208d4635cbc6226d11af01bd8fd
++      - verify_ec_task_git_revision=f1fdfbde74a46100854c3528db0795f7b949eb15
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+
+``` 
+./commit-5edd4c0a/development/components/enterprise-contract/kustomize.out.yaml
+376c376
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:f1fdfbde74a46100854c3528db0795f7b949eb15@sha256:bfa038ebb99229bddf98b0f50cb90b78c525163a95039f5120098872e3964b3e
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
+378c378
+<   verify_ec_task_git_revision: f1fdfbde74a46100854c3528db0795f7b949eb15
+---
+>   verify_ec_task_git_revision: d8eb39f4d4019208d4635cbc6226d11af01bd8fd
+612c612
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+637c637
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+661c661
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+688c688
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9
+707c707
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-e381903@sha256:594b2d4a807eeef8fdc8bf547b33a42c2fbf41007f3359106aa12a969058b736
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-8789d05@sha256:376d25aa4ccf13217b241010cc7c3f0c2e032aefed45272177eee0a69dc7c000
+733c733
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-a7f4cf4@sha256:1318e6900b9b03337ce003068e3927726f0afd8766e4d1358464a804fa733378
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-988266b@sha256:632f31c5df85f004fb65301b34a93d3e671126ffcd8d6320163ca3c3d47ba8b9 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -156,7 +828,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
+<h3>2: Staging changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -349,7 +1021,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
+<h3>2: Development changes from 074ba3e7 to 5edd4c0a on Tue Feb 27 22:36:53 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -454,7 +1126,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
+<h3>3: Production changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -610,7 +1282,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
+<h3>3: Staging changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -769,7 +1441,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
+<h3>3: Development changes from f22b6a6c to 074ba3e7 on Tue Feb 27 20:05:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -920,7 +1592,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
+<h3>4: Production changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (51 lines)</summary>  
@@ -1099,7 +1771,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
+<h3>4: Staging changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (51 lines)</summary>  
@@ -1285,7 +1957,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
+<h3>4: Development changes from d22b5867 to f22b6a6c on Tue Feb 27 17:48:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (51 lines)</summary>  
@@ -1355,573 +2027,6 @@ index 754accdc..2ff5dab0 100644
 <   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
 ---
 >   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:37310134aafa601207d873f21aca35c7d06631af695cd2e87a975b25971a3cc7 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 55d02fea to d22b5867 on Tue Feb 27 16:01:13 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (52 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index d202e77e..414c8884 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -1,5 +1,5 @@
- #
--# The contents of this file are automatically generated based on the RHTAP configs defined in the
-+# The contents of this file are automatically generated based on the Konflux configs defined in the
- # github.com/enterprise-contract/config repo. Any manual modifications will be overridden.
- #
- 
-@@ -10,7 +10,7 @@ metadata:
-   name: default
-   namespace: enterprise-contract-service
- spec:
--  description: Includes rules for levels 1, 2 & 3 of SLSA v0.1. This is the default config used for new RHTAP applications. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-+  description: Includes rules for levels 1, 2 & 3 of SLSA v0.1. This is the default config used for new Konflux applications. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-   name: Default
-   publicKey: k8s://openshift-pipelines/public-key
-   sources:
-@@ -31,7 +31,7 @@ metadata:
-   name: all
-   namespace: enterprise-contract-service
- spec:
--  description: Include every rule in the default policy source. For experiments only. This is not expected to pass for RHTAP builds without excluding some rules. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-+  description: Include every rule in the default policy source. For experiments only. This is not expected to pass for Konflux builds without excluding some rules. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-   name: Everything (experimental)
-   publicKey: k8s://openshift-pipelines/public-key
-   sources:
-@@ -96,7 +96,7 @@ metadata:
-   name: slsa3
-   namespace: enterprise-contract-service
- spec:
--  description: Rules specifically related to levels 1, 2 & 3 of SLSA v0.1, plus a set of basic checks that are expected to pass for all RHTAP builds. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-+  description: Rules specifically related to levels 1, 2 & 3 of SLSA v0.1, plus a set of basic checks that are expected to pass for all Konflux builds. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-   name: SLSA3
-   publicKey: k8s://openshift-pipelines/public-key
-   sources:
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index 0ee86372..14c32f54 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -12,7 +12,7 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=0c1a3cb4b810f33ba4c2134a464021f175f61182
-+      - verify_ec_task_git_revision=d8eb39f4d4019208d4635cbc6226d11af01bd8fd
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (24 lines)</summary>  
-
-``` 
-./commit-55d02fea/production/components/enterprise-contract/kustomize.out.yaml
-376c376
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
-378c378
-<   verify_ec_task_git_revision: d8eb39f4d4019208d4635cbc6226d11af01bd8fd
----
->   verify_ec_task_git_revision: 0c1a3cb4b810f33ba4c2134a464021f175f61182
-596,597c596,597
-<     This is not expected to pass for Konflux builds without excluding some rules.
-<     Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
----
->     This is not expected to pass for RHTAP builds without excluding some rules. Available
->     collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
-621,622c621
-<     config used for new Konflux applications. Available collections are defined in
-<     https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
----
->     config used for new RHTAP applications. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
-716c715
-<     set of basic checks that are expected to pass for all Konflux builds. Available
----
->     set of basic checks that are expected to pass for all RHTAP builds. Available 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 55d02fea to d22b5867 on Tue Feb 27 16:01:13 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (52 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index d202e77e..414c8884 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -1,5 +1,5 @@
- #
--# The contents of this file are automatically generated based on the RHTAP configs defined in the
-+# The contents of this file are automatically generated based on the Konflux configs defined in the
- # github.com/enterprise-contract/config repo. Any manual modifications will be overridden.
- #
- 
-@@ -10,7 +10,7 @@ metadata:
-   name: default
-   namespace: enterprise-contract-service
- spec:
--  description: Includes rules for levels 1, 2 & 3 of SLSA v0.1. This is the default config used for new RHTAP applications. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-+  description: Includes rules for levels 1, 2 & 3 of SLSA v0.1. This is the default config used for new Konflux applications. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-   name: Default
-   publicKey: k8s://openshift-pipelines/public-key
-   sources:
-@@ -31,7 +31,7 @@ metadata:
-   name: all
-   namespace: enterprise-contract-service
- spec:
--  description: Include every rule in the default policy source. For experiments only. This is not expected to pass for RHTAP builds without excluding some rules. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-+  description: Include every rule in the default policy source. For experiments only. This is not expected to pass for Konflux builds without excluding some rules. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-   name: Everything (experimental)
-   publicKey: k8s://openshift-pipelines/public-key
-   sources:
-@@ -96,7 +96,7 @@ metadata:
-   name: slsa3
-   namespace: enterprise-contract-service
- spec:
--  description: Rules specifically related to levels 1, 2 & 3 of SLSA v0.1, plus a set of basic checks that are expected to pass for all RHTAP builds. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-+  description: Rules specifically related to levels 1, 2 & 3 of SLSA v0.1, plus a set of basic checks that are expected to pass for all Konflux builds. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-   name: SLSA3
-   publicKey: k8s://openshift-pipelines/public-key
-   sources:
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index 0ee86372..14c32f54 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -12,7 +12,7 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=0c1a3cb4b810f33ba4c2134a464021f175f61182
-+      - verify_ec_task_git_revision=d8eb39f4d4019208d4635cbc6226d11af01bd8fd
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (24 lines)</summary>  
-
-``` 
-./commit-55d02fea/staging/components/enterprise-contract/kustomize.out.yaml
-376c376
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
-378c378
-<   verify_ec_task_git_revision: d8eb39f4d4019208d4635cbc6226d11af01bd8fd
----
->   verify_ec_task_git_revision: 0c1a3cb4b810f33ba4c2134a464021f175f61182
-596,597c596,597
-<     This is not expected to pass for Konflux builds without excluding some rules.
-<     Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
----
->     This is not expected to pass for RHTAP builds without excluding some rules. Available
->     collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
-621,622c621
-<     config used for new Konflux applications. Available collections are defined in
-<     https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
----
->     config used for new RHTAP applications. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
-716c715
-<     set of basic checks that are expected to pass for all Konflux builds. Available
----
->     set of basic checks that are expected to pass for all RHTAP builds. Available 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 55d02fea to d22b5867 on Tue Feb 27 16:01:13 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (52 lines)</summary>  
-
-``` 
-diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
-index d202e77e..414c8884 100644
---- a/components/enterprise-contract/ecp.yaml
-+++ b/components/enterprise-contract/ecp.yaml
-@@ -1,5 +1,5 @@
- #
--# The contents of this file are automatically generated based on the RHTAP configs defined in the
-+# The contents of this file are automatically generated based on the Konflux configs defined in the
- # github.com/enterprise-contract/config repo. Any manual modifications will be overridden.
- #
- 
-@@ -10,7 +10,7 @@ metadata:
-   name: default
-   namespace: enterprise-contract-service
- spec:
--  description: Includes rules for levels 1, 2 & 3 of SLSA v0.1. This is the default config used for new RHTAP applications. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-+  description: Includes rules for levels 1, 2 & 3 of SLSA v0.1. This is the default config used for new Konflux applications. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-   name: Default
-   publicKey: k8s://openshift-pipelines/public-key
-   sources:
-@@ -31,7 +31,7 @@ metadata:
-   name: all
-   namespace: enterprise-contract-service
- spec:
--  description: Include every rule in the default policy source. For experiments only. This is not expected to pass for RHTAP builds without excluding some rules. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-+  description: Include every rule in the default policy source. For experiments only. This is not expected to pass for Konflux builds without excluding some rules. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-   name: Everything (experimental)
-   publicKey: k8s://openshift-pipelines/public-key
-   sources:
-@@ -96,7 +96,7 @@ metadata:
-   name: slsa3
-   namespace: enterprise-contract-service
- spec:
--  description: Rules specifically related to levels 1, 2 & 3 of SLSA v0.1, plus a set of basic checks that are expected to pass for all RHTAP builds. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-+  description: Rules specifically related to levels 1, 2 & 3 of SLSA v0.1, plus a set of basic checks that are expected to pass for all Konflux builds. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections. If a different policy configuration is desired, this resource can serve as a starting point. See the docs on how to include and exclude rules https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/policy_configuration.html#_including_and_excluding_rules.
-   name: SLSA3
-   publicKey: k8s://openshift-pipelines/public-key
-   sources:
-diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
-index 0ee86372..14c32f54 100644
---- a/components/enterprise-contract/kustomization.yaml
-+++ b/components/enterprise-contract/kustomization.yaml
-@@ -12,7 +12,7 @@ configMapGenerator:
-   - name: ec-defaults
-     namespace: enterprise-contract-service
-     literals:
--      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
-+      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
-       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
--      - verify_ec_task_git_revision=0c1a3cb4b810f33ba4c2134a464021f175f61182
-+      - verify_ec_task_git_revision=d8eb39f4d4019208d4635cbc6226d11af01bd8fd
-       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (24 lines)</summary>  
-
-``` 
-./commit-55d02fea/development/components/enterprise-contract/kustomize.out.yaml
-376c376
-<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:d8eb39f4d4019208d4635cbc6226d11af01bd8fd@sha256:36d4bb32ebbf9632e5326443678a9d4548debe94e5e945d827f5f00ba3a3a686
----
->   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:0c1a3cb4b810f33ba4c2134a464021f175f61182@sha256:c20d9bdccc496c54d57d2a66070f5589e066a499560c13c76446211e520c32c2
-378c378
-<   verify_ec_task_git_revision: d8eb39f4d4019208d4635cbc6226d11af01bd8fd
----
->   verify_ec_task_git_revision: 0c1a3cb4b810f33ba4c2134a464021f175f61182
-596,597c596,597
-<     This is not expected to pass for Konflux builds without excluding some rules.
-<     Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
----
->     This is not expected to pass for RHTAP builds without excluding some rules. Available
->     collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
-621,622c621
-<     config used for new Konflux applications. Available collections are defined in
-<     https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
----
->     config used for new RHTAP applications. Available collections are defined in https://redhat-appstudio.github.io/docs.stonesoup.io/ec-policies/release_policy.html#_available_rule_collections.
-716c715
-<     set of basic checks that are expected to pass for all Konflux builds. Available
----
->     set of basic checks that are expected to pass for all RHTAP builds. Available 
 ```
  
 </details>  
