@@ -1,0 +1,34 @@
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index aeeb060f..0257c01e 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -14,12 +14,6 @@ $patch: delete
+ ---
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+-metadata:
+-  name: backup
+-$patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+ metadata:
+   name: ingresscontroller
+ $patch: delete
+diff --git a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+index aeeb060f..0257c01e 100644
+--- a/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/delete-applications.yaml
+@@ -14,12 +14,6 @@ $patch: delete
+ ---
+ apiVersion: argoproj.io/v1alpha1
+ kind: ApplicationSet
+-metadata:
+-  name: backup
+-$patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+ metadata:
+   name: ingresscontroller
+ $patch: delete

@@ -1,0 +1,52 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-19fe1355/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-d083006d/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1969,1984d1968
+< kind: CatalogSource
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "0"
+<   name: custom-operators
+<   namespace: openshift-marketplace
+< spec:
+<   displayName: custom-operators
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
+<   sourceType: grpc
+<   updateStrategy:
+<     registryPoll:
+<       interval: 30m
+< ---
+< apiVersion: operators.coreos.com/v1alpha1
+1993c1977
+<   channel: latest
+---
+>   channel: pipelines-1.13
+1995c1979
+<   source: custom-operators
+---
+>   source: redhat-operators
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-19fe1355/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-d083006d/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1969,1984d1968
+< kind: CatalogSource
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "0"
+<   name: custom-operators
+<   namespace: openshift-marketplace
+< spec:
+<   displayName: custom-operators
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
+<   sourceType: grpc
+<   updateStrategy:
+<     registryPoll:
+<       interval: 30m
+< ---
+< apiVersion: operators.coreos.com/v1alpha1
+1993c1977
+<   channel: latest
+---
+>   channel: pipelines-1.13
+1995c1979
+<   source: custom-operators
+---
+>   source: redhat-operators

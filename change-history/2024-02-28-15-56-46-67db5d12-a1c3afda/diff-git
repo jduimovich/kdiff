@@ -1,0 +1,71 @@
+diff --git a/components/monitoring/grafana/base/dashboards/core/dashboard.yaml b/components/monitoring/grafana/base/dashboards/kubesaw/dashboard.yaml
+similarity index 61%
+rename from components/monitoring/grafana/base/dashboards/core/dashboard.yaml
+rename to components/monitoring/grafana/base/dashboards/kubesaw/dashboard.yaml
+index 773df09e..51c9c259 100644
+--- a/components/monitoring/grafana/base/dashboards/core/dashboard.yaml
++++ b/components/monitoring/grafana/base/dashboards/kubesaw/dashboard.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: grafana.integreatly.org/v1beta1
+ kind: GrafanaDashboard
+ metadata:
+-  name: grafana-dashboard-sandbox-proxy-metrics
++  name: grafana-dashboard-kubesaw-proxy-metrics
+   labels: 
+     app: appstudio-grafana
+ spec:
+@@ -9,5 +9,5 @@ spec:
+     matchLabels:
+       dashboards: "appstudio-grafana"
+   configMapRef:
+-    name: grafana-dashboard-sandbox-proxy-metrics
+-    key: sandbox-proxy-metrics.json
++    name: grafana-dashboard-kubesaw-proxy-metrics
++    key: kubesaw-proxy-metrics.json
+diff --git a/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json b/components/monitoring/grafana/base/dashboards/kubesaw/kubesaw-proxy-metrics.json
+similarity index 99%
+rename from components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json
+rename to components/monitoring/grafana/base/dashboards/kubesaw/kubesaw-proxy-metrics.json
+index 65275395..c60e4479 100644
+--- a/components/monitoring/grafana/base/dashboards/core/sandbox-proxy-metrics.json
++++ b/components/monitoring/grafana/base/dashboards/kubesaw/kubesaw-proxy-metrics.json
+@@ -552,7 +552,7 @@
+   },
+   "timepicker": {},
+   "timezone": "",
+-  "title": "Core - Proxy Metrics",
++  "title": "KubeSaw - Proxy Metrics",
+   "uid": "a2aa66a3-b7b9-42d4-92df-7e4f46ee7bea",
+   "version": 14,
+   "weekStart": ""
+diff --git a/components/monitoring/grafana/base/dashboards/core/kustomization.yaml b/components/monitoring/grafana/base/dashboards/kubesaw/kustomization.yaml
+similarity index 59%
+rename from components/monitoring/grafana/base/dashboards/core/kustomization.yaml
+rename to components/monitoring/grafana/base/dashboards/kubesaw/kustomization.yaml
+index 4fc26c8b..fe45d7d2 100644
+--- a/components/monitoring/grafana/base/dashboards/core/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/kubesaw/kustomization.yaml
+@@ -3,6 +3,6 @@ kind: Kustomization
+ resources:
+ - dashboard.yaml
+ configMapGenerator:
+-  - name: grafana-dashboard-sandbox-proxy-metrics
++  - name: grafana-dashboard-kubesaw-proxy-metrics
+     files:
+-      - sandbox-proxy-metrics.json
+\ No newline at end of file
++      - kubesaw-proxy-metrics.json
+\ No newline at end of file
+diff --git a/components/monitoring/grafana/base/dashboards/kustomization.yaml b/components/monitoring/grafana/base/dashboards/kustomization.yaml
+index 336318de..766d66e8 100644
+--- a/components/monitoring/grafana/base/dashboards/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- core/
++- kubesaw/
+ - spi/
+ - build-service/
+ - managed-gitops/

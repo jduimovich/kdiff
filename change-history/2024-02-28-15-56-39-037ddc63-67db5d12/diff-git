@@ -1,0 +1,154 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
+index 6c45a413..8d455ca5 100644
+--- a/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/integration/integration.yaml
+@@ -12,9 +12,13 @@ spec:
+               values:
+                 sourceRoot: components/integration
+                 environment: staging
+-                clusterDir: ""
++                clusterDir: base
+           - list:
+-              elements: []
++              elements:
++                - nameNormalized: stone-stage-p01
++                  values.clusterDir: stone-stage-p01
++                - nameNormalized: stone-prod-p01
++                  values.clusterDir: stone-prod-p01
+   template:
+     metadata:
+       name: integration-{{nameNormalized}}
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index b4975431..05654f81 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -18,3 +18,6 @@ patches:
+     target:
+       kind: CronJob
+       name: snapshot-garbage-collector
++
++components:
++  - ../rh-certs
+diff --git a/components/integration/production/kustomization.yaml b/components/integration/production/base/kustomization.yaml
+similarity index 93%
+rename from components/integration/production/kustomization.yaml
+rename to components/integration/production/base/kustomization.yaml
+index 9f99cbcb..e3599430 100644
+--- a/components/integration/production/kustomization.yaml
++++ b/components/integration/production/base/kustomization.yaml
+@@ -1,8 +1,8 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base
+-- ../base/external-secrets
++- ../../base
++- ../../base/external-secrets
+ - https://github.com/redhat-appstudio/integration-service/config/default?ref=b37833f64c8017c942ba95ca648d3b880b39af62
+ 
+ images:
+diff --git a/components/integration/production/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
+similarity index 100%
+rename from components/integration/production/manager_resources_patch.yaml
+rename to components/integration/production/base/manager_resources_patch.yaml
+diff --git a/components/integration/production/pipelines-as-code-secret.yaml b/components/integration/production/base/pipelines-as-code-secret.yaml
+similarity index 100%
+rename from components/integration/production/pipelines-as-code-secret.yaml
+rename to components/integration/production/base/pipelines-as-code-secret.yaml
+diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
+new file mode 100644
+index 00000000..d8a919d7
+--- /dev/null
++++ b/components/integration/production/stone-prod-p01/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++components:
++  - ../../rh-certs
++
+diff --git a/components/integration/rh-certs/add-rh-certs-patch.yaml b/components/integration/rh-certs/add-rh-certs-patch.yaml
+new file mode 100644
+index 00000000..99055359
+--- /dev/null
++++ b/components/integration/rh-certs/add-rh-certs-patch.yaml
+@@ -0,0 +1,21 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: controller-manager
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        volumeMounts:
++          - name: trusted-ca
++            mountPath: /etc/pki/ca-trust/extracted/pem
++            readOnly: true
++      volumes:
++      - name: trusted-ca
++        configMap:
++          name: trusted-ca
++          items:
++            - key: ca-bundle.crt
++              path: tls-ca-bundle.pem
+diff --git a/components/integration/rh-certs/kustomization.yaml b/components/integration/rh-certs/kustomization.yaml
+new file mode 100644
+index 00000000..78f3e98f
+--- /dev/null
++++ b/components/integration/rh-certs/kustomization.yaml
+@@ -0,0 +1,16 @@
++---
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++patches:
++  - path: add-rh-certs-patch.yaml
++    target:
++      name: controller-manager
++      kind: Deployment
++
++configMapGenerator:
++  - name: trusted-ca
++    options:
++      labels:
++        "config.openshift.io/inject-trusted-cabundle": "true"
++
++namespace: integration-service
+diff --git a/components/integration/staging/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+similarity index 92%
+rename from components/integration/staging/kustomization.yaml
+rename to components/integration/staging/base/kustomization.yaml
+index 6387ac57..d0f7e6d4 100644
+--- a/components/integration/staging/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -1,8 +1,8 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- ../base
+-- ../base/external-secrets
++- ../../base
++- ../../base/external-secrets
+ - https://github.com/redhat-appstudio/integration-service/config/default?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
+ - https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
+ 
+diff --git a/components/integration/staging/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
+similarity index 100%
+rename from components/integration/staging/manager_resources_patch.yaml
+rename to components/integration/staging/base/manager_resources_patch.yaml
+diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
+new file mode 100644
+index 00000000..d8a919d7
+--- /dev/null
++++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
+@@ -0,0 +1,7 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++components:
++  - ../../rh-certs
++
