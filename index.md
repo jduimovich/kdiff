@@ -1,914 +1,21 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Feb 29 12:03:26 UTC 2024
+### This file generated at Thu Feb 29 16:07:24 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from c6a44dda to a8e0f437 on Wed Feb 28 23:22:59 2024 </h3>  
+<h3>1: Production changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
  
 <details> 
-<summary>Git Diff (13 lines)</summary>  
+<summary>Git Diff (21 lines)</summary>  
 
 ``` 
-diff --git a/hack/generate-deploy-config.sh b/hack/generate-deploy-config.sh
-index aaf581ee..cb7caa35 100755
---- a/hack/generate-deploy-config.sh
-+++ b/hack/generate-deploy-config.sh
-@@ -11,7 +11,7 @@ function print_help() {
-   echo "  -c, --component SUBDIR    Path to a directory. Defaults to the current directory."
-   echo "  -h, --help                Help message"
-   echo
--  echo "Example usage: \`$0 components/pipeline-service/production"
-+  echo "Example usage: \`$0 -c components/pipeline-service/production"
- }
- 
- function parse_args() { 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Staging changes from c6a44dda to a8e0f437 on Wed Feb 28 23:22:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/hack/generate-deploy-config.sh b/hack/generate-deploy-config.sh
-index aaf581ee..cb7caa35 100755
---- a/hack/generate-deploy-config.sh
-+++ b/hack/generate-deploy-config.sh
-@@ -11,7 +11,7 @@ function print_help() {
-   echo "  -c, --component SUBDIR    Path to a directory. Defaults to the current directory."
-   echo "  -h, --help                Help message"
-   echo
--  echo "Example usage: \`$0 components/pipeline-service/production"
-+  echo "Example usage: \`$0 -c components/pipeline-service/production"
- }
- 
- function parse_args() { 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>1: Development changes from c6a44dda to a8e0f437 on Wed Feb 28 23:22:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/hack/generate-deploy-config.sh b/hack/generate-deploy-config.sh
-index aaf581ee..cb7caa35 100755
---- a/hack/generate-deploy-config.sh
-+++ b/hack/generate-deploy-config.sh
-@@ -11,7 +11,7 @@ function print_help() {
-   echo "  -c, --component SUBDIR    Path to a directory. Defaults to the current directory."
-   echo "  -h, --help                Help message"
-   echo
--  echo "Example usage: \`$0 components/pipeline-service/production"
-+  echo "Example usage: \`$0 -c components/pipeline-service/production"
- }
- 
- function parse_args() { 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Production changes from 763dcc9a to c6a44dda on Wed Feb 28 22:07:34 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (52 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/bump-results-watcher-mem.yaml b/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
-index 0e80093b..760cbaf5 100644
---- a/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
-+++ b/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
-@@ -1,4 +1,7 @@
- ---
- - op: replace
-   path: /spec/template/spec/containers/1/resources/limits/memory
-+  value: "3Gi"
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/requests/memory
-   value: "3Gi"
-\ No newline at end of file
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 767a507c..d4623ca7 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1548,7 +1548,7 @@ spec:
-             memory: 3Gi
-           requests:
-             cpu: 100m
--            memory: 64Mi
-+            memory: 3Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index d7b922e0..98cd9930 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1548,7 +1548,7 @@ spec:
-             memory: 3Gi
-           requests:
-             cpu: 100m
--            memory: 64Mi
-+            memory: 3Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index f6faee3d..690b3071 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1548,7 +1548,7 @@ spec:
-             memory: 3Gi
-           requests:
-             cpu: 100m
--            memory: 64Mi
-+            memory: 3Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (15 lines)</summary>  
-
-``` 
-./commit-763dcc9a/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
-1551c1551
-<             memory: 3Gi
----
->             memory: 64Mi
-./commit-763dcc9a/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
-1551c1551
-<             memory: 3Gi
----
->             memory: 64Mi
-./commit-763dcc9a/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
-1551c1551
-<             memory: 3Gi
----
->             memory: 64Mi 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from 763dcc9a to c6a44dda on Wed Feb 28 22:07:34 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (52 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/bump-results-watcher-mem.yaml b/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
-index 0e80093b..760cbaf5 100644
---- a/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
-+++ b/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
-@@ -1,4 +1,7 @@
- ---
- - op: replace
-   path: /spec/template/spec/containers/1/resources/limits/memory
-+  value: "3Gi"
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/requests/memory
-   value: "3Gi"
-\ No newline at end of file
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 767a507c..d4623ca7 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1548,7 +1548,7 @@ spec:
-             memory: 3Gi
-           requests:
-             cpu: 100m
--            memory: 64Mi
-+            memory: 3Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index d7b922e0..98cd9930 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1548,7 +1548,7 @@ spec:
-             memory: 3Gi
-           requests:
-             cpu: 100m
--            memory: 64Mi
-+            memory: 3Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index f6faee3d..690b3071 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1548,7 +1548,7 @@ spec:
-             memory: 3Gi
-           requests:
-             cpu: 100m
--            memory: 64Mi
-+            memory: 3Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from 763dcc9a to c6a44dda on Wed Feb 28 22:07:34 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (52 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/bump-results-watcher-mem.yaml b/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
-index 0e80093b..760cbaf5 100644
---- a/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
-+++ b/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
-@@ -1,4 +1,7 @@
- ---
- - op: replace
-   path: /spec/template/spec/containers/1/resources/limits/memory
-+  value: "3Gi"
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/requests/memory
-   value: "3Gi"
-\ No newline at end of file
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index 767a507c..d4623ca7 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1548,7 +1548,7 @@ spec:
-             memory: 3Gi
-           requests:
-             cpu: 100m
--            memory: 64Mi
-+            memory: 3Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index d7b922e0..98cd9930 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1548,7 +1548,7 @@ spec:
-             memory: 3Gi
-           requests:
-             cpu: 100m
--            memory: 64Mi
-+            memory: 3Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index f6faee3d..690b3071 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1548,7 +1548,7 @@ spec:
-             memory: 3Gi
-           requests:
-             cpu: 100m
--            memory: 64Mi
-+            memory: 3Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from c8af4863 to 763dcc9a on Wed Feb 28 21:46:45 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (22 lines)</summary>  
-
-``` 
-diff --git a/components/release/staging/kustomization.yaml b/components/release/staging/kustomization.yaml
-index ed8b532d..4097ac6e 100644
---- a/components/release/staging/kustomization.yaml
-+++ b/components/release/staging/kustomization.yaml
+diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
+index bf817c3e..d9be3fcc 100644
+--- a/components/release/production/kustomization.yaml
++++ b/components/release/production/kustomization.yaml
 @@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
@@ -918,165 +25,14 @@ index ed8b532d..4097ac6e 100644
  
  components:
    - ../k-components/manager-resources-patch
-@@ -10,7 +10,7 @@ components:
+@@ -10,6 +10,6 @@ components:
  images:
    - name: quay.io/redhat-appstudio/release-service
      newName: quay.io/redhat-appstudio/release-service
 -    newTag: 4a125b85f681fbecde7113e3a5765be8388ba459
 +    newTag: 94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
  
- namespace: release-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from c8af4863 to 763dcc9a on Wed Feb 28 21:46:45 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (22 lines)</summary>  
-
-``` 
-diff --git a/components/release/staging/kustomization.yaml b/components/release/staging/kustomization.yaml
-index ed8b532d..4097ac6e 100644
---- a/components/release/staging/kustomization.yaml
-+++ b/components/release/staging/kustomization.yaml
-@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/release-service/config/default?ref=4a125b85f681fbecde7113e3a5765be8388ba459
-+  - https://github.com/redhat-appstudio/release-service/config/default?ref=94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
- 
- components:
-   - ../k-components/manager-resources-patch
-@@ -10,7 +10,7 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 4a125b85f681fbecde7113e3a5765be8388ba459
-+    newTag: 94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
- 
- namespace: release-service
-  
+ namespace: release-service 
 ```
  
 </details> 
@@ -1085,8 +41,8 @@ index ed8b532d..4097ac6e 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-./commit-c8af4863/staging/components/release/staging/kustomize.out.yaml
-1762c1762
+./commit-03152bfd/production/components/release/production/kustomize.out.yaml
+1790c1790
 <         image: quay.io/redhat-appstudio/release-service:94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
 ---
 >         image: quay.io/redhat-appstudio/release-service:4a125b85f681fbecde7113e3a5765be8388ba459 
@@ -1193,9 +149,6 @@ KubeLinter v0.6.1-0-gc6177366a3
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
 No lint errors found! 
 ```
  
@@ -1206,16 +159,16 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from c8af4863 to 763dcc9a on Wed Feb 28 21:46:45 2024 </h3>  
+<h3>1: Staging changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
  
 <details> 
-<summary>Git Diff (22 lines)</summary>  
+<summary>Git Diff (21 lines)</summary>  
 
 ``` 
-diff --git a/components/release/staging/kustomization.yaml b/components/release/staging/kustomization.yaml
-index ed8b532d..4097ac6e 100644
---- a/components/release/staging/kustomization.yaml
-+++ b/components/release/staging/kustomization.yaml
+diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
+index bf817c3e..d9be3fcc 100644
+--- a/components/release/production/kustomization.yaml
++++ b/components/release/production/kustomization.yaml
 @@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
@@ -1225,275 +178,7 @@ index ed8b532d..4097ac6e 100644
  
  components:
    - ../k-components/manager-resources-patch
-@@ -10,7 +10,7 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 4a125b85f681fbecde7113e3a5765be8388ba459
-+    newTag: 94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
- 
- namespace: release-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from a1c3afda to c8af4863 on Wed Feb 28 19:59:31 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 71dcfd1a..80b437d6 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=4a125b85f681fbecde7113e3a5765be8388ba459
-+- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index f10c02f7..e4c8a173 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/release-service/config/default?ref=4a125b85f681fbecde7113e3a5765be8388ba459
-+  - https://github.com/redhat-appstudio/release-service/config/default?ref=94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
- 
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 4a125b85f681fbecde7113e3a5765be8388ba459
-+    newTag: 94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from a1c3afda to c8af4863 on Wed Feb 28 19:59:31 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 71dcfd1a..80b437d6 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=4a125b85f681fbecde7113e3a5765be8388ba459
-+- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index f10c02f7..e4c8a173 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/release-service/config/default?ref=4a125b85f681fbecde7113e3a5765be8388ba459
-+  - https://github.com/redhat-appstudio/release-service/config/default?ref=94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
- 
+@@ -10,6 +10,6 @@ components:
  images:
    - name: quay.io/redhat-appstudio/release-service
      newName: quay.io/redhat-appstudio/release-service
@@ -1626,33 +311,26 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from a1c3afda to c8af4863 on Wed Feb 28 19:59:31 2024 </h3>  
+<h3>1: Development changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
  
 <details> 
-<summary>Git Diff (28 lines)</summary>  
+<summary>Git Diff (21 lines)</summary>  
 
 ``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 71dcfd1a..80b437d6 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=4a125b85f681fbecde7113e3a5765be8388ba459
-+- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index f10c02f7..e4c8a173 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
+index bf817c3e..d9be3fcc 100644
+--- a/components/release/production/kustomization.yaml
++++ b/components/release/production/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
    - ../base
 -  - https://github.com/redhat-appstudio/release-service/config/default?ref=4a125b85f681fbecde7113e3a5765be8388ba459
 +  - https://github.com/redhat-appstudio/release-service/config/default?ref=94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
  
+ components:
+   - ../k-components/manager-resources-patch
+@@ -10,6 +10,6 @@ components:
  images:
    - name: quay.io/redhat-appstudio/release-service
      newName: quay.io/redhat-appstudio/release-service
@@ -1665,14 +343,1819 @@ index f10c02f7..e4c8a173 100644
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
+<summary>Kustomize Generated Diff (0 lines)</summary>  
 
 ``` 
-./commit-a1c3afda/development/components/release/development/kustomize.out.yaml
-1762c1762
-<         image: quay.io/redhat-appstudio/release-service:94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
----
->         image: quay.io/redhat-appstudio/release-service:4a125b85f681fbecde7113e3a5765be8388ba459 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (46 lines)</summary>  
+
+``` 
+diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
+index 4bde7f10..3313e531 100644
+--- a/components/release/base/kustomization.yaml
++++ b/components/release/base/kustomization.yaml
+@@ -2,6 +2,7 @@ resources:
+ - allow-argocd-to-manage.yaml
+ - argocd-permissions.yaml
+ - release-pipeline-resources-clusterrole.yaml
++- release-service-config-rbac.yaml
+ - release-service-configurator-role.yaml
+ - release-team.yaml
+ - cronjobs/
+diff --git a/components/release/base/release-service-config-rbac.yaml b/components/release/base/release-service-config-rbac.yaml
+new file mode 100644
+index 00000000..3837427b
+--- /dev/null
++++ b/components/release/base/release-service-config-rbac.yaml
+@@ -0,0 +1,28 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: releaseserviceconfig-role
++rules:
++- apiGroups:
++  - appstudio.redhat.com
++  resources:
++  - releaseserviceconfigs
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: releaseserviceconfigs-rolebinding
++  namespace: release-service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: releaseserviceconfig-role
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:serviceaccounts 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (31 lines)</summary>  
+
+``` 
+./commit-64366834/production/components/release/production/kustomize.out.yaml
+1420,1433d1419
+< kind: ClusterRole
+< metadata:
+<   name: releaseserviceconfig-role
+< rules:
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - releaseserviceconfigs
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+1488,1501d1473
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: releaseserviceconfigs-rolebinding
+<   namespace: release-service
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: releaseserviceconfig-role
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: system:serviceaccounts 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (46 lines)</summary>  
+
+``` 
+diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
+index 4bde7f10..3313e531 100644
+--- a/components/release/base/kustomization.yaml
++++ b/components/release/base/kustomization.yaml
+@@ -2,6 +2,7 @@ resources:
+ - allow-argocd-to-manage.yaml
+ - argocd-permissions.yaml
+ - release-pipeline-resources-clusterrole.yaml
++- release-service-config-rbac.yaml
+ - release-service-configurator-role.yaml
+ - release-team.yaml
+ - cronjobs/
+diff --git a/components/release/base/release-service-config-rbac.yaml b/components/release/base/release-service-config-rbac.yaml
+new file mode 100644
+index 00000000..3837427b
+--- /dev/null
++++ b/components/release/base/release-service-config-rbac.yaml
+@@ -0,0 +1,28 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: releaseserviceconfig-role
++rules:
++- apiGroups:
++  - appstudio.redhat.com
++  resources:
++  - releaseserviceconfigs
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: releaseserviceconfigs-rolebinding
++  namespace: release-service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: releaseserviceconfig-role
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:serviceaccounts 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (31 lines)</summary>  
+
+``` 
+./commit-64366834/staging/components/release/staging/kustomize.out.yaml
+1420,1433d1419
+< kind: ClusterRole
+< metadata:
+<   name: releaseserviceconfig-role
+< rules:
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - releaseserviceconfigs
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+1488,1501d1473
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: releaseserviceconfigs-rolebinding
+<   namespace: release-service
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: releaseserviceconfig-role
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: system:serviceaccounts 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (46 lines)</summary>  
+
+``` 
+diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
+index 4bde7f10..3313e531 100644
+--- a/components/release/base/kustomization.yaml
++++ b/components/release/base/kustomization.yaml
+@@ -2,6 +2,7 @@ resources:
+ - allow-argocd-to-manage.yaml
+ - argocd-permissions.yaml
+ - release-pipeline-resources-clusterrole.yaml
++- release-service-config-rbac.yaml
+ - release-service-configurator-role.yaml
+ - release-team.yaml
+ - cronjobs/
+diff --git a/components/release/base/release-service-config-rbac.yaml b/components/release/base/release-service-config-rbac.yaml
+new file mode 100644
+index 00000000..3837427b
+--- /dev/null
++++ b/components/release/base/release-service-config-rbac.yaml
+@@ -0,0 +1,28 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: releaseserviceconfig-role
++rules:
++- apiGroups:
++  - appstudio.redhat.com
++  resources:
++  - releaseserviceconfigs
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: releaseserviceconfigs-rolebinding
++  namespace: release-service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: releaseserviceconfig-role
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:serviceaccounts 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (31 lines)</summary>  
+
+``` 
+./commit-64366834/development/components/release/development/kustomize.out.yaml
+1420,1433d1419
+< kind: ClusterRole
+< metadata:
+<   name: releaseserviceconfig-role
+< rules:
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - releaseserviceconfigs
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+1488,1501d1473
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: releaseserviceconfigs-rolebinding
+<   namespace: release-service
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: releaseserviceconfig-role
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: system:serviceaccounts 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from a8e0f437 to 64366834 on Thu Feb 29 12:24:20 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (107 lines)</summary>  
+
+``` 
+diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml
+new file mode 100644
+index 00000000..2aaaf106
+--- /dev/null
++++ b/components/release/base/cronjobs/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1                                                                             
++kind: Kustomization 
++
++resources:
++- remove-expired-releases.yaml
+diff --git a/components/release/base/cronjobs/remove-expired-releases.yaml b/components/release/base/cronjobs/remove-expired-releases.yaml
+new file mode 100644
+index 00000000..f87c8fea
+--- /dev/null
++++ b/components/release/base/cronjobs/remove-expired-releases.yaml
+@@ -0,0 +1,78 @@
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  name: remove-expired-releases
++  namespace: release-service
++spec:
++  schedule: "10 03 * * *"
++  successfulJobsHistoryLimit: 7
++  failedJobsHistoryLimit: 7
++  jobTemplate:
++    spec:
++      template:
++        spec:
++          restartPolicy: Never
++          serviceAccountName: release-service-controller-manager
++          volumes:
++            - name: temp-directory
++              emptyDir: {}
++          containers:
++            - name: release-cleanup
++              command:
++                - /bin/bash
++                - -c
++                - |
++                  set -o pipefail
++                  PATH="/bin:/usr/bin:/usr/local/bin"
++                  MAX_PROCS=5
++                  EXPIRED_RELEASES_FILE="/var/tmp/releases-to-be-deleted"
++                  NOW=$(date +%s)
++                  kubectl get release --all-namespaces \
++                  --sort-by=.status.expirationTime \
++                  --template '{{range .items}}{{.metadata.name}}{{"\t"}}{{.metadata.namespace}}{{"\t"}}{{.status.expirationTime}}{{"\n"}}{{end}}' > /tmp/kubectl-out
++                  awk -v now=${NOW} '{
++                       # parsing the expirationTime and converting it to epoch
++                       # so we can calculate easier the expired Releases
++                       gsub("[:\\-TZ]", " ", $3)
++                       t=mktime($3)
++                       expirationTime=strftime("%s", t)
++                       #
++                       # expirationTime should be smaller than today in seconds so it can be deleted
++                       if(now > expirationTime) {
++                         args="%s:%s"
++                         printf(args, $1, $2)
++                       } 
++                    }' /var/tmp/kubectl-out > $EXPIRED_RELEASES_FILE
++                  # The deleteAndLog will run the Release deletion and save the operation in a structured way that        
++                  # can be read easily by kubectl or journalctl                                                           
++                  function deleteAndLog() {
++                    release=${1%:*}
++                    namespace=${1#*:}
++                    kubectl delete release $release -n $namespace |while read logLine; do
++                      echo "INFO: namespace=${namespace} log=${logLine}"
++                    done                                                                                                  
++                  }                                                                                                       
++                  export -f deleteAndLog
++                  xargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS} bash -c 'deleteAndLog "{}"'
++              imagePullPolicy: IfNotPresent
++              image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
++              volumeMounts:
++                - mountPath: /var/tmp
++                  name: temp-directory
++              resources:
++                limits:
++                  cpu: 200m
++                  memory: 200Mi
++                requests:
++                  cpu: 10m
++                  memory: 10Mi
++              securityContext:
++                allowPrivilegeEscalation: false
++                capabilities:
++                  drop:
++                  - ALL
++                readOnlyRootFilesystem: true
++                runAsNonRoot: true
++                seccompProfile:
++                  type: RuntimeDefault
+diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
+index d0a8814a..4bde7f10 100644
+--- a/components/release/base/kustomization.yaml
++++ b/components/release/base/kustomization.yaml
+@@ -4,6 +4,7 @@ resources:
+ - release-pipeline-resources-clusterrole.yaml
+ - release-service-configurator-role.yaml
+ - release-team.yaml
++- cronjobs/
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (66 lines)</summary>  
+
+``` 
+./commit-a8e0f437/production/components/release/production/kustomize.out.yaml
+1825,1888d1824
+< apiVersion: batch/v1
+< kind: CronJob
+< metadata:
+<   name: remove-expired-releases
+<   namespace: release-service
+< spec:
+<   failedJobsHistoryLimit: 7
+<   jobTemplate:
+<     spec:
+<       template:
+<         spec:
+<           containers:
+<           - command:
+<             - /bin/bash
+<             - -c
+<             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nEXPIRED_RELEASES_FILE=\"/var/tmp/releases-to-be-deleted\"\nNOW=$(date
+<               +%s)\nkubectl get release --all-namespaces \\\n--sort-by=.status.expirationTime
+<               \\\n--template '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.expirationTime}}{{\"\\n\"}}{{end}}'
+<               > /tmp/kubectl-out\nawk -v now=${NOW} '{\n     # parsing the expirationTime
+<               and converting it to epoch\n     # so we can calculate easier the expired
+<               Releases\n     gsub(\"[:\\\\-TZ]\", \" \", $3)\n     t=mktime($3)\n
+<               \    expirationTime=strftime(\"%s\", t)\n     #\n     # expirationTime
+<               should be smaller than today in seconds so it can be deleted\n     if(now
+<               > expirationTime) {\n       args=\"%s:%s\"\n       printf(args, $1,
+<               $2)\n     } \n  }' /var/tmp/kubectl-out > $EXPIRED_RELEASES_FILE\n#
+<               The deleteAndLog will run the Release deletion and save the operation
+<               in a structured way that        \n# can be read easily by kubectl or
+<               journalctl                                                           \nfunction
+<               deleteAndLog() {\n  release=${1%:*}\n  namespace=${1#*:}\n  kubectl
+<               delete release $release -n $namespace |while read logLine; do\n    echo
+<               \"INFO: namespace=${namespace} log=${logLine}\"\n  done                                                                                                  \n}
+<               \                                                                                                      \nexport
+<               -f deleteAndLog\nxargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS}
+<               bash -c 'deleteAndLog \"{}\"'\n"
+<             image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
+<             imagePullPolicy: IfNotPresent
+<             name: release-cleanup
+<             resources:
+<               limits:
+<                 cpu: 200m
+<                 memory: 200Mi
+<               requests:
+<                 cpu: 10m
+<                 memory: 10Mi
+<             securityContext:
+<               allowPrivilegeEscalation: false
+<               capabilities:
+<                 drop:
+<                 - ALL
+<               readOnlyRootFilesystem: true
+<               runAsNonRoot: true
+<               seccompProfile:
+<                 type: RuntimeDefault
+<             volumeMounts:
+<             - mountPath: /var/tmp
+<               name: temp-directory
+<           restartPolicy: Never
+<           serviceAccountName: release-service-controller-manager
+<           volumes:
+<           - emptyDir: {}
+<             name: temp-directory
+<   schedule: 10 03 * * *
+<   successfulJobsHistoryLimit: 7
+< --- 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Staging changes from a8e0f437 to 64366834 on Thu Feb 29 12:24:20 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (107 lines)</summary>  
+
+``` 
+diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml
+new file mode 100644
+index 00000000..2aaaf106
+--- /dev/null
++++ b/components/release/base/cronjobs/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1                                                                             
++kind: Kustomization 
++
++resources:
++- remove-expired-releases.yaml
+diff --git a/components/release/base/cronjobs/remove-expired-releases.yaml b/components/release/base/cronjobs/remove-expired-releases.yaml
+new file mode 100644
+index 00000000..f87c8fea
+--- /dev/null
++++ b/components/release/base/cronjobs/remove-expired-releases.yaml
+@@ -0,0 +1,78 @@
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  name: remove-expired-releases
++  namespace: release-service
++spec:
++  schedule: "10 03 * * *"
++  successfulJobsHistoryLimit: 7
++  failedJobsHistoryLimit: 7
++  jobTemplate:
++    spec:
++      template:
++        spec:
++          restartPolicy: Never
++          serviceAccountName: release-service-controller-manager
++          volumes:
++            - name: temp-directory
++              emptyDir: {}
++          containers:
++            - name: release-cleanup
++              command:
++                - /bin/bash
++                - -c
++                - |
++                  set -o pipefail
++                  PATH="/bin:/usr/bin:/usr/local/bin"
++                  MAX_PROCS=5
++                  EXPIRED_RELEASES_FILE="/var/tmp/releases-to-be-deleted"
++                  NOW=$(date +%s)
++                  kubectl get release --all-namespaces \
++                  --sort-by=.status.expirationTime \
++                  --template '{{range .items}}{{.metadata.name}}{{"\t"}}{{.metadata.namespace}}{{"\t"}}{{.status.expirationTime}}{{"\n"}}{{end}}' > /tmp/kubectl-out
++                  awk -v now=${NOW} '{
++                       # parsing the expirationTime and converting it to epoch
++                       # so we can calculate easier the expired Releases
++                       gsub("[:\\-TZ]", " ", $3)
++                       t=mktime($3)
++                       expirationTime=strftime("%s", t)
++                       #
++                       # expirationTime should be smaller than today in seconds so it can be deleted
++                       if(now > expirationTime) {
++                         args="%s:%s"
++                         printf(args, $1, $2)
++                       } 
++                    }' /var/tmp/kubectl-out > $EXPIRED_RELEASES_FILE
++                  # The deleteAndLog will run the Release deletion and save the operation in a structured way that        
++                  # can be read easily by kubectl or journalctl                                                           
++                  function deleteAndLog() {
++                    release=${1%:*}
++                    namespace=${1#*:}
++                    kubectl delete release $release -n $namespace |while read logLine; do
++                      echo "INFO: namespace=${namespace} log=${logLine}"
++                    done                                                                                                  
++                  }                                                                                                       
++                  export -f deleteAndLog
++                  xargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS} bash -c 'deleteAndLog "{}"'
++              imagePullPolicy: IfNotPresent
++              image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
++              volumeMounts:
++                - mountPath: /var/tmp
++                  name: temp-directory
++              resources:
++                limits:
++                  cpu: 200m
++                  memory: 200Mi
++                requests:
++                  cpu: 10m
++                  memory: 10Mi
++              securityContext:
++                allowPrivilegeEscalation: false
++                capabilities:
++                  drop:
++                  - ALL
++                readOnlyRootFilesystem: true
++                runAsNonRoot: true
++                seccompProfile:
++                  type: RuntimeDefault
+diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
+index d0a8814a..4bde7f10 100644
+--- a/components/release/base/kustomization.yaml
++++ b/components/release/base/kustomization.yaml
+@@ -4,6 +4,7 @@ resources:
+ - release-pipeline-resources-clusterrole.yaml
+ - release-service-configurator-role.yaml
+ - release-team.yaml
++- cronjobs/
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (66 lines)</summary>  
+
+``` 
+./commit-a8e0f437/staging/components/release/staging/kustomize.out.yaml
+1825,1888d1824
+< apiVersion: batch/v1
+< kind: CronJob
+< metadata:
+<   name: remove-expired-releases
+<   namespace: release-service
+< spec:
+<   failedJobsHistoryLimit: 7
+<   jobTemplate:
+<     spec:
+<       template:
+<         spec:
+<           containers:
+<           - command:
+<             - /bin/bash
+<             - -c
+<             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nEXPIRED_RELEASES_FILE=\"/var/tmp/releases-to-be-deleted\"\nNOW=$(date
+<               +%s)\nkubectl get release --all-namespaces \\\n--sort-by=.status.expirationTime
+<               \\\n--template '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.expirationTime}}{{\"\\n\"}}{{end}}'
+<               > /tmp/kubectl-out\nawk -v now=${NOW} '{\n     # parsing the expirationTime
+<               and converting it to epoch\n     # so we can calculate easier the expired
+<               Releases\n     gsub(\"[:\\\\-TZ]\", \" \", $3)\n     t=mktime($3)\n
+<               \    expirationTime=strftime(\"%s\", t)\n     #\n     # expirationTime
+<               should be smaller than today in seconds so it can be deleted\n     if(now
+<               > expirationTime) {\n       args=\"%s:%s\"\n       printf(args, $1,
+<               $2)\n     } \n  }' /var/tmp/kubectl-out > $EXPIRED_RELEASES_FILE\n#
+<               The deleteAndLog will run the Release deletion and save the operation
+<               in a structured way that        \n# can be read easily by kubectl or
+<               journalctl                                                           \nfunction
+<               deleteAndLog() {\n  release=${1%:*}\n  namespace=${1#*:}\n  kubectl
+<               delete release $release -n $namespace |while read logLine; do\n    echo
+<               \"INFO: namespace=${namespace} log=${logLine}\"\n  done                                                                                                  \n}
+<               \                                                                                                      \nexport
+<               -f deleteAndLog\nxargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS}
+<               bash -c 'deleteAndLog \"{}\"'\n"
+<             image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
+<             imagePullPolicy: IfNotPresent
+<             name: release-cleanup
+<             resources:
+<               limits:
+<                 cpu: 200m
+<                 memory: 200Mi
+<               requests:
+<                 cpu: 10m
+<                 memory: 10Mi
+<             securityContext:
+<               allowPrivilegeEscalation: false
+<               capabilities:
+<                 drop:
+<                 - ALL
+<               readOnlyRootFilesystem: true
+<               runAsNonRoot: true
+<               seccompProfile:
+<                 type: RuntimeDefault
+<             volumeMounts:
+<             - mountPath: /var/tmp
+<               name: temp-directory
+<           restartPolicy: Never
+<           serviceAccountName: release-service-controller-manager
+<           volumes:
+<           - emptyDir: {}
+<             name: temp-directory
+<   schedule: 10 03 * * *
+<   successfulJobsHistoryLimit: 7
+< --- 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Development changes from a8e0f437 to 64366834 on Thu Feb 29 12:24:20 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (107 lines)</summary>  
+
+``` 
+diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml
+new file mode 100644
+index 00000000..2aaaf106
+--- /dev/null
++++ b/components/release/base/cronjobs/kustomization.yaml
+@@ -0,0 +1,5 @@
++apiVersion: kustomize.config.k8s.io/v1beta1                                                                             
++kind: Kustomization 
++
++resources:
++- remove-expired-releases.yaml
+diff --git a/components/release/base/cronjobs/remove-expired-releases.yaml b/components/release/base/cronjobs/remove-expired-releases.yaml
+new file mode 100644
+index 00000000..f87c8fea
+--- /dev/null
++++ b/components/release/base/cronjobs/remove-expired-releases.yaml
+@@ -0,0 +1,78 @@
++---
++apiVersion: batch/v1
++kind: CronJob
++metadata:
++  name: remove-expired-releases
++  namespace: release-service
++spec:
++  schedule: "10 03 * * *"
++  successfulJobsHistoryLimit: 7
++  failedJobsHistoryLimit: 7
++  jobTemplate:
++    spec:
++      template:
++        spec:
++          restartPolicy: Never
++          serviceAccountName: release-service-controller-manager
++          volumes:
++            - name: temp-directory
++              emptyDir: {}
++          containers:
++            - name: release-cleanup
++              command:
++                - /bin/bash
++                - -c
++                - |
++                  set -o pipefail
++                  PATH="/bin:/usr/bin:/usr/local/bin"
++                  MAX_PROCS=5
++                  EXPIRED_RELEASES_FILE="/var/tmp/releases-to-be-deleted"
++                  NOW=$(date +%s)
++                  kubectl get release --all-namespaces \
++                  --sort-by=.status.expirationTime \
++                  --template '{{range .items}}{{.metadata.name}}{{"\t"}}{{.metadata.namespace}}{{"\t"}}{{.status.expirationTime}}{{"\n"}}{{end}}' > /tmp/kubectl-out
++                  awk -v now=${NOW} '{
++                       # parsing the expirationTime and converting it to epoch
++                       # so we can calculate easier the expired Releases
++                       gsub("[:\\-TZ]", " ", $3)
++                       t=mktime($3)
++                       expirationTime=strftime("%s", t)
++                       #
++                       # expirationTime should be smaller than today in seconds so it can be deleted
++                       if(now > expirationTime) {
++                         args="%s:%s"
++                         printf(args, $1, $2)
++                       } 
++                    }' /var/tmp/kubectl-out > $EXPIRED_RELEASES_FILE
++                  # The deleteAndLog will run the Release deletion and save the operation in a structured way that        
++                  # can be read easily by kubectl or journalctl                                                           
++                  function deleteAndLog() {
++                    release=${1%:*}
++                    namespace=${1#*:}
++                    kubectl delete release $release -n $namespace |while read logLine; do
++                      echo "INFO: namespace=${namespace} log=${logLine}"
++                    done                                                                                                  
++                  }                                                                                                       
++                  export -f deleteAndLog
++                  xargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS} bash -c 'deleteAndLog "{}"'
++              imagePullPolicy: IfNotPresent
++              image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
++              volumeMounts:
++                - mountPath: /var/tmp
++                  name: temp-directory
++              resources:
++                limits:
++                  cpu: 200m
++                  memory: 200Mi
++                requests:
++                  cpu: 10m
++                  memory: 10Mi
++              securityContext:
++                allowPrivilegeEscalation: false
++                capabilities:
++                  drop:
++                  - ALL
++                readOnlyRootFilesystem: true
++                runAsNonRoot: true
++                seccompProfile:
++                  type: RuntimeDefault
+diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
+index d0a8814a..4bde7f10 100644
+--- a/components/release/base/kustomization.yaml
++++ b/components/release/base/kustomization.yaml
+@@ -4,6 +4,7 @@ resources:
+ - release-pipeline-resources-clusterrole.yaml
+ - release-service-configurator-role.yaml
+ - release-team.yaml
++- cronjobs/
+ 
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (66 lines)</summary>  
+
+``` 
+./commit-a8e0f437/development/components/release/development/kustomize.out.yaml
+1825,1888d1824
+< apiVersion: batch/v1
+< kind: CronJob
+< metadata:
+<   name: remove-expired-releases
+<   namespace: release-service
+< spec:
+<   failedJobsHistoryLimit: 7
+<   jobTemplate:
+<     spec:
+<       template:
+<         spec:
+<           containers:
+<           - command:
+<             - /bin/bash
+<             - -c
+<             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nEXPIRED_RELEASES_FILE=\"/var/tmp/releases-to-be-deleted\"\nNOW=$(date
+<               +%s)\nkubectl get release --all-namespaces \\\n--sort-by=.status.expirationTime
+<               \\\n--template '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.expirationTime}}{{\"\\n\"}}{{end}}'
+<               > /tmp/kubectl-out\nawk -v now=${NOW} '{\n     # parsing the expirationTime
+<               and converting it to epoch\n     # so we can calculate easier the expired
+<               Releases\n     gsub(\"[:\\\\-TZ]\", \" \", $3)\n     t=mktime($3)\n
+<               \    expirationTime=strftime(\"%s\", t)\n     #\n     # expirationTime
+<               should be smaller than today in seconds so it can be deleted\n     if(now
+<               > expirationTime) {\n       args=\"%s:%s\"\n       printf(args, $1,
+<               $2)\n     } \n  }' /var/tmp/kubectl-out > $EXPIRED_RELEASES_FILE\n#
+<               The deleteAndLog will run the Release deletion and save the operation
+<               in a structured way that        \n# can be read easily by kubectl or
+<               journalctl                                                           \nfunction
+<               deleteAndLog() {\n  release=${1%:*}\n  namespace=${1#*:}\n  kubectl
+<               delete release $release -n $namespace |while read logLine; do\n    echo
+<               \"INFO: namespace=${namespace} log=${logLine}\"\n  done                                                                                                  \n}
+<               \                                                                                                      \nexport
+<               -f deleteAndLog\nxargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS}
+<               bash -c 'deleteAndLog \"{}\"'\n"
+<             image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
+<             imagePullPolicy: IfNotPresent
+<             name: release-cleanup
+<             resources:
+<               limits:
+<                 cpu: 200m
+<                 memory: 200Mi
+<               requests:
+<                 cpu: 10m
+<                 memory: 10Mi
+<             securityContext:
+<               allowPrivilegeEscalation: false
+<               capabilities:
+<                 drop:
+<                 - ALL
+<               readOnlyRootFilesystem: true
+<               runAsNonRoot: true
+<               seccompProfile:
+<                 type: RuntimeDefault
+<             volumeMounts:
+<             - mountPath: /var/tmp
+<               name: temp-directory
+<           restartPolicy: Never
+<           serviceAccountName: release-service-controller-manager
+<           volumes:
+<           - emptyDir: {}
+<             name: temp-directory
+<   schedule: 10 03 * * *
+<   successfulJobsHistoryLimit: 7
+< --- 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from c6a44dda to a8e0f437 on Wed Feb 28 23:22:59 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/hack/generate-deploy-config.sh b/hack/generate-deploy-config.sh
+index aaf581ee..cb7caa35 100755
+--- a/hack/generate-deploy-config.sh
++++ b/hack/generate-deploy-config.sh
+@@ -11,7 +11,7 @@ function print_help() {
+   echo "  -c, --component SUBDIR    Path to a directory. Defaults to the current directory."
+   echo "  -h, --help                Help message"
+   echo
+-  echo "Example usage: \`$0 components/pipeline-service/production"
++  echo "Example usage: \`$0 -c components/pipeline-service/production"
+ }
+ 
+ function parse_args() { 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Staging changes from c6a44dda to a8e0f437 on Wed Feb 28 23:22:59 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/hack/generate-deploy-config.sh b/hack/generate-deploy-config.sh
+index aaf581ee..cb7caa35 100755
+--- a/hack/generate-deploy-config.sh
++++ b/hack/generate-deploy-config.sh
+@@ -11,7 +11,7 @@ function print_help() {
+   echo "  -c, --component SUBDIR    Path to a directory. Defaults to the current directory."
+   echo "  -h, --help                Help message"
+   echo
+-  echo "Example usage: \`$0 components/pipeline-service/production"
++  echo "Example usage: \`$0 -c components/pipeline-service/production"
+ }
+ 
+ function parse_args() { 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Development changes from c6a44dda to a8e0f437 on Wed Feb 28 23:22:59 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/hack/generate-deploy-config.sh b/hack/generate-deploy-config.sh
+index aaf581ee..cb7caa35 100755
+--- a/hack/generate-deploy-config.sh
++++ b/hack/generate-deploy-config.sh
+@@ -11,7 +11,7 @@ function print_help() {
+   echo "  -c, --component SUBDIR    Path to a directory. Defaults to the current directory."
+   echo "  -h, --help                Help message"
+   echo
+-  echo "Example usage: \`$0 components/pipeline-service/production"
++  echo "Example usage: \`$0 -c components/pipeline-service/production"
+ }
+ 
+ function parse_args() { 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
 ```
  
 </details>  

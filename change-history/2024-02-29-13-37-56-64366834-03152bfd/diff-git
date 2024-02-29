@@ -1,0 +1,46 @@
+diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
+index 4bde7f10..3313e531 100644
+--- a/components/release/base/kustomization.yaml
++++ b/components/release/base/kustomization.yaml
+@@ -2,6 +2,7 @@ resources:
+ - allow-argocd-to-manage.yaml
+ - argocd-permissions.yaml
+ - release-pipeline-resources-clusterrole.yaml
++- release-service-config-rbac.yaml
+ - release-service-configurator-role.yaml
+ - release-team.yaml
+ - cronjobs/
+diff --git a/components/release/base/release-service-config-rbac.yaml b/components/release/base/release-service-config-rbac.yaml
+new file mode 100644
+index 00000000..3837427b
+--- /dev/null
++++ b/components/release/base/release-service-config-rbac.yaml
+@@ -0,0 +1,28 @@
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRole
++metadata:
++  name: releaseserviceconfig-role
++rules:
++- apiGroups:
++  - appstudio.redhat.com
++  resources:
++  - releaseserviceconfigs
++  verbs:
++  - get
++  - list
++  - watch
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: releaseserviceconfigs-rolebinding
++  namespace: release-service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: releaseserviceconfig-role
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: system:serviceaccounts

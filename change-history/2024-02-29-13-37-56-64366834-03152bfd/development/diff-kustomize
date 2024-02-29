@@ -1,0 +1,31 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-03152bfd/development/components/release/development/kustomize.out.yaml ./kustomized-cache/commit-64366834/development/components/release/development/kustomize.out.yaml
+1420,1433d1419
+< kind: ClusterRole
+< metadata:
+<   name: releaseserviceconfig-role
+< rules:
+< - apiGroups:
+<   - appstudio.redhat.com
+<   resources:
+<   - releaseserviceconfigs
+<   verbs:
+<   - get
+<   - list
+<   - watch
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+1488,1501d1473
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   name: releaseserviceconfigs-rolebinding
+<   namespace: release-service
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: ClusterRole
+<   name: releaseserviceconfig-role
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: system:serviceaccounts
