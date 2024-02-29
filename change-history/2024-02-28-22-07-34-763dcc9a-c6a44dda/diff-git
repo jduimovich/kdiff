@@ -1,0 +1,52 @@
+diff --git a/components/pipeline-service/production/base/bump-results-watcher-mem.yaml b/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
+index 0e80093b..760cbaf5 100644
+--- a/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
++++ b/components/pipeline-service/production/base/bump-results-watcher-mem.yaml
+@@ -1,4 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/template/spec/containers/1/resources/limits/memory
++  value: "3Gi"
++- op: replace
++  path: /spec/template/spec/containers/1/resources/requests/memory
+   value: "3Gi"
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 767a507c..d4623ca7 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1548,7 +1548,7 @@ spec:
+             memory: 3Gi
+           requests:
+             cpu: 100m
+-            memory: 64Mi
++            memory: 3Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index d7b922e0..98cd9930 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1548,7 +1548,7 @@ spec:
+             memory: 3Gi
+           requests:
+             cpu: 100m
+-            memory: 64Mi
++            memory: 3Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index f6faee3d..690b3071 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1548,7 +1548,7 @@ spec:
+             memory: 3Gi
+           requests:
+             cpu: 100m
+-            memory: 64Mi
++            memory: 3Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
