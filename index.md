@@ -1,12 +1,426 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Mar  1 12:02:31 UTC 2024
+### This file generated at Fri Mar  1 16:04:18 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
+<h3>1: Production changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (24 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
+index 71aac860..89584eb5 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
+@@ -32,15 +32,15 @@ spec:
+       auth:
+         authClientConfigRaw: '{
+                   "realm": "redhat-external",
+-                  "auth-server-url": "https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth",
++                  "auth-server-url": "https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth",
+                   "ssl-required": "ALL",
+                   "resource": "cloud-services",
+                   "clientId": "cloud-services",
+                   "public-client": true
+                 }'
+-        authClientLibraryURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js
+-        authClientPublicKeysURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs
+-        ssoBaseURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com
++        authClientLibraryURL: https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js
++        authClientPublicKeysURL: https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs
++        ssoBaseURL: https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com
+         ssoRealm: redhat-external
+       environment: prod
+       replicas: 10 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (24 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
+index 71aac860..89584eb5 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
+@@ -32,15 +32,15 @@ spec:
+       auth:
+         authClientConfigRaw: '{
+                   "realm": "redhat-external",
+-                  "auth-server-url": "https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth",
++                  "auth-server-url": "https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth",
+                   "ssl-required": "ALL",
+                   "resource": "cloud-services",
+                   "clientId": "cloud-services",
+                   "public-client": true
+                 }'
+-        authClientLibraryURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js
+-        authClientPublicKeysURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs
+-        ssoBaseURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com
++        authClientLibraryURL: https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js
++        authClientPublicKeysURL: https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs
++        ssoBaseURL: https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com
+         ssoRealm: redhat-external
+       environment: prod
+       replicas: 10 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (24 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
+index 71aac860..89584eb5 100644
+--- a/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
++++ b/components/sandbox/toolchain-host-operator/production/stone-prod-p01/toolchainconfig.yaml
+@@ -32,15 +32,15 @@ spec:
+       auth:
+         authClientConfigRaw: '{
+                   "realm": "redhat-external",
+-                  "auth-server-url": "https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth",
++                  "auth-server-url": "https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth",
+                   "ssl-required": "ALL",
+                   "resource": "cloud-services",
+                   "clientId": "cloud-services",
+                   "public-client": true
+                 }'
+-        authClientLibraryURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js
+-        authClientPublicKeysURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs
+-        ssoBaseURL: https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com
++        authClientLibraryURL: https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js
++        authClientPublicKeysURL: https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs
++        ssoBaseURL: https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com
+         ssoRealm: redhat-external
+       environment: prod
+       replicas: 10 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -162,7 +576,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
+<h3>2: Staging changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -321,7 +735,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
+<h3>2: Development changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -436,7 +850,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
+<h3>3: Production changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -589,7 +1003,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
+<h3>3: Staging changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -741,7 +1155,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
+<h3>3: Development changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -845,7 +1259,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
+<h3>4: Production changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
  
 <details> 
 <summary>Git Diff (46 lines)</summary>  
@@ -1049,7 +1463,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
+<h3>4: Staging changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
  
 <details> 
 <summary>Git Diff (46 lines)</summary>  
@@ -1256,7 +1670,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
+<h3>4: Development changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
  
 <details> 
 <summary>Git Diff (46 lines)</summary>  
@@ -1347,864 +1761,6 @@ index 00000000..3837427b
 < - apiGroup: rbac.authorization.k8s.io
 <   kind: Group
 <   name: system:serviceaccounts 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from a8e0f437 to 64366834 on Thu Feb 29 12:24:20 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (107 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml
-new file mode 100644
-index 00000000..2aaaf106
---- /dev/null
-+++ b/components/release/base/cronjobs/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1                                                                             
-+kind: Kustomization 
-+
-+resources:
-+- remove-expired-releases.yaml
-diff --git a/components/release/base/cronjobs/remove-expired-releases.yaml b/components/release/base/cronjobs/remove-expired-releases.yaml
-new file mode 100644
-index 00000000..f87c8fea
---- /dev/null
-+++ b/components/release/base/cronjobs/remove-expired-releases.yaml
-@@ -0,0 +1,78 @@
-+---
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: remove-expired-releases
-+  namespace: release-service
-+spec:
-+  schedule: "10 03 * * *"
-+  successfulJobsHistoryLimit: 7
-+  failedJobsHistoryLimit: 7
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          restartPolicy: Never
-+          serviceAccountName: release-service-controller-manager
-+          volumes:
-+            - name: temp-directory
-+              emptyDir: {}
-+          containers:
-+            - name: release-cleanup
-+              command:
-+                - /bin/bash
-+                - -c
-+                - |
-+                  set -o pipefail
-+                  PATH="/bin:/usr/bin:/usr/local/bin"
-+                  MAX_PROCS=5
-+                  EXPIRED_RELEASES_FILE="/var/tmp/releases-to-be-deleted"
-+                  NOW=$(date +%s)
-+                  kubectl get release --all-namespaces \
-+                  --sort-by=.status.expirationTime \
-+                  --template '{{range .items}}{{.metadata.name}}{{"\t"}}{{.metadata.namespace}}{{"\t"}}{{.status.expirationTime}}{{"\n"}}{{end}}' > /tmp/kubectl-out
-+                  awk -v now=${NOW} '{
-+                       # parsing the expirationTime and converting it to epoch
-+                       # so we can calculate easier the expired Releases
-+                       gsub("[:\\-TZ]", " ", $3)
-+                       t=mktime($3)
-+                       expirationTime=strftime("%s", t)
-+                       #
-+                       # expirationTime should be smaller than today in seconds so it can be deleted
-+                       if(now > expirationTime) {
-+                         args="%s:%s"
-+                         printf(args, $1, $2)
-+                       } 
-+                    }' /var/tmp/kubectl-out > $EXPIRED_RELEASES_FILE
-+                  # The deleteAndLog will run the Release deletion and save the operation in a structured way that        
-+                  # can be read easily by kubectl or journalctl                                                           
-+                  function deleteAndLog() {
-+                    release=${1%:*}
-+                    namespace=${1#*:}
-+                    kubectl delete release $release -n $namespace |while read logLine; do
-+                      echo "INFO: namespace=${namespace} log=${logLine}"
-+                    done                                                                                                  
-+                  }                                                                                                       
-+                  export -f deleteAndLog
-+                  xargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS} bash -c 'deleteAndLog "{}"'
-+              imagePullPolicy: IfNotPresent
-+              image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
-+              volumeMounts:
-+                - mountPath: /var/tmp
-+                  name: temp-directory
-+              resources:
-+                limits:
-+                  cpu: 200m
-+                  memory: 200Mi
-+                requests:
-+                  cpu: 10m
-+                  memory: 10Mi
-+              securityContext:
-+                allowPrivilegeEscalation: false
-+                capabilities:
-+                  drop:
-+                  - ALL
-+                readOnlyRootFilesystem: true
-+                runAsNonRoot: true
-+                seccompProfile:
-+                  type: RuntimeDefault
-diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
-index d0a8814a..4bde7f10 100644
---- a/components/release/base/kustomization.yaml
-+++ b/components/release/base/kustomization.yaml
-@@ -4,6 +4,7 @@ resources:
- - release-pipeline-resources-clusterrole.yaml
- - release-service-configurator-role.yaml
- - release-team.yaml
-+- cronjobs/
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (66 lines)</summary>  
-
-``` 
-./commit-a8e0f437/production/components/release/production/kustomize.out.yaml
-1825,1888d1824
-< apiVersion: batch/v1
-< kind: CronJob
-< metadata:
-<   name: remove-expired-releases
-<   namespace: release-service
-< spec:
-<   failedJobsHistoryLimit: 7
-<   jobTemplate:
-<     spec:
-<       template:
-<         spec:
-<           containers:
-<           - command:
-<             - /bin/bash
-<             - -c
-<             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nEXPIRED_RELEASES_FILE=\"/var/tmp/releases-to-be-deleted\"\nNOW=$(date
-<               +%s)\nkubectl get release --all-namespaces \\\n--sort-by=.status.expirationTime
-<               \\\n--template '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.expirationTime}}{{\"\\n\"}}{{end}}'
-<               > /tmp/kubectl-out\nawk -v now=${NOW} '{\n     # parsing the expirationTime
-<               and converting it to epoch\n     # so we can calculate easier the expired
-<               Releases\n     gsub(\"[:\\\\-TZ]\", \" \", $3)\n     t=mktime($3)\n
-<               \    expirationTime=strftime(\"%s\", t)\n     #\n     # expirationTime
-<               should be smaller than today in seconds so it can be deleted\n     if(now
-<               > expirationTime) {\n       args=\"%s:%s\"\n       printf(args, $1,
-<               $2)\n     } \n  }' /var/tmp/kubectl-out > $EXPIRED_RELEASES_FILE\n#
-<               The deleteAndLog will run the Release deletion and save the operation
-<               in a structured way that        \n# can be read easily by kubectl or
-<               journalctl                                                           \nfunction
-<               deleteAndLog() {\n  release=${1%:*}\n  namespace=${1#*:}\n  kubectl
-<               delete release $release -n $namespace |while read logLine; do\n    echo
-<               \"INFO: namespace=${namespace} log=${logLine}\"\n  done                                                                                                  \n}
-<               \                                                                                                      \nexport
-<               -f deleteAndLog\nxargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS}
-<               bash -c 'deleteAndLog \"{}\"'\n"
-<             image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
-<             imagePullPolicy: IfNotPresent
-<             name: release-cleanup
-<             resources:
-<               limits:
-<                 cpu: 200m
-<                 memory: 200Mi
-<               requests:
-<                 cpu: 10m
-<                 memory: 10Mi
-<             securityContext:
-<               allowPrivilegeEscalation: false
-<               capabilities:
-<                 drop:
-<                 - ALL
-<               readOnlyRootFilesystem: true
-<               runAsNonRoot: true
-<               seccompProfile:
-<                 type: RuntimeDefault
-<             volumeMounts:
-<             - mountPath: /var/tmp
-<               name: temp-directory
-<           restartPolicy: Never
-<           serviceAccountName: release-service-controller-manager
-<           volumes:
-<           - emptyDir: {}
-<             name: temp-directory
-<   schedule: 10 03 * * *
-<   successfulJobsHistoryLimit: 7
-< --- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from a8e0f437 to 64366834 on Thu Feb 29 12:24:20 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (107 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml
-new file mode 100644
-index 00000000..2aaaf106
---- /dev/null
-+++ b/components/release/base/cronjobs/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1                                                                             
-+kind: Kustomization 
-+
-+resources:
-+- remove-expired-releases.yaml
-diff --git a/components/release/base/cronjobs/remove-expired-releases.yaml b/components/release/base/cronjobs/remove-expired-releases.yaml
-new file mode 100644
-index 00000000..f87c8fea
---- /dev/null
-+++ b/components/release/base/cronjobs/remove-expired-releases.yaml
-@@ -0,0 +1,78 @@
-+---
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: remove-expired-releases
-+  namespace: release-service
-+spec:
-+  schedule: "10 03 * * *"
-+  successfulJobsHistoryLimit: 7
-+  failedJobsHistoryLimit: 7
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          restartPolicy: Never
-+          serviceAccountName: release-service-controller-manager
-+          volumes:
-+            - name: temp-directory
-+              emptyDir: {}
-+          containers:
-+            - name: release-cleanup
-+              command:
-+                - /bin/bash
-+                - -c
-+                - |
-+                  set -o pipefail
-+                  PATH="/bin:/usr/bin:/usr/local/bin"
-+                  MAX_PROCS=5
-+                  EXPIRED_RELEASES_FILE="/var/tmp/releases-to-be-deleted"
-+                  NOW=$(date +%s)
-+                  kubectl get release --all-namespaces \
-+                  --sort-by=.status.expirationTime \
-+                  --template '{{range .items}}{{.metadata.name}}{{"\t"}}{{.metadata.namespace}}{{"\t"}}{{.status.expirationTime}}{{"\n"}}{{end}}' > /tmp/kubectl-out
-+                  awk -v now=${NOW} '{
-+                       # parsing the expirationTime and converting it to epoch
-+                       # so we can calculate easier the expired Releases
-+                       gsub("[:\\-TZ]", " ", $3)
-+                       t=mktime($3)
-+                       expirationTime=strftime("%s", t)
-+                       #
-+                       # expirationTime should be smaller than today in seconds so it can be deleted
-+                       if(now > expirationTime) {
-+                         args="%s:%s"
-+                         printf(args, $1, $2)
-+                       } 
-+                    }' /var/tmp/kubectl-out > $EXPIRED_RELEASES_FILE
-+                  # The deleteAndLog will run the Release deletion and save the operation in a structured way that        
-+                  # can be read easily by kubectl or journalctl                                                           
-+                  function deleteAndLog() {
-+                    release=${1%:*}
-+                    namespace=${1#*:}
-+                    kubectl delete release $release -n $namespace |while read logLine; do
-+                      echo "INFO: namespace=${namespace} log=${logLine}"
-+                    done                                                                                                  
-+                  }                                                                                                       
-+                  export -f deleteAndLog
-+                  xargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS} bash -c 'deleteAndLog "{}"'
-+              imagePullPolicy: IfNotPresent
-+              image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
-+              volumeMounts:
-+                - mountPath: /var/tmp
-+                  name: temp-directory
-+              resources:
-+                limits:
-+                  cpu: 200m
-+                  memory: 200Mi
-+                requests:
-+                  cpu: 10m
-+                  memory: 10Mi
-+              securityContext:
-+                allowPrivilegeEscalation: false
-+                capabilities:
-+                  drop:
-+                  - ALL
-+                readOnlyRootFilesystem: true
-+                runAsNonRoot: true
-+                seccompProfile:
-+                  type: RuntimeDefault
-diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
-index d0a8814a..4bde7f10 100644
---- a/components/release/base/kustomization.yaml
-+++ b/components/release/base/kustomization.yaml
-@@ -4,6 +4,7 @@ resources:
- - release-pipeline-resources-clusterrole.yaml
- - release-service-configurator-role.yaml
- - release-team.yaml
-+- cronjobs/
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (66 lines)</summary>  
-
-``` 
-./commit-a8e0f437/staging/components/release/staging/kustomize.out.yaml
-1825,1888d1824
-< apiVersion: batch/v1
-< kind: CronJob
-< metadata:
-<   name: remove-expired-releases
-<   namespace: release-service
-< spec:
-<   failedJobsHistoryLimit: 7
-<   jobTemplate:
-<     spec:
-<       template:
-<         spec:
-<           containers:
-<           - command:
-<             - /bin/bash
-<             - -c
-<             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nEXPIRED_RELEASES_FILE=\"/var/tmp/releases-to-be-deleted\"\nNOW=$(date
-<               +%s)\nkubectl get release --all-namespaces \\\n--sort-by=.status.expirationTime
-<               \\\n--template '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.expirationTime}}{{\"\\n\"}}{{end}}'
-<               > /tmp/kubectl-out\nawk -v now=${NOW} '{\n     # parsing the expirationTime
-<               and converting it to epoch\n     # so we can calculate easier the expired
-<               Releases\n     gsub(\"[:\\\\-TZ]\", \" \", $3)\n     t=mktime($3)\n
-<               \    expirationTime=strftime(\"%s\", t)\n     #\n     # expirationTime
-<               should be smaller than today in seconds so it can be deleted\n     if(now
-<               > expirationTime) {\n       args=\"%s:%s\"\n       printf(args, $1,
-<               $2)\n     } \n  }' /var/tmp/kubectl-out > $EXPIRED_RELEASES_FILE\n#
-<               The deleteAndLog will run the Release deletion and save the operation
-<               in a structured way that        \n# can be read easily by kubectl or
-<               journalctl                                                           \nfunction
-<               deleteAndLog() {\n  release=${1%:*}\n  namespace=${1#*:}\n  kubectl
-<               delete release $release -n $namespace |while read logLine; do\n    echo
-<               \"INFO: namespace=${namespace} log=${logLine}\"\n  done                                                                                                  \n}
-<               \                                                                                                      \nexport
-<               -f deleteAndLog\nxargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS}
-<               bash -c 'deleteAndLog \"{}\"'\n"
-<             image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
-<             imagePullPolicy: IfNotPresent
-<             name: release-cleanup
-<             resources:
-<               limits:
-<                 cpu: 200m
-<                 memory: 200Mi
-<               requests:
-<                 cpu: 10m
-<                 memory: 10Mi
-<             securityContext:
-<               allowPrivilegeEscalation: false
-<               capabilities:
-<                 drop:
-<                 - ALL
-<               readOnlyRootFilesystem: true
-<               runAsNonRoot: true
-<               seccompProfile:
-<                 type: RuntimeDefault
-<             volumeMounts:
-<             - mountPath: /var/tmp
-<               name: temp-directory
-<           restartPolicy: Never
-<           serviceAccountName: release-service-controller-manager
-<           volumes:
-<           - emptyDir: {}
-<             name: temp-directory
-<   schedule: 10 03 * * *
-<   successfulJobsHistoryLimit: 7
-< --- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from a8e0f437 to 64366834 on Thu Feb 29 12:24:20 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (107 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml
-new file mode 100644
-index 00000000..2aaaf106
---- /dev/null
-+++ b/components/release/base/cronjobs/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1                                                                             
-+kind: Kustomization 
-+
-+resources:
-+- remove-expired-releases.yaml
-diff --git a/components/release/base/cronjobs/remove-expired-releases.yaml b/components/release/base/cronjobs/remove-expired-releases.yaml
-new file mode 100644
-index 00000000..f87c8fea
---- /dev/null
-+++ b/components/release/base/cronjobs/remove-expired-releases.yaml
-@@ -0,0 +1,78 @@
-+---
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: remove-expired-releases
-+  namespace: release-service
-+spec:
-+  schedule: "10 03 * * *"
-+  successfulJobsHistoryLimit: 7
-+  failedJobsHistoryLimit: 7
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          restartPolicy: Never
-+          serviceAccountName: release-service-controller-manager
-+          volumes:
-+            - name: temp-directory
-+              emptyDir: {}
-+          containers:
-+            - name: release-cleanup
-+              command:
-+                - /bin/bash
-+                - -c
-+                - |
-+                  set -o pipefail
-+                  PATH="/bin:/usr/bin:/usr/local/bin"
-+                  MAX_PROCS=5
-+                  EXPIRED_RELEASES_FILE="/var/tmp/releases-to-be-deleted"
-+                  NOW=$(date +%s)
-+                  kubectl get release --all-namespaces \
-+                  --sort-by=.status.expirationTime \
-+                  --template '{{range .items}}{{.metadata.name}}{{"\t"}}{{.metadata.namespace}}{{"\t"}}{{.status.expirationTime}}{{"\n"}}{{end}}' > /tmp/kubectl-out
-+                  awk -v now=${NOW} '{
-+                       # parsing the expirationTime and converting it to epoch
-+                       # so we can calculate easier the expired Releases
-+                       gsub("[:\\-TZ]", " ", $3)
-+                       t=mktime($3)
-+                       expirationTime=strftime("%s", t)
-+                       #
-+                       # expirationTime should be smaller than today in seconds so it can be deleted
-+                       if(now > expirationTime) {
-+                         args="%s:%s"
-+                         printf(args, $1, $2)
-+                       } 
-+                    }' /var/tmp/kubectl-out > $EXPIRED_RELEASES_FILE
-+                  # The deleteAndLog will run the Release deletion and save the operation in a structured way that        
-+                  # can be read easily by kubectl or journalctl                                                           
-+                  function deleteAndLog() {
-+                    release=${1%:*}
-+                    namespace=${1#*:}
-+                    kubectl delete release $release -n $namespace |while read logLine; do
-+                      echo "INFO: namespace=${namespace} log=${logLine}"
-+                    done                                                                                                  
-+                  }                                                                                                       
-+                  export -f deleteAndLog
-+                  xargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS} bash -c 'deleteAndLog "{}"'
-+              imagePullPolicy: IfNotPresent
-+              image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
-+              volumeMounts:
-+                - mountPath: /var/tmp
-+                  name: temp-directory
-+              resources:
-+                limits:
-+                  cpu: 200m
-+                  memory: 200Mi
-+                requests:
-+                  cpu: 10m
-+                  memory: 10Mi
-+              securityContext:
-+                allowPrivilegeEscalation: false
-+                capabilities:
-+                  drop:
-+                  - ALL
-+                readOnlyRootFilesystem: true
-+                runAsNonRoot: true
-+                seccompProfile:
-+                  type: RuntimeDefault
-diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
-index d0a8814a..4bde7f10 100644
---- a/components/release/base/kustomization.yaml
-+++ b/components/release/base/kustomization.yaml
-@@ -4,6 +4,7 @@ resources:
- - release-pipeline-resources-clusterrole.yaml
- - release-service-configurator-role.yaml
- - release-team.yaml
-+- cronjobs/
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (66 lines)</summary>  
-
-``` 
-./commit-a8e0f437/development/components/release/development/kustomize.out.yaml
-1825,1888d1824
-< apiVersion: batch/v1
-< kind: CronJob
-< metadata:
-<   name: remove-expired-releases
-<   namespace: release-service
-< spec:
-<   failedJobsHistoryLimit: 7
-<   jobTemplate:
-<     spec:
-<       template:
-<         spec:
-<           containers:
-<           - command:
-<             - /bin/bash
-<             - -c
-<             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nEXPIRED_RELEASES_FILE=\"/var/tmp/releases-to-be-deleted\"\nNOW=$(date
-<               +%s)\nkubectl get release --all-namespaces \\\n--sort-by=.status.expirationTime
-<               \\\n--template '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.expirationTime}}{{\"\\n\"}}{{end}}'
-<               > /tmp/kubectl-out\nawk -v now=${NOW} '{\n     # parsing the expirationTime
-<               and converting it to epoch\n     # so we can calculate easier the expired
-<               Releases\n     gsub(\"[:\\\\-TZ]\", \" \", $3)\n     t=mktime($3)\n
-<               \    expirationTime=strftime(\"%s\", t)\n     #\n     # expirationTime
-<               should be smaller than today in seconds so it can be deleted\n     if(now
-<               > expirationTime) {\n       args=\"%s:%s\"\n       printf(args, $1,
-<               $2)\n     } \n  }' /var/tmp/kubectl-out > $EXPIRED_RELEASES_FILE\n#
-<               The deleteAndLog will run the Release deletion and save the operation
-<               in a structured way that        \n# can be read easily by kubectl or
-<               journalctl                                                           \nfunction
-<               deleteAndLog() {\n  release=${1%:*}\n  namespace=${1#*:}\n  kubectl
-<               delete release $release -n $namespace |while read logLine; do\n    echo
-<               \"INFO: namespace=${namespace} log=${logLine}\"\n  done                                                                                                  \n}
-<               \                                                                                                      \nexport
-<               -f deleteAndLog\nxargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS}
-<               bash -c 'deleteAndLog \"{}\"'\n"
-<             image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
-<             imagePullPolicy: IfNotPresent
-<             name: release-cleanup
-<             resources:
-<               limits:
-<                 cpu: 200m
-<                 memory: 200Mi
-<               requests:
-<                 cpu: 10m
-<                 memory: 10Mi
-<             securityContext:
-<               allowPrivilegeEscalation: false
-<               capabilities:
-<                 drop:
-<                 - ALL
-<               readOnlyRootFilesystem: true
-<               runAsNonRoot: true
-<               seccompProfile:
-<                 type: RuntimeDefault
-<             volumeMounts:
-<             - mountPath: /var/tmp
-<               name: temp-directory
-<           restartPolicy: Never
-<           serviceAccountName: release-service-controller-manager
-<           volumes:
-<           - emptyDir: {}
-<             name: temp-directory
-<   schedule: 10 03 * * *
-<   successfulJobsHistoryLimit: 7
-< --- 
 ```
  
 </details>  

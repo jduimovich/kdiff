@@ -10,12 +10,405 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-fri-mar--1-120231-utc-2024">This file generated at Fri Mar  1 12:02:31 UTC 2024</h3>
+<h3 id="this-file-generated-at-fri-mar--1-160418-utc-2024">This file generated at Fri Mar  1 16:04:18 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
+<h3>1: Production changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
+
+<details> 
+<summary>Git Diff (24 lines)</summary>  
+<pre><code>  diff <span class="hljs-operator">--</span>git a<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml b<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+index 71aac860<span class="hljs-operator">..</span>89584eb5 <span class="hljs-number">100644</span>
+<span class="hljs-operator">---</span> a<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+<span class="hljs-operator">+++</span> b<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+@@ <span class="hljs-operator">-</span><span class="hljs-number">32</span>,<span class="hljs-number">15</span> <span class="hljs-operator">+</span><span class="hljs-number">32</span>,<span class="hljs-number">15</span> @@ spec:
+       auth:
+         authClientConfigRaw: &#x27;{
+                   <span class="hljs-string">&quot;realm&quot;</span>: <span class="hljs-string">&quot;redhat-external&quot;</span>,
+<span class="hljs-operator">-</span>                  <span class="hljs-string">&quot;auth-server-url&quot;</span>: <span class="hljs-string">&quot;https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth&quot;</span>,
+<span class="hljs-operator">+</span>                  <span class="hljs-string">&quot;auth-server-url&quot;</span>: <span class="hljs-string">&quot;https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth&quot;</span>,
+                   <span class="hljs-string">&quot;ssl-required&quot;</span>: <span class="hljs-string">&quot;ALL&quot;</span>,
+                   <span class="hljs-string">&quot;resource&quot;</span>: <span class="hljs-string">&quot;cloud-services&quot;</span>,
+                   <span class="hljs-string">&quot;clientId&quot;</span>: <span class="hljs-string">&quot;cloud-services&quot;</span>,
+                   <span class="hljs-string">&quot;public-client&quot;</span>: <span class="hljs-literal">true</span>
+                 }&#x27;
+<span class="hljs-operator">-</span>        authClientLibraryURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js</span>
+<span class="hljs-operator">-</span>        authClientPublicKeysURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs</span>
+<span class="hljs-operator">-</span>        ssoBaseURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com</span>
+<span class="hljs-operator">+</span>        authClientLibraryURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js</span>
+<span class="hljs-operator">+</span>        authClientPublicKeysURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs</span>
+<span class="hljs-operator">+</span>        ssoBaseURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com</span>
+         ssoRealm: redhat<span class="hljs-operator">-</span>external
+       environment: prod
+       replicas: <span class="hljs-number">10</span> 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
+
+<details> 
+<summary>Git Diff (24 lines)</summary>  
+<pre><code>  diff <span class="hljs-operator">--</span>git a<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml b<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+index 71aac860<span class="hljs-operator">..</span>89584eb5 <span class="hljs-number">100644</span>
+<span class="hljs-operator">---</span> a<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+<span class="hljs-operator">+++</span> b<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+@@ <span class="hljs-operator">-</span><span class="hljs-number">32</span>,<span class="hljs-number">15</span> <span class="hljs-operator">+</span><span class="hljs-number">32</span>,<span class="hljs-number">15</span> @@ spec:
+       auth:
+         authClientConfigRaw: &#x27;{
+                   <span class="hljs-string">&quot;realm&quot;</span>: <span class="hljs-string">&quot;redhat-external&quot;</span>,
+<span class="hljs-operator">-</span>                  <span class="hljs-string">&quot;auth-server-url&quot;</span>: <span class="hljs-string">&quot;https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth&quot;</span>,
+<span class="hljs-operator">+</span>                  <span class="hljs-string">&quot;auth-server-url&quot;</span>: <span class="hljs-string">&quot;https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth&quot;</span>,
+                   <span class="hljs-string">&quot;ssl-required&quot;</span>: <span class="hljs-string">&quot;ALL&quot;</span>,
+                   <span class="hljs-string">&quot;resource&quot;</span>: <span class="hljs-string">&quot;cloud-services&quot;</span>,
+                   <span class="hljs-string">&quot;clientId&quot;</span>: <span class="hljs-string">&quot;cloud-services&quot;</span>,
+                   <span class="hljs-string">&quot;public-client&quot;</span>: <span class="hljs-literal">true</span>
+                 }&#x27;
+<span class="hljs-operator">-</span>        authClientLibraryURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js</span>
+<span class="hljs-operator">-</span>        authClientPublicKeysURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs</span>
+<span class="hljs-operator">-</span>        ssoBaseURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com</span>
+<span class="hljs-operator">+</span>        authClientLibraryURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js</span>
+<span class="hljs-operator">+</span>        authClientPublicKeysURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs</span>
+<span class="hljs-operator">+</span>        ssoBaseURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com</span>
+         ssoRealm: redhat<span class="hljs-operator">-</span>external
+       environment: prod
+       replicas: <span class="hljs-number">10</span> 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
+
+<details> 
+<summary>Git Diff (24 lines)</summary>  
+<pre><code>  diff <span class="hljs-operator">--</span>git a<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml b<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+index 71aac860<span class="hljs-operator">..</span>89584eb5 <span class="hljs-number">100644</span>
+<span class="hljs-operator">---</span> a<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+<span class="hljs-operator">+++</span> b<span class="hljs-regexp">/components/</span>sandbox<span class="hljs-regexp">/toolchain-host-operator/</span>production<span class="hljs-regexp">/stone-prod-p01/</span>toolchainconfig.yaml
+@@ <span class="hljs-operator">-</span><span class="hljs-number">32</span>,<span class="hljs-number">15</span> <span class="hljs-operator">+</span><span class="hljs-number">32</span>,<span class="hljs-number">15</span> @@ spec:
+       auth:
+         authClientConfigRaw: &#x27;{
+                   <span class="hljs-string">&quot;realm&quot;</span>: <span class="hljs-string">&quot;redhat-external&quot;</span>,
+<span class="hljs-operator">-</span>                  <span class="hljs-string">&quot;auth-server-url&quot;</span>: <span class="hljs-string">&quot;https://keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth&quot;</span>,
+<span class="hljs-operator">+</span>                  <span class="hljs-string">&quot;auth-server-url&quot;</span>: <span class="hljs-string">&quot;https://keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth&quot;</span>,
+                   <span class="hljs-string">&quot;ssl-required&quot;</span>: <span class="hljs-string">&quot;ALL&quot;</span>,
+                   <span class="hljs-string">&quot;resource&quot;</span>: <span class="hljs-string">&quot;cloud-services&quot;</span>,
+                   <span class="hljs-string">&quot;clientId&quot;</span>: <span class="hljs-string">&quot;cloud-services&quot;</span>,
+                   <span class="hljs-string">&quot;public-client&quot;</span>: <span class="hljs-literal">true</span>
+                 }&#x27;
+<span class="hljs-operator">-</span>        authClientLibraryURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js</span>
+<span class="hljs-operator">-</span>        authClientPublicKeysURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs</span>
+<span class="hljs-operator">-</span>        ssoBaseURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.rosa.stone-prod-p01.wcfb.p1.openshiftapps.com</span>
+<span class="hljs-operator">+</span>        authClientLibraryURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/js/keycloak.js</span>
+<span class="hljs-operator">+</span>        authClientPublicKeysURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/auth/realms/redhat-external/protocol/openid-connect/certs</span>
+<span class="hljs-operator">+</span>        ssoBaseURL: https:<span class="hljs-comment">//keycloak-rhtap-auth.apps.stone-prod-p01.wcfb.p1.openshiftapps.com</span>
+         ssoRealm: redhat<span class="hljs-operator">-</span>external
+       environment: prod
+       replicas: <span class="hljs-number">10</span> 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -164,7 +557,7 @@ index e4c8a173..<span class="hljs-number">960</span>b8a40 <span class="hljs-numb
 
 </div>
 <div>
-<h3>1: Staging changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
+<h3>2: Staging changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -316,7 +709,7 @@ index e4c8a173..<span class="hljs-number">960</span>b8a40 <span class="hljs-numb
 
 </div>
 <div>
-<h3>1: Development changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
+<h3>2: Development changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -424,7 +817,7 @@ index e4c8a173..<span class="hljs-number">960</span>b8a40 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Production changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
+<h3>3: Production changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
 
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -570,7 +963,7 @@ index e4c8a173..<span class="hljs-number">960</span>b8a40 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Staging changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
+<h3>3: Staging changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
 
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -715,7 +1108,7 @@ index e4c8a173..<span class="hljs-number">960</span>b8a40 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Development changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
+<h3>3: Development changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
 
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -812,7 +1205,7 @@ index e4c8a173..<span class="hljs-number">960</span>b8a40 <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Production changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
+<h3>4: Production changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
 
 <details> 
 <summary>Git Diff (46 lines)</summary>  
@@ -1009,7 +1402,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Staging changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
+<h3>4: Staging changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
 
 <details> 
 <summary>Git Diff (46 lines)</summary>  
@@ -1209,7 +1602,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Development changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
+<h3>4: Development changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
 
 <details> 
 <summary>Git Diff (46 lines)</summary>  
@@ -1296,843 +1689,6 @@ new file mode 100644
 <span class="hljs-string">&lt;</span> <span class="hljs-bullet">-</span> <span class="hljs-attr">apiGroup:</span> <span class="hljs-string">rbac.authorization.k8s.io</span>
 <span class="hljs-string">&lt;</span>   <span class="hljs-attr">kind:</span> <span class="hljs-string">Group</span>
 <span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">system:serviceaccounts</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from a8e0f437 to 64366834 on Thu Feb 29 12:24:20 2024 </h3>  
-
-<details> 
-<summary>Git Diff (107 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..2aaaf106</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/release/base/cronjobs/kustomization.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
-<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1                                                                             </span>
-<span class="hljs-addition">+kind: Kustomization </span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+resources:</span>
-<span class="hljs-addition">+- remove-expired-releases.yaml</span>
-<span class="hljs-comment">diff --git a/components/release/base/cronjobs/remove-expired-releases.yaml b/components/release/base/cronjobs/remove-expired-releases.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..f87c8fea</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/release/base/cronjobs/remove-expired-releases.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,78 @@</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: batch/v1</span>
-<span class="hljs-addition">+kind: CronJob</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: remove-expired-releases</span>
-<span class="hljs-addition">+  namespace: release-service</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  schedule: &quot;10 03 * * *&quot;</span>
-<span class="hljs-addition">+  successfulJobsHistoryLimit: 7</span>
-<span class="hljs-addition">+  failedJobsHistoryLimit: 7</span>
-<span class="hljs-addition">+  jobTemplate:</span>
-<span class="hljs-addition">+    spec:</span>
-<span class="hljs-addition">+      template:</span>
-<span class="hljs-addition">+        spec:</span>
-<span class="hljs-addition">+          restartPolicy: Never</span>
-<span class="hljs-addition">+          serviceAccountName: release-service-controller-manager</span>
-<span class="hljs-addition">+          volumes:</span>
-<span class="hljs-addition">+            - name: temp-directory</span>
-<span class="hljs-addition">+              emptyDir: {}</span>
-<span class="hljs-addition">+          containers:</span>
-<span class="hljs-addition">+            - name: release-cleanup</span>
-<span class="hljs-addition">+              command:</span>
-<span class="hljs-addition">+                - /bin/bash</span>
-<span class="hljs-addition">+                - -c</span>
-<span class="hljs-addition">+                - |</span>
-<span class="hljs-addition">+                  set -o pipefail</span>
-<span class="hljs-addition">+                  PATH=&quot;/bin:/usr/bin:/usr/local/bin&quot;</span>
-<span class="hljs-addition">+                  MAX_PROCS=5</span>
-<span class="hljs-addition">+                  EXPIRED_RELEASES_FILE=&quot;/var/tmp/releases-to-be-deleted&quot;</span>
-<span class="hljs-addition">+                  NOW=$(date +%s)</span>
-<span class="hljs-addition">+                  kubectl get release --all-namespaces \</span>
-<span class="hljs-addition">+                  --sort-by=.status.expirationTime \</span>
-<span class="hljs-addition">+                  --template &#x27;{{range .items}}{{.metadata.name}}{{&quot;\t&quot;}}{{.metadata.namespace}}{{&quot;\t&quot;}}{{.status.expirationTime}}{{&quot;\n&quot;}}{{end}}&#x27; &gt; /tmp/kubectl-out</span>
-<span class="hljs-addition">+                  awk -v now=${NOW} &#x27;{</span>
-<span class="hljs-addition">+                       # parsing the expirationTime and converting it to epoch</span>
-<span class="hljs-addition">+                       # so we can calculate easier the expired Releases</span>
-<span class="hljs-addition">+                       gsub(&quot;[:\\-TZ]&quot;, &quot; &quot;, $3)</span>
-<span class="hljs-addition">+                       t=mktime($3)</span>
-<span class="hljs-addition">+                       expirationTime=strftime(&quot;%s&quot;, t)</span>
-<span class="hljs-addition">+                       #</span>
-<span class="hljs-addition">+                       # expirationTime should be smaller than today in seconds so it can be deleted</span>
-<span class="hljs-addition">+                       if(now &gt; expirationTime) {</span>
-<span class="hljs-addition">+                         args=&quot;%s:%s&quot;</span>
-<span class="hljs-addition">+                         printf(args, $1, $2)</span>
-<span class="hljs-addition">+                       } </span>
-<span class="hljs-addition">+                    }&#x27; /var/tmp/kubectl-out &gt; $EXPIRED_RELEASES_FILE</span>
-<span class="hljs-addition">+                  # The deleteAndLog will run the Release deletion and save the operation in a structured way that        </span>
-<span class="hljs-addition">+                  # can be read easily by kubectl or journalctl                                                           </span>
-<span class="hljs-addition">+                  function deleteAndLog() {</span>
-<span class="hljs-addition">+                    release=${1%:*}</span>
-<span class="hljs-addition">+                    namespace=${1#*:}</span>
-<span class="hljs-addition">+                    kubectl delete release $release -n $namespace |while read logLine; do</span>
-<span class="hljs-addition">+                      echo &quot;INFO: namespace=${namespace} log=${logLine}&quot;</span>
-<span class="hljs-addition">+                    done                                                                                                  </span>
-<span class="hljs-addition">+                  }                                                                                                       </span>
-<span class="hljs-addition">+                  export -f deleteAndLog</span>
-<span class="hljs-addition">+                  xargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS} bash -c &#x27;deleteAndLog &quot;{}&quot;&#x27;</span>
-<span class="hljs-addition">+              imagePullPolicy: IfNotPresent</span>
-<span class="hljs-addition">+              image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e</span>
-<span class="hljs-addition">+              volumeMounts:</span>
-<span class="hljs-addition">+                - mountPath: /var/tmp</span>
-<span class="hljs-addition">+                  name: temp-directory</span>
-<span class="hljs-addition">+              resources:</span>
-<span class="hljs-addition">+                limits:</span>
-<span class="hljs-addition">+                  cpu: 200m</span>
-<span class="hljs-addition">+                  memory: 200Mi</span>
-<span class="hljs-addition">+                requests:</span>
-<span class="hljs-addition">+                  cpu: 10m</span>
-<span class="hljs-addition">+                  memory: 10Mi</span>
-<span class="hljs-addition">+              securityContext:</span>
-<span class="hljs-addition">+                allowPrivilegeEscalation: false</span>
-<span class="hljs-addition">+                capabilities:</span>
-<span class="hljs-addition">+                  drop:</span>
-<span class="hljs-addition">+                  - ALL</span>
-<span class="hljs-addition">+                readOnlyRootFilesystem: true</span>
-<span class="hljs-addition">+                runAsNonRoot: true</span>
-<span class="hljs-addition">+                seccompProfile:</span>
-<span class="hljs-addition">+                  type: RuntimeDefault</span>
-<span class="hljs-comment">diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml</span>
-<span class="hljs-comment">index d0a8814a..4bde7f10 100644</span>
-<span class="hljs-comment">--- a/components/release/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/release/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -4,6 +4,7 @@</span> resources:
- - release-pipeline-resources-clusterrole.yaml
- - release-service-configurator-role.yaml
- - release-team.yaml
-<span class="hljs-addition">+- cronjobs/</span>
-
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (66 lines)</summary>  
-<pre><code>  <span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>a8e0f437<span class="hljs-regexp">/production/</span>components<span class="hljs-regexp">/release/</span>production<span class="hljs-operator">/</span>kustomize.out.yaml
-<span class="hljs-number">1825</span>,1888d1824
-<span class="hljs-operator">&lt;</span> apiVersion: batch<span class="hljs-operator">/</span>v1
-<span class="hljs-operator">&lt;</span> kind: <span class="hljs-type">CronJob</span>
-<span class="hljs-operator">&lt;</span> metadata:
-<span class="hljs-operator">&lt;</span>   name: remove<span class="hljs-operator">-</span>expired<span class="hljs-operator">-</span>releases
-<span class="hljs-operator">&lt;</span>   namespace: release<span class="hljs-operator">-</span>service
-<span class="hljs-operator">&lt;</span> spec:
-<span class="hljs-operator">&lt;</span>   failedJobsHistoryLimit: <span class="hljs-number">7</span>
-<span class="hljs-operator">&lt;</span>   jobTemplate:
-<span class="hljs-operator">&lt;</span>     spec:
-<span class="hljs-operator">&lt;</span>       template:
-<span class="hljs-operator">&lt;</span>         spec:
-<span class="hljs-operator">&lt;</span>           containers:
-<span class="hljs-operator">&lt;</span>           <span class="hljs-operator">-</span> command:
-<span class="hljs-operator">&lt;</span>             <span class="hljs-operator">-</span> <span class="hljs-regexp">/bin/</span>bash
-<span class="hljs-operator">&lt;</span>             <span class="hljs-operator">-</span> <span class="hljs-operator">-</span>c
-<span class="hljs-operator">&lt;</span>             <span class="hljs-operator">-</span> <span class="hljs-string">&quot;set -o pipefail<span class="hljs-subst">\n</span>PATH=<span class="hljs-subst">\&quot;</span>/bin:/usr/bin:/usr/local/bin<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>MAX_PROCS=5<span class="hljs-subst">\n</span>EXPIRED_RELEASES_FILE=<span class="hljs-subst">\&quot;</span>/var/tmp/releases-to-be-deleted<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>NOW=$(date
-&lt;               +%s)<span class="hljs-subst">\n</span>kubectl get release --all-namespaces <span class="hljs-subst">\\</span><span class="hljs-subst">\n</span>--sort-by=.status.expirationTime
-&lt;               <span class="hljs-subst">\\</span><span class="hljs-subst">\n</span>--template &#x27;{{range .items}}{{.metadata.name}}{{<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\\</span>t<span class="hljs-subst">\&quot;</span>}}{{.metadata.namespace}}{{<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\\</span>t<span class="hljs-subst">\&quot;</span>}}{{.status.expirationTime}}{{<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\\</span>n<span class="hljs-subst">\&quot;</span>}}{{end}}&#x27;
-&lt;               &gt; /tmp/kubectl-out<span class="hljs-subst">\n</span>awk -v now=${NOW} &#x27;{<span class="hljs-subst">\n</span>     # parsing the expirationTime
-&lt;               and converting it to epoch<span class="hljs-subst">\n</span>     # so we can calculate easier the expired
-&lt;               Releases<span class="hljs-subst">\n</span>     gsub(<span class="hljs-subst">\&quot;</span>[:<span class="hljs-subst">\\</span><span class="hljs-subst">\\</span>-TZ]<span class="hljs-subst">\&quot;</span>, <span class="hljs-subst">\&quot;</span> <span class="hljs-subst">\&quot;</span>, $3)<span class="hljs-subst">\n</span>     t=mktime($3)<span class="hljs-subst">\n</span>
-&lt;               \    expirationTime=strftime(<span class="hljs-subst">\&quot;</span>%s<span class="hljs-subst">\&quot;</span>, t)<span class="hljs-subst">\n</span>     #<span class="hljs-subst">\n</span>     # expirationTime
-&lt;               should be smaller than today in seconds so it can be deleted<span class="hljs-subst">\n</span>     if(now
-&lt;               &gt; expirationTime) {<span class="hljs-subst">\n</span>       args=<span class="hljs-subst">\&quot;</span>%s:%s<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>       printf(args, $1,
-&lt;               $2)<span class="hljs-subst">\n</span>     } <span class="hljs-subst">\n</span>  }&#x27; /var/tmp/kubectl-out &gt; $EXPIRED_RELEASES_FILE<span class="hljs-subst">\n</span>#
-&lt;               The deleteAndLog will run the Release deletion and save the operation
-&lt;               in a structured way that        <span class="hljs-subst">\n</span># can be read easily by kubectl or
-&lt;               journalctl                                                           <span class="hljs-subst">\n</span>function
-&lt;               deleteAndLog() {<span class="hljs-subst">\n</span>  release=${1%:*}<span class="hljs-subst">\n</span>  namespace=${1#*:}<span class="hljs-subst">\n</span>  kubectl
-&lt;               delete release $release -n $namespace |while read logLine; do<span class="hljs-subst">\n</span>    echo
-&lt;               <span class="hljs-subst">\&quot;</span>INFO: namespace=${namespace} log=${logLine}<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>  done                                                                                                  <span class="hljs-subst">\n</span>}
-&lt;               \                                                                                                      <span class="hljs-subst">\n</span>export
-&lt;               -f deleteAndLog<span class="hljs-subst">\n</span>xargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS}
-&lt;               bash -c &#x27;deleteAndLog <span class="hljs-subst">\&quot;</span>{}<span class="hljs-subst">\&quot;</span>&#x27;<span class="hljs-subst">\n</span>&quot;</span>
-<span class="hljs-operator">&lt;</span>             image: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>release<span class="hljs-operator">-</span>service<span class="hljs-operator">-</span>utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
-<span class="hljs-operator">&lt;</span>             imagePullPolicy: <span class="hljs-type">IfNotPresent</span>
-<span class="hljs-operator">&lt;</span>             name: release<span class="hljs-operator">-</span>cleanup
-<span class="hljs-operator">&lt;</span>             resources:
-<span class="hljs-operator">&lt;</span>               limits:
-<span class="hljs-operator">&lt;</span>                 cpu: 200m
-<span class="hljs-operator">&lt;</span>                 memory: 200Mi
-<span class="hljs-operator">&lt;</span>               requests:
-<span class="hljs-operator">&lt;</span>                 cpu: 10m
-<span class="hljs-operator">&lt;</span>                 memory: 10Mi
-<span class="hljs-operator">&lt;</span>             securityContext:
-<span class="hljs-operator">&lt;</span>               allowPrivilegeEscalation: <span class="hljs-literal">false</span>
-<span class="hljs-operator">&lt;</span>               capabilities:
-<span class="hljs-operator">&lt;</span>                 drop:
-<span class="hljs-operator">&lt;</span>                 <span class="hljs-operator">-</span> <span class="hljs-type">ALL</span>
-<span class="hljs-operator">&lt;</span>               readOnlyRootFilesystem: <span class="hljs-literal">true</span>
-<span class="hljs-operator">&lt;</span>               runAsNonRoot: <span class="hljs-literal">true</span>
-<span class="hljs-operator">&lt;</span>               seccompProfile:
-<span class="hljs-operator">&lt;</span>                 type: <span class="hljs-type">RuntimeDefault</span>
-<span class="hljs-operator">&lt;</span>             volumeMounts:
-<span class="hljs-operator">&lt;</span>             <span class="hljs-operator">-</span> mountPath: <span class="hljs-regexp">/var/</span>tmp
-<span class="hljs-operator">&lt;</span>               name: temp<span class="hljs-operator">-</span>directory
-<span class="hljs-operator">&lt;</span>           restartPolicy: <span class="hljs-type">Never</span>
-<span class="hljs-operator">&lt;</span>           serviceAccountName: release<span class="hljs-operator">-</span>service<span class="hljs-operator">-</span>controller<span class="hljs-operator">-</span>manager
-<span class="hljs-operator">&lt;</span>           volumes:
-<span class="hljs-operator">&lt;</span>           <span class="hljs-operator">-</span> emptyDir: {}
-<span class="hljs-operator">&lt;</span>             name: temp<span class="hljs-operator">-</span>directory
-<span class="hljs-operator">&lt;</span>   schedule: <span class="hljs-number">10</span> <span class="hljs-number">03</span> <span class="hljs-operator">*</span> <span class="hljs-operator">*</span> <span class="hljs-operator">*</span>
-<span class="hljs-operator">&lt;</span>   successfulJobsHistoryLimit: <span class="hljs-number">7</span>
-<span class="hljs-operator">&lt;</span> <span class="hljs-operator">---</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from a8e0f437 to 64366834 on Thu Feb 29 12:24:20 2024 </h3>  
-
-<details> 
-<summary>Git Diff (107 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..2aaaf106</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/release/base/cronjobs/kustomization.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
-<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1                                                                             </span>
-<span class="hljs-addition">+kind: Kustomization </span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+resources:</span>
-<span class="hljs-addition">+- remove-expired-releases.yaml</span>
-<span class="hljs-comment">diff --git a/components/release/base/cronjobs/remove-expired-releases.yaml b/components/release/base/cronjobs/remove-expired-releases.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..f87c8fea</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/release/base/cronjobs/remove-expired-releases.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,78 @@</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: batch/v1</span>
-<span class="hljs-addition">+kind: CronJob</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: remove-expired-releases</span>
-<span class="hljs-addition">+  namespace: release-service</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  schedule: &quot;10 03 * * *&quot;</span>
-<span class="hljs-addition">+  successfulJobsHistoryLimit: 7</span>
-<span class="hljs-addition">+  failedJobsHistoryLimit: 7</span>
-<span class="hljs-addition">+  jobTemplate:</span>
-<span class="hljs-addition">+    spec:</span>
-<span class="hljs-addition">+      template:</span>
-<span class="hljs-addition">+        spec:</span>
-<span class="hljs-addition">+          restartPolicy: Never</span>
-<span class="hljs-addition">+          serviceAccountName: release-service-controller-manager</span>
-<span class="hljs-addition">+          volumes:</span>
-<span class="hljs-addition">+            - name: temp-directory</span>
-<span class="hljs-addition">+              emptyDir: {}</span>
-<span class="hljs-addition">+          containers:</span>
-<span class="hljs-addition">+            - name: release-cleanup</span>
-<span class="hljs-addition">+              command:</span>
-<span class="hljs-addition">+                - /bin/bash</span>
-<span class="hljs-addition">+                - -c</span>
-<span class="hljs-addition">+                - |</span>
-<span class="hljs-addition">+                  set -o pipefail</span>
-<span class="hljs-addition">+                  PATH=&quot;/bin:/usr/bin:/usr/local/bin&quot;</span>
-<span class="hljs-addition">+                  MAX_PROCS=5</span>
-<span class="hljs-addition">+                  EXPIRED_RELEASES_FILE=&quot;/var/tmp/releases-to-be-deleted&quot;</span>
-<span class="hljs-addition">+                  NOW=$(date +%s)</span>
-<span class="hljs-addition">+                  kubectl get release --all-namespaces \</span>
-<span class="hljs-addition">+                  --sort-by=.status.expirationTime \</span>
-<span class="hljs-addition">+                  --template &#x27;{{range .items}}{{.metadata.name}}{{&quot;\t&quot;}}{{.metadata.namespace}}{{&quot;\t&quot;}}{{.status.expirationTime}}{{&quot;\n&quot;}}{{end}}&#x27; &gt; /tmp/kubectl-out</span>
-<span class="hljs-addition">+                  awk -v now=${NOW} &#x27;{</span>
-<span class="hljs-addition">+                       # parsing the expirationTime and converting it to epoch</span>
-<span class="hljs-addition">+                       # so we can calculate easier the expired Releases</span>
-<span class="hljs-addition">+                       gsub(&quot;[:\\-TZ]&quot;, &quot; &quot;, $3)</span>
-<span class="hljs-addition">+                       t=mktime($3)</span>
-<span class="hljs-addition">+                       expirationTime=strftime(&quot;%s&quot;, t)</span>
-<span class="hljs-addition">+                       #</span>
-<span class="hljs-addition">+                       # expirationTime should be smaller than today in seconds so it can be deleted</span>
-<span class="hljs-addition">+                       if(now &gt; expirationTime) {</span>
-<span class="hljs-addition">+                         args=&quot;%s:%s&quot;</span>
-<span class="hljs-addition">+                         printf(args, $1, $2)</span>
-<span class="hljs-addition">+                       } </span>
-<span class="hljs-addition">+                    }&#x27; /var/tmp/kubectl-out &gt; $EXPIRED_RELEASES_FILE</span>
-<span class="hljs-addition">+                  # The deleteAndLog will run the Release deletion and save the operation in a structured way that        </span>
-<span class="hljs-addition">+                  # can be read easily by kubectl or journalctl                                                           </span>
-<span class="hljs-addition">+                  function deleteAndLog() {</span>
-<span class="hljs-addition">+                    release=${1%:*}</span>
-<span class="hljs-addition">+                    namespace=${1#*:}</span>
-<span class="hljs-addition">+                    kubectl delete release $release -n $namespace |while read logLine; do</span>
-<span class="hljs-addition">+                      echo &quot;INFO: namespace=${namespace} log=${logLine}&quot;</span>
-<span class="hljs-addition">+                    done                                                                                                  </span>
-<span class="hljs-addition">+                  }                                                                                                       </span>
-<span class="hljs-addition">+                  export -f deleteAndLog</span>
-<span class="hljs-addition">+                  xargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS} bash -c &#x27;deleteAndLog &quot;{}&quot;&#x27;</span>
-<span class="hljs-addition">+              imagePullPolicy: IfNotPresent</span>
-<span class="hljs-addition">+              image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e</span>
-<span class="hljs-addition">+              volumeMounts:</span>
-<span class="hljs-addition">+                - mountPath: /var/tmp</span>
-<span class="hljs-addition">+                  name: temp-directory</span>
-<span class="hljs-addition">+              resources:</span>
-<span class="hljs-addition">+                limits:</span>
-<span class="hljs-addition">+                  cpu: 200m</span>
-<span class="hljs-addition">+                  memory: 200Mi</span>
-<span class="hljs-addition">+                requests:</span>
-<span class="hljs-addition">+                  cpu: 10m</span>
-<span class="hljs-addition">+                  memory: 10Mi</span>
-<span class="hljs-addition">+              securityContext:</span>
-<span class="hljs-addition">+                allowPrivilegeEscalation: false</span>
-<span class="hljs-addition">+                capabilities:</span>
-<span class="hljs-addition">+                  drop:</span>
-<span class="hljs-addition">+                  - ALL</span>
-<span class="hljs-addition">+                readOnlyRootFilesystem: true</span>
-<span class="hljs-addition">+                runAsNonRoot: true</span>
-<span class="hljs-addition">+                seccompProfile:</span>
-<span class="hljs-addition">+                  type: RuntimeDefault</span>
-<span class="hljs-comment">diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml</span>
-<span class="hljs-comment">index d0a8814a..4bde7f10 100644</span>
-<span class="hljs-comment">--- a/components/release/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/release/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -4,6 +4,7 @@</span> resources:
- - release-pipeline-resources-clusterrole.yaml
- - release-service-configurator-role.yaml
- - release-team.yaml
-<span class="hljs-addition">+- cronjobs/</span>
-
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (66 lines)</summary>  
-<pre><code>  <span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>a8e0f437<span class="hljs-regexp">/staging/</span>components<span class="hljs-regexp">/release/</span>staging<span class="hljs-operator">/</span>kustomize.out.yaml
-<span class="hljs-number">1825</span>,1888d1824
-<span class="hljs-operator">&lt;</span> apiVersion: batch<span class="hljs-operator">/</span>v1
-<span class="hljs-operator">&lt;</span> kind: <span class="hljs-type">CronJob</span>
-<span class="hljs-operator">&lt;</span> metadata:
-<span class="hljs-operator">&lt;</span>   name: remove<span class="hljs-operator">-</span>expired<span class="hljs-operator">-</span>releases
-<span class="hljs-operator">&lt;</span>   namespace: release<span class="hljs-operator">-</span>service
-<span class="hljs-operator">&lt;</span> spec:
-<span class="hljs-operator">&lt;</span>   failedJobsHistoryLimit: <span class="hljs-number">7</span>
-<span class="hljs-operator">&lt;</span>   jobTemplate:
-<span class="hljs-operator">&lt;</span>     spec:
-<span class="hljs-operator">&lt;</span>       template:
-<span class="hljs-operator">&lt;</span>         spec:
-<span class="hljs-operator">&lt;</span>           containers:
-<span class="hljs-operator">&lt;</span>           <span class="hljs-operator">-</span> command:
-<span class="hljs-operator">&lt;</span>             <span class="hljs-operator">-</span> <span class="hljs-regexp">/bin/</span>bash
-<span class="hljs-operator">&lt;</span>             <span class="hljs-operator">-</span> <span class="hljs-operator">-</span>c
-<span class="hljs-operator">&lt;</span>             <span class="hljs-operator">-</span> <span class="hljs-string">&quot;set -o pipefail<span class="hljs-subst">\n</span>PATH=<span class="hljs-subst">\&quot;</span>/bin:/usr/bin:/usr/local/bin<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>MAX_PROCS=5<span class="hljs-subst">\n</span>EXPIRED_RELEASES_FILE=<span class="hljs-subst">\&quot;</span>/var/tmp/releases-to-be-deleted<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>NOW=$(date
-&lt;               +%s)<span class="hljs-subst">\n</span>kubectl get release --all-namespaces <span class="hljs-subst">\\</span><span class="hljs-subst">\n</span>--sort-by=.status.expirationTime
-&lt;               <span class="hljs-subst">\\</span><span class="hljs-subst">\n</span>--template &#x27;{{range .items}}{{.metadata.name}}{{<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\\</span>t<span class="hljs-subst">\&quot;</span>}}{{.metadata.namespace}}{{<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\\</span>t<span class="hljs-subst">\&quot;</span>}}{{.status.expirationTime}}{{<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\\</span>n<span class="hljs-subst">\&quot;</span>}}{{end}}&#x27;
-&lt;               &gt; /tmp/kubectl-out<span class="hljs-subst">\n</span>awk -v now=${NOW} &#x27;{<span class="hljs-subst">\n</span>     # parsing the expirationTime
-&lt;               and converting it to epoch<span class="hljs-subst">\n</span>     # so we can calculate easier the expired
-&lt;               Releases<span class="hljs-subst">\n</span>     gsub(<span class="hljs-subst">\&quot;</span>[:<span class="hljs-subst">\\</span><span class="hljs-subst">\\</span>-TZ]<span class="hljs-subst">\&quot;</span>, <span class="hljs-subst">\&quot;</span> <span class="hljs-subst">\&quot;</span>, $3)<span class="hljs-subst">\n</span>     t=mktime($3)<span class="hljs-subst">\n</span>
-&lt;               \    expirationTime=strftime(<span class="hljs-subst">\&quot;</span>%s<span class="hljs-subst">\&quot;</span>, t)<span class="hljs-subst">\n</span>     #<span class="hljs-subst">\n</span>     # expirationTime
-&lt;               should be smaller than today in seconds so it can be deleted<span class="hljs-subst">\n</span>     if(now
-&lt;               &gt; expirationTime) {<span class="hljs-subst">\n</span>       args=<span class="hljs-subst">\&quot;</span>%s:%s<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>       printf(args, $1,
-&lt;               $2)<span class="hljs-subst">\n</span>     } <span class="hljs-subst">\n</span>  }&#x27; /var/tmp/kubectl-out &gt; $EXPIRED_RELEASES_FILE<span class="hljs-subst">\n</span>#
-&lt;               The deleteAndLog will run the Release deletion and save the operation
-&lt;               in a structured way that        <span class="hljs-subst">\n</span># can be read easily by kubectl or
-&lt;               journalctl                                                           <span class="hljs-subst">\n</span>function
-&lt;               deleteAndLog() {<span class="hljs-subst">\n</span>  release=${1%:*}<span class="hljs-subst">\n</span>  namespace=${1#*:}<span class="hljs-subst">\n</span>  kubectl
-&lt;               delete release $release -n $namespace |while read logLine; do<span class="hljs-subst">\n</span>    echo
-&lt;               <span class="hljs-subst">\&quot;</span>INFO: namespace=${namespace} log=${logLine}<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>  done                                                                                                  <span class="hljs-subst">\n</span>}
-&lt;               \                                                                                                      <span class="hljs-subst">\n</span>export
-&lt;               -f deleteAndLog<span class="hljs-subst">\n</span>xargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS}
-&lt;               bash -c &#x27;deleteAndLog <span class="hljs-subst">\&quot;</span>{}<span class="hljs-subst">\&quot;</span>&#x27;<span class="hljs-subst">\n</span>&quot;</span>
-<span class="hljs-operator">&lt;</span>             image: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>release<span class="hljs-operator">-</span>service<span class="hljs-operator">-</span>utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
-<span class="hljs-operator">&lt;</span>             imagePullPolicy: <span class="hljs-type">IfNotPresent</span>
-<span class="hljs-operator">&lt;</span>             name: release<span class="hljs-operator">-</span>cleanup
-<span class="hljs-operator">&lt;</span>             resources:
-<span class="hljs-operator">&lt;</span>               limits:
-<span class="hljs-operator">&lt;</span>                 cpu: 200m
-<span class="hljs-operator">&lt;</span>                 memory: 200Mi
-<span class="hljs-operator">&lt;</span>               requests:
-<span class="hljs-operator">&lt;</span>                 cpu: 10m
-<span class="hljs-operator">&lt;</span>                 memory: 10Mi
-<span class="hljs-operator">&lt;</span>             securityContext:
-<span class="hljs-operator">&lt;</span>               allowPrivilegeEscalation: <span class="hljs-literal">false</span>
-<span class="hljs-operator">&lt;</span>               capabilities:
-<span class="hljs-operator">&lt;</span>                 drop:
-<span class="hljs-operator">&lt;</span>                 <span class="hljs-operator">-</span> <span class="hljs-type">ALL</span>
-<span class="hljs-operator">&lt;</span>               readOnlyRootFilesystem: <span class="hljs-literal">true</span>
-<span class="hljs-operator">&lt;</span>               runAsNonRoot: <span class="hljs-literal">true</span>
-<span class="hljs-operator">&lt;</span>               seccompProfile:
-<span class="hljs-operator">&lt;</span>                 type: <span class="hljs-type">RuntimeDefault</span>
-<span class="hljs-operator">&lt;</span>             volumeMounts:
-<span class="hljs-operator">&lt;</span>             <span class="hljs-operator">-</span> mountPath: <span class="hljs-regexp">/var/</span>tmp
-<span class="hljs-operator">&lt;</span>               name: temp<span class="hljs-operator">-</span>directory
-<span class="hljs-operator">&lt;</span>           restartPolicy: <span class="hljs-type">Never</span>
-<span class="hljs-operator">&lt;</span>           serviceAccountName: release<span class="hljs-operator">-</span>service<span class="hljs-operator">-</span>controller<span class="hljs-operator">-</span>manager
-<span class="hljs-operator">&lt;</span>           volumes:
-<span class="hljs-operator">&lt;</span>           <span class="hljs-operator">-</span> emptyDir: {}
-<span class="hljs-operator">&lt;</span>             name: temp<span class="hljs-operator">-</span>directory
-<span class="hljs-operator">&lt;</span>   schedule: <span class="hljs-number">10</span> <span class="hljs-number">03</span> <span class="hljs-operator">*</span> <span class="hljs-operator">*</span> <span class="hljs-operator">*</span>
-<span class="hljs-operator">&lt;</span>   successfulJobsHistoryLimit: <span class="hljs-number">7</span>
-<span class="hljs-operator">&lt;</span> <span class="hljs-operator">---</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from a8e0f437 to 64366834 on Thu Feb 29 12:24:20 2024 </h3>  
-
-<details> 
-<summary>Git Diff (107 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/release/base/cronjobs/kustomization.yaml b/components/release/base/cronjobs/kustomization.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..2aaaf106</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/release/base/cronjobs/kustomization.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
-<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1                                                                             </span>
-<span class="hljs-addition">+kind: Kustomization </span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+resources:</span>
-<span class="hljs-addition">+- remove-expired-releases.yaml</span>
-<span class="hljs-comment">diff --git a/components/release/base/cronjobs/remove-expired-releases.yaml b/components/release/base/cronjobs/remove-expired-releases.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..f87c8fea</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/release/base/cronjobs/remove-expired-releases.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,78 @@</span>
-<span class="hljs-addition">+---</span>
-<span class="hljs-addition">+apiVersion: batch/v1</span>
-<span class="hljs-addition">+kind: CronJob</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: remove-expired-releases</span>
-<span class="hljs-addition">+  namespace: release-service</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  schedule: &quot;10 03 * * *&quot;</span>
-<span class="hljs-addition">+  successfulJobsHistoryLimit: 7</span>
-<span class="hljs-addition">+  failedJobsHistoryLimit: 7</span>
-<span class="hljs-addition">+  jobTemplate:</span>
-<span class="hljs-addition">+    spec:</span>
-<span class="hljs-addition">+      template:</span>
-<span class="hljs-addition">+        spec:</span>
-<span class="hljs-addition">+          restartPolicy: Never</span>
-<span class="hljs-addition">+          serviceAccountName: release-service-controller-manager</span>
-<span class="hljs-addition">+          volumes:</span>
-<span class="hljs-addition">+            - name: temp-directory</span>
-<span class="hljs-addition">+              emptyDir: {}</span>
-<span class="hljs-addition">+          containers:</span>
-<span class="hljs-addition">+            - name: release-cleanup</span>
-<span class="hljs-addition">+              command:</span>
-<span class="hljs-addition">+                - /bin/bash</span>
-<span class="hljs-addition">+                - -c</span>
-<span class="hljs-addition">+                - |</span>
-<span class="hljs-addition">+                  set -o pipefail</span>
-<span class="hljs-addition">+                  PATH=&quot;/bin:/usr/bin:/usr/local/bin&quot;</span>
-<span class="hljs-addition">+                  MAX_PROCS=5</span>
-<span class="hljs-addition">+                  EXPIRED_RELEASES_FILE=&quot;/var/tmp/releases-to-be-deleted&quot;</span>
-<span class="hljs-addition">+                  NOW=$(date +%s)</span>
-<span class="hljs-addition">+                  kubectl get release --all-namespaces \</span>
-<span class="hljs-addition">+                  --sort-by=.status.expirationTime \</span>
-<span class="hljs-addition">+                  --template &#x27;{{range .items}}{{.metadata.name}}{{&quot;\t&quot;}}{{.metadata.namespace}}{{&quot;\t&quot;}}{{.status.expirationTime}}{{&quot;\n&quot;}}{{end}}&#x27; &gt; /tmp/kubectl-out</span>
-<span class="hljs-addition">+                  awk -v now=${NOW} &#x27;{</span>
-<span class="hljs-addition">+                       # parsing the expirationTime and converting it to epoch</span>
-<span class="hljs-addition">+                       # so we can calculate easier the expired Releases</span>
-<span class="hljs-addition">+                       gsub(&quot;[:\\-TZ]&quot;, &quot; &quot;, $3)</span>
-<span class="hljs-addition">+                       t=mktime($3)</span>
-<span class="hljs-addition">+                       expirationTime=strftime(&quot;%s&quot;, t)</span>
-<span class="hljs-addition">+                       #</span>
-<span class="hljs-addition">+                       # expirationTime should be smaller than today in seconds so it can be deleted</span>
-<span class="hljs-addition">+                       if(now &gt; expirationTime) {</span>
-<span class="hljs-addition">+                         args=&quot;%s:%s&quot;</span>
-<span class="hljs-addition">+                         printf(args, $1, $2)</span>
-<span class="hljs-addition">+                       } </span>
-<span class="hljs-addition">+                    }&#x27; /var/tmp/kubectl-out &gt; $EXPIRED_RELEASES_FILE</span>
-<span class="hljs-addition">+                  # The deleteAndLog will run the Release deletion and save the operation in a structured way that        </span>
-<span class="hljs-addition">+                  # can be read easily by kubectl or journalctl                                                           </span>
-<span class="hljs-addition">+                  function deleteAndLog() {</span>
-<span class="hljs-addition">+                    release=${1%:*}</span>
-<span class="hljs-addition">+                    namespace=${1#*:}</span>
-<span class="hljs-addition">+                    kubectl delete release $release -n $namespace |while read logLine; do</span>
-<span class="hljs-addition">+                      echo &quot;INFO: namespace=${namespace} log=${logLine}&quot;</span>
-<span class="hljs-addition">+                    done                                                                                                  </span>
-<span class="hljs-addition">+                  }                                                                                                       </span>
-<span class="hljs-addition">+                  export -f deleteAndLog</span>
-<span class="hljs-addition">+                  xargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS} bash -c &#x27;deleteAndLog &quot;{}&quot;&#x27;</span>
-<span class="hljs-addition">+              imagePullPolicy: IfNotPresent</span>
-<span class="hljs-addition">+              image: quay.io/redhat-appstudio/release-service-utils:305541d8b8c2670dea4b50bd8c56858c365ca11e</span>
-<span class="hljs-addition">+              volumeMounts:</span>
-<span class="hljs-addition">+                - mountPath: /var/tmp</span>
-<span class="hljs-addition">+                  name: temp-directory</span>
-<span class="hljs-addition">+              resources:</span>
-<span class="hljs-addition">+                limits:</span>
-<span class="hljs-addition">+                  cpu: 200m</span>
-<span class="hljs-addition">+                  memory: 200Mi</span>
-<span class="hljs-addition">+                requests:</span>
-<span class="hljs-addition">+                  cpu: 10m</span>
-<span class="hljs-addition">+                  memory: 10Mi</span>
-<span class="hljs-addition">+              securityContext:</span>
-<span class="hljs-addition">+                allowPrivilegeEscalation: false</span>
-<span class="hljs-addition">+                capabilities:</span>
-<span class="hljs-addition">+                  drop:</span>
-<span class="hljs-addition">+                  - ALL</span>
-<span class="hljs-addition">+                readOnlyRootFilesystem: true</span>
-<span class="hljs-addition">+                runAsNonRoot: true</span>
-<span class="hljs-addition">+                seccompProfile:</span>
-<span class="hljs-addition">+                  type: RuntimeDefault</span>
-<span class="hljs-comment">diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml</span>
-<span class="hljs-comment">index d0a8814a..4bde7f10 100644</span>
-<span class="hljs-comment">--- a/components/release/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/release/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -4,6 +4,7 @@</span> resources:
- - release-pipeline-resources-clusterrole.yaml
- - release-service-configurator-role.yaml
- - release-team.yaml
-<span class="hljs-addition">+- cronjobs/</span>
-
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (66 lines)</summary>  
-<pre><code>  <span class="hljs-operator">./</span>commit<span class="hljs-operator">-</span>a8e0f437<span class="hljs-regexp">/development/</span>components<span class="hljs-regexp">/release/</span>development<span class="hljs-operator">/</span>kustomize.out.yaml
-<span class="hljs-number">1825</span>,1888d1824
-<span class="hljs-operator">&lt;</span> apiVersion: batch<span class="hljs-operator">/</span>v1
-<span class="hljs-operator">&lt;</span> kind: <span class="hljs-type">CronJob</span>
-<span class="hljs-operator">&lt;</span> metadata:
-<span class="hljs-operator">&lt;</span>   name: remove<span class="hljs-operator">-</span>expired<span class="hljs-operator">-</span>releases
-<span class="hljs-operator">&lt;</span>   namespace: release<span class="hljs-operator">-</span>service
-<span class="hljs-operator">&lt;</span> spec:
-<span class="hljs-operator">&lt;</span>   failedJobsHistoryLimit: <span class="hljs-number">7</span>
-<span class="hljs-operator">&lt;</span>   jobTemplate:
-<span class="hljs-operator">&lt;</span>     spec:
-<span class="hljs-operator">&lt;</span>       template:
-<span class="hljs-operator">&lt;</span>         spec:
-<span class="hljs-operator">&lt;</span>           containers:
-<span class="hljs-operator">&lt;</span>           <span class="hljs-operator">-</span> command:
-<span class="hljs-operator">&lt;</span>             <span class="hljs-operator">-</span> <span class="hljs-regexp">/bin/</span>bash
-<span class="hljs-operator">&lt;</span>             <span class="hljs-operator">-</span> <span class="hljs-operator">-</span>c
-<span class="hljs-operator">&lt;</span>             <span class="hljs-operator">-</span> <span class="hljs-string">&quot;set -o pipefail<span class="hljs-subst">\n</span>PATH=<span class="hljs-subst">\&quot;</span>/bin:/usr/bin:/usr/local/bin<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>MAX_PROCS=5<span class="hljs-subst">\n</span>EXPIRED_RELEASES_FILE=<span class="hljs-subst">\&quot;</span>/var/tmp/releases-to-be-deleted<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>NOW=$(date
-&lt;               +%s)<span class="hljs-subst">\n</span>kubectl get release --all-namespaces <span class="hljs-subst">\\</span><span class="hljs-subst">\n</span>--sort-by=.status.expirationTime
-&lt;               <span class="hljs-subst">\\</span><span class="hljs-subst">\n</span>--template &#x27;{{range .items}}{{.metadata.name}}{{<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\\</span>t<span class="hljs-subst">\&quot;</span>}}{{.metadata.namespace}}{{<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\\</span>t<span class="hljs-subst">\&quot;</span>}}{{.status.expirationTime}}{{<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\\</span>n<span class="hljs-subst">\&quot;</span>}}{{end}}&#x27;
-&lt;               &gt; /tmp/kubectl-out<span class="hljs-subst">\n</span>awk -v now=${NOW} &#x27;{<span class="hljs-subst">\n</span>     # parsing the expirationTime
-&lt;               and converting it to epoch<span class="hljs-subst">\n</span>     # so we can calculate easier the expired
-&lt;               Releases<span class="hljs-subst">\n</span>     gsub(<span class="hljs-subst">\&quot;</span>[:<span class="hljs-subst">\\</span><span class="hljs-subst">\\</span>-TZ]<span class="hljs-subst">\&quot;</span>, <span class="hljs-subst">\&quot;</span> <span class="hljs-subst">\&quot;</span>, $3)<span class="hljs-subst">\n</span>     t=mktime($3)<span class="hljs-subst">\n</span>
-&lt;               \    expirationTime=strftime(<span class="hljs-subst">\&quot;</span>%s<span class="hljs-subst">\&quot;</span>, t)<span class="hljs-subst">\n</span>     #<span class="hljs-subst">\n</span>     # expirationTime
-&lt;               should be smaller than today in seconds so it can be deleted<span class="hljs-subst">\n</span>     if(now
-&lt;               &gt; expirationTime) {<span class="hljs-subst">\n</span>       args=<span class="hljs-subst">\&quot;</span>%s:%s<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>       printf(args, $1,
-&lt;               $2)<span class="hljs-subst">\n</span>     } <span class="hljs-subst">\n</span>  }&#x27; /var/tmp/kubectl-out &gt; $EXPIRED_RELEASES_FILE<span class="hljs-subst">\n</span>#
-&lt;               The deleteAndLog will run the Release deletion and save the operation
-&lt;               in a structured way that        <span class="hljs-subst">\n</span># can be read easily by kubectl or
-&lt;               journalctl                                                           <span class="hljs-subst">\n</span>function
-&lt;               deleteAndLog() {<span class="hljs-subst">\n</span>  release=${1%:*}<span class="hljs-subst">\n</span>  namespace=${1#*:}<span class="hljs-subst">\n</span>  kubectl
-&lt;               delete release $release -n $namespace |while read logLine; do<span class="hljs-subst">\n</span>    echo
-&lt;               <span class="hljs-subst">\&quot;</span>INFO: namespace=${namespace} log=${logLine}<span class="hljs-subst">\&quot;</span><span class="hljs-subst">\n</span>  done                                                                                                  <span class="hljs-subst">\n</span>}
-&lt;               \                                                                                                      <span class="hljs-subst">\n</span>export
-&lt;               -f deleteAndLog<span class="hljs-subst">\n</span>xargs -a ${EXPIRED_RELEASES_FILE} -i -P ${MAX_PROCS}
-&lt;               bash -c &#x27;deleteAndLog <span class="hljs-subst">\&quot;</span>{}<span class="hljs-subst">\&quot;</span>&#x27;<span class="hljs-subst">\n</span>&quot;</span>
-<span class="hljs-operator">&lt;</span>             image: quay.io<span class="hljs-regexp">/redhat-appstudio/</span>release<span class="hljs-operator">-</span>service<span class="hljs-operator">-</span>utils:305541d8b8c2670dea4b50bd8c56858c365ca11e
-<span class="hljs-operator">&lt;</span>             imagePullPolicy: <span class="hljs-type">IfNotPresent</span>
-<span class="hljs-operator">&lt;</span>             name: release<span class="hljs-operator">-</span>cleanup
-<span class="hljs-operator">&lt;</span>             resources:
-<span class="hljs-operator">&lt;</span>               limits:
-<span class="hljs-operator">&lt;</span>                 cpu: 200m
-<span class="hljs-operator">&lt;</span>                 memory: 200Mi
-<span class="hljs-operator">&lt;</span>               requests:
-<span class="hljs-operator">&lt;</span>                 cpu: 10m
-<span class="hljs-operator">&lt;</span>                 memory: 10Mi
-<span class="hljs-operator">&lt;</span>             securityContext:
-<span class="hljs-operator">&lt;</span>               allowPrivilegeEscalation: <span class="hljs-literal">false</span>
-<span class="hljs-operator">&lt;</span>               capabilities:
-<span class="hljs-operator">&lt;</span>                 drop:
-<span class="hljs-operator">&lt;</span>                 <span class="hljs-operator">-</span> <span class="hljs-type">ALL</span>
-<span class="hljs-operator">&lt;</span>               readOnlyRootFilesystem: <span class="hljs-literal">true</span>
-<span class="hljs-operator">&lt;</span>               runAsNonRoot: <span class="hljs-literal">true</span>
-<span class="hljs-operator">&lt;</span>               seccompProfile:
-<span class="hljs-operator">&lt;</span>                 type: <span class="hljs-type">RuntimeDefault</span>
-<span class="hljs-operator">&lt;</span>             volumeMounts:
-<span class="hljs-operator">&lt;</span>             <span class="hljs-operator">-</span> mountPath: <span class="hljs-regexp">/var/</span>tmp
-<span class="hljs-operator">&lt;</span>               name: temp<span class="hljs-operator">-</span>directory
-<span class="hljs-operator">&lt;</span>           restartPolicy: <span class="hljs-type">Never</span>
-<span class="hljs-operator">&lt;</span>           serviceAccountName: release<span class="hljs-operator">-</span>service<span class="hljs-operator">-</span>controller<span class="hljs-operator">-</span>manager
-<span class="hljs-operator">&lt;</span>           volumes:
-<span class="hljs-operator">&lt;</span>           <span class="hljs-operator">-</span> emptyDir: {}
-<span class="hljs-operator">&lt;</span>             name: temp<span class="hljs-operator">-</span>directory
-<span class="hljs-operator">&lt;</span>   schedule: <span class="hljs-number">10</span> <span class="hljs-number">03</span> <span class="hljs-operator">*</span> <span class="hljs-operator">*</span> <span class="hljs-operator">*</span>
-<span class="hljs-operator">&lt;</span>   successfulJobsHistoryLimit: <span class="hljs-number">7</span>
-<span class="hljs-operator">&lt;</span> <span class="hljs-operator">---</span> 
 </code></pre>
 
 </details>  
