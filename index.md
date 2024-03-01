@@ -1,12 +1,491 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Mar  1 16:04:18 UTC 2024
+### This file generated at Fri Mar  1 20:03:01 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
+<h3>1: Production changes from 6095c189 to c2d10153 on Fri Mar 1 19:59:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (43 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index 2cc42dc3..945c417d 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=b57970c32618ec2bb0170144f530c868dbb1dbd3
++- https://github.com/redhat-appstudio/build-service/config/default?ref=29b09e5d8350f75c92d5796fbbf62647fe28610b
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: b57970c32618ec2bb0170144f530c868dbb1dbd3
++  newTag: 29b09e5d8350f75c92d5796fbbf62647fe28610b
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 0bf9c1e7..9751e5af 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=b57970c32618ec2bb0170144f530c868dbb1dbd3
++- https://github.com/redhat-appstudio/build-service/config/default?ref=29b09e5d8350f75c92d5796fbbf62647fe28610b
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: b57970c32618ec2bb0170144f530c868dbb1dbd3
++  newTag: 29b09e5d8350f75c92d5796fbbf62647fe28610b
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 6095c189 to c2d10153 on Fri Mar 1 19:59:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (43 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index 2cc42dc3..945c417d 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=b57970c32618ec2bb0170144f530c868dbb1dbd3
++- https://github.com/redhat-appstudio/build-service/config/default?ref=29b09e5d8350f75c92d5796fbbf62647fe28610b
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: b57970c32618ec2bb0170144f530c868dbb1dbd3
++  newTag: 29b09e5d8350f75c92d5796fbbf62647fe28610b
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 0bf9c1e7..9751e5af 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=b57970c32618ec2bb0170144f530c868dbb1dbd3
++- https://github.com/redhat-appstudio/build-service/config/default?ref=29b09e5d8350f75c92d5796fbbf62647fe28610b
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: b57970c32618ec2bb0170144f530c868dbb1dbd3
++  newTag: 29b09e5d8350f75c92d5796fbbf62647fe28610b
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-6095c189/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
+754c754
+<         image: quay.io/redhat-appstudio/build-service:29b09e5d8350f75c92d5796fbbf62647fe28610b
+---
+>         image: quay.io/redhat-appstudio/build-service:b57970c32618ec2bb0170144f530c868dbb1dbd3 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 6095c189 to c2d10153 on Fri Mar 1 19:59:58 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (43 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index 2cc42dc3..945c417d 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=b57970c32618ec2bb0170144f530c868dbb1dbd3
++- https://github.com/redhat-appstudio/build-service/config/default?ref=29b09e5d8350f75c92d5796fbbf62647fe28610b
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: b57970c32618ec2bb0170144f530c868dbb1dbd3
++  newTag: 29b09e5d8350f75c92d5796fbbf62647fe28610b
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 0bf9c1e7..9751e5af 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=b57970c32618ec2bb0170144f530c868dbb1dbd3
++- https://github.com/redhat-appstudio/build-service/config/default?ref=29b09e5d8350f75c92d5796fbbf62647fe28610b
+ 
+ namespace: build-service
+ 
+ images:
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: b57970c32618ec2bb0170144f530c868dbb1dbd3
++  newTag: 29b09e5d8350f75c92d5796fbbf62647fe28610b
+ 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-6095c189/development/components/build-service/development/kustomize.out.yaml
+761c761
+<         image: quay.io/redhat-appstudio/build-service:29b09e5d8350f75c92d5796fbbf62647fe28610b
+---
+>         image: quay.io/redhat-appstudio/build-service:b57970c32618ec2bb0170144f530c868dbb1dbd3 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -158,7 +637,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
+<h3>2: Staging changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -313,7 +792,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
+<h3>2: Development changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -420,7 +899,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
+<h3>3: Production changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -576,7 +1055,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
+<h3>3: Staging changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -735,7 +1214,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
+<h3>3: Development changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -850,7 +1329,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
+<h3>4: Production changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1003,7 +1482,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
+<h3>4: Staging changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1155,7 +1634,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
+<h3>4: Development changes from 03152bfd to 064f26ba on Thu Feb 29 14:28:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1191,576 +1670,6 @@ index bf817c3e..d9be3fcc 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (46 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
-index 4bde7f10..3313e531 100644
---- a/components/release/base/kustomization.yaml
-+++ b/components/release/base/kustomization.yaml
-@@ -2,6 +2,7 @@ resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
- - release-pipeline-resources-clusterrole.yaml
-+- release-service-config-rbac.yaml
- - release-service-configurator-role.yaml
- - release-team.yaml
- - cronjobs/
-diff --git a/components/release/base/release-service-config-rbac.yaml b/components/release/base/release-service-config-rbac.yaml
-new file mode 100644
-index 00000000..3837427b
---- /dev/null
-+++ b/components/release/base/release-service-config-rbac.yaml
-@@ -0,0 +1,28 @@
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRole
-+metadata:
-+  name: releaseserviceconfig-role
-+rules:
-+- apiGroups:
-+  - appstudio.redhat.com
-+  resources:
-+  - releaseserviceconfigs
-+  verbs:
-+  - get
-+  - list
-+  - watch
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: RoleBinding
-+metadata:
-+  name: releaseserviceconfigs-rolebinding
-+  namespace: release-service
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: releaseserviceconfig-role
-+subjects:
-+- apiGroup: rbac.authorization.k8s.io
-+  kind: Group
-+  name: system:serviceaccounts 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (31 lines)</summary>  
-
-``` 
-./commit-64366834/production/components/release/production/kustomize.out.yaml
-1420,1433d1419
-< kind: ClusterRole
-< metadata:
-<   name: releaseserviceconfig-role
-< rules:
-< - apiGroups:
-<   - appstudio.redhat.com
-<   resources:
-<   - releaseserviceconfigs
-<   verbs:
-<   - get
-<   - list
-<   - watch
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-1488,1501d1473
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: RoleBinding
-< metadata:
-<   name: releaseserviceconfigs-rolebinding
-<   namespace: release-service
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: releaseserviceconfig-role
-< subjects:
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-<   name: system:serviceaccounts 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (46 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
-index 4bde7f10..3313e531 100644
---- a/components/release/base/kustomization.yaml
-+++ b/components/release/base/kustomization.yaml
-@@ -2,6 +2,7 @@ resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
- - release-pipeline-resources-clusterrole.yaml
-+- release-service-config-rbac.yaml
- - release-service-configurator-role.yaml
- - release-team.yaml
- - cronjobs/
-diff --git a/components/release/base/release-service-config-rbac.yaml b/components/release/base/release-service-config-rbac.yaml
-new file mode 100644
-index 00000000..3837427b
---- /dev/null
-+++ b/components/release/base/release-service-config-rbac.yaml
-@@ -0,0 +1,28 @@
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRole
-+metadata:
-+  name: releaseserviceconfig-role
-+rules:
-+- apiGroups:
-+  - appstudio.redhat.com
-+  resources:
-+  - releaseserviceconfigs
-+  verbs:
-+  - get
-+  - list
-+  - watch
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: RoleBinding
-+metadata:
-+  name: releaseserviceconfigs-rolebinding
-+  namespace: release-service
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: releaseserviceconfig-role
-+subjects:
-+- apiGroup: rbac.authorization.k8s.io
-+  kind: Group
-+  name: system:serviceaccounts 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (31 lines)</summary>  
-
-``` 
-./commit-64366834/staging/components/release/staging/kustomize.out.yaml
-1420,1433d1419
-< kind: ClusterRole
-< metadata:
-<   name: releaseserviceconfig-role
-< rules:
-< - apiGroups:
-<   - appstudio.redhat.com
-<   resources:
-<   - releaseserviceconfigs
-<   verbs:
-<   - get
-<   - list
-<   - watch
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-1488,1501d1473
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: RoleBinding
-< metadata:
-<   name: releaseserviceconfigs-rolebinding
-<   namespace: release-service
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: releaseserviceconfig-role
-< subjects:
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-<   name: system:serviceaccounts 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 64366834 to 03152bfd on Thu Feb 29 13:37:56 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (46 lines)</summary>  
-
-``` 
-diff --git a/components/release/base/kustomization.yaml b/components/release/base/kustomization.yaml
-index 4bde7f10..3313e531 100644
---- a/components/release/base/kustomization.yaml
-+++ b/components/release/base/kustomization.yaml
-@@ -2,6 +2,7 @@ resources:
- - allow-argocd-to-manage.yaml
- - argocd-permissions.yaml
- - release-pipeline-resources-clusterrole.yaml
-+- release-service-config-rbac.yaml
- - release-service-configurator-role.yaml
- - release-team.yaml
- - cronjobs/
-diff --git a/components/release/base/release-service-config-rbac.yaml b/components/release/base/release-service-config-rbac.yaml
-new file mode 100644
-index 00000000..3837427b
---- /dev/null
-+++ b/components/release/base/release-service-config-rbac.yaml
-@@ -0,0 +1,28 @@
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: ClusterRole
-+metadata:
-+  name: releaseserviceconfig-role
-+rules:
-+- apiGroups:
-+  - appstudio.redhat.com
-+  resources:
-+  - releaseserviceconfigs
-+  verbs:
-+  - get
-+  - list
-+  - watch
-+---
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: RoleBinding
-+metadata:
-+  name: releaseserviceconfigs-rolebinding
-+  namespace: release-service
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: releaseserviceconfig-role
-+subjects:
-+- apiGroup: rbac.authorization.k8s.io
-+  kind: Group
-+  name: system:serviceaccounts 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (31 lines)</summary>  
-
-``` 
-./commit-64366834/development/components/release/development/kustomize.out.yaml
-1420,1433d1419
-< kind: ClusterRole
-< metadata:
-<   name: releaseserviceconfig-role
-< rules:
-< - apiGroups:
-<   - appstudio.redhat.com
-<   resources:
-<   - releaseserviceconfigs
-<   verbs:
-<   - get
-<   - list
-<   - watch
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-1488,1501d1473
-< ---
-< apiVersion: rbac.authorization.k8s.io/v1
-< kind: RoleBinding
-< metadata:
-<   name: releaseserviceconfigs-rolebinding
-<   namespace: release-service
-< roleRef:
-<   apiGroup: rbac.authorization.k8s.io
-<   kind: ClusterRole
-<   name: releaseserviceconfig-role
-< subjects:
-< - apiGroup: rbac.authorization.k8s.io
-<   kind: Group
-<   name: system:serviceaccounts 
 ```
  
 </details>  
