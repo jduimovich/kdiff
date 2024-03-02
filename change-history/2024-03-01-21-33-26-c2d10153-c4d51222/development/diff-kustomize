@@ -1,0 +1,55 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c4d51222/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-c2d10153/development/components/pipeline-service/development/kustomize.out.yaml
+1317c1317
+<         image: quay.io/redhat-appstudio/tekton-results-api:021f292d2a7074409482be5b476cab5931f0bd01
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1449a1450,1494
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+>         name: migrator
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 32Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+1536c1581
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:021f292d2a7074409482be5b476cab5931f0bd01
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
