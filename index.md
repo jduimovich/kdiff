@@ -1,12 +1,522 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Mar  4 04:08:49 UTC 2024
+### This file generated at Mon Mar  4 08:13:11 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from c2d10153 to c4d51222 on Fri Mar 1 21:33:26 2024 </h3>  
+<h3>1: Production changes from c4d51222 to 8c8be255 on Mon Mar 4 06:04:13 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (40 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+index d049b2ad..911d0e8f 100644
+--- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+@@ -11,7 +11,7 @@ spec:
+         - name: name
+           value: fbc-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+         - name: kind
+           value: pipeline
+       when:
+@@ -23,7 +23,7 @@ spec:
+         - name: name
+           value: docker-build
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:937bd16383dee89854bcbb2b8fc4fddcf259dddb
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+         - name: kind
+           value: pipeline
+       when:
+@@ -35,7 +35,7 @@ spec:
+         - name: name
+           value: java-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+         - name: kind
+           value: pipeline
+       when:
+@@ -47,7 +47,7 @@ spec:
+         - name: name
+           value: nodejs-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+         - name: kind
+           value: pipeline
+       when: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+./commit-c4d51222/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+845c845
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
+857c857
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:937bd16383dee89854bcbb2b8fc4fddcf259dddb
+869c869
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
+881c881
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from c4d51222 to 8c8be255 on Mon Mar 4 06:04:13 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (40 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+index d049b2ad..911d0e8f 100644
+--- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+@@ -11,7 +11,7 @@ spec:
+         - name: name
+           value: fbc-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+         - name: kind
+           value: pipeline
+       when:
+@@ -23,7 +23,7 @@ spec:
+         - name: name
+           value: docker-build
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:937bd16383dee89854bcbb2b8fc4fddcf259dddb
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+         - name: kind
+           value: pipeline
+       when:
+@@ -35,7 +35,7 @@ spec:
+         - name: name
+           value: java-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+         - name: kind
+           value: pipeline
+       when:
+@@ -47,7 +47,7 @@ spec:
+         - name: name
+           value: nodejs-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+         - name: kind
+           value: pipeline
+       when: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+./commit-c4d51222/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
+845c845
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
+857c857
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:937bd16383dee89854bcbb2b8fc4fddcf259dddb
+869c869
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
+881c881
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from c4d51222 to 8c8be255 on Mon Mar 4 06:04:13 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (40 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+index d049b2ad..911d0e8f 100644
+--- a/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
++++ b/components/build-service/base/build-pipeline-selectors/build-pipeline-selector.yaml
+@@ -11,7 +11,7 @@ spec:
+         - name: name
+           value: fbc-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+         - name: kind
+           value: pipeline
+       when:
+@@ -23,7 +23,7 @@ spec:
+         - name: name
+           value: docker-build
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:937bd16383dee89854bcbb2b8fc4fddcf259dddb
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+         - name: kind
+           value: pipeline
+       when:
+@@ -35,7 +35,7 @@ spec:
+         - name: name
+           value: java-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+         - name: kind
+           value: pipeline
+       when:
+@@ -47,7 +47,7 @@ spec:
+         - name: name
+           value: nodejs-builder
+         - name: bundle
+-          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
++          value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+         - name: kind
+           value: pipeline
+       when: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (17 lines)</summary>  
+
+``` 
+./commit-c4d51222/development/components/build-service/development/kustomize.out.yaml
+852c852
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-fbc-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
+864c864
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-docker-build:937bd16383dee89854bcbb2b8fc4fddcf259dddb
+876c876
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-java-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb
+888c888
+<         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:9a6b360c3e4d7cf26f2324556ad9513552358d5e
+---
+>         value: quay.io/redhat-appstudio-tekton-catalog/pipeline-nodejs-builder:937bd16383dee89854bcbb2b8fc4fddcf259dddb 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from c2d10153 to c4d51222 on Fri Mar 1 21:33:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (263 lines)</summary>  
@@ -397,7 +907,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from c2d10153 to c4d51222 on Fri Mar 1 21:33:26 2024 </h3>  
+<h3>2: Staging changes from c2d10153 to c4d51222 on Fri Mar 1 21:33:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (263 lines)</summary>  
@@ -958,7 +1468,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from c2d10153 to c4d51222 on Fri Mar 1 21:33:26 2024 </h3>  
+<h3>2: Development changes from c2d10153 to c4d51222 on Fri Mar 1 21:33:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (263 lines)</summary>  
@@ -1358,7 +1868,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 6095c189 to c2d10153 on Fri Mar 1 19:59:58 2024 </h3>  
+<h3>3: Production changes from 6095c189 to c2d10153 on Fri Mar 1 19:59:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -1529,7 +2039,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 6095c189 to c2d10153 on Fri Mar 1 19:59:58 2024 </h3>  
+<h3>3: Staging changes from 6095c189 to c2d10153 on Fri Mar 1 19:59:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -1707,7 +2217,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 6095c189 to c2d10153 on Fri Mar 1 19:59:58 2024 </h3>  
+<h3>3: Development changes from 6095c189 to c2d10153 on Fri Mar 1 19:59:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -1837,7 +2347,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
+<h3>4: Production changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -1989,7 +2499,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
+<h3>4: Staging changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -2144,7 +2654,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
+<h3>4: Development changes from 885d53b7 to 6095c189 on Fri Mar 1 14:09:13 2024 </h3>  
  
 <details> 
 <summary>Git Diff (24 lines)</summary>  
@@ -2183,436 +2693,6 @@ index 71aac860..89584eb5 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 80b437d6..82f63386 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
-+- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=3c4a8f0a1d6cad71aeaf03ea5bd1131677b5d4d0
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index e4c8a173..960b8a40 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/release-service/config/default?ref=94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
-+  - https://github.com/redhat-appstudio/release-service/config/default?ref=3c4a8f0a1d6cad71aeaf03ea5bd1131677b5d4d0
- 
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
-+    newTag: 3c4a8f0a1d6cad71aeaf03ea5bd1131677b5d4d0
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 80b437d6..82f63386 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
-+- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=3c4a8f0a1d6cad71aeaf03ea5bd1131677b5d4d0
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index e4c8a173..960b8a40 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/release-service/config/default?ref=94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
-+  - https://github.com/redhat-appstudio/release-service/config/default?ref=3c4a8f0a1d6cad71aeaf03ea5bd1131677b5d4d0
- 
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
-+    newTag: 3c4a8f0a1d6cad71aeaf03ea5bd1131677b5d4d0
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 064f26ba to 885d53b7 on Thu Feb 29 17:08:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (28 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-index 80b437d6..82f63386 100644
---- a/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/release/kustomization.yaml
-@@ -1,4 +1,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
-+- https://github.com/redhat-appstudio/release-service/config/grafana/?ref=3c4a8f0a1d6cad71aeaf03ea5bd1131677b5d4d0
-diff --git a/components/release/development/kustomization.yaml b/components/release/development/kustomization.yaml
-index e4c8a173..960b8a40 100644
---- a/components/release/development/kustomization.yaml
-+++ b/components/release/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/release-service/config/default?ref=94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
-+  - https://github.com/redhat-appstudio/release-service/config/default?ref=3c4a8f0a1d6cad71aeaf03ea5bd1131677b5d4d0
- 
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
-+    newTag: 3c4a8f0a1d6cad71aeaf03ea5bd1131677b5d4d0
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-064f26ba/development/components/release/development/kustomize.out.yaml
-1790c1790
-<         image: quay.io/redhat-appstudio/release-service:3c4a8f0a1d6cad71aeaf03ea5bd1131677b5d4d0
----
->         image: quay.io/redhat-appstudio/release-service:94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f 
 ```
  
 </details>  
