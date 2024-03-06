@@ -1,12 +1,496 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Mar  6 08:04:10 UTC 2024
+### This file generated at Wed Mar  6 12:03:55 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 94b2d127 to ac403e8f on Wed Mar 6 06:55:06 2024 </h3>  
+<h3>1: Production changes from ac403e8f to 19652ff8 on Wed Mar 6 11:46:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 05654f81..4678981c 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: f7bb0788791c37b7a82a98555dc710d434e36a56
++  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+ 
+ namespace: integration-service
+ 
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index d0f7e6d4..b7ea8aa0 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: f7bb0788791c37b7a82a98555dc710d434e36a56
++  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from ac403e8f to 19652ff8 on Wed Mar 6 11:46:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 05654f81..4678981c 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: f7bb0788791c37b7a82a98555dc710d434e36a56
++  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+ 
+ namespace: integration-service
+ 
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index d0f7e6d4..b7ea8aa0 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: f7bb0788791c37b7a82a98555dc710d434e36a56
++  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-ac403e8f/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+1183c1183
+<         image: quay.io/redhat-appstudio/integration-service:c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+---
+>         image: quay.io/redhat-appstudio/integration-service:f7bb0788791c37b7a82a98555dc710d434e36a56
+1274c1274
+<             image: quay.io/redhat-appstudio/integration-service:c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+---
+>             image: quay.io/redhat-appstudio/integration-service:f7bb0788791c37b7a82a98555dc710d434e36a56 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from ac403e8f to 19652ff8 on Wed Mar 6 11:46:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 05654f81..4678981c 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: f7bb0788791c37b7a82a98555dc710d434e36a56
++  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+ 
+ namespace: integration-service
+ 
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index d0f7e6d4..b7ea8aa0 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: f7bb0788791c37b7a82a98555dc710d434e36a56
++  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+ 
+ namespace: integration-service
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-ac403e8f/development/components/integration/development/kustomize.out.yaml
+1183c1183
+<         image: quay.io/redhat-appstudio/integration-service:c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+---
+>         image: quay.io/redhat-appstudio/integration-service:f7bb0788791c37b7a82a98555dc710d434e36a56
+1277c1277
+<             image: quay.io/redhat-appstudio/integration-service:c6ceab5e54a3b57e1a699d534ad1179ac60029f2
+---
+>             image: quay.io/redhat-appstudio/integration-service:f7bb0788791c37b7a82a98555dc710d434e36a56 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 94b2d127 to ac403e8f on Wed Mar 6 06:55:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (104 lines)</summary>  
@@ -238,7 +722,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 94b2d127 to ac403e8f on Wed Mar 6 06:55:06 2024 </h3>  
+<h3>2: Staging changes from 94b2d127 to ac403e8f on Wed Mar 6 06:55:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (104 lines)</summary>  
@@ -499,7 +983,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 94b2d127 to ac403e8f on Wed Mar 6 06:55:06 2024 </h3>  
+<h3>2: Development changes from 94b2d127 to ac403e8f on Wed Mar 6 06:55:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (104 lines)</summary>  
@@ -694,7 +1178,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 22a9c816 to 94b2d127 on Tue Mar 5 17:39:36 2024 </h3>  
+<h3>3: Production changes from 22a9c816 to 94b2d127 on Tue Mar 5 17:39:36 2024 </h3>  
  
 <details> 
 <summary>Git Diff (120 lines)</summary>  
@@ -942,7 +1426,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 22a9c816 to 94b2d127 on Tue Mar 5 17:39:36 2024 </h3>  
+<h3>3: Staging changes from 22a9c816 to 94b2d127 on Tue Mar 5 17:39:36 2024 </h3>  
  
 <details> 
 <summary>Git Diff (120 lines)</summary>  
@@ -1193,7 +1677,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 22a9c816 to 94b2d127 on Tue Mar 5 17:39:36 2024 </h3>  
+<h3>3: Development changes from 22a9c816 to 94b2d127 on Tue Mar 5 17:39:36 2024 </h3>  
  
 <details> 
 <summary>Git Diff (120 lines)</summary>  
@@ -1396,7 +1880,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 31632b29 to 22a9c816 on Tue Mar 5 16:47:23 2024 </h3>  
+<h3>4: Production changes from 31632b29 to 22a9c816 on Tue Mar 5 16:47:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (5818 lines)</summary>  
@@ -7342,7 +7826,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 31632b29 to 22a9c816 on Tue Mar 5 16:47:23 2024 </h3>  
+<h3>4: Staging changes from 31632b29 to 22a9c816 on Tue Mar 5 16:47:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (5818 lines)</summary>  
@@ -13291,7 +13775,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 31632b29 to 22a9c816 on Tue Mar 5 16:47:23 2024 </h3>  
+<h3>4: Development changes from 31632b29 to 22a9c816 on Tue Mar 5 16:47:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (5818 lines)</summary>  
@@ -19115,812 +19599,6 @@ index 00000000..5a73e834
 +    - namespace: toolchain-member-operator
 +      clusterRoles:
 +      - view 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 6c6ebd0e to 31632b29 on Tue Mar 5 15:46:53 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (141 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/staging/base/bump-results-watcher-mem.yaml b/components/pipeline-service/staging/base/bump-results-watcher-mem.yaml
-new file mode 100644
-index 00000000..6a08230d
---- /dev/null
-+++ b/components/pipeline-service/staging/base/bump-results-watcher-mem.yaml
-@@ -0,0 +1,7 @@
-+---
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/limits/memory
-+  value: "4Gi"
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/requests/memory
-+  value: "4Gi"
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index aac55d59..43a8dced 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -20,6 +20,11 @@ patches:
-       kind: Deployment
-       name: pipeline-metrics-exporter
-       namespace: openshift-pipelines
-+  - path: bump-results-watcher-mem.yaml
-+    target:
-+      kind: Deployment
-+      namespace: tekton-results
-+      name: tekton-results-watcher
-   - path: update-tekton-config-pac.yaml
-     target:
-       kind: TektonConfig
-@@ -38,3 +43,8 @@ patches:
-       kind: Deployment
-       namespace: tekton-results
-       name: tekton-results-watcher
-+  - path: update-results-watcher-performance.yaml
-+    target:
-+      kind: Deployment
-+      namespace: tekton-results
-+      name: tekton-results-watcher
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-new file mode 100644
-index 00000000..aea590ed
---- /dev/null
-+++ b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-@@ -0,0 +1,13 @@
-+---
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "-threadiness"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "32"
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/requests/cpu
-+  value: "250m"
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/limits/cpu
-+  value: "250m"
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 1b293dda..9efbb43f 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1473,6 +1473,8 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "32"
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1500,10 +1502,10 @@ spec:
-         resources:
-           limits:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 4Gi
-           requests:
--            cpu: 100m
--            memory: 64Mi
-+            cpu: 250m
-+            memory: 4Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 487e89b0..a908a351 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1473,6 +1473,8 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "32"
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1500,10 +1502,10 @@ spec:
-         resources:
-           limits:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 4Gi
-           requests:
--            cpu: 100m
--            memory: 64Mi
-+            cpu: 250m
-+            memory: 4Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index c9398bca..08d2f704 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1473,6 +1473,8 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "32"
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1500,10 +1502,10 @@ spec:
-         resources:
-           limits:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 4Gi
-           requests:
--            cpu: 100m
--            memory: 64Mi
-+            cpu: 250m
-+            memory: 4Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 6c6ebd0e to 31632b29 on Tue Mar 5 15:46:53 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (141 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/staging/base/bump-results-watcher-mem.yaml b/components/pipeline-service/staging/base/bump-results-watcher-mem.yaml
-new file mode 100644
-index 00000000..6a08230d
---- /dev/null
-+++ b/components/pipeline-service/staging/base/bump-results-watcher-mem.yaml
-@@ -0,0 +1,7 @@
-+---
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/limits/memory
-+  value: "4Gi"
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/requests/memory
-+  value: "4Gi"
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index aac55d59..43a8dced 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -20,6 +20,11 @@ patches:
-       kind: Deployment
-       name: pipeline-metrics-exporter
-       namespace: openshift-pipelines
-+  - path: bump-results-watcher-mem.yaml
-+    target:
-+      kind: Deployment
-+      namespace: tekton-results
-+      name: tekton-results-watcher
-   - path: update-tekton-config-pac.yaml
-     target:
-       kind: TektonConfig
-@@ -38,3 +43,8 @@ patches:
-       kind: Deployment
-       namespace: tekton-results
-       name: tekton-results-watcher
-+  - path: update-results-watcher-performance.yaml
-+    target:
-+      kind: Deployment
-+      namespace: tekton-results
-+      name: tekton-results-watcher
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-new file mode 100644
-index 00000000..aea590ed
---- /dev/null
-+++ b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-@@ -0,0 +1,13 @@
-+---
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "-threadiness"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "32"
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/requests/cpu
-+  value: "250m"
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/limits/cpu
-+  value: "250m"
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 1b293dda..9efbb43f 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1473,6 +1473,8 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "32"
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1500,10 +1502,10 @@ spec:
-         resources:
-           limits:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 4Gi
-           requests:
--            cpu: 100m
--            memory: 64Mi
-+            cpu: 250m
-+            memory: 4Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 487e89b0..a908a351 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1473,6 +1473,8 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "32"
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1500,10 +1502,10 @@ spec:
-         resources:
-           limits:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 4Gi
-           requests:
--            cpu: 100m
--            memory: 64Mi
-+            cpu: 250m
-+            memory: 4Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index c9398bca..08d2f704 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1473,6 +1473,8 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "32"
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1500,10 +1502,10 @@ spec:
-         resources:
-           limits:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 4Gi
-           requests:
--            cpu: 100m
--            memory: 64Mi
-+            cpu: 250m
-+            memory: 4Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (42 lines)</summary>  
-
-``` 
-./commit-6c6ebd0e/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1476,1477d1475
-<         - -threadiness
-<         - "32"
-1505c1503
-<             memory: 4Gi
----
->             memory: 2Gi
-1507,1508c1505,1506
-<             cpu: 250m
-<             memory: 4Gi
----
->             cpu: 100m
->             memory: 64Mi
-./commit-6c6ebd0e/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-1476,1477d1475
-<         - -threadiness
-<         - "32"
-1505c1503
-<             memory: 4Gi
----
->             memory: 2Gi
-1507,1508c1505,1506
-<             cpu: 250m
-<             memory: 4Gi
----
->             cpu: 100m
->             memory: 64Mi
-./commit-6c6ebd0e/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1476,1477d1475
-<         - -threadiness
-<         - "32"
-1505c1503
-<             memory: 4Gi
----
->             memory: 2Gi
-1507,1508c1505,1506
-<             cpu: 250m
-<             memory: 4Gi
----
->             cpu: 100m
->             memory: 64Mi 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 6c6ebd0e to 31632b29 on Tue Mar 5 15:46:53 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (141 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/staging/base/bump-results-watcher-mem.yaml b/components/pipeline-service/staging/base/bump-results-watcher-mem.yaml
-new file mode 100644
-index 00000000..6a08230d
---- /dev/null
-+++ b/components/pipeline-service/staging/base/bump-results-watcher-mem.yaml
-@@ -0,0 +1,7 @@
-+---
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/limits/memory
-+  value: "4Gi"
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/requests/memory
-+  value: "4Gi"
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index aac55d59..43a8dced 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -20,6 +20,11 @@ patches:
-       kind: Deployment
-       name: pipeline-metrics-exporter
-       namespace: openshift-pipelines
-+  - path: bump-results-watcher-mem.yaml
-+    target:
-+      kind: Deployment
-+      namespace: tekton-results
-+      name: tekton-results-watcher
-   - path: update-tekton-config-pac.yaml
-     target:
-       kind: TektonConfig
-@@ -38,3 +43,8 @@ patches:
-       kind: Deployment
-       namespace: tekton-results
-       name: tekton-results-watcher
-+  - path: update-results-watcher-performance.yaml
-+    target:
-+      kind: Deployment
-+      namespace: tekton-results
-+      name: tekton-results-watcher
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-new file mode 100644
-index 00000000..aea590ed
---- /dev/null
-+++ b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
-@@ -0,0 +1,13 @@
-+---
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "-threadiness"
-+- op: add
-+  path: /spec/template/spec/containers/1/args/-
-+  value: "32"
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/requests/cpu
-+  value: "250m"
-+- op: replace
-+  path: /spec/template/spec/containers/1/resources/limits/cpu
-+  value: "250m"
-\ No newline at end of file
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index 1b293dda..9efbb43f 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1473,6 +1473,8 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "32"
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1500,10 +1502,10 @@ spec:
-         resources:
-           limits:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 4Gi
-           requests:
--            cpu: 100m
--            memory: 64Mi
-+            cpu: 250m
-+            memory: 4Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 487e89b0..a908a351 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1473,6 +1473,8 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "32"
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1500,10 +1502,10 @@ spec:
-         resources:
-           limits:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 4Gi
-           requests:
--            cpu: 100m
--            memory: 64Mi
-+            cpu: 250m
-+            memory: 4Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities:
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index c9398bca..08d2f704 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1473,6 +1473,8 @@ spec:
-         - -check_owner=false
-         - -completed_run_grace_period
-         - 10m
-+        - -threadiness
-+        - "32"
-         env:
-         - name: SYSTEM_NAMESPACE
-           valueFrom:
-@@ -1500,10 +1502,10 @@ spec:
-         resources:
-           limits:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 4Gi
-           requests:
--            cpu: 100m
--            memory: 64Mi
-+            cpu: 250m
-+            memory: 4Gi
-         securityContext:
-           allowPrivilegeEscalation: false
-           capabilities: 
 ```
  
 </details> 
