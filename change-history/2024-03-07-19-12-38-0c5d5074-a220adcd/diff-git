@@ -1,0 +1,54 @@
+diff --git a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
+index aea590ed..ec2b0738 100644
+--- a/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
++++ b/components/pipeline-service/staging/base/update-results-watcher-performance.yaml
+@@ -1,10 +1,4 @@
+ ---
+-- op: add
+-  path: /spec/template/spec/containers/1/args/-
+-  value: "-threadiness"
+-- op: add
+-  path: /spec/template/spec/containers/1/args/-
+-  value: "32"
+ - op: replace
+   path: /spec/template/spec/containers/1/resources/requests/cpu
+   value: "250m"
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 71319245..d7fa1bf6 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1475,8 +1475,6 @@ spec:
+         - 10m
+         - -threadiness
+         - "32"
+-        - -threadiness
+-        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 1a2d2062..dbb78a41 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1475,8 +1475,6 @@ spec:
+         - 10m
+         - -threadiness
+         - "32"
+-        - -threadiness
+-        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 1bbade96..6ea2e3e7 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1475,8 +1475,6 @@ spec:
+         - 10m
+         - -threadiness
+         - "32"
+-        - -threadiness
+-        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:

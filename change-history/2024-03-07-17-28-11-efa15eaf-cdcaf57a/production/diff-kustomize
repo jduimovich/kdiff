@@ -1,0 +1,14 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-cdcaf57a/production/components/release/production/kustomize.out.yaml ./kustomized-cache/commit-efa15eaf/production/components/release/production/kustomize.out.yaml
+1790c1790
+<         image: quay.io/redhat-appstudio/release-service:17f77107fc32d17de3dc5820d2d5156b2ca896ba
+---
+>         image: quay.io/redhat-appstudio/release-service:94f22621e55e0a5fcacca5d0bf313e5ad0c25a9f
+1916,1923d1915
+< ---
+< apiVersion: appstudio.redhat.com/v1alpha1
+< kind: ReleaseServiceConfig
+< metadata:
+<   name: release-service-config
+<   namespace: release-service
+< spec:
+<   debug: false
