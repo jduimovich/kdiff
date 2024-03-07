@@ -1,12 +1,435 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Mar  7 08:02:22 UTC 2024
+### This file generated at Thu Mar  7 12:03:42 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from d8e9d5fc to 57ef7edf on Thu Mar 7 03:13:28 2024 </h3>  
+<h3>1: Production changes from 57ef7edf to 94797662 on Thu Mar 7 08:46:13 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (17 lines)</summary>  
+
+``` 
+diff --git a/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml b/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
+index 6c32225a..83ba107e 100644
+--- a/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
++++ b/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
+@@ -7,12 +7,6 @@ spec:
+   template:
+     includedNamespaces:
+       - toolchain-host-operator
+-    includedResources:
+-      - bannedusers.toolchain.dev.openshift.com
+-      - masteruserrecords.toolchain.dev.openshift.com
+-      - spacebindings.toolchain.dev.openshift.com
+-      - spaces.toolchain.dev.openshift.com
+-      - usersignups.toolchain.dev.openshift.com
+     storageLocation: velero-aws-1
+     ttl: 720h0m0s
+   useOwnerReferencesInBackup: true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (16 lines)</summary>  
+
+``` 
+./commit-57ef7edf/production/components/backup/production/stone-prd-host1/kustomize.out.yaml
+115a116,121
+>     includedResources:
+>     - bannedusers.toolchain.dev.openshift.com
+>     - masteruserrecords.toolchain.dev.openshift.com
+>     - spacebindings.toolchain.dev.openshift.com
+>     - spaces.toolchain.dev.openshift.com
+>     - usersignups.toolchain.dev.openshift.com
+./commit-57ef7edf/production/components/backup/production/stone-prod-p01/kustomize.out.yaml
+172a173,178
+>     includedResources:
+>     - bannedusers.toolchain.dev.openshift.com
+>     - masteruserrecords.toolchain.dev.openshift.com
+>     - spacebindings.toolchain.dev.openshift.com
+>     - spaces.toolchain.dev.openshift.com
+>     - usersignups.toolchain.dev.openshift.com 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 57ef7edf to 94797662 on Thu Mar 7 08:46:13 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (17 lines)</summary>  
+
+``` 
+diff --git a/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml b/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
+index 6c32225a..83ba107e 100644
+--- a/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
++++ b/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
+@@ -7,12 +7,6 @@ spec:
+   template:
+     includedNamespaces:
+       - toolchain-host-operator
+-    includedResources:
+-      - bannedusers.toolchain.dev.openshift.com
+-      - masteruserrecords.toolchain.dev.openshift.com
+-      - spacebindings.toolchain.dev.openshift.com
+-      - spaces.toolchain.dev.openshift.com
+-      - usersignups.toolchain.dev.openshift.com
+     storageLocation: velero-aws-1
+     ttl: 720h0m0s
+   useOwnerReferencesInBackup: true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (16 lines)</summary>  
+
+``` 
+./commit-57ef7edf/staging/components/backup/staging/stone-stage-p01/kustomize.out.yaml
+172a173,178
+>     includedResources:
+>     - bannedusers.toolchain.dev.openshift.com
+>     - masteruserrecords.toolchain.dev.openshift.com
+>     - spacebindings.toolchain.dev.openshift.com
+>     - spaces.toolchain.dev.openshift.com
+>     - usersignups.toolchain.dev.openshift.com
+./commit-57ef7edf/staging/components/backup/staging/stone-stg-host/kustomize.out.yaml
+115a116,121
+>     includedResources:
+>     - bannedusers.toolchain.dev.openshift.com
+>     - masteruserrecords.toolchain.dev.openshift.com
+>     - spacebindings.toolchain.dev.openshift.com
+>     - spaces.toolchain.dev.openshift.com
+>     - usersignups.toolchain.dev.openshift.com 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 57ef7edf to 94797662 on Thu Mar 7 08:46:13 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (17 lines)</summary>  
+
+``` 
+diff --git a/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml b/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
+index 6c32225a..83ba107e 100644
+--- a/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
++++ b/components/backup/base/host/schedules/backup-toolchain-host-schedule.yaml
+@@ -7,12 +7,6 @@ spec:
+   template:
+     includedNamespaces:
+       - toolchain-host-operator
+-    includedResources:
+-      - bannedusers.toolchain.dev.openshift.com
+-      - masteruserrecords.toolchain.dev.openshift.com
+-      - spacebindings.toolchain.dev.openshift.com
+-      - spaces.toolchain.dev.openshift.com
+-      - usersignups.toolchain.dev.openshift.com
+     storageLocation: velero-aws-1
+     ttl: 720h0m0s
+   useOwnerReferencesInBackup: true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from d8e9d5fc to 57ef7edf on Thu Mar 7 03:13:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -176,7 +599,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from d8e9d5fc to 57ef7edf on Thu Mar 7 03:13:28 2024 </h3>  
+<h3>2: Staging changes from d8e9d5fc to 57ef7edf on Thu Mar 7 03:13:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -357,7 +780,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from d8e9d5fc to 57ef7edf on Thu Mar 7 03:13:28 2024 </h3>  
+<h3>2: Development changes from d8e9d5fc to 57ef7edf on Thu Mar 7 03:13:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -490,7 +913,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from c6e32147 to d8e9d5fc on Wed Mar 6 19:45:24 2024 </h3>  
+<h3>3: Production changes from c6e32147 to d8e9d5fc on Wed Mar 6 19:45:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -640,7 +1063,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from c6e32147 to d8e9d5fc on Wed Mar 6 19:45:24 2024 </h3>  
+<h3>3: Staging changes from c6e32147 to d8e9d5fc on Wed Mar 6 19:45:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -806,7 +1229,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from c6e32147 to d8e9d5fc on Wed Mar 6 19:45:24 2024 </h3>  
+<h3>3: Development changes from c6e32147 to d8e9d5fc on Wed Mar 6 19:45:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -911,7 +1334,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 88725720 to c6e32147 on Wed Mar 6 18:53:11 2024 </h3>  
+<h3>4: Production changes from 88725720 to c6e32147 on Wed Mar 6 18:53:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1067,7 +1490,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 88725720 to c6e32147 on Wed Mar 6 18:53:11 2024 </h3>  
+<h3>4: Staging changes from 88725720 to c6e32147 on Wed Mar 6 18:53:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1226,7 +1649,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 88725720 to c6e32147 on Wed Mar 6 18:53:11 2024 </h3>  
+<h3>4: Development changes from 88725720 to c6e32147 on Wed Mar 6 18:53:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1282,387 +1705,6 @@ index afdd9c2c..2294cc24 100644
 <   namespace: release-service
 < spec:
 <   debug: false 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 19652ff8 to 88725720 on Wed Mar 6 17:22:21 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/.github/workflows/kube-linter.yaml b/.github/workflows/kube-linter.yaml
-index 5e11cb38..eaa1d319 100644
---- a/.github/workflows/kube-linter.yaml
-+++ b/.github/workflows/kube-linter.yaml
-@@ -25,7 +25,7 @@ jobs:
-       - name: Run kustomize build
-         run: |
-           find argo-cd-apps components -name 'kustomization.yaml' ! -path '*/k-components/*' | \
--            xargs -I {} -n1 -P0  bash -c 'dir=$(dirname "{}"); output_file=$(echo $dir | tr / -)-kustomization.yaml; if ! log=$(kustomize build "$dir" -o "kustomizedfiles/$output_file" 2>&1); then echo "Error when running kustomize build for $dir: $log" && exit 1;fi'
-+            xargs -I {} -n1 -P8  bash -c 'dir=$(dirname "{}"); output_file=$(echo $dir | tr / -)-kustomization.yaml; if ! log=$(kustomize build "$dir" -o "kustomizedfiles/$output_file" 2>&1); then echo "Error when running kustomize build for $dir: $log" && exit 1;fi'
- 
-       - name: Scan yaml files with kube-linter
-         uses: stackrox/kube-linter-action@v1.0.4 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 19652ff8 to 88725720 on Wed Mar 6 17:22:21 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/.github/workflows/kube-linter.yaml b/.github/workflows/kube-linter.yaml
-index 5e11cb38..eaa1d319 100644
---- a/.github/workflows/kube-linter.yaml
-+++ b/.github/workflows/kube-linter.yaml
-@@ -25,7 +25,7 @@ jobs:
-       - name: Run kustomize build
-         run: |
-           find argo-cd-apps components -name 'kustomization.yaml' ! -path '*/k-components/*' | \
--            xargs -I {} -n1 -P0  bash -c 'dir=$(dirname "{}"); output_file=$(echo $dir | tr / -)-kustomization.yaml; if ! log=$(kustomize build "$dir" -o "kustomizedfiles/$output_file" 2>&1); then echo "Error when running kustomize build for $dir: $log" && exit 1;fi'
-+            xargs -I {} -n1 -P8  bash -c 'dir=$(dirname "{}"); output_file=$(echo $dir | tr / -)-kustomization.yaml; if ! log=$(kustomize build "$dir" -o "kustomizedfiles/$output_file" 2>&1); then echo "Error when running kustomize build for $dir: $log" && exit 1;fi'
- 
-       - name: Scan yaml files with kube-linter
-         uses: stackrox/kube-linter-action@v1.0.4 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 19652ff8 to 88725720 on Wed Mar 6 17:22:21 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/.github/workflows/kube-linter.yaml b/.github/workflows/kube-linter.yaml
-index 5e11cb38..eaa1d319 100644
---- a/.github/workflows/kube-linter.yaml
-+++ b/.github/workflows/kube-linter.yaml
-@@ -25,7 +25,7 @@ jobs:
-       - name: Run kustomize build
-         run: |
-           find argo-cd-apps components -name 'kustomization.yaml' ! -path '*/k-components/*' | \
--            xargs -I {} -n1 -P0  bash -c 'dir=$(dirname "{}"); output_file=$(echo $dir | tr / -)-kustomization.yaml; if ! log=$(kustomize build "$dir" -o "kustomizedfiles/$output_file" 2>&1); then echo "Error when running kustomize build for $dir: $log" && exit 1;fi'
-+            xargs -I {} -n1 -P8  bash -c 'dir=$(dirname "{}"); output_file=$(echo $dir | tr / -)-kustomization.yaml; if ! log=$(kustomize build "$dir" -o "kustomizedfiles/$output_file" 2>&1); then echo "Error when running kustomize build for $dir: $log" && exit 1;fi'
- 
-       - name: Scan yaml files with kube-linter
-         uses: stackrox/kube-linter-action@v1.0.4 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
