@@ -10,12 +10,377 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-fri-mar--8-080204-utc-2024">This file generated at Fri Mar  8 08:02:04 UTC 2024</h3>
+<h3 id="this-file-generated-at-fri-mar--8-120412-utc-2024">This file generated at Fri Mar  8 12:04:12 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from b1ce8f52 to 6e16da15 on Fri Mar 8 03:44:10 2024 </h3>  
+<h3>1: Production changes from 6e16da15 to 668f83cf on Fri Mar 8 10:53:23 2024 </h3>  
+
+<details> 
+<summary>Git Diff (12 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml</span>
+<span class="hljs-comment">index 1517b4dc..93d4de83 100644</span>
+<span class="hljs-comment">--- a/components/tekton-ci/base/serviceaccount.yaml</span>
+<span class="hljs-comment">+++ b/components/tekton-ci/base/serviceaccount.yaml</span>
+<span class="hljs-meta">@@ -4,7 +4,5 @@</span> metadata:
+   name: appstudio-pipeline
+ secrets:
+   - name: quay-push-secret
+<span class="hljs-deletion">-  - name: quay-push-secret-konflux-ci</span>
+ imagePullSecrets:
+   - name: quay-push-secret
+<span class="hljs-deletion">-  - name: quay-push-secret-konflux-ci </span>
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  .<span class="hljs-regexp">/commit-6e16da15/</span>production<span class="hljs-regexp">/components/</span>tekton-ci<span class="hljs-regexp">/production/</span>kustomize.out.yaml
+<span class="hljs-number">11</span>a12
+&gt; - name: quay-<span class="hljs-keyword">push</span>-secret-konflux-ci
+<span class="hljs-number">18</span>a20
+&gt; - name: quay-<span class="hljs-keyword">push</span>-secret-konflux-ci 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from 6e16da15 to 668f83cf on Fri Mar 8 10:53:23 2024 </h3>  
+
+<details> 
+<summary>Git Diff (12 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml</span>
+<span class="hljs-comment">index 1517b4dc..93d4de83 100644</span>
+<span class="hljs-comment">--- a/components/tekton-ci/base/serviceaccount.yaml</span>
+<span class="hljs-comment">+++ b/components/tekton-ci/base/serviceaccount.yaml</span>
+<span class="hljs-meta">@@ -4,7 +4,5 @@</span> metadata:
+   name: appstudio-pipeline
+ secrets:
+   - name: quay-push-secret
+<span class="hljs-deletion">-  - name: quay-push-secret-konflux-ci</span>
+ imagePullSecrets:
+   - name: quay-push-secret
+<span class="hljs-deletion">-  - name: quay-push-secret-konflux-ci </span>
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  .<span class="hljs-regexp">/commit-6e16da15/</span>staging<span class="hljs-regexp">/components/</span>tekton-ci<span class="hljs-regexp">/staging/</span>kustomize.out.yaml
+<span class="hljs-number">11</span>a12
+&gt; - name: quay-<span class="hljs-keyword">push</span>-secret-konflux-ci
+<span class="hljs-number">18</span>a20
+&gt; - name: quay-<span class="hljs-keyword">push</span>-secret-konflux-ci 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from 6e16da15 to 668f83cf on Fri Mar 8 10:53:23 2024 </h3>  
+
+<details> 
+<summary>Git Diff (12 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml</span>
+<span class="hljs-comment">index 1517b4dc..93d4de83 100644</span>
+<span class="hljs-comment">--- a/components/tekton-ci/base/serviceaccount.yaml</span>
+<span class="hljs-comment">+++ b/components/tekton-ci/base/serviceaccount.yaml</span>
+<span class="hljs-meta">@@ -4,7 +4,5 @@</span> metadata:
+   name: appstudio-pipeline
+ secrets:
+   - name: quay-push-secret
+<span class="hljs-deletion">-  - name: quay-push-secret-konflux-ci</span>
+ imagePullSecrets:
+   - name: quay-push-secret
+<span class="hljs-deletion">-  - name: quay-push-secret-konflux-ci </span>
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from b1ce8f52 to 6e16da15 on Fri Mar 8 03:44:10 2024 </h3>  
 
 <details> 
 <summary>Git Diff (441 lines)</summary>  
@@ -834,7 +1199,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>1: Staging changes from b1ce8f52 to 6e16da15 on Fri Mar 8 03:44:10 2024 </h3>  
+<h3>2: Staging changes from b1ce8f52 to 6e16da15 on Fri Mar 8 03:44:10 2024 </h3>  
 
 <details> 
 <summary>Git Diff (441 lines)</summary>  
@@ -1399,7 +1764,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>1: Development changes from b1ce8f52 to 6e16da15 on Fri Mar 8 03:44:10 2024 </h3>  
+<h3>2: Development changes from b1ce8f52 to 6e16da15 on Fri Mar 8 03:44:10 2024 </h3>  
 
 <details> 
 <summary>Git Diff (441 lines)</summary>  
@@ -1916,7 +2281,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>2: Production changes from a220adcd to b1ce8f52 on Thu Mar 7 20:02:09 2024 </h3>  
+<h3>3: Production changes from a220adcd to b1ce8f52 on Thu Mar 7 20:02:09 2024 </h3>  
 
 <details> 
 <summary>Git Diff (81 lines)</summary>  
@@ -2149,7 +2514,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>2: Staging changes from a220adcd to b1ce8f52 on Thu Mar 7 20:02:09 2024 </h3>  
+<h3>3: Staging changes from a220adcd to b1ce8f52 on Thu Mar 7 20:02:09 2024 </h3>  
 
 <details> 
 <summary>Git Diff (81 lines)</summary>  
@@ -2385,7 +2750,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>2: Development changes from a220adcd to b1ce8f52 on Thu Mar 7 20:02:09 2024 </h3>  
+<h3>3: Development changes from a220adcd to b1ce8f52 on Thu Mar 7 20:02:09 2024 </h3>  
 
 <details> 
 <summary>Git Diff (81 lines)</summary>  
@@ -2542,7 +2907,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Production changes from 0c5d5074 to a220adcd on Thu Mar 7 19:12:38 2024 </h3>  
+<h3>4: Production changes from 0c5d5074 to a220adcd on Thu Mar 7 19:12:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (54 lines)</summary>  
@@ -2717,7 +3082,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Staging changes from 0c5d5074 to a220adcd on Thu Mar 7 19:12:38 2024 </h3>  
+<h3>4: Staging changes from 0c5d5074 to a220adcd on Thu Mar 7 19:12:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (54 lines)</summary>  
@@ -2906,7 +3271,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Development changes from 0c5d5074 to a220adcd on Thu Mar 7 19:12:38 2024 </h3>  
+<h3>4: Development changes from 0c5d5074 to a220adcd on Thu Mar 7 19:12:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (54 lines)</summary>  
@@ -2971,1034 +3336,6 @@ new file mode 100644
 <details> 
 <summary>Kustomize Generated Diff (0 lines)</summary>  
 <pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from cdcaf57a to 0c5d5074 on Thu Mar 7 18:17:37 2024 </h3>  
-
-<details> 
-<summary>Git Diff (129 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/build-service/components/rh-certs/2015-RH-IT-Root-CA.pem b/components/build-service/components/rh-certs/2015-RH-IT-Root-CA.pem</span>
-deleted file mode 100644
-<span class="hljs-comment">index f306f00f..00000000</span>
-<span class="hljs-comment">--- a/components/build-service/components/rh-certs/2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,25 +0,0 @@</span>
-<span class="hljs-comment">------BEGIN CERTIFICATE-----</span>
-<span class="hljs-deletion">-MIIENDCCAxygAwIBAgIJANunI0D662cnMA0GCSqGSIb3DQEBCwUAMIGlMQswCQYD</span>
-<span class="hljs-deletion">-VQQGEwJVUzEXMBUGA1UECAwOTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcMB1JhbGVp</span>
-<span class="hljs-deletion">-Z2gxFjAUBgNVBAoMDVJlZCBIYXQsIEluYy4xEzARBgNVBAsMClJlZCBIYXQgSVQx</span>
-<span class="hljs-deletion">-GzAZBgNVBAMMElJlZCBIYXQgSVQgUm9vdCBDQTEhMB8GCSqGSIb3DQEJARYSaW5m</span>
-<span class="hljs-deletion">-b3NlY0ByZWRoYXQuY29tMCAXDTE1MDcwNjE3MzgxMVoYDzIwNTUwNjI2MTczODEx</span>
-<span class="hljs-deletion">-WjCBpTELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYD</span>
-<span class="hljs-deletion">-VQQHDAdSYWxlaWdoMRYwFAYDVQQKDA1SZWQgSGF0LCBJbmMuMRMwEQYDVQQLDApS</span>
-<span class="hljs-deletion">-ZWQgSGF0IElUMRswGQYDVQQDDBJSZWQgSGF0IElUIFJvb3QgQ0ExITAfBgkqhkiG</span>
-<span class="hljs-deletion">-9w0BCQEWEmluZm9zZWNAcmVkaGF0LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEP</span>
-<span class="hljs-deletion">-ADCCAQoCggEBALQt9OJQh6GC5LT1g80qNh0u50BQ4sZ/yZ8aETxt+5lnPVX6MHKz</span>
-<span class="hljs-deletion">-bfwI6nO1aMG6j9bSw+6UUyPBHP796+FT/pTS+K0wsDV7c9XvHoxJBJJU38cdLkI2</span>
-<span class="hljs-deletion">-c/i7lDqTfTcfLL2nyUBd2fQDk1B0fxrskhGIIZ3ifP1Ps4ltTkv8hRSob3VtNqSo</span>
-<span class="hljs-deletion">-GxkKfvD2PKjTPxDPWYyruy9irLZioMffi3i/gCut0ZWtAyO3MVH5qWF/enKwgPES</span>
-<span class="hljs-deletion">-X9po+TdCvRB/RUObBaM761EcrLSM1GqHNueSfqnho3AjLQ6dBnPWlo638Zm1VebK</span>
-<span class="hljs-deletion">-BELyhkLWMSFkKwDmne0jQ02Y4g075vCKvCsCAwEAAaNjMGEwHQYDVR0OBBYEFH7R</span>
-<span class="hljs-deletion">-4yC+UehIIPeuL8Zqw3PzbgcZMB8GA1UdIwQYMBaAFH7R4yC+UehIIPeuL8Zqw3Pz</span>
-<span class="hljs-deletion">-bgcZMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgGGMA0GCSqGSIb3DQEB</span>
-<span class="hljs-deletion">-CwUAA4IBAQBDNvD2Vm9sA5A9AlOJR8+en5Xz9hXcxJB5phxcZQ8jFoG04Vshvd0e</span>
-<span class="hljs-deletion">-LEnUrMcfFgIZ4njMKTQCM4ZFUPAieyLx4f52HuDopp3e5JyIMfW+KFcNIpKwCsak</span>
-<span class="hljs-deletion">-oSoKtIUOsUJK7qBVZxcrIyeQV2qcYOeZhtS5wBqIwOAhFwlCET7Ze58QHmS48slj</span>
-<span class="hljs-deletion">-S9K0JAcps2xdnGu0fkzhSQxY8GPQNFTlr6rYld5+ID/hHeS76gq0YG3q6RLWRkHf</span>
-<span class="hljs-deletion">-4eTkRjivAlExrFzKcljC4axKQlnOvVAzz+Gm32U0xPBF4ByePVxCJUHw1TsyTmel</span>
-<span class="hljs-deletion">-RxNEp7yHoXcwn+fXna+t5JWh1gxUZty3</span>
-<span class="hljs-comment">------END CERTIFICATE-----</span>
-<span class="hljs-comment">diff --git a/components/build-service/components/rh-certs/2022-IT-Root-CA.pem b/components/build-service/components/rh-certs/2022-IT-Root-CA.pem</span>
-deleted file mode 100644
-<span class="hljs-comment">index dbe10450..00000000</span>
-<span class="hljs-comment">--- a/components/build-service/components/rh-certs/2022-IT-Root-CA.pem</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,37 +0,0 @@</span>
-<span class="hljs-comment">------BEGIN CERTIFICATE-----</span>
-<span class="hljs-deletion">-MIIGcjCCBFqgAwIBAgIFICIEEFwwDQYJKoZIhvcNAQEMBQAwgaMxCzAJBgNVBAYT</span>
-<span class="hljs-deletion">-AlVTMRcwFQYDVQQIDA5Ob3J0aCBDYXJvbGluYTEQMA4GA1UEBwwHUmFsZWlnaDEW</span>
-<span class="hljs-deletion">-MBQGA1UECgwNUmVkIEhhdCwgSW5jLjETMBEGA1UECwwKUmVkIEhhdCBJVDEZMBcG</span>
-<span class="hljs-deletion">-A1UEAwwQSW50ZXJuYWwgUm9vdCBDQTEhMB8GCSqGSIb3DQEJARYSaW5mb3NlY0By</span>
-<span class="hljs-deletion">-ZWRoYXQuY29tMCAXDTIzMDQwNTE4MzM0NFoYDzIwNTIwNDAyMTgzMzQ0WjCBozEL</span>
-<span class="hljs-deletion">-MAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQHDAdS</span>
-<span class="hljs-deletion">-YWxlaWdoMRYwFAYDVQQKDA1SZWQgSGF0LCBJbmMuMRMwEQYDVQQLDApSZWQgSGF0</span>
-<span class="hljs-deletion">-IElUMRkwFwYDVQQDDBBJbnRlcm5hbCBSb290IENBMSEwHwYJKoZIhvcNAQkBFhJp</span>
-<span class="hljs-deletion">-bmZvc2VjQHJlZGhhdC5jb20wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoIC</span>
-<span class="hljs-deletion">-AQCxuloEVglzWXZ9FFFUOSVdpRIB2jW5YBpwgMem2fPZeWIIvrVQ6PL9XNenDOXu</span>
-<span class="hljs-deletion">-BHbShD/PApxi/ujSZyOIjLsNh7WDO+0NqpkfTyB9wUYAhx3GTIGY75RSoyZy1yKb</span>
-<span class="hljs-deletion">-ZDTKv+rSfui9IlstAMz6L3OQLZES9zAYK8ICiDUwTeNZ7quA6qf0Kam2LyuBc/bl</span>
-<span class="hljs-deletion">-BI7WFLOGGWY135P1OUXJgnJUsMhnYMTgvZQyJ2P7eLQpiR8TOr5ZI6CYapiyG64L</span>
-<span class="hljs-deletion">-nkr/rsALjSxoUo09Yai1CVO66VFJ/XgMNt3mzQtLDMPXiKUuwsBsgvo4QvLjkXYI</span>
-<span class="hljs-deletion">-ii+/YQyQaypsKctG8mefKkTT1kRDKj4LNdTRRgd5tco+b4+O/4upt8mIsx1+tbdM</span>
-<span class="hljs-deletion">-LNGEz3Jqd0sj8Fl4Rzus+W+enzXmMfZH86X6bU5tMvueuFd5LV+M9XzliscaEQMK</span>
-<span class="hljs-deletion">-EQ7CC72ldrOK2K12Gjb7bu8dKq+aSlNuWK+Gz1NvbwYpaCBYp0JoryvHEq5jrCLP</span>
-<span class="hljs-deletion">-lTkuJQ3HaaAf+4LaBm8no9xK2VbDf6l/7Htb5I5LnAAZi0/5TzH07NhHoIeMSmTE</span>
-<span class="hljs-deletion">-Ea07i/i5lbhM2qbx6pfLukg24HLCKTdi4Fo6/JqPWH6/3eI55NsoWSmoDdTiLg4v</span>
-<span class="hljs-deletion">-1G/rgUVr2N6F36GTYMGqiITvvd4Qm3i9XOTQvsx8RJx4JQIDAQABo4GoMIGlMB0G</span>
-<span class="hljs-deletion">-A1UdDgQWBBS1+o3lCnihCZXbTSGGlWpZT0nIizAfBgNVHSMEGDAWgBS1+o3lCnih</span>
-<span class="hljs-deletion">-CZXbTSGGlWpZT0nIizAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIBhjAR</span>
-<span class="hljs-deletion">-BglghkgBhvhCAQEEBAMCAQYwLwYDVR0fBCgwJjAkoCKgIIYeaHR0cDovL29jc3Au</span>
-<span class="hljs-deletion">-cmVkaGF0LmNvbS9jcmwucGVtMA0GCSqGSIb3DQEBDAUAA4ICAQCDLaGTS0g2HmMS</span>
-<span class="hljs-deletion">-g0i6Z0RVDC7sSnWFgEk2ZO1WUQj5WkFVS7gWxed/mXCzeL2EV1Pd22YKHM1eU1vo</span>
-<span class="hljs-deletion">-6b03cbNRXlRGGFksmQeM9h2sVjbP0hRZxqqfI+UW223N8E+qK3wSa8m6nhOfIJie</span>
-<span class="hljs-deletion">-DD9s8CdL1VT6l4qq2gR8mVBW7EZ+Ux5u+AMXpN4WPEkcLer2djbfhXoPsJ4r5CcX</span>
-<span class="hljs-deletion">-vh7W5rCZbo+0oBI5hrTlG4Tjhv1atqLhMmssjn8NbRrnhrbGF7w8NxFts69GkKDB</span>
-<span class="hljs-deletion">-UIXr1pWZSAuRELlIxmvh5ZSX5YTbFmDuTvmNx8RPPy6OY4W1v1BUKp0HyJTi07s2</span>
-<span class="hljs-deletion">-8SN+n9htHPHX9XBZctQmOSFLiqhi15LIqI54tR2tSgwH3Z5moh4sy6MuApXstsu4</span>
-<span class="hljs-deletion">-qtkII2KZk3SottI8MOS6zqKrU7jPou6ZE0fznNiu23Q3Ksuuj6mBkLVw3bQe68Vm</span>
-<span class="hljs-deletion">-NUTDac1oVzc8d5NMbx5kVb4Lahq+SATVFC8NK9G/Pk1AiwO8WhKffySsLeO5nMib</span>
-<span class="hljs-deletion">-4BOVq0qFoAi8YCFuJOl9FlH1dPW/TnqlTQMQNhXpzGjU3HV3lr/Mk+ghNgIYcLcz</span>
-<span class="hljs-deletion">-pEBsiGwKOVW4nYKIqPLn/36Ao/kfXeAdJhaAZq1SkTbeqNiwHQm3KNHzNObmjD0f</span>
-<span class="hljs-deletion">-56vmq8fwQYIcazjrygWiaOnoep/SMw==</span>
-<span class="hljs-comment">------END CERTIFICATE-----</span>
-<span class="hljs-comment">diff --git a/components/build-service/components/rh-certs/add-rh-certs-patch.yaml b/components/build-service/components/rh-certs/add-rh-certs-patch.yaml</span>
-<span class="hljs-comment">index eaa65daa..2baeff42 100644</span>
-<span class="hljs-comment">--- a/components/build-service/components/rh-certs/add-rh-certs-patch.yaml</span>
-<span class="hljs-comment">+++ b/components/build-service/components/rh-certs/add-rh-certs-patch.yaml</span>
-<span class="hljs-meta">@@ -9,22 +9,13 @@</span> spec:
-       containers:
-       - name: manager
-         volumeMounts:
-<span class="hljs-deletion">-          - name: rh-certs-2015</span>
-<span class="hljs-deletion">-            mountPath: /etc/pki/tls/certs/2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-            subPath: 2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-          - name: rh-certs-2022</span>
-<span class="hljs-deletion">-            mountPath: /etc/pki/tls/certs/2022-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-            subPath: 2022-IT-Root-CA.pem</span>
-<span class="hljs-addition">+          - name: trusted-ca</span>
-<span class="hljs-addition">+            mountPath: /etc/pki/ca-trust/extracted/pem</span>
-<span class="hljs-addition">+            readOnly: true</span>
-       volumes:
-<span class="hljs-deletion">-        - name: rh-certs-2015</span>
-<span class="hljs-deletion">-          configMap:</span>
-<span class="hljs-deletion">-            name: rh-certs-2015</span>
-<span class="hljs-deletion">-            items:</span>
-<span class="hljs-deletion">-              - key: 2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-                path: 2015-RH-IT-Root-CA.pem </span>
-<span class="hljs-deletion">-        - name: rh-certs-2022</span>
-<span class="hljs-deletion">-          configMap:</span>
-<span class="hljs-deletion">-            name: rh-certs-2022</span>
-<span class="hljs-deletion">-            items:</span>
-<span class="hljs-deletion">-              - key: 2022-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-                path: 2022-IT-Root-CA.pem</span>
-<span class="hljs-addition">+      - name: trusted-ca</span>
-<span class="hljs-addition">+        configMap:</span>
-<span class="hljs-addition">+          name: trusted-ca</span>
-<span class="hljs-addition">+          items:</span>
-<span class="hljs-addition">+            - key: ca-bundle.crt</span>
-<span class="hljs-addition">+              path: tls-ca-bundle.pem</span>
-<span class="hljs-comment">diff --git a/components/build-service/components/rh-certs/kustomization.yaml b/components/build-service/components/rh-certs/kustomization.yaml</span>
-<span class="hljs-comment">index e961547c..9cd099c5 100644</span>
-<span class="hljs-comment">--- a/components/build-service/components/rh-certs/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/build-service/components/rh-certs/kustomization.yaml</span>
-<span class="hljs-meta">@@ -7,10 +7,8 @@</span> patches:
-       name: build-service-controller-manager
-       kind: Deployment
- configMapGenerator:
-<span class="hljs-deletion">-  - name: rh-certs-2015</span>
-<span class="hljs-deletion">-    files: </span>
-<span class="hljs-deletion">-      - 2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-  - name: rh-certs-2022</span>
-<span class="hljs-deletion">-    files: </span>
-<span class="hljs-deletion">-      - 2022-IT-Root-CA.pem</span>
-<span class="hljs-addition">+  - name: trusted-ca</span>
-<span class="hljs-addition">+    options:</span>
-<span class="hljs-addition">+      labels:</span>
-<span class="hljs-addition">+        &quot;config.openshift.io/inject-trusted-cabundle&quot;: &quot;true&quot;</span>
- namespace: build-service 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (107 lines)</summary>  
-<pre><code>  ./commit-cdcaf57a/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
-616a617,643
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">data</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span>: |</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    -----<span class="hljs-variable constant_">BEGIN</span> <span class="hljs-variable constant_">CERTIFICATE</span>-----</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">MIIENDCCAxygAwIBAgIJANunI</span>0D662cnMA0GCSqGSIb3DQEBCwUAMIGlMQswCQYD</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">VQQGEwJVUzEXMBUGA</span>1UECAwOTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcMB1JhbGVp</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    Z2gxFjAUBgNVBAoMDVJlZCBIYXQsIEluYy4xEzARBgNVBAsMClJlZCBIYXQgSVQx</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">GzAZBgNVBAMMElJlZCBIYXQgSVQgUm9</span>vdCBDQTEhMB8GCSqGSIb3DQEJARYSaW5m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    b3NlY0ByZWRoYXQuY29tMCAXDTE1MDcwNjE3MzgxMVoYDzIwNTUwNjI2MTczODEx</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">WjCBpTELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5</span>vcnRoIENhcm9saW5hMRAwDgYD</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">VQQHDAdSYWxlaWdoMRYwFAYDVQQKDA</span>1SZWQgSGF0LCBJbmMuMRMwEQYDVQQLDApS</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">ZWQgSGF</span>0IElUMRswGQYDVQQDDBJSZWQgSGF0IElUIFJvb3QgQ0ExITAfBgkqhkiG</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    9w0BCQEWEmluZm9zZWNAcmVkaGF0LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEP</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">ADCCAQoCggEBALQt</span>9OJQh6GC5LT1g80qNh0u50BQ4sZ/yZ8aETxt+5lnPVX6MHKz</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    bfwI6nO1aMG6j9bSw+6UUyPBHP796+<span class="hljs-variable constant_">FT</span>/pTS+K0wsDV7c9XvHoxJBJJU38cdLkI2</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    c/i7lDqTfTcfLL2nyUBd2fQDk1B0fxrskhGIIZ3ifP1Ps4ltTkv8hRSob3VtNqSo</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">GxkKfvD2PKjTPxDPWYyruy9</span>irLZioMffi3i/gCut0ZWtAyO3MVH5qWF/enKwgPES</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    X9po+<span class="hljs-title class_">TdCvRB</span>/<span class="hljs-title class_">RUObBaM</span>761EcrLSM1GqHNueSfqnho3AjLQ6dBnPWlo638Zm1VebK</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">BELyhkLWMSFkKwDmne</span>0jQ02Y4g075vCKvCsCAwEAAaNjMGEwHQYDVR0OBBYEFH7R</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    4yC+<span class="hljs-title class_">UehIIPeuL8Zqw3PzbgcZMB8GA1UdIwQYMBaAFH7R4</span>yC+<span class="hljs-title class_">UehIIPeuL8Zqw3Pz</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    bgcZMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/<span class="hljs-title class_">BAQDAgGGMA</span>0GCSqGSIb3DQEB</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">CwUAA4IBAQBDNvD2Vm9</span>sA5A9AlOJR8+en5Xz9hXcxJB5phxcZQ8jFoG04Vshvd0e</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">LEnUrMcfFgIZ</span>4njMKTQCM4ZFUPAieyLx4f52HuDopp3e5JyIMfW+<span class="hljs-title class_">KFcNIpKwCsak</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    oSoKtIUOsUJK7qBVZxcrIyeQV2qcYOeZhtS5wBqIwOAhFwlCET7Ze58QHmS48slj</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    S9K0JAcps2xdnGu0fkzhSQxY8GPQNFTlr6rYld5+<span class="hljs-variable constant_">ID</span>/hHeS76gq0YG3q6RLWRkHf</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    4eTkRjivAlExrFzKcljC4axKQlnOvVAzz+<span class="hljs-title class_">Gm32U0</span>xPBF4ByePVxCJUHw1TsyTmel</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">RxNEp7</span>yHoXcwn+fXna+t5JWh1gxUZty3</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    -----<span class="hljs-variable constant_">END</span> <span class="hljs-variable constant_">CERTIFICATE</span>-----</span>
-619,621c646,691
-&lt;   labels:
-&lt;     config.openshift.io/inject-trusted-cabundle: &quot;true&quot;
-&lt;   name: trusted-ca-6ct58987ht
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2015</span>-496kcdf4g7</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">namespace</span>: build-service</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">---</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">apiVersion</span>: v1</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">data</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span>: |</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    -----<span class="hljs-variable constant_">BEGIN</span> <span class="hljs-variable constant_">CERTIFICATE</span>-----</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">MIIGcjCCBFqgAwIBAgIFICIEEFwwDQYJKoZIhvcNAQEMBQAwgaMxCzAJBgNVBAYT</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">AlVTMRcwFQYDVQQIDA5Ob3J0</span>aCBDYXJvbGluYTEQMA4GA1UEBwwHUmFsZWlnaDEW</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">MBQGA1UECgwNUmVkIEhhdCwgSW</span>5jLjETMBEGA1UECwwKUmVkIEhhdCBJVDEZMBcG</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    A1UEAwwQSW50ZXJuYWwgUm9vdCBDQTEhMB8GCSqGSIb3DQEJARYSaW5mb3NlY0By</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">ZWRoYXQuY</span>29tMCAXDTIzMDQwNTE4MzM0NFoYDzIwNTIwNDAyMTgzMzQ0WjCBozEL</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">MAkGA</span>1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQHDAdS</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">YWxlaWdoMRYwFAYDVQQKDA</span>1SZWQgSGF0LCBJbmMuMRMwEQYDVQQLDApSZWQgSGF0</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">IElUMRkwFwYDVQQDDBBJbnRlcm</span>5hbCBSb290IENBMSEwHwYJKoZIhvcNAQkBFhJp</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    bmZvc2VjQHJlZGhhdC5jb20wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoIC</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">AQCxuloEVglzWXZ</span>9FFFUOSVdpRIB2jW5YBpwgMem2fPZeWIIvrVQ6PL9XNenDOXu</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">BHbShD</span>/<span class="hljs-title class_">PApxi</span>/ujSZyOIjLsNh7WDO+0NqpkfTyB9wUYAhx3GTIGY75RSoyZy1yKb</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">ZDTKv</span>+rSfui9IlstAMz6L3OQLZES9zAYK8ICiDUwTeNZ7quA6qf0Kam2LyuBc/bl</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">BI7WFLOGGWY</span>135P1OUXJgnJUsMhnYMTgvZQyJ2P7eLQpiR8TOr5ZI6CYapiyG64L</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    nkr/rsALjSxoUo09Yai1CVO66VFJ/<span class="hljs-title class_">XgMNt3</span>mzQtLDMPXiKUuwsBsgvo4QvLjkXYI</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    ii+<span class="hljs-regexp">/YQyQaypsKctG8mefKkTT1kRDKj4LNdTRRgd5tco+b4+O/</span>4upt8mIsx1+tbdM</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">LNGEz3Jqd0</span>sj8Fl4Rzus+W+enzXmMfZH86X6bU5tMvueuFd5LV+M9XzliscaEQMK</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">EQ7CC</span>72ldrOK2K12Gjb7bu8dKq+aSlNuWK+<span class="hljs-title class_">Gz1NvbwYpaCBYp0JoryvHEq5</span>jrCLP</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    lTkuJQ3HaaAf+4LaBm8no9xK2VbDf6l/7Htb5I5LnAAZi0/5TzH07NhHoIeMSmTE</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">Ea07</span>i/i5lbhM2qbx6pfLukg24HLCKTdi4Fo6/<span class="hljs-title class_">JqPWH6</span>/3eI55NsoWSmoDdTiLg4v</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    1G/rgUVr2N6F36GTYMGqiITvvd4Qm3i9XOTQvsx8RJx4JQIDAQABo4GoMIGlMB0G</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    A1UdDgQWBBS1+o3lCnihCZXbTSGGlWpZT0nIizAfBgNVHSMEGDAWgBS1+o3lCnih</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">CZXbTSGGlWpZT</span>0nIizAPBgNVHRMBAf8EBTADAQH/<span class="hljs-title class_">MA4GA</span>1UdDwEB/wQEAwIBhjAR</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">BglghkgBhvhCAQEEBAMCAQYwLwYDVR0</span>fBCgwJjAkoCKgIIYeaHR0cDovL29jc3Au</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    cmVkaGF0LmNvbS9jcmwucGVtMA0GCSqGSIb3DQEBDAUAA4ICAQCDLaGTS0g2HmMS</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    g0i6Z0RVDC7sSnWFgEk2ZO1WUQj5WkFVS7gWxed/mXCzeL2EV1Pd22YKHM1eU1vo</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    6b03cbNRXlRGGFksmQeM9h2sVjbP0hRZxqqfI+<span class="hljs-title class_">UW223N</span>8E+qK3wSa8m6nhOfIJie</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">DD9</span>s8CdL1VT6l4qq2gR8mVBW7EZ+<span class="hljs-title class_">Ux5</span>u+<span class="hljs-title class_">AMXpN</span>4WPEkcLer2djbfhXoPsJ4r5CcX</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    vh7W5rCZbo+0oBI5hrTlG4Tjhv1atqLhMmssjn8NbRrnhrbGF7w8NxFts69GkKDB</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">UIXr1</span>pWZSAuRELlIxmvh5ZSX5YTbFmDuTvmNx8RPPy6OY4W1v1BUKp0HyJTi07s2</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    8SN+n9htHPHX9XBZctQmOSFLiqhi15LIqI54tR2tSgwH3Z5moh4sy6MuApXstsu4</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    qtkII2KZk3SottI8MOS6zqKrU7jPou6ZE0fznNiu23Q3Ksuuj6mBkLVw3bQe68Vm</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">NUTDac1</span>oVzc8d5NMbx5kVb4Lahq+<span class="hljs-title class_">SATVFC8NK</span>9G/<span class="hljs-title class_">Pk1AiwO8WhKffySsLeO5</span>nMib</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    4BOVq0qFoAi8YCFuJOl9FlH1dPW/<span class="hljs-title class_">TnqlTQMQNhXpzGjU3HV3</span>lr/<span class="hljs-title class_">Mk</span>+ghNgIYcLcz</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    pEBsiGwKOVW4nYKIqPLn/36Ao/kfXeAdJhaAZq1SkTbeqNiwHQm3KNHzNObmjD0f</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    56vmq8fwQYIcazjrygWiaOnoep/<span class="hljs-title class_">SMw</span>==</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    -----<span class="hljs-variable constant_">END</span> <span class="hljs-variable constant_">CERTIFICATE</span>-----</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">kind</span>: <span class="hljs-title class_">ConfigMap</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">metadata</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2022</span>-5fghf7b9tk</span>
-713,715c783,788
-&lt;         - mountPath: /etc/pki/ca-trust/extracted/pem
-&lt;           name: trusted-ca
-&lt;           readOnly: true
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">mountPath</span>: <span class="hljs-regexp">/etc/</span>pki/tls/certs/<span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2015</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">subPath</span>: <span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">mountPath</span>: <span class="hljs-regexp">/etc/</span>pki/tls/certs/<span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2022</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">subPath</span>: <span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-746,749c819,828
-&lt;           - key: ca-bundle.crt
-&lt;             path: tls-ca-bundle.pem
-&lt;           name: trusted-ca-6ct58987ht
-&lt;         name: trusted-ca
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          - <span class="hljs-attr">key</span>: <span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">path</span>: <span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2015</span>-496kcdf4g7</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2015</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      - <span class="hljs-attr">configMap</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">items</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          - <span class="hljs-attr">key</span>: <span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">path</span>: <span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2022</span>-5fghf7b9tk</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2022</span> </span>
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from cdcaf57a to 0c5d5074 on Thu Mar 7 18:17:37 2024 </h3>  
-
-<details> 
-<summary>Git Diff (129 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/build-service/components/rh-certs/2015-RH-IT-Root-CA.pem b/components/build-service/components/rh-certs/2015-RH-IT-Root-CA.pem</span>
-deleted file mode 100644
-<span class="hljs-comment">index f306f00f..00000000</span>
-<span class="hljs-comment">--- a/components/build-service/components/rh-certs/2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,25 +0,0 @@</span>
-<span class="hljs-comment">------BEGIN CERTIFICATE-----</span>
-<span class="hljs-deletion">-MIIENDCCAxygAwIBAgIJANunI0D662cnMA0GCSqGSIb3DQEBCwUAMIGlMQswCQYD</span>
-<span class="hljs-deletion">-VQQGEwJVUzEXMBUGA1UECAwOTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcMB1JhbGVp</span>
-<span class="hljs-deletion">-Z2gxFjAUBgNVBAoMDVJlZCBIYXQsIEluYy4xEzARBgNVBAsMClJlZCBIYXQgSVQx</span>
-<span class="hljs-deletion">-GzAZBgNVBAMMElJlZCBIYXQgSVQgUm9vdCBDQTEhMB8GCSqGSIb3DQEJARYSaW5m</span>
-<span class="hljs-deletion">-b3NlY0ByZWRoYXQuY29tMCAXDTE1MDcwNjE3MzgxMVoYDzIwNTUwNjI2MTczODEx</span>
-<span class="hljs-deletion">-WjCBpTELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYD</span>
-<span class="hljs-deletion">-VQQHDAdSYWxlaWdoMRYwFAYDVQQKDA1SZWQgSGF0LCBJbmMuMRMwEQYDVQQLDApS</span>
-<span class="hljs-deletion">-ZWQgSGF0IElUMRswGQYDVQQDDBJSZWQgSGF0IElUIFJvb3QgQ0ExITAfBgkqhkiG</span>
-<span class="hljs-deletion">-9w0BCQEWEmluZm9zZWNAcmVkaGF0LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEP</span>
-<span class="hljs-deletion">-ADCCAQoCggEBALQt9OJQh6GC5LT1g80qNh0u50BQ4sZ/yZ8aETxt+5lnPVX6MHKz</span>
-<span class="hljs-deletion">-bfwI6nO1aMG6j9bSw+6UUyPBHP796+FT/pTS+K0wsDV7c9XvHoxJBJJU38cdLkI2</span>
-<span class="hljs-deletion">-c/i7lDqTfTcfLL2nyUBd2fQDk1B0fxrskhGIIZ3ifP1Ps4ltTkv8hRSob3VtNqSo</span>
-<span class="hljs-deletion">-GxkKfvD2PKjTPxDPWYyruy9irLZioMffi3i/gCut0ZWtAyO3MVH5qWF/enKwgPES</span>
-<span class="hljs-deletion">-X9po+TdCvRB/RUObBaM761EcrLSM1GqHNueSfqnho3AjLQ6dBnPWlo638Zm1VebK</span>
-<span class="hljs-deletion">-BELyhkLWMSFkKwDmne0jQ02Y4g075vCKvCsCAwEAAaNjMGEwHQYDVR0OBBYEFH7R</span>
-<span class="hljs-deletion">-4yC+UehIIPeuL8Zqw3PzbgcZMB8GA1UdIwQYMBaAFH7R4yC+UehIIPeuL8Zqw3Pz</span>
-<span class="hljs-deletion">-bgcZMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgGGMA0GCSqGSIb3DQEB</span>
-<span class="hljs-deletion">-CwUAA4IBAQBDNvD2Vm9sA5A9AlOJR8+en5Xz9hXcxJB5phxcZQ8jFoG04Vshvd0e</span>
-<span class="hljs-deletion">-LEnUrMcfFgIZ4njMKTQCM4ZFUPAieyLx4f52HuDopp3e5JyIMfW+KFcNIpKwCsak</span>
-<span class="hljs-deletion">-oSoKtIUOsUJK7qBVZxcrIyeQV2qcYOeZhtS5wBqIwOAhFwlCET7Ze58QHmS48slj</span>
-<span class="hljs-deletion">-S9K0JAcps2xdnGu0fkzhSQxY8GPQNFTlr6rYld5+ID/hHeS76gq0YG3q6RLWRkHf</span>
-<span class="hljs-deletion">-4eTkRjivAlExrFzKcljC4axKQlnOvVAzz+Gm32U0xPBF4ByePVxCJUHw1TsyTmel</span>
-<span class="hljs-deletion">-RxNEp7yHoXcwn+fXna+t5JWh1gxUZty3</span>
-<span class="hljs-comment">------END CERTIFICATE-----</span>
-<span class="hljs-comment">diff --git a/components/build-service/components/rh-certs/2022-IT-Root-CA.pem b/components/build-service/components/rh-certs/2022-IT-Root-CA.pem</span>
-deleted file mode 100644
-<span class="hljs-comment">index dbe10450..00000000</span>
-<span class="hljs-comment">--- a/components/build-service/components/rh-certs/2022-IT-Root-CA.pem</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,37 +0,0 @@</span>
-<span class="hljs-comment">------BEGIN CERTIFICATE-----</span>
-<span class="hljs-deletion">-MIIGcjCCBFqgAwIBAgIFICIEEFwwDQYJKoZIhvcNAQEMBQAwgaMxCzAJBgNVBAYT</span>
-<span class="hljs-deletion">-AlVTMRcwFQYDVQQIDA5Ob3J0aCBDYXJvbGluYTEQMA4GA1UEBwwHUmFsZWlnaDEW</span>
-<span class="hljs-deletion">-MBQGA1UECgwNUmVkIEhhdCwgSW5jLjETMBEGA1UECwwKUmVkIEhhdCBJVDEZMBcG</span>
-<span class="hljs-deletion">-A1UEAwwQSW50ZXJuYWwgUm9vdCBDQTEhMB8GCSqGSIb3DQEJARYSaW5mb3NlY0By</span>
-<span class="hljs-deletion">-ZWRoYXQuY29tMCAXDTIzMDQwNTE4MzM0NFoYDzIwNTIwNDAyMTgzMzQ0WjCBozEL</span>
-<span class="hljs-deletion">-MAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQHDAdS</span>
-<span class="hljs-deletion">-YWxlaWdoMRYwFAYDVQQKDA1SZWQgSGF0LCBJbmMuMRMwEQYDVQQLDApSZWQgSGF0</span>
-<span class="hljs-deletion">-IElUMRkwFwYDVQQDDBBJbnRlcm5hbCBSb290IENBMSEwHwYJKoZIhvcNAQkBFhJp</span>
-<span class="hljs-deletion">-bmZvc2VjQHJlZGhhdC5jb20wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoIC</span>
-<span class="hljs-deletion">-AQCxuloEVglzWXZ9FFFUOSVdpRIB2jW5YBpwgMem2fPZeWIIvrVQ6PL9XNenDOXu</span>
-<span class="hljs-deletion">-BHbShD/PApxi/ujSZyOIjLsNh7WDO+0NqpkfTyB9wUYAhx3GTIGY75RSoyZy1yKb</span>
-<span class="hljs-deletion">-ZDTKv+rSfui9IlstAMz6L3OQLZES9zAYK8ICiDUwTeNZ7quA6qf0Kam2LyuBc/bl</span>
-<span class="hljs-deletion">-BI7WFLOGGWY135P1OUXJgnJUsMhnYMTgvZQyJ2P7eLQpiR8TOr5ZI6CYapiyG64L</span>
-<span class="hljs-deletion">-nkr/rsALjSxoUo09Yai1CVO66VFJ/XgMNt3mzQtLDMPXiKUuwsBsgvo4QvLjkXYI</span>
-<span class="hljs-deletion">-ii+/YQyQaypsKctG8mefKkTT1kRDKj4LNdTRRgd5tco+b4+O/4upt8mIsx1+tbdM</span>
-<span class="hljs-deletion">-LNGEz3Jqd0sj8Fl4Rzus+W+enzXmMfZH86X6bU5tMvueuFd5LV+M9XzliscaEQMK</span>
-<span class="hljs-deletion">-EQ7CC72ldrOK2K12Gjb7bu8dKq+aSlNuWK+Gz1NvbwYpaCBYp0JoryvHEq5jrCLP</span>
-<span class="hljs-deletion">-lTkuJQ3HaaAf+4LaBm8no9xK2VbDf6l/7Htb5I5LnAAZi0/5TzH07NhHoIeMSmTE</span>
-<span class="hljs-deletion">-Ea07i/i5lbhM2qbx6pfLukg24HLCKTdi4Fo6/JqPWH6/3eI55NsoWSmoDdTiLg4v</span>
-<span class="hljs-deletion">-1G/rgUVr2N6F36GTYMGqiITvvd4Qm3i9XOTQvsx8RJx4JQIDAQABo4GoMIGlMB0G</span>
-<span class="hljs-deletion">-A1UdDgQWBBS1+o3lCnihCZXbTSGGlWpZT0nIizAfBgNVHSMEGDAWgBS1+o3lCnih</span>
-<span class="hljs-deletion">-CZXbTSGGlWpZT0nIizAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIBhjAR</span>
-<span class="hljs-deletion">-BglghkgBhvhCAQEEBAMCAQYwLwYDVR0fBCgwJjAkoCKgIIYeaHR0cDovL29jc3Au</span>
-<span class="hljs-deletion">-cmVkaGF0LmNvbS9jcmwucGVtMA0GCSqGSIb3DQEBDAUAA4ICAQCDLaGTS0g2HmMS</span>
-<span class="hljs-deletion">-g0i6Z0RVDC7sSnWFgEk2ZO1WUQj5WkFVS7gWxed/mXCzeL2EV1Pd22YKHM1eU1vo</span>
-<span class="hljs-deletion">-6b03cbNRXlRGGFksmQeM9h2sVjbP0hRZxqqfI+UW223N8E+qK3wSa8m6nhOfIJie</span>
-<span class="hljs-deletion">-DD9s8CdL1VT6l4qq2gR8mVBW7EZ+Ux5u+AMXpN4WPEkcLer2djbfhXoPsJ4r5CcX</span>
-<span class="hljs-deletion">-vh7W5rCZbo+0oBI5hrTlG4Tjhv1atqLhMmssjn8NbRrnhrbGF7w8NxFts69GkKDB</span>
-<span class="hljs-deletion">-UIXr1pWZSAuRELlIxmvh5ZSX5YTbFmDuTvmNx8RPPy6OY4W1v1BUKp0HyJTi07s2</span>
-<span class="hljs-deletion">-8SN+n9htHPHX9XBZctQmOSFLiqhi15LIqI54tR2tSgwH3Z5moh4sy6MuApXstsu4</span>
-<span class="hljs-deletion">-qtkII2KZk3SottI8MOS6zqKrU7jPou6ZE0fznNiu23Q3Ksuuj6mBkLVw3bQe68Vm</span>
-<span class="hljs-deletion">-NUTDac1oVzc8d5NMbx5kVb4Lahq+SATVFC8NK9G/Pk1AiwO8WhKffySsLeO5nMib</span>
-<span class="hljs-deletion">-4BOVq0qFoAi8YCFuJOl9FlH1dPW/TnqlTQMQNhXpzGjU3HV3lr/Mk+ghNgIYcLcz</span>
-<span class="hljs-deletion">-pEBsiGwKOVW4nYKIqPLn/36Ao/kfXeAdJhaAZq1SkTbeqNiwHQm3KNHzNObmjD0f</span>
-<span class="hljs-deletion">-56vmq8fwQYIcazjrygWiaOnoep/SMw==</span>
-<span class="hljs-comment">------END CERTIFICATE-----</span>
-<span class="hljs-comment">diff --git a/components/build-service/components/rh-certs/add-rh-certs-patch.yaml b/components/build-service/components/rh-certs/add-rh-certs-patch.yaml</span>
-<span class="hljs-comment">index eaa65daa..2baeff42 100644</span>
-<span class="hljs-comment">--- a/components/build-service/components/rh-certs/add-rh-certs-patch.yaml</span>
-<span class="hljs-comment">+++ b/components/build-service/components/rh-certs/add-rh-certs-patch.yaml</span>
-<span class="hljs-meta">@@ -9,22 +9,13 @@</span> spec:
-       containers:
-       - name: manager
-         volumeMounts:
-<span class="hljs-deletion">-          - name: rh-certs-2015</span>
-<span class="hljs-deletion">-            mountPath: /etc/pki/tls/certs/2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-            subPath: 2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-          - name: rh-certs-2022</span>
-<span class="hljs-deletion">-            mountPath: /etc/pki/tls/certs/2022-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-            subPath: 2022-IT-Root-CA.pem</span>
-<span class="hljs-addition">+          - name: trusted-ca</span>
-<span class="hljs-addition">+            mountPath: /etc/pki/ca-trust/extracted/pem</span>
-<span class="hljs-addition">+            readOnly: true</span>
-       volumes:
-<span class="hljs-deletion">-        - name: rh-certs-2015</span>
-<span class="hljs-deletion">-          configMap:</span>
-<span class="hljs-deletion">-            name: rh-certs-2015</span>
-<span class="hljs-deletion">-            items:</span>
-<span class="hljs-deletion">-              - key: 2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-                path: 2015-RH-IT-Root-CA.pem </span>
-<span class="hljs-deletion">-        - name: rh-certs-2022</span>
-<span class="hljs-deletion">-          configMap:</span>
-<span class="hljs-deletion">-            name: rh-certs-2022</span>
-<span class="hljs-deletion">-            items:</span>
-<span class="hljs-deletion">-              - key: 2022-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-                path: 2022-IT-Root-CA.pem</span>
-<span class="hljs-addition">+      - name: trusted-ca</span>
-<span class="hljs-addition">+        configMap:</span>
-<span class="hljs-addition">+          name: trusted-ca</span>
-<span class="hljs-addition">+          items:</span>
-<span class="hljs-addition">+            - key: ca-bundle.crt</span>
-<span class="hljs-addition">+              path: tls-ca-bundle.pem</span>
-<span class="hljs-comment">diff --git a/components/build-service/components/rh-certs/kustomization.yaml b/components/build-service/components/rh-certs/kustomization.yaml</span>
-<span class="hljs-comment">index e961547c..9cd099c5 100644</span>
-<span class="hljs-comment">--- a/components/build-service/components/rh-certs/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/build-service/components/rh-certs/kustomization.yaml</span>
-<span class="hljs-meta">@@ -7,10 +7,8 @@</span> patches:
-       name: build-service-controller-manager
-       kind: Deployment
- configMapGenerator:
-<span class="hljs-deletion">-  - name: rh-certs-2015</span>
-<span class="hljs-deletion">-    files: </span>
-<span class="hljs-deletion">-      - 2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-  - name: rh-certs-2022</span>
-<span class="hljs-deletion">-    files: </span>
-<span class="hljs-deletion">-      - 2022-IT-Root-CA.pem</span>
-<span class="hljs-addition">+  - name: trusted-ca</span>
-<span class="hljs-addition">+    options:</span>
-<span class="hljs-addition">+      labels:</span>
-<span class="hljs-addition">+        &quot;config.openshift.io/inject-trusted-cabundle&quot;: &quot;true&quot;</span>
- namespace: build-service 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (107 lines)</summary>  
-<pre><code>  ./commit-cdcaf57a/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
-616a617,643
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">data</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span>: |</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    -----<span class="hljs-variable constant_">BEGIN</span> <span class="hljs-variable constant_">CERTIFICATE</span>-----</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">MIIENDCCAxygAwIBAgIJANunI</span>0D662cnMA0GCSqGSIb3DQEBCwUAMIGlMQswCQYD</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">VQQGEwJVUzEXMBUGA</span>1UECAwOTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcMB1JhbGVp</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    Z2gxFjAUBgNVBAoMDVJlZCBIYXQsIEluYy4xEzARBgNVBAsMClJlZCBIYXQgSVQx</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">GzAZBgNVBAMMElJlZCBIYXQgSVQgUm9</span>vdCBDQTEhMB8GCSqGSIb3DQEJARYSaW5m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    b3NlY0ByZWRoYXQuY29tMCAXDTE1MDcwNjE3MzgxMVoYDzIwNTUwNjI2MTczODEx</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">WjCBpTELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5</span>vcnRoIENhcm9saW5hMRAwDgYD</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">VQQHDAdSYWxlaWdoMRYwFAYDVQQKDA</span>1SZWQgSGF0LCBJbmMuMRMwEQYDVQQLDApS</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">ZWQgSGF</span>0IElUMRswGQYDVQQDDBJSZWQgSGF0IElUIFJvb3QgQ0ExITAfBgkqhkiG</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    9w0BCQEWEmluZm9zZWNAcmVkaGF0LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEP</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">ADCCAQoCggEBALQt</span>9OJQh6GC5LT1g80qNh0u50BQ4sZ/yZ8aETxt+5lnPVX6MHKz</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    bfwI6nO1aMG6j9bSw+6UUyPBHP796+<span class="hljs-variable constant_">FT</span>/pTS+K0wsDV7c9XvHoxJBJJU38cdLkI2</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    c/i7lDqTfTcfLL2nyUBd2fQDk1B0fxrskhGIIZ3ifP1Ps4ltTkv8hRSob3VtNqSo</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">GxkKfvD2PKjTPxDPWYyruy9</span>irLZioMffi3i/gCut0ZWtAyO3MVH5qWF/enKwgPES</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    X9po+<span class="hljs-title class_">TdCvRB</span>/<span class="hljs-title class_">RUObBaM</span>761EcrLSM1GqHNueSfqnho3AjLQ6dBnPWlo638Zm1VebK</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">BELyhkLWMSFkKwDmne</span>0jQ02Y4g075vCKvCsCAwEAAaNjMGEwHQYDVR0OBBYEFH7R</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    4yC+<span class="hljs-title class_">UehIIPeuL8Zqw3PzbgcZMB8GA1UdIwQYMBaAFH7R4</span>yC+<span class="hljs-title class_">UehIIPeuL8Zqw3Pz</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    bgcZMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/<span class="hljs-title class_">BAQDAgGGMA</span>0GCSqGSIb3DQEB</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">CwUAA4IBAQBDNvD2Vm9</span>sA5A9AlOJR8+en5Xz9hXcxJB5phxcZQ8jFoG04Vshvd0e</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">LEnUrMcfFgIZ</span>4njMKTQCM4ZFUPAieyLx4f52HuDopp3e5JyIMfW+<span class="hljs-title class_">KFcNIpKwCsak</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    oSoKtIUOsUJK7qBVZxcrIyeQV2qcYOeZhtS5wBqIwOAhFwlCET7Ze58QHmS48slj</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    S9K0JAcps2xdnGu0fkzhSQxY8GPQNFTlr6rYld5+<span class="hljs-variable constant_">ID</span>/hHeS76gq0YG3q6RLWRkHf</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    4eTkRjivAlExrFzKcljC4axKQlnOvVAzz+<span class="hljs-title class_">Gm32U0</span>xPBF4ByePVxCJUHw1TsyTmel</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">RxNEp7</span>yHoXcwn+fXna+t5JWh1gxUZty3</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    -----<span class="hljs-variable constant_">END</span> <span class="hljs-variable constant_">CERTIFICATE</span>-----</span>
-619,621c646,691
-&lt;   labels:
-&lt;     config.openshift.io/inject-trusted-cabundle: &quot;true&quot;
-&lt;   name: trusted-ca-6ct58987ht
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2015</span>-496kcdf4g7</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">namespace</span>: build-service</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">---</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">apiVersion</span>: v1</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">data</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span>: |</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    -----<span class="hljs-variable constant_">BEGIN</span> <span class="hljs-variable constant_">CERTIFICATE</span>-----</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">MIIGcjCCBFqgAwIBAgIFICIEEFwwDQYJKoZIhvcNAQEMBQAwgaMxCzAJBgNVBAYT</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">AlVTMRcwFQYDVQQIDA5Ob3J0</span>aCBDYXJvbGluYTEQMA4GA1UEBwwHUmFsZWlnaDEW</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">MBQGA1UECgwNUmVkIEhhdCwgSW</span>5jLjETMBEGA1UECwwKUmVkIEhhdCBJVDEZMBcG</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    A1UEAwwQSW50ZXJuYWwgUm9vdCBDQTEhMB8GCSqGSIb3DQEJARYSaW5mb3NlY0By</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">ZWRoYXQuY</span>29tMCAXDTIzMDQwNTE4MzM0NFoYDzIwNTIwNDAyMTgzMzQ0WjCBozEL</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">MAkGA</span>1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQHDAdS</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">YWxlaWdoMRYwFAYDVQQKDA</span>1SZWQgSGF0LCBJbmMuMRMwEQYDVQQLDApSZWQgSGF0</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">IElUMRkwFwYDVQQDDBBJbnRlcm</span>5hbCBSb290IENBMSEwHwYJKoZIhvcNAQkBFhJp</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    bmZvc2VjQHJlZGhhdC5jb20wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoIC</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">AQCxuloEVglzWXZ</span>9FFFUOSVdpRIB2jW5YBpwgMem2fPZeWIIvrVQ6PL9XNenDOXu</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">BHbShD</span>/<span class="hljs-title class_">PApxi</span>/ujSZyOIjLsNh7WDO+0NqpkfTyB9wUYAhx3GTIGY75RSoyZy1yKb</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">ZDTKv</span>+rSfui9IlstAMz6L3OQLZES9zAYK8ICiDUwTeNZ7quA6qf0Kam2LyuBc/bl</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">BI7WFLOGGWY</span>135P1OUXJgnJUsMhnYMTgvZQyJ2P7eLQpiR8TOr5ZI6CYapiyG64L</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    nkr/rsALjSxoUo09Yai1CVO66VFJ/<span class="hljs-title class_">XgMNt3</span>mzQtLDMPXiKUuwsBsgvo4QvLjkXYI</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    ii+<span class="hljs-regexp">/YQyQaypsKctG8mefKkTT1kRDKj4LNdTRRgd5tco+b4+O/</span>4upt8mIsx1+tbdM</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">LNGEz3Jqd0</span>sj8Fl4Rzus+W+enzXmMfZH86X6bU5tMvueuFd5LV+M9XzliscaEQMK</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">EQ7CC</span>72ldrOK2K12Gjb7bu8dKq+aSlNuWK+<span class="hljs-title class_">Gz1NvbwYpaCBYp0JoryvHEq5</span>jrCLP</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    lTkuJQ3HaaAf+4LaBm8no9xK2VbDf6l/7Htb5I5LnAAZi0/5TzH07NhHoIeMSmTE</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">Ea07</span>i/i5lbhM2qbx6pfLukg24HLCKTdi4Fo6/<span class="hljs-title class_">JqPWH6</span>/3eI55NsoWSmoDdTiLg4v</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    1G/rgUVr2N6F36GTYMGqiITvvd4Qm3i9XOTQvsx8RJx4JQIDAQABo4GoMIGlMB0G</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    A1UdDgQWBBS1+o3lCnihCZXbTSGGlWpZT0nIizAfBgNVHSMEGDAWgBS1+o3lCnih</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">CZXbTSGGlWpZT</span>0nIizAPBgNVHRMBAf8EBTADAQH/<span class="hljs-title class_">MA4GA</span>1UdDwEB/wQEAwIBhjAR</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">BglghkgBhvhCAQEEBAMCAQYwLwYDVR0</span>fBCgwJjAkoCKgIIYeaHR0cDovL29jc3Au</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    cmVkaGF0LmNvbS9jcmwucGVtMA0GCSqGSIb3DQEBDAUAA4ICAQCDLaGTS0g2HmMS</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    g0i6Z0RVDC7sSnWFgEk2ZO1WUQj5WkFVS7gWxed/mXCzeL2EV1Pd22YKHM1eU1vo</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    6b03cbNRXlRGGFksmQeM9h2sVjbP0hRZxqqfI+<span class="hljs-title class_">UW223N</span>8E+qK3wSa8m6nhOfIJie</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">DD9</span>s8CdL1VT6l4qq2gR8mVBW7EZ+<span class="hljs-title class_">Ux5</span>u+<span class="hljs-title class_">AMXpN</span>4WPEkcLer2djbfhXoPsJ4r5CcX</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    vh7W5rCZbo+0oBI5hrTlG4Tjhv1atqLhMmssjn8NbRrnhrbGF7w8NxFts69GkKDB</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">UIXr1</span>pWZSAuRELlIxmvh5ZSX5YTbFmDuTvmNx8RPPy6OY4W1v1BUKp0HyJTi07s2</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    8SN+n9htHPHX9XBZctQmOSFLiqhi15LIqI54tR2tSgwH3Z5moh4sy6MuApXstsu4</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    qtkII2KZk3SottI8MOS6zqKrU7jPou6ZE0fznNiu23Q3Ksuuj6mBkLVw3bQe68Vm</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">NUTDac1</span>oVzc8d5NMbx5kVb4Lahq+<span class="hljs-title class_">SATVFC8NK</span>9G/<span class="hljs-title class_">Pk1AiwO8WhKffySsLeO5</span>nMib</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    4BOVq0qFoAi8YCFuJOl9FlH1dPW/<span class="hljs-title class_">TnqlTQMQNhXpzGjU3HV3</span>lr/<span class="hljs-title class_">Mk</span>+ghNgIYcLcz</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    pEBsiGwKOVW4nYKIqPLn/36Ao/kfXeAdJhaAZq1SkTbeqNiwHQm3KNHzNObmjD0f</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    56vmq8fwQYIcazjrygWiaOnoep/<span class="hljs-title class_">SMw</span>==</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    -----<span class="hljs-variable constant_">END</span> <span class="hljs-variable constant_">CERTIFICATE</span>-----</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">kind</span>: <span class="hljs-title class_">ConfigMap</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">metadata</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2022</span>-5fghf7b9tk</span>
-713,715c783,788
-&lt;         - mountPath: /etc/pki/ca-trust/extracted/pem
-&lt;           name: trusted-ca
-&lt;           readOnly: true
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">mountPath</span>: <span class="hljs-regexp">/etc/</span>pki/tls/certs/<span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2015</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">subPath</span>: <span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">mountPath</span>: <span class="hljs-regexp">/etc/</span>pki/tls/certs/<span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2022</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">subPath</span>: <span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-746,749c819,828
-&lt;           - key: ca-bundle.crt
-&lt;             path: tls-ca-bundle.pem
-&lt;           name: trusted-ca-6ct58987ht
-&lt;         name: trusted-ca
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          - <span class="hljs-attr">key</span>: <span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">path</span>: <span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2015</span>-496kcdf4g7</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2015</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      - <span class="hljs-attr">configMap</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">items</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          - <span class="hljs-attr">key</span>: <span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">path</span>: <span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2022</span>-5fghf7b9tk</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2022</span> </span>
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from cdcaf57a to 0c5d5074 on Thu Mar 7 18:17:37 2024 </h3>  
-
-<details> 
-<summary>Git Diff (129 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/build-service/components/rh-certs/2015-RH-IT-Root-CA.pem b/components/build-service/components/rh-certs/2015-RH-IT-Root-CA.pem</span>
-deleted file mode 100644
-<span class="hljs-comment">index f306f00f..00000000</span>
-<span class="hljs-comment">--- a/components/build-service/components/rh-certs/2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,25 +0,0 @@</span>
-<span class="hljs-comment">------BEGIN CERTIFICATE-----</span>
-<span class="hljs-deletion">-MIIENDCCAxygAwIBAgIJANunI0D662cnMA0GCSqGSIb3DQEBCwUAMIGlMQswCQYD</span>
-<span class="hljs-deletion">-VQQGEwJVUzEXMBUGA1UECAwOTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcMB1JhbGVp</span>
-<span class="hljs-deletion">-Z2gxFjAUBgNVBAoMDVJlZCBIYXQsIEluYy4xEzARBgNVBAsMClJlZCBIYXQgSVQx</span>
-<span class="hljs-deletion">-GzAZBgNVBAMMElJlZCBIYXQgSVQgUm9vdCBDQTEhMB8GCSqGSIb3DQEJARYSaW5m</span>
-<span class="hljs-deletion">-b3NlY0ByZWRoYXQuY29tMCAXDTE1MDcwNjE3MzgxMVoYDzIwNTUwNjI2MTczODEx</span>
-<span class="hljs-deletion">-WjCBpTELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYD</span>
-<span class="hljs-deletion">-VQQHDAdSYWxlaWdoMRYwFAYDVQQKDA1SZWQgSGF0LCBJbmMuMRMwEQYDVQQLDApS</span>
-<span class="hljs-deletion">-ZWQgSGF0IElUMRswGQYDVQQDDBJSZWQgSGF0IElUIFJvb3QgQ0ExITAfBgkqhkiG</span>
-<span class="hljs-deletion">-9w0BCQEWEmluZm9zZWNAcmVkaGF0LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEP</span>
-<span class="hljs-deletion">-ADCCAQoCggEBALQt9OJQh6GC5LT1g80qNh0u50BQ4sZ/yZ8aETxt+5lnPVX6MHKz</span>
-<span class="hljs-deletion">-bfwI6nO1aMG6j9bSw+6UUyPBHP796+FT/pTS+K0wsDV7c9XvHoxJBJJU38cdLkI2</span>
-<span class="hljs-deletion">-c/i7lDqTfTcfLL2nyUBd2fQDk1B0fxrskhGIIZ3ifP1Ps4ltTkv8hRSob3VtNqSo</span>
-<span class="hljs-deletion">-GxkKfvD2PKjTPxDPWYyruy9irLZioMffi3i/gCut0ZWtAyO3MVH5qWF/enKwgPES</span>
-<span class="hljs-deletion">-X9po+TdCvRB/RUObBaM761EcrLSM1GqHNueSfqnho3AjLQ6dBnPWlo638Zm1VebK</span>
-<span class="hljs-deletion">-BELyhkLWMSFkKwDmne0jQ02Y4g075vCKvCsCAwEAAaNjMGEwHQYDVR0OBBYEFH7R</span>
-<span class="hljs-deletion">-4yC+UehIIPeuL8Zqw3PzbgcZMB8GA1UdIwQYMBaAFH7R4yC+UehIIPeuL8Zqw3Pz</span>
-<span class="hljs-deletion">-bgcZMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgGGMA0GCSqGSIb3DQEB</span>
-<span class="hljs-deletion">-CwUAA4IBAQBDNvD2Vm9sA5A9AlOJR8+en5Xz9hXcxJB5phxcZQ8jFoG04Vshvd0e</span>
-<span class="hljs-deletion">-LEnUrMcfFgIZ4njMKTQCM4ZFUPAieyLx4f52HuDopp3e5JyIMfW+KFcNIpKwCsak</span>
-<span class="hljs-deletion">-oSoKtIUOsUJK7qBVZxcrIyeQV2qcYOeZhtS5wBqIwOAhFwlCET7Ze58QHmS48slj</span>
-<span class="hljs-deletion">-S9K0JAcps2xdnGu0fkzhSQxY8GPQNFTlr6rYld5+ID/hHeS76gq0YG3q6RLWRkHf</span>
-<span class="hljs-deletion">-4eTkRjivAlExrFzKcljC4axKQlnOvVAzz+Gm32U0xPBF4ByePVxCJUHw1TsyTmel</span>
-<span class="hljs-deletion">-RxNEp7yHoXcwn+fXna+t5JWh1gxUZty3</span>
-<span class="hljs-comment">------END CERTIFICATE-----</span>
-<span class="hljs-comment">diff --git a/components/build-service/components/rh-certs/2022-IT-Root-CA.pem b/components/build-service/components/rh-certs/2022-IT-Root-CA.pem</span>
-deleted file mode 100644
-<span class="hljs-comment">index dbe10450..00000000</span>
-<span class="hljs-comment">--- a/components/build-service/components/rh-certs/2022-IT-Root-CA.pem</span>
-<span class="hljs-comment">+++ /dev/null</span>
-<span class="hljs-meta">@@ -1,37 +0,0 @@</span>
-<span class="hljs-comment">------BEGIN CERTIFICATE-----</span>
-<span class="hljs-deletion">-MIIGcjCCBFqgAwIBAgIFICIEEFwwDQYJKoZIhvcNAQEMBQAwgaMxCzAJBgNVBAYT</span>
-<span class="hljs-deletion">-AlVTMRcwFQYDVQQIDA5Ob3J0aCBDYXJvbGluYTEQMA4GA1UEBwwHUmFsZWlnaDEW</span>
-<span class="hljs-deletion">-MBQGA1UECgwNUmVkIEhhdCwgSW5jLjETMBEGA1UECwwKUmVkIEhhdCBJVDEZMBcG</span>
-<span class="hljs-deletion">-A1UEAwwQSW50ZXJuYWwgUm9vdCBDQTEhMB8GCSqGSIb3DQEJARYSaW5mb3NlY0By</span>
-<span class="hljs-deletion">-ZWRoYXQuY29tMCAXDTIzMDQwNTE4MzM0NFoYDzIwNTIwNDAyMTgzMzQ0WjCBozEL</span>
-<span class="hljs-deletion">-MAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQHDAdS</span>
-<span class="hljs-deletion">-YWxlaWdoMRYwFAYDVQQKDA1SZWQgSGF0LCBJbmMuMRMwEQYDVQQLDApSZWQgSGF0</span>
-<span class="hljs-deletion">-IElUMRkwFwYDVQQDDBBJbnRlcm5hbCBSb290IENBMSEwHwYJKoZIhvcNAQkBFhJp</span>
-<span class="hljs-deletion">-bmZvc2VjQHJlZGhhdC5jb20wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoIC</span>
-<span class="hljs-deletion">-AQCxuloEVglzWXZ9FFFUOSVdpRIB2jW5YBpwgMem2fPZeWIIvrVQ6PL9XNenDOXu</span>
-<span class="hljs-deletion">-BHbShD/PApxi/ujSZyOIjLsNh7WDO+0NqpkfTyB9wUYAhx3GTIGY75RSoyZy1yKb</span>
-<span class="hljs-deletion">-ZDTKv+rSfui9IlstAMz6L3OQLZES9zAYK8ICiDUwTeNZ7quA6qf0Kam2LyuBc/bl</span>
-<span class="hljs-deletion">-BI7WFLOGGWY135P1OUXJgnJUsMhnYMTgvZQyJ2P7eLQpiR8TOr5ZI6CYapiyG64L</span>
-<span class="hljs-deletion">-nkr/rsALjSxoUo09Yai1CVO66VFJ/XgMNt3mzQtLDMPXiKUuwsBsgvo4QvLjkXYI</span>
-<span class="hljs-deletion">-ii+/YQyQaypsKctG8mefKkTT1kRDKj4LNdTRRgd5tco+b4+O/4upt8mIsx1+tbdM</span>
-<span class="hljs-deletion">-LNGEz3Jqd0sj8Fl4Rzus+W+enzXmMfZH86X6bU5tMvueuFd5LV+M9XzliscaEQMK</span>
-<span class="hljs-deletion">-EQ7CC72ldrOK2K12Gjb7bu8dKq+aSlNuWK+Gz1NvbwYpaCBYp0JoryvHEq5jrCLP</span>
-<span class="hljs-deletion">-lTkuJQ3HaaAf+4LaBm8no9xK2VbDf6l/7Htb5I5LnAAZi0/5TzH07NhHoIeMSmTE</span>
-<span class="hljs-deletion">-Ea07i/i5lbhM2qbx6pfLukg24HLCKTdi4Fo6/JqPWH6/3eI55NsoWSmoDdTiLg4v</span>
-<span class="hljs-deletion">-1G/rgUVr2N6F36GTYMGqiITvvd4Qm3i9XOTQvsx8RJx4JQIDAQABo4GoMIGlMB0G</span>
-<span class="hljs-deletion">-A1UdDgQWBBS1+o3lCnihCZXbTSGGlWpZT0nIizAfBgNVHSMEGDAWgBS1+o3lCnih</span>
-<span class="hljs-deletion">-CZXbTSGGlWpZT0nIizAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIBhjAR</span>
-<span class="hljs-deletion">-BglghkgBhvhCAQEEBAMCAQYwLwYDVR0fBCgwJjAkoCKgIIYeaHR0cDovL29jc3Au</span>
-<span class="hljs-deletion">-cmVkaGF0LmNvbS9jcmwucGVtMA0GCSqGSIb3DQEBDAUAA4ICAQCDLaGTS0g2HmMS</span>
-<span class="hljs-deletion">-g0i6Z0RVDC7sSnWFgEk2ZO1WUQj5WkFVS7gWxed/mXCzeL2EV1Pd22YKHM1eU1vo</span>
-<span class="hljs-deletion">-6b03cbNRXlRGGFksmQeM9h2sVjbP0hRZxqqfI+UW223N8E+qK3wSa8m6nhOfIJie</span>
-<span class="hljs-deletion">-DD9s8CdL1VT6l4qq2gR8mVBW7EZ+Ux5u+AMXpN4WPEkcLer2djbfhXoPsJ4r5CcX</span>
-<span class="hljs-deletion">-vh7W5rCZbo+0oBI5hrTlG4Tjhv1atqLhMmssjn8NbRrnhrbGF7w8NxFts69GkKDB</span>
-<span class="hljs-deletion">-UIXr1pWZSAuRELlIxmvh5ZSX5YTbFmDuTvmNx8RPPy6OY4W1v1BUKp0HyJTi07s2</span>
-<span class="hljs-deletion">-8SN+n9htHPHX9XBZctQmOSFLiqhi15LIqI54tR2tSgwH3Z5moh4sy6MuApXstsu4</span>
-<span class="hljs-deletion">-qtkII2KZk3SottI8MOS6zqKrU7jPou6ZE0fznNiu23Q3Ksuuj6mBkLVw3bQe68Vm</span>
-<span class="hljs-deletion">-NUTDac1oVzc8d5NMbx5kVb4Lahq+SATVFC8NK9G/Pk1AiwO8WhKffySsLeO5nMib</span>
-<span class="hljs-deletion">-4BOVq0qFoAi8YCFuJOl9FlH1dPW/TnqlTQMQNhXpzGjU3HV3lr/Mk+ghNgIYcLcz</span>
-<span class="hljs-deletion">-pEBsiGwKOVW4nYKIqPLn/36Ao/kfXeAdJhaAZq1SkTbeqNiwHQm3KNHzNObmjD0f</span>
-<span class="hljs-deletion">-56vmq8fwQYIcazjrygWiaOnoep/SMw==</span>
-<span class="hljs-comment">------END CERTIFICATE-----</span>
-<span class="hljs-comment">diff --git a/components/build-service/components/rh-certs/add-rh-certs-patch.yaml b/components/build-service/components/rh-certs/add-rh-certs-patch.yaml</span>
-<span class="hljs-comment">index eaa65daa..2baeff42 100644</span>
-<span class="hljs-comment">--- a/components/build-service/components/rh-certs/add-rh-certs-patch.yaml</span>
-<span class="hljs-comment">+++ b/components/build-service/components/rh-certs/add-rh-certs-patch.yaml</span>
-<span class="hljs-meta">@@ -9,22 +9,13 @@</span> spec:
-       containers:
-       - name: manager
-         volumeMounts:
-<span class="hljs-deletion">-          - name: rh-certs-2015</span>
-<span class="hljs-deletion">-            mountPath: /etc/pki/tls/certs/2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-            subPath: 2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-          - name: rh-certs-2022</span>
-<span class="hljs-deletion">-            mountPath: /etc/pki/tls/certs/2022-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-            subPath: 2022-IT-Root-CA.pem</span>
-<span class="hljs-addition">+          - name: trusted-ca</span>
-<span class="hljs-addition">+            mountPath: /etc/pki/ca-trust/extracted/pem</span>
-<span class="hljs-addition">+            readOnly: true</span>
-       volumes:
-<span class="hljs-deletion">-        - name: rh-certs-2015</span>
-<span class="hljs-deletion">-          configMap:</span>
-<span class="hljs-deletion">-            name: rh-certs-2015</span>
-<span class="hljs-deletion">-            items:</span>
-<span class="hljs-deletion">-              - key: 2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-                path: 2015-RH-IT-Root-CA.pem </span>
-<span class="hljs-deletion">-        - name: rh-certs-2022</span>
-<span class="hljs-deletion">-          configMap:</span>
-<span class="hljs-deletion">-            name: rh-certs-2022</span>
-<span class="hljs-deletion">-            items:</span>
-<span class="hljs-deletion">-              - key: 2022-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-                path: 2022-IT-Root-CA.pem</span>
-<span class="hljs-addition">+      - name: trusted-ca</span>
-<span class="hljs-addition">+        configMap:</span>
-<span class="hljs-addition">+          name: trusted-ca</span>
-<span class="hljs-addition">+          items:</span>
-<span class="hljs-addition">+            - key: ca-bundle.crt</span>
-<span class="hljs-addition">+              path: tls-ca-bundle.pem</span>
-<span class="hljs-comment">diff --git a/components/build-service/components/rh-certs/kustomization.yaml b/components/build-service/components/rh-certs/kustomization.yaml</span>
-<span class="hljs-comment">index e961547c..9cd099c5 100644</span>
-<span class="hljs-comment">--- a/components/build-service/components/rh-certs/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/build-service/components/rh-certs/kustomization.yaml</span>
-<span class="hljs-meta">@@ -7,10 +7,8 @@</span> patches:
-       name: build-service-controller-manager
-       kind: Deployment
- configMapGenerator:
-<span class="hljs-deletion">-  - name: rh-certs-2015</span>
-<span class="hljs-deletion">-    files: </span>
-<span class="hljs-deletion">-      - 2015-RH-IT-Root-CA.pem</span>
-<span class="hljs-deletion">-  - name: rh-certs-2022</span>
-<span class="hljs-deletion">-    files: </span>
-<span class="hljs-deletion">-      - 2022-IT-Root-CA.pem</span>
-<span class="hljs-addition">+  - name: trusted-ca</span>
-<span class="hljs-addition">+    options:</span>
-<span class="hljs-addition">+      labels:</span>
-<span class="hljs-addition">+        &quot;config.openshift.io/inject-trusted-cabundle&quot;: &quot;true&quot;</span>
- namespace: build-service 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (109 lines)</summary>  
-<pre><code>  ./commit-cdcaf57a/development/components/build-service/development/kustomize.out.yaml
-616a617,643
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">data</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span>: |</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    -----<span class="hljs-variable constant_">BEGIN</span> <span class="hljs-variable constant_">CERTIFICATE</span>-----</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">MIIENDCCAxygAwIBAgIJANunI</span>0D662cnMA0GCSqGSIb3DQEBCwUAMIGlMQswCQYD</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">VQQGEwJVUzEXMBUGA</span>1UECAwOTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcMB1JhbGVp</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    Z2gxFjAUBgNVBAoMDVJlZCBIYXQsIEluYy4xEzARBgNVBAsMClJlZCBIYXQgSVQx</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">GzAZBgNVBAMMElJlZCBIYXQgSVQgUm9</span>vdCBDQTEhMB8GCSqGSIb3DQEJARYSaW5m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    b3NlY0ByZWRoYXQuY29tMCAXDTE1MDcwNjE3MzgxMVoYDzIwNTUwNjI2MTczODEx</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">WjCBpTELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5</span>vcnRoIENhcm9saW5hMRAwDgYD</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">VQQHDAdSYWxlaWdoMRYwFAYDVQQKDA</span>1SZWQgSGF0LCBJbmMuMRMwEQYDVQQLDApS</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">ZWQgSGF</span>0IElUMRswGQYDVQQDDBJSZWQgSGF0IElUIFJvb3QgQ0ExITAfBgkqhkiG</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    9w0BCQEWEmluZm9zZWNAcmVkaGF0LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEP</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">ADCCAQoCggEBALQt</span>9OJQh6GC5LT1g80qNh0u50BQ4sZ/yZ8aETxt+5lnPVX6MHKz</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    bfwI6nO1aMG6j9bSw+6UUyPBHP796+<span class="hljs-variable constant_">FT</span>/pTS+K0wsDV7c9XvHoxJBJJU38cdLkI2</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    c/i7lDqTfTcfLL2nyUBd2fQDk1B0fxrskhGIIZ3ifP1Ps4ltTkv8hRSob3VtNqSo</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">GxkKfvD2PKjTPxDPWYyruy9</span>irLZioMffi3i/gCut0ZWtAyO3MVH5qWF/enKwgPES</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    X9po+<span class="hljs-title class_">TdCvRB</span>/<span class="hljs-title class_">RUObBaM</span>761EcrLSM1GqHNueSfqnho3AjLQ6dBnPWlo638Zm1VebK</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">BELyhkLWMSFkKwDmne</span>0jQ02Y4g075vCKvCsCAwEAAaNjMGEwHQYDVR0OBBYEFH7R</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    4yC+<span class="hljs-title class_">UehIIPeuL8Zqw3PzbgcZMB8GA1UdIwQYMBaAFH7R4</span>yC+<span class="hljs-title class_">UehIIPeuL8Zqw3Pz</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    bgcZMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/<span class="hljs-title class_">BAQDAgGGMA</span>0GCSqGSIb3DQEB</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">CwUAA4IBAQBDNvD2Vm9</span>sA5A9AlOJR8+en5Xz9hXcxJB5phxcZQ8jFoG04Vshvd0e</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">LEnUrMcfFgIZ</span>4njMKTQCM4ZFUPAieyLx4f52HuDopp3e5JyIMfW+<span class="hljs-title class_">KFcNIpKwCsak</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    oSoKtIUOsUJK7qBVZxcrIyeQV2qcYOeZhtS5wBqIwOAhFwlCET7Ze58QHmS48slj</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    S9K0JAcps2xdnGu0fkzhSQxY8GPQNFTlr6rYld5+<span class="hljs-variable constant_">ID</span>/hHeS76gq0YG3q6RLWRkHf</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    4eTkRjivAlExrFzKcljC4axKQlnOvVAzz+<span class="hljs-title class_">Gm32U0</span>xPBF4ByePVxCJUHw1TsyTmel</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">RxNEp7</span>yHoXcwn+fXna+t5JWh1gxUZty3</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    -----<span class="hljs-variable constant_">END</span> <span class="hljs-variable constant_">CERTIFICATE</span>-----</span>
-621,623c648,695
-&lt;   labels:
-&lt;     config.openshift.io/inject-trusted-cabundle: &quot;true&quot;
-&lt;   name: trusted-ca-6ct58987ht
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2015</span>-496kcdf4g7</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">namespace</span>: build-service</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">---</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">apiVersion</span>: v1</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">data</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span>: |</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    -----<span class="hljs-variable constant_">BEGIN</span> <span class="hljs-variable constant_">CERTIFICATE</span>-----</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">MIIGcjCCBFqgAwIBAgIFICIEEFwwDQYJKoZIhvcNAQEMBQAwgaMxCzAJBgNVBAYT</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">AlVTMRcwFQYDVQQIDA5Ob3J0</span>aCBDYXJvbGluYTEQMA4GA1UEBwwHUmFsZWlnaDEW</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">MBQGA1UECgwNUmVkIEhhdCwgSW</span>5jLjETMBEGA1UECwwKUmVkIEhhdCBJVDEZMBcG</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    A1UEAwwQSW50ZXJuYWwgUm9vdCBDQTEhMB8GCSqGSIb3DQEJARYSaW5mb3NlY0By</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">ZWRoYXQuY</span>29tMCAXDTIzMDQwNTE4MzM0NFoYDzIwNTIwNDAyMTgzMzQ0WjCBozEL</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">MAkGA</span>1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQHDAdS</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">YWxlaWdoMRYwFAYDVQQKDA</span>1SZWQgSGF0LCBJbmMuMRMwEQYDVQQLDApSZWQgSGF0</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">IElUMRkwFwYDVQQDDBBJbnRlcm</span>5hbCBSb290IENBMSEwHwYJKoZIhvcNAQkBFhJp</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    bmZvc2VjQHJlZGhhdC5jb20wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoIC</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">AQCxuloEVglzWXZ</span>9FFFUOSVdpRIB2jW5YBpwgMem2fPZeWIIvrVQ6PL9XNenDOXu</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">BHbShD</span>/<span class="hljs-title class_">PApxi</span>/ujSZyOIjLsNh7WDO+0NqpkfTyB9wUYAhx3GTIGY75RSoyZy1yKb</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">ZDTKv</span>+rSfui9IlstAMz6L3OQLZES9zAYK8ICiDUwTeNZ7quA6qf0Kam2LyuBc/bl</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">BI7WFLOGGWY</span>135P1OUXJgnJUsMhnYMTgvZQyJ2P7eLQpiR8TOr5ZI6CYapiyG64L</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    nkr/rsALjSxoUo09Yai1CVO66VFJ/<span class="hljs-title class_">XgMNt3</span>mzQtLDMPXiKUuwsBsgvo4QvLjkXYI</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    ii+<span class="hljs-regexp">/YQyQaypsKctG8mefKkTT1kRDKj4LNdTRRgd5tco+b4+O/</span>4upt8mIsx1+tbdM</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">LNGEz3Jqd0</span>sj8Fl4Rzus+W+enzXmMfZH86X6bU5tMvueuFd5LV+M9XzliscaEQMK</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">EQ7CC</span>72ldrOK2K12Gjb7bu8dKq+aSlNuWK+<span class="hljs-title class_">Gz1NvbwYpaCBYp0JoryvHEq5</span>jrCLP</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    lTkuJQ3HaaAf+4LaBm8no9xK2VbDf6l/7Htb5I5LnAAZi0/5TzH07NhHoIeMSmTE</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">Ea07</span>i/i5lbhM2qbx6pfLukg24HLCKTdi4Fo6/<span class="hljs-title class_">JqPWH6</span>/3eI55NsoWSmoDdTiLg4v</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    1G/rgUVr2N6F36GTYMGqiITvvd4Qm3i9XOTQvsx8RJx4JQIDAQABo4GoMIGlMB0G</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    A1UdDgQWBBS1+o3lCnihCZXbTSGGlWpZT0nIizAfBgNVHSMEGDAWgBS1+o3lCnih</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">CZXbTSGGlWpZT</span>0nIizAPBgNVHRMBAf8EBTADAQH/<span class="hljs-title class_">MA4GA</span>1UdDwEB/wQEAwIBhjAR</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">BglghkgBhvhCAQEEBAMCAQYwLwYDVR0</span>fBCgwJjAkoCKgIIYeaHR0cDovL29jc3Au</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    cmVkaGF0LmNvbS9jcmwucGVtMA0GCSqGSIb3DQEBDAUAA4ICAQCDLaGTS0g2HmMS</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    g0i6Z0RVDC7sSnWFgEk2ZO1WUQj5WkFVS7gWxed/mXCzeL2EV1Pd22YKHM1eU1vo</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    6b03cbNRXlRGGFksmQeM9h2sVjbP0hRZxqqfI+<span class="hljs-title class_">UW223N</span>8E+qK3wSa8m6nhOfIJie</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">DD9</span>s8CdL1VT6l4qq2gR8mVBW7EZ+<span class="hljs-title class_">Ux5</span>u+<span class="hljs-title class_">AMXpN</span>4WPEkcLer2djbfhXoPsJ4r5CcX</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    vh7W5rCZbo+0oBI5hrTlG4Tjhv1atqLhMmssjn8NbRrnhrbGF7w8NxFts69GkKDB</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">UIXr1</span>pWZSAuRELlIxmvh5ZSX5YTbFmDuTvmNx8RPPy6OY4W1v1BUKp0HyJTi07s2</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    8SN+n9htHPHX9XBZctQmOSFLiqhi15LIqI54tR2tSgwH3Z5moh4sy6MuApXstsu4</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    qtkII2KZk3SottI8MOS6zqKrU7jPou6ZE0fznNiu23Q3Ksuuj6mBkLVw3bQe68Vm</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    <span class="hljs-title class_">NUTDac1</span>oVzc8d5NMbx5kVb4Lahq+<span class="hljs-title class_">SATVFC8NK</span>9G/<span class="hljs-title class_">Pk1AiwO8WhKffySsLeO5</span>nMib</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    4BOVq0qFoAi8YCFuJOl9FlH1dPW/<span class="hljs-title class_">TnqlTQMQNhXpzGjU3HV3</span>lr/<span class="hljs-title class_">Mk</span>+ghNgIYcLcz</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    pEBsiGwKOVW4nYKIqPLn/36Ao/kfXeAdJhaAZq1SkTbeqNiwHQm3KNHzNObmjD0f</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    56vmq8fwQYIcazjrygWiaOnoep/<span class="hljs-title class_">SMw</span>==</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    -----<span class="hljs-variable constant_">END</span> <span class="hljs-variable constant_">CERTIFICATE</span>-----</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">kind</span>: <span class="hljs-title class_">ConfigMap</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">metadata</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">annotations</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">    argocd.<span class="hljs-property">argoproj</span>.<span class="hljs-property">io</span>/sync-<span class="hljs-attr">options</span>: <span class="hljs-title class_">SkipDryRunOnMissingResource</span>=<span class="hljs-literal">true</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2022</span>-5fghf7b9tk</span>
-718,720c790,795
-&lt;         - mountPath: /etc/pki/ca-trust/extracted/pem
-&lt;           name: trusted-ca
-&lt;           readOnly: true
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">mountPath</span>: <span class="hljs-regexp">/etc/</span>pki/tls/certs/<span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2015</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">subPath</span>: <span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">mountPath</span>: <span class="hljs-regexp">/etc/</span>pki/tls/certs/<span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2022</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">subPath</span>: <span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-751,754c826,835
-&lt;           - key: ca-bundle.crt
-&lt;             path: tls-ca-bundle.pem
-&lt;           name: trusted-ca-6ct58987ht
-&lt;         name: trusted-ca
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          - <span class="hljs-attr">key</span>: <span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">path</span>: <span class="hljs-number">2015</span>-<span class="hljs-variable constant_">RH</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2015</span>-496kcdf4g7</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2015</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      - <span class="hljs-attr">configMap</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">items</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          - <span class="hljs-attr">key</span>: <span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">path</span>: <span class="hljs-number">2022</span>-<span class="hljs-variable constant_">IT</span>-<span class="hljs-title class_">Root</span>-<span class="hljs-variable constant_">CA</span>.<span class="hljs-property">pem</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2022</span>-5fghf7b9tk</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">name</span>: rh-certs-<span class="hljs-number">2022</span> </span>
 </code></pre>
 
 </details>  
