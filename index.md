@@ -1,12 +1,659 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Mar  7 20:08:33 UTC 2024
+### This file generated at Fri Mar  8 00:07:19 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 0c5d5074 to a220adcd on Thu Mar 7 19:12:38 2024 </h3>  
+<h3>1: Production changes from a220adcd to b1ce8f52 on Thu Mar 7 20:02:09 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (81 lines)</summary>  
+
+``` 
+diff --git a/components/tekton-ci/base/external-secrets/kustomization.yaml b/components/tekton-ci/base/external-secrets/kustomization.yaml
+index f96983a6..3ae7c588 100644
+--- a/components/tekton-ci/base/external-secrets/kustomization.yaml
++++ b/components/tekton-ci/base/external-secrets/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - quay-push-secret.yaml
++- quay-push-secret-konflux-ci.yaml
+ - infra-deployments-pr-creator.yaml
+ - snyk-shared-token.yaml
+ - slack-webhook-notification-secret.yaml
+diff --git a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
+new file mode 100644
+index 00000000..2d67489c
+--- /dev/null
++++ b/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
+@@ -0,0 +1,24 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: quay-push-secret-konflux-ci
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/build/tekton-ci/quay-push-secret-konflux-ci
++  refreshInterval: 15m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: quay-push-secret-konflux-ci
++    template:
++      engineVersion: v2
++      type: kubernetes.io/dockerconfigjson
++      data:
++        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml
+index 93d4de83..1517b4dc 100644
+--- a/components/tekton-ci/base/serviceaccount.yaml
++++ b/components/tekton-ci/base/serviceaccount.yaml
+@@ -4,5 +4,7 @@ metadata:
+   name: appstudio-pipeline
+ secrets:
+   - name: quay-push-secret
++  - name: quay-push-secret-konflux-ci
+ imagePullSecrets:
+   - name: quay-push-secret
++  - name: quay-push-secret-konflux-ci
+diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
+index 65cd79ed..ba934adf 100644
+--- a/components/tekton-ci/production/kustomization.yaml
++++ b/components/tekton-ci/production/kustomization.yaml
+@@ -13,6 +13,12 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
++  - path: quay-push-secret-konflux-ci.yaml
++    target:
++      name: quay-push-secret-konflux-ci
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
+   - path: infra-deployments-pr-creator.yaml
+     target:
+       name: infra-deployments-pr-creator
+diff --git a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
+new file mode 100644
+index 00000000..8a3590aa
+--- /dev/null
++++ b/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/build/tekton-ci/quay-push-secret-konflux-ci 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (32 lines)</summary>  
+
+``` 
+./commit-a220adcd/production/components/tekton-ci/production/kustomize.out.yaml
+12d11
+< - name: quay-push-secret-konflux-ci
+20d18
+< - name: quay-push-secret-konflux-ci
+136,161d133
+<     template:
+<       data:
+<         .dockerconfigjson: '{{ .config }}'
+<       engineVersion: v2
+<       type: kubernetes.io/dockerconfigjson
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: quay-push-secret-konflux-ci
+<   namespace: tekton-ci
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/tekton-ci/quay-push-secret-konflux-ci
+<   refreshInterval: 15m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: quay-push-secret-konflux-ci 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from a220adcd to b1ce8f52 on Thu Mar 7 20:02:09 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (81 lines)</summary>  
+
+``` 
+diff --git a/components/tekton-ci/base/external-secrets/kustomization.yaml b/components/tekton-ci/base/external-secrets/kustomization.yaml
+index f96983a6..3ae7c588 100644
+--- a/components/tekton-ci/base/external-secrets/kustomization.yaml
++++ b/components/tekton-ci/base/external-secrets/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - quay-push-secret.yaml
++- quay-push-secret-konflux-ci.yaml
+ - infra-deployments-pr-creator.yaml
+ - snyk-shared-token.yaml
+ - slack-webhook-notification-secret.yaml
+diff --git a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
+new file mode 100644
+index 00000000..2d67489c
+--- /dev/null
++++ b/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
+@@ -0,0 +1,24 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: quay-push-secret-konflux-ci
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/build/tekton-ci/quay-push-secret-konflux-ci
++  refreshInterval: 15m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: quay-push-secret-konflux-ci
++    template:
++      engineVersion: v2
++      type: kubernetes.io/dockerconfigjson
++      data:
++        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml
+index 93d4de83..1517b4dc 100644
+--- a/components/tekton-ci/base/serviceaccount.yaml
++++ b/components/tekton-ci/base/serviceaccount.yaml
+@@ -4,5 +4,7 @@ metadata:
+   name: appstudio-pipeline
+ secrets:
+   - name: quay-push-secret
++  - name: quay-push-secret-konflux-ci
+ imagePullSecrets:
+   - name: quay-push-secret
++  - name: quay-push-secret-konflux-ci
+diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
+index 65cd79ed..ba934adf 100644
+--- a/components/tekton-ci/production/kustomization.yaml
++++ b/components/tekton-ci/production/kustomization.yaml
+@@ -13,6 +13,12 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
++  - path: quay-push-secret-konflux-ci.yaml
++    target:
++      name: quay-push-secret-konflux-ci
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
+   - path: infra-deployments-pr-creator.yaml
+     target:
+       name: infra-deployments-pr-creator
+diff --git a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
+new file mode 100644
+index 00000000..8a3590aa
+--- /dev/null
++++ b/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/build/tekton-ci/quay-push-secret-konflux-ci 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (32 lines)</summary>  
+
+``` 
+./commit-a220adcd/staging/components/tekton-ci/staging/kustomize.out.yaml
+12d11
+< - name: quay-push-secret-konflux-ci
+20d18
+< - name: quay-push-secret-konflux-ci
+136,161d133
+<     template:
+<       data:
+<         .dockerconfigjson: '{{ .config }}'
+<       engineVersion: v2
+<       type: kubernetes.io/dockerconfigjson
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: quay-push-secret-konflux-ci
+<   namespace: tekton-ci
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: staging/build/tekton-ci/quay-push-secret-konflux-ci
+<   refreshInterval: 15m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: quay-push-secret-konflux-ci 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from a220adcd to b1ce8f52 on Thu Mar 7 20:02:09 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (81 lines)</summary>  
+
+``` 
+diff --git a/components/tekton-ci/base/external-secrets/kustomization.yaml b/components/tekton-ci/base/external-secrets/kustomization.yaml
+index f96983a6..3ae7c588 100644
+--- a/components/tekton-ci/base/external-secrets/kustomization.yaml
++++ b/components/tekton-ci/base/external-secrets/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - quay-push-secret.yaml
++- quay-push-secret-konflux-ci.yaml
+ - infra-deployments-pr-creator.yaml
+ - snyk-shared-token.yaml
+ - slack-webhook-notification-secret.yaml
+diff --git a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
+new file mode 100644
+index 00000000..2d67489c
+--- /dev/null
++++ b/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
+@@ -0,0 +1,24 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: quay-push-secret-konflux-ci
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        key: staging/build/tekton-ci/quay-push-secret-konflux-ci
++  refreshInterval: 15m
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: quay-push-secret-konflux-ci
++    template:
++      engineVersion: v2
++      type: kubernetes.io/dockerconfigjson
++      data:
++        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml
+index 93d4de83..1517b4dc 100644
+--- a/components/tekton-ci/base/serviceaccount.yaml
++++ b/components/tekton-ci/base/serviceaccount.yaml
+@@ -4,5 +4,7 @@ metadata:
+   name: appstudio-pipeline
+ secrets:
+   - name: quay-push-secret
++  - name: quay-push-secret-konflux-ci
+ imagePullSecrets:
+   - name: quay-push-secret
++  - name: quay-push-secret-konflux-ci
+diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
+index 65cd79ed..ba934adf 100644
+--- a/components/tekton-ci/production/kustomization.yaml
++++ b/components/tekton-ci/production/kustomization.yaml
+@@ -13,6 +13,12 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
++  - path: quay-push-secret-konflux-ci.yaml
++    target:
++      name: quay-push-secret-konflux-ci
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
+   - path: infra-deployments-pr-creator.yaml
+     target:
+       name: infra-deployments-pr-creator
+diff --git a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
+new file mode 100644
+index 00000000..8a3590aa
+--- /dev/null
++++ b/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/build/tekton-ci/quay-push-secret-konflux-ci 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 0c5d5074 to a220adcd on Thu Mar 7 19:12:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (54 lines)</summary>  
@@ -188,7 +835,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 0c5d5074 to a220adcd on Thu Mar 7 19:12:38 2024 </h3>  
+<h3>2: Staging changes from 0c5d5074 to a220adcd on Thu Mar 7 19:12:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (54 lines)</summary>  
@@ -384,7 +1031,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 0c5d5074 to a220adcd on Thu Mar 7 19:12:38 2024 </h3>  
+<h3>2: Development changes from 0c5d5074 to a220adcd on Thu Mar 7 19:12:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (54 lines)</summary>  
@@ -521,7 +1168,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from cdcaf57a to 0c5d5074 on Thu Mar 7 18:17:37 2024 </h3>  
+<h3>3: Production changes from cdcaf57a to 0c5d5074 on Thu Mar 7 18:17:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (129 lines)</summary>  
@@ -884,7 +1531,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from cdcaf57a to 0c5d5074 on Thu Mar 7 18:17:37 2024 </h3>  
+<h3>3: Staging changes from cdcaf57a to 0c5d5074 on Thu Mar 7 18:17:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (129 lines)</summary>  
@@ -1250,7 +1897,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from cdcaf57a to 0c5d5074 on Thu Mar 7 18:17:37 2024 </h3>  
+<h3>3: Development changes from cdcaf57a to 0c5d5074 on Thu Mar 7 18:17:37 2024 </h3>  
  
 <details> 
 <summary>Git Diff (129 lines)</summary>  
@@ -1570,7 +2217,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from efa15eaf to cdcaf57a on Thu Mar 7 17:28:11 2024 </h3>  
+<h3>4: Production changes from efa15eaf to cdcaf57a on Thu Mar 7 17:28:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1732,7 +2379,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from efa15eaf to cdcaf57a on Thu Mar 7 17:28:11 2024 </h3>  
+<h3>4: Staging changes from efa15eaf to cdcaf57a on Thu Mar 7 17:28:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1884,7 +2531,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from efa15eaf to cdcaf57a on Thu Mar 7 17:28:11 2024 </h3>  
+<h3>4: Development changes from efa15eaf to cdcaf57a on Thu Mar 7 17:28:11 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -1920,490 +2567,6 @@ index d9be3fcc..363f7f75 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 4a6428b4 to efa15eaf on Thu Mar 7 16:40:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 0fb0ce40..4678981c 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=e7ef5a145df9c58364d1337a67ea9454176e1e5c
--- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=e7ef5a145df9c58364d1337a67ea9454176e1e5c
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: e7ef5a145df9c58364d1337a67ea9454176e1e5c
-+  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 07e7efce..b7ea8aa0 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=e7ef5a145df9c58364d1337a67ea9454176e1e5c
--- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=e7ef5a145df9c58364d1337a67ea9454176e1e5c
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: e7ef5a145df9c58364d1337a67ea9454176e1e5c
-+  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 4a6428b4 to efa15eaf on Thu Mar 7 16:40:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 0fb0ce40..4678981c 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=e7ef5a145df9c58364d1337a67ea9454176e1e5c
--- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=e7ef5a145df9c58364d1337a67ea9454176e1e5c
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: e7ef5a145df9c58364d1337a67ea9454176e1e5c
-+  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 07e7efce..b7ea8aa0 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=e7ef5a145df9c58364d1337a67ea9454176e1e5c
--- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=e7ef5a145df9c58364d1337a67ea9454176e1e5c
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: e7ef5a145df9c58364d1337a67ea9454176e1e5c
-+  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-4a6428b4/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1183c1183
-<         image: quay.io/redhat-appstudio/integration-service:c6ceab5e54a3b57e1a699d534ad1179ac60029f2
----
->         image: quay.io/redhat-appstudio/integration-service:e7ef5a145df9c58364d1337a67ea9454176e1e5c
-1274c1274
-<             image: quay.io/redhat-appstudio/integration-service:c6ceab5e54a3b57e1a699d534ad1179ac60029f2
----
->             image: quay.io/redhat-appstudio/integration-service:e7ef5a145df9c58364d1337a67ea9454176e1e5c 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 4a6428b4 to efa15eaf on Thu Mar 7 16:40:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (42 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 0fb0ce40..4678981c 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=e7ef5a145df9c58364d1337a67ea9454176e1e5c
--- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=e7ef5a145df9c58364d1337a67ea9454176e1e5c
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: e7ef5a145df9c58364d1337a67ea9454176e1e5c
-+  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index 07e7efce..b7ea8aa0 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=e7ef5a145df9c58364d1337a67ea9454176e1e5c
--- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=e7ef5a145df9c58364d1337a67ea9454176e1e5c
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
-+- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: e7ef5a145df9c58364d1337a67ea9454176e1e5c
-+  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-4a6428b4/development/components/integration/development/kustomize.out.yaml
-1183c1183
-<         image: quay.io/redhat-appstudio/integration-service:c6ceab5e54a3b57e1a699d534ad1179ac60029f2
----
->         image: quay.io/redhat-appstudio/integration-service:e7ef5a145df9c58364d1337a67ea9454176e1e5c
-1277c1277
-<             image: quay.io/redhat-appstudio/integration-service:c6ceab5e54a3b57e1a699d534ad1179ac60029f2
----
->             image: quay.io/redhat-appstudio/integration-service:e7ef5a145df9c58364d1337a67ea9454176e1e5c 
 ```
  
 </details>  
