@@ -1,0 +1,17 @@
+diff --git a/argo-cd-apps/base/member/infra-deployments/build-templates/build-templates.yaml b/argo-cd-apps/base/member/infra-deployments/build-templates/build-templates.yaml
+index 3c006d25..f9d67ce6 100644
+--- a/argo-cd-apps/base/member/infra-deployments/build-templates/build-templates.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/build-templates/build-templates.yaml
+@@ -27,6 +27,12 @@ spec:
+       destination:
+         namespace: default
+         server: '{{server}}'
++      ignoreDifferences:
++        - group: ""
++          kind: ServiceAccount
++          name: appstudio-pipeline
++          jqPathExpressions:
++          - .imagePullSecrets[] | select(.name | startswith("appstudio-pipeline-dockercfg"))
+       syncPolicy:
+         automated: 
+           prune: true
