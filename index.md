@@ -1,12 +1,462 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Mar 11 00:05:39 UTC 2024
+### This file generated at Mon Mar 11 04:03:33 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 678d3197 to 580f75c3 on Fri Mar 8 18:39:26 2024 </h3>  
+<h3>1: Production changes from 580f75c3 to 43af0497 on Mon Mar 11 03:42:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index dbc02d56..2c433900 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=38cd27388b4c48856466d9822cad99a06070a90f
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=38cd27388b4c48856466d9822cad99a06070a90f
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=92f795ba34798714fb7dc2f81cf9d8a5766d8934
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=92f795ba34798714fb7dc2f81cf9d8a5766d8934
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 38cd27388b4c48856466d9822cad99a06070a90f
++  newTag: 92f795ba34798714fb7dc2f81cf9d8a5766d8934
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 38cd27388b4c48856466d9822cad99a06070a90f
++  newTag: 92f795ba34798714fb7dc2f81cf9d8a5766d8934
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (11 lines)</summary>  
+
+``` 
+./commit-580f75c3/production/components/multi-platform-controller/production/kustomize.out.yaml
+6d5
+<     openshift.io/cluster-monitoring: "true"
+257c256
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:92f795ba34798714fb7dc2f81cf9d8a5766d8934
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:38cd27388b4c48856466d9822cad99a06070a90f
+299c298
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:92f795ba34798714fb7dc2f81cf9d8a5766d8934
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:38cd27388b4c48856466d9822cad99a06070a90f 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 580f75c3 to 43af0497 on Mon Mar 11 03:42:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index dbc02d56..2c433900 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=38cd27388b4c48856466d9822cad99a06070a90f
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=38cd27388b4c48856466d9822cad99a06070a90f
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=92f795ba34798714fb7dc2f81cf9d8a5766d8934
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=92f795ba34798714fb7dc2f81cf9d8a5766d8934
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 38cd27388b4c48856466d9822cad99a06070a90f
++  newTag: 92f795ba34798714fb7dc2f81cf9d8a5766d8934
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 38cd27388b4c48856466d9822cad99a06070a90f
++  newTag: 92f795ba34798714fb7dc2f81cf9d8a5766d8934
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (11 lines)</summary>  
+
+``` 
+./commit-580f75c3/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+6d5
+<     openshift.io/cluster-monitoring: "true"
+247c246
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:92f795ba34798714fb7dc2f81cf9d8a5766d8934
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:38cd27388b4c48856466d9822cad99a06070a90f
+289c288
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:92f795ba34798714fb7dc2f81cf9d8a5766d8934
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:38cd27388b4c48856466d9822cad99a06070a90f 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 580f75c3 to 43af0497 on Mon Mar 11 03:42:56 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index dbc02d56..2c433900 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=38cd27388b4c48856466d9822cad99a06070a90f
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=38cd27388b4c48856466d9822cad99a06070a90f
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=92f795ba34798714fb7dc2f81cf9d8a5766d8934
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=92f795ba34798714fb7dc2f81cf9d8a5766d8934
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 38cd27388b4c48856466d9822cad99a06070a90f
++  newTag: 92f795ba34798714fb7dc2f81cf9d8a5766d8934
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 38cd27388b4c48856466d9822cad99a06070a90f
++  newTag: 92f795ba34798714fb7dc2f81cf9d8a5766d8934
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (11 lines)</summary>  
+
+``` 
+./commit-580f75c3/development/components/multi-platform-controller/development/kustomize.out.yaml
+6d5
+<     openshift.io/cluster-monitoring: "true"
+209c208
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:92f795ba34798714fb7dc2f81cf9d8a5766d8934
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:38cd27388b4c48856466d9822cad99a06070a90f
+251c250
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:92f795ba34798714fb7dc2f81cf9d8a5766d8934
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:38cd27388b4c48856466d9822cad99a06070a90f 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 678d3197 to 580f75c3 on Fri Mar 8 18:39:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (441 lines)</summary>  
@@ -832,7 +1282,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 678d3197 to 580f75c3 on Fri Mar 8 18:39:26 2024 </h3>  
+<h3>2: Staging changes from 678d3197 to 580f75c3 on Fri Mar 8 18:39:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (441 lines)</summary>  
@@ -1404,7 +1854,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 678d3197 to 580f75c3 on Fri Mar 8 18:39:26 2024 </h3>  
+<h3>2: Development changes from 678d3197 to 580f75c3 on Fri Mar 8 18:39:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (441 lines)</summary>  
@@ -1928,7 +2378,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 31379834 to 678d3197 on Fri Mar 8 15:45:05 2024 </h3>  
+<h3>3: Production changes from 31379834 to 678d3197 on Fri Mar 8 15:45:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (17 lines)</summary>  
@@ -2080,7 +2530,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 31379834 to 678d3197 on Fri Mar 8 15:45:05 2024 </h3>  
+<h3>3: Staging changes from 31379834 to 678d3197 on Fri Mar 8 15:45:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (17 lines)</summary>  
@@ -2235,7 +2685,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 31379834 to 678d3197 on Fri Mar 8 15:45:05 2024 </h3>  
+<h3>3: Development changes from 31379834 to 678d3197 on Fri Mar 8 15:45:05 2024 </h3>  
  
 <details> 
 <summary>Git Diff (17 lines)</summary>  
@@ -2342,7 +2792,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 668f83cf to 31379834 on Fri Mar 8 14:30:36 2024 </h3>  
+<h3>4: Production changes from 668f83cf to 31379834 on Fri Mar 8 14:30:36 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -2577,7 +3027,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 668f83cf to 31379834 on Fri Mar 8 14:30:36 2024 </h3>  
+<h3>4: Staging changes from 668f83cf to 31379834 on Fri Mar 8 14:30:36 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -2815,7 +3265,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 668f83cf to 31379834 on Fri Mar 8 14:30:36 2024 </h3>  
+<h3>4: Development changes from 668f83cf to 31379834 on Fri Mar 8 14:30:36 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -2937,392 +3387,6 @@ index 5117f6ee..dbc02d56 100644
 <       chmod 0400 /tmp/master_key
 <       export SSH_HOST=$(params.USER)@$(params.HOST)
 <       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST "sudo dnf update -y" 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 6e16da15 to 668f83cf on Fri Mar 8 10:53:23 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (12 lines)</summary>  
-
-``` 
-diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml
-index 1517b4dc..93d4de83 100644
---- a/components/tekton-ci/base/serviceaccount.yaml
-+++ b/components/tekton-ci/base/serviceaccount.yaml
-@@ -4,7 +4,5 @@ metadata:
-   name: appstudio-pipeline
- secrets:
-   - name: quay-push-secret
--  - name: quay-push-secret-konflux-ci
- imagePullSecrets:
-   - name: quay-push-secret
--  - name: quay-push-secret-konflux-ci 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-6e16da15/production/components/tekton-ci/production/kustomize.out.yaml
-11a12
-> - name: quay-push-secret-konflux-ci
-18a20
-> - name: quay-push-secret-konflux-ci 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 6e16da15 to 668f83cf on Fri Mar 8 10:53:23 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (12 lines)</summary>  
-
-``` 
-diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml
-index 1517b4dc..93d4de83 100644
---- a/components/tekton-ci/base/serviceaccount.yaml
-+++ b/components/tekton-ci/base/serviceaccount.yaml
-@@ -4,7 +4,5 @@ metadata:
-   name: appstudio-pipeline
- secrets:
-   - name: quay-push-secret
--  - name: quay-push-secret-konflux-ci
- imagePullSecrets:
-   - name: quay-push-secret
--  - name: quay-push-secret-konflux-ci 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-6e16da15/staging/components/tekton-ci/staging/kustomize.out.yaml
-11a12
-> - name: quay-push-secret-konflux-ci
-18a20
-> - name: quay-push-secret-konflux-ci 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 6e16da15 to 668f83cf on Fri Mar 8 10:53:23 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (12 lines)</summary>  
-
-``` 
-diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml
-index 1517b4dc..93d4de83 100644
---- a/components/tekton-ci/base/serviceaccount.yaml
-+++ b/components/tekton-ci/base/serviceaccount.yaml
-@@ -4,7 +4,5 @@ metadata:
-   name: appstudio-pipeline
- secrets:
-   - name: quay-push-secret
--  - name: quay-push-secret-konflux-ci
- imagePullSecrets:
-   - name: quay-push-secret
--  - name: quay-push-secret-konflux-ci 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  

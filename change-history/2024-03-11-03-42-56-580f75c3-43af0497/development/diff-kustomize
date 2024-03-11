@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-43af0497/development/components/multi-platform-controller/development/kustomize.out.yaml ./kustomized-cache/commit-580f75c3/development/components/multi-platform-controller/development/kustomize.out.yaml
+6d5
+<     openshift.io/cluster-monitoring: "true"
+209c208
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:92f795ba34798714fb7dc2f81cf9d8a5766d8934
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:38cd27388b4c48856466d9822cad99a06070a90f
+251c250
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:92f795ba34798714fb7dc2f81cf9d8a5766d8934
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:38cd27388b4c48856466d9822cad99a06070a90f
