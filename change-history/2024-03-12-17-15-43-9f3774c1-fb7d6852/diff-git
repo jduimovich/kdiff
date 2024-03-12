@@ -1,0 +1,21 @@
+diff --git a/argo-cd-apps/overlays/staging/kustomization.yaml b/argo-cd-apps/overlays/staging/kustomization.yaml
+index 56f05e5b..aa17ccbc 100644
+--- a/argo-cd-apps/overlays/staging/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging/kustomization.yaml
+@@ -4,3 +4,8 @@ resources:
+   - ../../base/host
+   - ../../base/member
+   - ../../base/all-clusters
++patches:
++  - path: migration.patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
+diff --git a/argo-cd-apps/overlays/staging/migration.patch.yaml b/argo-cd-apps/overlays/staging/migration.patch.yaml
+new file mode 100644
+index 00000000..a60ffc01
+--- /dev/null
++++ b/argo-cd-apps/overlays/staging/migration.patch.yaml
+@@ -0,0 +1,2 @@
++- op: remove
++  path: /spec/template/spec/syncPolicy

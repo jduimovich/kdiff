@@ -1,0 +1,404 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fb7d6852/staging/app-of-apps-staging.yaml ./kustomized-cache/commit-9f3774c1/staging/app-of-apps-staging.yaml
+23a24,33
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+66a77,86
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+104a125,136
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+142a175,186
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+182a227,238
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+221a278,289
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+259a328,337
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+298a377,388
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+337a428,439
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+361a464,473
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+400a513,522
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+446a569,580
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+480a615,624
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+514a659,670
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+547a704,715
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=false
+585a754,763
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+609a788,797
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+643a832,843
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+682a883,894
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+725a938,947
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+780a1003,1012
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+814a1047,1058
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+848a1093,1104
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+894a1151,1162
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+928a1197,1206
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+974a1253,1262
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+1012a1301,1312
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+1054a1355,1366
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+1088a1401,1412
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+1134a1459,1468
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 15s
+>           limit: 50
+>         syncOptions:
+>         - CreateNamespace=true
+1168a1503,1514
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=true
+1210a1557,1568
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=false
+1244a1603,1614
+>       syncPolicy:
+>         automated:
+>           prune: true
+>           selfHeal: true
+>         retry:
+>           backoff:
+>             duration: 10s
+>             factor: 2
+>             maxDuration: 3m
+>           limit: -1
+>         syncOptions:
+>         - CreateNamespace=false
