@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-46794b75/development/components/multi-platform-controller/development/kustomize.out.yaml ./kustomized-cache/commit-ec2227fb/development/components/multi-platform-controller/development/kustomize.out.yaml
+209c209
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:92f795ba34798714fb7dc2f81cf9d8a5766d8934
+251c251
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:92f795ba34798714fb7dc2f81cf9d8a5766d8934

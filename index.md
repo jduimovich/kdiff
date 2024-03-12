@@ -1,12 +1,2085 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Mar 11 20:02:17 UTC 2024
+### This file generated at Tue Mar 12 00:07:36 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from e46f48cb to 1f5cdfcc on Mon Mar 11 15:21:40 2024 </h3>  
+<h3>1: Production changes from ec2227fb to 46794b75 on Mon Mar 11 21:27:43 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 2c433900..4a1ac7a5 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=92f795ba34798714fb7dc2f81cf9d8a5766d8934
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=92f795ba34798714fb7dc2f81cf9d8a5766d8934
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=723bed9bd50b053940ff2a1c5cd5e4676e3bc368
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 92f795ba34798714fb7dc2f81cf9d8a5766d8934
++  newTag: 723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 92f795ba34798714fb7dc2f81cf9d8a5766d8934
++  newTag: 723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-ec2227fb/production/components/multi-platform-controller/production/kustomize.out.yaml
+257c257
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:92f795ba34798714fb7dc2f81cf9d8a5766d8934
+299c299
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:92f795ba34798714fb7dc2f81cf9d8a5766d8934 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from ec2227fb to 46794b75 on Mon Mar 11 21:27:43 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 2c433900..4a1ac7a5 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=92f795ba34798714fb7dc2f81cf9d8a5766d8934
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=92f795ba34798714fb7dc2f81cf9d8a5766d8934
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=723bed9bd50b053940ff2a1c5cd5e4676e3bc368
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 92f795ba34798714fb7dc2f81cf9d8a5766d8934
++  newTag: 723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 92f795ba34798714fb7dc2f81cf9d8a5766d8934
++  newTag: 723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-ec2227fb/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+247c247
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:92f795ba34798714fb7dc2f81cf9d8a5766d8934
+289c289
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:92f795ba34798714fb7dc2f81cf9d8a5766d8934 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from ec2227fb to 46794b75 on Mon Mar 11 21:27:43 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 2c433900..4a1ac7a5 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=92f795ba34798714fb7dc2f81cf9d8a5766d8934
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=92f795ba34798714fb7dc2f81cf9d8a5766d8934
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=723bed9bd50b053940ff2a1c5cd5e4676e3bc368
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 92f795ba34798714fb7dc2f81cf9d8a5766d8934
++  newTag: 723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 92f795ba34798714fb7dc2f81cf9d8a5766d8934
++  newTag: 723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-ec2227fb/development/components/multi-platform-controller/development/kustomize.out.yaml
+209c209
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:92f795ba34798714fb7dc2f81cf9d8a5766d8934
+251c251
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:723bed9bd50b053940ff2a1c5cd5e4676e3bc368
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:92f795ba34798714fb7dc2f81cf9d8a5766d8934 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 1f5cdfcc to ec2227fb on Mon Mar 11 20:27:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (346 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml b/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
+index 032b03cb..d22f7b11 100644
+--- a/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
++++ b/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
+@@ -14,3 +14,34 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: edit
++---
++kind: Role
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++  # recent memory leak or hung grpc call issues will require development support running 'oc exec' into the results
++  # watcher pod to collect goroutine dumps and/or pprof data
++  - apiGroups:
++      - ""
++    verbs:
++      - get
++      - list
++      - create
++    resources:
++      - "pod/exec"
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: konflux-pipeline-service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 729eb02f..16cbf899 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index ac2ee693..af214d1c 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 8b66a856..d99eaa6e 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index d7fa1bf6..f24b768c 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index dbb78a41..7c674ade 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 6ea2e3e7..d68126df 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (108 lines)</summary>  
+
+``` 
+./commit-1f5cdfcc/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+119,135d118
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pod/exec
+<   verbs:
+<   - get
+<   - list
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+647,662d629
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-pipeline-service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: pipeline-service-sre-exec-pprof-data
+./commit-1f5cdfcc/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+119,135d118
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pod/exec
+<   verbs:
+<   - get
+<   - list
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+647,662d629
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-pipeline-service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: pipeline-service-sre-exec-pprof-data
+./commit-1f5cdfcc/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+119,135d118
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pod/exec
+<   verbs:
+<   - get
+<   - list
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+647,662d629
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-pipeline-service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: pipeline-service-sre-exec-pprof-data 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 1f5cdfcc to ec2227fb on Mon Mar 11 20:27:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (346 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml b/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
+index 032b03cb..d22f7b11 100644
+--- a/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
++++ b/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
+@@ -14,3 +14,34 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: edit
++---
++kind: Role
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++  # recent memory leak or hung grpc call issues will require development support running 'oc exec' into the results
++  # watcher pod to collect goroutine dumps and/or pprof data
++  - apiGroups:
++      - ""
++    verbs:
++      - get
++      - list
++      - create
++    resources:
++      - "pod/exec"
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: konflux-pipeline-service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 729eb02f..16cbf899 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index ac2ee693..af214d1c 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 8b66a856..d99eaa6e 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index d7fa1bf6..f24b768c 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index dbb78a41..7c674ade 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 6ea2e3e7..d68126df 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (108 lines)</summary>  
+
+``` 
+./commit-1f5cdfcc/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+119,135d118
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pod/exec
+<   verbs:
+<   - get
+<   - list
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+647,662d629
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-pipeline-service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: pipeline-service-sre-exec-pprof-data
+./commit-1f5cdfcc/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+119,135d118
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pod/exec
+<   verbs:
+<   - get
+<   - list
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+647,662d629
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-pipeline-service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: pipeline-service-sre-exec-pprof-data
+./commit-1f5cdfcc/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+119,135d118
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pod/exec
+<   verbs:
+<   - get
+<   - list
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+647,662d629
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-pipeline-service
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: pipeline-service-sre-exec-pprof-data 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 1f5cdfcc to ec2227fb on Mon Mar 11 20:27:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (346 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml b/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
+index 032b03cb..d22f7b11 100644
+--- a/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
++++ b/components/pipeline-service/base/rbac/tekton-results/pipeline-service-sre.yaml
+@@ -14,3 +14,34 @@ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: edit
++---
++kind: Role
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++  # recent memory leak or hung grpc call issues will require development support running 'oc exec' into the results
++  # watcher pod to collect goroutine dumps and/or pprof data
++  - apiGroups:
++      - ""
++    verbs:
++      - get
++      - list
++      - create
++    resources:
++      - "pod/exec"
++---
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: konflux-pipeline-service
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 729eb02f..16cbf899 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index ac2ee693..af214d1c 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 8b66a856..d99eaa6e 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index d7fa1bf6..f24b768c 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index dbb78a41..7c674ade 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 6ea2e3e7..d68126df 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -113,6 +113,23 @@ rules:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: Role
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++rules:
++- apiGroups:
++  - ""
++  resources:
++  - pod/exec
++  verbs:
++  - get
++  - list
++  - create
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: Role
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+@@ -634,6 +651,22 @@ subjects:
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: RoleBinding
++metadata:
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++  name: pipeline-service-sre-exec-pprof-data
++  namespace: tekton-results
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: Role
++  name: pipeline-service-sre-exec-pprof-data
++subjects:
++- apiGroup: rbac.authorization.k8s.io
++  kind: Group
++  name: konflux-pipeline-service
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
+ metadata:
+   annotations:
+     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (36 lines)</summary>  
+
+``` 
+./commit-1f5cdfcc/development/components/pipeline-service/development/kustomize.out.yaml
+104,120d103
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< rules:
+< - apiGroups:
+<   - ""
+<   resources:
+<   - pod/exec
+<   verbs:
+<   - get
+<   - list
+<   - create
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: Role
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+652,667d634
+< ---
+< apiVersion: rbac.authorization.k8s.io/v1
+< kind: RoleBinding
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<   name: pipeline-service-sre-exec-pprof-data
+<   namespace: tekton-results
+< roleRef:
+<   apiGroup: rbac.authorization.k8s.io
+<   kind: Role
+<   name: pipeline-service-sre-exec-pprof-data
+< subjects:
+< - apiGroup: rbac.authorization.k8s.io
+<   kind: Group
+<   name: konflux-pipeline-service 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from e46f48cb to 1f5cdfcc on Mon Mar 11 15:21:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -235,7 +2308,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from e46f48cb to 1f5cdfcc on Mon Mar 11 15:21:40 2024 </h3>  
+<h3>3: Staging changes from e46f48cb to 1f5cdfcc on Mon Mar 11 15:21:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -441,7 +2514,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from e46f48cb to 1f5cdfcc on Mon Mar 11 15:21:40 2024 </h3>  
+<h3>3: Development changes from e46f48cb to 1f5cdfcc on Mon Mar 11 15:21:40 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -599,7 +2672,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 3a192e97 to e46f48cb on Mon Mar 11 13:16:12 2024 </h3>  
+<h3>4: Production changes from 3a192e97 to e46f48cb on Mon Mar 11 13:16:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -762,7 +2835,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 3a192e97 to e46f48cb on Mon Mar 11 13:16:12 2024 </h3>  
+<h3>4: Staging changes from 3a192e97 to e46f48cb on Mon Mar 11 13:16:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -928,7 +3001,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 3a192e97 to e46f48cb on Mon Mar 11 13:16:12 2024 </h3>  
+<h3>4: Development changes from 3a192e97 to e46f48cb on Mon Mar 11 13:16:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -969,987 +3042,6 @@ index 481e516d..4c581428 100644
    newName: quay.io/redhat-appstudio/o11y
 -  newTag: b9e9508a1d1f01b9f561c744f4dac53d9fa24fc1
 +  newTag: 39977c46443adc47e59f57e343c87b393c4e50b8 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 1e79e465 to 3a192e97 on Mon Mar 11 11:50:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (75 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-index f3f95944..7621f453 100644
---- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-@@ -1,6 +1,6 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=e1078f1d6028a08c16b177be8774774512b97f3a
-+- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
- - https://github.com/konflux-ci/remote-secret/config/monitoring/grafana/base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
- - dashboard.yaml
-diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
-index 7cf44c0e..e0e19185 100644
---- a/components/spi-vault/kustomization.yaml
-+++ b/components/spi-vault/kustomization.yaml
-@@ -4,4 +4,4 @@ kind: Kustomization
- namespace: spi-vault
- 
- resources:
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=e1078f1d6028a08c16b177be8774774512b97f3a
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
-diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
-index e890c6e7..2d047bd8 100644
---- a/components/spi/overlays/development/kustomization.yaml
-+++ b/components/spi/overlays/development/kustomization.yaml
-@@ -2,17 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../base
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=e1078f1d6028a08c16b177be8774774512b97f3a
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
- 
- namespace: spi-system
- 
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: e1078f1d6028a08c16b177be8774774512b97f3a
-+    newTag: 17a9a500dd6054777e6e191cd32a663e392ffccf
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: e1078f1d6028a08c16b177be8774774512b97f3a
-+    newTag: 17a9a500dd6054777e6e191cd32a663e392ffccf
- 
- patches:
-   - target:
-diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
-index 5f5f59bb..b393aa5a 100644
---- a/components/spi/overlays/staging/base/kustomization.yaml
-+++ b/components/spi/overlays/staging/base/kustomization.yaml
-@@ -3,8 +3,8 @@ kind: Kustomization
- resources:
-   - ../../../base
-   - ../../../base/external-secrets
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=e1078f1d6028a08c16b177be8774774512b97f3a
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=e1078f1d6028a08c16b177be8774774512b97f3a
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
-   - spi-aws-credentials-external-secret.yaml
- 
- namespace: spi-system
-@@ -12,10 +12,10 @@ namespace: spi-system
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: e1078f1d6028a08c16b177be8774774512b97f3a
-+    newTag: 17a9a500dd6054777e6e191cd32a663e392ffccf
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: e1078f1d6028a08c16b177be8774774512b97f3a
-+    newTag: 17a9a500dd6054777e6e191cd32a663e392ffccf
- 
- patches:
-   - target: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 1e79e465 to 3a192e97 on Mon Mar 11 11:50:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (75 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-index f3f95944..7621f453 100644
---- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-@@ -1,6 +1,6 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=e1078f1d6028a08c16b177be8774774512b97f3a
-+- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
- - https://github.com/konflux-ci/remote-secret/config/monitoring/grafana/base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
- - dashboard.yaml
-diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
-index 7cf44c0e..e0e19185 100644
---- a/components/spi-vault/kustomization.yaml
-+++ b/components/spi-vault/kustomization.yaml
-@@ -4,4 +4,4 @@ kind: Kustomization
- namespace: spi-vault
- 
- resources:
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=e1078f1d6028a08c16b177be8774774512b97f3a
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
-diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
-index e890c6e7..2d047bd8 100644
---- a/components/spi/overlays/development/kustomization.yaml
-+++ b/components/spi/overlays/development/kustomization.yaml
-@@ -2,17 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../base
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=e1078f1d6028a08c16b177be8774774512b97f3a
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
- 
- namespace: spi-system
- 
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: e1078f1d6028a08c16b177be8774774512b97f3a
-+    newTag: 17a9a500dd6054777e6e191cd32a663e392ffccf
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: e1078f1d6028a08c16b177be8774774512b97f3a
-+    newTag: 17a9a500dd6054777e6e191cd32a663e392ffccf
- 
- patches:
-   - target:
-diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
-index 5f5f59bb..b393aa5a 100644
---- a/components/spi/overlays/staging/base/kustomization.yaml
-+++ b/components/spi/overlays/staging/base/kustomization.yaml
-@@ -3,8 +3,8 @@ kind: Kustomization
- resources:
-   - ../../../base
-   - ../../../base/external-secrets
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=e1078f1d6028a08c16b177be8774774512b97f3a
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=e1078f1d6028a08c16b177be8774774512b97f3a
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
-   - spi-aws-credentials-external-secret.yaml
- 
- namespace: spi-system
-@@ -12,10 +12,10 @@ namespace: spi-system
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: e1078f1d6028a08c16b177be8774774512b97f3a
-+    newTag: 17a9a500dd6054777e6e191cd32a663e392ffccf
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: e1078f1d6028a08c16b177be8774774512b97f3a
-+    newTag: 17a9a500dd6054777e6e191cd32a663e392ffccf
- 
- patches:
-   - target: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 1e79e465 to 3a192e97 on Mon Mar 11 11:50:59 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (75 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-index f3f95944..7621f453 100644
---- a/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/spi/kustomization.yaml
-@@ -1,6 +1,6 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=e1078f1d6028a08c16b177be8774774512b97f3a
-+- https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/grafana/base?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
- - https://github.com/konflux-ci/remote-secret/config/monitoring/grafana/base?ref=dbad89ab926ce9f8ee829702abc276e1805c8a97
- - dashboard.yaml
-diff --git a/components/spi-vault/kustomization.yaml b/components/spi-vault/kustomization.yaml
-index 7cf44c0e..e0e19185 100644
---- a/components/spi-vault/kustomization.yaml
-+++ b/components/spi-vault/kustomization.yaml
-@@ -4,4 +4,4 @@ kind: Kustomization
- namespace: spi-vault
- 
- resources:
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=e1078f1d6028a08c16b177be8774774512b97f3a
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/vault/openshift?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
-diff --git a/components/spi/overlays/development/kustomization.yaml b/components/spi/overlays/development/kustomization.yaml
-index e890c6e7..2d047bd8 100644
---- a/components/spi/overlays/development/kustomization.yaml
-+++ b/components/spi/overlays/development/kustomization.yaml
-@@ -2,17 +2,17 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../base
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=e1078f1d6028a08c16b177be8774774512b97f3a
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_vault?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
- 
- namespace: spi-system
- 
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: e1078f1d6028a08c16b177be8774774512b97f3a
-+    newTag: 17a9a500dd6054777e6e191cd32a663e392ffccf
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: e1078f1d6028a08c16b177be8774774512b97f3a
-+    newTag: 17a9a500dd6054777e6e191cd32a663e392ffccf
- 
- patches:
-   - target:
-diff --git a/components/spi/overlays/staging/base/kustomization.yaml b/components/spi/overlays/staging/base/kustomization.yaml
-index 5f5f59bb..b393aa5a 100644
---- a/components/spi/overlays/staging/base/kustomization.yaml
-+++ b/components/spi/overlays/staging/base/kustomization.yaml
-@@ -3,8 +3,8 @@ kind: Kustomization
- resources:
-   - ../../../base
-   - ../../../base/external-secrets
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=e1078f1d6028a08c16b177be8774774512b97f3a
--  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=e1078f1d6028a08c16b177be8774774512b97f3a
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/overlays/openshift_aws?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
-+  - https://github.com/konflux-ci/service-provider-integration-operator/config/monitoring/prometheus/base?ref=17a9a500dd6054777e6e191cd32a663e392ffccf
-   - spi-aws-credentials-external-secret.yaml
- 
- namespace: spi-system
-@@ -12,10 +12,10 @@ namespace: spi-system
- images:
-   - name:  quay.io/redhat-appstudio/service-provider-integration-operator
-     newName: quay.io/redhat-appstudio/service-provider-integration-operator
--    newTag: e1078f1d6028a08c16b177be8774774512b97f3a
-+    newTag: 17a9a500dd6054777e6e191cd32a663e392ffccf
-   - name: quay.io/redhat-appstudio/service-provider-integration-oauth
-     newName: quay.io/redhat-appstudio/service-provider-integration-oauth
--    newTag: e1078f1d6028a08c16b177be8774774512b97f3a
-+    newTag: 17a9a500dd6054777e6e191cd32a663e392ffccf
- 
- patches:
-   - target: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 365d75af to 1e79e465 on Mon Mar 11 10:13:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index da3de760..b342b5f2 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=b37833f64c8017c942ba95ca648d3b880b39af62
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- - https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: b37833f64c8017c942ba95ca648d3b880b39af62
-+  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (13 lines)</summary>  
-
-``` 
-./commit-365d75af/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
-246c246
-<     served: false
----
->     served: true
-1183c1183
-<         image: quay.io/redhat-appstudio/integration-service:c6ceab5e54a3b57e1a699d534ad1179ac60029f2
----
->         image: quay.io/redhat-appstudio/integration-service:b37833f64c8017c942ba95ca648d3b880b39af62
-1274c1274
-<             image: quay.io/redhat-appstudio/integration-service:c6ceab5e54a3b57e1a699d534ad1179ac60029f2
----
->             image: quay.io/redhat-appstudio/integration-service:b37833f64c8017c942ba95ca648d3b880b39af62 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 365d75af to 1e79e465 on Mon Mar 11 10:13:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index da3de760..b342b5f2 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=b37833f64c8017c942ba95ca648d3b880b39af62
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- - https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: b37833f64c8017c942ba95ca648d3b880b39af62
-+  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- namespace: integration-service
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 365d75af to 1e79e465 on Mon Mar 11 10:13:30 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (20 lines)</summary>  
-
-``` 
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index da3de760..b342b5f2 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -3,13 +3,13 @@ kind: Kustomization
- resources:
- - ../../base
- - ../../base/external-secrets
--- https://github.com/redhat-appstudio/integration-service/config/default?ref=b37833f64c8017c942ba95ca648d3b880b39af62
-+- https://github.com/redhat-appstudio/integration-service/config/default?ref=c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- - https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=f7bb0788791c37b7a82a98555dc710d434e36a56
- 
- images:
- - name: quay.io/redhat-appstudio/integration-service
-   newName: quay.io/redhat-appstudio/integration-service
--  newTag: b37833f64c8017c942ba95ca648d3b880b39af62
-+  newTag: c6ceab5e54a3b57e1a699d534ad1179ac60029f2
- 
- namespace: integration-service
-  
 ```
  
 </details> 
