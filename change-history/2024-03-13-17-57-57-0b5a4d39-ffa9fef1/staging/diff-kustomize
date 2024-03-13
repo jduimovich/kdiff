@@ -1,0 +1,19 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ffa9fef1/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-0b5a4d39/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+1085,1093d1084
+<   CONSOLE_URL: https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace
+<     }}/pipelinerun/{{ .PipelineRunName }}
+< kind: ConfigMap
+< metadata:
+<   name: console-url-9bttdkbk4f
+<   namespace: integration-service
+< ---
+< apiVersion: v1
+< data:
+1192,1198d1182
+<         env:
+<         - name: CONSOLE_URL
+<           valueFrom:
+<             configMapKeyRef:
+<               key: CONSOLE_URL
+<               name: console-url-9bttdkbk4f
+<               optional: true

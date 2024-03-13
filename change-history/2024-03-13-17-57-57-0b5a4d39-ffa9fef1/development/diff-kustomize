@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ffa9fef1/development/components/integration/development/kustomize.out.yaml ./kustomized-cache/commit-0b5a4d39/development/components/integration/development/kustomize.out.yaml
+1085,1092d1084
+<   CONSOLE_URL: ""
+< kind: ConfigMap
+< metadata:
+<   name: console-url-b957927t67
+<   namespace: integration-service
+< ---
+< apiVersion: v1
+< data:
+1191,1197d1182
+<         env:
+<         - name: CONSOLE_URL
+<           valueFrom:
+<             configMapKeyRef:
+<               key: CONSOLE_URL
+<               name: console-url-b957927t67
+<               optional: true

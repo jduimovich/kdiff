@@ -1,0 +1,45 @@
+diff --git a/argo-cd-apps/app-of-app-sets/konflux-public-staging/kustomization.yaml b/argo-cd-apps/app-of-app-sets/konflux-public-staging/kustomization.yaml
+new file mode 100644
+index 00000000..94d05424
+--- /dev/null
++++ b/argo-cd-apps/app-of-app-sets/konflux-public-staging/kustomization.yaml
+@@ -0,0 +1,13 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++namespace: konflux-public-staging
++patches:
++  - target:
++      kind: Application
++      name: all-application-sets
++    patch: |-
++      - op: replace
++        path: /spec/destination/namespace
++        value: konflux-public-staging
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
+new file mode 100644
+index 00000000..146985da
+--- /dev/null
++++ b/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/host
++  - ../../base/member
++  - ../../base/all-clusters
++patches:
++  - path: migration.patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++namespace: konflux-public-staging
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/migration.patch.yaml b/argo-cd-apps/overlays/konflux-public-staging/migration.patch.yaml
+new file mode 100644
+index 00000000..a60ffc01
+--- /dev/null
++++ b/argo-cd-apps/overlays/konflux-public-staging/migration.patch.yaml
+@@ -0,0 +1,2 @@
++- op: remove
++  path: /spec/template/spec/syncPolicy
