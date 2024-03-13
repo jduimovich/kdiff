@@ -1,0 +1,30 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6f5a5dc3/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-4fed832b/production/components/tekton-ci/production/kustomize.out.yaml
+12d11
+< - name: registry-redhat-io-pull-secret
+161,186d159
+<     template:
+<       data:
+<         .dockerconfigjson: '{{ .config }}'
+<       engineVersion: v2
+<       type: kubernetes.io/dockerconfigjson
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+<   name: registry-redhat-io-pull-secret
+<   namespace: tekton-ci
+< spec:
+<   dataFrom:
+<   - extract:
+<       key: production/build/tekton-ci/registry-redhat-io-pull-secret
+<   refreshInterval: 15m
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: registry-redhat-io-pull-secret
