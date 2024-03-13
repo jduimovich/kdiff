@@ -1,0 +1,21 @@
+diff --git a/components/authentication/base/all/konflux-admins.yaml b/components/authentication/base/all/konflux-admins.yaml
+index 948a4237..ca99f55a 100644
+--- a/components/authentication/base/all/konflux-admins.yaml
++++ b/components/authentication/base/all/konflux-admins.yaml
+@@ -323,6 +323,9 @@ subjects:
+   - apiGroup: rbac.authorization.k8s.io
+     kind: Group
+     name: konflux-admins
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: konflux-sre
+ ---
+ apiVersion: rbac.authorization.k8s.io/v1
+ kind: ClusterRoleBinding
+@@ -336,3 +339,6 @@ subjects:
+   - apiGroup: rbac.authorization.k8s.io
+     kind: Group
+     name: konflux-admins
++  - apiGroup: rbac.authorization.k8s.io
++    kind: Group
++    name: konflux-sre
