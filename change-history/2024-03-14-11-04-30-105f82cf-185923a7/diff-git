@@ -1,0 +1,73 @@
+diff --git a/components/gitops/development/core_service_resources_patch.yaml b/components/gitops/development/core_service_resources_patch.yaml
+new file mode 100644
+index 00000000..d93979e2
+--- /dev/null
++++ b/components/gitops/development/core_service_resources_patch.yaml
+@@ -0,0 +1,15 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: gitops-core-service-controller-manager
++  namespace: gitops
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        resources:
++          requests:
++            cpu: 100m
++            memory: 100Mi
+diff --git a/components/gitops/development/gitops-service-argocd.yaml b/components/gitops/development/gitops-service-argocd.yaml
+new file mode 100644
+index 00000000..1ee73e1a
+--- /dev/null
++++ b/components/gitops/development/gitops-service-argocd.yaml
+@@ -0,0 +1,11 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ArgoCD
++metadata:
++  name: gitops-service-argocd
++  namespace: gitops-service-argocd
++spec:
++  repo:
++    resources:
++      requests:
++        cpu: 100m
++        memory: 100Mi
+\ No newline at end of file
+diff --git a/components/gitops/development/kustomization.yaml b/components/gitops/development/kustomization.yaml
+index 322bdd57..ddfcf202 100644
+--- a/components/gitops/development/kustomization.yaml
++++ b/components/gitops/development/kustomization.yaml
+@@ -9,3 +9,8 @@ images:
+   - name: \${COMMON_IMAGE}
+     newName: quay.io/redhat-appstudio/gitops-service
+     newTag: 87e1f9acc67bf033d2159951ba6489f0836586ef
++
++patches:
++  - path: core_service_resources_patch.yaml
++  - path: service_agent_resources_patch.yaml
++  - path: gitops-service-argocd.yaml
+diff --git a/components/gitops/development/service_agent_resources_patch.yaml b/components/gitops/development/service_agent_resources_patch.yaml
+new file mode 100644
+index 00000000..c9ed7fdd
+--- /dev/null
++++ b/components/gitops/development/service_agent_resources_patch.yaml
+@@ -0,0 +1,15 @@
++---
++apiVersion: apps/v1
++kind: Deployment
++metadata:
++  name: gitops-service-agent-controller-manager
++  namespace: gitops
++spec:
++  template:
++    spec:
++      containers:
++      - name: manager
++        resources:
++          requests:
++            cpu: 50m
++            memory: 100Mi

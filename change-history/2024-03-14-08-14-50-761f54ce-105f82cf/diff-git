@@ -1,0 +1,12 @@
+diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml
+index 109dd851..4b4d59b9 100644
+--- a/components/tekton-ci/base/serviceaccount.yaml
++++ b/components/tekton-ci/base/serviceaccount.yaml
+@@ -4,6 +4,7 @@ metadata:
+   name: appstudio-pipeline
+ secrets:
+   - name: quay-push-secret
++  - name: registry-redhat-io-pull-secret
+ imagePullSecrets:
+   - name: quay-push-secret
+   - name: registry-redhat-io-pull-secret

@@ -1,0 +1,19 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-185923a7/development/components/gitops/development/kustomize.out.yaml ./kustomized-cache/commit-105f82cf/development/components/gitops/development/kustomize.out.yaml
+2484,2485c2484,2485
+<             cpu: 100m
+<             memory: 100Mi
+---
+>             cpu: 1000m
+>             memory: 2400Mi
+2589,2590c2589,2590
+<             cpu: 50m
+<             memory: 100Mi
+---
+>             cpu: 200m
+>             memory: 300Mi
+2835,2836c2835,2836
+<         cpu: 100m
+<         memory: 100Mi
+---
+>         cpu: 500m
+>         memory: 512Mi
