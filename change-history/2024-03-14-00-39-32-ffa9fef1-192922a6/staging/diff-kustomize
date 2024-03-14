@@ -1,0 +1,52 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-192922a6/staging/components/jvm-build-service/staging/kustomize.out.yaml ./kustomized-cache/commit-ffa9fef1/staging/components/jvm-build-service/staging/kustomize.out.yaml
+173,175d172
+<                         finishTime:
+<                           format: int64
+<                           type: integer
+180,200d176
+<                             contaminated:
+<                               type: boolean
+<                             contaminates:
+<                               items:
+<                                 properties:
+<                                   allowed:
+<                                     type: boolean
+<                                   buildId:
+<                                     type: string
+<                                   contaminatedArtifacts:
+<                                     items:
+<                                       type: string
+<                                     type: array
+<                                   gav:
+<                                     type: string
+<                                   rebuildAvailable:
+<                                     type: boolean
+<                                   source:
+<                                     type: string
+<                                 type: object
+<                               type: array
+321,329d296
+<               builderImages:
+<                 items:
+<                   properties:
+<                     baseBuilderImage:
+<                       type: string
+<                     builtImageDigest:
+<                       type: string
+<                   type: object
+<                 type: array
+810,811d776
+<               digest:
+<                 type: string
+1431c1396
+<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:c09c4f874cdda8505909b3b2627771c76df44797
+---
+>         image: quay.io/redhat-appstudio/hacbs-jvm-controller:1f980ef8f4540dc09fcfc8454972418a7c114404
+1483c1448
+<       image: quay.io/redhat-appstudio/jbs-ubi7-builder:a86a5a611c58358c8670851b4ced7ebb6ce915b6
+---
+>       image: quay.io/redhat-appstudio/jbs-ubi7-builder:ad0aa55e2ff708f77742fde761d95367b9fc5beb
+1487c1452
+<       image: quay.io/redhat-appstudio/jbs-ubi8-builder:a86a5a611c58358c8670851b4ced7ebb6ce915b6
+---
+>       image: quay.io/redhat-appstudio/jbs-ubi8-builder:ad0aa55e2ff708f77742fde761d95367b9fc5beb

@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-761f54ce/development/components/pipeline-service/development/kustomize.out.yaml ./kustomized-cache/commit-192922a6/development/components/pipeline-service/development/kustomize.out.yaml
+1350c1350
+<         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
+1568c1568
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
+1802a1803,1810
+>           fi
+> 
+>           # If the secret is not marked as immutable, make it so.
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+>             echo "Making secret immutable"
+>             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+>               --patch='{"immutable": true}' \
+>             | kubectl apply -f -
