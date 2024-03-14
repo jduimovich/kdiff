@@ -1,12 +1,925 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Mar 14 12:05:42 UTC 2024
+### This file generated at Thu Mar 14 16:05:23 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 105f82cf to 185923a7 on Thu Mar 14 11:04:30 2024 </h3>  
+<h3>1: Production changes from a72fb086 to aeabac35 on Thu Mar 14 14:28:05 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml
+index 4b4d59b9..a4f0e49a 100644
+--- a/components/tekton-ci/base/serviceaccount.yaml
++++ b/components/tekton-ci/base/serviceaccount.yaml
+@@ -5,6 +5,8 @@ metadata:
+ secrets:
+   - name: quay-push-secret
+   - name: registry-redhat-io-pull-secret
++  - name: quay-push-secret-konflux-ci
+ imagePullSecrets:
+   - name: quay-push-secret
+   - name: registry-redhat-io-pull-secret
++  - name: quay-push-secret-konflux-ci 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-a72fb086/production/components/tekton-ci/production/kustomize.out.yaml
+13d12
+< - name: quay-push-secret-konflux-ci
+22d20
+< - name: quay-push-secret-konflux-ci 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from a72fb086 to aeabac35 on Thu Mar 14 14:28:05 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml
+index 4b4d59b9..a4f0e49a 100644
+--- a/components/tekton-ci/base/serviceaccount.yaml
++++ b/components/tekton-ci/base/serviceaccount.yaml
+@@ -5,6 +5,8 @@ metadata:
+ secrets:
+   - name: quay-push-secret
+   - name: registry-redhat-io-pull-secret
++  - name: quay-push-secret-konflux-ci
+ imagePullSecrets:
+   - name: quay-push-secret
+   - name: registry-redhat-io-pull-secret
++  - name: quay-push-secret-konflux-ci 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-a72fb086/staging/components/tekton-ci/staging/kustomize.out.yaml
+13d12
+< - name: quay-push-secret-konflux-ci
+22d20
+< - name: quay-push-secret-konflux-ci 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from a72fb086 to aeabac35 on Thu Mar 14 14:28:05 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (13 lines)</summary>  
+
+``` 
+diff --git a/components/tekton-ci/base/serviceaccount.yaml b/components/tekton-ci/base/serviceaccount.yaml
+index 4b4d59b9..a4f0e49a 100644
+--- a/components/tekton-ci/base/serviceaccount.yaml
++++ b/components/tekton-ci/base/serviceaccount.yaml
+@@ -5,6 +5,8 @@ metadata:
+ secrets:
+   - name: quay-push-secret
+   - name: registry-redhat-io-pull-secret
++  - name: quay-push-secret-konflux-ci
+ imagePullSecrets:
+   - name: quay-push-secret
+   - name: registry-redhat-io-pull-secret
++  - name: quay-push-secret-konflux-ci 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 185923a7 to a72fb086 on Thu Mar 14 13:44:00 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (58 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
+index d8a919d7..2a4f99d1 100644
+--- a/components/integration/production/stone-prod-p01/kustomization.yaml
++++ b/components/integration/production/stone-prod-p01/kustomization.yaml
+@@ -2,6 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+ components:
+   - ../../rh-certs
+ 
+diff --git a/components/integration/production/stone-prod-p01/pipelines-as-code-secret-path.yaml b/components/integration/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..111044af
+--- /dev/null
++++ b/components/integration/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/stone-prod-p01/github-app
+\ No newline at end of file
+diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
+index d8a919d7..2a4f99d1 100644
+--- a/components/integration/staging/stone-stage-p01/kustomization.yaml
++++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
+@@ -2,6 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+ components:
+   - ../../rh-certs
+ 
+diff --git a/components/integration/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml b/components/integration/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..b7b8b585
+--- /dev/null
++++ b/components/integration/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/pipeline-service/stone-stage-p01/github-app
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-185923a7/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
+1318c1318
+<       key: production/pipeline-service/stone-prod-p01/github-app
+---
+>       key: production/pipeline-service/github-app 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 185923a7 to a72fb086 on Thu Mar 14 13:44:00 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (58 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
+index d8a919d7..2a4f99d1 100644
+--- a/components/integration/production/stone-prod-p01/kustomization.yaml
++++ b/components/integration/production/stone-prod-p01/kustomization.yaml
+@@ -2,6 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+ components:
+   - ../../rh-certs
+ 
+diff --git a/components/integration/production/stone-prod-p01/pipelines-as-code-secret-path.yaml b/components/integration/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..111044af
+--- /dev/null
++++ b/components/integration/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/stone-prod-p01/github-app
+\ No newline at end of file
+diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
+index d8a919d7..2a4f99d1 100644
+--- a/components/integration/staging/stone-stage-p01/kustomization.yaml
++++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
+@@ -2,6 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+ components:
+   - ../../rh-certs
+ 
+diff --git a/components/integration/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml b/components/integration/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..b7b8b585
+--- /dev/null
++++ b/components/integration/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/pipeline-service/stone-stage-p01/github-app
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-185923a7/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+1318c1318
+<       key: staging/pipeline-service/stone-stage-p01/github-app
+---
+>       key: staging/pipeline-service/github-app 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 185923a7 to a72fb086 on Thu Mar 14 13:44:00 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (58 lines)</summary>  
+
+``` 
+diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
+index d8a919d7..2a4f99d1 100644
+--- a/components/integration/production/stone-prod-p01/kustomization.yaml
++++ b/components/integration/production/stone-prod-p01/kustomization.yaml
+@@ -2,6 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+ components:
+   - ../../rh-certs
+ 
+diff --git a/components/integration/production/stone-prod-p01/pipelines-as-code-secret-path.yaml b/components/integration/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..111044af
+--- /dev/null
++++ b/components/integration/production/stone-prod-p01/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/pipeline-service/stone-prod-p01/github-app
+\ No newline at end of file
+diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
+index d8a919d7..2a4f99d1 100644
+--- a/components/integration/staging/stone-stage-p01/kustomization.yaml
++++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
+@@ -2,6 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
++patches:
++  - path: pipelines-as-code-secret-path.yaml
++    target:
++      name: pipelines-as-code-secret
++      group: external-secrets.io
++      version: v1beta1
++      kind: ExternalSecret
+ components:
+   - ../../rh-certs
+ 
+diff --git a/components/integration/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml b/components/integration/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+new file mode 100644
+index 00000000..b7b8b585
+--- /dev/null
++++ b/components/integration/staging/stone-stage-p01/pipelines-as-code-secret-path.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: staging/pipeline-service/stone-stage-p01/github-app
+\ No newline at end of file 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 105f82cf to 185923a7 on Thu Mar 14 11:04:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (73 lines)</summary>  
@@ -207,7 +1120,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 105f82cf to 185923a7 on Thu Mar 14 11:04:30 2024 </h3>  
+<h3>3: Staging changes from 105f82cf to 185923a7 on Thu Mar 14 11:04:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (73 lines)</summary>  
@@ -411,7 +1324,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 105f82cf to 185923a7 on Thu Mar 14 11:04:30 2024 </h3>  
+<h3>3: Development changes from 105f82cf to 185923a7 on Thu Mar 14 11:04:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (73 lines)</summary>  
@@ -585,7 +1498,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 761f54ce to 105f82cf on Thu Mar 14 08:14:50 2024 </h3>  
+<h3>4: Production changes from 761f54ce to 105f82cf on Thu Mar 14 08:14:50 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -727,7 +1640,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 761f54ce to 105f82cf on Thu Mar 14 08:14:50 2024 </h3>  
+<h3>4: Staging changes from 761f54ce to 105f82cf on Thu Mar 14 08:14:50 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -872,7 +1785,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 761f54ce to 105f82cf on Thu Mar 14 08:14:50 2024 </h3>  
+<h3>4: Development changes from 761f54ce to 105f82cf on Thu Mar 14 08:14:50 2024 </h3>  
  
 <details> 
 <summary>Git Diff (12 lines)</summary>  
@@ -899,1507 +1812,6 @@ index 109dd851..4b4d59b9 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 192922a6 to 761f54ce on Thu Mar 14 02:32:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (149 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 2a6bb3f9..796c0ad1 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=d8bd79bfa8bd6c4d2822e3da0162b1ec757e5b00
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 52e80606..3036fccf 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=d8bd79bfa8bd6c4d2822e3da0162b1ec757e5b00
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=d8bd79bfa8bd6c4d2822e3da0162b1ec757e5b00
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 7aedc9a8..1b7f2ef7 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=d8bd79bfa8bd6c4d2822e3da0162b1ec757e5b00
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index f24b768c..1da3cb1e 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1371,7 +1371,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1525,7 +1525,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1665,14 +1665,6 @@ spec:
-             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
-           fi
- 
--          # If the secret is not marked as immutable, make it so.
--          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
--            echo "Making secret immutable"
--            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
--              --patch='{"immutable": true}' \
--            | kubectl apply -f -
--          fi
--
-           echo "Generating/updating the secret with the public key"
-           kubectl create secret generic public-key \
-             --namespace "$namespace" \
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 7c674ade..796b507c 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1371,7 +1371,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1525,7 +1525,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1665,14 +1665,6 @@ spec:
-             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
-           fi
- 
--          # If the secret is not marked as immutable, make it so.
--          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
--            echo "Making secret immutable"
--            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
--              --patch='{"immutable": true}' \
--            | kubectl apply -f -
--          fi
--
-           echo "Generating/updating the secret with the public key"
-           kubectl create secret generic public-key \
-             --namespace "$namespace" \
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index d68126df..78940544 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1371,7 +1371,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1525,7 +1525,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1665,14 +1665,6 @@ spec:
-             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
-           fi
- 
--          # If the secret is not marked as immutable, make it so.
--          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
--            echo "Making secret immutable"
--            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
--              --patch='{"immutable": true}' \
--            | kubectl apply -f -
--          fi
--
-           echo "Generating/updating the secret with the public key"
-           kubectl create secret generic public-key \
-             --namespace "$namespace" \ 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 192922a6 to 761f54ce on Thu Mar 14 02:32:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (149 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 2a6bb3f9..796c0ad1 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=d8bd79bfa8bd6c4d2822e3da0162b1ec757e5b00
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 52e80606..3036fccf 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=d8bd79bfa8bd6c4d2822e3da0162b1ec757e5b00
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=d8bd79bfa8bd6c4d2822e3da0162b1ec757e5b00
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 7aedc9a8..1b7f2ef7 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=d8bd79bfa8bd6c4d2822e3da0162b1ec757e5b00
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index f24b768c..1da3cb1e 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1371,7 +1371,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1525,7 +1525,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1665,14 +1665,6 @@ spec:
-             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
-           fi
- 
--          # If the secret is not marked as immutable, make it so.
--          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
--            echo "Making secret immutable"
--            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
--              --patch='{"immutable": true}' \
--            | kubectl apply -f -
--          fi
--
-           echo "Generating/updating the secret with the public key"
-           kubectl create secret generic public-key \
-             --namespace "$namespace" \
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 7c674ade..796b507c 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1371,7 +1371,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1525,7 +1525,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1665,14 +1665,6 @@ spec:
-             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
-           fi
- 
--          # If the secret is not marked as immutable, make it so.
--          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
--            echo "Making secret immutable"
--            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
--              --patch='{"immutable": true}' \
--            | kubectl apply -f -
--          fi
--
-           echo "Generating/updating the secret with the public key"
-           kubectl create secret generic public-key \
-             --namespace "$namespace" \
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index d68126df..78940544 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1371,7 +1371,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1525,7 +1525,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1665,14 +1665,6 @@ spec:
-             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
-           fi
- 
--          # If the secret is not marked as immutable, make it so.
--          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
--            echo "Making secret immutable"
--            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
--              --patch='{"immutable": true}' \
--            | kubectl apply -f -
--          fi
--
-           echo "Generating/updating the secret with the public key"
-           kubectl create secret generic public-key \
-             --namespace "$namespace" \ 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (54 lines)</summary>  
-
-``` 
-./commit-192922a6/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1374c1374
-<         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
----
->         image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-1528c1528
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-1665a1666,1673
->           fi
-> 
->           # If the secret is not marked as immutable, make it so.
->           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
->             echo "Making secret immutable"
->             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
->               --patch='{"immutable": true}' \
->             | kubectl apply -f -
-./commit-192922a6/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-1374c1374
-<         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
----
->         image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-1528c1528
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-1665a1666,1673
->           fi
-> 
->           # If the secret is not marked as immutable, make it so.
->           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
->             echo "Making secret immutable"
->             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
->               --patch='{"immutable": true}' \
->             | kubectl apply -f -
-./commit-192922a6/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1374c1374
-<         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
----
->         image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-1528c1528
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-1665a1666,1673
->           fi
-> 
->           # If the secret is not marked as immutable, make it so.
->           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
->             echo "Making secret immutable"
->             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
->               --patch='{"immutable": true}' \
->             | kubectl apply -f - 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 192922a6 to 761f54ce on Thu Mar 14 02:32:24 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (149 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 2a6bb3f9..796c0ad1 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=d8bd79bfa8bd6c4d2822e3da0162b1ec757e5b00
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index 52e80606..3036fccf 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=d8bd79bfa8bd6c4d2822e3da0162b1ec757e5b00
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=d8bd79bfa8bd6c4d2822e3da0162b1ec757e5b00
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index 7aedc9a8..1b7f2ef7 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=d8bd79bfa8bd6c4d2822e3da0162b1ec757e5b00
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index f24b768c..1da3cb1e 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1371,7 +1371,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1525,7 +1525,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1665,14 +1665,6 @@ spec:
-             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
-           fi
- 
--          # If the secret is not marked as immutable, make it so.
--          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
--            echo "Making secret immutable"
--            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
--              --patch='{"immutable": true}' \
--            | kubectl apply -f -
--          fi
--
-           echo "Generating/updating the secret with the public key"
-           kubectl create secret generic public-key \
-             --namespace "$namespace" \
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 7c674ade..796b507c 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1371,7 +1371,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1525,7 +1525,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1665,14 +1665,6 @@ spec:
-             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
-           fi
- 
--          # If the secret is not marked as immutable, make it so.
--          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
--            echo "Making secret immutable"
--            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
--              --patch='{"immutable": true}' \
--            | kubectl apply -f -
--          fi
--
-           echo "Generating/updating the secret with the public key"
-           kubectl create secret generic public-key \
-             --namespace "$namespace" \
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index d68126df..78940544 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1371,7 +1371,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1525,7 +1525,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1665,14 +1665,6 @@ spec:
-             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
-           fi
- 
--          # If the secret is not marked as immutable, make it so.
--          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
--            echo "Making secret immutable"
--            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
--              --patch='{"immutable": true}' \
--            | kubectl apply -f -
--          fi
--
-           echo "Generating/updating the secret with the public key"
-           kubectl create secret generic public-key \
-             --namespace "$namespace" \ 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (18 lines)</summary>  
-
-``` 
-./commit-192922a6/development/components/pipeline-service/development/kustomize.out.yaml
-1350c1350
-<         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
----
->         image: quay.io/redhat-appstudio/tekton-results-api:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-1568c1568
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:2eef63e8a52cdc9529ea7ba0b0b8b0c19a8f160e
-1802a1803,1810
->           fi
-> 
->           # If the secret is not marked as immutable, make it so.
->           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
->             echo "Making secret immutable"
->             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
->               --patch='{"immutable": true}' \
->             | kubectl apply -f - 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from ffa9fef1 to 192922a6 on Thu Mar 14 00:39:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (49 lines)</summary>  
-
-``` 
-diff --git a/components/jvm-build-service/base/kustomization.yaml b/components/jvm-build-service/base/kustomization.yaml
-index dae8dd44..e5c68931 100644
---- a/components/jvm-build-service/base/kustomization.yaml
-+++ b/components/jvm-build-service/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- resources:
- - allow-argocd-to-manage.yaml
--- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=1f980ef8f4540dc09fcfc8454972418a7c114404
--- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=1f980ef8f4540dc09fcfc8454972418a7c114404
--- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=1f980ef8f4540dc09fcfc8454972418a7c114404
-+- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=c09c4f874cdda8505909b3b2627771c76df44797
-+- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=c09c4f874cdda8505909b3b2627771c76df44797
-+- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=c09c4f874cdda8505909b3b2627771c76df44797
- - monitoring.yaml
- 
- # Skip applying the jvm-build-service operands (SystemConfig) while the jvm-build-service operator is being installed.
-@@ -16,7 +16,7 @@ namespace: jvm-build-service
- images:
- - name: hacbs-jvm-operator
-   newName: quay.io/redhat-appstudio/hacbs-jvm-controller
--  newTag: 1f980ef8f4540dc09fcfc8454972418a7c114404
-+  newTag: c09c4f874cdda8505909b3b2627771c76df44797
- 
- patches:
- - path: ./operator_env_patch.yaml
-diff --git a/components/jvm-build-service/base/operator_env_patch.yaml b/components/jvm-build-service/base/operator_env_patch.yaml
-index 5001d2cc..bc9c0065 100644
---- a/components/jvm-build-service/base/operator_env_patch.yaml
-+++ b/components/jvm-build-service/base/operator_env_patch.yaml
-@@ -3,7 +3,7 @@
-   path: /spec/template/spec/containers/0/env
-   value:
-   - name: IMAGE_TAG
--    value: 1f980ef8f4540dc09fcfc8454972418a7c114404
-+    value: c09c4f874cdda8505909b3b2627771c76df44797
- - op: add
-   path: /spec/template/spec/containers/0/env
-   value:
-diff --git a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
-index 02e3d6a6..897403ee 100644
---- a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
-@@ -1,5 +1,5 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=1f980ef8f4540dc09fcfc8454972418a7c114404
-+- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=c09c4f874cdda8505909b3b2627771c76df44797
- - dashboard.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (52 lines)</summary>  
-
-``` 
-./commit-ffa9fef1/production/components/jvm-build-service/production/kustomize.out.yaml
-173,175d172
-<                         finishTime:
-<                           format: int64
-<                           type: integer
-180,200d176
-<                             contaminated:
-<                               type: boolean
-<                             contaminates:
-<                               items:
-<                                 properties:
-<                                   allowed:
-<                                     type: boolean
-<                                   buildId:
-<                                     type: string
-<                                   contaminatedArtifacts:
-<                                     items:
-<                                       type: string
-<                                     type: array
-<                                   gav:
-<                                     type: string
-<                                   rebuildAvailable:
-<                                     type: boolean
-<                                   source:
-<                                     type: string
-<                                 type: object
-<                               type: array
-321,329d296
-<               builderImages:
-<                 items:
-<                   properties:
-<                     baseBuilderImage:
-<                       type: string
-<                     builtImageDigest:
-<                       type: string
-<                   type: object
-<                 type: array
-810,811d776
-<               digest:
-<                 type: string
-1431c1396
-<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:c09c4f874cdda8505909b3b2627771c76df44797
----
->         image: quay.io/redhat-appstudio/hacbs-jvm-controller:1f980ef8f4540dc09fcfc8454972418a7c114404
-1483c1448
-<       image: quay.io/redhat-appstudio/jbs-ubi7-builder:a86a5a611c58358c8670851b4ced7ebb6ce915b6
----
->       image: quay.io/redhat-appstudio/jbs-ubi7-builder:ad0aa55e2ff708f77742fde761d95367b9fc5beb
-1487c1452
-<       image: quay.io/redhat-appstudio/jbs-ubi8-builder:a86a5a611c58358c8670851b4ced7ebb6ce915b6
----
->       image: quay.io/redhat-appstudio/jbs-ubi8-builder:ad0aa55e2ff708f77742fde761d95367b9fc5beb 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from ffa9fef1 to 192922a6 on Thu Mar 14 00:39:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (49 lines)</summary>  
-
-``` 
-diff --git a/components/jvm-build-service/base/kustomization.yaml b/components/jvm-build-service/base/kustomization.yaml
-index dae8dd44..e5c68931 100644
---- a/components/jvm-build-service/base/kustomization.yaml
-+++ b/components/jvm-build-service/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- resources:
- - allow-argocd-to-manage.yaml
--- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=1f980ef8f4540dc09fcfc8454972418a7c114404
--- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=1f980ef8f4540dc09fcfc8454972418a7c114404
--- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=1f980ef8f4540dc09fcfc8454972418a7c114404
-+- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=c09c4f874cdda8505909b3b2627771c76df44797
-+- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=c09c4f874cdda8505909b3b2627771c76df44797
-+- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=c09c4f874cdda8505909b3b2627771c76df44797
- - monitoring.yaml
- 
- # Skip applying the jvm-build-service operands (SystemConfig) while the jvm-build-service operator is being installed.
-@@ -16,7 +16,7 @@ namespace: jvm-build-service
- images:
- - name: hacbs-jvm-operator
-   newName: quay.io/redhat-appstudio/hacbs-jvm-controller
--  newTag: 1f980ef8f4540dc09fcfc8454972418a7c114404
-+  newTag: c09c4f874cdda8505909b3b2627771c76df44797
- 
- patches:
- - path: ./operator_env_patch.yaml
-diff --git a/components/jvm-build-service/base/operator_env_patch.yaml b/components/jvm-build-service/base/operator_env_patch.yaml
-index 5001d2cc..bc9c0065 100644
---- a/components/jvm-build-service/base/operator_env_patch.yaml
-+++ b/components/jvm-build-service/base/operator_env_patch.yaml
-@@ -3,7 +3,7 @@
-   path: /spec/template/spec/containers/0/env
-   value:
-   - name: IMAGE_TAG
--    value: 1f980ef8f4540dc09fcfc8454972418a7c114404
-+    value: c09c4f874cdda8505909b3b2627771c76df44797
- - op: add
-   path: /spec/template/spec/containers/0/env
-   value:
-diff --git a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
-index 02e3d6a6..897403ee 100644
---- a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
-@@ -1,5 +1,5 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=1f980ef8f4540dc09fcfc8454972418a7c114404
-+- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=c09c4f874cdda8505909b3b2627771c76df44797
- - dashboard.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (52 lines)</summary>  
-
-``` 
-./commit-ffa9fef1/staging/components/jvm-build-service/staging/kustomize.out.yaml
-173,175d172
-<                         finishTime:
-<                           format: int64
-<                           type: integer
-180,200d176
-<                             contaminated:
-<                               type: boolean
-<                             contaminates:
-<                               items:
-<                                 properties:
-<                                   allowed:
-<                                     type: boolean
-<                                   buildId:
-<                                     type: string
-<                                   contaminatedArtifacts:
-<                                     items:
-<                                       type: string
-<                                     type: array
-<                                   gav:
-<                                     type: string
-<                                   rebuildAvailable:
-<                                     type: boolean
-<                                   source:
-<                                     type: string
-<                                 type: object
-<                               type: array
-321,329d296
-<               builderImages:
-<                 items:
-<                   properties:
-<                     baseBuilderImage:
-<                       type: string
-<                     builtImageDigest:
-<                       type: string
-<                   type: object
-<                 type: array
-810,811d776
-<               digest:
-<                 type: string
-1431c1396
-<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:c09c4f874cdda8505909b3b2627771c76df44797
----
->         image: quay.io/redhat-appstudio/hacbs-jvm-controller:1f980ef8f4540dc09fcfc8454972418a7c114404
-1483c1448
-<       image: quay.io/redhat-appstudio/jbs-ubi7-builder:a86a5a611c58358c8670851b4ced7ebb6ce915b6
----
->       image: quay.io/redhat-appstudio/jbs-ubi7-builder:ad0aa55e2ff708f77742fde761d95367b9fc5beb
-1487c1452
-<       image: quay.io/redhat-appstudio/jbs-ubi8-builder:a86a5a611c58358c8670851b4ced7ebb6ce915b6
----
->       image: quay.io/redhat-appstudio/jbs-ubi8-builder:ad0aa55e2ff708f77742fde761d95367b9fc5beb 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from ffa9fef1 to 192922a6 on Thu Mar 14 00:39:32 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (49 lines)</summary>  
-
-``` 
-diff --git a/components/jvm-build-service/base/kustomization.yaml b/components/jvm-build-service/base/kustomization.yaml
-index dae8dd44..e5c68931 100644
---- a/components/jvm-build-service/base/kustomization.yaml
-+++ b/components/jvm-build-service/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- resources:
- - allow-argocd-to-manage.yaml
--- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=1f980ef8f4540dc09fcfc8454972418a7c114404
--- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=1f980ef8f4540dc09fcfc8454972418a7c114404
--- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=1f980ef8f4540dc09fcfc8454972418a7c114404
-+- https://github.com/redhat-appstudio/jvm-build-service/deploy/crds/base?ref=c09c4f874cdda8505909b3b2627771c76df44797
-+- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/base?ref=c09c4f874cdda8505909b3b2627771c76df44797
-+- https://github.com/redhat-appstudio/jvm-build-service/deploy/operator/config?ref=c09c4f874cdda8505909b3b2627771c76df44797
- - monitoring.yaml
- 
- # Skip applying the jvm-build-service operands (SystemConfig) while the jvm-build-service operator is being installed.
-@@ -16,7 +16,7 @@ namespace: jvm-build-service
- images:
- - name: hacbs-jvm-operator
-   newName: quay.io/redhat-appstudio/hacbs-jvm-controller
--  newTag: 1f980ef8f4540dc09fcfc8454972418a7c114404
-+  newTag: c09c4f874cdda8505909b3b2627771c76df44797
- 
- patches:
- - path: ./operator_env_patch.yaml
-diff --git a/components/jvm-build-service/base/operator_env_patch.yaml b/components/jvm-build-service/base/operator_env_patch.yaml
-index 5001d2cc..bc9c0065 100644
---- a/components/jvm-build-service/base/operator_env_patch.yaml
-+++ b/components/jvm-build-service/base/operator_env_patch.yaml
-@@ -3,7 +3,7 @@
-   path: /spec/template/spec/containers/0/env
-   value:
-   - name: IMAGE_TAG
--    value: 1f980ef8f4540dc09fcfc8454972418a7c114404
-+    value: c09c4f874cdda8505909b3b2627771c76df44797
- - op: add
-   path: /spec/template/spec/containers/0/env
-   value:
-diff --git a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
-index 02e3d6a6..897403ee 100644
---- a/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/jvm-build-service/kustomization.yaml
-@@ -1,5 +1,5 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=1f980ef8f4540dc09fcfc8454972418a7c114404
-+- https://github.com/redhat-appstudio/jvm-build-service/deploy/monitoring/grafana-dashboards/?ref=c09c4f874cdda8505909b3b2627771c76df44797
- - dashboard.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (52 lines)</summary>  
-
-``` 
-./commit-ffa9fef1/development/components/jvm-build-service/development/kustomize.out.yaml
-173,175d172
-<                         finishTime:
-<                           format: int64
-<                           type: integer
-180,200d176
-<                             contaminated:
-<                               type: boolean
-<                             contaminates:
-<                               items:
-<                                 properties:
-<                                   allowed:
-<                                     type: boolean
-<                                   buildId:
-<                                     type: string
-<                                   contaminatedArtifacts:
-<                                     items:
-<                                       type: string
-<                                     type: array
-<                                   gav:
-<                                     type: string
-<                                   rebuildAvailable:
-<                                     type: boolean
-<                                   source:
-<                                     type: string
-<                                 type: object
-<                               type: array
-321,329d296
-<               builderImages:
-<                 items:
-<                   properties:
-<                     baseBuilderImage:
-<                       type: string
-<                     builtImageDigest:
-<                       type: string
-<                   type: object
-<                 type: array
-810,811d776
-<               digest:
-<                 type: string
-1431c1396
-<         image: quay.io/redhat-appstudio/hacbs-jvm-controller:c09c4f874cdda8505909b3b2627771c76df44797
----
->         image: quay.io/redhat-appstudio/hacbs-jvm-controller:1f980ef8f4540dc09fcfc8454972418a7c114404
-1462c1427
-<       image: quay.io/redhat-appstudio/jbs-ubi7-builder:a86a5a611c58358c8670851b4ced7ebb6ce915b6
----
->       image: quay.io/redhat-appstudio/jbs-ubi7-builder:ad0aa55e2ff708f77742fde761d95367b9fc5beb
-1466c1431
-<       image: quay.io/redhat-appstudio/jbs-ubi8-builder:a86a5a611c58358c8670851b4ced7ebb6ce915b6
----
->       image: quay.io/redhat-appstudio/jbs-ubi8-builder:ad0aa55e2ff708f77742fde761d95367b9fc5beb 
 ```
  
 </details>  
