@@ -1,0 +1,20 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-c6c634f7/development/components/release/development/kustomize.out.yaml ./kustomized-cache/commit-7f92afaa/development/components/release/development/kustomize.out.yaml
+1868,1871c1868,1871
+<             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nEXPIRED_RELEASES_FILE=\"/var/tmp/releases-to-be-deleted\"\nKUBECTL_OUTPUT=$(mktemp
+<               -p /var/tmp)\nNOW=$(date +%s)\nkubectl get release --all-namespaces
+<               \\\n--sort-by=.status.expirationTime \\\n--template '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.expirationTime}}{{\"\\n\"}}{{end}}'
+<               > $KUBECTL_OUTPUT\nawk -v now=${NOW} '{\n     # parsing the expirationTime
+---
+>             - "set -o pipefail\nPATH=\"/bin:/usr/bin:/usr/local/bin\"\nMAX_PROCS=5\nEXPIRED_RELEASES_FILE=\"/var/tmp/releases-to-be-deleted\"\nNOW=$(date
+>               +%s)\nkubectl get release --all-namespaces \\\n--sort-by=.status.expirationTime
+>               \\\n--template '{{range .items}}{{.metadata.name}}{{\"\\t\"}}{{.metadata.namespace}}{{\"\\t\"}}{{.status.expirationTime}}{{\"\\n\"}}{{end}}'
+>               > /tmp/kubectl-out\nawk -v now=${NOW} '{\n     # parsing the expirationTime
+1877,1879c1877,1880
+<               $2)\n     } \n  }' $KUBECTL_OUTPUT > $EXPIRED_RELEASES_FILE\n# The deleteAndLog
+<               will run the Release deletion and save the operation in a structured
+<               way that        \n# can be read easily by kubectl or journalctl                                                           \nfunction
+---
+>               $2)\n     } \n  }' /var/tmp/kubectl-out > $EXPIRED_RELEASES_FILE\n#
+>               The deleteAndLog will run the Release deletion and save the operation
+>               in a structured way that        \n# can be read easily by kubectl or
+>               journalctl                                                           \nfunction
