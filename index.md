@@ -1,12 +1,2666 @@
 # kustomize changes tracked by commits 
-### This file generated at Sat Mar 16 00:06:38 UTC 2024
+### This file generated at Sat Mar 16 04:03:23 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from e67a54b4 to 2d884204 on Fri Mar 15 17:08:30 2024 </h3>  
+<h3>1: Production changes from 2d884204 to 1819edc5 on Sat Mar 16 02:40:29 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (631 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index bce2c7ff..6a93f849 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=43bb04294bf63ea4c80b3c389fe5553c2a4dd2a3
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+@@ -43,3 +43,22 @@ patches:
+       kind: Deployment
+       namespace: tekton-results
+       name: tekton-results-watcher
++  - path: update-results-watcher-performance.yaml
++    target:
++      kind: Deployment
++      namespace: tekton-results
++      name: tekton-results-watcher
++  - path: stay-at-1-13-handle-bump-to-nightly-separately.yaml
++    target:
++      kind: Subscription
++      namespace: openshift-operators
++      name: openshift-pipelines-operator
++
++patchesStrategicMerge:
++  - |-
++    apiVersion: operators.coreos.com/v1alpha1
++    kind: CatalogSource
++    metadata:
++      name: custom-operators
++      namespace: openshift-marketplace
++    $patch: delete
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/base/stay-at-1-13-handle-bump-to-nightly-separately.yaml b/components/pipeline-service/production/base/stay-at-1-13-handle-bump-to-nightly-separately.yaml
+new file mode 100644
+index 00000000..cc8436e8
+--- /dev/null
++++ b/components/pipeline-service/production/base/stay-at-1-13-handle-bump-to-nightly-separately.yaml
+@@ -0,0 +1,7 @@
++---
++- op: replace
++  path: /spec/channel
++  value: "pipelines-1.13"
++- op: replace
++  path: /spec/source
++  value: "redhat-operators"
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/base/update-results-watcher-performance.yaml b/components/pipeline-service/production/base/update-results-watcher-performance.yaml
+new file mode 100644
+index 00000000..f7d76e86
+--- /dev/null
++++ b/components/pipeline-service/production/base/update-results-watcher-performance.yaml
+@@ -0,0 +1,6 @@
++- op: replace
++  path: /spec/template/spec/containers/1/resources/requests/cpu
++  value: "250m"
++- op: replace
++  path: /spec/template/spec/containers/1/resources/limits/cpu
++  value: "250m"
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 16cbf899..5d4df75d 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1370,7 +1370,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1391,8 +1391,8 @@ spec:
+             cpu: 100m
+             memory: 512Mi
+           requests:
+-            cpu: 5m
+-            memory: 128Mi
++            cpu: 100m
++            memory: 512Mi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+@@ -1417,52 +1417,6 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
+-      initContainers:
+-      - env:
+-        - name: DB_USER
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.user
+-              name: tekton-results-database
+-        - name: DB_PASSWORD
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.password
+-              name: tekton-results-database
+-        - name: DB_HOST
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.host
+-              name: tekton-results-database
+-        - name: DB_NAME
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.name
+-              name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+-        name: migrator
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 128Mi
+-          requests:
+-            cpu: 5m
+-            memory: 32Mi
+-        securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            add:
+-            - NET_BIND_SERVICE
+-            drop:
+-            - ALL
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-          seccompProfile:
+-            type: RuntimeDefault
+-        volumeMounts:
+-        - mountPath: /etc/tekton/results
+-          name: config
+-          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1551,6 +1505,8 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -threadiness
++        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1568,7 +1524,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1580,7 +1536,7 @@ spec:
+             cpu: 250m
+             memory: 3Gi
+           requests:
+-            cpu: 100m
++            cpu: 250m
+             memory: 3Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+@@ -1708,14 +1664,6 @@ spec:
+             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+           fi
+ 
+-          # If the secret is not marked as immutable, make it so.
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+-            echo "Making secret immutable"
+-            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+-              --patch='{"immutable": true}' \
+-            | kubectl apply -f -
+-          fi
+-
+           echo "Generating/updating the secret with the public key"
+           kubectl create secret generic public-key \
+             --namespace "$namespace" \
+@@ -1961,10 +1909,69 @@ spec:
+         tekton-operator-proxy-webhook:
+           spec:
+             replicas: 2
++            template:
++              spec:
++                containers:
++                - name: proxy
++                  resources:
++                    limits:
++                      cpu: 500m
++                      memory: 500Mi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: webhook
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 1Gi
++                    requests:
++                      cpu: 200m
++                      memory: 200Mi
+       disabled: false
++      horizontalPodAutoscalers:
++        tekton-operator-proxy-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index af214d1c..1ef7e137 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1370,7 +1370,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1391,8 +1391,8 @@ spec:
+             cpu: 100m
+             memory: 512Mi
+           requests:
+-            cpu: 5m
+-            memory: 128Mi
++            cpu: 100m
++            memory: 512Mi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+@@ -1417,52 +1417,6 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
+-      initContainers:
+-      - env:
+-        - name: DB_USER
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.user
+-              name: tekton-results-database
+-        - name: DB_PASSWORD
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.password
+-              name: tekton-results-database
+-        - name: DB_HOST
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.host
+-              name: tekton-results-database
+-        - name: DB_NAME
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.name
+-              name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+-        name: migrator
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 128Mi
+-          requests:
+-            cpu: 5m
+-            memory: 32Mi
+-        securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            add:
+-            - NET_BIND_SERVICE
+-            drop:
+-            - ALL
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-          seccompProfile:
+-            type: RuntimeDefault
+-        volumeMounts:
+-        - mountPath: /etc/tekton/results
+-          name: config
+-          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1551,6 +1505,8 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -threadiness
++        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1568,7 +1524,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1580,7 +1536,7 @@ spec:
+             cpu: 250m
+             memory: 3Gi
+           requests:
+-            cpu: 100m
++            cpu: 250m
+             memory: 3Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+@@ -1708,14 +1664,6 @@ spec:
+             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+           fi
+ 
+-          # If the secret is not marked as immutable, make it so.
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+-            echo "Making secret immutable"
+-            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+-              --patch='{"immutable": true}' \
+-            | kubectl apply -f -
+-          fi
+-
+           echo "Generating/updating the secret with the public key"
+           kubectl create secret generic public-key \
+             --namespace "$namespace" \
+@@ -1961,10 +1909,69 @@ spec:
+         tekton-operator-proxy-webhook:
+           spec:
+             replicas: 2
++            template:
++              spec:
++                containers:
++                - name: proxy
++                  resources:
++                    limits:
++                      cpu: 500m
++                      memory: 500Mi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: webhook
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 1Gi
++                    requests:
++                      cpu: 200m
++                      memory: 200Mi
+       disabled: false
++      horizontalPodAutoscalers:
++        tekton-operator-proxy-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index d99eaa6e..28bf8eec 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1370,7 +1370,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1391,8 +1391,8 @@ spec:
+             cpu: 100m
+             memory: 512Mi
+           requests:
+-            cpu: 5m
+-            memory: 128Mi
++            cpu: 100m
++            memory: 512Mi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+@@ -1417,52 +1417,6 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
+-      initContainers:
+-      - env:
+-        - name: DB_USER
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.user
+-              name: tekton-results-database
+-        - name: DB_PASSWORD
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.password
+-              name: tekton-results-database
+-        - name: DB_HOST
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.host
+-              name: tekton-results-database
+-        - name: DB_NAME
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.name
+-              name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+-        name: migrator
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 128Mi
+-          requests:
+-            cpu: 5m
+-            memory: 32Mi
+-        securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            add:
+-            - NET_BIND_SERVICE
+-            drop:
+-            - ALL
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-          seccompProfile:
+-            type: RuntimeDefault
+-        volumeMounts:
+-        - mountPath: /etc/tekton/results
+-          name: config
+-          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1551,6 +1505,8 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -threadiness
++        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1568,7 +1524,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1580,7 +1536,7 @@ spec:
+             cpu: 250m
+             memory: 3Gi
+           requests:
+-            cpu: 100m
++            cpu: 250m
+             memory: 3Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+@@ -1708,14 +1664,6 @@ spec:
+             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+           fi
+ 
+-          # If the secret is not marked as immutable, make it so.
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+-            echo "Making secret immutable"
+-            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+-              --patch='{"immutable": true}' \
+-            | kubectl apply -f -
+-          fi
+-
+           echo "Generating/updating the secret with the public key"
+           kubectl create secret generic public-key \
+             --namespace "$namespace" \
+@@ -1961,10 +1909,69 @@ spec:
+         tekton-operator-proxy-webhook:
+           spec:
+             replicas: 2
++            template:
++              spec:
++                containers:
++                - name: proxy
++                  resources:
++                    limits:
++                      cpu: 500m
++                      memory: 500Mi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: webhook
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 1Gi
++                    requests:
++                      cpu: 200m
++                      memory: 200Mi
+       disabled: false
++      horizontalPodAutoscalers:
++        tekton-operator-proxy-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
+     performance:
+       buckets: 4
+       disable-ha: false 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (420 lines)</summary>  
+
+``` 
+./commit-2d884204/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1373c1373
+<         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1394,1395c1394,1395
+<             cpu: 100m
+<             memory: 512Mi
+---
+>             cpu: 5m
+>             memory: 128Mi
+1419a1420,1465
+>       initContainers:
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+>         name: migrator
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 32Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+1508,1509d1553
+<         - -threadiness
+<         - "32"
+1527c1571
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1539c1583
+<             cpu: 250m
+---
+>             cpu: 100m
+1666a1711,1718
+>           # If the secret is not marked as immutable, make it so.
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+>             echo "Making secret immutable"
+>             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+>               --patch='{"immutable": true}' \
+>             | kubectl apply -f -
+>           fi
+> 
+1912,1922d1963
+<             template:
+<               spec:
+<                 containers:
+<                 - name: proxy
+<                   resources:
+<                     limits:
+<                       cpu: 500m
+<                       memory: 500Mi
+<                     requests:
+<                       cpu: 100m
+<                       memory: 100Mi
+1926,1938d1966
+<         tekton-pipelines-webhook:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: webhook
+<                   resources:
+<                     limits:
+<                       cpu: "1"
+<                       memory: 1Gi
+<                     requests:
+<                       cpu: 200m
+<                       memory: 200Mi
+1940,1974d1967
+<       horizontalPodAutoscalers:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+<         tekton-pipelines-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+./commit-2d884204/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1373c1373
+<         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1394,1395c1394,1395
+<             cpu: 100m
+<             memory: 512Mi
+---
+>             cpu: 5m
+>             memory: 128Mi
+1419a1420,1465
+>       initContainers:
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+>         name: migrator
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 32Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+1508,1509d1553
+<         - -threadiness
+<         - "32"
+1527c1571
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1539c1583
+<             cpu: 250m
+---
+>             cpu: 100m
+1666a1711,1718
+>           # If the secret is not marked as immutable, make it so.
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+>             echo "Making secret immutable"
+>             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+>               --patch='{"immutable": true}' \
+>             | kubectl apply -f -
+>           fi
+> 
+1912,1922d1963
+<             template:
+<               spec:
+<                 containers:
+<                 - name: proxy
+<                   resources:
+<                     limits:
+<                       cpu: 500m
+<                       memory: 500Mi
+<                     requests:
+<                       cpu: 100m
+<                       memory: 100Mi
+1926,1938d1966
+<         tekton-pipelines-webhook:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: webhook
+<                   resources:
+<                     limits:
+<                       cpu: "1"
+<                       memory: 1Gi
+<                     requests:
+<                       cpu: 200m
+<                       memory: 200Mi
+1940,1974d1967
+<       horizontalPodAutoscalers:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+<         tekton-pipelines-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+./commit-2d884204/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1373c1373
+<         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1394,1395c1394,1395
+<             cpu: 100m
+<             memory: 512Mi
+---
+>             cpu: 5m
+>             memory: 128Mi
+1419a1420,1465
+>       initContainers:
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+>         name: migrator
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 32Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+1508,1509d1553
+<         - -threadiness
+<         - "32"
+1527c1571
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1539c1583
+<             cpu: 250m
+---
+>             cpu: 100m
+1666a1711,1718
+>           # If the secret is not marked as immutable, make it so.
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+>             echo "Making secret immutable"
+>             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+>               --patch='{"immutable": true}' \
+>             | kubectl apply -f -
+>           fi
+> 
+1912,1922d1963
+<             template:
+<               spec:
+<                 containers:
+<                 - name: proxy
+<                   resources:
+<                     limits:
+<                       cpu: 500m
+<                       memory: 500Mi
+<                     requests:
+<                       cpu: 100m
+<                       memory: 100Mi
+1926,1938d1966
+<         tekton-pipelines-webhook:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: webhook
+<                   resources:
+<                     limits:
+<                       cpu: "1"
+<                       memory: 1Gi
+<                     requests:
+<                       cpu: 200m
+<                       memory: 200Mi
+1940,1974d1967
+<       horizontalPodAutoscalers:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+<         tekton-pipelines-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 2d884204 to 1819edc5 on Sat Mar 16 02:40:29 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (631 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index bce2c7ff..6a93f849 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=43bb04294bf63ea4c80b3c389fe5553c2a4dd2a3
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+@@ -43,3 +43,22 @@ patches:
+       kind: Deployment
+       namespace: tekton-results
+       name: tekton-results-watcher
++  - path: update-results-watcher-performance.yaml
++    target:
++      kind: Deployment
++      namespace: tekton-results
++      name: tekton-results-watcher
++  - path: stay-at-1-13-handle-bump-to-nightly-separately.yaml
++    target:
++      kind: Subscription
++      namespace: openshift-operators
++      name: openshift-pipelines-operator
++
++patchesStrategicMerge:
++  - |-
++    apiVersion: operators.coreos.com/v1alpha1
++    kind: CatalogSource
++    metadata:
++      name: custom-operators
++      namespace: openshift-marketplace
++    $patch: delete
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/base/stay-at-1-13-handle-bump-to-nightly-separately.yaml b/components/pipeline-service/production/base/stay-at-1-13-handle-bump-to-nightly-separately.yaml
+new file mode 100644
+index 00000000..cc8436e8
+--- /dev/null
++++ b/components/pipeline-service/production/base/stay-at-1-13-handle-bump-to-nightly-separately.yaml
+@@ -0,0 +1,7 @@
++---
++- op: replace
++  path: /spec/channel
++  value: "pipelines-1.13"
++- op: replace
++  path: /spec/source
++  value: "redhat-operators"
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/base/update-results-watcher-performance.yaml b/components/pipeline-service/production/base/update-results-watcher-performance.yaml
+new file mode 100644
+index 00000000..f7d76e86
+--- /dev/null
++++ b/components/pipeline-service/production/base/update-results-watcher-performance.yaml
+@@ -0,0 +1,6 @@
++- op: replace
++  path: /spec/template/spec/containers/1/resources/requests/cpu
++  value: "250m"
++- op: replace
++  path: /spec/template/spec/containers/1/resources/limits/cpu
++  value: "250m"
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 16cbf899..5d4df75d 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1370,7 +1370,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1391,8 +1391,8 @@ spec:
+             cpu: 100m
+             memory: 512Mi
+           requests:
+-            cpu: 5m
+-            memory: 128Mi
++            cpu: 100m
++            memory: 512Mi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+@@ -1417,52 +1417,6 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
+-      initContainers:
+-      - env:
+-        - name: DB_USER
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.user
+-              name: tekton-results-database
+-        - name: DB_PASSWORD
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.password
+-              name: tekton-results-database
+-        - name: DB_HOST
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.host
+-              name: tekton-results-database
+-        - name: DB_NAME
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.name
+-              name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+-        name: migrator
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 128Mi
+-          requests:
+-            cpu: 5m
+-            memory: 32Mi
+-        securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            add:
+-            - NET_BIND_SERVICE
+-            drop:
+-            - ALL
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-          seccompProfile:
+-            type: RuntimeDefault
+-        volumeMounts:
+-        - mountPath: /etc/tekton/results
+-          name: config
+-          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1551,6 +1505,8 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -threadiness
++        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1568,7 +1524,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1580,7 +1536,7 @@ spec:
+             cpu: 250m
+             memory: 3Gi
+           requests:
+-            cpu: 100m
++            cpu: 250m
+             memory: 3Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+@@ -1708,14 +1664,6 @@ spec:
+             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+           fi
+ 
+-          # If the secret is not marked as immutable, make it so.
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+-            echo "Making secret immutable"
+-            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+-              --patch='{"immutable": true}' \
+-            | kubectl apply -f -
+-          fi
+-
+           echo "Generating/updating the secret with the public key"
+           kubectl create secret generic public-key \
+             --namespace "$namespace" \
+@@ -1961,10 +1909,69 @@ spec:
+         tekton-operator-proxy-webhook:
+           spec:
+             replicas: 2
++            template:
++              spec:
++                containers:
++                - name: proxy
++                  resources:
++                    limits:
++                      cpu: 500m
++                      memory: 500Mi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: webhook
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 1Gi
++                    requests:
++                      cpu: 200m
++                      memory: 200Mi
+       disabled: false
++      horizontalPodAutoscalers:
++        tekton-operator-proxy-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index af214d1c..1ef7e137 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1370,7 +1370,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1391,8 +1391,8 @@ spec:
+             cpu: 100m
+             memory: 512Mi
+           requests:
+-            cpu: 5m
+-            memory: 128Mi
++            cpu: 100m
++            memory: 512Mi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+@@ -1417,52 +1417,6 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
+-      initContainers:
+-      - env:
+-        - name: DB_USER
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.user
+-              name: tekton-results-database
+-        - name: DB_PASSWORD
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.password
+-              name: tekton-results-database
+-        - name: DB_HOST
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.host
+-              name: tekton-results-database
+-        - name: DB_NAME
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.name
+-              name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+-        name: migrator
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 128Mi
+-          requests:
+-            cpu: 5m
+-            memory: 32Mi
+-        securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            add:
+-            - NET_BIND_SERVICE
+-            drop:
+-            - ALL
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-          seccompProfile:
+-            type: RuntimeDefault
+-        volumeMounts:
+-        - mountPath: /etc/tekton/results
+-          name: config
+-          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1551,6 +1505,8 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -threadiness
++        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1568,7 +1524,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1580,7 +1536,7 @@ spec:
+             cpu: 250m
+             memory: 3Gi
+           requests:
+-            cpu: 100m
++            cpu: 250m
+             memory: 3Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+@@ -1708,14 +1664,6 @@ spec:
+             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+           fi
+ 
+-          # If the secret is not marked as immutable, make it so.
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+-            echo "Making secret immutable"
+-            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+-              --patch='{"immutable": true}' \
+-            | kubectl apply -f -
+-          fi
+-
+           echo "Generating/updating the secret with the public key"
+           kubectl create secret generic public-key \
+             --namespace "$namespace" \
+@@ -1961,10 +1909,69 @@ spec:
+         tekton-operator-proxy-webhook:
+           spec:
+             replicas: 2
++            template:
++              spec:
++                containers:
++                - name: proxy
++                  resources:
++                    limits:
++                      cpu: 500m
++                      memory: 500Mi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: webhook
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 1Gi
++                    requests:
++                      cpu: 200m
++                      memory: 200Mi
+       disabled: false
++      horizontalPodAutoscalers:
++        tekton-operator-proxy-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index d99eaa6e..28bf8eec 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1370,7 +1370,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1391,8 +1391,8 @@ spec:
+             cpu: 100m
+             memory: 512Mi
+           requests:
+-            cpu: 5m
+-            memory: 128Mi
++            cpu: 100m
++            memory: 512Mi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+@@ -1417,52 +1417,6 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
+-      initContainers:
+-      - env:
+-        - name: DB_USER
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.user
+-              name: tekton-results-database
+-        - name: DB_PASSWORD
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.password
+-              name: tekton-results-database
+-        - name: DB_HOST
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.host
+-              name: tekton-results-database
+-        - name: DB_NAME
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.name
+-              name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+-        name: migrator
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 128Mi
+-          requests:
+-            cpu: 5m
+-            memory: 32Mi
+-        securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            add:
+-            - NET_BIND_SERVICE
+-            drop:
+-            - ALL
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-          seccompProfile:
+-            type: RuntimeDefault
+-        volumeMounts:
+-        - mountPath: /etc/tekton/results
+-          name: config
+-          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1551,6 +1505,8 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -threadiness
++        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1568,7 +1524,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1580,7 +1536,7 @@ spec:
+             cpu: 250m
+             memory: 3Gi
+           requests:
+-            cpu: 100m
++            cpu: 250m
+             memory: 3Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+@@ -1708,14 +1664,6 @@ spec:
+             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+           fi
+ 
+-          # If the secret is not marked as immutable, make it so.
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+-            echo "Making secret immutable"
+-            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+-              --patch='{"immutable": true}' \
+-            | kubectl apply -f -
+-          fi
+-
+           echo "Generating/updating the secret with the public key"
+           kubectl create secret generic public-key \
+             --namespace "$namespace" \
+@@ -1961,10 +1909,69 @@ spec:
+         tekton-operator-proxy-webhook:
+           spec:
+             replicas: 2
++            template:
++              spec:
++                containers:
++                - name: proxy
++                  resources:
++                    limits:
++                      cpu: 500m
++                      memory: 500Mi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: webhook
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 1Gi
++                    requests:
++                      cpu: 200m
++                      memory: 200Mi
+       disabled: false
++      horizontalPodAutoscalers:
++        tekton-operator-proxy-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
+     performance:
+       buckets: 4
+       disable-ha: false 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 2d884204 to 1819edc5 on Sat Mar 16 02:40:29 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (631 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index bce2c7ff..6a93f849 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=43bb04294bf63ea4c80b3c389fe5553c2a4dd2a3
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
+   - pipelines-as-code-secret.yaml # create external secret in openshift-pipelines namespace
+   - ../../base/external-secrets
+   - ../../base/testing
+@@ -43,3 +43,22 @@ patches:
+       kind: Deployment
+       namespace: tekton-results
+       name: tekton-results-watcher
++  - path: update-results-watcher-performance.yaml
++    target:
++      kind: Deployment
++      namespace: tekton-results
++      name: tekton-results-watcher
++  - path: stay-at-1-13-handle-bump-to-nightly-separately.yaml
++    target:
++      kind: Subscription
++      namespace: openshift-operators
++      name: openshift-pipelines-operator
++
++patchesStrategicMerge:
++  - |-
++    apiVersion: operators.coreos.com/v1alpha1
++    kind: CatalogSource
++    metadata:
++      name: custom-operators
++      namespace: openshift-marketplace
++    $patch: delete
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/base/stay-at-1-13-handle-bump-to-nightly-separately.yaml b/components/pipeline-service/production/base/stay-at-1-13-handle-bump-to-nightly-separately.yaml
+new file mode 100644
+index 00000000..cc8436e8
+--- /dev/null
++++ b/components/pipeline-service/production/base/stay-at-1-13-handle-bump-to-nightly-separately.yaml
+@@ -0,0 +1,7 @@
++---
++- op: replace
++  path: /spec/channel
++  value: "pipelines-1.13"
++- op: replace
++  path: /spec/source
++  value: "redhat-operators"
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/base/update-results-watcher-performance.yaml b/components/pipeline-service/production/base/update-results-watcher-performance.yaml
+new file mode 100644
+index 00000000..f7d76e86
+--- /dev/null
++++ b/components/pipeline-service/production/base/update-results-watcher-performance.yaml
+@@ -0,0 +1,6 @@
++- op: replace
++  path: /spec/template/spec/containers/1/resources/requests/cpu
++  value: "250m"
++- op: replace
++  path: /spec/template/spec/containers/1/resources/limits/cpu
++  value: "250m"
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 16cbf899..5d4df75d 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1370,7 +1370,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1391,8 +1391,8 @@ spec:
+             cpu: 100m
+             memory: 512Mi
+           requests:
+-            cpu: 5m
+-            memory: 128Mi
++            cpu: 100m
++            memory: 512Mi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+@@ -1417,52 +1417,6 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
+-      initContainers:
+-      - env:
+-        - name: DB_USER
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.user
+-              name: tekton-results-database
+-        - name: DB_PASSWORD
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.password
+-              name: tekton-results-database
+-        - name: DB_HOST
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.host
+-              name: tekton-results-database
+-        - name: DB_NAME
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.name
+-              name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+-        name: migrator
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 128Mi
+-          requests:
+-            cpu: 5m
+-            memory: 32Mi
+-        securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            add:
+-            - NET_BIND_SERVICE
+-            drop:
+-            - ALL
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-          seccompProfile:
+-            type: RuntimeDefault
+-        volumeMounts:
+-        - mountPath: /etc/tekton/results
+-          name: config
+-          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1551,6 +1505,8 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -threadiness
++        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1568,7 +1524,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1580,7 +1536,7 @@ spec:
+             cpu: 250m
+             memory: 3Gi
+           requests:
+-            cpu: 100m
++            cpu: 250m
+             memory: 3Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+@@ -1708,14 +1664,6 @@ spec:
+             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+           fi
+ 
+-          # If the secret is not marked as immutable, make it so.
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+-            echo "Making secret immutable"
+-            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+-              --patch='{"immutable": true}' \
+-            | kubectl apply -f -
+-          fi
+-
+           echo "Generating/updating the secret with the public key"
+           kubectl create secret generic public-key \
+             --namespace "$namespace" \
+@@ -1961,10 +1909,69 @@ spec:
+         tekton-operator-proxy-webhook:
+           spec:
+             replicas: 2
++            template:
++              spec:
++                containers:
++                - name: proxy
++                  resources:
++                    limits:
++                      cpu: 500m
++                      memory: 500Mi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: webhook
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 1Gi
++                    requests:
++                      cpu: 200m
++                      memory: 200Mi
+       disabled: false
++      horizontalPodAutoscalers:
++        tekton-operator-proxy-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index af214d1c..1ef7e137 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1370,7 +1370,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1391,8 +1391,8 @@ spec:
+             cpu: 100m
+             memory: 512Mi
+           requests:
+-            cpu: 5m
+-            memory: 128Mi
++            cpu: 100m
++            memory: 512Mi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+@@ -1417,52 +1417,6 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
+-      initContainers:
+-      - env:
+-        - name: DB_USER
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.user
+-              name: tekton-results-database
+-        - name: DB_PASSWORD
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.password
+-              name: tekton-results-database
+-        - name: DB_HOST
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.host
+-              name: tekton-results-database
+-        - name: DB_NAME
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.name
+-              name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+-        name: migrator
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 128Mi
+-          requests:
+-            cpu: 5m
+-            memory: 32Mi
+-        securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            add:
+-            - NET_BIND_SERVICE
+-            drop:
+-            - ALL
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-          seccompProfile:
+-            type: RuntimeDefault
+-        volumeMounts:
+-        - mountPath: /etc/tekton/results
+-          name: config
+-          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1551,6 +1505,8 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -threadiness
++        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1568,7 +1524,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1580,7 +1536,7 @@ spec:
+             cpu: 250m
+             memory: 3Gi
+           requests:
+-            cpu: 100m
++            cpu: 250m
+             memory: 3Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+@@ -1708,14 +1664,6 @@ spec:
+             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+           fi
+ 
+-          # If the secret is not marked as immutable, make it so.
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+-            echo "Making secret immutable"
+-            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+-              --patch='{"immutable": true}' \
+-            | kubectl apply -f -
+-          fi
+-
+           echo "Generating/updating the secret with the public key"
+           kubectl create secret generic public-key \
+             --namespace "$namespace" \
+@@ -1961,10 +1909,69 @@ spec:
+         tekton-operator-proxy-webhook:
+           spec:
+             replicas: 2
++            template:
++              spec:
++                containers:
++                - name: proxy
++                  resources:
++                    limits:
++                      cpu: 500m
++                      memory: 500Mi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: webhook
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 1Gi
++                    requests:
++                      cpu: 200m
++                      memory: 200Mi
+       disabled: false
++      horizontalPodAutoscalers:
++        tekton-operator-proxy-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index d99eaa6e..28bf8eec 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1370,7 +1370,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1391,8 +1391,8 @@ spec:
+             cpu: 100m
+             memory: 512Mi
+           requests:
+-            cpu: 5m
+-            memory: 128Mi
++            cpu: 100m
++            memory: 512Mi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+@@ -1417,52 +1417,6 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
+-      initContainers:
+-      - env:
+-        - name: DB_USER
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.user
+-              name: tekton-results-database
+-        - name: DB_PASSWORD
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.password
+-              name: tekton-results-database
+-        - name: DB_HOST
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.host
+-              name: tekton-results-database
+-        - name: DB_NAME
+-          valueFrom:
+-            secretKeyRef:
+-              key: db.name
+-              name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+-        name: migrator
+-        resources:
+-          limits:
+-            cpu: 100m
+-            memory: 128Mi
+-          requests:
+-            cpu: 5m
+-            memory: 32Mi
+-        securityContext:
+-          allowPrivilegeEscalation: false
+-          capabilities:
+-            add:
+-            - NET_BIND_SERVICE
+-            drop:
+-            - ALL
+-          readOnlyRootFilesystem: true
+-          runAsNonRoot: true
+-          seccompProfile:
+-            type: RuntimeDefault
+-        volumeMounts:
+-        - mountPath: /etc/tekton/results
+-          name: config
+-          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1551,6 +1505,8 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
++        - -threadiness
++        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1568,7 +1524,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1580,7 +1536,7 @@ spec:
+             cpu: 250m
+             memory: 3Gi
+           requests:
+-            cpu: 100m
++            cpu: 250m
+             memory: 3Gi
+         securityContext:
+           allowPrivilegeEscalation: false
+@@ -1708,14 +1664,6 @@ spec:
+             env COSIGN_PASSWORD=$RANDOM_PASS cosign generate-key-pair "k8s://$namespace/$secret"
+           fi
+ 
+-          # If the secret is not marked as immutable, make it so.
+-          if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+-            echo "Making secret immutable"
+-            kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+-              --patch='{"immutable": true}' \
+-            | kubectl apply -f -
+-          fi
+-
+           echo "Generating/updating the secret with the public key"
+           kubectl create secret generic public-key \
+             --namespace "$namespace" \
+@@ -1961,10 +1909,69 @@ spec:
+         tekton-operator-proxy-webhook:
+           spec:
+             replicas: 2
++            template:
++              spec:
++                containers:
++                - name: proxy
++                  resources:
++                    limits:
++                      cpu: 500m
++                      memory: 500Mi
++                    requests:
++                      cpu: 100m
++                      memory: 100Mi
+         tekton-pipelines-remote-resolvers:
+           spec:
+             replicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            template:
++              spec:
++                containers:
++                - name: webhook
++                  resources:
++                    limits:
++                      cpu: "1"
++                      memory: 1Gi
++                    requests:
++                      cpu: 200m
++                      memory: 200Mi
+       disabled: false
++      horizontalPodAutoscalers:
++        tekton-operator-proxy-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
++        tekton-pipelines-webhook:
++          spec:
++            maxReplicas: 6
++            metrics:
++            - resource:
++                name: cpu
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            - resource:
++                name: memory
++                target:
++                  averageUtilization: 100
++                  type: Utilization
++              type: Resource
++            minReplicas: 2
+     performance:
+       buckets: 4
+       disable-ha: false 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from e67a54b4 to 2d884204 on Fri Mar 15 17:08:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -165,7 +2819,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from e67a54b4 to 2d884204 on Fri Mar 15 17:08:30 2024 </h3>  
+<h3>2: Staging changes from e67a54b4 to 2d884204 on Fri Mar 15 17:08:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -327,7 +2981,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from e67a54b4 to 2d884204 on Fri Mar 15 17:08:30 2024 </h3>  
+<h3>2: Development changes from e67a54b4 to 2d884204 on Fri Mar 15 17:08:30 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -441,7 +3095,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from c6c634f7 to e67a54b4 on Fri Mar 15 15:40:32 2024 </h3>  
+<h3>3: Production changes from c6c634f7 to e67a54b4 on Fri Mar 15 15:40:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -611,7 +3265,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from c6c634f7 to e67a54b4 on Fri Mar 15 15:40:32 2024 </h3>  
+<h3>3: Staging changes from c6c634f7 to e67a54b4 on Fri Mar 15 15:40:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -792,7 +3446,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from c6c634f7 to e67a54b4 on Fri Mar 15 15:40:32 2024 </h3>  
+<h3>3: Development changes from c6c634f7 to e67a54b4 on Fri Mar 15 15:40:32 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -925,7 +3579,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 7f92afaa to c6c634f7 on Fri Mar 15 14:23:43 2024 </h3>  
+<h3>4: Production changes from 7f92afaa to c6c634f7 on Fri Mar 15 14:23:43 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1098,7 +3752,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 7f92afaa to c6c634f7 on Fri Mar 15 14:23:43 2024 </h3>  
+<h3>4: Staging changes from 7f92afaa to c6c634f7 on Fri Mar 15 14:23:43 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1274,7 +3928,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 7f92afaa to c6c634f7 on Fri Mar 15 14:23:43 2024 </h3>  
+<h3>4: Development changes from 7f92afaa to c6c634f7 on Fri Mar 15 14:23:43 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1334,415 +3988,6 @@ index f87c8fea..d9ef0e81 100644
 >               The deleteAndLog will run the Release deletion and save the operation
 >               in a structured way that        \n# can be read easily by kubectl or
 >               journalctl                                                           \nfunction 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 3de51c94 to 7f92afaa on Fri Mar 15 13:06:33 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/sprayproxy/staging/kustomization.yaml b/components/sprayproxy/staging/kustomization.yaml
-index 1143aa48..5aa4bd20 100644
---- a/components/sprayproxy/staging/kustomization.yaml
-+++ b/components/sprayproxy/staging/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/sprayproxy/config?ref=2f488f7082df063350cc5a774b61ee3207481a9b
-+  - https://github.com/konflux-ci/sprayproxy/config?ref=f1afe07688592565986ded70ca912d80629c04a0
-   - pipelines-as-code-secret.yaml
- 
- images:
-   - name: ko://github.com/konflux-ci/sprayproxy
--    newName: quay.io/redhat-appstudio/sprayproxy
--    newTag: 2f488f7082df063350cc5a774b61ee3207481a9b
-+    newName: quay.io/konflux-ci/sprayproxy
-+    newTag: f1afe07688592565986ded70ca912d80629c04a0
- 
- patches:
-   - path: change-backends.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 3de51c94 to 7f92afaa on Fri Mar 15 13:06:33 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/sprayproxy/staging/kustomization.yaml b/components/sprayproxy/staging/kustomization.yaml
-index 1143aa48..5aa4bd20 100644
---- a/components/sprayproxy/staging/kustomization.yaml
-+++ b/components/sprayproxy/staging/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/sprayproxy/config?ref=2f488f7082df063350cc5a774b61ee3207481a9b
-+  - https://github.com/konflux-ci/sprayproxy/config?ref=f1afe07688592565986ded70ca912d80629c04a0
-   - pipelines-as-code-secret.yaml
- 
- images:
-   - name: ko://github.com/konflux-ci/sprayproxy
--    newName: quay.io/redhat-appstudio/sprayproxy
--    newTag: 2f488f7082df063350cc5a774b61ee3207481a9b
-+    newName: quay.io/konflux-ci/sprayproxy
-+    newTag: f1afe07688592565986ded70ca912d80629c04a0
- 
- patches:
-   - path: change-backends.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-3de51c94/staging/components/sprayproxy/staging/kustomize.out.yaml
-197c197
-<         image: quay.io/konflux-ci/sprayproxy:f1afe07688592565986ded70ca912d80629c04a0
----
->         image: quay.io/redhat-appstudio/sprayproxy:2f488f7082df063350cc5a774b61ee3207481a9b 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 3de51c94 to 7f92afaa on Fri Mar 15 13:06:33 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/sprayproxy/staging/kustomization.yaml b/components/sprayproxy/staging/kustomization.yaml
-index 1143aa48..5aa4bd20 100644
---- a/components/sprayproxy/staging/kustomization.yaml
-+++ b/components/sprayproxy/staging/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/sprayproxy/config?ref=2f488f7082df063350cc5a774b61ee3207481a9b
-+  - https://github.com/konflux-ci/sprayproxy/config?ref=f1afe07688592565986ded70ca912d80629c04a0
-   - pipelines-as-code-secret.yaml
- 
- images:
-   - name: ko://github.com/konflux-ci/sprayproxy
--    newName: quay.io/redhat-appstudio/sprayproxy
--    newTag: 2f488f7082df063350cc5a774b61ee3207481a9b
-+    newName: quay.io/konflux-ci/sprayproxy
-+    newTag: f1afe07688592565986ded70ca912d80629c04a0
- 
- patches:
-   - path: change-backends.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  

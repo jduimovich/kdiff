@@ -1,0 +1,420 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1819edc5/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-2d884204/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1373c1373
+<         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1394,1395c1394,1395
+<             cpu: 100m
+<             memory: 512Mi
+---
+>             cpu: 5m
+>             memory: 128Mi
+1419a1420,1465
+>       initContainers:
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+>         name: migrator
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 32Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+1508,1509d1553
+<         - -threadiness
+<         - "32"
+1527c1571
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1539c1583
+<             cpu: 250m
+---
+>             cpu: 100m
+1666a1711,1718
+>           # If the secret is not marked as immutable, make it so.
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+>             echo "Making secret immutable"
+>             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+>               --patch='{"immutable": true}' \
+>             | kubectl apply -f -
+>           fi
+> 
+1912,1922d1963
+<             template:
+<               spec:
+<                 containers:
+<                 - name: proxy
+<                   resources:
+<                     limits:
+<                       cpu: 500m
+<                       memory: 500Mi
+<                     requests:
+<                       cpu: 100m
+<                       memory: 100Mi
+1926,1938d1966
+<         tekton-pipelines-webhook:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: webhook
+<                   resources:
+<                     limits:
+<                       cpu: "1"
+<                       memory: 1Gi
+<                     requests:
+<                       cpu: 200m
+<                       memory: 200Mi
+1940,1974d1967
+<       horizontalPodAutoscalers:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+<         tekton-pipelines-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1819edc5/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-2d884204/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1373c1373
+<         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1394,1395c1394,1395
+<             cpu: 100m
+<             memory: 512Mi
+---
+>             cpu: 5m
+>             memory: 128Mi
+1419a1420,1465
+>       initContainers:
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+>         name: migrator
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 32Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+1508,1509d1553
+<         - -threadiness
+<         - "32"
+1527c1571
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1539c1583
+<             cpu: 250m
+---
+>             cpu: 100m
+1666a1711,1718
+>           # If the secret is not marked as immutable, make it so.
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+>             echo "Making secret immutable"
+>             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+>               --patch='{"immutable": true}' \
+>             | kubectl apply -f -
+>           fi
+> 
+1912,1922d1963
+<             template:
+<               spec:
+<                 containers:
+<                 - name: proxy
+<                   resources:
+<                     limits:
+<                       cpu: 500m
+<                       memory: 500Mi
+<                     requests:
+<                       cpu: 100m
+<                       memory: 100Mi
+1926,1938d1966
+<         tekton-pipelines-webhook:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: webhook
+<                   resources:
+<                     limits:
+<                       cpu: "1"
+<                       memory: 1Gi
+<                     requests:
+<                       cpu: 200m
+<                       memory: 200Mi
+1940,1974d1967
+<       horizontalPodAutoscalers:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+<         tekton-pipelines-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-1819edc5/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-2d884204/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1373c1373
+<         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1394,1395c1394,1395
+<             cpu: 100m
+<             memory: 512Mi
+---
+>             cpu: 5m
+>             memory: 128Mi
+1419a1420,1465
+>       initContainers:
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+>         name: migrator
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 32Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+1508,1509d1553
+<         - -threadiness
+<         - "32"
+1527c1571
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1539c1583
+<             cpu: 250m
+---
+>             cpu: 100m
+1666a1711,1718
+>           # If the secret is not marked as immutable, make it so.
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+>             echo "Making secret immutable"
+>             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+>               --patch='{"immutable": true}' \
+>             | kubectl apply -f -
+>           fi
+> 
+1912,1922d1963
+<             template:
+<               spec:
+<                 containers:
+<                 - name: proxy
+<                   resources:
+<                     limits:
+<                       cpu: 500m
+<                       memory: 500Mi
+<                     requests:
+<                       cpu: 100m
+<                       memory: 100Mi
+1926,1938d1966
+<         tekton-pipelines-webhook:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: webhook
+<                   resources:
+<                     limits:
+<                       cpu: "1"
+<                       memory: 1Gi
+<                     requests:
+<                       cpu: 200m
+<                       memory: 200Mi
+1940,1974d1967
+<       horizontalPodAutoscalers:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+<         tekton-pipelines-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
