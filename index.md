@@ -1,12 +1,567 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Mar 18 16:05:13 UTC 2024
+### This file generated at Mon Mar 18 20:03:59 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 2a55d6ee to ea983d05 on Mon Mar 18 14:37:39 2024 </h3>  
+<h3>1: Production changes from ea983d05 to db4440bc on Mon Mar 18 17:03:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (71 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/user-management/production/README.adoc b/components/sandbox/user-management/production/README.adoc
+index 738c2164..a8f5274b 100644
+--- a/components/sandbox/user-management/production/README.adoc
++++ b/components/sandbox/user-management/production/README.adoc
+@@ -1,9 +1,10 @@
+-To apply any changes done in sandbox-config.yaml file run:
++To apply any changes done in kubesaw-admins.yaml file use ksctl command-line tool from https://github.com/kubesaw/ksctl and run:
+ ```
+-sandbox-cli adm setup -c sandbox-config.yaml --out-dir generated-manifests/
++ksctl adm setup -c components/sandbox/user-management/production/kubesaw-admins.yaml --out-dir components/sandbox/user-management/production/generated-manifests/
++
+ ```
+ 
+-To generate sandbox.yaml files for all ServiceAccounts listed in sandbox-config.yaml file, run:
++To generate ksctl.yaml files for all ServiceAccounts listed in kubesaw-admins.yaml file, run:
+ ```
+-sandbox-cli adm generate-cli-configs -c sandbox-config.yaml -k <./paths/to/all/production-kubeconfigs>
++ksctl adm generate-cli-configs -c components/sandbox/user-management/production/kubesaw-admins.yaml -k <./paths/to/all/production-kubeconfigs>
+ ```
+\ No newline at end of file
+diff --git a/components/sandbox/user-management/production/sandbox-config.yaml b/components/sandbox/user-management/production/kubesaw-admins.yaml
+similarity index 98%
+rename from components/sandbox/user-management/production/sandbox-config.yaml
+rename to components/sandbox/user-management/production/kubesaw-admins.yaml
+index 28283b65..846ac07c 100644
+--- a/components/sandbox/user-management/production/sandbox-config.yaml
++++ b/components/sandbox/user-management/production/kubesaw-admins.yaml
+@@ -8,7 +8,7 @@ clusters:
+     name: member-rh-1
+ 
+ serviceAccounts:
+-## service accounts to be used by humans via `sandbox-cli`
++## service accounts to be used by humans via `ksctl`
+ - name: alkazako
+   host:
+     roleBindings:
+diff --git a/components/sandbox/user-management/staging/README.adoc b/components/sandbox/user-management/staging/README.adoc
+index 6c97b0bb..6ad7469a 100644
+--- a/components/sandbox/user-management/staging/README.adoc
++++ b/components/sandbox/user-management/staging/README.adoc
+@@ -1,9 +1,9 @@
+-To apply any changes done in sandbox-config.yaml file run:
++To apply any changes done in kubesaw-admins.yaml file use ksctl command-line tool from https://github.com/kubesaw/ksctl and run:
+ ```
+-sandbox-cli adm setup -c sandbox-config.yaml --out-dir generated-manifests/
++ksctl adm setup -c components/sandbox/user-management/staging/kubesaw-admins.yaml --out-dir components/sandbox/user-management/staging/generated-manifests/
+ ```
+ 
+-To generate sandbox.yaml files for all ServiceAccounts listed in sandbox-config.yaml file, run:
++To generate ksctl.yaml files for all ServiceAccounts listed in kubesaw-admins.yaml file, run:
+ ```
+-sandbox-cli adm generate-cli-configs -c sandbox-config.yaml -k <./paths/to/all/stage-kubeconfigs>
++ksctl adm generate-cli-configs -c components/sandbox/user-management/staging/kubesaw-admins.yaml -k <./paths/to/all/stage-kubeconfigs>
+ ```
+\ No newline at end of file
+diff --git a/components/sandbox/user-management/staging/sandbox-config.yaml b/components/sandbox/user-management/staging/kubesaw-admins.yaml
+similarity index 98%
+rename from components/sandbox/user-management/staging/sandbox-config.yaml
+rename to components/sandbox/user-management/staging/kubesaw-admins.yaml
+index 54d01d63..2b0e77f7 100644
+--- a/components/sandbox/user-management/staging/sandbox-config.yaml
++++ b/components/sandbox/user-management/staging/kubesaw-admins.yaml
+@@ -8,7 +8,7 @@ clusters:
+     name: member-rh-1
+ 
+ serviceAccounts:
+-## service accounts to be used by humans via `sandbox-cli`
++## service accounts to be used by humans via `ksctl`
+ - name: filariow
+   host:
+     roleBindings: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from ea983d05 to db4440bc on Mon Mar 18 17:03:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (71 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/user-management/production/README.adoc b/components/sandbox/user-management/production/README.adoc
+index 738c2164..a8f5274b 100644
+--- a/components/sandbox/user-management/production/README.adoc
++++ b/components/sandbox/user-management/production/README.adoc
+@@ -1,9 +1,10 @@
+-To apply any changes done in sandbox-config.yaml file run:
++To apply any changes done in kubesaw-admins.yaml file use ksctl command-line tool from https://github.com/kubesaw/ksctl and run:
+ ```
+-sandbox-cli adm setup -c sandbox-config.yaml --out-dir generated-manifests/
++ksctl adm setup -c components/sandbox/user-management/production/kubesaw-admins.yaml --out-dir components/sandbox/user-management/production/generated-manifests/
++
+ ```
+ 
+-To generate sandbox.yaml files for all ServiceAccounts listed in sandbox-config.yaml file, run:
++To generate ksctl.yaml files for all ServiceAccounts listed in kubesaw-admins.yaml file, run:
+ ```
+-sandbox-cli adm generate-cli-configs -c sandbox-config.yaml -k <./paths/to/all/production-kubeconfigs>
++ksctl adm generate-cli-configs -c components/sandbox/user-management/production/kubesaw-admins.yaml -k <./paths/to/all/production-kubeconfigs>
+ ```
+\ No newline at end of file
+diff --git a/components/sandbox/user-management/production/sandbox-config.yaml b/components/sandbox/user-management/production/kubesaw-admins.yaml
+similarity index 98%
+rename from components/sandbox/user-management/production/sandbox-config.yaml
+rename to components/sandbox/user-management/production/kubesaw-admins.yaml
+index 28283b65..846ac07c 100644
+--- a/components/sandbox/user-management/production/sandbox-config.yaml
++++ b/components/sandbox/user-management/production/kubesaw-admins.yaml
+@@ -8,7 +8,7 @@ clusters:
+     name: member-rh-1
+ 
+ serviceAccounts:
+-## service accounts to be used by humans via `sandbox-cli`
++## service accounts to be used by humans via `ksctl`
+ - name: alkazako
+   host:
+     roleBindings:
+diff --git a/components/sandbox/user-management/staging/README.adoc b/components/sandbox/user-management/staging/README.adoc
+index 6c97b0bb..6ad7469a 100644
+--- a/components/sandbox/user-management/staging/README.adoc
++++ b/components/sandbox/user-management/staging/README.adoc
+@@ -1,9 +1,9 @@
+-To apply any changes done in sandbox-config.yaml file run:
++To apply any changes done in kubesaw-admins.yaml file use ksctl command-line tool from https://github.com/kubesaw/ksctl and run:
+ ```
+-sandbox-cli adm setup -c sandbox-config.yaml --out-dir generated-manifests/
++ksctl adm setup -c components/sandbox/user-management/staging/kubesaw-admins.yaml --out-dir components/sandbox/user-management/staging/generated-manifests/
+ ```
+ 
+-To generate sandbox.yaml files for all ServiceAccounts listed in sandbox-config.yaml file, run:
++To generate ksctl.yaml files for all ServiceAccounts listed in kubesaw-admins.yaml file, run:
+ ```
+-sandbox-cli adm generate-cli-configs -c sandbox-config.yaml -k <./paths/to/all/stage-kubeconfigs>
++ksctl adm generate-cli-configs -c components/sandbox/user-management/staging/kubesaw-admins.yaml -k <./paths/to/all/stage-kubeconfigs>
+ ```
+\ No newline at end of file
+diff --git a/components/sandbox/user-management/staging/sandbox-config.yaml b/components/sandbox/user-management/staging/kubesaw-admins.yaml
+similarity index 98%
+rename from components/sandbox/user-management/staging/sandbox-config.yaml
+rename to components/sandbox/user-management/staging/kubesaw-admins.yaml
+index 54d01d63..2b0e77f7 100644
+--- a/components/sandbox/user-management/staging/sandbox-config.yaml
++++ b/components/sandbox/user-management/staging/kubesaw-admins.yaml
+@@ -8,7 +8,7 @@ clusters:
+     name: member-rh-1
+ 
+ serviceAccounts:
+-## service accounts to be used by humans via `sandbox-cli`
++## service accounts to be used by humans via `ksctl`
+ - name: filariow
+   host:
+     roleBindings: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from ea983d05 to db4440bc on Mon Mar 18 17:03:25 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (71 lines)</summary>  
+
+``` 
+diff --git a/components/sandbox/user-management/production/README.adoc b/components/sandbox/user-management/production/README.adoc
+index 738c2164..a8f5274b 100644
+--- a/components/sandbox/user-management/production/README.adoc
++++ b/components/sandbox/user-management/production/README.adoc
+@@ -1,9 +1,10 @@
+-To apply any changes done in sandbox-config.yaml file run:
++To apply any changes done in kubesaw-admins.yaml file use ksctl command-line tool from https://github.com/kubesaw/ksctl and run:
+ ```
+-sandbox-cli adm setup -c sandbox-config.yaml --out-dir generated-manifests/
++ksctl adm setup -c components/sandbox/user-management/production/kubesaw-admins.yaml --out-dir components/sandbox/user-management/production/generated-manifests/
++
+ ```
+ 
+-To generate sandbox.yaml files for all ServiceAccounts listed in sandbox-config.yaml file, run:
++To generate ksctl.yaml files for all ServiceAccounts listed in kubesaw-admins.yaml file, run:
+ ```
+-sandbox-cli adm generate-cli-configs -c sandbox-config.yaml -k <./paths/to/all/production-kubeconfigs>
++ksctl adm generate-cli-configs -c components/sandbox/user-management/production/kubesaw-admins.yaml -k <./paths/to/all/production-kubeconfigs>
+ ```
+\ No newline at end of file
+diff --git a/components/sandbox/user-management/production/sandbox-config.yaml b/components/sandbox/user-management/production/kubesaw-admins.yaml
+similarity index 98%
+rename from components/sandbox/user-management/production/sandbox-config.yaml
+rename to components/sandbox/user-management/production/kubesaw-admins.yaml
+index 28283b65..846ac07c 100644
+--- a/components/sandbox/user-management/production/sandbox-config.yaml
++++ b/components/sandbox/user-management/production/kubesaw-admins.yaml
+@@ -8,7 +8,7 @@ clusters:
+     name: member-rh-1
+ 
+ serviceAccounts:
+-## service accounts to be used by humans via `sandbox-cli`
++## service accounts to be used by humans via `ksctl`
+ - name: alkazako
+   host:
+     roleBindings:
+diff --git a/components/sandbox/user-management/staging/README.adoc b/components/sandbox/user-management/staging/README.adoc
+index 6c97b0bb..6ad7469a 100644
+--- a/components/sandbox/user-management/staging/README.adoc
++++ b/components/sandbox/user-management/staging/README.adoc
+@@ -1,9 +1,9 @@
+-To apply any changes done in sandbox-config.yaml file run:
++To apply any changes done in kubesaw-admins.yaml file use ksctl command-line tool from https://github.com/kubesaw/ksctl and run:
+ ```
+-sandbox-cli adm setup -c sandbox-config.yaml --out-dir generated-manifests/
++ksctl adm setup -c components/sandbox/user-management/staging/kubesaw-admins.yaml --out-dir components/sandbox/user-management/staging/generated-manifests/
+ ```
+ 
+-To generate sandbox.yaml files for all ServiceAccounts listed in sandbox-config.yaml file, run:
++To generate ksctl.yaml files for all ServiceAccounts listed in kubesaw-admins.yaml file, run:
+ ```
+-sandbox-cli adm generate-cli-configs -c sandbox-config.yaml -k <./paths/to/all/stage-kubeconfigs>
++ksctl adm generate-cli-configs -c components/sandbox/user-management/staging/kubesaw-admins.yaml -k <./paths/to/all/stage-kubeconfigs>
+ ```
+\ No newline at end of file
+diff --git a/components/sandbox/user-management/staging/sandbox-config.yaml b/components/sandbox/user-management/staging/kubesaw-admins.yaml
+similarity index 98%
+rename from components/sandbox/user-management/staging/sandbox-config.yaml
+rename to components/sandbox/user-management/staging/kubesaw-admins.yaml
+index 54d01d63..2b0e77f7 100644
+--- a/components/sandbox/user-management/staging/sandbox-config.yaml
++++ b/components/sandbox/user-management/staging/kubesaw-admins.yaml
+@@ -8,7 +8,7 @@ clusters:
+     name: member-rh-1
+ 
+ serviceAccounts:
+-## service accounts to be used by humans via `sandbox-cli`
++## service accounts to be used by humans via `ksctl`
+ - name: filariow
+   host:
+     roleBindings: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 2a55d6ee to ea983d05 on Mon Mar 18 14:37:39 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -165,7 +720,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 2a55d6ee to ea983d05 on Mon Mar 18 14:37:39 2024 </h3>  
+<h3>2: Staging changes from 2a55d6ee to ea983d05 on Mon Mar 18 14:37:39 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -327,7 +882,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 2a55d6ee to ea983d05 on Mon Mar 18 14:37:39 2024 </h3>  
+<h3>2: Development changes from 2a55d6ee to ea983d05 on Mon Mar 18 14:37:39 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -441,7 +996,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from aa38189c to 2a55d6ee on Mon Mar 18 13:40:58 2024 </h3>  
+<h3>3: Production changes from aa38189c to 2a55d6ee on Mon Mar 18 13:40:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -594,7 +1149,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from aa38189c to 2a55d6ee on Mon Mar 18 13:40:58 2024 </h3>  
+<h3>3: Staging changes from aa38189c to 2a55d6ee on Mon Mar 18 13:40:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -746,7 +1301,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from aa38189c to 2a55d6ee on Mon Mar 18 13:40:58 2024 </h3>  
+<h3>3: Development changes from aa38189c to 2a55d6ee on Mon Mar 18 13:40:58 2024 </h3>  
  
 <details> 
 <summary>Git Diff (21 lines)</summary>  
@@ -850,7 +1405,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from f96085c5 to aa38189c on Mon Mar 18 12:31:06 2024 </h3>  
+<h3>4: Production changes from f96085c5 to aa38189c on Mon Mar 18 12:31:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (239 lines)</summary>  
@@ -1673,7 +2228,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from f96085c5 to aa38189c on Mon Mar 18 12:31:06 2024 </h3>  
+<h3>4: Staging changes from f96085c5 to aa38189c on Mon Mar 18 12:31:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (239 lines)</summary>  
@@ -2043,7 +2598,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from f96085c5 to aa38189c on Mon Mar 18 12:31:06 2024 </h3>  
+<h3>4: Development changes from f96085c5 to aa38189c on Mon Mar 18 12:31:06 2024 </h3>  
  
 <details> 
 <summary>Git Diff (239 lines)</summary>  
@@ -2297,494 +2852,6 @@ index 00000000..a60ffc01
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 81312833 to f96085c5 on Mon Mar 18 11:38:11 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
-index 83cea5d8..d150c90a 100644
---- a/components/image-controller/development/kustomization.yaml
-+++ b/components/image-controller/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/image-controller/config/default?ref=65422167cd7d16d6e563ac110e5f7089144f0dd0
-+- https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- images:
- - name: quay.io/redhat-appstudio/image-controller
-   newName: quay.io/redhat-appstudio/image-controller
--  newTag: 65422167cd7d16d6e563ac110e5f7089144f0dd0
-+  newTag: 143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- namespace: image-controller
- 
-diff --git a/components/image-controller/staging/kustomization.yaml b/components/image-controller/staging/kustomization.yaml
-index ffac4624..db906be6 100644
---- a/components/image-controller/staging/kustomization.yaml
-+++ b/components/image-controller/staging/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../base
- - ../base/external-secrets
--- https://github.com/redhat-appstudio/image-controller/config/default?ref=65422167cd7d16d6e563ac110e5f7089144f0dd0
-+- https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- images:
- - name: quay.io/redhat-appstudio/image-controller
-   newName: quay.io/redhat-appstudio/image-controller
--  newTag: 65422167cd7d16d6e563ac110e5f7089144f0dd0
-+  newTag: 143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- namespace: image-controller
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 81312833 to f96085c5 on Mon Mar 18 11:38:11 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
-index 83cea5d8..d150c90a 100644
---- a/components/image-controller/development/kustomization.yaml
-+++ b/components/image-controller/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/image-controller/config/default?ref=65422167cd7d16d6e563ac110e5f7089144f0dd0
-+- https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- images:
- - name: quay.io/redhat-appstudio/image-controller
-   newName: quay.io/redhat-appstudio/image-controller
--  newTag: 65422167cd7d16d6e563ac110e5f7089144f0dd0
-+  newTag: 143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- namespace: image-controller
- 
-diff --git a/components/image-controller/staging/kustomization.yaml b/components/image-controller/staging/kustomization.yaml
-index ffac4624..db906be6 100644
---- a/components/image-controller/staging/kustomization.yaml
-+++ b/components/image-controller/staging/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../base
- - ../base/external-secrets
--- https://github.com/redhat-appstudio/image-controller/config/default?ref=65422167cd7d16d6e563ac110e5f7089144f0dd0
-+- https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- images:
- - name: quay.io/redhat-appstudio/image-controller
-   newName: quay.io/redhat-appstudio/image-controller
--  newTag: 65422167cd7d16d6e563ac110e5f7089144f0dd0
-+  newTag: 143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- namespace: image-controller
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-81312833/staging/components/image-controller/staging/kustomize.out.yaml
-511c511
-<         tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att|\.src)$")
----
->         tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att)$")
-587c587
-<   name: image-controller-image-pruner-configmap-h7dftck666
----
->   name: image-controller-image-pruner-configmap-5848ggd264
-668c668
-<         image: quay.io/redhat-appstudio/image-controller:143d709ff49d94e2b7f489da2fdb9708d38f466c
----
->         image: quay.io/redhat-appstudio/image-controller:65422167cd7d16d6e563ac110e5f7089144f0dd0
-782c782
-<               name: image-controller-image-pruner-configmap-h7dftck666
----
->               name: image-controller-image-pruner-configmap-5848ggd264 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 81312833 to f96085c5 on Mon Mar 18 11:38:11 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (38 lines)</summary>  
-
-``` 
-diff --git a/components/image-controller/development/kustomization.yaml b/components/image-controller/development/kustomization.yaml
-index 83cea5d8..d150c90a 100644
---- a/components/image-controller/development/kustomization.yaml
-+++ b/components/image-controller/development/kustomization.yaml
-@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - ../base
--- https://github.com/redhat-appstudio/image-controller/config/default?ref=65422167cd7d16d6e563ac110e5f7089144f0dd0
-+- https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- images:
- - name: quay.io/redhat-appstudio/image-controller
-   newName: quay.io/redhat-appstudio/image-controller
--  newTag: 65422167cd7d16d6e563ac110e5f7089144f0dd0
-+  newTag: 143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- namespace: image-controller
- 
-diff --git a/components/image-controller/staging/kustomization.yaml b/components/image-controller/staging/kustomization.yaml
-index ffac4624..db906be6 100644
---- a/components/image-controller/staging/kustomization.yaml
-+++ b/components/image-controller/staging/kustomization.yaml
-@@ -3,12 +3,12 @@ kind: Kustomization
- resources:
- - ../base
- - ../base/external-secrets
--- https://github.com/redhat-appstudio/image-controller/config/default?ref=65422167cd7d16d6e563ac110e5f7089144f0dd0
-+- https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- images:
- - name: quay.io/redhat-appstudio/image-controller
-   newName: quay.io/redhat-appstudio/image-controller
--  newTag: 65422167cd7d16d6e563ac110e5f7089144f0dd0
-+  newTag: 143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- namespace: image-controller
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-81312833/development/components/image-controller/development/kustomize.out.yaml
-511c511
-<         tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att|\.src)$")
----
->         tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att)$")
-587c587
-<   name: image-controller-image-pruner-configmap-h7dftck666
----
->   name: image-controller-image-pruner-configmap-5848ggd264
-669c669
-<         image: quay.io/redhat-appstudio/image-controller:143d709ff49d94e2b7f489da2fdb9708d38f466c
----
->         image: quay.io/redhat-appstudio/image-controller:65422167cd7d16d6e563ac110e5f7089144f0dd0
-783c783
-<               name: image-controller-image-pruner-configmap-h7dftck666
----
->               name: image-controller-image-pruner-configmap-5848ggd264 
 ```
  
 </details>  
