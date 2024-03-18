@@ -1,0 +1,22 @@
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
+index 146985da..4b38053e 100644
+--- a/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-staging/kustomization.yaml
+@@ -4,9 +4,4 @@ resources:
+   - ../../base/host
+   - ../../base/member
+   - ../../base/all-clusters
+-patches:
+-  - path: migration.patch.yaml
+-    target:
+-      kind: ApplicationSet
+-      version: v1alpha1
+ namespace: konflux-public-staging
+diff --git a/argo-cd-apps/overlays/konflux-public-staging/migration.patch.yaml b/argo-cd-apps/overlays/konflux-public-staging/migration.patch.yaml
+deleted file mode 100644
+index a60ffc01..00000000
+--- a/argo-cd-apps/overlays/konflux-public-staging/migration.patch.yaml
++++ /dev/null
+@@ -1,2 +0,0 @@
+-- op: remove
+-  path: /spec/template/spec/syncPolicy
