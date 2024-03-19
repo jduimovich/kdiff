@@ -1,0 +1,22 @@
+diff --git a/components/build-service/production/base/increase-build-controller-memory.yaml b/components/build-service/production/base/increase-build-controller-memory.yaml
+new file mode 100644
+index 00000000..3947b621
+--- /dev/null
++++ b/components/build-service/production/base/increase-build-controller-memory.yaml
+@@ -0,0 +1,4 @@
++---
++- op: replace
++  path: /spec/template/spec/containers/0/resources/limits/memory
++  value: "512Mi"
+diff --git a/components/build-service/production/base/kustomization.yaml b/components/build-service/production/base/kustomization.yaml
+index 904412ba..25ded31e 100644
+--- a/components/build-service/production/base/kustomization.yaml
++++ b/components/build-service/production/base/kustomization.yaml
+@@ -22,3 +22,7 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
++  - path: increase-build-controller-memory.yaml
++    target:
++      kind: Deployment
++      name: build-service-controller-manager
