@@ -1,12 +1,3601 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Mar 19 00:05:12 UTC 2024
+### This file generated at Tue Mar 19 04:05:15 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from ea983d05 to db4440bc on Mon Mar 18 17:03:25 2024 </h3>  
+<h3>1: Production changes from 829ce6b9 to 855d61a0 on Tue Mar 19 03:19:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 5ce8b54e..36af874a 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=0766dfb1c84bd0ad954a2f2c65fec1980f095f40
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=0766dfb1c84bd0ad954a2f2c65fec1980f095f40
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=93f0ff0a0ef11d491d249180f8380eba1d9abcce
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=93f0ff0a0ef11d491d249180f8380eba1d9abcce
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 0766dfb1c84bd0ad954a2f2c65fec1980f095f40
++  newTag: 93f0ff0a0ef11d491d249180f8380eba1d9abcce
+ 
+ configMapGenerator:
+ - name: console-url
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index c368749b..9bc7280a 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=0766dfb1c84bd0ad954a2f2c65fec1980f095f40
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=0766dfb1c84bd0ad954a2f2c65fec1980f095f40
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=93f0ff0a0ef11d491d249180f8380eba1d9abcce
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=93f0ff0a0ef11d491d249180f8380eba1d9abcce
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 0766dfb1c84bd0ad954a2f2c65fec1980f095f40
++  newTag: 93f0ff0a0ef11d491d249180f8380eba1d9abcce
+ 
+ configMapGenerator:
+ - name: console-url 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 829ce6b9 to 855d61a0 on Tue Mar 19 03:19:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 5ce8b54e..36af874a 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=0766dfb1c84bd0ad954a2f2c65fec1980f095f40
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=0766dfb1c84bd0ad954a2f2c65fec1980f095f40
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=93f0ff0a0ef11d491d249180f8380eba1d9abcce
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=93f0ff0a0ef11d491d249180f8380eba1d9abcce
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 0766dfb1c84bd0ad954a2f2c65fec1980f095f40
++  newTag: 93f0ff0a0ef11d491d249180f8380eba1d9abcce
+ 
+ configMapGenerator:
+ - name: console-url
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index c368749b..9bc7280a 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=0766dfb1c84bd0ad954a2f2c65fec1980f095f40
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=0766dfb1c84bd0ad954a2f2c65fec1980f095f40
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=93f0ff0a0ef11d491d249180f8380eba1d9abcce
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=93f0ff0a0ef11d491d249180f8380eba1d9abcce
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 0766dfb1c84bd0ad954a2f2c65fec1980f095f40
++  newTag: 93f0ff0a0ef11d491d249180f8380eba1d9abcce
+ 
+ configMapGenerator:
+ - name: console-url 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-829ce6b9/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+1199c1199
+<         image: quay.io/redhat-appstudio/integration-service:93f0ff0a0ef11d491d249180f8380eba1d9abcce
+---
+>         image: quay.io/redhat-appstudio/integration-service:0766dfb1c84bd0ad954a2f2c65fec1980f095f40
+1290c1290
+<             image: quay.io/redhat-appstudio/integration-service:93f0ff0a0ef11d491d249180f8380eba1d9abcce
+---
+>             image: quay.io/redhat-appstudio/integration-service:0766dfb1c84bd0ad954a2f2c65fec1980f095f40 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 829ce6b9 to 855d61a0 on Tue Mar 19 03:19:38 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (42 lines)</summary>  
+
+``` 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 5ce8b54e..36af874a 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=0766dfb1c84bd0ad954a2f2c65fec1980f095f40
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=0766dfb1c84bd0ad954a2f2c65fec1980f095f40
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=93f0ff0a0ef11d491d249180f8380eba1d9abcce
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=93f0ff0a0ef11d491d249180f8380eba1d9abcce
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 0766dfb1c84bd0ad954a2f2c65fec1980f095f40
++  newTag: 93f0ff0a0ef11d491d249180f8380eba1d9abcce
+ 
+ configMapGenerator:
+ - name: console-url
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index c368749b..9bc7280a 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=0766dfb1c84bd0ad954a2f2c65fec1980f095f40
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=0766dfb1c84bd0ad954a2f2c65fec1980f095f40
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=93f0ff0a0ef11d491d249180f8380eba1d9abcce
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=93f0ff0a0ef11d491d249180f8380eba1d9abcce
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: 0766dfb1c84bd0ad954a2f2c65fec1980f095f40
++  newTag: 93f0ff0a0ef11d491d249180f8380eba1d9abcce
+ 
+ configMapGenerator:
+ - name: console-url 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-829ce6b9/development/components/integration/development/kustomize.out.yaml
+1198c1198
+<         image: quay.io/redhat-appstudio/integration-service:93f0ff0a0ef11d491d249180f8380eba1d9abcce
+---
+>         image: quay.io/redhat-appstudio/integration-service:0766dfb1c84bd0ad954a2f2c65fec1980f095f40
+1292c1292
+<             image: quay.io/redhat-appstudio/integration-service:93f0ff0a0ef11d491d249180f8380eba1d9abcce
+---
+>             image: quay.io/redhat-appstudio/integration-service:0766dfb1c84bd0ad954a2f2c65fec1980f095f40 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from db4440bc to 829ce6b9 on Tue Mar 19 01:13:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (695 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index 796c0ad1..9a4b4cb1 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=618ca08478a8d945cad1274800a3d982be4dee06
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 3036fccf..df4a098a 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=618ca08478a8d945cad1274800a3d982be4dee06
+   - ../base/rbac
+ 
+ patches:
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 1b7f2ef7..bc2ec1ef 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 1da3cb1e..948ec7fb 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -896,48 +896,6 @@ subjects:
+   namespace: tekton-results
+ ---
+ apiVersion: v1
+-data:
+-  loglevel.controller: info
+-  loglevel.webhook: info
+-  zap-logger-config: |
+-    {
+-      "level": "info",
+-      "development": false,
+-      "sampling": {
+-        "initial": 100,
+-        "thereafter": 100
+-      },
+-      "outputPaths": ["stdout"],
+-      "errorOutputPaths": ["stderr"],
+-      "encoding": "json",
+-      "encoderConfig": {
+-        "timeKey": "ts",
+-        "levelKey": "level",
+-        "nameKey": "logger",
+-        "callerKey": "caller",
+-        "messageKey": "msg",
+-        "stacktraceKey": "stacktrace",
+-        "lineEnding": "",
+-        "levelEncoder": "",
+-        "timeEncoder": "iso8601",
+-        "durationEncoder": "string",
+-        "callerEncoder": ""
+-      }
+-    }
+-kind: ConfigMap
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  labels:
+-    app.kubernetes.io/component: resolvers
+-    app.kubernetes.io/instance: default
+-    app.kubernetes.io/part-of: tekton-pipelines
+-    operator.tekton.dev/operand-name: tektoncd-pipelines
+-  name: config-logging
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+ data:
+   config.env: |
+     DB_USER=
+@@ -1371,7 +1329,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1418,6 +1376,52 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1506,8 +1510,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1525,7 +1527,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1906,6 +1908,36 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     options:
++      configMaps:
++        config-logging:
++          data:
++            loglevel.controller: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -2004,6 +2036,39 @@ spec:
+   pruner:
+     disabled: true
+   targetNamespace: openshift-pipelines
++  trigger:
++    options:
++      configMaps:
++        config-logging-triggers:
++          data:
++            loglevel.controller: info
++            loglevel.eventlistener: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
+ kind: CatalogSource
+@@ -2015,7 +2080,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 796b507c..d3dd9177 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -896,48 +896,6 @@ subjects:
+   namespace: tekton-results
+ ---
+ apiVersion: v1
+-data:
+-  loglevel.controller: info
+-  loglevel.webhook: info
+-  zap-logger-config: |
+-    {
+-      "level": "info",
+-      "development": false,
+-      "sampling": {
+-        "initial": 100,
+-        "thereafter": 100
+-      },
+-      "outputPaths": ["stdout"],
+-      "errorOutputPaths": ["stderr"],
+-      "encoding": "json",
+-      "encoderConfig": {
+-        "timeKey": "ts",
+-        "levelKey": "level",
+-        "nameKey": "logger",
+-        "callerKey": "caller",
+-        "messageKey": "msg",
+-        "stacktraceKey": "stacktrace",
+-        "lineEnding": "",
+-        "levelEncoder": "",
+-        "timeEncoder": "iso8601",
+-        "durationEncoder": "string",
+-        "callerEncoder": ""
+-      }
+-    }
+-kind: ConfigMap
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  labels:
+-    app.kubernetes.io/component: resolvers
+-    app.kubernetes.io/instance: default
+-    app.kubernetes.io/part-of: tekton-pipelines
+-    operator.tekton.dev/operand-name: tektoncd-pipelines
+-  name: config-logging
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+ data:
+   config.env: |
+     DB_USER=
+@@ -1371,7 +1329,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1418,6 +1376,52 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1506,8 +1510,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1525,7 +1527,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1906,6 +1908,36 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     options:
++      configMaps:
++        config-logging:
++          data:
++            loglevel.controller: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -2004,6 +2036,39 @@ spec:
+   pruner:
+     disabled: true
+   targetNamespace: openshift-pipelines
++  trigger:
++    options:
++      configMaps:
++        config-logging-triggers:
++          data:
++            loglevel.controller: info
++            loglevel.eventlistener: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
+ kind: CatalogSource
+@@ -2015,7 +2080,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 78940544..f3fad6eb 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -896,48 +896,6 @@ subjects:
+   namespace: tekton-results
+ ---
+ apiVersion: v1
+-data:
+-  loglevel.controller: info
+-  loglevel.webhook: info
+-  zap-logger-config: |
+-    {
+-      "level": "info",
+-      "development": false,
+-      "sampling": {
+-        "initial": 100,
+-        "thereafter": 100
+-      },
+-      "outputPaths": ["stdout"],
+-      "errorOutputPaths": ["stderr"],
+-      "encoding": "json",
+-      "encoderConfig": {
+-        "timeKey": "ts",
+-        "levelKey": "level",
+-        "nameKey": "logger",
+-        "callerKey": "caller",
+-        "messageKey": "msg",
+-        "stacktraceKey": "stacktrace",
+-        "lineEnding": "",
+-        "levelEncoder": "",
+-        "timeEncoder": "iso8601",
+-        "durationEncoder": "string",
+-        "callerEncoder": ""
+-      }
+-    }
+-kind: ConfigMap
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  labels:
+-    app.kubernetes.io/component: resolvers
+-    app.kubernetes.io/instance: default
+-    app.kubernetes.io/part-of: tekton-pipelines
+-    operator.tekton.dev/operand-name: tektoncd-pipelines
+-  name: config-logging
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+ data:
+   config.env: |
+     DB_USER=
+@@ -1371,7 +1329,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1418,6 +1376,52 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1506,8 +1510,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1525,7 +1527,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1906,6 +1908,36 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     options:
++      configMaps:
++        config-logging:
++          data:
++            loglevel.controller: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -2004,6 +2036,39 @@ spec:
+   pruner:
+     disabled: true
+   targetNamespace: openshift-pipelines
++  trigger:
++    options:
++      configMaps:
++        config-logging-triggers:
++          data:
++            loglevel.controller: info
++            loglevel.eventlistener: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
+ kind: CatalogSource
+@@ -2015,7 +2080,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+   sourceType: grpc
+   updateStrategy:
+     registryPoll: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from db4440bc to 829ce6b9 on Tue Mar 19 01:13:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (695 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index 796c0ad1..9a4b4cb1 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=618ca08478a8d945cad1274800a3d982be4dee06
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 3036fccf..df4a098a 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=618ca08478a8d945cad1274800a3d982be4dee06
+   - ../base/rbac
+ 
+ patches:
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 1b7f2ef7..bc2ec1ef 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 1da3cb1e..948ec7fb 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -896,48 +896,6 @@ subjects:
+   namespace: tekton-results
+ ---
+ apiVersion: v1
+-data:
+-  loglevel.controller: info
+-  loglevel.webhook: info
+-  zap-logger-config: |
+-    {
+-      "level": "info",
+-      "development": false,
+-      "sampling": {
+-        "initial": 100,
+-        "thereafter": 100
+-      },
+-      "outputPaths": ["stdout"],
+-      "errorOutputPaths": ["stderr"],
+-      "encoding": "json",
+-      "encoderConfig": {
+-        "timeKey": "ts",
+-        "levelKey": "level",
+-        "nameKey": "logger",
+-        "callerKey": "caller",
+-        "messageKey": "msg",
+-        "stacktraceKey": "stacktrace",
+-        "lineEnding": "",
+-        "levelEncoder": "",
+-        "timeEncoder": "iso8601",
+-        "durationEncoder": "string",
+-        "callerEncoder": ""
+-      }
+-    }
+-kind: ConfigMap
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  labels:
+-    app.kubernetes.io/component: resolvers
+-    app.kubernetes.io/instance: default
+-    app.kubernetes.io/part-of: tekton-pipelines
+-    operator.tekton.dev/operand-name: tektoncd-pipelines
+-  name: config-logging
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+ data:
+   config.env: |
+     DB_USER=
+@@ -1371,7 +1329,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1418,6 +1376,52 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1506,8 +1510,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1525,7 +1527,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1906,6 +1908,36 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     options:
++      configMaps:
++        config-logging:
++          data:
++            loglevel.controller: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -2004,6 +2036,39 @@ spec:
+   pruner:
+     disabled: true
+   targetNamespace: openshift-pipelines
++  trigger:
++    options:
++      configMaps:
++        config-logging-triggers:
++          data:
++            loglevel.controller: info
++            loglevel.eventlistener: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
+ kind: CatalogSource
+@@ -2015,7 +2080,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 796b507c..d3dd9177 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -896,48 +896,6 @@ subjects:
+   namespace: tekton-results
+ ---
+ apiVersion: v1
+-data:
+-  loglevel.controller: info
+-  loglevel.webhook: info
+-  zap-logger-config: |
+-    {
+-      "level": "info",
+-      "development": false,
+-      "sampling": {
+-        "initial": 100,
+-        "thereafter": 100
+-      },
+-      "outputPaths": ["stdout"],
+-      "errorOutputPaths": ["stderr"],
+-      "encoding": "json",
+-      "encoderConfig": {
+-        "timeKey": "ts",
+-        "levelKey": "level",
+-        "nameKey": "logger",
+-        "callerKey": "caller",
+-        "messageKey": "msg",
+-        "stacktraceKey": "stacktrace",
+-        "lineEnding": "",
+-        "levelEncoder": "",
+-        "timeEncoder": "iso8601",
+-        "durationEncoder": "string",
+-        "callerEncoder": ""
+-      }
+-    }
+-kind: ConfigMap
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  labels:
+-    app.kubernetes.io/component: resolvers
+-    app.kubernetes.io/instance: default
+-    app.kubernetes.io/part-of: tekton-pipelines
+-    operator.tekton.dev/operand-name: tektoncd-pipelines
+-  name: config-logging
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+ data:
+   config.env: |
+     DB_USER=
+@@ -1371,7 +1329,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1418,6 +1376,52 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1506,8 +1510,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1525,7 +1527,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1906,6 +1908,36 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     options:
++      configMaps:
++        config-logging:
++          data:
++            loglevel.controller: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -2004,6 +2036,39 @@ spec:
+   pruner:
+     disabled: true
+   targetNamespace: openshift-pipelines
++  trigger:
++    options:
++      configMaps:
++        config-logging-triggers:
++          data:
++            loglevel.controller: info
++            loglevel.eventlistener: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
+ kind: CatalogSource
+@@ -2015,7 +2080,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 78940544..f3fad6eb 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -896,48 +896,6 @@ subjects:
+   namespace: tekton-results
+ ---
+ apiVersion: v1
+-data:
+-  loglevel.controller: info
+-  loglevel.webhook: info
+-  zap-logger-config: |
+-    {
+-      "level": "info",
+-      "development": false,
+-      "sampling": {
+-        "initial": 100,
+-        "thereafter": 100
+-      },
+-      "outputPaths": ["stdout"],
+-      "errorOutputPaths": ["stderr"],
+-      "encoding": "json",
+-      "encoderConfig": {
+-        "timeKey": "ts",
+-        "levelKey": "level",
+-        "nameKey": "logger",
+-        "callerKey": "caller",
+-        "messageKey": "msg",
+-        "stacktraceKey": "stacktrace",
+-        "lineEnding": "",
+-        "levelEncoder": "",
+-        "timeEncoder": "iso8601",
+-        "durationEncoder": "string",
+-        "callerEncoder": ""
+-      }
+-    }
+-kind: ConfigMap
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  labels:
+-    app.kubernetes.io/component: resolvers
+-    app.kubernetes.io/instance: default
+-    app.kubernetes.io/part-of: tekton-pipelines
+-    operator.tekton.dev/operand-name: tektoncd-pipelines
+-  name: config-logging
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+ data:
+   config.env: |
+     DB_USER=
+@@ -1371,7 +1329,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1418,6 +1376,52 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1506,8 +1510,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1525,7 +1527,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1906,6 +1908,36 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     options:
++      configMaps:
++        config-logging:
++          data:
++            loglevel.controller: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -2004,6 +2036,39 @@ spec:
+   pruner:
+     disabled: true
+   targetNamespace: openshift-pipelines
++  trigger:
++    options:
++      configMaps:
++        config-logging-triggers:
++          data:
++            loglevel.controller: info
++            loglevel.eventlistener: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
+ kind: CatalogSource
+@@ -2015,7 +2080,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+   sourceType: grpc
+   updateStrategy:
+     registryPoll: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (513 lines)</summary>  
+
+``` 
+./commit-db4440bc/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+899a900,941
+>   loglevel.controller: info
+>   loglevel.webhook: info
+>   zap-logger-config: |
+>     {
+>       "level": "info",
+>       "development": false,
+>       "sampling": {
+>         "initial": 100,
+>         "thereafter": 100
+>       },
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "ts",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+>     }
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   labels:
+>     app.kubernetes.io/component: resolvers
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-pipelines
+>     operator.tekton.dev/operand-name: tektoncd-pipelines
+>   name: config-logging
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+1332c1374
+<         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+1379,1424d1420
+<       initContainers:
+<       - env:
+<         - name: DB_USER
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.user
+<               name: tekton-results-database
+<         - name: DB_PASSWORD
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.password
+<               name: tekton-results-database
+<         - name: DB_HOST
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.host
+<               name: tekton-results-database
+<         - name: DB_NAME
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.name
+<               name: tekton-results-database
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+<         name: migrator
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 32Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             add:
+<             - NET_BIND_SERVICE
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+<         volumeMounts:
+<         - mountPath: /etc/tekton/results
+<           name: config
+<           readOnly: true
+1512a1509,1510
+>         - -threadiness
+>         - "32"
+1530c1528
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+1911,1940d1908
+<       configMaps:
+<         config-logging:
+<           data:
+<             loglevel.controller: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2039,2071d2006
+<   trigger:
+<     options:
+<       configMaps:
+<         config-logging-triggers:
+<           data:
+<             loglevel.controller: info
+<             loglevel.eventlistener: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2083c2018
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
+./commit-db4440bc/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+899a900,941
+>   loglevel.controller: info
+>   loglevel.webhook: info
+>   zap-logger-config: |
+>     {
+>       "level": "info",
+>       "development": false,
+>       "sampling": {
+>         "initial": 100,
+>         "thereafter": 100
+>       },
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "ts",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+>     }
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   labels:
+>     app.kubernetes.io/component: resolvers
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-pipelines
+>     operator.tekton.dev/operand-name: tektoncd-pipelines
+>   name: config-logging
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+1332c1374
+<         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+1379,1424d1420
+<       initContainers:
+<       - env:
+<         - name: DB_USER
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.user
+<               name: tekton-results-database
+<         - name: DB_PASSWORD
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.password
+<               name: tekton-results-database
+<         - name: DB_HOST
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.host
+<               name: tekton-results-database
+<         - name: DB_NAME
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.name
+<               name: tekton-results-database
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+<         name: migrator
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 32Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             add:
+<             - NET_BIND_SERVICE
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+<         volumeMounts:
+<         - mountPath: /etc/tekton/results
+<           name: config
+<           readOnly: true
+1512a1509,1510
+>         - -threadiness
+>         - "32"
+1530c1528
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+1911,1940d1908
+<       configMaps:
+<         config-logging:
+<           data:
+<             loglevel.controller: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2039,2071d2006
+<   trigger:
+<     options:
+<       configMaps:
+<         config-logging-triggers:
+<           data:
+<             loglevel.controller: info
+<             loglevel.eventlistener: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2083c2018
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
+./commit-db4440bc/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+899a900,941
+>   loglevel.controller: info
+>   loglevel.webhook: info
+>   zap-logger-config: |
+>     {
+>       "level": "info",
+>       "development": false,
+>       "sampling": {
+>         "initial": 100,
+>         "thereafter": 100
+>       },
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "ts",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+>     }
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   labels:
+>     app.kubernetes.io/component: resolvers
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-pipelines
+>     operator.tekton.dev/operand-name: tektoncd-pipelines
+>   name: config-logging
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+1332c1374
+<         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+1379,1424d1420
+<       initContainers:
+<       - env:
+<         - name: DB_USER
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.user
+<               name: tekton-results-database
+<         - name: DB_PASSWORD
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.password
+<               name: tekton-results-database
+<         - name: DB_HOST
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.host
+<               name: tekton-results-database
+<         - name: DB_NAME
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.name
+<               name: tekton-results-database
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+<         name: migrator
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 32Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             add:
+<             - NET_BIND_SERVICE
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+<         volumeMounts:
+<         - mountPath: /etc/tekton/results
+<           name: config
+<           readOnly: true
+1512a1509,1510
+>         - -threadiness
+>         - "32"
+1530c1528
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+1911,1940d1908
+<       configMaps:
+<         config-logging:
+<           data:
+<             loglevel.controller: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2039,2071d2006
+<   trigger:
+<     options:
+<       configMaps:
+<         config-logging-triggers:
+<           data:
+<             loglevel.controller: info
+<             loglevel.eventlistener: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2083c2018
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from db4440bc to 829ce6b9 on Tue Mar 19 01:13:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (695 lines)</summary>  
+
+``` 
+diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+index 796c0ad1..9a4b4cb1 100644
+--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
+@@ -2,4 +2,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
++  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=618ca08478a8d945cad1274800a3d982be4dee06
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 3036fccf..df4a098a 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -8,8 +8,8 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
+-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06
++  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=618ca08478a8d945cad1274800a3d982be4dee06
+   - ../base/rbac
+ 
+ patches:
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 1b7f2ef7..bc2ec1ef 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -8,7 +8,7 @@ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+ resources:
+-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=7ca341c412a0654bb2ba16e079ff7507195e5e1f
++  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06
+   - pipelines-as-code-secret.yaml
+   - ../../base/external-secrets
+   - ../../base/testing
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 1da3cb1e..948ec7fb 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -896,48 +896,6 @@ subjects:
+   namespace: tekton-results
+ ---
+ apiVersion: v1
+-data:
+-  loglevel.controller: info
+-  loglevel.webhook: info
+-  zap-logger-config: |
+-    {
+-      "level": "info",
+-      "development": false,
+-      "sampling": {
+-        "initial": 100,
+-        "thereafter": 100
+-      },
+-      "outputPaths": ["stdout"],
+-      "errorOutputPaths": ["stderr"],
+-      "encoding": "json",
+-      "encoderConfig": {
+-        "timeKey": "ts",
+-        "levelKey": "level",
+-        "nameKey": "logger",
+-        "callerKey": "caller",
+-        "messageKey": "msg",
+-        "stacktraceKey": "stacktrace",
+-        "lineEnding": "",
+-        "levelEncoder": "",
+-        "timeEncoder": "iso8601",
+-        "durationEncoder": "string",
+-        "callerEncoder": ""
+-      }
+-    }
+-kind: ConfigMap
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  labels:
+-    app.kubernetes.io/component: resolvers
+-    app.kubernetes.io/instance: default
+-    app.kubernetes.io/part-of: tekton-pipelines
+-    operator.tekton.dev/operand-name: tektoncd-pipelines
+-  name: config-logging
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+ data:
+   config.env: |
+     DB_USER=
+@@ -1371,7 +1329,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1418,6 +1376,52 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1506,8 +1510,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1525,7 +1527,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1906,6 +1908,36 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     options:
++      configMaps:
++        config-logging:
++          data:
++            loglevel.controller: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -2004,6 +2036,39 @@ spec:
+   pruner:
+     disabled: true
+   targetNamespace: openshift-pipelines
++  trigger:
++    options:
++      configMaps:
++        config-logging-triggers:
++          data:
++            loglevel.controller: info
++            loglevel.eventlistener: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
+ kind: CatalogSource
+@@ -2015,7 +2080,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 796b507c..d3dd9177 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -896,48 +896,6 @@ subjects:
+   namespace: tekton-results
+ ---
+ apiVersion: v1
+-data:
+-  loglevel.controller: info
+-  loglevel.webhook: info
+-  zap-logger-config: |
+-    {
+-      "level": "info",
+-      "development": false,
+-      "sampling": {
+-        "initial": 100,
+-        "thereafter": 100
+-      },
+-      "outputPaths": ["stdout"],
+-      "errorOutputPaths": ["stderr"],
+-      "encoding": "json",
+-      "encoderConfig": {
+-        "timeKey": "ts",
+-        "levelKey": "level",
+-        "nameKey": "logger",
+-        "callerKey": "caller",
+-        "messageKey": "msg",
+-        "stacktraceKey": "stacktrace",
+-        "lineEnding": "",
+-        "levelEncoder": "",
+-        "timeEncoder": "iso8601",
+-        "durationEncoder": "string",
+-        "callerEncoder": ""
+-      }
+-    }
+-kind: ConfigMap
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  labels:
+-    app.kubernetes.io/component: resolvers
+-    app.kubernetes.io/instance: default
+-    app.kubernetes.io/part-of: tekton-pipelines
+-    operator.tekton.dev/operand-name: tektoncd-pipelines
+-  name: config-logging
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+ data:
+   config.env: |
+     DB_USER=
+@@ -1371,7 +1329,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1418,6 +1376,52 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1506,8 +1510,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1525,7 +1527,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1906,6 +1908,36 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     options:
++      configMaps:
++        config-logging:
++          data:
++            loglevel.controller: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -2004,6 +2036,39 @@ spec:
+   pruner:
+     disabled: true
+   targetNamespace: openshift-pipelines
++  trigger:
++    options:
++      configMaps:
++        config-logging-triggers:
++          data:
++            loglevel.controller: info
++            loglevel.eventlistener: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
+ kind: CatalogSource
+@@ -2015,7 +2080,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+   sourceType: grpc
+   updateStrategy:
+     registryPoll:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 78940544..f3fad6eb 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -896,48 +896,6 @@ subjects:
+   namespace: tekton-results
+ ---
+ apiVersion: v1
+-data:
+-  loglevel.controller: info
+-  loglevel.webhook: info
+-  zap-logger-config: |
+-    {
+-      "level": "info",
+-      "development": false,
+-      "sampling": {
+-        "initial": 100,
+-        "thereafter": 100
+-      },
+-      "outputPaths": ["stdout"],
+-      "errorOutputPaths": ["stderr"],
+-      "encoding": "json",
+-      "encoderConfig": {
+-        "timeKey": "ts",
+-        "levelKey": "level",
+-        "nameKey": "logger",
+-        "callerKey": "caller",
+-        "messageKey": "msg",
+-        "stacktraceKey": "stacktrace",
+-        "lineEnding": "",
+-        "levelEncoder": "",
+-        "timeEncoder": "iso8601",
+-        "durationEncoder": "string",
+-        "callerEncoder": ""
+-      }
+-    }
+-kind: ConfigMap
+-metadata:
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "1"
+-  labels:
+-    app.kubernetes.io/component: resolvers
+-    app.kubernetes.io/instance: default
+-    app.kubernetes.io/part-of: tekton-pipelines
+-    operator.tekton.dev/operand-name: tektoncd-pipelines
+-  name: config-logging
+-  namespace: openshift-pipelines
+----
+-apiVersion: v1
+ data:
+   config.env: |
+     DB_USER=
+@@ -1371,7 +1329,7 @@ spec:
+             secretKeyRef:
+               key: db.name
+               name: tekton-results-database
+-        image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         livenessProbe:
+           httpGet:
+             path: /healthz
+@@ -1418,6 +1376,52 @@ spec:
+         - mountPath: /etc/tls
+           name: tls
+           readOnly: true
++      initContainers:
++      - env:
++        - name: DB_USER
++          valueFrom:
++            secretKeyRef:
++              key: db.user
++              name: tekton-results-database
++        - name: DB_PASSWORD
++          valueFrom:
++            secretKeyRef:
++              key: db.password
++              name: tekton-results-database
++        - name: DB_HOST
++          valueFrom:
++            secretKeyRef:
++              key: db.host
++              name: tekton-results-database
++        - name: DB_NAME
++          valueFrom:
++            secretKeyRef:
++              key: db.name
++              name: tekton-results-database
++        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
++        name: migrator
++        resources:
++          limits:
++            cpu: 100m
++            memory: 128Mi
++          requests:
++            cpu: 5m
++            memory: 32Mi
++        securityContext:
++          allowPrivilegeEscalation: false
++          capabilities:
++            add:
++            - NET_BIND_SERVICE
++            drop:
++            - ALL
++          readOnlyRootFilesystem: true
++          runAsNonRoot: true
++          seccompProfile:
++            type: RuntimeDefault
++        volumeMounts:
++        - mountPath: /etc/tekton/results
++          name: config
++          readOnly: true
+       serviceAccountName: tekton-results-api
+       volumes:
+       - configMap:
+@@ -1506,8 +1510,6 @@ spec:
+         - -check_owner=false
+         - -completed_run_grace_period
+         - 10m
+-        - -threadiness
+-        - "32"
+         env:
+         - name: SYSTEM_NAMESPACE
+           valueFrom:
+@@ -1525,7 +1527,7 @@ spec:
+           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
+         - name: AUTH_MODE
+           value: token
+-        image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
++        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+         name: watcher
+         ports:
+         - containerPort: 9090
+@@ -1906,6 +1908,36 @@ spec:
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+     options:
++      configMaps:
++        config-logging:
++          data:
++            loglevel.controller: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+       deployments:
+         tekton-operator-proxy-webhook:
+           spec:
+@@ -2004,6 +2036,39 @@ spec:
+   pruner:
+     disabled: true
+   targetNamespace: openshift-pipelines
++  trigger:
++    options:
++      configMaps:
++        config-logging-triggers:
++          data:
++            loglevel.controller: info
++            loglevel.eventlistener: info
++            loglevel.webhook: info
++            zap-logger-config: |
++              {
++                "level": "info",
++                "development": false,
++                "sampling": {
++                  "initial": 100,
++                  "thereafter": 100
++                },
++                "outputPaths": ["stdout"],
++                "errorOutputPaths": ["stderr"],
++                "encoding": "json",
++                "encoderConfig": {
++                  "timeKey": "ts",
++                  "levelKey": "level",
++                  "nameKey": "logger",
++                  "callerKey": "caller",
++                  "messageKey": "msg",
++                  "stacktraceKey": "stacktrace",
++                  "lineEnding": "",
++                  "levelEncoder": "",
++                  "timeEncoder": "iso8601",
++                  "durationEncoder": "string",
++                  "callerEncoder": ""
++                }
++              }
+ ---
+ apiVersion: operators.coreos.com/v1alpha1
+ kind: CatalogSource
+@@ -2015,7 +2080,7 @@ metadata:
+   namespace: openshift-marketplace
+ spec:
+   displayName: custom-operators
+-  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
++  image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+   sourceType: grpc
+   updateStrategy:
+     registryPoll: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (167 lines)</summary>  
+
+``` 
+./commit-db4440bc/development/components/pipeline-service/development/kustomize.out.yaml
+900a901,942
+>   loglevel.controller: info
+>   loglevel.webhook: info
+>   zap-logger-config: |
+>     {
+>       "level": "info",
+>       "development": false,
+>       "sampling": {
+>         "initial": 100,
+>         "thereafter": 100
+>       },
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "ts",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+>     }
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   labels:
+>     app.kubernetes.io/component: resolvers
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-pipelines
+>     operator.tekton.dev/operand-name: tektoncd-pipelines
+>   name: config-logging
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+1308c1350
+<         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+1441,1485d1482
+<       - env:
+<         - name: DB_USER
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.user
+<               name: tekton-results-database
+<         - name: DB_PASSWORD
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.password
+<               name: tekton-results-database
+<         - name: DB_HOST
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.host
+<               name: tekton-results-database
+<         - name: DB_NAME
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.name
+<               name: tekton-results-database
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+<         name: migrator
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 32Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             add:
+<             - NET_BIND_SERVICE
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+<         volumeMounts:
+<         - mountPath: /etc/tekton/results
+<           name: config
+<           readOnly: true
+1571c1568
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+2022,2051d2018
+<       configMaps:
+<         config-logging:
+<           data:
+<             loglevel.controller: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2142,2174d2108
+<   trigger:
+<     options:
+<       configMaps:
+<         config-logging-triggers:
+<           data:
+<             loglevel.controller: info
+<             loglevel.eventlistener: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2186c2120
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from ea983d05 to db4440bc on Mon Mar 18 17:03:25 2024 </h3>  
  
 <details> 
 <summary>Git Diff (71 lines)</summary>  
@@ -205,7 +3794,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from ea983d05 to db4440bc on Mon Mar 18 17:03:25 2024 </h3>  
+<h3>3: Staging changes from ea983d05 to db4440bc on Mon Mar 18 17:03:25 2024 </h3>  
  
 <details> 
 <summary>Git Diff (71 lines)</summary>  
@@ -407,7 +3996,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from ea983d05 to db4440bc on Mon Mar 18 17:03:25 2024 </h3>  
+<h3>3: Development changes from ea983d05 to db4440bc on Mon Mar 18 17:03:25 2024 </h3>  
  
 <details> 
 <summary>Git Diff (71 lines)</summary>  
@@ -561,7 +4150,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 2a55d6ee to ea983d05 on Mon Mar 18 14:37:39 2024 </h3>  
+<h3>4: Production changes from 2a55d6ee to ea983d05 on Mon Mar 18 14:37:39 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -720,7 +4309,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 2a55d6ee to ea983d05 on Mon Mar 18 14:37:39 2024 </h3>  
+<h3>4: Staging changes from 2a55d6ee to ea983d05 on Mon Mar 18 14:37:39 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -882,7 +4471,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 2a55d6ee to ea983d05 on Mon Mar 18 14:37:39 2024 </h3>  
+<h3>4: Development changes from 2a55d6ee to ea983d05 on Mon Mar 18 14:37:39 2024 </h3>  
  
 <details> 
 <summary>Git Diff (23 lines)</summary>  
@@ -928,1930 +4517,6 @@ index 9e8d5030..fd36c31f 100644
 <   verify_ec_task_git_revision: 007593d8afd87f5ee612d7d2cc1adf8ae474bb75
 ---
 >   verify_ec_task_git_revision: 32ced60d490920a57ecd7a2865cc629ff603383a 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from aa38189c to 2a55d6ee on Mon Mar 18 13:40:58 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/sprayproxy/production/kustomization.yaml b/components/sprayproxy/production/kustomization.yaml
-index 1143aa48..5aa4bd20 100644
---- a/components/sprayproxy/production/kustomization.yaml
-+++ b/components/sprayproxy/production/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/sprayproxy/config?ref=2f488f7082df063350cc5a774b61ee3207481a9b
-+  - https://github.com/konflux-ci/sprayproxy/config?ref=f1afe07688592565986ded70ca912d80629c04a0
-   - pipelines-as-code-secret.yaml
- 
- images:
-   - name: ko://github.com/konflux-ci/sprayproxy
--    newName: quay.io/redhat-appstudio/sprayproxy
--    newTag: 2f488f7082df063350cc5a774b61ee3207481a9b
-+    newName: quay.io/konflux-ci/sprayproxy
-+    newTag: f1afe07688592565986ded70ca912d80629c04a0
- 
- patches:
-   - path: change-backends.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-aa38189c/production/components/sprayproxy/production/kustomize.out.yaml
-197c197
-<         image: quay.io/konflux-ci/sprayproxy:f1afe07688592565986ded70ca912d80629c04a0
----
->         image: quay.io/redhat-appstudio/sprayproxy:2f488f7082df063350cc5a774b61ee3207481a9b 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from aa38189c to 2a55d6ee on Mon Mar 18 13:40:58 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/sprayproxy/production/kustomization.yaml b/components/sprayproxy/production/kustomization.yaml
-index 1143aa48..5aa4bd20 100644
---- a/components/sprayproxy/production/kustomization.yaml
-+++ b/components/sprayproxy/production/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/sprayproxy/config?ref=2f488f7082df063350cc5a774b61ee3207481a9b
-+  - https://github.com/konflux-ci/sprayproxy/config?ref=f1afe07688592565986ded70ca912d80629c04a0
-   - pipelines-as-code-secret.yaml
- 
- images:
-   - name: ko://github.com/konflux-ci/sprayproxy
--    newName: quay.io/redhat-appstudio/sprayproxy
--    newTag: 2f488f7082df063350cc5a774b61ee3207481a9b
-+    newName: quay.io/konflux-ci/sprayproxy
-+    newTag: f1afe07688592565986ded70ca912d80629c04a0
- 
- patches:
-   - path: change-backends.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from aa38189c to 2a55d6ee on Mon Mar 18 13:40:58 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/sprayproxy/production/kustomization.yaml b/components/sprayproxy/production/kustomization.yaml
-index 1143aa48..5aa4bd20 100644
---- a/components/sprayproxy/production/kustomization.yaml
-+++ b/components/sprayproxy/production/kustomization.yaml
-@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/konflux-ci/sprayproxy/config?ref=2f488f7082df063350cc5a774b61ee3207481a9b
-+  - https://github.com/konflux-ci/sprayproxy/config?ref=f1afe07688592565986ded70ca912d80629c04a0
-   - pipelines-as-code-secret.yaml
- 
- images:
-   - name: ko://github.com/konflux-ci/sprayproxy
--    newName: quay.io/redhat-appstudio/sprayproxy
--    newTag: 2f488f7082df063350cc5a774b61ee3207481a9b
-+    newName: quay.io/konflux-ci/sprayproxy
-+    newTag: f1afe07688592565986ded70ca912d80629c04a0
- 
- patches:
-   - path: change-backends.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from f96085c5 to aa38189c on Mon Mar 18 12:31:06 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (239 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/app-of-app-sets/konflux-public-production/change-source-path.yaml b/argo-cd-apps/app-of-app-sets/konflux-public-production/change-source-path.yaml
-new file mode 100644
-index 00000000..f4300bba
---- /dev/null
-+++ b/argo-cd-apps/app-of-app-sets/konflux-public-production/change-source-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: replace
-+  path: /spec/source/path
-+  value: argo-cd-apps/overlays/konflux-public-production
-diff --git a/argo-cd-apps/app-of-app-sets/konflux-public-production/change-target-namespace.yaml b/argo-cd-apps/app-of-app-sets/konflux-public-production/change-target-namespace.yaml
-new file mode 100644
-index 00000000..f0d8fddc
---- /dev/null
-+++ b/argo-cd-apps/app-of-app-sets/konflux-public-production/change-target-namespace.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: replace
-+  path: /spec/destination/namespace
-+  value: konflux-public-production
-diff --git a/argo-cd-apps/app-of-app-sets/konflux-public-production/kustomization.yaml b/argo-cd-apps/app-of-app-sets/konflux-public-production/kustomization.yaml
-new file mode 100644
-index 00000000..370bb538
---- /dev/null
-+++ b/argo-cd-apps/app-of-app-sets/konflux-public-production/kustomization.yaml
-@@ -0,0 +1,16 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../base
-+patches:
-+  - path: change-source-path.yaml
-+    target:
-+      group: argoproj.io
-+      version: v1alpha1
-+      kind: Application
-+  - path: change-target-namespace.yaml
-+    target:
-+      group: argoproj.io
-+      version: v1alpha1
-+      kind: Application
-+namespace: konflux-public-production
-diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-new file mode 100644
-index 00000000..d254e69a
---- /dev/null
-+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-@@ -0,0 +1,153 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base/host
-+  - ../../base/member
-+  - ../../base/all-clusters
-+  - ../../base/tekton-ci
-+  - ../../base/tenants-config
-+  - ../../base/cluster-secret-store-rh
-+  - ../../base/rh-managed-workspaces-config
-+
-+namespace: konflux-public-production
-+
-+patches:
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: gitops
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: pipeline-service
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: build-service
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: build-templates
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: has
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: spi
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: remote-secret-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: dora-metrics
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: authentication
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: cluster-secret-store
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: sprayproxy
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: tekton-ci
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: image-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: monitoring-workload-logging
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: monitoring-workload-prometheus
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: external-secrets-operator
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: monitoring-workload-grafana
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: segment-bridge-host
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: segment-bridge-member
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: toolchain-host-operator
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: toolchain-member-operator
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: cluster-secret-store-rh
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: multi-platform-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: release
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: backup
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: integration
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: smee
-+  - path: migration.patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-diff --git a/argo-cd-apps/overlays/konflux-public-production/migration.patch.yaml b/argo-cd-apps/overlays/konflux-public-production/migration.patch.yaml
-new file mode 100644
-index 00000000..a60ffc01
---- /dev/null
-+++ b/argo-cd-apps/overlays/konflux-public-production/migration.patch.yaml
-@@ -0,0 +1,2 @@
-+- op: remove
-+  path: /spec/template/spec/syncPolicy
-diff --git a/argo-cd-apps/overlays/konflux-public-production/production-overlay-patch.yaml b/argo-cd-apps/overlays/konflux-public-production/production-overlay-patch.yaml
-new file mode 100644
-index 00000000..15963445
---- /dev/null
-+++ b/argo-cd-apps/overlays/konflux-public-production/production-overlay-patch.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/generators/0/merge/generators/0/clusters/values/environment
-+  value: production
-diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
-index df912270..8baf4c2a 100644
---- a/argo-cd-apps/overlays/production/kustomization.yaml
-+++ b/argo-cd-apps/overlays/production/kustomization.yaml
-@@ -147,3 +147,7 @@ patches:
-       kind: ApplicationSet
-       version: v1alpha1
-       name: smee
-+  - path: migration.patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-diff --git a/argo-cd-apps/overlays/production/migration.patch.yaml b/argo-cd-apps/overlays/production/migration.patch.yaml
-new file mode 100644
-index 00000000..a60ffc01
---- /dev/null
-+++ b/argo-cd-apps/overlays/production/migration.patch.yaml
-@@ -0,0 +1,2 @@
-+- op: remove
-+  path: /spec/template/spec/syncPolicy 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (457 lines)</summary>  
-
-``` 
-./commit-f96085c5/production/app-of-apps-production.yaml
-23a24,33
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 15s
->           limit: 50
->         syncOptions:
->         - CreateNamespace=true
-66a77,86
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 15s
->           limit: 50
->         syncOptions:
->         - CreateNamespace=true
-104a125,136
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-142a175,186
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-182a227,238
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-221a278,289
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-255a324,335
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: 20
->         syncOptions:
->         - CreateNamespace=true
-293a374,383
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
-332a423,434
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-371a474,485
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-395a510,519
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 15s
->           limit: 50
->         syncOptions:
->         - CreateNamespace=true
-434a559,568
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 15s
->           limit: 50
->         syncOptions:
->         - CreateNamespace=true
-480a615,626
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-514a661,670
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 15s
->           limit: 50
->         syncOptions:
->         - CreateNamespace=true
-548a705,716
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-581a750,761
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=false
-619a800,809
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 15s
->           limit: 50
->         syncOptions:
->         - CreateNamespace=true
-643a834,843
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 15s
->           limit: 50
->         syncOptions:
->         - CreateNamespace=true
-677a878,889
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-716a929,940
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: 50
->         syncOptions:
->         - CreateNamespace=true
-759a984,993
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 15s
->           limit: 50
->         syncOptions:
->         - CreateNamespace=true
-814a1049,1058
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 15s
->           limit: 50
->         syncOptions:
->         - CreateNamespace=true
-848a1093,1104
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-882a1139,1150
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-928a1197,1208
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-962a1243,1252
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 15s
->           limit: 50
->         syncOptions:
->         - CreateNamespace=true
-1008a1299,1308
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 15s
->           limit: 50
->         syncOptions:
->         - CreateNamespace=true
-1033a1334,1345
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: 10
->         syncOptions:
->         - CreateNamespace=true
-1071a1384,1395
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-1113a1438,1449
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-1147a1484,1495
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-1193a1542,1551
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 15s
->           limit: 50
->         syncOptions:
->         - CreateNamespace=true
-1227a1586,1597
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-1267a1638,1649
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=true
-1304a1687,1699
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: 10
->         syncOptions:
->         - CreateNamespace=true
->         - RespectIgnoreDifferences=true
-1346a1742,1753
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=false
-1380a1788,1799
->       syncPolicy:
->         automated:
->           prune: true
->           selfHeal: true
->         retry:
->           backoff:
->             duration: 10s
->             factor: 2
->             maxDuration: 3m
->           limit: -1
->         syncOptions:
->         - CreateNamespace=false 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from f96085c5 to aa38189c on Mon Mar 18 12:31:06 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (239 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/app-of-app-sets/konflux-public-production/change-source-path.yaml b/argo-cd-apps/app-of-app-sets/konflux-public-production/change-source-path.yaml
-new file mode 100644
-index 00000000..f4300bba
---- /dev/null
-+++ b/argo-cd-apps/app-of-app-sets/konflux-public-production/change-source-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: replace
-+  path: /spec/source/path
-+  value: argo-cd-apps/overlays/konflux-public-production
-diff --git a/argo-cd-apps/app-of-app-sets/konflux-public-production/change-target-namespace.yaml b/argo-cd-apps/app-of-app-sets/konflux-public-production/change-target-namespace.yaml
-new file mode 100644
-index 00000000..f0d8fddc
---- /dev/null
-+++ b/argo-cd-apps/app-of-app-sets/konflux-public-production/change-target-namespace.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: replace
-+  path: /spec/destination/namespace
-+  value: konflux-public-production
-diff --git a/argo-cd-apps/app-of-app-sets/konflux-public-production/kustomization.yaml b/argo-cd-apps/app-of-app-sets/konflux-public-production/kustomization.yaml
-new file mode 100644
-index 00000000..370bb538
---- /dev/null
-+++ b/argo-cd-apps/app-of-app-sets/konflux-public-production/kustomization.yaml
-@@ -0,0 +1,16 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../base
-+patches:
-+  - path: change-source-path.yaml
-+    target:
-+      group: argoproj.io
-+      version: v1alpha1
-+      kind: Application
-+  - path: change-target-namespace.yaml
-+    target:
-+      group: argoproj.io
-+      version: v1alpha1
-+      kind: Application
-+namespace: konflux-public-production
-diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-new file mode 100644
-index 00000000..d254e69a
---- /dev/null
-+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-@@ -0,0 +1,153 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base/host
-+  - ../../base/member
-+  - ../../base/all-clusters
-+  - ../../base/tekton-ci
-+  - ../../base/tenants-config
-+  - ../../base/cluster-secret-store-rh
-+  - ../../base/rh-managed-workspaces-config
-+
-+namespace: konflux-public-production
-+
-+patches:
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: gitops
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: pipeline-service
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: build-service
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: build-templates
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: has
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: spi
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: remote-secret-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: dora-metrics
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: authentication
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: cluster-secret-store
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: sprayproxy
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: tekton-ci
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: image-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: monitoring-workload-logging
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: monitoring-workload-prometheus
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: external-secrets-operator
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: monitoring-workload-grafana
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: segment-bridge-host
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: segment-bridge-member
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: toolchain-host-operator
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: toolchain-member-operator
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: cluster-secret-store-rh
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: multi-platform-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: release
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: backup
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: integration
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: smee
-+  - path: migration.patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-diff --git a/argo-cd-apps/overlays/konflux-public-production/migration.patch.yaml b/argo-cd-apps/overlays/konflux-public-production/migration.patch.yaml
-new file mode 100644
-index 00000000..a60ffc01
---- /dev/null
-+++ b/argo-cd-apps/overlays/konflux-public-production/migration.patch.yaml
-@@ -0,0 +1,2 @@
-+- op: remove
-+  path: /spec/template/spec/syncPolicy
-diff --git a/argo-cd-apps/overlays/konflux-public-production/production-overlay-patch.yaml b/argo-cd-apps/overlays/konflux-public-production/production-overlay-patch.yaml
-new file mode 100644
-index 00000000..15963445
---- /dev/null
-+++ b/argo-cd-apps/overlays/konflux-public-production/production-overlay-patch.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/generators/0/merge/generators/0/clusters/values/environment
-+  value: production
-diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
-index df912270..8baf4c2a 100644
---- a/argo-cd-apps/overlays/production/kustomization.yaml
-+++ b/argo-cd-apps/overlays/production/kustomization.yaml
-@@ -147,3 +147,7 @@ patches:
-       kind: ApplicationSet
-       version: v1alpha1
-       name: smee
-+  - path: migration.patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-diff --git a/argo-cd-apps/overlays/production/migration.patch.yaml b/argo-cd-apps/overlays/production/migration.patch.yaml
-new file mode 100644
-index 00000000..a60ffc01
---- /dev/null
-+++ b/argo-cd-apps/overlays/production/migration.patch.yaml
-@@ -0,0 +1,2 @@
-+- op: remove
-+  path: /spec/template/spec/syncPolicy 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from f96085c5 to aa38189c on Mon Mar 18 12:31:06 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (239 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/app-of-app-sets/konflux-public-production/change-source-path.yaml b/argo-cd-apps/app-of-app-sets/konflux-public-production/change-source-path.yaml
-new file mode 100644
-index 00000000..f4300bba
---- /dev/null
-+++ b/argo-cd-apps/app-of-app-sets/konflux-public-production/change-source-path.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: replace
-+  path: /spec/source/path
-+  value: argo-cd-apps/overlays/konflux-public-production
-diff --git a/argo-cd-apps/app-of-app-sets/konflux-public-production/change-target-namespace.yaml b/argo-cd-apps/app-of-app-sets/konflux-public-production/change-target-namespace.yaml
-new file mode 100644
-index 00000000..f0d8fddc
---- /dev/null
-+++ b/argo-cd-apps/app-of-app-sets/konflux-public-production/change-target-namespace.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: replace
-+  path: /spec/destination/namespace
-+  value: konflux-public-production
-diff --git a/argo-cd-apps/app-of-app-sets/konflux-public-production/kustomization.yaml b/argo-cd-apps/app-of-app-sets/konflux-public-production/kustomization.yaml
-new file mode 100644
-index 00000000..370bb538
---- /dev/null
-+++ b/argo-cd-apps/app-of-app-sets/konflux-public-production/kustomization.yaml
-@@ -0,0 +1,16 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../base
-+patches:
-+  - path: change-source-path.yaml
-+    target:
-+      group: argoproj.io
-+      version: v1alpha1
-+      kind: Application
-+  - path: change-target-namespace.yaml
-+    target:
-+      group: argoproj.io
-+      version: v1alpha1
-+      kind: Application
-+namespace: konflux-public-production
-diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-new file mode 100644
-index 00000000..d254e69a
---- /dev/null
-+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
-@@ -0,0 +1,153 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - ../../base/host
-+  - ../../base/member
-+  - ../../base/all-clusters
-+  - ../../base/tekton-ci
-+  - ../../base/tenants-config
-+  - ../../base/cluster-secret-store-rh
-+  - ../../base/rh-managed-workspaces-config
-+
-+namespace: konflux-public-production
-+
-+patches:
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: gitops
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: pipeline-service
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: build-service
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: build-templates
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: has
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: spi
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: remote-secret-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: dora-metrics
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: authentication
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: cluster-secret-store
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: sprayproxy
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: tekton-ci
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: image-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: monitoring-workload-logging
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: monitoring-workload-prometheus
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: external-secrets-operator
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: monitoring-workload-grafana
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: segment-bridge-host
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: segment-bridge-member
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: toolchain-host-operator
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: toolchain-member-operator
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: cluster-secret-store-rh
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: multi-platform-controller
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: release
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: backup
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: integration
-+  - path: production-overlay-patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-+      name: smee
-+  - path: migration.patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-diff --git a/argo-cd-apps/overlays/konflux-public-production/migration.patch.yaml b/argo-cd-apps/overlays/konflux-public-production/migration.patch.yaml
-new file mode 100644
-index 00000000..a60ffc01
---- /dev/null
-+++ b/argo-cd-apps/overlays/konflux-public-production/migration.patch.yaml
-@@ -0,0 +1,2 @@
-+- op: remove
-+  path: /spec/template/spec/syncPolicy
-diff --git a/argo-cd-apps/overlays/konflux-public-production/production-overlay-patch.yaml b/argo-cd-apps/overlays/konflux-public-production/production-overlay-patch.yaml
-new file mode 100644
-index 00000000..15963445
---- /dev/null
-+++ b/argo-cd-apps/overlays/konflux-public-production/production-overlay-patch.yaml
-@@ -0,0 +1,4 @@
-+---
-+- op: add
-+  path: /spec/generators/0/merge/generators/0/clusters/values/environment
-+  value: production
-diff --git a/argo-cd-apps/overlays/production/kustomization.yaml b/argo-cd-apps/overlays/production/kustomization.yaml
-index df912270..8baf4c2a 100644
---- a/argo-cd-apps/overlays/production/kustomization.yaml
-+++ b/argo-cd-apps/overlays/production/kustomization.yaml
-@@ -147,3 +147,7 @@ patches:
-       kind: ApplicationSet
-       version: v1alpha1
-       name: smee
-+  - path: migration.patch.yaml
-+    target:
-+      kind: ApplicationSet
-+      version: v1alpha1
-diff --git a/argo-cd-apps/overlays/production/migration.patch.yaml b/argo-cd-apps/overlays/production/migration.patch.yaml
-new file mode 100644
-index 00000000..a60ffc01
---- /dev/null
-+++ b/argo-cd-apps/overlays/production/migration.patch.yaml
-@@ -0,0 +1,2 @@
-+- op: remove
-+  path: /spec/template/spec/syncPolicy 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  

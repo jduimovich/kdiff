@@ -1,0 +1,513 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-829ce6b9/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-db4440bc/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+899a900,941
+>   loglevel.controller: info
+>   loglevel.webhook: info
+>   zap-logger-config: |
+>     {
+>       "level": "info",
+>       "development": false,
+>       "sampling": {
+>         "initial": 100,
+>         "thereafter": 100
+>       },
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "ts",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+>     }
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   labels:
+>     app.kubernetes.io/component: resolvers
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-pipelines
+>     operator.tekton.dev/operand-name: tektoncd-pipelines
+>   name: config-logging
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+1332c1374
+<         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+1379,1424d1420
+<       initContainers:
+<       - env:
+<         - name: DB_USER
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.user
+<               name: tekton-results-database
+<         - name: DB_PASSWORD
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.password
+<               name: tekton-results-database
+<         - name: DB_HOST
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.host
+<               name: tekton-results-database
+<         - name: DB_NAME
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.name
+<               name: tekton-results-database
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+<         name: migrator
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 32Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             add:
+<             - NET_BIND_SERVICE
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+<         volumeMounts:
+<         - mountPath: /etc/tekton/results
+<           name: config
+<           readOnly: true
+1512a1509,1510
+>         - -threadiness
+>         - "32"
+1530c1528
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+1911,1940d1908
+<       configMaps:
+<         config-logging:
+<           data:
+<             loglevel.controller: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2039,2071d2006
+<   trigger:
+<     options:
+<       configMaps:
+<         config-logging-triggers:
+<           data:
+<             loglevel.controller: info
+<             loglevel.eventlistener: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2083c2018
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-829ce6b9/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-db4440bc/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+899a900,941
+>   loglevel.controller: info
+>   loglevel.webhook: info
+>   zap-logger-config: |
+>     {
+>       "level": "info",
+>       "development": false,
+>       "sampling": {
+>         "initial": 100,
+>         "thereafter": 100
+>       },
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "ts",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+>     }
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   labels:
+>     app.kubernetes.io/component: resolvers
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-pipelines
+>     operator.tekton.dev/operand-name: tektoncd-pipelines
+>   name: config-logging
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+1332c1374
+<         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+1379,1424d1420
+<       initContainers:
+<       - env:
+<         - name: DB_USER
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.user
+<               name: tekton-results-database
+<         - name: DB_PASSWORD
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.password
+<               name: tekton-results-database
+<         - name: DB_HOST
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.host
+<               name: tekton-results-database
+<         - name: DB_NAME
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.name
+<               name: tekton-results-database
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+<         name: migrator
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 32Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             add:
+<             - NET_BIND_SERVICE
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+<         volumeMounts:
+<         - mountPath: /etc/tekton/results
+<           name: config
+<           readOnly: true
+1512a1509,1510
+>         - -threadiness
+>         - "32"
+1530c1528
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+1911,1940d1908
+<       configMaps:
+<         config-logging:
+<           data:
+<             loglevel.controller: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2039,2071d2006
+<   trigger:
+<     options:
+<       configMaps:
+<         config-logging-triggers:
+<           data:
+<             loglevel.controller: info
+<             loglevel.eventlistener: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2083c2018
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-829ce6b9/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-db4440bc/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+899a900,941
+>   loglevel.controller: info
+>   loglevel.webhook: info
+>   zap-logger-config: |
+>     {
+>       "level": "info",
+>       "development": false,
+>       "sampling": {
+>         "initial": 100,
+>         "thereafter": 100
+>       },
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "ts",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+>     }
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   labels:
+>     app.kubernetes.io/component: resolvers
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-pipelines
+>     operator.tekton.dev/operand-name: tektoncd-pipelines
+>   name: config-logging
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+1332c1374
+<         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:3429e667f92396aa273eb60c4212105ca2ffda9b
+1379,1424d1420
+<       initContainers:
+<       - env:
+<         - name: DB_USER
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.user
+<               name: tekton-results-database
+<         - name: DB_PASSWORD
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.password
+<               name: tekton-results-database
+<         - name: DB_HOST
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.host
+<               name: tekton-results-database
+<         - name: DB_NAME
+<           valueFrom:
+<             secretKeyRef:
+<               key: db.name
+<               name: tekton-results-database
+<         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+<         name: migrator
+<         resources:
+<           limits:
+<             cpu: 100m
+<             memory: 128Mi
+<           requests:
+<             cpu: 5m
+<             memory: 32Mi
+<         securityContext:
+<           allowPrivilegeEscalation: false
+<           capabilities:
+<             add:
+<             - NET_BIND_SERVICE
+<             drop:
+<             - ALL
+<           readOnlyRootFilesystem: true
+<           runAsNonRoot: true
+<           seccompProfile:
+<             type: RuntimeDefault
+<         volumeMounts:
+<         - mountPath: /etc/tekton/results
+<           name: config
+<           readOnly: true
+1512a1509,1510
+>         - -threadiness
+>         - "32"
+1530c1528
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:3429e667f92396aa273eb60c4212105ca2ffda9b
+1911,1940d1908
+<       configMaps:
+<         config-logging:
+<           data:
+<             loglevel.controller: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2039,2071d2006
+<   trigger:
+<     options:
+<       configMaps:
+<         config-logging-triggers:
+<           data:
+<             loglevel.controller: info
+<             loglevel.eventlistener: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+2083c2018
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+---
+>   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:4aa7add007908a73c45717504cacb17b9cc01314d0636127612748ce2f0cfe93
