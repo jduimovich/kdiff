@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-e07712cb/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-f502561d/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
+684c684
+<         image: quay.io/redhat-appstudio/build-service:d4d87709db08aaaa6913df1321e792e0d23b2213
+---
+>         image: quay.io/redhat-appstudio/build-service:29b09e5d8350f75c92d5796fbbf62647fe28610b
+701c701
+<             memory: 512Mi
+---
+>             memory: 256Mi
