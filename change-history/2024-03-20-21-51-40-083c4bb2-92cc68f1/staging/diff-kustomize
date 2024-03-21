@@ -1,0 +1,18 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-92cc68f1/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-083c4bb2/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1737,1740d1736
+<     template:
+<       metadata:
+<         annotations:
+<           argocd.argoproj.io/sync-options: Prune=false
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-92cc68f1/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-083c4bb2/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1737,1740d1736
+<     template:
+<       metadata:
+<         annotations:
+<           argocd.argoproj.io/sync-options: Prune=false
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-92cc68f1/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-083c4bb2/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1737,1740d1736
+<     template:
+<       metadata:
+<         annotations:
+<           argocd.argoproj.io/sync-options: Prune=false

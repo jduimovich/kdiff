@@ -1,0 +1,90 @@
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 16cbf899..d8792479 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1783,6 +1783,10 @@ spec:
+   target:
+     creationPolicy: Orphan
+     name: signing-secrets
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index af214d1c..83e69c38 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1783,6 +1783,10 @@ spec:
+   target:
+     creationPolicy: Orphan
+     name: signing-secrets
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index d99eaa6e..2db107a9 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1783,6 +1783,10 @@ spec:
+   target:
+     creationPolicy: Orphan
+     name: signing-secrets
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 948ec7fb..9ceb04c9 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1734,6 +1734,10 @@ spec:
+   target:
+     creationPolicy: Orphan
+     name: signing-secrets
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index d3dd9177..326c8c22 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1734,6 +1734,10 @@ spec:
+   target:
+     creationPolicy: Orphan
+     name: signing-secrets
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index f3fad6eb..4ad07cf8 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1734,6 +1734,10 @@ spec:
+   target:
+     creationPolicy: Orphan
+     name: signing-secrets
++    template:
++      metadata:
++        annotations:
++          argocd.argoproj.io/sync-options: Prune=false
+ ---
+ apiVersion: external-secrets.io/v1beta1
+ kind: ExternalSecret
