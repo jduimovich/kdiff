@@ -1,12 +1,1755 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Mar 21 08:05:18 UTC 2024
+### This file generated at Thu Mar 21 12:03:56 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 9e40caaa to 49c63616 on Thu Mar 21 07:38:35 2024 </h3>  
+<h3>1: Production changes from 49c63616 to c96989f2 on Thu Mar 21 09:58:39 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (52 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index 0fce2b32..22dc7187 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../staging
++  - ../konflux-public-staging
+   - ../../base/smee-client
+   - ../../base/ui
+   - ../../base/ca-bundle
+diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+index f4d7d6c3..e34383c3 100644
+--- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+@@ -1,7 +1,8 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++namespace: argocd-staging
+ resources:
+-  - ../staging
++  - ../konflux-public-staging
+   - ../../base/smee-client
+   - ../../base/ui
+   - ../../base/ca-bundle
+diff --git a/argo-cd-apps/overlays/staging/kustomization.yaml b/argo-cd-apps/overlays/staging/kustomization.yaml
+deleted file mode 100644
+index aa17ccbc..00000000
+--- a/argo-cd-apps/overlays/staging/kustomization.yaml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../../base/host
+-  - ../../base/member
+-  - ../../base/all-clusters
+-patches:
+-  - path: migration.patch.yaml
+-    target:
+-      kind: ApplicationSet
+-      version: v1alpha1
+diff --git a/argo-cd-apps/overlays/staging/migration.patch.yaml b/argo-cd-apps/overlays/staging/migration.patch.yaml
+deleted file mode 100644
+index a60ffc01..00000000
+--- a/argo-cd-apps/overlays/staging/migration.patch.yaml
++++ /dev/null
+@@ -1,2 +0,0 @@
+-- op: remove
+-  path: /spec/template/spec/syncPolicy 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 49c63616 to c96989f2 on Thu Mar 21 09:58:39 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (52 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index 0fce2b32..22dc7187 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../staging
++  - ../konflux-public-staging
+   - ../../base/smee-client
+   - ../../base/ui
+   - ../../base/ca-bundle
+diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+index f4d7d6c3..e34383c3 100644
+--- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+@@ -1,7 +1,8 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++namespace: argocd-staging
+ resources:
+-  - ../staging
++  - ../konflux-public-staging
+   - ../../base/smee-client
+   - ../../base/ui
+   - ../../base/ca-bundle
+diff --git a/argo-cd-apps/overlays/staging/kustomization.yaml b/argo-cd-apps/overlays/staging/kustomization.yaml
+deleted file mode 100644
+index aa17ccbc..00000000
+--- a/argo-cd-apps/overlays/staging/kustomization.yaml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../../base/host
+-  - ../../base/member
+-  - ../../base/all-clusters
+-patches:
+-  - path: migration.patch.yaml
+-    target:
+-      kind: ApplicationSet
+-      version: v1alpha1
+diff --git a/argo-cd-apps/overlays/staging/migration.patch.yaml b/argo-cd-apps/overlays/staging/migration.patch.yaml
+deleted file mode 100644
+index a60ffc01..00000000
+--- a/argo-cd-apps/overlays/staging/migration.patch.yaml
++++ /dev/null
+@@ -1,2 +0,0 @@
+-- op: remove
+-  path: /spec/template/spec/syncPolicy 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1246 lines)</summary>  
+
+``` 
+./commit-49c63616/staging/app-of-apps-staging.yaml
+0a1,1244
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: application-api
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+>   template:
+>     metadata:
+>       name: application-api-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: application-api
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: components/application-api
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: authentication
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchExpressions:
+>             - key: app.kubernetes.io/name
+>               operator: NotIn
+>               values:
+>               - argocd-default-cluster-config
+>             matchLabels:
+>               argocd.argoproj.io/secret-type: cluster
+>           values:
+>             clusterDir: base
+>             environment: staging
+>             sourceRoot: components/authentication
+>       - list:
+>           elements:
+>           - nameNormalized: stone-stage-p01
+>             values.clusterDir: stone-stage-p01
+>           - nameNormalized: stone-prod-p01
+>             values.clusterDir: stone-prod-p01
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: authentication-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: default
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: backup
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchExpressions:
+>             - key: app.kubernetes.io/name
+>               operator: NotIn
+>               values:
+>               - argocd-default-cluster-config
+>             matchLabels:
+>               argocd.argoproj.io/secret-type: cluster
+>           values:
+>             environment: staging
+>             sourceRoot: components/backup
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: backup-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: default
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{nameNormalized}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: build-service
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: base
+>             environment: staging
+>             sourceRoot: components/build-service
+>       - list:
+>           elements:
+>           - nameNormalized: stone-stage-p01
+>             values.clusterDir: stone-stage-p01
+>           - nameNormalized: stone-prod-p01
+>             values.clusterDir: stone-prod-p01
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: build-service-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: default
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: build-templates
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/build-templates
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: build-templates-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: default
+>         server: '{{server}}'
+>       ignoreDifferences:
+>       - group: ""
+>         jqPathExpressions:
+>         - .imagePullSecrets[] | select(.name | startswith("appstudio-pipeline-dockercfg"))
+>         kind: ServiceAccount
+>         name: appstudio-pipeline
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: cluster-secret-store
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchExpressions:
+>             - key: app.kubernetes.io/name
+>               operator: NotIn
+>               values:
+>               - argocd-default-cluster-config
+>             matchLabels:
+>               argocd.argoproj.io/secret-type: cluster
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/cluster-secret-store
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: cluster-secret-store-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: default
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: disable-csvcopy
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchExpressions:
+>             - key: app.kubernetes.io/name
+>               operator: NotIn
+>               values:
+>               - argocd-default-cluster-config
+>             matchLabels:
+>               argocd.argoproj.io/secret-type: cluster
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: configs/disable-csvcopy-for-all-cluster
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: disable-csvcopy-{{nameNormalized}}
+>     spec:
+>       destination:
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: configs/disable-csvcopy-for-all-cluster
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: dora-metrics
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchExpressions:
+>             - key: app.kubernetes.io/name
+>               operator: NotIn
+>               values:
+>               - argocd-default-cluster-config
+>             matchLabels:
+>               argocd.argoproj.io/secret-type: cluster
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/dora-metrics
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: dora-metrics-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: dora-metrics
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: enable-dvo
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchExpressions:
+>             - key: app.kubernetes.io/name
+>               operator: NotIn
+>               values:
+>               - argocd-default-cluster-config
+>             matchLabels:
+>               argocd.argoproj.io/secret-type: cluster
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: configs/enable-dvo-for-all-cluster
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: enable-dvo-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: deployment-validation-operator
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: configs/enable-dvo-for-all-cluster
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: enterprise-contract
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+>   template:
+>     metadata:
+>       name: enterprise-contract-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: enterprise-contract-service
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: components/enterprise-contract
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: external-secrets-operator
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchExpressions:
+>             - key: app.kubernetes.io/name
+>               operator: NotIn
+>               values:
+>               - argocd-default-cluster-config
+>             matchLabels:
+>               argocd.argoproj.io/secret-type: cluster
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/external-secrets-operator
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: external-secrets-operator-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: external-secrets-operator
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: gitops
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: base
+>             environment: staging
+>             sourceRoot: components/gitops
+>       - list:
+>           elements:
+>           - nameNormalized: stone-stg-m01
+>             values.clusterDir: stone-stg-m01
+>           - nameNormalized: stone-stg-rh01
+>             values.clusterDir: stone-stg-rh01
+>           - nameNormalized: stone-prd-m01
+>             values.clusterDir: stone-prd-m01
+>           - nameNormalized: stone-prd-rh01
+>             values.clusterDir: stone-prd-rh01
+>           - nameNormalized: stone-stage-p01
+>             values.clusterDir: stone-stage-p01
+>           - nameNormalized: stone-prod-p01
+>             values.clusterDir: stone-prod-p01
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: gitops-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: gitops
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: has
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/has
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: has-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: application-service
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: image-controller
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/image-controller
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: image-controller-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: default
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: ingresscontroller
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/host-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: ""
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: ingresscontroller-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: openshift-ingress-operator
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: configs/ingresscontroller
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: integration
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: base
+>             environment: staging
+>             sourceRoot: components/integration
+>       - list:
+>           elements:
+>           - nameNormalized: stone-stage-p01
+>             values.clusterDir: stone-stage-p01
+>           - nameNormalized: stone-prod-p01
+>             values.clusterDir: stone-prod-p01
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: integration-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: integration-service
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: internal-services
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - clusters:
+>       selector:
+>         matchLabels:
+>           appstudio.redhat.com/member-cluster: "true"
+>   template:
+>     metadata:
+>       name: internal-services-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: internal-services
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: components/internal-services
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: jvm-build-service
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/jvm-build-service
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: jvm-build-service-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: default
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: monitoring-workload-grafana
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchExpressions:
+>             - key: app.kubernetes.io/name
+>               operator: NotIn
+>               values:
+>               - argocd-default-cluster-config
+>             matchLabels:
+>               argocd.argoproj.io/secret-type: cluster
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/monitoring/grafana
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: monitoring-workload-grafana-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: appstudio-grafana
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: monitoring-workload-logging
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchExpressions:
+>             - key: app.kubernetes.io/name
+>               operator: NotIn
+>               values:
+>               - argocd-default-cluster-config
+>             matchLabels:
+>               argocd.argoproj.io/secret-type: cluster
+>           values:
+>             clusterDir: base
+>             environment: staging
+>             sourceRoot: components/monitoring/logging
+>       - list:
+>           elements:
+>           - nameNormalized: stone-stage-p01
+>             values.clusterDir: stone-stage-p01
+>           - nameNormalized: stone-prod-p01
+>             values.clusterDir: stone-prod-p01
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: monitoring-workload-logging-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: appstudio-workload-monitoring
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: monitoring-workload-prometheus
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchExpressions:
+>             - key: app.kubernetes.io/name
+>               operator: NotIn
+>               values:
+>               - argocd-default-cluster-config
+>             matchLabels:
+>               argocd.argoproj.io/secret-type: cluster
+>           values:
+>             clusterDir: base
+>             environment: staging
+>             sourceRoot: components/monitoring/prometheus
+>       - list:
+>           elements:
+>           - nameNormalized: stone-stg-host
+>             values.clusterDir: stone-stg-host
+>           - nameNormalized: stone-stg-m01
+>             values.clusterDir: stone-stg-m01
+>           - nameNormalized: stone-stg-rh01
+>             values.clusterDir: stone-stg-rh01
+>           - nameNormalized: stone-prd-host1
+>             values.clusterDir: stone-prd-host1
+>           - nameNormalized: stone-prd-m01
+>             values.clusterDir: stone-prd-m01
+>           - nameNormalized: stone-prd-rh01
+>             values.clusterDir: stone-prd-rh01
+>           - nameNormalized: stone-stage-p01
+>             values.clusterDir: stone-stage-p01
+>           - nameNormalized: stone-prod-p01
+>             values.clusterDir: stone-prod-p01
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: monitoring-workload-prometheus-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: appstudio-workload-monitoring
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: multi-platform-controller
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/multi-platform-controller
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: multi-platform-controller-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: default
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: perf-team-prometheus-reader
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/perf-team-prometheus-reader
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: perf-team-prometheus-reader-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: perf-team-prometheus-reader
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: pipeline-service
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: base
+>             environment: staging
+>             sourceRoot: components/pipeline-service
+>       - list:
+>           elements:
+>           - nameNormalized: stone-stg-m01
+>             values.clusterDir: stone-stg-m01
+>           - nameNormalized: stone-stg-rh01
+>             values.clusterDir: stone-stg-rh01
+>           - nameNormalized: stone-prd-m01
+>             values.clusterDir: stone-prd-m01
+>           - nameNormalized: stone-prd-rh01
+>             values.clusterDir: stone-prd-rh01
+>           - nameNormalized: stone-stage-p01
+>             values.clusterDir: stone-stage-p01
+>           - nameNormalized: stone-prod-p01
+>             values.clusterDir: stone-prod-p01
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: pipeline-service-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: default
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: release
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/release
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: release-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: release-service
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: remote-secret-controller
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: base
+>             environment: staging
+>             sourceRoot: components/remote-secret-controller/overlays
+>       - list:
+>           elements:
+>           - nameNormalized: stone-stg-m01
+>             values.clusterDir: stone-stg-m01
+>           - nameNormalized: stone-stg-rh01
+>             values.clusterDir: stone-stg-rh01
+>           - nameNormalized: stone-prd-m01
+>             values.clusterDir: stone-prd-m01
+>           - nameNormalized: stone-prd-rh01
+>             values.clusterDir: stone-prd-rh01
+>           - nameNormalized: stone-stage-p01
+>             values.clusterDir: stone-stage-p01
+>           - nameNormalized: stone-prod-p01
+>             values.clusterDir: stone-prod-p01
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: remote-secret-controller-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: remotesecret
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: segment-bridge-host
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/host-cluster: "true"
+>           values:
+>             clusterDir: base
+>             environment: staging
+>             sourceRoot: components/segment-bridge
+>       - list:
+>           elements:
+>           - nameNormalized: stone-stg-host
+>             values.clusterDir: stone-stg-host
+>           - nameNormalized: stone-prd-host1
+>             values.clusterDir: stone-prd-host1
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: segment-bridge-host-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: segment-bridge
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: segment-bridge-member
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: base
+>             environment: staging
+>             sourceRoot: components/segment-bridge
+>       - list:
+>           elements:
+>           - nameNormalized: stone-stg-m01
+>             values.clusterDir: stone-stg-m01
+>           - nameNormalized: stone-stg-rh01
+>             values.clusterDir: stone-stg-rh01
+>           - nameNormalized: stone-prd-m01
+>             values.clusterDir: stone-prd-m01
+>           - nameNormalized: stone-prd-rh01
+>             values.clusterDir: stone-prd-rh01
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: segment-bridge-member-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: segment-bridge
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: smee
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/host-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/smee
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: smee-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: smee
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: spi
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: base
+>             environment: staging
+>             sourceRoot: components/spi/overlays
+>       - list:
+>           elements:
+>           - nameNormalized: stone-stg-m01
+>             values.clusterDir: stone-stg-m01
+>           - nameNormalized: stone-stg-rh01
+>             values.clusterDir: stone-stg-rh01
+>           - nameNormalized: stone-prd-m01
+>             values.clusterDir: stone-prd-m01
+>           - nameNormalized: stone-prd-rh01
+>             values.clusterDir: stone-prd-rh01
+>           - nameNormalized: stone-stage-p01
+>             values.clusterDir: stone-stage-p01
+>           - nameNormalized: stone-prod-p01
+>             values.clusterDir: stone-prod-p01
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: spi-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: spi-system
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: sprayproxy
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/host-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/sprayproxy
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: sprayproxy-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: sprayproxy
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: toolchain-host-operator
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/host-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/sandbox/toolchain-host-operator
+>       - list:
+>           elements:
+>           - nameNormalized: stone-prod-p01
+>             values.clusterDir: stone-prod-p01
+>           - nameNormalized: stone-stage-p01
+>             values.clusterDir: stone-stage-p01
+>           - nameNormalized: stone-stg-host
+>             values.clusterDir: stone-stg-host
+>           - nameNormalized: stone-prd-host1
+>             values.clusterDir: stone-prd-host1
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: toolchain-host-operator-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: toolchain-host-operator
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main
+> ---
+> apiVersion: argoproj.io/v1alpha1
+> kind: ApplicationSet
+> metadata:
+>   name: toolchain-member-operator
+>   namespace: argocd-staging
+> spec:
+>   generators:
+>   - merge:
+>       generators:
+>       - clusters:
+>           selector:
+>             matchLabels:
+>               appstudio.redhat.com/member-cluster: "true"
+>           values:
+>             clusterDir: ""
+>             environment: staging
+>             sourceRoot: components/sandbox/toolchain-member-operator
+>       - list:
+>           elements: []
+>       mergeKeys:
+>       - nameNormalized
+>   template:
+>     metadata:
+>       name: toolchain-member-operator-{{nameNormalized}}
+>     spec:
+>       destination:
+>         namespace: toolchain-member-operator
+>         server: '{{server}}'
+>       project: default
+>       source:
+>         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+>         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+>         targetRevision: main 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 49c63616 to c96989f2 on Thu Mar 21 09:58:39 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (52 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index 0fce2b32..22dc7187 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../staging
++  - ../konflux-public-staging
+   - ../../base/smee-client
+   - ../../base/ui
+   - ../../base/ca-bundle
+diff --git a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+index f4d7d6c3..e34383c3 100644
+--- a/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/staging-downstream/kustomization.yaml
+@@ -1,7 +1,8 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
++namespace: argocd-staging
+ resources:
+-  - ../staging
++  - ../konflux-public-staging
+   - ../../base/smee-client
+   - ../../base/ui
+   - ../../base/ca-bundle
+diff --git a/argo-cd-apps/overlays/staging/kustomization.yaml b/argo-cd-apps/overlays/staging/kustomization.yaml
+deleted file mode 100644
+index aa17ccbc..00000000
+--- a/argo-cd-apps/overlays/staging/kustomization.yaml
++++ /dev/null
+@@ -1,11 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../../base/host
+-  - ../../base/member
+-  - ../../base/all-clusters
+-patches:
+-  - path: migration.patch.yaml
+-    target:
+-      kind: ApplicationSet
+-      version: v1alpha1
+diff --git a/argo-cd-apps/overlays/staging/migration.patch.yaml b/argo-cd-apps/overlays/staging/migration.patch.yaml
+deleted file mode 100644
+index a60ffc01..00000000
+--- a/argo-cd-apps/overlays/staging/migration.patch.yaml
++++ /dev/null
+@@ -1,2 +0,0 @@
+-- op: remove
+-  path: /spec/template/spec/syncPolicy 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 9e40caaa to 49c63616 on Thu Mar 21 07:38:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (328 lines)</summary>  
@@ -462,7 +2205,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 9e40caaa to 49c63616 on Thu Mar 21 07:38:35 2024 </h3>  
+<h3>2: Staging changes from 9e40caaa to 49c63616 on Thu Mar 21 07:38:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (328 lines)</summary>  
@@ -921,7 +2664,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 9e40caaa to 49c63616 on Thu Mar 21 07:38:35 2024 </h3>  
+<h3>2: Development changes from 9e40caaa to 49c63616 on Thu Mar 21 07:38:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (328 lines)</summary>  
@@ -1332,7 +3075,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from fe6fc3a0 to 9e40caaa on Thu Mar 21 07:38:28 2024 </h3>  
+<h3>3: Production changes from fe6fc3a0 to 9e40caaa on Thu Mar 21 07:38:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -1535,7 +3278,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from fe6fc3a0 to 9e40caaa on Thu Mar 21 07:38:28 2024 </h3>  
+<h3>3: Staging changes from fe6fc3a0 to 9e40caaa on Thu Mar 21 07:38:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -1741,7 +3484,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from fe6fc3a0 to 9e40caaa on Thu Mar 21 07:38:28 2024 </h3>  
+<h3>3: Development changes from fe6fc3a0 to 9e40caaa on Thu Mar 21 07:38:28 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -1899,7 +3642,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 25d3e2ce to fe6fc3a0 on Thu Mar 21 04:47:55 2024 </h3>  
+<h3>4: Production changes from 25d3e2ce to fe6fc3a0 on Thu Mar 21 04:47:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (177 lines)</summary>  
@@ -3585,7 +5328,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 25d3e2ce to fe6fc3a0 on Thu Mar 21 04:47:55 2024 </h3>  
+<h3>4: Staging changes from 25d3e2ce to fe6fc3a0 on Thu Mar 21 04:47:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (177 lines)</summary>  
@@ -3893,7 +5636,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 25d3e2ce to fe6fc3a0 on Thu Mar 21 04:47:55 2024 </h3>  
+<h3>4: Development changes from 25d3e2ce to fe6fc3a0 on Thu Mar 21 04:47:55 2024 </h3>  
  
 <details> 
 <summary>Git Diff (177 lines)</summary>  
@@ -4076,575 +5819,6 @@ index 15963445..00000000
 -- op: add
 -  path: /spec/generators/0/merge/generators/0/clusters/values/environment
 -  value: production 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 92cc68f1 to 25d3e2ce on Thu Mar 21 01:38:11 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (67 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/bump-exporter-mem.yaml b/components/pipeline-service/production/base/bump-exporter-mem.yaml
-index 238d183a..ed264e35 100644
---- a/components/pipeline-service/production/base/bump-exporter-mem.yaml
-+++ b/components/pipeline-service/production/base/bump-exporter-mem.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/template/spec/containers/0/resources/limits/memory
--  value: "2Gi"
-+  value: "3Gi"
- - op: replace
-   path: /spec/template/spec/containers/0/resources/requests/memory
--  value: "2Gi"
-\ No newline at end of file
-+  value: "3Gi"
-\ No newline at end of file
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index d8792479..6356d57b 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1254,10 +1254,10 @@ spec:
-         resources:
-           limits:
-             cpu: 500m
--            memory: 2Gi
-+            memory: 3Gi
-           requests:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 3Gi
-         securityContext:
-           readOnlyRootFilesystem: true
-           runAsNonRoot: true
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 83e69c38..f3202865 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1254,10 +1254,10 @@ spec:
-         resources:
-           limits:
-             cpu: 500m
--            memory: 2Gi
-+            memory: 3Gi
-           requests:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 3Gi
-         securityContext:
-           readOnlyRootFilesystem: true
-           runAsNonRoot: true
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 2db107a9..09de34ce 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1254,10 +1254,10 @@ spec:
-         resources:
-           limits:
-             cpu: 500m
--            memory: 2Gi
-+            memory: 3Gi
-           requests:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 3Gi
-         securityContext:
-           readOnlyRootFilesystem: true
-           runAsNonRoot: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (27 lines)</summary>  
-
-``` 
-./commit-92cc68f1/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
-1257c1257
-<             memory: 3Gi
----
->             memory: 2Gi
-1260c1260
-<             memory: 3Gi
----
->             memory: 2Gi
-./commit-92cc68f1/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
-1257c1257
-<             memory: 3Gi
----
->             memory: 2Gi
-1260c1260
-<             memory: 3Gi
----
->             memory: 2Gi
-./commit-92cc68f1/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
-1257c1257
-<             memory: 3Gi
----
->             memory: 2Gi
-1260c1260
-<             memory: 3Gi
----
->             memory: 2Gi 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 92cc68f1 to 25d3e2ce on Thu Mar 21 01:38:11 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (67 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/bump-exporter-mem.yaml b/components/pipeline-service/production/base/bump-exporter-mem.yaml
-index 238d183a..ed264e35 100644
---- a/components/pipeline-service/production/base/bump-exporter-mem.yaml
-+++ b/components/pipeline-service/production/base/bump-exporter-mem.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/template/spec/containers/0/resources/limits/memory
--  value: "2Gi"
-+  value: "3Gi"
- - op: replace
-   path: /spec/template/spec/containers/0/resources/requests/memory
--  value: "2Gi"
-\ No newline at end of file
-+  value: "3Gi"
-\ No newline at end of file
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index d8792479..6356d57b 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1254,10 +1254,10 @@ spec:
-         resources:
-           limits:
-             cpu: 500m
--            memory: 2Gi
-+            memory: 3Gi
-           requests:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 3Gi
-         securityContext:
-           readOnlyRootFilesystem: true
-           runAsNonRoot: true
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 83e69c38..f3202865 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1254,10 +1254,10 @@ spec:
-         resources:
-           limits:
-             cpu: 500m
--            memory: 2Gi
-+            memory: 3Gi
-           requests:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 3Gi
-         securityContext:
-           readOnlyRootFilesystem: true
-           runAsNonRoot: true
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 2db107a9..09de34ce 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1254,10 +1254,10 @@ spec:
-         resources:
-           limits:
-             cpu: 500m
--            memory: 2Gi
-+            memory: 3Gi
-           requests:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 3Gi
-         securityContext:
-           readOnlyRootFilesystem: true
-           runAsNonRoot: true 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 92cc68f1 to 25d3e2ce on Thu Mar 21 01:38:11 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (67 lines)</summary>  
-
-``` 
-diff --git a/components/pipeline-service/production/base/bump-exporter-mem.yaml b/components/pipeline-service/production/base/bump-exporter-mem.yaml
-index 238d183a..ed264e35 100644
---- a/components/pipeline-service/production/base/bump-exporter-mem.yaml
-+++ b/components/pipeline-service/production/base/bump-exporter-mem.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/template/spec/containers/0/resources/limits/memory
--  value: "2Gi"
-+  value: "3Gi"
- - op: replace
-   path: /spec/template/spec/containers/0/resources/requests/memory
--  value: "2Gi"
-\ No newline at end of file
-+  value: "3Gi"
-\ No newline at end of file
-diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-index d8792479..6356d57b 100644
---- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
-@@ -1254,10 +1254,10 @@ spec:
-         resources:
-           limits:
-             cpu: 500m
--            memory: 2Gi
-+            memory: 3Gi
-           requests:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 3Gi
-         securityContext:
-           readOnlyRootFilesystem: true
-           runAsNonRoot: true
-diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-index 83e69c38..f3202865 100644
---- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
-@@ -1254,10 +1254,10 @@ spec:
-         resources:
-           limits:
-             cpu: 500m
--            memory: 2Gi
-+            memory: 3Gi
-           requests:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 3Gi
-         securityContext:
-           readOnlyRootFilesystem: true
-           runAsNonRoot: true
-diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-index 2db107a9..09de34ce 100644
---- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-+++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
-@@ -1254,10 +1254,10 @@ spec:
-         resources:
-           limits:
-             cpu: 500m
--            memory: 2Gi
-+            memory: 3Gi
-           requests:
-             cpu: 250m
--            memory: 2Gi
-+            memory: 3Gi
-         securityContext:
-           readOnlyRootFilesystem: true
-           runAsNonRoot: true 
 ```
  
 </details> 
