@@ -1,0 +1,51 @@
+diff --git a/components/pipeline-service/production/base/bump-results-watcher-replicas.yaml b/components/pipeline-service/production/base/bump-results-watcher-replicas.yaml
+index bcd64c5f..dd1942ff 100644
+--- a/components/pipeline-service/production/base/bump-results-watcher-replicas.yaml
++++ b/components/pipeline-service/production/base/bump-results-watcher-replicas.yaml
+@@ -1,4 +1,4 @@
+ - op: replace
+   path: /spec/replicas
+   # default pipeline-service setting is 1
+-  value: 2
+\ No newline at end of file
++  value: 1
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 6356d57b..7a51611a 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1485,7 +1485,7 @@ metadata:
+   name: tekton-results-watcher
+   namespace: tekton-results
+ spec:
+-  replicas: 2
++  replicas: 1
+   selector:
+     matchLabels:
+       app.kubernetes.io/name: tekton-results-watcher
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index f3202865..0c7bc8e0 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1485,7 +1485,7 @@ metadata:
+   name: tekton-results-watcher
+   namespace: tekton-results
+ spec:
+-  replicas: 2
++  replicas: 1
+   selector:
+     matchLabels:
+       app.kubernetes.io/name: tekton-results-watcher
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 09de34ce..38a870ac 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1485,7 +1485,7 @@ metadata:
+   name: tekton-results-watcher
+   namespace: tekton-results
+ spec:
+-  replicas: 2
++  replicas: 1
+   selector:
+     matchLabels:
+       app.kubernetes.io/name: tekton-results-watcher
