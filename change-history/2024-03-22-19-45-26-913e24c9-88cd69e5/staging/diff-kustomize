@@ -1,0 +1,47 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-88cd69e5/staging/components/build-templates/staging/kustomize.out.yaml ./kustomized-cache/commit-913e24c9/staging/components/build-templates/staging/kustomize.out.yaml
+89c89
+<   name: admin-buildpipelineselectors-from-ci-namespaces
+---
+>   name: admin-buildpipelineselectors-from-tekton-ci-namespace
+99,101d98
+< - kind: ServiceAccount
+<   name: appstudio-pipeline
+<   namespace: konflux-ci
+144,146d140
+< - kind: ServiceAccount
+<   name: appstudio-pipeline
+<   namespace: konflux-ci
+161,163d154
+< - kind: ServiceAccount
+<   name: appstudio-pipeline
+<   namespace: konflux-ci
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-88cd69e5/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-913e24c9/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+19d18
+<     - konflux-ci
+Only in ./kustomized-cache/commit-88cd69e5/staging/components: konflux-ci
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-88cd69e5/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-913e24c9/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1591c1591
+<               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+---
+>               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-88cd69e5/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-913e24c9/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1591c1591
+<               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+---
+>               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-88cd69e5/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-913e24c9/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1591c1591
+<               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+---
+>               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-88cd69e5/staging/components/tekton-ci/staging/kustomize.out.yaml ./kustomized-cache/commit-913e24c9/staging/components/tekton-ci/staging/kustomize.out.yaml
+375a376,384
+>   name: sprayproxy
+> spec:
+>   url: https://github.com/konflux-ci/sprayproxy
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
