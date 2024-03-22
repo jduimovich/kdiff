@@ -1,0 +1,92 @@
+diff --git a/components/pipeline-service/production/base/bump-results-api-resources.yaml b/components/pipeline-service/production/base/bump-results-api-resources.yaml
+new file mode 100644
+index 00000000..3584f130
+--- /dev/null
++++ b/components/pipeline-service/production/base/bump-results-api-resources.yaml
+@@ -0,0 +1,13 @@
++---
++- op: replace
++  path: /spec/template/spec/containers/1/resources/limits/memory
++  value: "1Gi"
++- op: replace
++  path: /spec/template/spec/containers/1/resources/requests/memory
++  value: "500Mi"
++- op: replace
++  path: /spec/template/spec/containers/1/resources/limits/cpu
++  value: "3000m"
++- op: replace
++  path: /spec/template/spec/containers/1/resources/requests/cpu
++  value: "1000m"
+diff --git a/components/pipeline-service/production/base/kustomization.yaml b/components/pipeline-service/production/base/kustomization.yaml
+index bce2c7ff..1fd0447c 100644
+--- a/components/pipeline-service/production/base/kustomization.yaml
++++ b/components/pipeline-service/production/base/kustomization.yaml
+@@ -43,3 +43,8 @@ patches:
+       kind: Deployment
+       namespace: tekton-results
+       name: tekton-results-watcher
++  - path: bump-results-api-resources.yaml
++    target:
++      kind: Deployment
++      namespace: tekton-results
++      name: tekton-results-api
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 7a51611a..7b37f7ff 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1388,11 +1388,11 @@ spec:
+           periodSeconds: 10
+         resources:
+           limits:
+-            cpu: 100m
+-            memory: 512Mi
++            cpu: 3000m
++            memory: 1Gi
+           requests:
+-            cpu: 5m
+-            memory: 128Mi
++            cpu: 1000m
++            memory: 500Mi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index 0c7bc8e0..4415904c 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1388,11 +1388,11 @@ spec:
+           periodSeconds: 10
+         resources:
+           limits:
+-            cpu: 100m
+-            memory: 512Mi
++            cpu: 3000m
++            memory: 1Gi
+           requests:
+-            cpu: 5m
+-            memory: 128Mi
++            cpu: 1000m
++            memory: 500Mi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 38a870ac..2f8517bd 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1388,11 +1388,11 @@ spec:
+           periodSeconds: 10
+         resources:
+           limits:
+-            cpu: 100m
+-            memory: 512Mi
++            cpu: 3000m
++            memory: 1Gi
+           requests:
+-            cpu: 5m
+-            memory: 128Mi
++            cpu: 1000m
++            memory: 500Mi
+         securityContext:
+           allowPrivilegeEscalation: false
+           capabilities:
