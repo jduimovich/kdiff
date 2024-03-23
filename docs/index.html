@@ -10,12 +10,561 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-fri-mar-22-200319-utc-2024">This file generated at Fri Mar 22 20:03:19 UTC 2024</h3>
+<h3 id="this-file-generated-at-sat-mar-23-000700-utc-2024">This file generated at Sat Mar 23 00:07:00 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 913e24c9 to 88cd69e5 on Fri Mar 22 19:45:26 2024 </h3>  
+<h3>1: Production changes from 88cd69e5 to a8689b9b on Fri Mar 22 22:02:08 2024 </h3>  
+
+<details> 
+<summary>Git Diff (70 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml</span>
+<span class="hljs-comment">index e56ea4f3..67c6eb5f 100644</span>
+<span class="hljs-comment">--- a/components/has/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,7 +3,7 @@</span> kind: Kustomization
+ resources:
+   - ./argocd-roles
+   - ./rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/default?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+
+ components:
+<span class="hljs-meta">@@ -13,7 +13,7 @@</span> components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+<span class="hljs-deletion">-    newTag: 4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+ configMapGenerator:
+   - literals:
+<span class="hljs-comment">diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml</span>
+<span class="hljs-comment">index f61c8750..434b4b78 100644</span>
+<span class="hljs-comment">--- a/components/has/production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -4,8 +4,8 @@</span> resources:
+   - ../base/argocd-roles
+   - ../base/external-secrets
+   - ../base/rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/default?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+ components:
+   - ../k-components/manager-resources
+<span class="hljs-meta">@@ -15,7 +15,7 @@</span> components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+<span class="hljs-deletion">-    newTag: 4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+ configMapGenerator:
+   - literals:
+<span class="hljs-comment">diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml</span>
+<span class="hljs-comment">index cef64817..5a5229a8 100644</span>
+<span class="hljs-comment">--- a/components/has/staging/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -4,7 +4,7 @@</span> resources:
+   - ../base
+   - ../base/external-secrets
+   - rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+
+ components:
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-comment">index 0b09839a..b3fb198b 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,5 +1,5 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+   - dashboard.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-88cd69e5/production/components/has/production/kustomize.out.yaml</span>
+<span class="hljs-string">818c818</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/application-service:77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/application-service:4863efdb4d1ee29572a6f6052a19e514757a50a0</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from 88cd69e5 to a8689b9b on Fri Mar 22 22:02:08 2024 </h3>  
+
+<details> 
+<summary>Git Diff (70 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml</span>
+<span class="hljs-comment">index e56ea4f3..67c6eb5f 100644</span>
+<span class="hljs-comment">--- a/components/has/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,7 +3,7 @@</span> kind: Kustomization
+ resources:
+   - ./argocd-roles
+   - ./rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/default?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+
+ components:
+<span class="hljs-meta">@@ -13,7 +13,7 @@</span> components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+<span class="hljs-deletion">-    newTag: 4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+ configMapGenerator:
+   - literals:
+<span class="hljs-comment">diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml</span>
+<span class="hljs-comment">index f61c8750..434b4b78 100644</span>
+<span class="hljs-comment">--- a/components/has/production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -4,8 +4,8 @@</span> resources:
+   - ../base/argocd-roles
+   - ../base/external-secrets
+   - ../base/rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/default?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+ components:
+   - ../k-components/manager-resources
+<span class="hljs-meta">@@ -15,7 +15,7 @@</span> components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+<span class="hljs-deletion">-    newTag: 4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+ configMapGenerator:
+   - literals:
+<span class="hljs-comment">diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml</span>
+<span class="hljs-comment">index cef64817..5a5229a8 100644</span>
+<span class="hljs-comment">--- a/components/has/staging/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -4,7 +4,7 @@</span> resources:
+   - ../base
+   - ../base/external-secrets
+   - rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+
+ components:
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-comment">index 0b09839a..b3fb198b 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,5 +1,5 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+   - dashboard.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-88cd69e5/staging/components/has/staging/kustomize.out.yaml</span>
+<span class="hljs-string">845c845</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/application-service:77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/application-service:4863efdb4d1ee29572a6f6052a19e514757a50a0</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from 88cd69e5 to a8689b9b on Fri Mar 22 22:02:08 2024 </h3>  
+
+<details> 
+<summary>Git Diff (70 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml</span>
+<span class="hljs-comment">index e56ea4f3..67c6eb5f 100644</span>
+<span class="hljs-comment">--- a/components/has/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,7 +3,7 @@</span> kind: Kustomization
+ resources:
+   - ./argocd-roles
+   - ./rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/default?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+
+ components:
+<span class="hljs-meta">@@ -13,7 +13,7 @@</span> components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+<span class="hljs-deletion">-    newTag: 4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+ configMapGenerator:
+   - literals:
+<span class="hljs-comment">diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml</span>
+<span class="hljs-comment">index f61c8750..434b4b78 100644</span>
+<span class="hljs-comment">--- a/components/has/production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -4,8 +4,8 @@</span> resources:
+   - ../base/argocd-roles
+   - ../base/external-secrets
+   - ../base/rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/default?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+ components:
+   - ../k-components/manager-resources
+<span class="hljs-meta">@@ -15,7 +15,7 @@</span> components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+<span class="hljs-deletion">-    newTag: 4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+ configMapGenerator:
+   - literals:
+<span class="hljs-comment">diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml</span>
+<span class="hljs-comment">index cef64817..5a5229a8 100644</span>
+<span class="hljs-comment">--- a/components/has/staging/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -4,7 +4,7 @@</span> resources:
+   - ../base
+   - ../base/external-secrets
+   - rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+
+
+ components:
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-comment">index 0b09839a..b3fb198b 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,5 +1,5 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+   - dashboard.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-88cd69e5/development/components/has/development/kustomize.out.yaml</span>
+<span class="hljs-string">777c777</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/application-service:77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/application-service:4863efdb4d1ee29572a6f6052a19e514757a50a0</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 913e24c9 to 88cd69e5 on Fri Mar 22 19:45:26 2024 </h3>  
 
 <details> 
 <summary>Git Diff (748 lines)</summary>  
@@ -932,7 +1481,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>1: Staging changes from 913e24c9 to 88cd69e5 on Fri Mar 22 19:45:26 2024 </h3>  
+<h3>2: Staging changes from 913e24c9 to 88cd69e5 on Fri Mar 22 19:45:26 2024 </h3>  
 
 <details> 
 <summary>Git Diff (748 lines)</summary>  
@@ -1852,7 +2401,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>1: Development changes from 913e24c9 to 88cd69e5 on Fri Mar 22 19:45:26 2024 </h3>  
+<h3>2: Development changes from 913e24c9 to 88cd69e5 on Fri Mar 22 19:45:26 2024 </h3>  
 
 <details> 
 <summary>Git Diff (748 lines)</summary>  
@@ -2691,7 +3240,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>2: Production changes from bf205a50 to 913e24c9 on Fri Mar 22 13:45:12 2024 </h3>  
+<h3>3: Production changes from bf205a50 to 913e24c9 on Fri Mar 22 13:45:12 2024 </h3>  
 
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -2834,7 +3383,7 @@ deleted file mode 100644
 
 </div>
 <div>
-<h3>2: Staging changes from bf205a50 to 913e24c9 on Fri Mar 22 13:45:12 2024 </h3>  
+<h3>3: Staging changes from bf205a50 to 913e24c9 on Fri Mar 22 13:45:12 2024 </h3>  
 
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -2980,7 +3529,7 @@ deleted file mode 100644
 
 </div>
 <div>
-<h3>2: Development changes from bf205a50 to 913e24c9 on Fri Mar 22 13:45:12 2024 </h3>  
+<h3>3: Development changes from bf205a50 to 913e24c9 on Fri Mar 22 13:45:12 2024 </h3>  
 
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -3078,7 +3627,7 @@ deleted file mode 100644
 
 </div>
 <div>
-<h3>3: Production changes from 797ba005 to bf205a50 on Fri Mar 22 12:05:18 2024 </h3>  
+<h3>4: Production changes from 797ba005 to bf205a50 on Fri Mar 22 12:05:18 2024 </h3>  
 
 <details> 
 <summary>Git Diff (92 lines)</summary>  
@@ -3329,7 +3878,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Staging changes from 797ba005 to bf205a50 on Fri Mar 22 12:05:18 2024 </h3>  
+<h3>4: Staging changes from 797ba005 to bf205a50 on Fri Mar 22 12:05:18 2024 </h3>  
 
 <details> 
 <summary>Git Diff (92 lines)</summary>  
@@ -3545,7 +4094,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Development changes from 797ba005 to bf205a50 on Fri Mar 22 12:05:18 2024 </h3>  
+<h3>4: Development changes from 797ba005 to bf205a50 on Fri Mar 22 12:05:18 2024 </h3>  
 
 <details> 
 <summary>Git Diff (92 lines)</summary>  
@@ -3641,915 +4190,6 @@ new file mode 100644
          securityContext:
            allowPrivilegeEscalation: false
            capabilities: 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from 36e5171b to 797ba005 on Fri Mar 22 09:40:43 2024 </h3>  
-
-<details> 
-<summary>Git Diff (196 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..46dbeb30</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,14 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: v1</span>
-<span class="hljs-addition">+kind: ServiceAccount</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/compare-options: IgnoreExtraneous</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+    username: eedri</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-host</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-comment">index ad6c92c2..67bd967a 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
- - bkundu.yaml
- - bsutter.yaml
- - dfodor.yaml
-<span class="hljs-addition">+- eedri.yaml</span>
- - ergonzal.yaml
- - fmuntean.yaml
- - gbenhaim.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..6c3b44b1</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+kind: RoleBinding</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+  name: approve-user-eedri-host</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+roleRef:</span>
-<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+  kind: Role</span>
-<span class="hljs-addition">+  name: approve-user-host</span>
-<span class="hljs-addition">+subjects:</span>
-<span class="hljs-addition">+- kind: ServiceAccount</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-host</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..57527af3</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+kind: RoleBinding</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+  name: clusterrole-view-eedri-host</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+roleRef:</span>
-<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+  kind: ClusterRole</span>
-<span class="hljs-addition">+  name: view</span>
-<span class="hljs-addition">+subjects:</span>
-<span class="hljs-addition">+- kind: ServiceAccount</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-host</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-comment">index fce428df..dd2aa21b 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
- - approve-user-bkundu-host.yaml
- - approve-user-bsutter-host.yaml
- - approve-user-dfodor-host.yaml
-<span class="hljs-addition">+- approve-user-eedri-host.yaml</span>
- - approve-user-ergonzal-host.yaml
- - approve-user-fmuntean-host.yaml
- - approve-user-gbenhaim-host.yaml
-<span class="hljs-meta">@@ -27,6 +28,7 @@</span> resources:
- - clusterrole-view-bkundu-host.yaml
- - clusterrole-view-bsutter-host.yaml
- - clusterrole-view-dfodor-host.yaml
-<span class="hljs-addition">+- clusterrole-view-eedri-host.yaml</span>
- - clusterrole-view-ergonzal-host.yaml
- - clusterrole-view-fmuntean-host.yaml
- - clusterrole-view-gbenhaim-host.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..8ca58f64</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,14 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: v1</span>
-<span class="hljs-addition">+kind: ServiceAccount</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/compare-options: IgnoreExtraneous</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+    username: eedri</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-member</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-comment">index ad6c92c2..67bd967a 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
- - bkundu.yaml
- - bsutter.yaml
- - dfodor.yaml
-<span class="hljs-addition">+- eedri.yaml</span>
- - ergonzal.yaml
- - fmuntean.yaml
- - gbenhaim.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..86cc2e91</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+kind: RoleBinding</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+  name: clusterrole-view-eedri-member</span>
-<span class="hljs-addition">+  namespace: toolchain-member-operator</span>
-<span class="hljs-addition">+roleRef:</span>
-<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+  kind: ClusterRole</span>
-<span class="hljs-addition">+  name: view</span>
-<span class="hljs-addition">+subjects:</span>
-<span class="hljs-addition">+- kind: ServiceAccount</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-member</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-comment">index 240d1b60..879ef9a7 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
- - clusterrole-view-bkundu-member.yaml
- - clusterrole-view-bsutter-member.yaml
- - clusterrole-view-dfodor-member.yaml
-<span class="hljs-addition">+- clusterrole-view-eedri-member.yaml</span>
- - clusterrole-view-ergonzal-member.yaml
- - clusterrole-view-fmuntean-member.yaml
- - clusterrole-view-gbenhaim-member.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/kubesaw-admins.yaml b/components/sandbox/user-management/production/kubesaw-admins.yaml</span>
-<span class="hljs-comment">index 8cc2cff5..a64bf3f3 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/kubesaw-admins.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/kubesaw-admins.yaml</span>
-<span class="hljs-meta">@@ -121,6 +121,20 @@</span> serviceAccounts:
-       clusterRoles:
-       - view
-
-<span class="hljs-addition">+- name: eedri</span>
-<span class="hljs-addition">+  host:</span>
-<span class="hljs-addition">+    roleBindings:</span>
-<span class="hljs-addition">+    - namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+      roles:</span>
-<span class="hljs-addition">+      - approve-user</span>
-<span class="hljs-addition">+      clusterRoles:</span>
-<span class="hljs-addition">+      - view</span>
-<span class="hljs-addition">+  member:</span>
-<span class="hljs-addition">+    roleBindings:</span>
-<span class="hljs-addition">+    - namespace: toolchain-member-operator</span>
-<span class="hljs-addition">+      clusterRoles:</span>
-<span class="hljs-addition">+      - view</span>
-<span class="hljs-addition">+</span>
- - name: bsutter
-   host:
-     roleBindings: 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from 36e5171b to 797ba005 on Fri Mar 22 09:40:43 2024 </h3>  
-
-<details> 
-<summary>Git Diff (196 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..46dbeb30</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,14 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: v1</span>
-<span class="hljs-addition">+kind: ServiceAccount</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/compare-options: IgnoreExtraneous</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+    username: eedri</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-host</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-comment">index ad6c92c2..67bd967a 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
- - bkundu.yaml
- - bsutter.yaml
- - dfodor.yaml
-<span class="hljs-addition">+- eedri.yaml</span>
- - ergonzal.yaml
- - fmuntean.yaml
- - gbenhaim.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..6c3b44b1</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+kind: RoleBinding</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+  name: approve-user-eedri-host</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+roleRef:</span>
-<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+  kind: Role</span>
-<span class="hljs-addition">+  name: approve-user-host</span>
-<span class="hljs-addition">+subjects:</span>
-<span class="hljs-addition">+- kind: ServiceAccount</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-host</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..57527af3</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+kind: RoleBinding</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+  name: clusterrole-view-eedri-host</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+roleRef:</span>
-<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+  kind: ClusterRole</span>
-<span class="hljs-addition">+  name: view</span>
-<span class="hljs-addition">+subjects:</span>
-<span class="hljs-addition">+- kind: ServiceAccount</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-host</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-comment">index fce428df..dd2aa21b 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
- - approve-user-bkundu-host.yaml
- - approve-user-bsutter-host.yaml
- - approve-user-dfodor-host.yaml
-<span class="hljs-addition">+- approve-user-eedri-host.yaml</span>
- - approve-user-ergonzal-host.yaml
- - approve-user-fmuntean-host.yaml
- - approve-user-gbenhaim-host.yaml
-<span class="hljs-meta">@@ -27,6 +28,7 @@</span> resources:
- - clusterrole-view-bkundu-host.yaml
- - clusterrole-view-bsutter-host.yaml
- - clusterrole-view-dfodor-host.yaml
-<span class="hljs-addition">+- clusterrole-view-eedri-host.yaml</span>
- - clusterrole-view-ergonzal-host.yaml
- - clusterrole-view-fmuntean-host.yaml
- - clusterrole-view-gbenhaim-host.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..8ca58f64</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,14 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: v1</span>
-<span class="hljs-addition">+kind: ServiceAccount</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/compare-options: IgnoreExtraneous</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+    username: eedri</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-member</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-comment">index ad6c92c2..67bd967a 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
- - bkundu.yaml
- - bsutter.yaml
- - dfodor.yaml
-<span class="hljs-addition">+- eedri.yaml</span>
- - ergonzal.yaml
- - fmuntean.yaml
- - gbenhaim.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..86cc2e91</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+kind: RoleBinding</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+  name: clusterrole-view-eedri-member</span>
-<span class="hljs-addition">+  namespace: toolchain-member-operator</span>
-<span class="hljs-addition">+roleRef:</span>
-<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+  kind: ClusterRole</span>
-<span class="hljs-addition">+  name: view</span>
-<span class="hljs-addition">+subjects:</span>
-<span class="hljs-addition">+- kind: ServiceAccount</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-member</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-comment">index 240d1b60..879ef9a7 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
- - clusterrole-view-bkundu-member.yaml
- - clusterrole-view-bsutter-member.yaml
- - clusterrole-view-dfodor-member.yaml
-<span class="hljs-addition">+- clusterrole-view-eedri-member.yaml</span>
- - clusterrole-view-ergonzal-member.yaml
- - clusterrole-view-fmuntean-member.yaml
- - clusterrole-view-gbenhaim-member.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/kubesaw-admins.yaml b/components/sandbox/user-management/production/kubesaw-admins.yaml</span>
-<span class="hljs-comment">index 8cc2cff5..a64bf3f3 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/kubesaw-admins.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/kubesaw-admins.yaml</span>
-<span class="hljs-meta">@@ -121,6 +121,20 @@</span> serviceAccounts:
-       clusterRoles:
-       - view
-
-<span class="hljs-addition">+- name: eedri</span>
-<span class="hljs-addition">+  host:</span>
-<span class="hljs-addition">+    roleBindings:</span>
-<span class="hljs-addition">+    - namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+      roles:</span>
-<span class="hljs-addition">+      - approve-user</span>
-<span class="hljs-addition">+      clusterRoles:</span>
-<span class="hljs-addition">+      - view</span>
-<span class="hljs-addition">+  member:</span>
-<span class="hljs-addition">+    roleBindings:</span>
-<span class="hljs-addition">+    - namespace: toolchain-member-operator</span>
-<span class="hljs-addition">+      clusterRoles:</span>
-<span class="hljs-addition">+      - view</span>
-<span class="hljs-addition">+</span>
- - name: bsutter
-   host:
-     roleBindings: 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from 36e5171b to 797ba005 on Fri Mar 22 09:40:43 2024 </h3>  
-
-<details> 
-<summary>Git Diff (196 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..46dbeb30</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,14 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: v1</span>
-<span class="hljs-addition">+kind: ServiceAccount</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/compare-options: IgnoreExtraneous</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+    username: eedri</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-host</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-comment">index ad6c92c2..67bd967a 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
- - bkundu.yaml
- - bsutter.yaml
- - dfodor.yaml
-<span class="hljs-addition">+- eedri.yaml</span>
- - ergonzal.yaml
- - fmuntean.yaml
- - gbenhaim.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..6c3b44b1</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+kind: RoleBinding</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+  name: approve-user-eedri-host</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+roleRef:</span>
-<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+  kind: Role</span>
-<span class="hljs-addition">+  name: approve-user-host</span>
-<span class="hljs-addition">+subjects:</span>
-<span class="hljs-addition">+- kind: ServiceAccount</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-host</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..57527af3</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+kind: RoleBinding</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+  name: clusterrole-view-eedri-host</span>
-<span class="hljs-addition">+  namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+roleRef:</span>
-<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+  kind: ClusterRole</span>
-<span class="hljs-addition">+  name: view</span>
-<span class="hljs-addition">+subjects:</span>
-<span class="hljs-addition">+- kind: ServiceAccount</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-host</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-comment">index fce428df..dd2aa21b 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
- - approve-user-bkundu-host.yaml
- - approve-user-bsutter-host.yaml
- - approve-user-dfodor-host.yaml
-<span class="hljs-addition">+- approve-user-eedri-host.yaml</span>
- - approve-user-ergonzal-host.yaml
- - approve-user-fmuntean-host.yaml
- - approve-user-gbenhaim-host.yaml
-<span class="hljs-meta">@@ -27,6 +28,7 @@</span> resources:
- - clusterrole-view-bkundu-host.yaml
- - clusterrole-view-bsutter-host.yaml
- - clusterrole-view-dfodor-host.yaml
-<span class="hljs-addition">+- clusterrole-view-eedri-host.yaml</span>
- - clusterrole-view-ergonzal-host.yaml
- - clusterrole-view-fmuntean-host.yaml
- - clusterrole-view-gbenhaim-host.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..8ca58f64</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,14 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: v1</span>
-<span class="hljs-addition">+kind: ServiceAccount</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/compare-options: IgnoreExtraneous</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+    username: eedri</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-member</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-comment">index ad6c92c2..67bd967a 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml</span>
-<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
- - bkundu.yaml
- - bsutter.yaml
- - dfodor.yaml
-<span class="hljs-addition">+- eedri.yaml</span>
- - ergonzal.yaml
- - fmuntean.yaml
- - gbenhaim.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..86cc2e91</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+# Generated by cli - DO NOT EDIT</span>
-<span class="hljs-addition">+# ----------------------------------------------------------------</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="hljs-addition">+kind: RoleBinding</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  labels:</span>
-<span class="hljs-addition">+    provider: sandbox-sre</span>
-<span class="hljs-addition">+  name: clusterrole-view-eedri-member</span>
-<span class="hljs-addition">+  namespace: toolchain-member-operator</span>
-<span class="hljs-addition">+roleRef:</span>
-<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
-<span class="hljs-addition">+  kind: ClusterRole</span>
-<span class="hljs-addition">+  name: view</span>
-<span class="hljs-addition">+subjects:</span>
-<span class="hljs-addition">+- kind: ServiceAccount</span>
-<span class="hljs-addition">+  name: eedri</span>
-<span class="hljs-addition">+  namespace: sandbox-sre-member</span>
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-comment">index 240d1b60..879ef9a7 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml</span>
-<span class="hljs-meta">@@ -10,6 +10,7 @@</span> resources:
- - clusterrole-view-bkundu-member.yaml
- - clusterrole-view-bsutter-member.yaml
- - clusterrole-view-dfodor-member.yaml
-<span class="hljs-addition">+- clusterrole-view-eedri-member.yaml</span>
- - clusterrole-view-ergonzal-member.yaml
- - clusterrole-view-fmuntean-member.yaml
- - clusterrole-view-gbenhaim-member.yaml
-<span class="hljs-comment">diff --git a/components/sandbox/user-management/production/kubesaw-admins.yaml b/components/sandbox/user-management/production/kubesaw-admins.yaml</span>
-<span class="hljs-comment">index 8cc2cff5..a64bf3f3 100644</span>
-<span class="hljs-comment">--- a/components/sandbox/user-management/production/kubesaw-admins.yaml</span>
-<span class="hljs-comment">+++ b/components/sandbox/user-management/production/kubesaw-admins.yaml</span>
-<span class="hljs-meta">@@ -121,6 +121,20 @@</span> serviceAccounts:
-       clusterRoles:
-       - view
-
-<span class="hljs-addition">+- name: eedri</span>
-<span class="hljs-addition">+  host:</span>
-<span class="hljs-addition">+    roleBindings:</span>
-<span class="hljs-addition">+    - namespace: toolchain-host-operator</span>
-<span class="hljs-addition">+      roles:</span>
-<span class="hljs-addition">+      - approve-user</span>
-<span class="hljs-addition">+      clusterRoles:</span>
-<span class="hljs-addition">+      - view</span>
-<span class="hljs-addition">+  member:</span>
-<span class="hljs-addition">+    roleBindings:</span>
-<span class="hljs-addition">+    - namespace: toolchain-member-operator</span>
-<span class="hljs-addition">+      clusterRoles:</span>
-<span class="hljs-addition">+      - view</span>
-<span class="hljs-addition">+</span>
- - name: bsutter
-   host:
-     roleBindings: 
 </code></pre>
 
 </details> 

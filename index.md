@@ -1,12 +1,582 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Mar 22 20:03:19 UTC 2024
+### This file generated at Sat Mar 23 00:07:00 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 913e24c9 to 88cd69e5 on Fri Mar 22 19:45:26 2024 </h3>  
+<h3>1: Production changes from 88cd69e5 to a8689b9b on Fri Mar 22 22:02:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (70 lines)</summary>  
+
+``` 
+diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
+index e56ea4f3..67c6eb5f 100644
+--- a/components/has/base/kustomization.yaml
++++ b/components/has/base/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ resources:
+   - ./argocd-roles
+   - ./rbac
+-  - https://github.com/redhat-appstudio/application-service/config/default?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ 
+ components:
+@@ -13,7 +13,7 @@ components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+-    newTag: 4863efdb4d1ee29572a6f6052a19e514757a50a0
++    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ configMapGenerator:
+   - literals:
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index f61c8750..434b4b78 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -4,8 +4,8 @@ resources:
+   - ../base/argocd-roles
+   - ../base/external-secrets
+   - ../base/rbac
+-  - https://github.com/redhat-appstudio/application-service/config/default?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ components:
+   - ../k-components/manager-resources
+@@ -15,7 +15,7 @@ components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+-    newTag: 4863efdb4d1ee29572a6f6052a19e514757a50a0
++    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ configMapGenerator:
+   - literals:
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index cef64817..5a5229a8 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -4,7 +4,7 @@ resources:
+   - ../base
+   - ../base/external-secrets
+   - rbac
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ 
+ components:
+diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+index 0b09839a..b3fb198b 100644
+--- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
++  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+   - dashboard.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-88cd69e5/production/components/has/production/kustomize.out.yaml
+818c818
+<         image: quay.io/redhat-appstudio/application-service:77ecf15672dac31a503d0541a32e8d13a79d5d59
+---
+>         image: quay.io/redhat-appstudio/application-service:4863efdb4d1ee29572a6f6052a19e514757a50a0 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 88cd69e5 to a8689b9b on Fri Mar 22 22:02:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (70 lines)</summary>  
+
+``` 
+diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
+index e56ea4f3..67c6eb5f 100644
+--- a/components/has/base/kustomization.yaml
++++ b/components/has/base/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ resources:
+   - ./argocd-roles
+   - ./rbac
+-  - https://github.com/redhat-appstudio/application-service/config/default?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ 
+ components:
+@@ -13,7 +13,7 @@ components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+-    newTag: 4863efdb4d1ee29572a6f6052a19e514757a50a0
++    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ configMapGenerator:
+   - literals:
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index f61c8750..434b4b78 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -4,8 +4,8 @@ resources:
+   - ../base/argocd-roles
+   - ../base/external-secrets
+   - ../base/rbac
+-  - https://github.com/redhat-appstudio/application-service/config/default?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ components:
+   - ../k-components/manager-resources
+@@ -15,7 +15,7 @@ components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+-    newTag: 4863efdb4d1ee29572a6f6052a19e514757a50a0
++    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ configMapGenerator:
+   - literals:
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index cef64817..5a5229a8 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -4,7 +4,7 @@ resources:
+   - ../base
+   - ../base/external-secrets
+   - rbac
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ 
+ components:
+diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+index 0b09839a..b3fb198b 100644
+--- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
++  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+   - dashboard.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-88cd69e5/staging/components/has/staging/kustomize.out.yaml
+845c845
+<         image: quay.io/redhat-appstudio/application-service:77ecf15672dac31a503d0541a32e8d13a79d5d59
+---
+>         image: quay.io/redhat-appstudio/application-service:4863efdb4d1ee29572a6f6052a19e514757a50a0 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 88cd69e5 to a8689b9b on Fri Mar 22 22:02:08 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (70 lines)</summary>  
+
+``` 
+diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
+index e56ea4f3..67c6eb5f 100644
+--- a/components/has/base/kustomization.yaml
++++ b/components/has/base/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ resources:
+   - ./argocd-roles
+   - ./rbac
+-  - https://github.com/redhat-appstudio/application-service/config/default?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ 
+ components:
+@@ -13,7 +13,7 @@ components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+-    newTag: 4863efdb4d1ee29572a6f6052a19e514757a50a0
++    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ configMapGenerator:
+   - literals:
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index f61c8750..434b4b78 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -4,8 +4,8 @@ resources:
+   - ../base/argocd-roles
+   - ../base/external-secrets
+   - ../base/rbac
+-  - https://github.com/redhat-appstudio/application-service/config/default?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ components:
+   - ../k-components/manager-resources
+@@ -15,7 +15,7 @@ components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+-    newTag: 4863efdb4d1ee29572a6f6052a19e514757a50a0
++    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ configMapGenerator:
+   - literals:
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index cef64817..5a5229a8 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -4,7 +4,7 @@ resources:
+   - ../base
+   - ../base/external-secrets
+   - rbac
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+ 
+ 
+ components:
+diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+index 0b09839a..b3fb198b 100644
+--- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=4863efdb4d1ee29572a6f6052a19e514757a50a0
++  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+   - dashboard.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-88cd69e5/development/components/has/development/kustomize.out.yaml
+777c777
+<         image: quay.io/redhat-appstudio/application-service:77ecf15672dac31a503d0541a32e8d13a79d5d59
+---
+>         image: quay.io/redhat-appstudio/application-service:4863efdb4d1ee29572a6f6052a19e514757a50a0 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 913e24c9 to 88cd69e5 on Fri Mar 22 19:45:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (748 lines)</summary>  
@@ -931,7 +1501,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 913e24c9 to 88cd69e5 on Fri Mar 22 19:45:26 2024 </h3>  
+<h3>2: Staging changes from 913e24c9 to 88cd69e5 on Fri Mar 22 19:45:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (748 lines)</summary>  
@@ -1859,7 +2429,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 913e24c9 to 88cd69e5 on Fri Mar 22 19:45:26 2024 </h3>  
+<h3>2: Development changes from 913e24c9 to 88cd69e5 on Fri Mar 22 19:45:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (748 lines)</summary>  
@@ -2706,7 +3276,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from bf205a50 to 913e24c9 on Fri Mar 22 13:45:12 2024 </h3>  
+<h3>3: Production changes from bf205a50 to 913e24c9 on Fri Mar 22 13:45:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -2856,7 +3426,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from bf205a50 to 913e24c9 on Fri Mar 22 13:45:12 2024 </h3>  
+<h3>3: Staging changes from bf205a50 to 913e24c9 on Fri Mar 22 13:45:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -3009,7 +3579,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from bf205a50 to 913e24c9 on Fri Mar 22 13:45:12 2024 </h3>  
+<h3>3: Development changes from bf205a50 to 913e24c9 on Fri Mar 22 13:45:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (22 lines)</summary>  
@@ -3114,7 +3684,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 797ba005 to bf205a50 on Fri Mar 22 12:05:18 2024 </h3>  
+<h3>4: Production changes from 797ba005 to bf205a50 on Fri Mar 22 12:05:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (92 lines)</summary>  
@@ -3372,7 +3942,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 797ba005 to bf205a50 on Fri Mar 22 12:05:18 2024 </h3>  
+<h3>4: Staging changes from 797ba005 to bf205a50 on Fri Mar 22 12:05:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (92 lines)</summary>  
@@ -3595,7 +4165,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 797ba005 to bf205a50 on Fri Mar 22 12:05:18 2024 </h3>  
+<h3>4: Development changes from 797ba005 to bf205a50 on Fri Mar 22 12:05:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (92 lines)</summary>  
@@ -3693,936 +4263,6 @@ index 38a870ac..2f8517bd 100644
          securityContext:
            allowPrivilegeEscalation: false
            capabilities: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 36e5171b to 797ba005 on Fri Mar 22 09:40:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (196 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml
-new file mode 100644
-index 00000000..46dbeb30
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml
-@@ -0,0 +1,14 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/compare-options: IgnoreExtraneous
-+  labels:
-+    provider: sandbox-sre
-+    username: eedri
-+  name: eedri
-+  namespace: sandbox-sre-host
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml
-index ad6c92c2..67bd967a 100644
---- a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - bkundu.yaml
- - bsutter.yaml
- - dfodor.yaml
-+- eedri.yaml
- - ergonzal.yaml
- - fmuntean.yaml
- - gbenhaim.yaml
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml
-new file mode 100644
-index 00000000..6c3b44b1
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml
-@@ -0,0 +1,19 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: RoleBinding
-+metadata:
-+  labels:
-+    provider: sandbox-sre
-+  name: approve-user-eedri-host
-+  namespace: toolchain-host-operator
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: Role
-+  name: approve-user-host
-+subjects:
-+- kind: ServiceAccount
-+  name: eedri
-+  namespace: sandbox-sre-host
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml
-new file mode 100644
-index 00000000..57527af3
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml
-@@ -0,0 +1,19 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: RoleBinding
-+metadata:
-+  labels:
-+    provider: sandbox-sre
-+  name: clusterrole-view-eedri-host
-+  namespace: toolchain-host-operator
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: view
-+subjects:
-+- kind: ServiceAccount
-+  name: eedri
-+  namespace: sandbox-sre-host
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml
-index fce428df..dd2aa21b 100644
---- a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - approve-user-bkundu-host.yaml
- - approve-user-bsutter-host.yaml
- - approve-user-dfodor-host.yaml
-+- approve-user-eedri-host.yaml
- - approve-user-ergonzal-host.yaml
- - approve-user-fmuntean-host.yaml
- - approve-user-gbenhaim-host.yaml
-@@ -27,6 +28,7 @@ resources:
- - clusterrole-view-bkundu-host.yaml
- - clusterrole-view-bsutter-host.yaml
- - clusterrole-view-dfodor-host.yaml
-+- clusterrole-view-eedri-host.yaml
- - clusterrole-view-ergonzal-host.yaml
- - clusterrole-view-fmuntean-host.yaml
- - clusterrole-view-gbenhaim-host.yaml
-diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml
-new file mode 100644
-index 00000000..8ca58f64
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml
-@@ -0,0 +1,14 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/compare-options: IgnoreExtraneous
-+  labels:
-+    provider: sandbox-sre
-+    username: eedri
-+  name: eedri
-+  namespace: sandbox-sre-member
-diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml
-index ad6c92c2..67bd967a 100644
---- a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml
-+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - bkundu.yaml
- - bsutter.yaml
- - dfodor.yaml
-+- eedri.yaml
- - ergonzal.yaml
- - fmuntean.yaml
- - gbenhaim.yaml
-diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml
-new file mode 100644
-index 00000000..86cc2e91
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml
-@@ -0,0 +1,19 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: RoleBinding
-+metadata:
-+  labels:
-+    provider: sandbox-sre
-+  name: clusterrole-view-eedri-member
-+  namespace: toolchain-member-operator
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: view
-+subjects:
-+- kind: ServiceAccount
-+  name: eedri
-+  namespace: sandbox-sre-member
-diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml
-index 240d1b60..879ef9a7 100644
---- a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml
-+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - clusterrole-view-bkundu-member.yaml
- - clusterrole-view-bsutter-member.yaml
- - clusterrole-view-dfodor-member.yaml
-+- clusterrole-view-eedri-member.yaml
- - clusterrole-view-ergonzal-member.yaml
- - clusterrole-view-fmuntean-member.yaml
- - clusterrole-view-gbenhaim-member.yaml
-diff --git a/components/sandbox/user-management/production/kubesaw-admins.yaml b/components/sandbox/user-management/production/kubesaw-admins.yaml
-index 8cc2cff5..a64bf3f3 100644
---- a/components/sandbox/user-management/production/kubesaw-admins.yaml
-+++ b/components/sandbox/user-management/production/kubesaw-admins.yaml
-@@ -121,6 +121,20 @@ serviceAccounts:
-       clusterRoles:
-       - view
- 
-+- name: eedri
-+  host:
-+    roleBindings:
-+    - namespace: toolchain-host-operator
-+      roles:
-+      - approve-user
-+      clusterRoles:
-+      - view
-+  member:
-+    roleBindings:
-+    - namespace: toolchain-member-operator
-+      clusterRoles:
-+      - view
-+
- - name: bsutter
-   host:
-     roleBindings: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 36e5171b to 797ba005 on Fri Mar 22 09:40:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (196 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml
-new file mode 100644
-index 00000000..46dbeb30
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml
-@@ -0,0 +1,14 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/compare-options: IgnoreExtraneous
-+  labels:
-+    provider: sandbox-sre
-+    username: eedri
-+  name: eedri
-+  namespace: sandbox-sre-host
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml
-index ad6c92c2..67bd967a 100644
---- a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - bkundu.yaml
- - bsutter.yaml
- - dfodor.yaml
-+- eedri.yaml
- - ergonzal.yaml
- - fmuntean.yaml
- - gbenhaim.yaml
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml
-new file mode 100644
-index 00000000..6c3b44b1
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml
-@@ -0,0 +1,19 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: RoleBinding
-+metadata:
-+  labels:
-+    provider: sandbox-sre
-+  name: approve-user-eedri-host
-+  namespace: toolchain-host-operator
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: Role
-+  name: approve-user-host
-+subjects:
-+- kind: ServiceAccount
-+  name: eedri
-+  namespace: sandbox-sre-host
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml
-new file mode 100644
-index 00000000..57527af3
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml
-@@ -0,0 +1,19 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: RoleBinding
-+metadata:
-+  labels:
-+    provider: sandbox-sre
-+  name: clusterrole-view-eedri-host
-+  namespace: toolchain-host-operator
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: view
-+subjects:
-+- kind: ServiceAccount
-+  name: eedri
-+  namespace: sandbox-sre-host
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml
-index fce428df..dd2aa21b 100644
---- a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - approve-user-bkundu-host.yaml
- - approve-user-bsutter-host.yaml
- - approve-user-dfodor-host.yaml
-+- approve-user-eedri-host.yaml
- - approve-user-ergonzal-host.yaml
- - approve-user-fmuntean-host.yaml
- - approve-user-gbenhaim-host.yaml
-@@ -27,6 +28,7 @@ resources:
- - clusterrole-view-bkundu-host.yaml
- - clusterrole-view-bsutter-host.yaml
- - clusterrole-view-dfodor-host.yaml
-+- clusterrole-view-eedri-host.yaml
- - clusterrole-view-ergonzal-host.yaml
- - clusterrole-view-fmuntean-host.yaml
- - clusterrole-view-gbenhaim-host.yaml
-diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml
-new file mode 100644
-index 00000000..8ca58f64
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml
-@@ -0,0 +1,14 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/compare-options: IgnoreExtraneous
-+  labels:
-+    provider: sandbox-sre
-+    username: eedri
-+  name: eedri
-+  namespace: sandbox-sre-member
-diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml
-index ad6c92c2..67bd967a 100644
---- a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml
-+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - bkundu.yaml
- - bsutter.yaml
- - dfodor.yaml
-+- eedri.yaml
- - ergonzal.yaml
- - fmuntean.yaml
- - gbenhaim.yaml
-diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml
-new file mode 100644
-index 00000000..86cc2e91
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml
-@@ -0,0 +1,19 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: RoleBinding
-+metadata:
-+  labels:
-+    provider: sandbox-sre
-+  name: clusterrole-view-eedri-member
-+  namespace: toolchain-member-operator
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: view
-+subjects:
-+- kind: ServiceAccount
-+  name: eedri
-+  namespace: sandbox-sre-member
-diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml
-index 240d1b60..879ef9a7 100644
---- a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml
-+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - clusterrole-view-bkundu-member.yaml
- - clusterrole-view-bsutter-member.yaml
- - clusterrole-view-dfodor-member.yaml
-+- clusterrole-view-eedri-member.yaml
- - clusterrole-view-ergonzal-member.yaml
- - clusterrole-view-fmuntean-member.yaml
- - clusterrole-view-gbenhaim-member.yaml
-diff --git a/components/sandbox/user-management/production/kubesaw-admins.yaml b/components/sandbox/user-management/production/kubesaw-admins.yaml
-index 8cc2cff5..a64bf3f3 100644
---- a/components/sandbox/user-management/production/kubesaw-admins.yaml
-+++ b/components/sandbox/user-management/production/kubesaw-admins.yaml
-@@ -121,6 +121,20 @@ serviceAccounts:
-       clusterRoles:
-       - view
- 
-+- name: eedri
-+  host:
-+    roleBindings:
-+    - namespace: toolchain-host-operator
-+      roles:
-+      - approve-user
-+      clusterRoles:
-+      - view
-+  member:
-+    roleBindings:
-+    - namespace: toolchain-member-operator
-+      clusterRoles:
-+      - view
-+
- - name: bsutter
-   host:
-     roleBindings: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 36e5171b to 797ba005 on Fri Mar 22 09:40:43 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (196 lines)</summary>  
-
-``` 
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml
-new file mode 100644
-index 00000000..46dbeb30
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/eedri.yaml
-@@ -0,0 +1,14 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/compare-options: IgnoreExtraneous
-+  labels:
-+    provider: sandbox-sre
-+    username: eedri
-+  name: eedri
-+  namespace: sandbox-sre-host
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml
-index ad6c92c2..67bd967a 100644
---- a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/sandbox-sre-host/serviceaccounts/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - bkundu.yaml
- - bsutter.yaml
- - dfodor.yaml
-+- eedri.yaml
- - ergonzal.yaml
- - fmuntean.yaml
- - gbenhaim.yaml
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml
-new file mode 100644
-index 00000000..6c3b44b1
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/approve-user-eedri-host.yaml
-@@ -0,0 +1,19 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: RoleBinding
-+metadata:
-+  labels:
-+    provider: sandbox-sre
-+  name: approve-user-eedri-host
-+  namespace: toolchain-host-operator
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: Role
-+  name: approve-user-host
-+subjects:
-+- kind: ServiceAccount
-+  name: eedri
-+  namespace: sandbox-sre-host
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml
-new file mode 100644
-index 00000000..57527af3
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/clusterrole-view-eedri-host.yaml
-@@ -0,0 +1,19 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: RoleBinding
-+metadata:
-+  labels:
-+    provider: sandbox-sre
-+  name: clusterrole-view-eedri-host
-+  namespace: toolchain-host-operator
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: view
-+subjects:
-+- kind: ServiceAccount
-+  name: eedri
-+  namespace: sandbox-sre-host
-diff --git a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml
-index fce428df..dd2aa21b 100644
---- a/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml
-+++ b/components/sandbox/user-management/production/generated-manifests/host/namespace-scoped/toolchain-host-operator/rolebindings/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - approve-user-bkundu-host.yaml
- - approve-user-bsutter-host.yaml
- - approve-user-dfodor-host.yaml
-+- approve-user-eedri-host.yaml
- - approve-user-ergonzal-host.yaml
- - approve-user-fmuntean-host.yaml
- - approve-user-gbenhaim-host.yaml
-@@ -27,6 +28,7 @@ resources:
- - clusterrole-view-bkundu-host.yaml
- - clusterrole-view-bsutter-host.yaml
- - clusterrole-view-dfodor-host.yaml
-+- clusterrole-view-eedri-host.yaml
- - clusterrole-view-ergonzal-host.yaml
- - clusterrole-view-fmuntean-host.yaml
- - clusterrole-view-gbenhaim-host.yaml
-diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml
-new file mode 100644
-index 00000000..8ca58f64
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/eedri.yaml
-@@ -0,0 +1,14 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: v1
-+kind: ServiceAccount
-+metadata:
-+  annotations:
-+    argocd.argoproj.io/compare-options: IgnoreExtraneous
-+  labels:
-+    provider: sandbox-sre
-+    username: eedri
-+  name: eedri
-+  namespace: sandbox-sre-member
-diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml
-index ad6c92c2..67bd967a 100644
---- a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml
-+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/sandbox-sre-member/serviceaccounts/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - bkundu.yaml
- - bsutter.yaml
- - dfodor.yaml
-+- eedri.yaml
- - ergonzal.yaml
- - fmuntean.yaml
- - gbenhaim.yaml
-diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml
-new file mode 100644
-index 00000000..86cc2e91
---- /dev/null
-+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/clusterrole-view-eedri-member.yaml
-@@ -0,0 +1,19 @@
-+# ----------------------------------------------------------------
-+# Generated by cli - DO NOT EDIT
-+# ----------------------------------------------------------------
-+
-+apiVersion: rbac.authorization.k8s.io/v1
-+kind: RoleBinding
-+metadata:
-+  labels:
-+    provider: sandbox-sre
-+  name: clusterrole-view-eedri-member
-+  namespace: toolchain-member-operator
-+roleRef:
-+  apiGroup: rbac.authorization.k8s.io
-+  kind: ClusterRole
-+  name: view
-+subjects:
-+- kind: ServiceAccount
-+  name: eedri
-+  namespace: sandbox-sre-member
-diff --git a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml
-index 240d1b60..879ef9a7 100644
---- a/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml
-+++ b/components/sandbox/user-management/production/generated-manifests/member/namespace-scoped/toolchain-member-operator/rolebindings/kustomization.yaml
-@@ -10,6 +10,7 @@ resources:
- - clusterrole-view-bkundu-member.yaml
- - clusterrole-view-bsutter-member.yaml
- - clusterrole-view-dfodor-member.yaml
-+- clusterrole-view-eedri-member.yaml
- - clusterrole-view-ergonzal-member.yaml
- - clusterrole-view-fmuntean-member.yaml
- - clusterrole-view-gbenhaim-member.yaml
-diff --git a/components/sandbox/user-management/production/kubesaw-admins.yaml b/components/sandbox/user-management/production/kubesaw-admins.yaml
-index 8cc2cff5..a64bf3f3 100644
---- a/components/sandbox/user-management/production/kubesaw-admins.yaml
-+++ b/components/sandbox/user-management/production/kubesaw-admins.yaml
-@@ -121,6 +121,20 @@ serviceAccounts:
-       clusterRoles:
-       - view
- 
-+- name: eedri
-+  host:
-+    roleBindings:
-+    - namespace: toolchain-host-operator
-+      roles:
-+      - approve-user
-+      clusterRoles:
-+      - view
-+  member:
-+    roleBindings:
-+    - namespace: toolchain-member-operator
-+      clusterRoles:
-+      - view
-+
- - name: bsutter
-   host:
-     roleBindings: 
 ```
  
 </details> 
