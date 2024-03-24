@@ -1,0 +1,180 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6738549a/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-a8689b9b/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1332c1332
+<         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1378a1379,1424
+>       initContainers:
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+>         name: migrator
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 32Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+1484c1530
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1545c1591
+<               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
+---
+>               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6738549a/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-a8689b9b/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1332c1332
+<         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1378a1379,1424
+>       initContainers:
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+>         name: migrator
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 32Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+1484c1530
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1545c1591
+<               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
+---
+>               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6738549a/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-a8689b9b/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1332c1332
+<         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1378a1379,1424
+>       initContainers:
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+>         name: migrator
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 32Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+1484c1530
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1545c1591
+<               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
+---
+>               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
