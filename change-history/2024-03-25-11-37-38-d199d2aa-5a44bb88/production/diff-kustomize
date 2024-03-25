@@ -1,0 +1,789 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5a44bb88/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-d199d2aa/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+899a900,941
+>   loglevel.controller: info
+>   loglevel.webhook: info
+>   zap-logger-config: |
+>     {
+>       "level": "info",
+>       "development": false,
+>       "sampling": {
+>         "initial": 100,
+>         "thereafter": 100
+>       },
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "ts",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+>     }
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   labels:
+>     app.kubernetes.io/component: resolvers
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-pipelines
+>     operator.tekton.dev/operand-name: tektoncd-pipelines
+>   name: config-logging
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+1331c1373
+<         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1377a1420,1465
+>       initContainers:
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+>         name: migrator
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 32Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+1483c1571
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1495c1583
+<             cpu: 250m
+---
+>             cpu: 100m
+1622a1711,1718
+>           # If the secret is not marked as immutable, make it so.
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+>             echo "Making secret immutable"
+>             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+>               --patch='{"immutable": true}' \
+>             | kubectl apply -f -
+>           fi
+> 
+1868,1897d1963
+<       configMaps:
+<         config-logging:
+<           data:
+<             loglevel.controller: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+1902,1912d1967
+<             template:
+<               spec:
+<                 containers:
+<                 - name: proxy
+<                   resources:
+<                     limits:
+<                       cpu: 500m
+<                       memory: 500Mi
+<                     requests:
+<                       cpu: 100m
+<                       memory: 100Mi
+1916,1928d1970
+<         tekton-pipelines-webhook:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: webhook
+<                   resources:
+<                     limits:
+<                       cpu: "1"
+<                       memory: 1Gi
+<                     requests:
+<                       cpu: 200m
+<                       memory: 200Mi
+1930,1964d1971
+<       horizontalPodAutoscalers:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+<         tekton-pipelines-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+1996,2044d2002
+<   trigger:
+<     options:
+<       configMaps:
+<         config-logging-triggers:
+<           data:
+<             loglevel.controller: info
+<             loglevel.eventlistener: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+< ---
+< apiVersion: operators.coreos.com/v1alpha1
+< kind: CatalogSource
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "0"
+<   name: custom-operators
+<   namespace: openshift-marketplace
+< spec:
+<   displayName: custom-operators
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+<   sourceType: grpc
+<   updateStrategy:
+<     registryPoll:
+<       interval: 30m
+2055c2013
+<   channel: latest
+---
+>   channel: pipelines-1.13
+2057c2015
+<   source: custom-operators
+---
+>   source: redhat-operators
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5a44bb88/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-d199d2aa/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+899a900,941
+>   loglevel.controller: info
+>   loglevel.webhook: info
+>   zap-logger-config: |
+>     {
+>       "level": "info",
+>       "development": false,
+>       "sampling": {
+>         "initial": 100,
+>         "thereafter": 100
+>       },
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "ts",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+>     }
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   labels:
+>     app.kubernetes.io/component: resolvers
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-pipelines
+>     operator.tekton.dev/operand-name: tektoncd-pipelines
+>   name: config-logging
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+1331c1373
+<         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1377a1420,1465
+>       initContainers:
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+>         name: migrator
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 32Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+1483c1571
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1495c1583
+<             cpu: 250m
+---
+>             cpu: 100m
+1622a1711,1718
+>           # If the secret is not marked as immutable, make it so.
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+>             echo "Making secret immutable"
+>             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+>               --patch='{"immutable": true}' \
+>             | kubectl apply -f -
+>           fi
+> 
+1868,1897d1963
+<       configMaps:
+<         config-logging:
+<           data:
+<             loglevel.controller: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+1902,1912d1967
+<             template:
+<               spec:
+<                 containers:
+<                 - name: proxy
+<                   resources:
+<                     limits:
+<                       cpu: 500m
+<                       memory: 500Mi
+<                     requests:
+<                       cpu: 100m
+<                       memory: 100Mi
+1916,1928d1970
+<         tekton-pipelines-webhook:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: webhook
+<                   resources:
+<                     limits:
+<                       cpu: "1"
+<                       memory: 1Gi
+<                     requests:
+<                       cpu: 200m
+<                       memory: 200Mi
+1930,1964d1971
+<       horizontalPodAutoscalers:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+<         tekton-pipelines-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+1996,2044d2002
+<   trigger:
+<     options:
+<       configMaps:
+<         config-logging-triggers:
+<           data:
+<             loglevel.controller: info
+<             loglevel.eventlistener: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+< ---
+< apiVersion: operators.coreos.com/v1alpha1
+< kind: CatalogSource
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "0"
+<   name: custom-operators
+<   namespace: openshift-marketplace
+< spec:
+<   displayName: custom-operators
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+<   sourceType: grpc
+<   updateStrategy:
+<     registryPoll:
+<       interval: 30m
+2055c2013
+<   channel: latest
+---
+>   channel: pipelines-1.13
+2057c2015
+<   source: custom-operators
+---
+>   source: redhat-operators
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-5a44bb88/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-d199d2aa/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+899a900,941
+>   loglevel.controller: info
+>   loglevel.webhook: info
+>   zap-logger-config: |
+>     {
+>       "level": "info",
+>       "development": false,
+>       "sampling": {
+>         "initial": 100,
+>         "thereafter": 100
+>       },
+>       "outputPaths": ["stdout"],
+>       "errorOutputPaths": ["stderr"],
+>       "encoding": "json",
+>       "encoderConfig": {
+>         "timeKey": "ts",
+>         "levelKey": "level",
+>         "nameKey": "logger",
+>         "callerKey": "caller",
+>         "messageKey": "msg",
+>         "stacktraceKey": "stacktrace",
+>         "lineEnding": "",
+>         "levelEncoder": "",
+>         "timeEncoder": "iso8601",
+>         "durationEncoder": "string",
+>         "callerEncoder": ""
+>       }
+>     }
+> kind: ConfigMap
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "1"
+>   labels:
+>     app.kubernetes.io/component: resolvers
+>     app.kubernetes.io/instance: default
+>     app.kubernetes.io/part-of: tekton-pipelines
+>     operator.tekton.dev/operand-name: tektoncd-pipelines
+>   name: config-logging
+>   namespace: openshift-pipelines
+> ---
+> apiVersion: v1
+> data:
+1331c1373
+<         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1377a1420,1465
+>       initContainers:
+>       - env:
+>         - name: DB_USER
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.user
+>               name: tekton-results-database
+>         - name: DB_PASSWORD
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.password
+>               name: tekton-results-database
+>         - name: DB_HOST
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.host
+>               name: tekton-results-database
+>         - name: DB_NAME
+>           valueFrom:
+>             secretKeyRef:
+>               key: db.name
+>               name: tekton-results-database
+>         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+>         name: migrator
+>         resources:
+>           limits:
+>             cpu: 100m
+>             memory: 128Mi
+>           requests:
+>             cpu: 5m
+>             memory: 32Mi
+>         securityContext:
+>           allowPrivilegeEscalation: false
+>           capabilities:
+>             add:
+>             - NET_BIND_SERVICE
+>             drop:
+>             - ALL
+>           readOnlyRootFilesystem: true
+>           runAsNonRoot: true
+>           seccompProfile:
+>             type: RuntimeDefault
+>         volumeMounts:
+>         - mountPath: /etc/tekton/results
+>           name: config
+>           readOnly: true
+1483c1571
+<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
+---
+>         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
+1495c1583
+<             cpu: 250m
+---
+>             cpu: 100m
+1622a1711,1718
+>           # If the secret is not marked as immutable, make it so.
+>           if [ "$(kubectl get secret "$secret" -n "$namespace" -o jsonpath='{.immutable}')" != "true" ]; then
+>             echo "Making secret immutable"
+>             kubectl patch secret "$secret" -n "$namespace" --dry-run=client -o yaml \
+>               --patch='{"immutable": true}' \
+>             | kubectl apply -f -
+>           fi
+> 
+1868,1897d1963
+<       configMaps:
+<         config-logging:
+<           data:
+<             loglevel.controller: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+1902,1912d1967
+<             template:
+<               spec:
+<                 containers:
+<                 - name: proxy
+<                   resources:
+<                     limits:
+<                       cpu: 500m
+<                       memory: 500Mi
+<                     requests:
+<                       cpu: 100m
+<                       memory: 100Mi
+1916,1928d1970
+<         tekton-pipelines-webhook:
+<           spec:
+<             template:
+<               spec:
+<                 containers:
+<                 - name: webhook
+<                   resources:
+<                     limits:
+<                       cpu: "1"
+<                       memory: 1Gi
+<                     requests:
+<                       cpu: 200m
+<                       memory: 200Mi
+1930,1964d1971
+<       horizontalPodAutoscalers:
+<         tekton-operator-proxy-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+<         tekton-pipelines-webhook:
+<           spec:
+<             maxReplicas: 6
+<             metrics:
+<             - resource:
+<                 name: cpu
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             - resource:
+<                 name: memory
+<                 target:
+<                   averageUtilization: 100
+<                   type: Utilization
+<               type: Resource
+<             minReplicas: 2
+1996,2044d2002
+<   trigger:
+<     options:
+<       configMaps:
+<         config-logging-triggers:
+<           data:
+<             loglevel.controller: info
+<             loglevel.eventlistener: info
+<             loglevel.webhook: info
+<             zap-logger-config: |
+<               {
+<                 "level": "info",
+<                 "development": false,
+<                 "sampling": {
+<                   "initial": 100,
+<                   "thereafter": 100
+<                 },
+<                 "outputPaths": ["stdout"],
+<                 "errorOutputPaths": ["stderr"],
+<                 "encoding": "json",
+<                 "encoderConfig": {
+<                   "timeKey": "ts",
+<                   "levelKey": "level",
+<                   "nameKey": "logger",
+<                   "callerKey": "caller",
+<                   "messageKey": "msg",
+<                   "stacktraceKey": "stacktrace",
+<                   "lineEnding": "",
+<                   "levelEncoder": "",
+<                   "timeEncoder": "iso8601",
+<                   "durationEncoder": "string",
+<                   "callerEncoder": ""
+<                 }
+<               }
+< ---
+< apiVersion: operators.coreos.com/v1alpha1
+< kind: CatalogSource
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "0"
+<   name: custom-operators
+<   namespace: openshift-marketplace
+< spec:
+<   displayName: custom-operators
+<   image: quay.io/openshift-pipeline/openshift-pipelines-pipelines-operator-bundle-container-index@sha256:6843694c3be6cb517900cf51c5fe18f473a2b1ac1ee9ccba954e6eafc6633e6d
+<   sourceType: grpc
+<   updateStrategy:
+<     registryPoll:
+<       interval: 30m
+2055c2013
+<   channel: latest
+---
+>   channel: pipelines-1.13
+2057c2015
+<   source: custom-operators
+---
+>   source: redhat-operators
