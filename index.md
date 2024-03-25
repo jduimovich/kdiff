@@ -1,12 +1,582 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Mar 25 16:03:53 UTC 2024
+### This file generated at Mon Mar 25 20:03:54 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 5a44bb88 to da26be46 on Mon Mar 25 14:30:56 2024 </h3>  
+<h3>1: Production changes from da26be46 to 6f580f3c on Mon Mar 25 18:48:24 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (70 lines)</summary>  
+
+``` 
+diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
+index 67c6eb5f..102ab5db 100644
+--- a/components/has/base/kustomization.yaml
++++ b/components/has/base/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ resources:
+   - ./argocd-roles
+   - ./rbac
+-  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ 
+ components:
+@@ -13,7 +13,7 @@ components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+-    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59
++    newTag: f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ configMapGenerator:
+   - literals:
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index 434b4b78..cb424f87 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -4,8 +4,8 @@ resources:
+   - ../base/argocd-roles
+   - ../base/external-secrets
+   - ../base/rbac
+-  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ components:
+   - ../k-components/manager-resources
+@@ -15,7 +15,7 @@ components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+-    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59
++    newTag: f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ configMapGenerator:
+   - literals:
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index 5a5229a8..d7e5efa3 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -4,7 +4,7 @@ resources:
+   - ../base
+   - ../base/external-secrets
+   - rbac
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ 
+ components:
+diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+index b3fb198b..9de01026 100644
+--- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
+   - dashboard.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-da26be46/production/components/has/production/kustomize.out.yaml
+818c818
+<         image: quay.io/redhat-appstudio/application-service:f00d9c392bf901acbb78b1e9c672d8958589331b
+---
+>         image: quay.io/redhat-appstudio/application-service:77ecf15672dac31a503d0541a32e8d13a79d5d59 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from da26be46 to 6f580f3c on Mon Mar 25 18:48:24 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (70 lines)</summary>  
+
+``` 
+diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
+index 67c6eb5f..102ab5db 100644
+--- a/components/has/base/kustomization.yaml
++++ b/components/has/base/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ resources:
+   - ./argocd-roles
+   - ./rbac
+-  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ 
+ components:
+@@ -13,7 +13,7 @@ components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+-    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59
++    newTag: f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ configMapGenerator:
+   - literals:
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index 434b4b78..cb424f87 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -4,8 +4,8 @@ resources:
+   - ../base/argocd-roles
+   - ../base/external-secrets
+   - ../base/rbac
+-  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ components:
+   - ../k-components/manager-resources
+@@ -15,7 +15,7 @@ components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+-    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59
++    newTag: f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ configMapGenerator:
+   - literals:
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index 5a5229a8..d7e5efa3 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -4,7 +4,7 @@ resources:
+   - ../base
+   - ../base/external-secrets
+   - rbac
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ 
+ components:
+diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+index b3fb198b..9de01026 100644
+--- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
+   - dashboard.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-da26be46/staging/components/has/staging/kustomize.out.yaml
+845c845
+<         image: quay.io/redhat-appstudio/application-service:f00d9c392bf901acbb78b1e9c672d8958589331b
+---
+>         image: quay.io/redhat-appstudio/application-service:77ecf15672dac31a503d0541a32e8d13a79d5d59 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from da26be46 to 6f580f3c on Mon Mar 25 18:48:24 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (70 lines)</summary>  
+
+``` 
+diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
+index 67c6eb5f..102ab5db 100644
+--- a/components/has/base/kustomization.yaml
++++ b/components/has/base/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ resources:
+   - ./argocd-roles
+   - ./rbac
+-  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ 
+ components:
+@@ -13,7 +13,7 @@ components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+-    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59
++    newTag: f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ configMapGenerator:
+   - literals:
+diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
+index 434b4b78..cb424f87 100644
+--- a/components/has/production/kustomization.yaml
++++ b/components/has/production/kustomization.yaml
+@@ -4,8 +4,8 @@ resources:
+   - ../base/argocd-roles
+   - ../base/external-secrets
+   - ../base/rbac
+-  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/default?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ components:
+   - ../k-components/manager-resources
+@@ -15,7 +15,7 @@ components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+-    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59
++    newTag: f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ configMapGenerator:
+   - literals:
+diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
+index 5a5229a8..d7e5efa3 100644
+--- a/components/has/staging/kustomization.yaml
++++ b/components/has/staging/kustomization.yaml
+@@ -4,7 +4,7 @@ resources:
+   - ../base
+   - ../base/external-secrets
+   - rbac
+-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
+ 
+ 
+ components:
+diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+index b3fb198b..9de01026 100644
+--- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59
++  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b
+   - dashboard.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+
+``` 
+./commit-da26be46/development/components/has/development/kustomize.out.yaml
+777c777
+<         image: quay.io/redhat-appstudio/application-service:f00d9c392bf901acbb78b1e9c672d8958589331b
+---
+>         image: quay.io/redhat-appstudio/application-service:77ecf15672dac31a503d0541a32e8d13a79d5d59 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 5a44bb88 to da26be46 on Mon Mar 25 14:30:56 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -165,7 +735,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 5a44bb88 to da26be46 on Mon Mar 25 14:30:56 2024 </h3>  
+<h3>2: Staging changes from 5a44bb88 to da26be46 on Mon Mar 25 14:30:56 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -327,7 +897,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 5a44bb88 to da26be46 on Mon Mar 25 14:30:56 2024 </h3>  
+<h3>2: Development changes from 5a44bb88 to da26be46 on Mon Mar 25 14:30:56 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -467,7 +1037,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from d199d2aa to 5a44bb88 on Mon Mar 25 11:37:38 2024 </h3>  
+<h3>3: Production changes from d199d2aa to 5a44bb88 on Mon Mar 25 11:37:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (973 lines)</summary>  
@@ -2359,7 +2929,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from d199d2aa to 5a44bb88 on Mon Mar 25 11:37:38 2024 </h3>  
+<h3>3: Staging changes from d199d2aa to 5a44bb88 on Mon Mar 25 11:37:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (973 lines)</summary>  
@@ -3466,7 +4036,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from d199d2aa to 5a44bb88 on Mon Mar 25 11:37:38 2024 </h3>  
+<h3>3: Development changes from d199d2aa to 5a44bb88 on Mon Mar 25 11:37:38 2024 </h3>  
  
 <details> 
 <summary>Git Diff (973 lines)</summary>  
@@ -4522,7 +5092,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 6738549a to d199d2aa on Mon Mar 25 09:31:09 2024 </h3>  
+<h3>4: Production changes from 6738549a to d199d2aa on Mon Mar 25 09:31:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -4695,7 +5265,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 6738549a to d199d2aa on Mon Mar 25 09:31:09 2024 </h3>  
+<h3>4: Staging changes from 6738549a to d199d2aa on Mon Mar 25 09:31:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -4879,7 +5449,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 6738549a to d199d2aa on Mon Mar 25 09:31:09 2024 </h3>  
+<h3>4: Development changes from 6738549a to d199d2aa on Mon Mar 25 09:31:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -4944,1457 +5514,6 @@ index 23590e79..8618e1ac 100644
 <             image: quay.io/redhat-appstudio/integration-service:2b89dd379969c6fbd5ee33a8cc7d4a85fb736237
 ---
 >             image: quay.io/redhat-appstudio/integration-service:b41879a5907336841c199ed6ff122b2d032a9eb5 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from a8689b9b to 6738549a on Sun Mar 24 13:43:42 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (290 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 9a4b4cb1..3bdb4f2c 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=618ca08478a8d945cad1274800a3d982be4dee06
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index df4a098a..f72d51c9 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=618ca08478a8d945cad1274800a3d982be4dee06
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index bc2ec1ef..7d4c0cc0 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index c4fe2f13..31df4c4b 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1329,7 +1329,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1376,52 +1376,6 @@ spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
--      initContainers:
--      - env:
--        - name: DB_USER
--          valueFrom:
--            secretKeyRef:
--              key: db.user
--              name: tekton-results-database
--        - name: DB_PASSWORD
--          valueFrom:
--            secretKeyRef:
--              key: db.password
--              name: tekton-results-database
--        - name: DB_HOST
--          valueFrom:
--            secretKeyRef:
--              key: db.host
--              name: tekton-results-database
--        - name: DB_NAME
--          valueFrom:
--            secretKeyRef:
--              key: db.name
--              name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
--        name: migrator
--        resources:
--          limits:
--            cpu: 100m
--            memory: 128Mi
--          requests:
--            cpu: 5m
--            memory: 32Mi
--        securityContext:
--          allowPrivilegeEscalation: false
--          capabilities:
--            add:
--            - NET_BIND_SERVICE
--            drop:
--            - ALL
--          readOnlyRootFilesystem: true
--          runAsNonRoot: true
--          seccompProfile:
--            type: RuntimeDefault
--        volumeMounts:
--        - mountPath: /etc/tekton/results
--          name: config
--          readOnly: true
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-@@ -1527,7 +1481,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1588,7 +1542,7 @@ spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
--              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
-+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
-                 echo "$namespace: Cleaning pac-gitauth secrets"
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r '.items[] |
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 2ffd052e..3be8a938 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1329,7 +1329,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1376,52 +1376,6 @@ spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
--      initContainers:
--      - env:
--        - name: DB_USER
--          valueFrom:
--            secretKeyRef:
--              key: db.user
--              name: tekton-results-database
--        - name: DB_PASSWORD
--          valueFrom:
--            secretKeyRef:
--              key: db.password
--              name: tekton-results-database
--        - name: DB_HOST
--          valueFrom:
--            secretKeyRef:
--              key: db.host
--              name: tekton-results-database
--        - name: DB_NAME
--          valueFrom:
--            secretKeyRef:
--              key: db.name
--              name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
--        name: migrator
--        resources:
--          limits:
--            cpu: 100m
--            memory: 128Mi
--          requests:
--            cpu: 5m
--            memory: 32Mi
--        securityContext:
--          allowPrivilegeEscalation: false
--          capabilities:
--            add:
--            - NET_BIND_SERVICE
--            drop:
--            - ALL
--          readOnlyRootFilesystem: true
--          runAsNonRoot: true
--          seccompProfile:
--            type: RuntimeDefault
--        volumeMounts:
--        - mountPath: /etc/tekton/results
--          name: config
--          readOnly: true
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-@@ -1527,7 +1481,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1588,7 +1542,7 @@ spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
--              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
-+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
-                 echo "$namespace: Cleaning pac-gitauth secrets"
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r '.items[] |
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 815d8415..56053a12 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1329,7 +1329,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1376,52 +1376,6 @@ spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
--      initContainers:
--      - env:
--        - name: DB_USER
--          valueFrom:
--            secretKeyRef:
--              key: db.user
--              name: tekton-results-database
--        - name: DB_PASSWORD
--          valueFrom:
--            secretKeyRef:
--              key: db.password
--              name: tekton-results-database
--        - name: DB_HOST
--          valueFrom:
--            secretKeyRef:
--              key: db.host
--              name: tekton-results-database
--        - name: DB_NAME
--          valueFrom:
--            secretKeyRef:
--              key: db.name
--              name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
--        name: migrator
--        resources:
--          limits:
--            cpu: 100m
--            memory: 128Mi
--          requests:
--            cpu: 5m
--            memory: 32Mi
--        securityContext:
--          allowPrivilegeEscalation: false
--          capabilities:
--            add:
--            - NET_BIND_SERVICE
--            drop:
--            - ALL
--          readOnlyRootFilesystem: true
--          runAsNonRoot: true
--          seccompProfile:
--            type: RuntimeDefault
--        volumeMounts:
--        - mountPath: /etc/tekton/results
--          name: config
--          readOnly: true
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-@@ -1527,7 +1481,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1588,7 +1542,7 @@ spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
--              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
-+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
-                 echo "$namespace: Cleaning pac-gitauth secrets"
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r '.items[] | 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from a8689b9b to 6738549a on Sun Mar 24 13:43:42 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (290 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 9a4b4cb1..3bdb4f2c 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=618ca08478a8d945cad1274800a3d982be4dee06
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index df4a098a..f72d51c9 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=618ca08478a8d945cad1274800a3d982be4dee06
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index bc2ec1ef..7d4c0cc0 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index c4fe2f13..31df4c4b 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1329,7 +1329,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1376,52 +1376,6 @@ spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
--      initContainers:
--      - env:
--        - name: DB_USER
--          valueFrom:
--            secretKeyRef:
--              key: db.user
--              name: tekton-results-database
--        - name: DB_PASSWORD
--          valueFrom:
--            secretKeyRef:
--              key: db.password
--              name: tekton-results-database
--        - name: DB_HOST
--          valueFrom:
--            secretKeyRef:
--              key: db.host
--              name: tekton-results-database
--        - name: DB_NAME
--          valueFrom:
--            secretKeyRef:
--              key: db.name
--              name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
--        name: migrator
--        resources:
--          limits:
--            cpu: 100m
--            memory: 128Mi
--          requests:
--            cpu: 5m
--            memory: 32Mi
--        securityContext:
--          allowPrivilegeEscalation: false
--          capabilities:
--            add:
--            - NET_BIND_SERVICE
--            drop:
--            - ALL
--          readOnlyRootFilesystem: true
--          runAsNonRoot: true
--          seccompProfile:
--            type: RuntimeDefault
--        volumeMounts:
--        - mountPath: /etc/tekton/results
--          name: config
--          readOnly: true
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-@@ -1527,7 +1481,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1588,7 +1542,7 @@ spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
--              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
-+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
-                 echo "$namespace: Cleaning pac-gitauth secrets"
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r '.items[] |
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 2ffd052e..3be8a938 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1329,7 +1329,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1376,52 +1376,6 @@ spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
--      initContainers:
--      - env:
--        - name: DB_USER
--          valueFrom:
--            secretKeyRef:
--              key: db.user
--              name: tekton-results-database
--        - name: DB_PASSWORD
--          valueFrom:
--            secretKeyRef:
--              key: db.password
--              name: tekton-results-database
--        - name: DB_HOST
--          valueFrom:
--            secretKeyRef:
--              key: db.host
--              name: tekton-results-database
--        - name: DB_NAME
--          valueFrom:
--            secretKeyRef:
--              key: db.name
--              name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
--        name: migrator
--        resources:
--          limits:
--            cpu: 100m
--            memory: 128Mi
--          requests:
--            cpu: 5m
--            memory: 32Mi
--        securityContext:
--          allowPrivilegeEscalation: false
--          capabilities:
--            add:
--            - NET_BIND_SERVICE
--            drop:
--            - ALL
--          readOnlyRootFilesystem: true
--          runAsNonRoot: true
--          seccompProfile:
--            type: RuntimeDefault
--        volumeMounts:
--        - mountPath: /etc/tekton/results
--          name: config
--          readOnly: true
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-@@ -1527,7 +1481,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1588,7 +1542,7 @@ spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
--              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
-+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
-                 echo "$namespace: Cleaning pac-gitauth secrets"
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r '.items[] |
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 815d8415..56053a12 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1329,7 +1329,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1376,52 +1376,6 @@ spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
--      initContainers:
--      - env:
--        - name: DB_USER
--          valueFrom:
--            secretKeyRef:
--              key: db.user
--              name: tekton-results-database
--        - name: DB_PASSWORD
--          valueFrom:
--            secretKeyRef:
--              key: db.password
--              name: tekton-results-database
--        - name: DB_HOST
--          valueFrom:
--            secretKeyRef:
--              key: db.host
--              name: tekton-results-database
--        - name: DB_NAME
--          valueFrom:
--            secretKeyRef:
--              key: db.name
--              name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
--        name: migrator
--        resources:
--          limits:
--            cpu: 100m
--            memory: 128Mi
--          requests:
--            cpu: 5m
--            memory: 32Mi
--        securityContext:
--          allowPrivilegeEscalation: false
--          capabilities:
--            add:
--            - NET_BIND_SERVICE
--            drop:
--            - ALL
--          readOnlyRootFilesystem: true
--          runAsNonRoot: true
--          seccompProfile:
--            type: RuntimeDefault
--        volumeMounts:
--        - mountPath: /etc/tekton/results
--          name: config
--          readOnly: true
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-@@ -1527,7 +1481,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1588,7 +1542,7 @@ spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
--              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
-+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
-                 echo "$namespace: Cleaning pac-gitauth secrets"
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r '.items[] | 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (180 lines)</summary>  
-
-``` 
-./commit-a8689b9b/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1332c1332
-<         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
----
->         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-1378a1379,1424
->       initContainers:
->       - env:
->         - name: DB_USER
->           valueFrom:
->             secretKeyRef:
->               key: db.user
->               name: tekton-results-database
->         - name: DB_PASSWORD
->           valueFrom:
->             secretKeyRef:
->               key: db.password
->               name: tekton-results-database
->         - name: DB_HOST
->           valueFrom:
->             secretKeyRef:
->               key: db.host
->               name: tekton-results-database
->         - name: DB_NAME
->           valueFrom:
->             secretKeyRef:
->               key: db.name
->               name: tekton-results-database
->         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
->         name: migrator
->         resources:
->           limits:
->             cpu: 100m
->             memory: 128Mi
->           requests:
->             cpu: 5m
->             memory: 32Mi
->         securityContext:
->           allowPrivilegeEscalation: false
->           capabilities:
->             add:
->             - NET_BIND_SERVICE
->             drop:
->             - ALL
->           readOnlyRootFilesystem: true
->           runAsNonRoot: true
->           seccompProfile:
->             type: RuntimeDefault
->         volumeMounts:
->         - mountPath: /etc/tekton/results
->           name: config
->           readOnly: true
-1484c1530
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-1545c1591
-<               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
----
->               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
-./commit-a8689b9b/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-1332c1332
-<         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
----
->         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-1378a1379,1424
->       initContainers:
->       - env:
->         - name: DB_USER
->           valueFrom:
->             secretKeyRef:
->               key: db.user
->               name: tekton-results-database
->         - name: DB_PASSWORD
->           valueFrom:
->             secretKeyRef:
->               key: db.password
->               name: tekton-results-database
->         - name: DB_HOST
->           valueFrom:
->             secretKeyRef:
->               key: db.host
->               name: tekton-results-database
->         - name: DB_NAME
->           valueFrom:
->             secretKeyRef:
->               key: db.name
->               name: tekton-results-database
->         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
->         name: migrator
->         resources:
->           limits:
->             cpu: 100m
->             memory: 128Mi
->           requests:
->             cpu: 5m
->             memory: 32Mi
->         securityContext:
->           allowPrivilegeEscalation: false
->           capabilities:
->             add:
->             - NET_BIND_SERVICE
->             drop:
->             - ALL
->           readOnlyRootFilesystem: true
->           runAsNonRoot: true
->           seccompProfile:
->             type: RuntimeDefault
->         volumeMounts:
->         - mountPath: /etc/tekton/results
->           name: config
->           readOnly: true
-1484c1530
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-1545c1591
-<               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
----
->               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
-./commit-a8689b9b/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1332c1332
-<         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
----
->         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-1378a1379,1424
->       initContainers:
->       - env:
->         - name: DB_USER
->           valueFrom:
->             secretKeyRef:
->               key: db.user
->               name: tekton-results-database
->         - name: DB_PASSWORD
->           valueFrom:
->             secretKeyRef:
->               key: db.password
->               name: tekton-results-database
->         - name: DB_HOST
->           valueFrom:
->             secretKeyRef:
->               key: db.host
->               name: tekton-results-database
->         - name: DB_NAME
->           valueFrom:
->             secretKeyRef:
->               key: db.name
->               name: tekton-results-database
->         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
->         name: migrator
->         resources:
->           limits:
->             cpu: 100m
->             memory: 128Mi
->           requests:
->             cpu: 5m
->             memory: 32Mi
->         securityContext:
->           allowPrivilegeEscalation: false
->           capabilities:
->             add:
->             - NET_BIND_SERVICE
->             drop:
->             - ALL
->           readOnlyRootFilesystem: true
->           runAsNonRoot: true
->           seccompProfile:
->             type: RuntimeDefault
->         volumeMounts:
->         - mountPath: /etc/tekton/results
->           name: config
->           readOnly: true
-1484c1530
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-1545c1591
-<               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
----
->               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from a8689b9b to 6738549a on Sun Mar 24 13:43:42 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (290 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-index 9a4b4cb1..3bdb4f2c 100644
---- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml
-@@ -2,4 +2,4 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=618ca08478a8d945cad1274800a3d982be4dee06
-+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3
-diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
-index df4a098a..f72d51c9 100644
---- a/components/pipeline-service/development/kustomization.yaml
-+++ b/components/pipeline-service/development/kustomization.yaml
-@@ -8,8 +8,8 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06
--  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=618ca08478a8d945cad1274800a3d982be4dee06
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3
-+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3
-   - ../base/rbac
- 
- patches:
-diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
-index bc2ec1ef..7d4c0cc0 100644
---- a/components/pipeline-service/staging/base/kustomization.yaml
-+++ b/components/pipeline-service/staging/base/kustomization.yaml
-@@ -8,7 +8,7 @@ commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
- 
- resources:
--  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06
-+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-index c4fe2f13..31df4c4b 100644
---- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
-@@ -1329,7 +1329,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1376,52 +1376,6 @@ spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
--      initContainers:
--      - env:
--        - name: DB_USER
--          valueFrom:
--            secretKeyRef:
--              key: db.user
--              name: tekton-results-database
--        - name: DB_PASSWORD
--          valueFrom:
--            secretKeyRef:
--              key: db.password
--              name: tekton-results-database
--        - name: DB_HOST
--          valueFrom:
--            secretKeyRef:
--              key: db.host
--              name: tekton-results-database
--        - name: DB_NAME
--          valueFrom:
--            secretKeyRef:
--              key: db.name
--              name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
--        name: migrator
--        resources:
--          limits:
--            cpu: 100m
--            memory: 128Mi
--          requests:
--            cpu: 5m
--            memory: 32Mi
--        securityContext:
--          allowPrivilegeEscalation: false
--          capabilities:
--            add:
--            - NET_BIND_SERVICE
--            drop:
--            - ALL
--          readOnlyRootFilesystem: true
--          runAsNonRoot: true
--          seccompProfile:
--            type: RuntimeDefault
--        volumeMounts:
--        - mountPath: /etc/tekton/results
--          name: config
--          readOnly: true
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-@@ -1527,7 +1481,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1588,7 +1542,7 @@ spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
--              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
-+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
-                 echo "$namespace: Cleaning pac-gitauth secrets"
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r '.items[] |
-diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-index 2ffd052e..3be8a938 100644
---- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
-@@ -1329,7 +1329,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1376,52 +1376,6 @@ spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
--      initContainers:
--      - env:
--        - name: DB_USER
--          valueFrom:
--            secretKeyRef:
--              key: db.user
--              name: tekton-results-database
--        - name: DB_PASSWORD
--          valueFrom:
--            secretKeyRef:
--              key: db.password
--              name: tekton-results-database
--        - name: DB_HOST
--          valueFrom:
--            secretKeyRef:
--              key: db.host
--              name: tekton-results-database
--        - name: DB_NAME
--          valueFrom:
--            secretKeyRef:
--              key: db.name
--              name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
--        name: migrator
--        resources:
--          limits:
--            cpu: 100m
--            memory: 128Mi
--          requests:
--            cpu: 5m
--            memory: 32Mi
--        securityContext:
--          allowPrivilegeEscalation: false
--          capabilities:
--            add:
--            - NET_BIND_SERVICE
--            drop:
--            - ALL
--          readOnlyRootFilesystem: true
--          runAsNonRoot: true
--          seccompProfile:
--            type: RuntimeDefault
--        volumeMounts:
--        - mountPath: /etc/tekton/results
--          name: config
--          readOnly: true
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-@@ -1527,7 +1481,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1588,7 +1542,7 @@ spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
--              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
-+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
-                 echo "$namespace: Cleaning pac-gitauth secrets"
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r '.items[] |
-diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-index 815d8415..56053a12 100644
---- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
-@@ -1329,7 +1329,7 @@ spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
-         livenessProbe:
-           httpGet:
-             path: /healthz
-@@ -1376,52 +1376,6 @@ spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
--      initContainers:
--      - env:
--        - name: DB_USER
--          valueFrom:
--            secretKeyRef:
--              key: db.user
--              name: tekton-results-database
--        - name: DB_PASSWORD
--          valueFrom:
--            secretKeyRef:
--              key: db.password
--              name: tekton-results-database
--        - name: DB_HOST
--          valueFrom:
--            secretKeyRef:
--              key: db.host
--              name: tekton-results-database
--        - name: DB_NAME
--          valueFrom:
--            secretKeyRef:
--              key: db.name
--              name: tekton-results-database
--        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
--        name: migrator
--        resources:
--          limits:
--            cpu: 100m
--            memory: 128Mi
--          requests:
--            cpu: 5m
--            memory: 32Mi
--        securityContext:
--          allowPrivilegeEscalation: false
--          capabilities:
--            add:
--            - NET_BIND_SERVICE
--            drop:
--            - ALL
--          readOnlyRootFilesystem: true
--          runAsNonRoot: true
--          seccompProfile:
--            type: RuntimeDefault
--        volumeMounts:
--        - mountPath: /etc/tekton/results
--          name: config
--          readOnly: true
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-@@ -1527,7 +1481,7 @@ spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
--        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
-         name: watcher
-         ports:
-         - containerPort: 9090
-@@ -1588,7 +1542,7 @@ spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
--              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$|^konflux-ci$"); do
-+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E "\\-tenant$|^tekton-ci$"); do
-                 echo "$namespace: Cleaning pac-gitauth secrets"
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r '.items[] | 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (55 lines)</summary>  
-
-``` 
-./commit-a8689b9b/development/components/pipeline-service/development/kustomize.out.yaml
-1308c1308
-<         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
----
->         image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
-1440a1441,1485
->       - env:
->         - name: DB_USER
->           valueFrom:
->             secretKeyRef:
->               key: db.user
->               name: tekton-results-database
->         - name: DB_PASSWORD
->           valueFrom:
->             secretKeyRef:
->               key: db.password
->               name: tekton-results-database
->         - name: DB_HOST
->           valueFrom:
->             secretKeyRef:
->               key: db.host
->               name: tekton-results-database
->         - name: DB_NAME
->           valueFrom:
->             secretKeyRef:
->               key: db.name
->               name: tekton-results-database
->         image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f
->         name: migrator
->         resources:
->           limits:
->             cpu: 100m
->             memory: 128Mi
->           requests:
->             cpu: 5m
->             memory: 32Mi
->         securityContext:
->           allowPrivilegeEscalation: false
->           capabilities:
->             add:
->             - NET_BIND_SERVICE
->             drop:
->             - ALL
->           readOnlyRootFilesystem: true
->           runAsNonRoot: true
->           seccompProfile:
->             type: RuntimeDefault
->         volumeMounts:
->         - mountPath: /etc/tekton/results
->           name: config
->           readOnly: true
-1526c1571
-<         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
----
->         image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f 
 ```
  
 </details>  

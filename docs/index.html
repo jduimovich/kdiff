@@ -10,12 +10,561 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-mon-mar-25-160353-utc-2024">This file generated at Mon Mar 25 16:03:53 UTC 2024</h3>
+<h3 id="this-file-generated-at-mon-mar-25-200354-utc-2024">This file generated at Mon Mar 25 20:03:54 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 5a44bb88 to da26be46 on Mon Mar 25 14:30:56 2024 </h3>  
+<h3>1: Production changes from da26be46 to 6f580f3c on Mon Mar 25 18:48:24 2024 </h3>  
+
+<details> 
+<summary>Git Diff (70 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml</span>
+<span class="hljs-comment">index 67c6eb5f..102ab5db 100644</span>
+<span class="hljs-comment">--- a/components/has/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,7 +3,7 @@</span> kind: Kustomization
+ resources:
+   - ./argocd-roles
+   - ./rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/default?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+
+ components:
+<span class="hljs-meta">@@ -13,7 +13,7 @@</span> components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+<span class="hljs-deletion">-    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+    newTag: f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+ configMapGenerator:
+   - literals:
+<span class="hljs-comment">diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml</span>
+<span class="hljs-comment">index 434b4b78..cb424f87 100644</span>
+<span class="hljs-comment">--- a/components/has/production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -4,8 +4,8 @@</span> resources:
+   - ../base/argocd-roles
+   - ../base/external-secrets
+   - ../base/rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/default?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+ components:
+   - ../k-components/manager-resources
+<span class="hljs-meta">@@ -15,7 +15,7 @@</span> components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+<span class="hljs-deletion">-    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+    newTag: f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+ configMapGenerator:
+   - literals:
+<span class="hljs-comment">diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml</span>
+<span class="hljs-comment">index 5a5229a8..d7e5efa3 100644</span>
+<span class="hljs-comment">--- a/components/has/staging/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -4,7 +4,7 @@</span> resources:
+   - ../base
+   - ../base/external-secrets
+   - rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+
+ components:
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-comment">index b3fb198b..9de01026 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,5 +1,5 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+   - dashboard.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-da26be46/production/components/has/production/kustomize.out.yaml</span>
+<span class="hljs-string">818c818</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/application-service:f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/application-service:77ecf15672dac31a503d0541a32e8d13a79d5d59</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from da26be46 to 6f580f3c on Mon Mar 25 18:48:24 2024 </h3>  
+
+<details> 
+<summary>Git Diff (70 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml</span>
+<span class="hljs-comment">index 67c6eb5f..102ab5db 100644</span>
+<span class="hljs-comment">--- a/components/has/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,7 +3,7 @@</span> kind: Kustomization
+ resources:
+   - ./argocd-roles
+   - ./rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/default?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+
+ components:
+<span class="hljs-meta">@@ -13,7 +13,7 @@</span> components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+<span class="hljs-deletion">-    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+    newTag: f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+ configMapGenerator:
+   - literals:
+<span class="hljs-comment">diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml</span>
+<span class="hljs-comment">index 434b4b78..cb424f87 100644</span>
+<span class="hljs-comment">--- a/components/has/production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -4,8 +4,8 @@</span> resources:
+   - ../base/argocd-roles
+   - ../base/external-secrets
+   - ../base/rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/default?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+ components:
+   - ../k-components/manager-resources
+<span class="hljs-meta">@@ -15,7 +15,7 @@</span> components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+<span class="hljs-deletion">-    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+    newTag: f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+ configMapGenerator:
+   - literals:
+<span class="hljs-comment">diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml</span>
+<span class="hljs-comment">index 5a5229a8..d7e5efa3 100644</span>
+<span class="hljs-comment">--- a/components/has/staging/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -4,7 +4,7 @@</span> resources:
+   - ../base
+   - ../base/external-secrets
+   - rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+
+ components:
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-comment">index b3fb198b..9de01026 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,5 +1,5 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+   - dashboard.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-da26be46/staging/components/has/staging/kustomize.out.yaml</span>
+<span class="hljs-string">845c845</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/application-service:f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/application-service:77ecf15672dac31a503d0541a32e8d13a79d5d59</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from da26be46 to 6f580f3c on Mon Mar 25 18:48:24 2024 </h3>  
+
+<details> 
+<summary>Git Diff (70 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml</span>
+<span class="hljs-comment">index 67c6eb5f..102ab5db 100644</span>
+<span class="hljs-comment">--- a/components/has/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -3,7 +3,7 @@</span> kind: Kustomization
+ resources:
+   - ./argocd-roles
+   - ./rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/default?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+
+ components:
+<span class="hljs-meta">@@ -13,7 +13,7 @@</span> components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+<span class="hljs-deletion">-    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+    newTag: f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+ configMapGenerator:
+   - literals:
+<span class="hljs-comment">diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml</span>
+<span class="hljs-comment">index 434b4b78..cb424f87 100644</span>
+<span class="hljs-comment">--- a/components/has/production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -4,8 +4,8 @@</span> resources:
+   - ../base/argocd-roles
+   - ../base/external-secrets
+   - ../base/rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/default?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/default?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+ components:
+   - ../k-components/manager-resources
+<span class="hljs-meta">@@ -15,7 +15,7 @@</span> components:
+ images:
+   - name: quay.io/redhat-appstudio/application-service
+     newName: quay.io/redhat-appstudio/application-service
+<span class="hljs-deletion">-    newTag: 77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+    newTag: f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+ configMapGenerator:
+   - literals:
+<span class="hljs-comment">diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml</span>
+<span class="hljs-comment">index 5a5229a8..d7e5efa3 100644</span>
+<span class="hljs-comment">--- a/components/has/staging/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/has/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -4,7 +4,7 @@</span> resources:
+   - ../base
+   - ../base/external-secrets
+   - rbac
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+
+
+ components:
+<span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-comment">index b3fb198b..9de01026 100644</span>
+<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml</span>
+<span class="hljs-meta">@@ -1,5 +1,5 @@</span>
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+<span class="hljs-deletion">-  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=77ecf15672dac31a503d0541a32e8d13a79d5d59</span>
+<span class="hljs-addition">+  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+   - dashboard.yaml 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (5 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-da26be46/development/components/has/development/kustomize.out.yaml</span>
+<span class="hljs-string">777c777</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/application-service:f00d9c392bf901acbb78b1e9c672d8958589331b</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-string">&gt;</span>         <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/application-service:77ecf15672dac31a503d0541a32e8d13a79d5d59</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 5a44bb88 to da26be46 on Mon Mar 25 14:30:56 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -167,7 +716,7 @@ index <span class="hljs-number">1670</span>c08c..a5f50390 <span class="hljs-numb
 
 </div>
 <div>
-<h3>1: Staging changes from 5a44bb88 to da26be46 on Mon Mar 25 14:30:56 2024 </h3>  
+<h3>2: Staging changes from 5a44bb88 to da26be46 on Mon Mar 25 14:30:56 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -322,7 +871,7 @@ index <span class="hljs-number">1670</span>c08c..a5f50390 <span class="hljs-numb
 
 </div>
 <div>
-<h3>1: Development changes from 5a44bb88 to da26be46 on Mon Mar 25 14:30:56 2024 </h3>  
+<h3>2: Development changes from 5a44bb88 to da26be46 on Mon Mar 25 14:30:56 2024 </h3>  
 
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -455,7 +1004,7 @@ index <span class="hljs-number">1670</span>c08c..a5f50390 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Production changes from d199d2aa to 5a44bb88 on Mon Mar 25 11:37:38 2024 </h3>  
+<h3>3: Production changes from d199d2aa to 5a44bb88 on Mon Mar 25 11:37:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (973 lines)</summary>  
@@ -2340,7 +2889,7 @@ index <span class="hljs-number">1670</span>c08c..a5f50390 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Staging changes from d199d2aa to 5a44bb88 on Mon Mar 25 11:37:38 2024 </h3>  
+<h3>3: Staging changes from d199d2aa to 5a44bb88 on Mon Mar 25 11:37:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (973 lines)</summary>  
@@ -3440,7 +3989,7 @@ index <span class="hljs-number">1670</span>c08c..a5f50390 <span class="hljs-numb
 
 </div>
 <div>
-<h3>2: Development changes from d199d2aa to 5a44bb88 on Mon Mar 25 11:37:38 2024 </h3>  
+<h3>3: Development changes from d199d2aa to 5a44bb88 on Mon Mar 25 11:37:38 2024 </h3>  
 
 <details> 
 <summary>Git Diff (973 lines)</summary>  
@@ -4489,7 +5038,7 @@ index <span class="hljs-number">1670</span>c08c..a5f50390 <span class="hljs-numb
 
 </div>
 <div>
-<h3>3: Production changes from 6738549a to d199d2aa on Mon Mar 25 09:31:09 2024 </h3>  
+<h3>4: Production changes from 6738549a to d199d2aa on Mon Mar 25 09:31:09 2024 </h3>  
 
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -4655,7 +5204,7 @@ index <span class="hljs-number">23590</span>e79..<span class="hljs-number">8618<
 
 </div>
 <div>
-<h3>3: Staging changes from 6738549a to d199d2aa on Mon Mar 25 09:31:09 2024 </h3>  
+<h3>4: Staging changes from 6738549a to d199d2aa on Mon Mar 25 09:31:09 2024 </h3>  
 
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -4832,7 +5381,7 @@ index <span class="hljs-number">23590</span>e79..<span class="hljs-number">8618<
 
 </div>
 <div>
-<h3>3: Development changes from 6738549a to d199d2aa on Mon Mar 25 09:31:09 2024 </h3>  
+<h3>4: Development changes from 6738549a to d199d2aa on Mon Mar 25 09:31:09 2024 </h3>  
 
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -4893,1436 +5442,6 @@ index <span class="hljs-number">23590</span>e79..<span class="hljs-number">8618<
 <span class="hljs-string">&lt;</span>             <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/integration-service:2b89dd379969c6fbd5ee33a8cc7d4a85fb736237</span>
 <span class="hljs-meta">---</span>
 <span class="hljs-string">&gt;</span>             <span class="hljs-attr">image:</span> <span class="hljs-string">quay.io/redhat-appstudio/integration-service:b41879a5907336841c199ed6ff122b2d032a9eb5</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from a8689b9b to 6738549a on Sun Mar 24 13:43:42 2024 </h3>  
-
-<details> 
-<summary>Git Diff (290 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
-<span class="hljs-comment">index 9a4b4cb1..3bdb4f2c 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,4 +2,4 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=618ca08478a8d945cad1274800a3d982be4dee06</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3</span>
-<span class="hljs-comment">diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml</span>
-<span class="hljs-comment">index df4a098a..f72d51c9 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/development/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/development/kustomization.yaml</span>
-<span class="hljs-meta">@@ -8,8 +8,8 @@</span> commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-
- resources:
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06</span>
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=618ca08478a8d945cad1274800a3d982be4dee06</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3</span>
-   - ../base/rbac
-
- patches:
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml</span>
-<span class="hljs-comment">index bc2ec1ef..7d4c0cc0 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -8,7 +8,7 @@</span> commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-
- resources:
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3</span>
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-comment">index c4fe2f13..31df4c4b 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1329,7 +1329,7 @@</span> spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
-         livenessProbe:
-           httpGet:
-             path: /healthz
-<span class="hljs-meta">@@ -1376,52 +1376,6 @@</span> spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
-<span class="hljs-deletion">-      initContainers:</span>
-<span class="hljs-deletion">-      - env:</span>
-<span class="hljs-deletion">-        - name: DB_USER</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.user</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_PASSWORD</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.password</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_HOST</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.host</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_NAME</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.name</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-deletion">-        name: migrator</span>
-<span class="hljs-deletion">-        resources:</span>
-<span class="hljs-deletion">-          limits:</span>
-<span class="hljs-deletion">-            cpu: 100m</span>
-<span class="hljs-deletion">-            memory: 128Mi</span>
-<span class="hljs-deletion">-          requests:</span>
-<span class="hljs-deletion">-            cpu: 5m</span>
-<span class="hljs-deletion">-            memory: 32Mi</span>
-<span class="hljs-deletion">-        securityContext:</span>
-<span class="hljs-deletion">-          allowPrivilegeEscalation: false</span>
-<span class="hljs-deletion">-          capabilities:</span>
-<span class="hljs-deletion">-            add:</span>
-<span class="hljs-deletion">-            - NET_BIND_SERVICE</span>
-<span class="hljs-deletion">-            drop:</span>
-<span class="hljs-deletion">-            - ALL</span>
-<span class="hljs-deletion">-          readOnlyRootFilesystem: true</span>
-<span class="hljs-deletion">-          runAsNonRoot: true</span>
-<span class="hljs-deletion">-          seccompProfile:</span>
-<span class="hljs-deletion">-            type: RuntimeDefault</span>
-<span class="hljs-deletion">-        volumeMounts:</span>
-<span class="hljs-deletion">-        - mountPath: /etc/tekton/results</span>
-<span class="hljs-deletion">-          name: config</span>
-<span class="hljs-deletion">-          readOnly: true</span>
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-<span class="hljs-meta">@@ -1527,7 +1481,7 @@</span> spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
-         name: watcher
-         ports:
-         - containerPort: 9090
-<span class="hljs-meta">@@ -1588,7 +1542,7 @@</span> spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
-<span class="hljs-deletion">-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$|^konflux-ci$&quot;); do</span>
-<span class="hljs-addition">+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$&quot;); do</span>
-                 echo &quot;$namespace: Cleaning pac-gitauth secrets&quot;
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r &#x27;.items[] |
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-comment">index 2ffd052e..3be8a938 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1329,7 +1329,7 @@</span> spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
-         livenessProbe:
-           httpGet:
-             path: /healthz
-<span class="hljs-meta">@@ -1376,52 +1376,6 @@</span> spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
-<span class="hljs-deletion">-      initContainers:</span>
-<span class="hljs-deletion">-      - env:</span>
-<span class="hljs-deletion">-        - name: DB_USER</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.user</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_PASSWORD</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.password</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_HOST</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.host</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_NAME</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.name</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-deletion">-        name: migrator</span>
-<span class="hljs-deletion">-        resources:</span>
-<span class="hljs-deletion">-          limits:</span>
-<span class="hljs-deletion">-            cpu: 100m</span>
-<span class="hljs-deletion">-            memory: 128Mi</span>
-<span class="hljs-deletion">-          requests:</span>
-<span class="hljs-deletion">-            cpu: 5m</span>
-<span class="hljs-deletion">-            memory: 32Mi</span>
-<span class="hljs-deletion">-        securityContext:</span>
-<span class="hljs-deletion">-          allowPrivilegeEscalation: false</span>
-<span class="hljs-deletion">-          capabilities:</span>
-<span class="hljs-deletion">-            add:</span>
-<span class="hljs-deletion">-            - NET_BIND_SERVICE</span>
-<span class="hljs-deletion">-            drop:</span>
-<span class="hljs-deletion">-            - ALL</span>
-<span class="hljs-deletion">-          readOnlyRootFilesystem: true</span>
-<span class="hljs-deletion">-          runAsNonRoot: true</span>
-<span class="hljs-deletion">-          seccompProfile:</span>
-<span class="hljs-deletion">-            type: RuntimeDefault</span>
-<span class="hljs-deletion">-        volumeMounts:</span>
-<span class="hljs-deletion">-        - mountPath: /etc/tekton/results</span>
-<span class="hljs-deletion">-          name: config</span>
-<span class="hljs-deletion">-          readOnly: true</span>
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-<span class="hljs-meta">@@ -1527,7 +1481,7 @@</span> spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
-         name: watcher
-         ports:
-         - containerPort: 9090
-<span class="hljs-meta">@@ -1588,7 +1542,7 @@</span> spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
-<span class="hljs-deletion">-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$|^konflux-ci$&quot;); do</span>
-<span class="hljs-addition">+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$&quot;); do</span>
-                 echo &quot;$namespace: Cleaning pac-gitauth secrets&quot;
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r &#x27;.items[] |
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-comment">index 815d8415..56053a12 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1329,7 +1329,7 @@</span> spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
-         livenessProbe:
-           httpGet:
-             path: /healthz
-<span class="hljs-meta">@@ -1376,52 +1376,6 @@</span> spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
-<span class="hljs-deletion">-      initContainers:</span>
-<span class="hljs-deletion">-      - env:</span>
-<span class="hljs-deletion">-        - name: DB_USER</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.user</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_PASSWORD</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.password</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_HOST</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.host</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_NAME</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.name</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-deletion">-        name: migrator</span>
-<span class="hljs-deletion">-        resources:</span>
-<span class="hljs-deletion">-          limits:</span>
-<span class="hljs-deletion">-            cpu: 100m</span>
-<span class="hljs-deletion">-            memory: 128Mi</span>
-<span class="hljs-deletion">-          requests:</span>
-<span class="hljs-deletion">-            cpu: 5m</span>
-<span class="hljs-deletion">-            memory: 32Mi</span>
-<span class="hljs-deletion">-        securityContext:</span>
-<span class="hljs-deletion">-          allowPrivilegeEscalation: false</span>
-<span class="hljs-deletion">-          capabilities:</span>
-<span class="hljs-deletion">-            add:</span>
-<span class="hljs-deletion">-            - NET_BIND_SERVICE</span>
-<span class="hljs-deletion">-            drop:</span>
-<span class="hljs-deletion">-            - ALL</span>
-<span class="hljs-deletion">-          readOnlyRootFilesystem: true</span>
-<span class="hljs-deletion">-          runAsNonRoot: true</span>
-<span class="hljs-deletion">-          seccompProfile:</span>
-<span class="hljs-deletion">-            type: RuntimeDefault</span>
-<span class="hljs-deletion">-        volumeMounts:</span>
-<span class="hljs-deletion">-        - mountPath: /etc/tekton/results</span>
-<span class="hljs-deletion">-          name: config</span>
-<span class="hljs-deletion">-          readOnly: true</span>
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-<span class="hljs-meta">@@ -1527,7 +1481,7 @@</span> spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
-         name: watcher
-         ports:
-         - containerPort: 9090
-<span class="hljs-meta">@@ -1588,7 +1542,7 @@</span> spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
-<span class="hljs-deletion">-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$|^konflux-ci$&quot;); do</span>
-<span class="hljs-addition">+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$&quot;); do</span>
-                 echo &quot;$namespace: Cleaning pac-gitauth secrets&quot;
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r &#x27;.items[] | 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from a8689b9b to 6738549a on Sun Mar 24 13:43:42 2024 </h3>  
-
-<details> 
-<summary>Git Diff (290 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
-<span class="hljs-comment">index 9a4b4cb1..3bdb4f2c 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,4 +2,4 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=618ca08478a8d945cad1274800a3d982be4dee06</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3</span>
-<span class="hljs-comment">diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml</span>
-<span class="hljs-comment">index df4a098a..f72d51c9 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/development/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/development/kustomization.yaml</span>
-<span class="hljs-meta">@@ -8,8 +8,8 @@</span> commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-
- resources:
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06</span>
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=618ca08478a8d945cad1274800a3d982be4dee06</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3</span>
-   - ../base/rbac
-
- patches:
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml</span>
-<span class="hljs-comment">index bc2ec1ef..7d4c0cc0 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -8,7 +8,7 @@</span> commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-
- resources:
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3</span>
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-comment">index c4fe2f13..31df4c4b 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1329,7 +1329,7 @@</span> spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
-         livenessProbe:
-           httpGet:
-             path: /healthz
-<span class="hljs-meta">@@ -1376,52 +1376,6 @@</span> spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
-<span class="hljs-deletion">-      initContainers:</span>
-<span class="hljs-deletion">-      - env:</span>
-<span class="hljs-deletion">-        - name: DB_USER</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.user</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_PASSWORD</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.password</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_HOST</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.host</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_NAME</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.name</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-deletion">-        name: migrator</span>
-<span class="hljs-deletion">-        resources:</span>
-<span class="hljs-deletion">-          limits:</span>
-<span class="hljs-deletion">-            cpu: 100m</span>
-<span class="hljs-deletion">-            memory: 128Mi</span>
-<span class="hljs-deletion">-          requests:</span>
-<span class="hljs-deletion">-            cpu: 5m</span>
-<span class="hljs-deletion">-            memory: 32Mi</span>
-<span class="hljs-deletion">-        securityContext:</span>
-<span class="hljs-deletion">-          allowPrivilegeEscalation: false</span>
-<span class="hljs-deletion">-          capabilities:</span>
-<span class="hljs-deletion">-            add:</span>
-<span class="hljs-deletion">-            - NET_BIND_SERVICE</span>
-<span class="hljs-deletion">-            drop:</span>
-<span class="hljs-deletion">-            - ALL</span>
-<span class="hljs-deletion">-          readOnlyRootFilesystem: true</span>
-<span class="hljs-deletion">-          runAsNonRoot: true</span>
-<span class="hljs-deletion">-          seccompProfile:</span>
-<span class="hljs-deletion">-            type: RuntimeDefault</span>
-<span class="hljs-deletion">-        volumeMounts:</span>
-<span class="hljs-deletion">-        - mountPath: /etc/tekton/results</span>
-<span class="hljs-deletion">-          name: config</span>
-<span class="hljs-deletion">-          readOnly: true</span>
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-<span class="hljs-meta">@@ -1527,7 +1481,7 @@</span> spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
-         name: watcher
-         ports:
-         - containerPort: 9090
-<span class="hljs-meta">@@ -1588,7 +1542,7 @@</span> spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
-<span class="hljs-deletion">-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$|^konflux-ci$&quot;); do</span>
-<span class="hljs-addition">+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$&quot;); do</span>
-                 echo &quot;$namespace: Cleaning pac-gitauth secrets&quot;
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r &#x27;.items[] |
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-comment">index 2ffd052e..3be8a938 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1329,7 +1329,7 @@</span> spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
-         livenessProbe:
-           httpGet:
-             path: /healthz
-<span class="hljs-meta">@@ -1376,52 +1376,6 @@</span> spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
-<span class="hljs-deletion">-      initContainers:</span>
-<span class="hljs-deletion">-      - env:</span>
-<span class="hljs-deletion">-        - name: DB_USER</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.user</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_PASSWORD</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.password</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_HOST</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.host</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_NAME</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.name</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-deletion">-        name: migrator</span>
-<span class="hljs-deletion">-        resources:</span>
-<span class="hljs-deletion">-          limits:</span>
-<span class="hljs-deletion">-            cpu: 100m</span>
-<span class="hljs-deletion">-            memory: 128Mi</span>
-<span class="hljs-deletion">-          requests:</span>
-<span class="hljs-deletion">-            cpu: 5m</span>
-<span class="hljs-deletion">-            memory: 32Mi</span>
-<span class="hljs-deletion">-        securityContext:</span>
-<span class="hljs-deletion">-          allowPrivilegeEscalation: false</span>
-<span class="hljs-deletion">-          capabilities:</span>
-<span class="hljs-deletion">-            add:</span>
-<span class="hljs-deletion">-            - NET_BIND_SERVICE</span>
-<span class="hljs-deletion">-            drop:</span>
-<span class="hljs-deletion">-            - ALL</span>
-<span class="hljs-deletion">-          readOnlyRootFilesystem: true</span>
-<span class="hljs-deletion">-          runAsNonRoot: true</span>
-<span class="hljs-deletion">-          seccompProfile:</span>
-<span class="hljs-deletion">-            type: RuntimeDefault</span>
-<span class="hljs-deletion">-        volumeMounts:</span>
-<span class="hljs-deletion">-        - mountPath: /etc/tekton/results</span>
-<span class="hljs-deletion">-          name: config</span>
-<span class="hljs-deletion">-          readOnly: true</span>
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-<span class="hljs-meta">@@ -1527,7 +1481,7 @@</span> spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
-         name: watcher
-         ports:
-         - containerPort: 9090
-<span class="hljs-meta">@@ -1588,7 +1542,7 @@</span> spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
-<span class="hljs-deletion">-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$|^konflux-ci$&quot;); do</span>
-<span class="hljs-addition">+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$&quot;); do</span>
-                 echo &quot;$namespace: Cleaning pac-gitauth secrets&quot;
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r &#x27;.items[] |
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-comment">index 815d8415..56053a12 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1329,7 +1329,7 @@</span> spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
-         livenessProbe:
-           httpGet:
-             path: /healthz
-<span class="hljs-meta">@@ -1376,52 +1376,6 @@</span> spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
-<span class="hljs-deletion">-      initContainers:</span>
-<span class="hljs-deletion">-      - env:</span>
-<span class="hljs-deletion">-        - name: DB_USER</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.user</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_PASSWORD</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.password</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_HOST</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.host</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_NAME</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.name</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-deletion">-        name: migrator</span>
-<span class="hljs-deletion">-        resources:</span>
-<span class="hljs-deletion">-          limits:</span>
-<span class="hljs-deletion">-            cpu: 100m</span>
-<span class="hljs-deletion">-            memory: 128Mi</span>
-<span class="hljs-deletion">-          requests:</span>
-<span class="hljs-deletion">-            cpu: 5m</span>
-<span class="hljs-deletion">-            memory: 32Mi</span>
-<span class="hljs-deletion">-        securityContext:</span>
-<span class="hljs-deletion">-          allowPrivilegeEscalation: false</span>
-<span class="hljs-deletion">-          capabilities:</span>
-<span class="hljs-deletion">-            add:</span>
-<span class="hljs-deletion">-            - NET_BIND_SERVICE</span>
-<span class="hljs-deletion">-            drop:</span>
-<span class="hljs-deletion">-            - ALL</span>
-<span class="hljs-deletion">-          readOnlyRootFilesystem: true</span>
-<span class="hljs-deletion">-          runAsNonRoot: true</span>
-<span class="hljs-deletion">-          seccompProfile:</span>
-<span class="hljs-deletion">-            type: RuntimeDefault</span>
-<span class="hljs-deletion">-        volumeMounts:</span>
-<span class="hljs-deletion">-        - mountPath: /etc/tekton/results</span>
-<span class="hljs-deletion">-          name: config</span>
-<span class="hljs-deletion">-          readOnly: true</span>
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-<span class="hljs-meta">@@ -1527,7 +1481,7 @@</span> spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
-         name: watcher
-         ports:
-         - containerPort: 9090
-<span class="hljs-meta">@@ -1588,7 +1542,7 @@</span> spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
-<span class="hljs-deletion">-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$|^konflux-ci$&quot;); do</span>
-<span class="hljs-addition">+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$&quot;); do</span>
-                 echo &quot;$namespace: Cleaning pac-gitauth secrets&quot;
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r &#x27;.items[] | 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (180 lines)</summary>  
-<pre><code>  ./commit-a8689b9b/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
-1332c1332
-&lt;         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">image</span>: quay.<span class="hljs-property">io</span>/redhat-appstudio/tekton-results-<span class="hljs-attr">api</span>:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-1378a1379,1424
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      <span class="hljs-attr">initContainers</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      - <span class="hljs-attr">env</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_USER</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">user</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_PASSWORD</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">password</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_HOST</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">host</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_NAME</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">name</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">image</span>: quay.<span class="hljs-property">io</span>/redhat-appstudio/tekton-results-<span class="hljs-attr">migrator</span>:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">name</span>: migrator</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">resources</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">limits</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">cpu</span>: 100m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">memory</span>: 128Mi</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">requests</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">cpu</span>: 5m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">memory</span>: 32Mi</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">securityContext</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">allowPrivilegeEscalation</span>: <span class="hljs-literal">false</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">capabilities</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">add</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            - <span class="hljs-variable constant_">NET_BIND_SERVICE</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">drop</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            - <span class="hljs-variable constant_">ALL</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">readOnlyRootFilesystem</span>: <span class="hljs-literal">true</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">runAsNonRoot</span>: <span class="hljs-literal">true</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">seccompProfile</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">type</span>: <span class="hljs-title class_">RuntimeDefault</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">volumeMounts</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">mountPath</span>: <span class="hljs-regexp">/etc/</span>tekton/results</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: config</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">readOnly</span>: <span class="hljs-literal">true</span></span>
-1484c1530
-&lt;         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">image</span>: quay.<span class="hljs-property">io</span>/redhat-appstudio/tekton-results-<span class="hljs-attr">watcher</span>:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-1545c1591
-&lt;               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$&quot;); do
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-keyword">for</span> namespace <span class="hljs-keyword">in</span> $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E <span class="hljs-string">&quot;\\-tenant$|^tekton-ci$|^konflux-ci$&quot;</span>); <span class="hljs-keyword">do</span></span>
-./commit-a8689b9b/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
-1332c1332
-&lt;         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">image</span>: quay.<span class="hljs-property">io</span>/redhat-appstudio/tekton-results-<span class="hljs-attr">api</span>:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-1378a1379,1424
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      <span class="hljs-attr">initContainers</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      - <span class="hljs-attr">env</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_USER</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">user</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_PASSWORD</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">password</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_HOST</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">host</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_NAME</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">name</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">image</span>: quay.<span class="hljs-property">io</span>/redhat-appstudio/tekton-results-<span class="hljs-attr">migrator</span>:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">name</span>: migrator</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">resources</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">limits</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">cpu</span>: 100m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">memory</span>: 128Mi</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">requests</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">cpu</span>: 5m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">memory</span>: 32Mi</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">securityContext</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">allowPrivilegeEscalation</span>: <span class="hljs-literal">false</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">capabilities</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">add</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            - <span class="hljs-variable constant_">NET_BIND_SERVICE</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">drop</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            - <span class="hljs-variable constant_">ALL</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">readOnlyRootFilesystem</span>: <span class="hljs-literal">true</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">runAsNonRoot</span>: <span class="hljs-literal">true</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">seccompProfile</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">type</span>: <span class="hljs-title class_">RuntimeDefault</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">volumeMounts</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">mountPath</span>: <span class="hljs-regexp">/etc/</span>tekton/results</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: config</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">readOnly</span>: <span class="hljs-literal">true</span></span>
-1484c1530
-&lt;         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">image</span>: quay.<span class="hljs-property">io</span>/redhat-appstudio/tekton-results-<span class="hljs-attr">watcher</span>:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-1545c1591
-&lt;               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$&quot;); do
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-keyword">for</span> namespace <span class="hljs-keyword">in</span> $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E <span class="hljs-string">&quot;\\-tenant$|^tekton-ci$|^konflux-ci$&quot;</span>); <span class="hljs-keyword">do</span></span>
-./commit-a8689b9b/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
-1332c1332
-&lt;         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">image</span>: quay.<span class="hljs-property">io</span>/redhat-appstudio/tekton-results-<span class="hljs-attr">api</span>:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-1378a1379,1424
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      <span class="hljs-attr">initContainers</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      - <span class="hljs-attr">env</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_USER</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">user</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_PASSWORD</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">password</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_HOST</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">host</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_NAME</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">name</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">image</span>: quay.<span class="hljs-property">io</span>/redhat-appstudio/tekton-results-<span class="hljs-attr">migrator</span>:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">name</span>: migrator</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">resources</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">limits</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">cpu</span>: 100m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">memory</span>: 128Mi</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">requests</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">cpu</span>: 5m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">memory</span>: 32Mi</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">securityContext</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">allowPrivilegeEscalation</span>: <span class="hljs-literal">false</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">capabilities</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">add</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            - <span class="hljs-variable constant_">NET_BIND_SERVICE</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">drop</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            - <span class="hljs-variable constant_">ALL</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">readOnlyRootFilesystem</span>: <span class="hljs-literal">true</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">runAsNonRoot</span>: <span class="hljs-literal">true</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">seccompProfile</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">type</span>: <span class="hljs-title class_">RuntimeDefault</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">volumeMounts</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">mountPath</span>: <span class="hljs-regexp">/etc/</span>tekton/results</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: config</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">readOnly</span>: <span class="hljs-literal">true</span></span>
-1484c1530
-&lt;         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">image</span>: quay.<span class="hljs-property">io</span>/redhat-appstudio/tekton-results-<span class="hljs-attr">watcher</span>:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-1545c1591
-&lt;               for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$&quot;); do
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-keyword">for</span> namespace <span class="hljs-keyword">in</span> $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E <span class="hljs-string">&quot;\\-tenant$|^tekton-ci$|^konflux-ci$&quot;</span>); <span class="hljs-keyword">do</span> </span>
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from a8689b9b to 6738549a on Sun Mar 24 13:43:42 2024 </h3>  
-
-<details> 
-<summary>Git Diff (290 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
-<span class="hljs-comment">index 9a4b4cb1..3bdb4f2c 100644</span>
-<span class="hljs-comment">--- a/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/monitoring/grafana/base/dashboards/pipeline-service/kustomization.yaml</span>
-<span class="hljs-meta">@@ -2,4 +2,4 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=618ca08478a8d945cad1274800a3d982be4dee06</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service/operator/gitops/argocd/grafana/?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3</span>
-<span class="hljs-comment">diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml</span>
-<span class="hljs-comment">index df4a098a..f72d51c9 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/development/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/development/kustomization.yaml</span>
-<span class="hljs-meta">@@ -8,8 +8,8 @@</span> commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-
- resources:
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06</span>
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=618ca08478a8d945cad1274800a3d982be4dee06</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/developer/openshift/gitops/argocd/pipeline-service-storage?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3</span>
-   - ../base/rbac
-
- patches:
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml</span>
-<span class="hljs-comment">index bc2ec1ef..7d4c0cc0 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/base/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -8,7 +8,7 @@</span> commonAnnotations:
-   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-
- resources:
-<span class="hljs-deletion">-  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=618ca08478a8d945cad1274800a3d982be4dee06</span>
-<span class="hljs-addition">+  - https://github.com/openshift-pipelines/pipeline-service.git/operator/gitops/argocd/pipeline-service?ref=dce2aba7089a59bb8e80e03c7e391f3358412ca3</span>
-   - pipelines-as-code-secret.yaml
-   - ../../base/external-secrets
-   - ../../base/testing
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-comment">index c4fe2f13..31df4c4b 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1329,7 +1329,7 @@</span> spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
-         livenessProbe:
-           httpGet:
-             path: /healthz
-<span class="hljs-meta">@@ -1376,52 +1376,6 @@</span> spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
-<span class="hljs-deletion">-      initContainers:</span>
-<span class="hljs-deletion">-      - env:</span>
-<span class="hljs-deletion">-        - name: DB_USER</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.user</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_PASSWORD</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.password</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_HOST</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.host</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_NAME</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.name</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-deletion">-        name: migrator</span>
-<span class="hljs-deletion">-        resources:</span>
-<span class="hljs-deletion">-          limits:</span>
-<span class="hljs-deletion">-            cpu: 100m</span>
-<span class="hljs-deletion">-            memory: 128Mi</span>
-<span class="hljs-deletion">-          requests:</span>
-<span class="hljs-deletion">-            cpu: 5m</span>
-<span class="hljs-deletion">-            memory: 32Mi</span>
-<span class="hljs-deletion">-        securityContext:</span>
-<span class="hljs-deletion">-          allowPrivilegeEscalation: false</span>
-<span class="hljs-deletion">-          capabilities:</span>
-<span class="hljs-deletion">-            add:</span>
-<span class="hljs-deletion">-            - NET_BIND_SERVICE</span>
-<span class="hljs-deletion">-            drop:</span>
-<span class="hljs-deletion">-            - ALL</span>
-<span class="hljs-deletion">-          readOnlyRootFilesystem: true</span>
-<span class="hljs-deletion">-          runAsNonRoot: true</span>
-<span class="hljs-deletion">-          seccompProfile:</span>
-<span class="hljs-deletion">-            type: RuntimeDefault</span>
-<span class="hljs-deletion">-        volumeMounts:</span>
-<span class="hljs-deletion">-        - mountPath: /etc/tekton/results</span>
-<span class="hljs-deletion">-          name: config</span>
-<span class="hljs-deletion">-          readOnly: true</span>
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-<span class="hljs-meta">@@ -1527,7 +1481,7 @@</span> spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
-         name: watcher
-         ports:
-         - containerPort: 9090
-<span class="hljs-meta">@@ -1588,7 +1542,7 @@</span> spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
-<span class="hljs-deletion">-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$|^konflux-ci$&quot;); do</span>
-<span class="hljs-addition">+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$&quot;); do</span>
-                 echo &quot;$namespace: Cleaning pac-gitauth secrets&quot;
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r &#x27;.items[] |
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-comment">index 2ffd052e..3be8a938 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1329,7 +1329,7 @@</span> spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
-         livenessProbe:
-           httpGet:
-             path: /healthz
-<span class="hljs-meta">@@ -1376,52 +1376,6 @@</span> spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
-<span class="hljs-deletion">-      initContainers:</span>
-<span class="hljs-deletion">-      - env:</span>
-<span class="hljs-deletion">-        - name: DB_USER</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.user</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_PASSWORD</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.password</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_HOST</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.host</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_NAME</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.name</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-deletion">-        name: migrator</span>
-<span class="hljs-deletion">-        resources:</span>
-<span class="hljs-deletion">-          limits:</span>
-<span class="hljs-deletion">-            cpu: 100m</span>
-<span class="hljs-deletion">-            memory: 128Mi</span>
-<span class="hljs-deletion">-          requests:</span>
-<span class="hljs-deletion">-            cpu: 5m</span>
-<span class="hljs-deletion">-            memory: 32Mi</span>
-<span class="hljs-deletion">-        securityContext:</span>
-<span class="hljs-deletion">-          allowPrivilegeEscalation: false</span>
-<span class="hljs-deletion">-          capabilities:</span>
-<span class="hljs-deletion">-            add:</span>
-<span class="hljs-deletion">-            - NET_BIND_SERVICE</span>
-<span class="hljs-deletion">-            drop:</span>
-<span class="hljs-deletion">-            - ALL</span>
-<span class="hljs-deletion">-          readOnlyRootFilesystem: true</span>
-<span class="hljs-deletion">-          runAsNonRoot: true</span>
-<span class="hljs-deletion">-          seccompProfile:</span>
-<span class="hljs-deletion">-            type: RuntimeDefault</span>
-<span class="hljs-deletion">-        volumeMounts:</span>
-<span class="hljs-deletion">-        - mountPath: /etc/tekton/results</span>
-<span class="hljs-deletion">-          name: config</span>
-<span class="hljs-deletion">-          readOnly: true</span>
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-<span class="hljs-meta">@@ -1527,7 +1481,7 @@</span> spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
-         name: watcher
-         ports:
-         - containerPort: 9090
-<span class="hljs-meta">@@ -1588,7 +1542,7 @@</span> spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
-<span class="hljs-deletion">-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$|^konflux-ci$&quot;); do</span>
-<span class="hljs-addition">+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$&quot;); do</span>
-                 echo &quot;$namespace: Cleaning pac-gitauth secrets&quot;
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r &#x27;.items[] |
-<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-comment">index 815d8415..56053a12 100644</span>
-<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
-<span class="hljs-meta">@@ -1329,7 +1329,7 @@</span> spec:
-             secretKeyRef:
-               key: db.name
-               name: tekton-results-database
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-api:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116</span>
-         livenessProbe:
-           httpGet:
-             path: /healthz
-<span class="hljs-meta">@@ -1376,52 +1376,6 @@</span> spec:
-         - mountPath: /etc/tls
-           name: tls
-           readOnly: true
-<span class="hljs-deletion">-      initContainers:</span>
-<span class="hljs-deletion">-      - env:</span>
-<span class="hljs-deletion">-        - name: DB_USER</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.user</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_PASSWORD</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.password</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_HOST</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.host</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        - name: DB_NAME</span>
-<span class="hljs-deletion">-          valueFrom:</span>
-<span class="hljs-deletion">-            secretKeyRef:</span>
-<span class="hljs-deletion">-              key: db.name</span>
-<span class="hljs-deletion">-              name: tekton-results-database</span>
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-migrator:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-deletion">-        name: migrator</span>
-<span class="hljs-deletion">-        resources:</span>
-<span class="hljs-deletion">-          limits:</span>
-<span class="hljs-deletion">-            cpu: 100m</span>
-<span class="hljs-deletion">-            memory: 128Mi</span>
-<span class="hljs-deletion">-          requests:</span>
-<span class="hljs-deletion">-            cpu: 5m</span>
-<span class="hljs-deletion">-            memory: 32Mi</span>
-<span class="hljs-deletion">-        securityContext:</span>
-<span class="hljs-deletion">-          allowPrivilegeEscalation: false</span>
-<span class="hljs-deletion">-          capabilities:</span>
-<span class="hljs-deletion">-            add:</span>
-<span class="hljs-deletion">-            - NET_BIND_SERVICE</span>
-<span class="hljs-deletion">-            drop:</span>
-<span class="hljs-deletion">-            - ALL</span>
-<span class="hljs-deletion">-          readOnlyRootFilesystem: true</span>
-<span class="hljs-deletion">-          runAsNonRoot: true</span>
-<span class="hljs-deletion">-          seccompProfile:</span>
-<span class="hljs-deletion">-            type: RuntimeDefault</span>
-<span class="hljs-deletion">-        volumeMounts:</span>
-<span class="hljs-deletion">-        - mountPath: /etc/tekton/results</span>
-<span class="hljs-deletion">-          name: config</span>
-<span class="hljs-deletion">-          readOnly: true</span>
-       serviceAccountName: tekton-results-api
-       volumes:
-       - configMap:
-<span class="hljs-meta">@@ -1527,7 +1481,7 @@</span> spec:
-           value: tekton-results-api-service.tekton-pipelines.svc.cluster.local:8080
-         - name: AUTH_MODE
-           value: token
-<span class="hljs-deletion">-        image: quay.io/redhat-appstudio/tekton-results-watcher:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-addition">+        image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116</span>
-         name: watcher
-         ports:
-         - containerPort: 9090
-<span class="hljs-meta">@@ -1588,7 +1542,7 @@</span> spec:
-               set -o errexit
-               set -o nounset
-               set -o pipefail
-<span class="hljs-deletion">-              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$|^konflux-ci$&quot;); do</span>
-<span class="hljs-addition">+              for namespace in $(kubectl get namespaces -o name | cut -d/ -f2 | grep -E &quot;\\-tenant$|^tekton-ci$&quot;); do</span>
-                 echo &quot;$namespace: Cleaning pac-gitauth secrets&quot;
-                 kubectl get secrets --namespace $namespace -o json | \
-                   jq -r &#x27;.items[] | 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (55 lines)</summary>  
-<pre><code>  ./commit-a8689b9b/development/components/pipeline-service/development/kustomize.out.yaml
-1308c1308
-&lt;         image: quay.io/redhat-appstudio/tekton-results-api:bae7851ff584423503af324200f52cd28ca99116
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">image</span>: quay.<span class="hljs-property">io</span>/redhat-appstudio/tekton-results-<span class="hljs-attr">api</span>:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-1440a1441,1485
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">      - <span class="hljs-attr">env</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_USER</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">user</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_PASSWORD</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">password</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_HOST</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">host</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">name</span>: <span class="hljs-variable constant_">DB_NAME</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">valueFrom</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">secretKeyRef</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">key</span>: db.<span class="hljs-property">name</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">              <span class="hljs-attr">name</span>: tekton-results-database</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">image</span>: quay.<span class="hljs-property">io</span>/redhat-appstudio/tekton-results-<span class="hljs-attr">migrator</span>:1c5b3054ffb52f172fda31587d7dfd88a9724c8f</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">name</span>: migrator</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">resources</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">limits</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">cpu</span>: 100m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">memory</span>: 128Mi</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">requests</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">cpu</span>: 5m</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">memory</span>: 32Mi</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">securityContext</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">allowPrivilegeEscalation</span>: <span class="hljs-literal">false</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">capabilities</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">add</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            - <span class="hljs-variable constant_">NET_BIND_SERVICE</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">drop</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            - <span class="hljs-variable constant_">ALL</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">readOnlyRootFilesystem</span>: <span class="hljs-literal">true</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">runAsNonRoot</span>: <span class="hljs-literal">true</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">seccompProfile</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">            <span class="hljs-attr">type</span>: <span class="hljs-title class_">RuntimeDefault</span></span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">volumeMounts</span>:</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        - <span class="hljs-attr">mountPath</span>: <span class="hljs-regexp">/etc/</span>tekton/results</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">name</span>: config</span>
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">          <span class="hljs-attr">readOnly</span>: <span class="hljs-literal">true</span></span>
-1526c1571
-&lt;         image: quay.io/redhat-appstudio/tekton-results-watcher:bae7851ff584423503af324200f52cd28ca99116
----
-<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">        <span class="hljs-attr">image</span>: quay.<span class="hljs-property">io</span>/redhat-appstudio/tekton-results-<span class="hljs-attr">watcher</span>:1c5b3054ffb52f172fda31587d7dfd88a9724c8f </span>
 </code></pre>
 
 </details>  
