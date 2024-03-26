@@ -1,0 +1,11 @@
+diff --git a/components/keycloak/base/konflux-workspace-admins/rbac.yaml b/components/keycloak/base/konflux-workspace-admins/rbac.yaml
+index 166920d7..6e54660d 100644
+--- a/components/keycloak/base/konflux-workspace-admins/rbac.yaml
++++ b/components/keycloak/base/konflux-workspace-admins/rbac.yaml
+@@ -26,5 +26,5 @@ subjects:
+     name: konflux-workspace-admins
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+-  kind: ClusterRole
++  kind: Role
+   name: workspaces-manager
