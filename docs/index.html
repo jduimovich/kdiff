@@ -10,12 +10,1255 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-tue-mar-26-200639-utc-2024">This file generated at Tue Mar 26 20:06:39 UTC 2024</h3>
+<h3 id="this-file-generated-at-wed-mar-27-000628-utc-2024">This file generated at Wed Mar 27 00:06:28 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 417bbdd9 to 17a76f74 on Tue Mar 26 19:22:48 2024 </h3>  
+<h3>1: Production changes from 17a76f74 to 2f901d8b on Tue Mar 26 21:49:55 2024 </h3>  
+
+<details> 
+<summary>Git Diff (286 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">index 9e886d45..d0074960 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-meta">@@ -19,5 +19,6 @@</span> resources:
+   - toolchain-member-operator
+   - multi-platform-controller
+   - perf-team-prometheus-reader
+<span class="hljs-addition">+  - project-controller</span>
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..85738686</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,6 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- project-controller.yaml</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../../../../k-components/deploy-to-member-cluster-merge-generator</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml b/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..bb8276fd</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,39 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: project-controller</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: components/project-controller</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: project-controller-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        path: &#x27;{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}&#x27;</span>
+<span class="hljs-addition">+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-addition">+        targetRevision: main</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        namespace: project-controller</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated: </span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        syncOptions:</span>
+<span class="hljs-addition">+        - CreateNamespace=true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: 50</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 15s</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">index afe7470d..f65f585e 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -119,3 +119,8 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: repository-validator
+<span class="hljs-addition">+  - path: development-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: project-controller</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..2c12d377</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,6 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: project-controller</span>
+<span class="hljs-addition">+$patch: delete</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-comment">index c6aa992c..7f0b4496 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -12,6 +12,9 @@</span> resources:
+
+ namespace: konflux-public-production
+
+<span class="hljs-addition">+patchesStrategicMerge:</span>
+<span class="hljs-addition">+  - delete-applications.yaml</span>
+<span class="hljs-addition">+</span>
+ patches:
+   - path: production-overlay-patch.yaml
+     target:
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">index 0257c01e..6985289d 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -17,3 +17,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: ingresscontroller
+ $patch: delete
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: project-controller</span>
+<span class="hljs-addition">+$patch: delete</span>
+<span class="hljs-comment">diff --git a/components/project-controller/OWNERS b/components/project-controller/OWNERS</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..fbebd235</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/OWNERS</span>
+<span class="hljs-meta">@@ -0,0 +1,9 @@</span>
+<span class="hljs-addition">+# See the OWNERS docs: https://go.k8s.io/owners</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+approvers:</span>
+<span class="hljs-addition">+- ifireball</span>
+<span class="hljs-addition">+- gbenhaim</span>
+<span class="hljs-addition">+- avi-biton</span>
+<span class="hljs-addition">+- amisstea</span>
+<span class="hljs-addition">+- yftacherzog</span>
+<span class="hljs-addition">+- hmariset</span>
+<span class="hljs-comment">diff --git a/components/project-controller/README.md b/components/project-controller/README.md</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..80d8967b</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/README.md</span>
+<span class="hljs-meta">@@ -0,0 +1,3 @@</span>
+<span class="hljs-addition">+# PROJECT-CONTROLLER</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+Allow users to manage projects and development streams in Konflux. Related information can be found at the [project-controller repository](https://github.com/konflux-ci/project-controller)</span>
+<span class="hljs-comment">diff --git a/components/project-controller/base/allow-argocd-to-manage.yaml b/components/project-controller/base/allow-argocd-to-manage.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..5e7f848c</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/base/allow-argocd-to-manage.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,13 @@</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+kind: RoleBinding</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: grant-argocd</span>
+<span class="hljs-addition">+  namespace: project-controller</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: admin</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+- kind: ServiceAccount</span>
+<span class="hljs-addition">+  name: openshift-gitops-argocd-application-controller</span>
+<span class="hljs-addition">+  namespace: openshift-gitops</span>
+<span class="hljs-comment">diff --git a/components/project-controller/base/argocd-permissions.yaml b/components/project-controller/base/argocd-permissions.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..aeabedc8</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/base/argocd-permissions.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,28 @@</span>
+<span class="hljs-addition">+kind: ClusterRole</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: crd-manager-for-project-controller</span>
+<span class="hljs-addition">+rules:</span>
+<span class="hljs-addition">+  - verbs:</span>
+<span class="hljs-addition">+      - patch</span>
+<span class="hljs-addition">+      - get</span>
+<span class="hljs-addition">+      - list</span>
+<span class="hljs-addition">+      - create</span>
+<span class="hljs-addition">+      - get</span>
+<span class="hljs-addition">+    apiGroups:</span>
+<span class="hljs-addition">+      - apiextensions.k8s.io</span>
+<span class="hljs-addition">+    resources:</span>
+<span class="hljs-addition">+      - customresourcedefinitions</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+kind: ClusterRoleBinding</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: grant-argocd-crd-permissions-for-project-controller</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: crd-manager-for-project-controller</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+- kind: ServiceAccount</span>
+<span class="hljs-addition">+  name: openshift-gitops-argocd-application-controller</span>
+<span class="hljs-addition">+  namespace: openshift-gitops</span>
+<span class="hljs-comment">diff --git a/components/project-controller/base/kustomization.yaml b/components/project-controller/base/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..3cba52ed</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,9 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- project-controller.yaml</span>
+<span class="hljs-addition">+- allow-argocd-to-manage.yaml</span>
+<span class="hljs-addition">+- argocd-permissions.yaml</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: project-controller</span>
+<span class="hljs-comment">diff --git a/components/project-controller/base/project-controller.yaml b/components/project-controller/base/project-controller.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..96a1a0d1</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/base/project-controller.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,13 @@</span>
+<span class="hljs-addition">+kind: RoleBinding</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: project-controller-maintainers</span>
+<span class="hljs-addition">+  namespace: project-controller</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+  - kind: Group</span>
+<span class="hljs-addition">+    apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+    name: konflux-o11y</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: project-controller-maintainer</span>
+<span class="hljs-comment">diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..9d4441cd</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../base</span>
+<span class="hljs-addition">+- https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+- name: konflux-project-controller</span>
+<span class="hljs-addition">+  newName: quay.io/redhat-appstudio/project-controller</span>
+<span class="hljs-addition">+  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: project-controller</span>
+<span class="hljs-comment">diff --git a/components/project-controller/production/kustomization.yaml b/components/project-controller/production/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0ea6ab67</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+- name: konflux-project-controller</span>
+<span class="hljs-addition">+  newName: quay.io/redhat-appstudio/project-controller</span>
+<span class="hljs-addition">+  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: project-controller</span>
+<span class="hljs-comment">diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0ea6ab67</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+- name: konflux-project-controller</span>
+<span class="hljs-addition">+  newName: quay.io/redhat-appstudio/project-controller</span>
+<span class="hljs-addition">+  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: project-controller </span>
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+<pre><code>  ./commit-2f901d8b/production/components: project-controller 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from 17a76f74 to 2f901d8b on Tue Mar 26 21:49:55 2024 </h3>  
+
+<details> 
+<summary>Git Diff (286 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">index 9e886d45..d0074960 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-meta">@@ -19,5 +19,6 @@</span> resources:
+   - toolchain-member-operator
+   - multi-platform-controller
+   - perf-team-prometheus-reader
+<span class="hljs-addition">+  - project-controller</span>
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..85738686</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,6 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- project-controller.yaml</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../../../../k-components/deploy-to-member-cluster-merge-generator</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml b/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..bb8276fd</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,39 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: project-controller</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: components/project-controller</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: project-controller-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        path: &#x27;{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}&#x27;</span>
+<span class="hljs-addition">+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-addition">+        targetRevision: main</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        namespace: project-controller</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated: </span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        syncOptions:</span>
+<span class="hljs-addition">+        - CreateNamespace=true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: 50</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 15s</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">index afe7470d..f65f585e 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -119,3 +119,8 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: repository-validator
+<span class="hljs-addition">+  - path: development-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: project-controller</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..2c12d377</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,6 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: project-controller</span>
+<span class="hljs-addition">+$patch: delete</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-comment">index c6aa992c..7f0b4496 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -12,6 +12,9 @@</span> resources:
+
+ namespace: konflux-public-production
+
+<span class="hljs-addition">+patchesStrategicMerge:</span>
+<span class="hljs-addition">+  - delete-applications.yaml</span>
+<span class="hljs-addition">+</span>
+ patches:
+   - path: production-overlay-patch.yaml
+     target:
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">index 0257c01e..6985289d 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -17,3 +17,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: ingresscontroller
+ $patch: delete
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: project-controller</span>
+<span class="hljs-addition">+$patch: delete</span>
+<span class="hljs-comment">diff --git a/components/project-controller/OWNERS b/components/project-controller/OWNERS</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..fbebd235</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/OWNERS</span>
+<span class="hljs-meta">@@ -0,0 +1,9 @@</span>
+<span class="hljs-addition">+# See the OWNERS docs: https://go.k8s.io/owners</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+approvers:</span>
+<span class="hljs-addition">+- ifireball</span>
+<span class="hljs-addition">+- gbenhaim</span>
+<span class="hljs-addition">+- avi-biton</span>
+<span class="hljs-addition">+- amisstea</span>
+<span class="hljs-addition">+- yftacherzog</span>
+<span class="hljs-addition">+- hmariset</span>
+<span class="hljs-comment">diff --git a/components/project-controller/README.md b/components/project-controller/README.md</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..80d8967b</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/README.md</span>
+<span class="hljs-meta">@@ -0,0 +1,3 @@</span>
+<span class="hljs-addition">+# PROJECT-CONTROLLER</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+Allow users to manage projects and development streams in Konflux. Related information can be found at the [project-controller repository](https://github.com/konflux-ci/project-controller)</span>
+<span class="hljs-comment">diff --git a/components/project-controller/base/allow-argocd-to-manage.yaml b/components/project-controller/base/allow-argocd-to-manage.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..5e7f848c</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/base/allow-argocd-to-manage.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,13 @@</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+kind: RoleBinding</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: grant-argocd</span>
+<span class="hljs-addition">+  namespace: project-controller</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: admin</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+- kind: ServiceAccount</span>
+<span class="hljs-addition">+  name: openshift-gitops-argocd-application-controller</span>
+<span class="hljs-addition">+  namespace: openshift-gitops</span>
+<span class="hljs-comment">diff --git a/components/project-controller/base/argocd-permissions.yaml b/components/project-controller/base/argocd-permissions.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..aeabedc8</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/base/argocd-permissions.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,28 @@</span>
+<span class="hljs-addition">+kind: ClusterRole</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: crd-manager-for-project-controller</span>
+<span class="hljs-addition">+rules:</span>
+<span class="hljs-addition">+  - verbs:</span>
+<span class="hljs-addition">+      - patch</span>
+<span class="hljs-addition">+      - get</span>
+<span class="hljs-addition">+      - list</span>
+<span class="hljs-addition">+      - create</span>
+<span class="hljs-addition">+      - get</span>
+<span class="hljs-addition">+    apiGroups:</span>
+<span class="hljs-addition">+      - apiextensions.k8s.io</span>
+<span class="hljs-addition">+    resources:</span>
+<span class="hljs-addition">+      - customresourcedefinitions</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+kind: ClusterRoleBinding</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: grant-argocd-crd-permissions-for-project-controller</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: crd-manager-for-project-controller</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+- kind: ServiceAccount</span>
+<span class="hljs-addition">+  name: openshift-gitops-argocd-application-controller</span>
+<span class="hljs-addition">+  namespace: openshift-gitops</span>
+<span class="hljs-comment">diff --git a/components/project-controller/base/kustomization.yaml b/components/project-controller/base/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..3cba52ed</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,9 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- project-controller.yaml</span>
+<span class="hljs-addition">+- allow-argocd-to-manage.yaml</span>
+<span class="hljs-addition">+- argocd-permissions.yaml</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: project-controller</span>
+<span class="hljs-comment">diff --git a/components/project-controller/base/project-controller.yaml b/components/project-controller/base/project-controller.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..96a1a0d1</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/base/project-controller.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,13 @@</span>
+<span class="hljs-addition">+kind: RoleBinding</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: project-controller-maintainers</span>
+<span class="hljs-addition">+  namespace: project-controller</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+  - kind: Group</span>
+<span class="hljs-addition">+    apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+    name: konflux-o11y</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: project-controller-maintainer</span>
+<span class="hljs-comment">diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..9d4441cd</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../base</span>
+<span class="hljs-addition">+- https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+- name: konflux-project-controller</span>
+<span class="hljs-addition">+  newName: quay.io/redhat-appstudio/project-controller</span>
+<span class="hljs-addition">+  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: project-controller</span>
+<span class="hljs-comment">diff --git a/components/project-controller/production/kustomization.yaml b/components/project-controller/production/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0ea6ab67</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+- name: konflux-project-controller</span>
+<span class="hljs-addition">+  newName: quay.io/redhat-appstudio/project-controller</span>
+<span class="hljs-addition">+  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: project-controller</span>
+<span class="hljs-comment">diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0ea6ab67</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+- name: konflux-project-controller</span>
+<span class="hljs-addition">+  newName: quay.io/redhat-appstudio/project-controller</span>
+<span class="hljs-addition">+  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: project-controller </span>
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+<pre><code>  ./commit-2f901d8b/staging/components: project-controller 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from 17a76f74 to 2f901d8b on Tue Mar 26 21:49:55 2024 </h3>  
+
+<details> 
+<summary>Git Diff (286 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">index 9e886d45..d0074960 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml</span>
+<span class="hljs-meta">@@ -19,5 +19,6 @@</span> resources:
+   - toolchain-member-operator
+   - multi-platform-controller
+   - perf-team-prometheus-reader
+<span class="hljs-addition">+  - project-controller</span>
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..85738686</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,6 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- project-controller.yaml</span>
+<span class="hljs-addition">+components:</span>
+<span class="hljs-addition">+  - ../../../../k-components/deploy-to-member-cluster-merge-generator</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml b/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..bb8276fd</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,39 @@</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: project-controller</span>
+<span class="hljs-addition">+spec:</span>
+<span class="hljs-addition">+  generators:</span>
+<span class="hljs-addition">+    - merge:</span>
+<span class="hljs-addition">+        mergeKeys:</span>
+<span class="hljs-addition">+          - nameNormalized</span>
+<span class="hljs-addition">+        generators:</span>
+<span class="hljs-addition">+          - clusters:</span>
+<span class="hljs-addition">+              values:</span>
+<span class="hljs-addition">+                sourceRoot: components/project-controller</span>
+<span class="hljs-addition">+                environment: staging</span>
+<span class="hljs-addition">+                clusterDir: &quot;&quot;</span>
+<span class="hljs-addition">+          - list:</span>
+<span class="hljs-addition">+              elements: []</span>
+<span class="hljs-addition">+  template:</span>
+<span class="hljs-addition">+    metadata:</span>
+<span class="hljs-addition">+      name: project-controller-{{nameNormalized}}</span>
+<span class="hljs-addition">+    spec:</span>
+<span class="hljs-addition">+      project: default</span>
+<span class="hljs-addition">+      source:</span>
+<span class="hljs-addition">+        path: &#x27;{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}&#x27;</span>
+<span class="hljs-addition">+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-addition">+        targetRevision: main</span>
+<span class="hljs-addition">+      destination:</span>
+<span class="hljs-addition">+        namespace: project-controller</span>
+<span class="hljs-addition">+        server: &#x27;{{server}}&#x27;</span>
+<span class="hljs-addition">+      syncPolicy:</span>
+<span class="hljs-addition">+        automated: </span>
+<span class="hljs-addition">+          prune: true</span>
+<span class="hljs-addition">+          selfHeal: true</span>
+<span class="hljs-addition">+        syncOptions:</span>
+<span class="hljs-addition">+        - CreateNamespace=true</span>
+<span class="hljs-addition">+        retry:</span>
+<span class="hljs-addition">+          limit: 50</span>
+<span class="hljs-addition">+          backoff:</span>
+<span class="hljs-addition">+            duration: 15s</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">index afe7470d..f65f585e 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -119,3 +119,8 @@</span> patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: repository-validator
+<span class="hljs-addition">+  - path: development-overlay-patch.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: ApplicationSet</span>
+<span class="hljs-addition">+      version: v1alpha1</span>
+<span class="hljs-addition">+      name: project-controller</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..2c12d377</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,6 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: project-controller</span>
+<span class="hljs-addition">+$patch: delete</span>
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-comment">index c6aa992c..7f0b4496 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -12,6 +12,9 @@</span> resources:
+
+ namespace: konflux-public-production
+
+<span class="hljs-addition">+patchesStrategicMerge:</span>
+<span class="hljs-addition">+  - delete-applications.yaml</span>
+<span class="hljs-addition">+</span>
+ patches:
+   - path: production-overlay-patch.yaml
+     target:
+<span class="hljs-comment">diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">index 0257c01e..6985289d 100644</span>
+<span class="hljs-comment">--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-comment">+++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml</span>
+<span class="hljs-meta">@@ -17,3 +17,9 @@</span> kind: ApplicationSet
+ metadata:
+   name: ingresscontroller
+ $patch: delete
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: argoproj.io/v1alpha1</span>
+<span class="hljs-addition">+kind: ApplicationSet</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: project-controller</span>
+<span class="hljs-addition">+$patch: delete</span>
+<span class="hljs-comment">diff --git a/components/project-controller/OWNERS b/components/project-controller/OWNERS</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..fbebd235</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/OWNERS</span>
+<span class="hljs-meta">@@ -0,0 +1,9 @@</span>
+<span class="hljs-addition">+# See the OWNERS docs: https://go.k8s.io/owners</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+approvers:</span>
+<span class="hljs-addition">+- ifireball</span>
+<span class="hljs-addition">+- gbenhaim</span>
+<span class="hljs-addition">+- avi-biton</span>
+<span class="hljs-addition">+- amisstea</span>
+<span class="hljs-addition">+- yftacherzog</span>
+<span class="hljs-addition">+- hmariset</span>
+<span class="hljs-comment">diff --git a/components/project-controller/README.md b/components/project-controller/README.md</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..80d8967b</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/README.md</span>
+<span class="hljs-meta">@@ -0,0 +1,3 @@</span>
+<span class="hljs-addition">+# PROJECT-CONTROLLER</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+Allow users to manage projects and development streams in Konflux. Related information can be found at the [project-controller repository](https://github.com/konflux-ci/project-controller)</span>
+<span class="hljs-comment">diff --git a/components/project-controller/base/allow-argocd-to-manage.yaml b/components/project-controller/base/allow-argocd-to-manage.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..5e7f848c</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/base/allow-argocd-to-manage.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,13 @@</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+kind: RoleBinding</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: grant-argocd</span>
+<span class="hljs-addition">+  namespace: project-controller</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: admin</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+- kind: ServiceAccount</span>
+<span class="hljs-addition">+  name: openshift-gitops-argocd-application-controller</span>
+<span class="hljs-addition">+  namespace: openshift-gitops</span>
+<span class="hljs-comment">diff --git a/components/project-controller/base/argocd-permissions.yaml b/components/project-controller/base/argocd-permissions.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..aeabedc8</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/base/argocd-permissions.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,28 @@</span>
+<span class="hljs-addition">+kind: ClusterRole</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: crd-manager-for-project-controller</span>
+<span class="hljs-addition">+rules:</span>
+<span class="hljs-addition">+  - verbs:</span>
+<span class="hljs-addition">+      - patch</span>
+<span class="hljs-addition">+      - get</span>
+<span class="hljs-addition">+      - list</span>
+<span class="hljs-addition">+      - create</span>
+<span class="hljs-addition">+      - get</span>
+<span class="hljs-addition">+    apiGroups:</span>
+<span class="hljs-addition">+      - apiextensions.k8s.io</span>
+<span class="hljs-addition">+    resources:</span>
+<span class="hljs-addition">+      - customresourcedefinitions</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+kind: ClusterRoleBinding</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: grant-argocd-crd-permissions-for-project-controller</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: crd-manager-for-project-controller</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+- kind: ServiceAccount</span>
+<span class="hljs-addition">+  name: openshift-gitops-argocd-application-controller</span>
+<span class="hljs-addition">+  namespace: openshift-gitops</span>
+<span class="hljs-comment">diff --git a/components/project-controller/base/kustomization.yaml b/components/project-controller/base/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..3cba52ed</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,9 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- project-controller.yaml</span>
+<span class="hljs-addition">+- allow-argocd-to-manage.yaml</span>
+<span class="hljs-addition">+- argocd-permissions.yaml</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: project-controller</span>
+<span class="hljs-comment">diff --git a/components/project-controller/base/project-controller.yaml b/components/project-controller/base/project-controller.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..96a1a0d1</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/base/project-controller.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,13 @@</span>
+<span class="hljs-addition">+kind: RoleBinding</span>
+<span class="hljs-addition">+apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="hljs-addition">+metadata:</span>
+<span class="hljs-addition">+  name: project-controller-maintainers</span>
+<span class="hljs-addition">+  namespace: project-controller</span>
+<span class="hljs-addition">+subjects:</span>
+<span class="hljs-addition">+  - kind: Group</span>
+<span class="hljs-addition">+    apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+    name: konflux-o11y</span>
+<span class="hljs-addition">+roleRef:</span>
+<span class="hljs-addition">+  apiGroup: rbac.authorization.k8s.io</span>
+<span class="hljs-addition">+  kind: ClusterRole</span>
+<span class="hljs-addition">+  name: project-controller-maintainer</span>
+<span class="hljs-comment">diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..9d4441cd</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/development/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+- ../base</span>
+<span class="hljs-addition">+- https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+- name: konflux-project-controller</span>
+<span class="hljs-addition">+  newName: quay.io/redhat-appstudio/project-controller</span>
+<span class="hljs-addition">+  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: project-controller</span>
+<span class="hljs-comment">diff --git a/components/project-controller/production/kustomization.yaml b/components/project-controller/production/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0ea6ab67</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/production/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+- name: konflux-project-controller</span>
+<span class="hljs-addition">+  newName: quay.io/redhat-appstudio/project-controller</span>
+<span class="hljs-addition">+  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: project-controller</span>
+<span class="hljs-comment">diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..0ea6ab67</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/project-controller/staging/kustomization.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
+<span class="hljs-addition">+kind: Kustomization</span>
+<span class="hljs-addition">+resources:</span>
+<span class="hljs-addition">+  - ../base</span>
+<span class="hljs-addition">+  - https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+images:</span>
+<span class="hljs-addition">+- name: konflux-project-controller</span>
+<span class="hljs-addition">+  newName: quay.io/redhat-appstudio/project-controller</span>
+<span class="hljs-addition">+  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+namespace: project-controller </span>
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (47 lines)</summary>  
+<pre><code>  <span class="hljs-string">./commit-17a76f74/development/app-of-apps-development.yaml</span>
+<span class="hljs-number">913</span><span class="hljs-string">,956d912</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">name:</span> <span class="hljs-string">project-controller</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">namespace:</span> <span class="hljs-string">openshift-gitops</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">spec:</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">generators:</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-bullet">-</span> <span class="hljs-attr">merge:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">generators:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-bullet">-</span> <span class="hljs-attr">clusters:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">selector:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">matchLabels:</span>
+<span class="hljs-string">&lt;</span>               <span class="hljs-attr">appstudio.redhat.com/member-cluster:</span> <span class="hljs-string">&quot;true&quot;</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">values:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">clusterDir:</span> <span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">environment:</span> <span class="hljs-string">development</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">sourceRoot:</span> <span class="hljs-string">components/project-controller</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-bullet">-</span> <span class="hljs-attr">list:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">elements:</span> []
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">mergeKeys:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-bullet">-</span> <span class="hljs-string">nameNormalized</span>
+<span class="hljs-string">&lt;</span>   <span class="hljs-attr">template:</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">metadata:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">name:</span> <span class="hljs-string">project-controller-{{nameNormalized}}</span>
+<span class="hljs-string">&lt;</span>     <span class="hljs-attr">spec:</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">destination:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">namespace:</span> <span class="hljs-string">project-controller</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">server:</span> <span class="hljs-string">&#x27;<span class="hljs-template-variable">{{server}}</span>&#x27;</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">project:</span> <span class="hljs-string">default</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">source:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">path:</span> <span class="hljs-string">&#x27;<span class="hljs-template-variable">{{values.sourceRoot}}</span>/<span class="hljs-template-variable">{{values.environment}}</span>/<span class="hljs-template-variable">{{values.clusterDir}}</span>&#x27;</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">repoURL:</span> <span class="hljs-string">https://github.com/redhat-appstudio/infra-deployments.git</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">targetRevision:</span> <span class="hljs-string">main</span>
+<span class="hljs-string">&lt;</span>       <span class="hljs-attr">syncPolicy:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">automated:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">prune:</span> <span class="hljs-literal">true</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">selfHeal:</span> <span class="hljs-literal">true</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">retry:</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">backoff:</span>
+<span class="hljs-string">&lt;</span>             <span class="hljs-attr">duration:</span> <span class="hljs-string">15s</span>
+<span class="hljs-string">&lt;</span>           <span class="hljs-attr">limit:</span> <span class="hljs-number">50</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-attr">syncOptions:</span>
+<span class="hljs-string">&lt;</span>         <span class="hljs-bullet">-</span> <span class="hljs-string">CreateNamespace=true</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-string">---</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">apiVersion:</span> <span class="hljs-string">argoproj.io/v1alpha1</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">kind:</span> <span class="hljs-string">ApplicationSet</span>
+<span class="hljs-string">&lt;</span> <span class="hljs-attr">metadata:</span>
+<span class="hljs-string">./commit-2f901d8b/development/components:</span> <span class="hljs-string">project-controller</span> 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 417bbdd9 to 17a76f74 on Tue Mar 26 19:22:48 2024 </h3>  
 
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -182,7 +1425,7 @@
 
 </div>
 <div>
-<h3>1: Staging changes from 417bbdd9 to 17a76f74 on Tue Mar 26 19:22:48 2024 </h3>  
+<h3>2: Staging changes from 417bbdd9 to 17a76f74 on Tue Mar 26 19:22:48 2024 </h3>  
 
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -356,7 +1599,7 @@
 
 </div>
 <div>
-<h3>1: Development changes from 417bbdd9 to 17a76f74 on Tue Mar 26 19:22:48 2024 </h3>  
+<h3>2: Development changes from 417bbdd9 to 17a76f74 on Tue Mar 26 19:22:48 2024 </h3>  
 
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -482,7 +1725,7 @@
 
 </div>
 <div>
-<h3>2: Production changes from 5d41e36f to 417bbdd9 on Tue Mar 26 19:15:26 2024 </h3>  
+<h3>3: Production changes from 5d41e36f to 417bbdd9 on Tue Mar 26 19:15:26 2024 </h3>  
 
 <details> 
 <summary>Git Diff (40 lines)</summary>  
@@ -662,7 +1905,7 @@
 
 </div>
 <div>
-<h3>2: Staging changes from 5d41e36f to 417bbdd9 on Tue Mar 26 19:15:26 2024 </h3>  
+<h3>3: Staging changes from 5d41e36f to 417bbdd9 on Tue Mar 26 19:15:26 2024 </h3>  
 
 <details> 
 <summary>Git Diff (40 lines)</summary>  
@@ -845,7 +2088,7 @@
 
 </div>
 <div>
-<h3>2: Development changes from 5d41e36f to 417bbdd9 on Tue Mar 26 19:15:26 2024 </h3>  
+<h3>3: Development changes from 5d41e36f to 417bbdd9 on Tue Mar 26 19:15:26 2024 </h3>  
 
 <details> 
 <summary>Git Diff (40 lines)</summary>  
@@ -980,7 +2223,7 @@
 
 </div>
 <div>
-<h3>3: Production changes from 08df8fd5 to 5d41e36f on Tue Mar 26 19:10:34 2024 </h3>  
+<h3>4: Production changes from 08df8fd5 to 5d41e36f on Tue Mar 26 19:10:34 2024 </h3>  
 
 <details> 
 <summary>Git Diff (191 lines)</summary>  
@@ -1295,7 +2538,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Staging changes from 08df8fd5 to 5d41e36f on Tue Mar 26 19:10:34 2024 </h3>  
+<h3>4: Staging changes from 08df8fd5 to 5d41e36f on Tue Mar 26 19:10:34 2024 </h3>  
 
 <details> 
 <summary>Git Diff (191 lines)</summary>  
@@ -1613,7 +2856,7 @@ new file mode 100644
 
 </div>
 <div>
-<h3>3: Development changes from 08df8fd5 to 5d41e36f on Tue Mar 26 19:10:34 2024 </h3>  
+<h3>4: Development changes from 08df8fd5 to 5d41e36f on Tue Mar 26 19:10:34 2024 </h3>  
 
 <details> 
 <summary>Git Diff (191 lines)</summary>  
@@ -1873,366 +3116,6 @@ new file mode 100644
 
 <span class="hljs-attribute">No</span> lint errors found!
 <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from c07653d1 to 08df8fd5 on Tue Mar 26 19:08:55 2024 </h3>  
-
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/keycloak/base/konflux-workspace-admins/rbac.yaml b/components/keycloak/base/konflux-workspace-admins/rbac.yaml</span>
-<span class="hljs-comment">index 166920d7..6e54660d 100644</span>
-<span class="hljs-comment">--- a/components/keycloak/base/konflux-workspace-admins/rbac.yaml</span>
-<span class="hljs-comment">+++ b/components/keycloak/base/konflux-workspace-admins/rbac.yaml</span>
-<span class="hljs-meta">@@ -26,5 +26,5 @@</span> subjects:
-     name: konflux-workspace-admins
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-<span class="hljs-deletion">-  kind: ClusterRole</span>
-<span class="hljs-addition">+  kind: Role</span>
-   name: workspaces-manager 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from c07653d1 to 08df8fd5 on Tue Mar 26 19:08:55 2024 </h3>  
-
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/keycloak/base/konflux-workspace-admins/rbac.yaml b/components/keycloak/base/konflux-workspace-admins/rbac.yaml</span>
-<span class="hljs-comment">index 166920d7..6e54660d 100644</span>
-<span class="hljs-comment">--- a/components/keycloak/base/konflux-workspace-admins/rbac.yaml</span>
-<span class="hljs-comment">+++ b/components/keycloak/base/konflux-workspace-admins/rbac.yaml</span>
-<span class="hljs-meta">@@ -26,5 +26,5 @@</span> subjects:
-     name: konflux-workspace-admins
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-<span class="hljs-deletion">-  kind: ClusterRole</span>
-<span class="hljs-addition">+  kind: Role</span>
-   name: workspaces-manager 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from c07653d1 to 08df8fd5 on Tue Mar 26 19:08:55 2024 </h3>  
-
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/components/keycloak/base/konflux-workspace-admins/rbac.yaml b/components/keycloak/base/konflux-workspace-admins/rbac.yaml</span>
-<span class="hljs-comment">index 166920d7..6e54660d 100644</span>
-<span class="hljs-comment">--- a/components/keycloak/base/konflux-workspace-admins/rbac.yaml</span>
-<span class="hljs-comment">+++ b/components/keycloak/base/konflux-workspace-admins/rbac.yaml</span>
-<span class="hljs-meta">@@ -26,5 +26,5 @@</span> subjects:
-     name: konflux-workspace-admins
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
-<span class="hljs-deletion">-  kind: ClusterRole</span>
-<span class="hljs-addition">+  kind: Role</span>
-   name: workspaces-manager 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-<pre><code>  
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
 
 <span class="hljs-attribute">No</span> lint errors found!
 <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3

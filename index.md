@@ -1,12 +1,1276 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Mar 26 20:06:39 UTC 2024
+### This file generated at Wed Mar 27 00:06:28 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 417bbdd9 to 17a76f74 on Tue Mar 26 19:22:48 2024 </h3>  
+<h3>1: Production changes from 17a76f74 to 2f901d8b on Tue Mar 26 21:49:55 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (286 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 9e886d45..d0074960 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -19,5 +19,6 @@ resources:
+   - toolchain-member-operator
+   - multi-platform-controller
+   - perf-team-prometheus-reader
++  - project-controller
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml
+new file mode 100644
+index 00000000..85738686
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- project-controller.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml b/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml
+new file mode 100644
+index 00000000..bb8276fd
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml
+@@ -0,0 +1,39 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: project-controller
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/project-controller
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: project-controller-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: project-controller
++        server: '{{server}}'
++      syncPolicy:
++        automated: 
++          prune: true
++          selfHeal: true
++        syncOptions:
++        - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 15s
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index afe7470d..f65f585e 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -119,3 +119,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: repository-validator
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: project-controller
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+new file mode 100644
+index 00000000..2c12d377
+--- /dev/null
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -0,0 +1,6 @@
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: project-controller
++$patch: delete
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index c6aa992c..7f0b4496 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -12,6 +12,9 @@ resources:
+ 
+ namespace: konflux-public-production
+ 
++patchesStrategicMerge:
++  - delete-applications.yaml
++
+ patches:
+   - path: production-overlay-patch.yaml
+     target:
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 0257c01e..6985289d 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -17,3 +17,9 @@ kind: ApplicationSet
+ metadata:
+   name: ingresscontroller
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: project-controller
++$patch: delete
+diff --git a/components/project-controller/OWNERS b/components/project-controller/OWNERS
+new file mode 100644
+index 00000000..fbebd235
+--- /dev/null
++++ b/components/project-controller/OWNERS
+@@ -0,0 +1,9 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- ifireball
++- gbenhaim
++- avi-biton
++- amisstea
++- yftacherzog
++- hmariset
+diff --git a/components/project-controller/README.md b/components/project-controller/README.md
+new file mode 100644
+index 00000000..80d8967b
+--- /dev/null
++++ b/components/project-controller/README.md
+@@ -0,0 +1,3 @@
++# PROJECT-CONTROLLER
++
++Allow users to manage projects and development streams in Konflux. Related information can be found at the [project-controller repository](https://github.com/konflux-ci/project-controller)
+diff --git a/components/project-controller/base/allow-argocd-to-manage.yaml b/components/project-controller/base/allow-argocd-to-manage.yaml
+new file mode 100644
+index 00000000..5e7f848c
+--- /dev/null
++++ b/components/project-controller/base/allow-argocd-to-manage.yaml
+@@ -0,0 +1,13 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: grant-argocd
++  namespace: project-controller
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
+diff --git a/components/project-controller/base/argocd-permissions.yaml b/components/project-controller/base/argocd-permissions.yaml
+new file mode 100644
+index 00000000..aeabedc8
+--- /dev/null
++++ b/components/project-controller/base/argocd-permissions.yaml
+@@ -0,0 +1,28 @@
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: crd-manager-for-project-controller
++rules:
++  - verbs:
++      - patch
++      - get
++      - list
++      - create
++      - get
++    apiGroups:
++      - apiextensions.k8s.io
++    resources:
++      - customresourcedefinitions
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: grant-argocd-crd-permissions-for-project-controller
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: crd-manager-for-project-controller
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
+diff --git a/components/project-controller/base/kustomization.yaml b/components/project-controller/base/kustomization.yaml
+new file mode 100644
+index 00000000..3cba52ed
+--- /dev/null
++++ b/components/project-controller/base/kustomization.yaml
+@@ -0,0 +1,9 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- project-controller.yaml
++- allow-argocd-to-manage.yaml
++- argocd-permissions.yaml
++
++namespace: project-controller
+diff --git a/components/project-controller/base/project-controller.yaml b/components/project-controller/base/project-controller.yaml
+new file mode 100644
+index 00000000..96a1a0d1
+--- /dev/null
++++ b/components/project-controller/base/project-controller.yaml
+@@ -0,0 +1,13 @@
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: project-controller-maintainers
++  namespace: project-controller
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: konflux-o11y
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: project-controller-maintainer
+diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
+new file mode 100644
+index 00000000..9d4441cd
+--- /dev/null
++++ b/components/project-controller/development/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++images:
++- name: konflux-project-controller
++  newName: quay.io/redhat-appstudio/project-controller
++  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++namespace: project-controller
+diff --git a/components/project-controller/production/kustomization.yaml b/components/project-controller/production/kustomization.yaml
+new file mode 100644
+index 00000000..0ea6ab67
+--- /dev/null
++++ b/components/project-controller/production/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++images:
++- name: konflux-project-controller
++  newName: quay.io/redhat-appstudio/project-controller
++  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++namespace: project-controller
+diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
+new file mode 100644
+index 00000000..0ea6ab67
+--- /dev/null
++++ b/components/project-controller/staging/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++images:
++- name: konflux-project-controller
++  newName: quay.io/redhat-appstudio/project-controller
++  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++namespace: project-controller 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-2f901d8b/production/components: project-controller 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 17a76f74 to 2f901d8b on Tue Mar 26 21:49:55 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (286 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 9e886d45..d0074960 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -19,5 +19,6 @@ resources:
+   - toolchain-member-operator
+   - multi-platform-controller
+   - perf-team-prometheus-reader
++  - project-controller
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml
+new file mode 100644
+index 00000000..85738686
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- project-controller.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml b/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml
+new file mode 100644
+index 00000000..bb8276fd
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml
+@@ -0,0 +1,39 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: project-controller
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/project-controller
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: project-controller-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: project-controller
++        server: '{{server}}'
++      syncPolicy:
++        automated: 
++          prune: true
++          selfHeal: true
++        syncOptions:
++        - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 15s
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index afe7470d..f65f585e 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -119,3 +119,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: repository-validator
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: project-controller
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+new file mode 100644
+index 00000000..2c12d377
+--- /dev/null
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -0,0 +1,6 @@
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: project-controller
++$patch: delete
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index c6aa992c..7f0b4496 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -12,6 +12,9 @@ resources:
+ 
+ namespace: konflux-public-production
+ 
++patchesStrategicMerge:
++  - delete-applications.yaml
++
+ patches:
+   - path: production-overlay-patch.yaml
+     target:
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 0257c01e..6985289d 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -17,3 +17,9 @@ kind: ApplicationSet
+ metadata:
+   name: ingresscontroller
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: project-controller
++$patch: delete
+diff --git a/components/project-controller/OWNERS b/components/project-controller/OWNERS
+new file mode 100644
+index 00000000..fbebd235
+--- /dev/null
++++ b/components/project-controller/OWNERS
+@@ -0,0 +1,9 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- ifireball
++- gbenhaim
++- avi-biton
++- amisstea
++- yftacherzog
++- hmariset
+diff --git a/components/project-controller/README.md b/components/project-controller/README.md
+new file mode 100644
+index 00000000..80d8967b
+--- /dev/null
++++ b/components/project-controller/README.md
+@@ -0,0 +1,3 @@
++# PROJECT-CONTROLLER
++
++Allow users to manage projects and development streams in Konflux. Related information can be found at the [project-controller repository](https://github.com/konflux-ci/project-controller)
+diff --git a/components/project-controller/base/allow-argocd-to-manage.yaml b/components/project-controller/base/allow-argocd-to-manage.yaml
+new file mode 100644
+index 00000000..5e7f848c
+--- /dev/null
++++ b/components/project-controller/base/allow-argocd-to-manage.yaml
+@@ -0,0 +1,13 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: grant-argocd
++  namespace: project-controller
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
+diff --git a/components/project-controller/base/argocd-permissions.yaml b/components/project-controller/base/argocd-permissions.yaml
+new file mode 100644
+index 00000000..aeabedc8
+--- /dev/null
++++ b/components/project-controller/base/argocd-permissions.yaml
+@@ -0,0 +1,28 @@
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: crd-manager-for-project-controller
++rules:
++  - verbs:
++      - patch
++      - get
++      - list
++      - create
++      - get
++    apiGroups:
++      - apiextensions.k8s.io
++    resources:
++      - customresourcedefinitions
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: grant-argocd-crd-permissions-for-project-controller
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: crd-manager-for-project-controller
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
+diff --git a/components/project-controller/base/kustomization.yaml b/components/project-controller/base/kustomization.yaml
+new file mode 100644
+index 00000000..3cba52ed
+--- /dev/null
++++ b/components/project-controller/base/kustomization.yaml
+@@ -0,0 +1,9 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- project-controller.yaml
++- allow-argocd-to-manage.yaml
++- argocd-permissions.yaml
++
++namespace: project-controller
+diff --git a/components/project-controller/base/project-controller.yaml b/components/project-controller/base/project-controller.yaml
+new file mode 100644
+index 00000000..96a1a0d1
+--- /dev/null
++++ b/components/project-controller/base/project-controller.yaml
+@@ -0,0 +1,13 @@
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: project-controller-maintainers
++  namespace: project-controller
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: konflux-o11y
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: project-controller-maintainer
+diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
+new file mode 100644
+index 00000000..9d4441cd
+--- /dev/null
++++ b/components/project-controller/development/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++images:
++- name: konflux-project-controller
++  newName: quay.io/redhat-appstudio/project-controller
++  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++namespace: project-controller
+diff --git a/components/project-controller/production/kustomization.yaml b/components/project-controller/production/kustomization.yaml
+new file mode 100644
+index 00000000..0ea6ab67
+--- /dev/null
++++ b/components/project-controller/production/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++images:
++- name: konflux-project-controller
++  newName: quay.io/redhat-appstudio/project-controller
++  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++namespace: project-controller
+diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
+new file mode 100644
+index 00000000..0ea6ab67
+--- /dev/null
++++ b/components/project-controller/staging/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++images:
++- name: konflux-project-controller
++  newName: quay.io/redhat-appstudio/project-controller
++  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++namespace: project-controller 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-2f901d8b/staging/components: project-controller 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 17a76f74 to 2f901d8b on Tue Mar 26 21:49:55 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (286 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+index 9e886d45..d0074960 100644
+--- a/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/member/infra-deployments/kustomization.yaml
+@@ -19,5 +19,6 @@ resources:
+   - toolchain-member-operator
+   - multi-platform-controller
+   - perf-team-prometheus-reader
++  - project-controller
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml b/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml
+new file mode 100644
+index 00000000..85738686
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/project-controller/kustomization.yaml
+@@ -0,0 +1,6 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- project-controller.yaml
++components:
++  - ../../../../k-components/deploy-to-member-cluster-merge-generator
+diff --git a/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml b/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml
+new file mode 100644
+index 00000000..bb8276fd
+--- /dev/null
++++ b/argo-cd-apps/base/member/infra-deployments/project-controller/project-controller.yaml
+@@ -0,0 +1,39 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: project-controller
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/project-controller
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: project-controller-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: project-controller
++        server: '{{server}}'
++      syncPolicy:
++        automated: 
++          prune: true
++          selfHeal: true
++        syncOptions:
++        - CreateNamespace=true
++        retry:
++          limit: 50
++          backoff:
++            duration: 15s
+diff --git a/argo-cd-apps/overlays/development/kustomization.yaml b/argo-cd-apps/overlays/development/kustomization.yaml
+index afe7470d..f65f585e 100644
+--- a/argo-cd-apps/overlays/development/kustomization.yaml
++++ b/argo-cd-apps/overlays/development/kustomization.yaml
+@@ -119,3 +119,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: repository-validator
++  - path: development-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: project-controller
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+new file mode 100644
+index 00000000..2c12d377
+--- /dev/null
++++ b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+@@ -0,0 +1,6 @@
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: project-controller
++$patch: delete
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index c6aa992c..7f0b4496 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -12,6 +12,9 @@ resources:
+ 
+ namespace: konflux-public-production
+ 
++patchesStrategicMerge:
++  - delete-applications.yaml
++
+ patches:
+   - path: production-overlay-patch.yaml
+     target:
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 0257c01e..6985289d 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -17,3 +17,9 @@ kind: ApplicationSet
+ metadata:
+   name: ingresscontroller
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: project-controller
++$patch: delete
+diff --git a/components/project-controller/OWNERS b/components/project-controller/OWNERS
+new file mode 100644
+index 00000000..fbebd235
+--- /dev/null
++++ b/components/project-controller/OWNERS
+@@ -0,0 +1,9 @@
++# See the OWNERS docs: https://go.k8s.io/owners
++
++approvers:
++- ifireball
++- gbenhaim
++- avi-biton
++- amisstea
++- yftacherzog
++- hmariset
+diff --git a/components/project-controller/README.md b/components/project-controller/README.md
+new file mode 100644
+index 00000000..80d8967b
+--- /dev/null
++++ b/components/project-controller/README.md
+@@ -0,0 +1,3 @@
++# PROJECT-CONTROLLER
++
++Allow users to manage projects and development streams in Konflux. Related information can be found at the [project-controller repository](https://github.com/konflux-ci/project-controller)
+diff --git a/components/project-controller/base/allow-argocd-to-manage.yaml b/components/project-controller/base/allow-argocd-to-manage.yaml
+new file mode 100644
+index 00000000..5e7f848c
+--- /dev/null
++++ b/components/project-controller/base/allow-argocd-to-manage.yaml
+@@ -0,0 +1,13 @@
++apiVersion: rbac.authorization.k8s.io/v1
++kind: RoleBinding
++metadata:
++  name: grant-argocd
++  namespace: project-controller
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: admin
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
+diff --git a/components/project-controller/base/argocd-permissions.yaml b/components/project-controller/base/argocd-permissions.yaml
+new file mode 100644
+index 00000000..aeabedc8
+--- /dev/null
++++ b/components/project-controller/base/argocd-permissions.yaml
+@@ -0,0 +1,28 @@
++kind: ClusterRole
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: crd-manager-for-project-controller
++rules:
++  - verbs:
++      - patch
++      - get
++      - list
++      - create
++      - get
++    apiGroups:
++      - apiextensions.k8s.io
++    resources:
++      - customresourcedefinitions
++---
++apiVersion: rbac.authorization.k8s.io/v1
++kind: ClusterRoleBinding
++metadata:
++  name: grant-argocd-crd-permissions-for-project-controller
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: crd-manager-for-project-controller
++subjects:
++- kind: ServiceAccount
++  name: openshift-gitops-argocd-application-controller
++  namespace: openshift-gitops
+diff --git a/components/project-controller/base/kustomization.yaml b/components/project-controller/base/kustomization.yaml
+new file mode 100644
+index 00000000..3cba52ed
+--- /dev/null
++++ b/components/project-controller/base/kustomization.yaml
+@@ -0,0 +1,9 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++
++resources:
++- project-controller.yaml
++- allow-argocd-to-manage.yaml
++- argocd-permissions.yaml
++
++namespace: project-controller
+diff --git a/components/project-controller/base/project-controller.yaml b/components/project-controller/base/project-controller.yaml
+new file mode 100644
+index 00000000..96a1a0d1
+--- /dev/null
++++ b/components/project-controller/base/project-controller.yaml
+@@ -0,0 +1,13 @@
++kind: RoleBinding
++apiVersion: rbac.authorization.k8s.io/v1
++metadata:
++  name: project-controller-maintainers
++  namespace: project-controller
++subjects:
++  - kind: Group
++    apiGroup: rbac.authorization.k8s.io
++    name: konflux-o11y
++roleRef:
++  apiGroup: rbac.authorization.k8s.io
++  kind: ClusterRole
++  name: project-controller-maintainer
+diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
+new file mode 100644
+index 00000000..9d4441cd
+--- /dev/null
++++ b/components/project-controller/development/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++- ../base
++- https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++images:
++- name: konflux-project-controller
++  newName: quay.io/redhat-appstudio/project-controller
++  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++namespace: project-controller
+diff --git a/components/project-controller/production/kustomization.yaml b/components/project-controller/production/kustomization.yaml
+new file mode 100644
+index 00000000..0ea6ab67
+--- /dev/null
++++ b/components/project-controller/production/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++images:
++- name: konflux-project-controller
++  newName: quay.io/redhat-appstudio/project-controller
++  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++namespace: project-controller
+diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
+new file mode 100644
+index 00000000..0ea6ab67
+--- /dev/null
++++ b/components/project-controller/staging/kustomization.yaml
+@@ -0,0 +1,12 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../base
++  - https://github.com/konflux-ci/project-controller/config/default?ref=cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++images:
++- name: konflux-project-controller
++  newName: quay.io/redhat-appstudio/project-controller
++  newTag: cdfd3f9d019e99e7fa6ba9620313a65e213b410d
++
++namespace: project-controller 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (47 lines)</summary>  
+
+``` 
+./commit-17a76f74/development/app-of-apps-development.yaml
+913,956d912
+<   name: project-controller
+<   namespace: openshift-gitops
+< spec:
+<   generators:
+<   - merge:
+<       generators:
+<       - clusters:
+<           selector:
+<             matchLabels:
+<               appstudio.redhat.com/member-cluster: "true"
+<           values:
+<             clusterDir: ""
+<             environment: development
+<             sourceRoot: components/project-controller
+<       - list:
+<           elements: []
+<       mergeKeys:
+<       - nameNormalized
+<   template:
+<     metadata:
+<       name: project-controller-{{nameNormalized}}
+<     spec:
+<       destination:
+<         namespace: project-controller
+<         server: '{{server}}'
+<       project: default
+<       source:
+<         path: '{{values.sourceRoot}}/{{values.environment}}/{{values.clusterDir}}'
+<         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+<         targetRevision: main
+<       syncPolicy:
+<         automated:
+<           prune: true
+<           selfHeal: true
+<         retry:
+<           backoff:
+<             duration: 15s
+<           limit: 50
+<         syncOptions:
+<         - CreateNamespace=true
+< ---
+< apiVersion: argoproj.io/v1alpha1
+< kind: ApplicationSet
+< metadata:
+./commit-2f901d8b/development/components: project-controller 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 417bbdd9 to 17a76f74 on Tue Mar 26 19:22:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -180,7 +1444,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 417bbdd9 to 17a76f74 on Tue Mar 26 19:22:48 2024 </h3>  
+<h3>2: Staging changes from 417bbdd9 to 17a76f74 on Tue Mar 26 19:22:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -361,7 +1625,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 417bbdd9 to 17a76f74 on Tue Mar 26 19:22:48 2024 </h3>  
+<h3>2: Development changes from 417bbdd9 to 17a76f74 on Tue Mar 26 19:22:48 2024 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -494,7 +1758,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 5d41e36f to 417bbdd9 on Tue Mar 26 19:15:26 2024 </h3>  
+<h3>3: Production changes from 5d41e36f to 417bbdd9 on Tue Mar 26 19:15:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (40 lines)</summary>  
@@ -681,7 +1945,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 5d41e36f to 417bbdd9 on Tue Mar 26 19:15:26 2024 </h3>  
+<h3>3: Staging changes from 5d41e36f to 417bbdd9 on Tue Mar 26 19:15:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (40 lines)</summary>  
@@ -871,7 +2135,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 5d41e36f to 417bbdd9 on Tue Mar 26 19:15:26 2024 </h3>  
+<h3>3: Development changes from 5d41e36f to 417bbdd9 on Tue Mar 26 19:15:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (40 lines)</summary>  
@@ -1013,7 +2277,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 08df8fd5 to 5d41e36f on Tue Mar 26 19:10:34 2024 </h3>  
+<h3>4: Production changes from 08df8fd5 to 5d41e36f on Tue Mar 26 19:10:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (191 lines)</summary>  
@@ -1335,7 +2599,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 08df8fd5 to 5d41e36f on Tue Mar 26 19:10:34 2024 </h3>  
+<h3>4: Staging changes from 08df8fd5 to 5d41e36f on Tue Mar 26 19:10:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (191 lines)</summary>  
@@ -1660,7 +2924,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 08df8fd5 to 5d41e36f on Tue Mar 26 19:10:34 2024 </h3>  
+<h3>4: Development changes from 08df8fd5 to 5d41e36f on Tue Mar 26 19:10:34 2024 </h3>  
  
 <details> 
 <summary>Git Diff (191 lines)</summary>  
@@ -1925,387 +3189,6 @@ index 00000000..86e0183a
 KubeLinter v0.6.1-0-gc6177366a3
 
 No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from c07653d1 to 08df8fd5 on Tue Mar 26 19:08:55 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/components/keycloak/base/konflux-workspace-admins/rbac.yaml b/components/keycloak/base/konflux-workspace-admins/rbac.yaml
-index 166920d7..6e54660d 100644
---- a/components/keycloak/base/konflux-workspace-admins/rbac.yaml
-+++ b/components/keycloak/base/konflux-workspace-admins/rbac.yaml
-@@ -26,5 +26,5 @@ subjects:
-     name: konflux-workspace-admins
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
-+  kind: Role
-   name: workspaces-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from c07653d1 to 08df8fd5 on Tue Mar 26 19:08:55 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/components/keycloak/base/konflux-workspace-admins/rbac.yaml b/components/keycloak/base/konflux-workspace-admins/rbac.yaml
-index 166920d7..6e54660d 100644
---- a/components/keycloak/base/konflux-workspace-admins/rbac.yaml
-+++ b/components/keycloak/base/konflux-workspace-admins/rbac.yaml
-@@ -26,5 +26,5 @@ subjects:
-     name: konflux-workspace-admins
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
-+  kind: Role
-   name: workspaces-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from c07653d1 to 08df8fd5 on Tue Mar 26 19:08:55 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (11 lines)</summary>  
-
-``` 
-diff --git a/components/keycloak/base/konflux-workspace-admins/rbac.yaml b/components/keycloak/base/konflux-workspace-admins/rbac.yaml
-index 166920d7..6e54660d 100644
---- a/components/keycloak/base/konflux-workspace-admins/rbac.yaml
-+++ b/components/keycloak/base/konflux-workspace-admins/rbac.yaml
-@@ -26,5 +26,5 @@ subjects:
-     name: konflux-workspace-admins
- roleRef:
-   apiGroup: rbac.authorization.k8s.io
--  kind: ClusterRole
-+  kind: Role
-   name: workspaces-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
 KubeLinter v0.6.1-0-gc6177366a3
 
 No lint errors found!
