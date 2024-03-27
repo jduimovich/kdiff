@@ -1,0 +1,11 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4ddbe2d3/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-2f901d8b/production/components/tekton-ci/production/kustomize.out.yaml
+379a380,388
+>   name: jvm-build-service-builder-images
+> spec:
+>   url: https://github.com/redhat-appstudio/jvm-build-service-builder-images
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
