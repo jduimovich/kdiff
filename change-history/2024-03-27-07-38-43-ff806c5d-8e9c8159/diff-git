@@ -1,0 +1,102 @@
+diff --git a/components/build-service/components/webhook-config/kustomization.yaml b/components/build-service/components/webhook-config/kustomization.yaml
+new file mode 100644
+index 00000000..55670205
+--- /dev/null
++++ b/components/build-service/components/webhook-config/kustomization.yaml
+@@ -0,0 +1,9 @@
++---
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++patches:
++  - path: webhook-config-patch.yaml
++    target:
++      name: build-service-controller-manager
++      kind: Deployment
++namespace: build-service
+diff --git a/components/build-service/components/webhook-config/webhook-config-patch.yaml b/components/build-service/components/webhook-config/webhook-config-patch.yaml
+new file mode 100644
+index 00000000..c26b4d09
+--- /dev/null
++++ b/components/build-service/components/webhook-config/webhook-config-patch.yaml
+@@ -0,0 +1,21 @@
++---
++- op: add
++  path: /spec/template/spec/containers/0/args/-
++  value: '-webhook-config-path=/mnt/webhook-config.json'
++
++- op: add
++  path: /spec/template/spec/containers/0/volumeMounts/-
++  value:
++    name: webhook-config
++    mountPath: /mnt
++    readOnly: true
++
++- op: add
++  path: /spec/template/spec/volumes/-
++  value: 
++    name: webhook-config
++    configMap:
++      name: webhook-config
++      items:
++        - key: webhook-config.json
++          path: webhook-config.json
+diff --git a/components/build-service/staging/stone-stage-p01/add-webhook-target-patch.yaml b/components/build-service/staging/stone-stage-p01/add-webhook-target-patch.yaml
+deleted file mode 100644
+index c5c18f90..00000000
+--- a/components/build-service/staging/stone-stage-p01/add-webhook-target-patch.yaml
++++ /dev/null
+@@ -1,14 +0,0 @@
+----
+-apiVersion: apps/v1
+-kind: Deployment
+-metadata:
+-  name: build-service-controller-manager
+-spec:
+-  template:
+-    spec:
+-      containers:
+-      - name: manager
+-        env:
+-          - name: PAC_WEBHOOK_URL
+-            value: https://smee-smee.apps.stone-stg-host.qc0p.p1.openshiftapps.com/redhathook12
+-
+diff --git a/components/build-service/staging/stone-stage-p01/kustomization.yaml b/components/build-service/staging/stone-stage-p01/kustomization.yaml
+index b7362bc8..478c681c 100644
+--- a/components/build-service/staging/stone-stage-p01/kustomization.yaml
++++ b/components/build-service/staging/stone-stage-p01/kustomization.yaml
+@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
++namespace: build-service
+ patches:
+   - path: pipelines-as-code-secret-path.yaml
+     target:
+@@ -9,10 +10,12 @@ patches:
+       group: external-secrets.io
+       version: v1beta1
+       kind: ExternalSecret
+-  - path: add-webhook-target-patch.yaml
+-    target:
+-      name: build-service-controller-manager
+-      kind: Deployment
++
++configMapGenerator:
++  - name: webhook-config
++    files: 
++      - webhook-config.json
++
+ components:
+   - ../../components/rh-certs
+-
++  - ../../components/webhook-config
+diff --git a/components/build-service/staging/stone-stage-p01/webhook-config.json b/components/build-service/staging/stone-stage-p01/webhook-config.json
+new file mode 100644
+index 00000000..72568d43
+--- /dev/null
++++ b/components/build-service/staging/stone-stage-p01/webhook-config.json
+@@ -0,0 +1,4 @@
++{
++    "https://github.com": "https://smee-smee.apps.stone-stg-host.qc0p.p1.openshiftapps.com/redhathook12",
++    "https://gitlab.com": "https://smee-smee.apps.stone-stg-host.qc0p.p1.openshiftapps.com/redhathook12"
++}
