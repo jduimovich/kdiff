@@ -1,0 +1,62 @@
+diff --git a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml b/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
+deleted file mode 100644
+index 2c12d377..00000000
+--- a/argo-cd-apps/overlays/konflux-public-production/delete-applications.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: project-controller
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+index 7f0b4496..c666c5e6 100644
+--- a/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
++++ b/argo-cd-apps/overlays/konflux-public-production/kustomization.yaml
+@@ -12,9 +12,6 @@ resources:
+ 
+ namespace: konflux-public-production
+ 
+-patchesStrategicMerge:
+-  - delete-applications.yaml
+-
+ patches:
+   - path: production-overlay-patch.yaml
+     target:
+@@ -156,3 +153,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: smee
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: project-controller
+diff --git a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+index 6985289d..0257c01e 100644
+--- a/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
++++ b/argo-cd-apps/overlays/production-downstream/delete-applications.yaml
+@@ -17,9 +17,3 @@ kind: ApplicationSet
+ metadata:
+   name: ingresscontroller
+ $patch: delete
+----
+-apiVersion: argoproj.io/v1alpha1
+-kind: ApplicationSet
+-metadata:
+-  name: project-controller
+-$patch: delete
+diff --git a/argo-cd-apps/overlays/production-downstream/kustomization.yaml b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+index ab1a178f..8a6bed70 100644
+--- a/argo-cd-apps/overlays/production-downstream/kustomization.yaml
++++ b/argo-cd-apps/overlays/production-downstream/kustomization.yaml
+@@ -171,3 +171,8 @@ patches:
+       kind: ApplicationSet
+       version: v1alpha1
+       name: repository-validator
++  - path: production-overlay-patch.yaml
++    target:
++      kind: ApplicationSet
++      version: v1alpha1
++      name: project-controller
