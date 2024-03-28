@@ -1,0 +1,17 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0ae57726/development/components/integration/development/kustomize.out.yaml ./kustomized-cache/commit-858cbba6/development/components/integration/development/kustomize.out.yaml
+1086d1085
+<   CONSOLE_URL_TASKLOG: ""
+1089c1088
+<   name: console-url-cc96c44t2h
+---
+>   name: console-url-b957927t67
+1197,1203c1196
+<               name: console-url-cc96c44t2h
+<               optional: true
+<         - name: CONSOLE_URL_TASKLOG
+<           valueFrom:
+<             configMapKeyRef:
+<               key: CONSOLE_URL_TASKLOG
+<               name: console-url-cc96c44t2h
+---
+>               name: console-url-b957927t67

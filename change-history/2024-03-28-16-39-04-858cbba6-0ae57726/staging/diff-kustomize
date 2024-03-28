@@ -1,0 +1,23 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-0ae57726/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-858cbba6/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+1085,1088c1085,1086
+<   CONSOLE_URL: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
+<     .Namespace }}/pipelinerun/{{ .PipelineRunName }}
+<   CONSOLE_URL_TASKLOG: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
+<     .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}
+---
+>   CONSOLE_URL: https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace
+>     }}/pipelinerun/{{ .PipelineRunName }}
+1091c1089
+<   name: console-url-tkt7bh5md9
+---
+>   name: console-url-9bttdkbk4f
+1199,1205c1197
+<               name: console-url-tkt7bh5md9
+<               optional: true
+<         - name: CONSOLE_URL_TASKLOG
+<           valueFrom:
+<             configMapKeyRef:
+<               key: CONSOLE_URL_TASKLOG
+<               name: console-url-tkt7bh5md9
+---
+>               name: console-url-9bttdkbk4f
