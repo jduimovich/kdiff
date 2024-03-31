@@ -1,12 +1,474 @@
 # kustomize changes tracked by commits 
-### This file generated at Sun Mar 31 08:02:18 UTC 2024
+### This file generated at Sun Mar 31 12:04:51 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from efec85c5 to a895a1a8 on Fri Mar 29 11:19:03 2024 </h3>  
+<h3>1: Production changes from a895a1a8 to ed33db7d on Sun Mar 31 10:16:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (34 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 5b4263be..122de622 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -5,4 +5,28 @@ metadata:
+     build.appstudio.redhat.com/multi-platform-config: hosts
+   name: host-config
+   namespace: multi-platform-controller
+-data: {}
++data:
++
++  host.ip-10-29-66-252.address: "10.29.66.252"
++  host.ip-10-29-66-252.platform: "linux/amd64"
++  host.ip-10-29-66-252.user: "ec2-user"
++  host.ip-10-29-66-252.secret: "aws-ssh-key"
++  host.ip-10-29-66-252.concurrency: "4"
++
++  host.ip-10-29-66-250.address: "10.29.66.250"
++  host.ip-10-29-66-250.platform: "linux/amd64"
++  host.ip-10-29-66-250.user: "ec2-user"
++  host.ip-10-29-66-250.secret: "aws-ssh-key"
++  host.ip-10-29-66-250.concurrency: "4"
++
++  host.ip-10-29-66-245.address: "10.29.66.245"
++  host.ip-10-29-66-245.platform: "linux/arm64"
++  host.ip-10-29-66-245.user: "ec2-user"
++  host.ip-10-29-66-245.secret: "aws-ssh-key"
++  host.ip-10-29-66-245.concurrency: "4"
++
++  host.ip-10-29-66-249.address: "10.29.66.249"
++  host.ip-10-29-66-249.platform: "linux/arm64"
++  host.ip-10-29-66-249.user: "ec2-user"
++  host.ip-10-29-66-249.secret: "aws-ssh-key"
++  host.ip-10-29-66-249.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from a895a1a8 to ed33db7d on Sun Mar 31 10:16:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (34 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 5b4263be..122de622 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -5,4 +5,28 @@ metadata:
+     build.appstudio.redhat.com/multi-platform-config: hosts
+   name: host-config
+   namespace: multi-platform-controller
+-data: {}
++data:
++
++  host.ip-10-29-66-252.address: "10.29.66.252"
++  host.ip-10-29-66-252.platform: "linux/amd64"
++  host.ip-10-29-66-252.user: "ec2-user"
++  host.ip-10-29-66-252.secret: "aws-ssh-key"
++  host.ip-10-29-66-252.concurrency: "4"
++
++  host.ip-10-29-66-250.address: "10.29.66.250"
++  host.ip-10-29-66-250.platform: "linux/amd64"
++  host.ip-10-29-66-250.user: "ec2-user"
++  host.ip-10-29-66-250.secret: "aws-ssh-key"
++  host.ip-10-29-66-250.concurrency: "4"
++
++  host.ip-10-29-66-245.address: "10.29.66.245"
++  host.ip-10-29-66-245.platform: "linux/arm64"
++  host.ip-10-29-66-245.user: "ec2-user"
++  host.ip-10-29-66-245.secret: "aws-ssh-key"
++  host.ip-10-29-66-245.concurrency: "4"
++
++  host.ip-10-29-66-249.address: "10.29.66.249"
++  host.ip-10-29-66-249.platform: "linux/arm64"
++  host.ip-10-29-66-249.user: "ec2-user"
++  host.ip-10-29-66-249.secret: "aws-ssh-key"
++  host.ip-10-29-66-249.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from a895a1a8 to ed33db7d on Sun Mar 31 10:16:34 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (34 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/production-downstream/host-config.yaml b/components/multi-platform-controller/production-downstream/host-config.yaml
+index 5b4263be..122de622 100644
+--- a/components/multi-platform-controller/production-downstream/host-config.yaml
++++ b/components/multi-platform-controller/production-downstream/host-config.yaml
+@@ -5,4 +5,28 @@ metadata:
+     build.appstudio.redhat.com/multi-platform-config: hosts
+   name: host-config
+   namespace: multi-platform-controller
+-data: {}
++data:
++
++  host.ip-10-29-66-252.address: "10.29.66.252"
++  host.ip-10-29-66-252.platform: "linux/amd64"
++  host.ip-10-29-66-252.user: "ec2-user"
++  host.ip-10-29-66-252.secret: "aws-ssh-key"
++  host.ip-10-29-66-252.concurrency: "4"
++
++  host.ip-10-29-66-250.address: "10.29.66.250"
++  host.ip-10-29-66-250.platform: "linux/amd64"
++  host.ip-10-29-66-250.user: "ec2-user"
++  host.ip-10-29-66-250.secret: "aws-ssh-key"
++  host.ip-10-29-66-250.concurrency: "4"
++
++  host.ip-10-29-66-245.address: "10.29.66.245"
++  host.ip-10-29-66-245.platform: "linux/arm64"
++  host.ip-10-29-66-245.user: "ec2-user"
++  host.ip-10-29-66-245.secret: "aws-ssh-key"
++  host.ip-10-29-66-245.concurrency: "4"
++
++  host.ip-10-29-66-249.address: "10.29.66.249"
++  host.ip-10-29-66-249.platform: "linux/arm64"
++  host.ip-10-29-66-249.user: "ec2-user"
++  host.ip-10-29-66-249.secret: "aws-ssh-key"
++  host.ip-10-29-66-249.concurrency: "4" 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from efec85c5 to a895a1a8 on Fri Mar 29 11:19:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (72 lines)</summary>  
@@ -240,7 +702,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from efec85c5 to a895a1a8 on Fri Mar 29 11:19:03 2024 </h3>  
+<h3>2: Staging changes from efec85c5 to a895a1a8 on Fri Mar 29 11:19:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (72 lines)</summary>  
@@ -477,7 +939,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from efec85c5 to a895a1a8 on Fri Mar 29 11:19:03 2024 </h3>  
+<h3>2: Development changes from efec85c5 to a895a1a8 on Fri Mar 29 11:19:03 2024 </h3>  
  
 <details> 
 <summary>Git Diff (72 lines)</summary>  
@@ -666,7 +1128,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from d48dd381 to efec85c5 on Thu Mar 28 19:21:21 2024 </h3>  
+<h3>3: Production changes from d48dd381 to efec85c5 on Thu Mar 28 19:21:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -810,7 +1272,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from d48dd381 to efec85c5 on Thu Mar 28 19:21:21 2024 </h3>  
+<h3>3: Staging changes from d48dd381 to efec85c5 on Thu Mar 28 19:21:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -957,7 +1419,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from d48dd381 to efec85c5 on Thu Mar 28 19:21:21 2024 </h3>  
+<h3>3: Development changes from d48dd381 to efec85c5 on Thu Mar 28 19:21:21 2024 </h3>  
  
 <details> 
 <summary>Git Diff (10 lines)</summary>  
@@ -1056,7 +1518,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 0ae57726 to d48dd381 on Thu Mar 28 18:32:04 2024 </h3>  
+<h3>4: Production changes from 0ae57726 to d48dd381 on Thu Mar 28 18:32:04 2024 </h3>  
  
 <details> 
 <summary>Git Diff (52 lines)</summary>  
@@ -1242,7 +1704,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 0ae57726 to d48dd381 on Thu Mar 28 18:32:04 2024 </h3>  
+<h3>4: Staging changes from 0ae57726 to d48dd381 on Thu Mar 28 18:32:04 2024 </h3>  
  
 <details> 
 <summary>Git Diff (52 lines)</summary>  
@@ -1431,7 +1893,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 0ae57726 to d48dd381 on Thu Mar 28 18:32:04 2024 </h3>  
+<h3>4: Development changes from 0ae57726 to d48dd381 on Thu Mar 28 18:32:04 2024 </h3>  
  
 <details> 
 <summary>Git Diff (52 lines)</summary>  
@@ -1498,858 +1960,6 @@ index 03b57a59..085493c7 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 858cbba6 to 0ae57726 on Thu Mar 28 16:39:04 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (144 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 4e19c3ef..e6c9a6a6 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -14,6 +14,7 @@ configMapGenerator:
- - name: console-url
-   literals:
-     - CONSOLE_URL=""
-+    - CONSOLE_URL_TASKLOG=""
- 
- namespace: integration-service
- 
-diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
-index 90c5a26b..b84108dc 100644
---- a/components/integration/development/manager_resources_patch.yaml
-+++ b/components/integration/development/manager_resources_patch.yaml
-@@ -22,3 +22,9 @@ spec:
-                 name: console-url
-                 key: CONSOLE_URL
-                 optional: true
-+        - name: CONSOLE_URL_TASKLOG
-+          valueFrom:
-+            configMapKeyRef:
-+              name: console-url
-+              key: CONSOLE_URL_TASKLOG
-+              optional: true
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 8804f12b..362b54b1 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -15,6 +15,7 @@ configMapGenerator:
- - name: console-url
-   literals:
-     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-+    - CONSOLE_URL_TASKLOG=""="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
-index b9a05eb2..f02c8b95 100644
---- a/components/integration/production/base/manager_resources_patch.yaml
-+++ b/components/integration/production/base/manager_resources_patch.yaml
-@@ -22,3 +22,9 @@ spec:
-                 name: console-url
-                 key: CONSOLE_URL
-                 optional: true
-+        - name: CONSOLE_URL_TASKLOG
-+          valueFrom:
-+            configMapKeyRef:
-+              name: console-url
-+              key: CONSOLE_URL_TASKLOG
-+              optional: true
-diff --git a/components/integration/production/stone-prod-p01/console-url-config-patch.json b/components/integration/production/stone-prod-p01/console-url-config-patch.json
-new file mode 100644
-index 00000000..5c41a385
---- /dev/null
-+++ b/components/integration/production/stone-prod-p01/console-url-config-patch.json
-@@ -0,0 +1,12 @@
-+[
-+  {
-+    "op": "replace",
-+    "path": "/data/CONSOLE_URL",
-+    "value": "https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-+  },
-+  {
-+    "op": "replace",
-+    "path": "/data/CONSOLE_URL_TASKLOG",
-+    "value": "https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
-+  }
-+]
-diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
-index 2a4f99d1..2f086e27 100644
---- a/components/integration/production/stone-prod-p01/kustomization.yaml
-+++ b/components/integration/production/stone-prod-p01/kustomization.yaml
-@@ -9,6 +9,10 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: console-url-config-patch.json
-+    target:
-+      kind: ConfigMap
-+      name: console-url
- components:
-   - ../../rh-certs
- 
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index bc880af2..96ede688 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -15,6 +15,7 @@ configMapGenerator:
- - name: console-url
-   literals:
-     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-+    - CONSOLE_URL_TASKLOG="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
-index 90c5a26b..b84108dc 100644
---- a/components/integration/staging/base/manager_resources_patch.yaml
-+++ b/components/integration/staging/base/manager_resources_patch.yaml
-@@ -22,3 +22,9 @@ spec:
-                 name: console-url
-                 key: CONSOLE_URL
-                 optional: true
-+        - name: CONSOLE_URL_TASKLOG
-+          valueFrom:
-+            configMapKeyRef:
-+              name: console-url
-+              key: CONSOLE_URL_TASKLOG
-+              optional: true
-diff --git a/components/integration/staging/stone-stage-p01/console-url-config-patch.json b/components/integration/staging/stone-stage-p01/console-url-config-patch.json
-new file mode 100644
-index 00000000..9340e821
---- /dev/null
-+++ b/components/integration/staging/stone-stage-p01/console-url-config-patch.json
-@@ -0,0 +1,12 @@
-+[
-+  {
-+    "op": "replace",
-+    "path": "/data/CONSOLE_URL",
-+    "value": "https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-+  },
-+  {
-+    "op": "replace",
-+    "path": "/data/CONSOLE_URL_TASKLOG",
-+    "value": "https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
-+  }
-+]
-diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
-index 2a4f99d1..2f086e27 100644
---- a/components/integration/staging/stone-stage-p01/kustomization.yaml
-+++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
-@@ -9,6 +9,10 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: console-url-config-patch.json
-+    target:
-+      kind: ConfigMap
-+      name: console-url
- components:
-   - ../../rh-certs
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (23 lines)</summary>  
-
-``` 
-./commit-858cbba6/production/components/integration/production/stone-prod-p01/kustomize.out.yaml
-1085,1088c1085,1086
-<   CONSOLE_URL: https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/ns/{{
-<     .Namespace }}/pipelinerun/{{ .PipelineRunName }}
-<   CONSOLE_URL_TASKLOG: https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/ns/{{
-<     .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}
----
->   CONSOLE_URL: https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace
->     }}/pipelinerun/{{ .PipelineRunName }}
-1091c1089
-<   name: console-url-dht2mt84b9
----
->   name: console-url-h2kgf6tmbb
-1199,1205c1197
-<               name: console-url-dht2mt84b9
-<               optional: true
-<         - name: CONSOLE_URL_TASKLOG
-<           valueFrom:
-<             configMapKeyRef:
-<               key: CONSOLE_URL_TASKLOG
-<               name: console-url-dht2mt84b9
----
->               name: console-url-h2kgf6tmbb 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 858cbba6 to 0ae57726 on Thu Mar 28 16:39:04 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (144 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 4e19c3ef..e6c9a6a6 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -14,6 +14,7 @@ configMapGenerator:
- - name: console-url
-   literals:
-     - CONSOLE_URL=""
-+    - CONSOLE_URL_TASKLOG=""
- 
- namespace: integration-service
- 
-diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
-index 90c5a26b..b84108dc 100644
---- a/components/integration/development/manager_resources_patch.yaml
-+++ b/components/integration/development/manager_resources_patch.yaml
-@@ -22,3 +22,9 @@ spec:
-                 name: console-url
-                 key: CONSOLE_URL
-                 optional: true
-+        - name: CONSOLE_URL_TASKLOG
-+          valueFrom:
-+            configMapKeyRef:
-+              name: console-url
-+              key: CONSOLE_URL_TASKLOG
-+              optional: true
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 8804f12b..362b54b1 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -15,6 +15,7 @@ configMapGenerator:
- - name: console-url
-   literals:
-     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-+    - CONSOLE_URL_TASKLOG=""="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
-index b9a05eb2..f02c8b95 100644
---- a/components/integration/production/base/manager_resources_patch.yaml
-+++ b/components/integration/production/base/manager_resources_patch.yaml
-@@ -22,3 +22,9 @@ spec:
-                 name: console-url
-                 key: CONSOLE_URL
-                 optional: true
-+        - name: CONSOLE_URL_TASKLOG
-+          valueFrom:
-+            configMapKeyRef:
-+              name: console-url
-+              key: CONSOLE_URL_TASKLOG
-+              optional: true
-diff --git a/components/integration/production/stone-prod-p01/console-url-config-patch.json b/components/integration/production/stone-prod-p01/console-url-config-patch.json
-new file mode 100644
-index 00000000..5c41a385
---- /dev/null
-+++ b/components/integration/production/stone-prod-p01/console-url-config-patch.json
-@@ -0,0 +1,12 @@
-+[
-+  {
-+    "op": "replace",
-+    "path": "/data/CONSOLE_URL",
-+    "value": "https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-+  },
-+  {
-+    "op": "replace",
-+    "path": "/data/CONSOLE_URL_TASKLOG",
-+    "value": "https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
-+  }
-+]
-diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
-index 2a4f99d1..2f086e27 100644
---- a/components/integration/production/stone-prod-p01/kustomization.yaml
-+++ b/components/integration/production/stone-prod-p01/kustomization.yaml
-@@ -9,6 +9,10 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: console-url-config-patch.json
-+    target:
-+      kind: ConfigMap
-+      name: console-url
- components:
-   - ../../rh-certs
- 
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index bc880af2..96ede688 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -15,6 +15,7 @@ configMapGenerator:
- - name: console-url
-   literals:
-     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-+    - CONSOLE_URL_TASKLOG="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
-index 90c5a26b..b84108dc 100644
---- a/components/integration/staging/base/manager_resources_patch.yaml
-+++ b/components/integration/staging/base/manager_resources_patch.yaml
-@@ -22,3 +22,9 @@ spec:
-                 name: console-url
-                 key: CONSOLE_URL
-                 optional: true
-+        - name: CONSOLE_URL_TASKLOG
-+          valueFrom:
-+            configMapKeyRef:
-+              name: console-url
-+              key: CONSOLE_URL_TASKLOG
-+              optional: true
-diff --git a/components/integration/staging/stone-stage-p01/console-url-config-patch.json b/components/integration/staging/stone-stage-p01/console-url-config-patch.json
-new file mode 100644
-index 00000000..9340e821
---- /dev/null
-+++ b/components/integration/staging/stone-stage-p01/console-url-config-patch.json
-@@ -0,0 +1,12 @@
-+[
-+  {
-+    "op": "replace",
-+    "path": "/data/CONSOLE_URL",
-+    "value": "https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-+  },
-+  {
-+    "op": "replace",
-+    "path": "/data/CONSOLE_URL_TASKLOG",
-+    "value": "https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
-+  }
-+]
-diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
-index 2a4f99d1..2f086e27 100644
---- a/components/integration/staging/stone-stage-p01/kustomization.yaml
-+++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
-@@ -9,6 +9,10 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: console-url-config-patch.json
-+    target:
-+      kind: ConfigMap
-+      name: console-url
- components:
-   - ../../rh-certs
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (23 lines)</summary>  
-
-``` 
-./commit-858cbba6/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
-1085,1088c1085,1086
-<   CONSOLE_URL: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
-<     .Namespace }}/pipelinerun/{{ .PipelineRunName }}
-<   CONSOLE_URL_TASKLOG: https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{
-<     .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}
----
->   CONSOLE_URL: https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace
->     }}/pipelinerun/{{ .PipelineRunName }}
-1091c1089
-<   name: console-url-tkt7bh5md9
----
->   name: console-url-9bttdkbk4f
-1199,1205c1197
-<               name: console-url-tkt7bh5md9
-<               optional: true
-<         - name: CONSOLE_URL_TASKLOG
-<           valueFrom:
-<             configMapKeyRef:
-<               key: CONSOLE_URL_TASKLOG
-<               name: console-url-tkt7bh5md9
----
->               name: console-url-9bttdkbk4f 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 858cbba6 to 0ae57726 on Thu Mar 28 16:39:04 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (144 lines)</summary>  
-
-``` 
-diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
-index 4e19c3ef..e6c9a6a6 100644
---- a/components/integration/development/kustomization.yaml
-+++ b/components/integration/development/kustomization.yaml
-@@ -14,6 +14,7 @@ configMapGenerator:
- - name: console-url
-   literals:
-     - CONSOLE_URL=""
-+    - CONSOLE_URL_TASKLOG=""
- 
- namespace: integration-service
- 
-diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
-index 90c5a26b..b84108dc 100644
---- a/components/integration/development/manager_resources_patch.yaml
-+++ b/components/integration/development/manager_resources_patch.yaml
-@@ -22,3 +22,9 @@ spec:
-                 name: console-url
-                 key: CONSOLE_URL
-                 optional: true
-+        - name: CONSOLE_URL_TASKLOG
-+          valueFrom:
-+            configMapKeyRef:
-+              name: console-url
-+              key: CONSOLE_URL_TASKLOG
-+              optional: true
-diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
-index 8804f12b..362b54b1 100644
---- a/components/integration/production/base/kustomization.yaml
-+++ b/components/integration/production/base/kustomization.yaml
-@@ -15,6 +15,7 @@ configMapGenerator:
- - name: console-url
-   literals:
-     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-+    - CONSOLE_URL_TASKLOG=""="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
-index b9a05eb2..f02c8b95 100644
---- a/components/integration/production/base/manager_resources_patch.yaml
-+++ b/components/integration/production/base/manager_resources_patch.yaml
-@@ -22,3 +22,9 @@ spec:
-                 name: console-url
-                 key: CONSOLE_URL
-                 optional: true
-+        - name: CONSOLE_URL_TASKLOG
-+          valueFrom:
-+            configMapKeyRef:
-+              name: console-url
-+              key: CONSOLE_URL_TASKLOG
-+              optional: true
-diff --git a/components/integration/production/stone-prod-p01/console-url-config-patch.json b/components/integration/production/stone-prod-p01/console-url-config-patch.json
-new file mode 100644
-index 00000000..5c41a385
---- /dev/null
-+++ b/components/integration/production/stone-prod-p01/console-url-config-patch.json
-@@ -0,0 +1,12 @@
-+[
-+  {
-+    "op": "replace",
-+    "path": "/data/CONSOLE_URL",
-+    "value": "https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-+  },
-+  {
-+    "op": "replace",
-+    "path": "/data/CONSOLE_URL_TASKLOG",
-+    "value": "https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
-+  }
-+]
-diff --git a/components/integration/production/stone-prod-p01/kustomization.yaml b/components/integration/production/stone-prod-p01/kustomization.yaml
-index 2a4f99d1..2f086e27 100644
---- a/components/integration/production/stone-prod-p01/kustomization.yaml
-+++ b/components/integration/production/stone-prod-p01/kustomization.yaml
-@@ -9,6 +9,10 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: console-url-config-patch.json
-+    target:
-+      kind: ConfigMap
-+      name: console-url
- components:
-   - ../../rh-certs
- 
-diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
-index bc880af2..96ede688 100644
---- a/components/integration/staging/base/kustomization.yaml
-+++ b/components/integration/staging/base/kustomization.yaml
-@@ -15,6 +15,7 @@ configMapGenerator:
- - name: console-url
-   literals:
-     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-+    - CONSOLE_URL_TASKLOG="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
- 
- namespace: integration-service
- 
-diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
-index 90c5a26b..b84108dc 100644
---- a/components/integration/staging/base/manager_resources_patch.yaml
-+++ b/components/integration/staging/base/manager_resources_patch.yaml
-@@ -22,3 +22,9 @@ spec:
-                 name: console-url
-                 key: CONSOLE_URL
-                 optional: true
-+        - name: CONSOLE_URL_TASKLOG
-+          valueFrom:
-+            configMapKeyRef:
-+              name: console-url
-+              key: CONSOLE_URL_TASKLOG
-+              optional: true
-diff --git a/components/integration/staging/stone-stage-p01/console-url-config-patch.json b/components/integration/staging/stone-stage-p01/console-url-config-patch.json
-new file mode 100644
-index 00000000..9340e821
---- /dev/null
-+++ b/components/integration/staging/stone-stage-p01/console-url-config-patch.json
-@@ -0,0 +1,12 @@
-+[
-+  {
-+    "op": "replace",
-+    "path": "/data/CONSOLE_URL",
-+    "value": "https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
-+  },
-+  {
-+    "op": "replace",
-+    "path": "/data/CONSOLE_URL_TASKLOG",
-+    "value": "https://rhtap.apps.rosa.stone-stage-p01.apys.p3.openshiftapps.com/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
-+  }
-+]
-diff --git a/components/integration/staging/stone-stage-p01/kustomization.yaml b/components/integration/staging/stone-stage-p01/kustomization.yaml
-index 2a4f99d1..2f086e27 100644
---- a/components/integration/staging/stone-stage-p01/kustomization.yaml
-+++ b/components/integration/staging/stone-stage-p01/kustomization.yaml
-@@ -9,6 +9,10 @@ patches:
-       group: external-secrets.io
-       version: v1beta1
-       kind: ExternalSecret
-+  - path: console-url-config-patch.json
-+    target:
-+      kind: ConfigMap
-+      name: console-url
- components:
-   - ../../rh-certs
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (17 lines)</summary>  
-
-``` 
-./commit-858cbba6/development/components/integration/development/kustomize.out.yaml
-1086d1085
-<   CONSOLE_URL_TASKLOG: ""
-1089c1088
-<   name: console-url-cc96c44t2h
----
->   name: console-url-b957927t67
-1197,1203c1196
-<               name: console-url-cc96c44t2h
-<               optional: true
-<         - name: CONSOLE_URL_TASKLOG
-<           valueFrom:
-<             configMapKeyRef:
-<               key: CONSOLE_URL_TASKLOG
-<               name: console-url-cc96c44t2h
----
->               name: console-url-b957927t67 
 ```
  
 </details>  
