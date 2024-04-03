@@ -1,12 +1,746 @@
 # kustomize changes tracked by commits 
-### This file generated at Wed Apr  3 16:04:49 UTC 2024
+### This file generated at Wed Apr  3 20:04:21 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 3d65a819 to b7a831fe on Wed Apr 3 13:07:33 2024 </h3>  
+<h3>1: Production changes from b7a831fe to c8c9252a on Wed Apr 3 17:59:03 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (121 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 0777fb01..e5dbc2c4 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
+-# See more information about this option, here: 
+-# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types 
++# See more information about this option, here:
++# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+@@ -33,11 +33,15 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-#  - path: scale-down-exporter.yaml
+-#    target:
+-#      kind: Deployment
+-#      name: pipeline-metrics-exporter
+-#      namespace: openshift-pipelines
++  - path: update-tekton-config-features.yaml
++    target:
++      kind: TektonConfig
++      name: config
++  #  - path: scale-down-exporter.yaml
++  #    target:
++  #      kind: Deployment
++  #      name: pipeline-metrics-exporter
++  #      namespace: openshift-pipelines
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+@@ -51,4 +55,4 @@ patches:
+     target:
+       kind: Deployment
+       namespace: tekton-results
+-      name: tekton-results-watcher
+\ No newline at end of file
++      name: tekton-results-watcher
+diff --git a/components/pipeline-service/staging/base/update-tekton-config-features.yaml b/components/pipeline-service/staging/base/update-tekton-config-features.yaml
+new file mode 100644
+index 00000000..c7da332c
+--- /dev/null
++++ b/components/pipeline-service/staging/base/update-tekton-config-features.yaml
+@@ -0,0 +1,12 @@
++---
++- op: add
++  path: /spec/pipeline/results-from
++  # default upstream setting
++  # value: termination-message
++  value: sidecar-logs
++
++- op: add
++  path: /spec/pipeline/max-result-size
++  # default upstream setting
++  # value: 4096
++  value: 12288
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 1db38540..0a36a38f 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1877,6 +1877,7 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -1982,6 +1983,7 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
++    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index f78fa7f7..111aa9fb 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1877,6 +1877,7 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -1982,6 +1983,7 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
++    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 95448a4d..c56eaea0 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1877,6 +1877,7 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -1982,6 +1983,7 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
++    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from b7a831fe to c8c9252a on Wed Apr 3 17:59:03 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (121 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 0777fb01..e5dbc2c4 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
+-# See more information about this option, here: 
+-# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types 
++# See more information about this option, here:
++# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+@@ -33,11 +33,15 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-#  - path: scale-down-exporter.yaml
+-#    target:
+-#      kind: Deployment
+-#      name: pipeline-metrics-exporter
+-#      namespace: openshift-pipelines
++  - path: update-tekton-config-features.yaml
++    target:
++      kind: TektonConfig
++      name: config
++  #  - path: scale-down-exporter.yaml
++  #    target:
++  #      kind: Deployment
++  #      name: pipeline-metrics-exporter
++  #      namespace: openshift-pipelines
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+@@ -51,4 +55,4 @@ patches:
+     target:
+       kind: Deployment
+       namespace: tekton-results
+-      name: tekton-results-watcher
+\ No newline at end of file
++      name: tekton-results-watcher
+diff --git a/components/pipeline-service/staging/base/update-tekton-config-features.yaml b/components/pipeline-service/staging/base/update-tekton-config-features.yaml
+new file mode 100644
+index 00000000..c7da332c
+--- /dev/null
++++ b/components/pipeline-service/staging/base/update-tekton-config-features.yaml
+@@ -0,0 +1,12 @@
++---
++- op: add
++  path: /spec/pipeline/results-from
++  # default upstream setting
++  # value: termination-message
++  value: sidecar-logs
++
++- op: add
++  path: /spec/pipeline/max-result-size
++  # default upstream setting
++  # value: 4096
++  value: 12288
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 1db38540..0a36a38f 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1877,6 +1877,7 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -1982,6 +1983,7 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
++    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index f78fa7f7..111aa9fb 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1877,6 +1877,7 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -1982,6 +1983,7 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
++    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 95448a4d..c56eaea0 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1877,6 +1877,7 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -1982,6 +1983,7 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
++    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (15 lines)</summary>  
+
+``` 
+./commit-b7a831fe/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1880d1879
+<     max-result-size: 12288
+1986d1984
+<     results-from: sidecar-logs
+./commit-b7a831fe/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1880d1879
+<     max-result-size: 12288
+1986d1984
+<     results-from: sidecar-logs
+./commit-b7a831fe/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1880d1879
+<     max-result-size: 12288
+1986d1984
+<     results-from: sidecar-logs 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from b7a831fe to c8c9252a on Wed Apr 3 17:59:03 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (121 lines)</summary>  
+
+``` 
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 0777fb01..e5dbc2c4 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ 
+ # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
+-# See more information about this option, here: 
+-# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types 
++# See more information about this option, here:
++# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+ 
+@@ -33,11 +33,15 @@ patches:
+     target:
+       kind: TektonConfig
+       name: config
+-#  - path: scale-down-exporter.yaml
+-#    target:
+-#      kind: Deployment
+-#      name: pipeline-metrics-exporter
+-#      namespace: openshift-pipelines
++  - path: update-tekton-config-features.yaml
++    target:
++      kind: TektonConfig
++      name: config
++  #  - path: scale-down-exporter.yaml
++  #    target:
++  #      kind: Deployment
++  #      name: pipeline-metrics-exporter
++  #      namespace: openshift-pipelines
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+@@ -51,4 +55,4 @@ patches:
+     target:
+       kind: Deployment
+       namespace: tekton-results
+-      name: tekton-results-watcher
+\ No newline at end of file
++      name: tekton-results-watcher
+diff --git a/components/pipeline-service/staging/base/update-tekton-config-features.yaml b/components/pipeline-service/staging/base/update-tekton-config-features.yaml
+new file mode 100644
+index 00000000..c7da332c
+--- /dev/null
++++ b/components/pipeline-service/staging/base/update-tekton-config-features.yaml
+@@ -0,0 +1,12 @@
++---
++- op: add
++  path: /spec/pipeline/results-from
++  # default upstream setting
++  # value: termination-message
++  value: sidecar-logs
++
++- op: add
++  path: /spec/pipeline/max-result-size
++  # default upstream setting
++  # value: 4096
++  value: 12288
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 1db38540..0a36a38f 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1877,6 +1877,7 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -1982,6 +1983,7 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
++    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index f78fa7f7..111aa9fb 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1877,6 +1877,7 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -1982,6 +1983,7 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
++    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode:
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index 95448a4d..c56eaea0 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1877,6 +1877,7 @@ spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
++    max-result-size: 12288
+     options:
+       configMaps:
+         config-logging:
+@@ -1982,6 +1983,7 @@ spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
++    results-from: sidecar-logs
+   platforms:
+     openshift:
+       pipelinesAsCode: 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 3d65a819 to b7a831fe on Wed Apr 3 13:07:33 2024 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -175,7 +909,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 3d65a819 to b7a831fe on Wed Apr 3 13:07:33 2024 </h3>  
+<h3>2: Staging changes from 3d65a819 to b7a831fe on Wed Apr 3 13:07:33 2024 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -344,7 +1078,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 3d65a819 to b7a831fe on Wed Apr 3 13:07:33 2024 </h3>  
+<h3>2: Development changes from 3d65a819 to b7a831fe on Wed Apr 3 13:07:33 2024 </h3>  
  
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -468,7 +1202,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 12f5d9c2 to 3d65a819 on Wed Apr 3 12:04:18 2024 </h3>  
+<h3>3: Production changes from 12f5d9c2 to 3d65a819 on Wed Apr 3 12:04:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -633,7 +1367,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 12f5d9c2 to 3d65a819 on Wed Apr 3 12:04:18 2024 </h3>  
+<h3>3: Staging changes from 12f5d9c2 to 3d65a819 on Wed Apr 3 12:04:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -798,7 +1532,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 12f5d9c2 to 3d65a819 on Wed Apr 3 12:04:18 2024 </h3>  
+<h3>3: Development changes from 12f5d9c2 to 3d65a819 on Wed Apr 3 12:04:18 2024 </h3>  
  
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -918,7 +1652,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 4ae52595 to 12f5d9c2 on Tue Apr 2 16:32:49 2024 </h3>  
+<h3>4: Production changes from 4ae52595 to 12f5d9c2 on Tue Apr 2 16:32:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -1162,7 +1896,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 4ae52595 to 12f5d9c2 on Tue Apr 2 16:32:49 2024 </h3>  
+<h3>4: Staging changes from 4ae52595 to 12f5d9c2 on Tue Apr 2 16:32:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -1406,7 +2140,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 4ae52595 to 12f5d9c2 on Tue Apr 2 16:32:49 2024 </h3>  
+<h3>4: Development changes from 4ae52595 to 12f5d9c2 on Tue Apr 2 16:32:49 2024 </h3>  
  
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -1531,1831 +2265,6 @@ index 30c0827c..57bfd5f8 100644
 <     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
 ---
 >     - oci::quay.io/enterprise-contract/ec-release-policy:git-d471eb4@sha256:3a0a498da1eed0c64d12d75ad5ab8fa0af480d542f0bf99afa7a7cac631d3956 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 1037cb45 to 4ae52595 on Tue Apr 2 15:43:19 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (487 lines)</summary>  
-
-``` 
-diff --git a/.tekton/image-controller-prod-overlay-update.yaml b/.tekton/image-controller-prod-overlay-update.yaml
-index 8d2b1560..6afd5433 100644
---- a/.tekton/image-controller-prod-overlay-update.yaml
-+++ b/.tekton/image-controller-prod-overlay-update.yaml
-@@ -5,7 +5,7 @@ metadata:
-   namespace: tekton-ci
-   annotations:
-     pipelinesascode.tekton.dev/on-cel-expression: |
--      event == "push" && target_branch == "main" && "components/image-controller/staging/kustomization.yaml".pathChanged()
-+      event == "push" && target_branch == "main" && "components/image-controller/staging/base/kustomization.yaml".pathChanged()
-     pipelinesascode.tekton.dev/max-keep-runs: "5"
-     pipelinesascode.tekton.dev/task: "[.tekton/tasks/promote-component.yaml]"
- spec:
-@@ -19,9 +19,9 @@ spec:
-             value: image-controller
-           - name: SCRIPT
-             value: |
--              STAGE_SHA=$(grep -oE '[0-9a-f]{40}' components/image-controller/staging/kustomization.yaml -m1)
--              OLD_PROD_SHA=$(grep -oE '[0-9a-f]{40}' components/image-controller/production/kustomization.yaml -m1)
-+              STAGE_SHA=$(grep -oE '[0-9a-f]{40}' components/image-controller/staging/base/kustomization.yaml -m1)
-+              OLD_PROD_SHA=$(grep -oE '[0-9a-f]{40}' components/image-controller/production/base/kustomization.yaml -m1)
-               echo "Changing prod sha from ${OLD_PROD_SHA} to ${STAGE_SHA}"
--              sed -i "s/$OLD_PROD_SHA/$STAGE_SHA/g" components/image-controller/production/kustomization.yaml
-+              sed -i "s/$OLD_PROD_SHA/$STAGE_SHA/g" components/image-controller/production/base/kustomization.yaml
-         taskRef:
-           name: promote-component
-diff --git a/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml b/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml
-index e6c94450..aac75e1a 100644
---- a/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml
-@@ -12,9 +12,11 @@ spec:
-               values:
-                 sourceRoot: components/image-controller
-                 environment: staging
--                clusterDir: ""
-+                clusterDir: base
-           - list:
--              elements: []
-+              elements:
-+                - nameNormalized: stone-prd-rh01
-+                  values.clusterDir: stone-prd-rh01
-   template:
-     metadata:
-       name: image-controller-{{nameNormalized}}
-diff --git a/components/image-controller/production/kustomization.yaml b/components/image-controller/production/base/kustomization.yaml
-similarity index 93%
-rename from components/image-controller/production/kustomization.yaml
-rename to components/image-controller/production/base/kustomization.yaml
-index 38fba437..45aef0a2 100644
---- a/components/image-controller/production/kustomization.yaml
-+++ b/components/image-controller/production/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- ../base
--- ../base/external-secrets
-+- ../../base
-+- ../../base/external-secrets
- - https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- images:
-diff --git a/components/image-controller/production/manager_resources_patch.yaml b/components/image-controller/production/base/manager_resources_patch.yaml
-similarity index 100%
-rename from components/image-controller/production/manager_resources_patch.yaml
-rename to components/image-controller/production/base/manager_resources_patch.yaml
-diff --git a/components/image-controller/production/quaytoken.yaml b/components/image-controller/production/base/quaytoken.yaml
-similarity index 100%
-rename from components/image-controller/production/quaytoken.yaml
-rename to components/image-controller/production/base/quaytoken.yaml
-diff --git a/components/image-controller/production/stone-prd-rh01/kustomization.yaml b/components/image-controller/production/stone-prd-rh01/kustomization.yaml
-new file mode 100644
-index 00000000..441e9e42
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-+- ./resources
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py b/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py
-new file mode 100644
-index 00000000..9edb43cf
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py
-@@ -0,0 +1,197 @@
-+import argparse
-+import itertools
-+import json
-+import logging
-+import os
-+import re
-+import time
-+
-+from collections.abc import Iterator
-+from http.client import HTTPResponse
-+from typing import Any, Dict, List
-+from urllib.error import HTTPError
-+from urllib.parse import urlencode
-+from urllib.request import Request, urlopen
-+from datetime import datetime
-+
-+logging.basicConfig(
-+    format="%(asctime)s - %(levelname)s - %(message)s", level=logging.INFO
-+)
-+LOGGER = logging.getLogger(__name__)
-+QUAY_API_URL = "https://quay.io/api/v1"
-+DAY_OLD_TS = int(datetime.now().timestamp()) - (60 * 60 * 24)
-+KEEP_MAX = 3
-+
-+ImageRepo = Dict[str, Any]
-+
-+
-+def get_quay_tags(quay_token: str, namespace: str, name: str) -> ImageRepo:
-+    next_page = None
-+    resp: HTTPResponse
-+
-+    all_tags = []
-+    while True:
-+        query_args = {"limit": 100, "onlyActiveTags": True}
-+        if next_page is not None:
-+            query_args["page"] = next_page
-+
-+        api_url = f"{QUAY_API_URL}/repository/{namespace}/{name}/tag/?{urlencode(query_args)}"
-+        request = Request(api_url, headers={
-+            "Authorization": f"Bearer {quay_token}",
-+        })
-+
-+        with urlopen(request) as resp:
-+            if resp.status != 200:
-+                raise RuntimeError(resp.reason)
-+            json_data = json.loads(resp.read())
-+
-+        tags = json_data.get("tags", [])
-+        all_tags.extend(tags)
-+
-+        if not tags:
-+            LOGGER.debug("No tags found.")
-+            break
-+
-+        page = json_data.get("page", None)
-+        additional = json_data.get("has_additional", False)
-+
-+        if additional:
-+            next_page = page + 1
-+        else:
-+            break
-+
-+    return all_tags
-+
-+
-+def quay_test_token(quay_token: str, namespace: str) -> None:
-+    api_url = f"{QUAY_API_URL}/organization/{namespace}/applications"
-+    request = Request(api_url, headers={
-+        "Authorization": f"Bearer {quay_token}",
-+    })
-+    try:
-+        urlopen(request)
-+    except HTTPError as ex:
-+        # if status is 401 that means that token is wrong
-+        if ex.status == 401:
-+            raise RuntimeError("Wrong quay token")
-+
-+
-+def delete_image_tag(quay_token: str, namespace: str, name: str, tag: str) -> None:
-+    api_url = f"{QUAY_API_URL}/repository/{namespace}/{name}/tag/{tag}"
-+    request = Request(api_url, method="DELETE", headers={
-+        "Authorization": f"Bearer {quay_token}",
-+    })
-+    resp: HTTPResponse
-+
-+    while True:
-+        try:
-+            with urlopen(request) as resp:
-+                if resp.status != 200 and resp.status != 204 and resp.status != 404:
-+                    raise RuntimeError(resp.reason)
-+                else:
-+                    break
-+        except HTTPError as ex:
-+            LOGGER.info("HTTPError exception: %s", ex)
-+
-+
-+def remove_leftover_tags(tags: List[Dict[str, Any]], quay_token: str, namespace: str, name: str,
-+                         dry_run: bool = False) -> None:
-+    tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig)$")
-+
-+    # remove att/sbom/src/sig for which is missing manifest digest
-+    image_digests = [image["manifest_digest"] for image in tags]
-+
-+    for tag in tags:
-+        if (match := tag_regex.match(tag["name"])) is not None:
-+            if f"sha256:{match.group(1)}" not in image_digests:
-+                if dry_run:
-+                    LOGGER.info("Leftover image %s from %s/%s should be removed", tag["name"], namespace, name)
-+                else:
-+                    LOGGER.info("Removing leftover image %s from %s/%s", tag["name"], namespace, name)
-+                    delete_image_tag(quay_token, namespace, name, tag["name"])
-+
-+
-+def remove_tags(tags: List[Dict[str, Any]], quay_token: str, namespace: str, name: str,
-+                days_old: int, keep_max: int, dry_run: bool = False) -> None:
-+    unique_names = {}
-+    removed_digests = []
-+
-+    # first remove only named tags
-+    for tag in tags:
-+        # skip att/sbom/src/sig
-+        if tag["name"].startswith("sha256-") or "-" not in tag["name"]:
-+            continue
-+
-+        tag_name, _ = tag["name"].rsplit('-', 1)
-+
-+        count = unique_names.get(tag_name, 0)
-+
-+        # keep at least first x per tag name
-+        if count < keep_max:
-+            unique_names[tag_name] = count + 1
-+
-+        # remove older than x
-+        elif tag["start_ts"] < days_old:
-+            if dry_run:
-+                LOGGER.info("Image %s from %s/%s should be removed", tag["name"], namespace, name)
-+                removed_digests.append(tag["manifest_digest"])
-+            else:
-+                LOGGER.info("Removing image %s from %s/%s", tag["name"], namespace, name)
-+                delete_image_tag(quay_token, namespace, name, tag["name"])
-+                removed_digests.append(tag["manifest_digest"])
-+
-+    tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig)$")
-+    # when named tags are removed, remove obsolete sbom/att/src
-+    for tag in tags:
-+        if (match := tag_regex.match(tag["name"])) is not None:
-+            if f"sha256:{match.group(1)}" in removed_digests:
-+                if dry_run:
-+                    LOGGER.info("Image %s from %s/%s should be removed", tag["name"], namespace, name)
-+                else:
-+                    LOGGER.info("Removing image %s from %s/%s", tag["name"], namespace, name)
-+                    delete_image_tag(quay_token, namespace, name, tag["name"])
-+
-+
-+def process_repository(quay_token: str, namespace: str, repo_name: str, days_old: int,
-+                       keep_max: int, dry_run: bool = False) -> None:
-+    LOGGER.info("Processing repository: %s/%s", namespace, repo_name)
-+
-+    quay_test_token(quay_token, namespace)
-+
-+    all_tags = get_quay_tags(quay_token, namespace, repo_name)
-+    LOGGER.info("Tag count in repository: %s", len(all_tags))
-+
-+    if all_tags:
-+        remove_tags(all_tags, quay_token, namespace, repo_name, days_old, keep_max, dry_run=dry_run)
-+
-+    all_tags = get_quay_tags(quay_token, namespace, repo_name)
-+    LOGGER.info("Tag count in repository: %s", len(all_tags))
-+
-+    if all_tags:
-+        remove_leftover_tags(all_tags, quay_token, namespace, repo_name, dry_run=dry_run)
-+
-+
-+def main():
-+    token = os.getenv("QUAY_TOKEN")
-+    if not token:
-+        raise ValueError("The token required for access to Quay API is missing!")
-+
-+    args = parse_args()
-+    process_repository(token, args.namespace, args.repo_name, days_old=args.old_days,
-+                       keep_max=args.keep_max, dry_run=args.dry_run)
-+
-+
-+def parse_args():
-+    parser = argparse.ArgumentParser()
-+    parser.add_argument("--namespace", required=True)
-+    parser.add_argument("--repo-name", required=True)
-+    parser.add_argument("--dry-run", action="store_true")
-+    parser.add_argument("--old-days", type=int, default=DAY_OLD_TS)
-+    parser.add_argument("--keep-max", type=int, default=KEEP_MAX)
-+
-+    args = parser.parse_args()
-+    return args
-+
-+
-+if __name__ == "__main__":
-+    main()
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml
-new file mode 100644
-index 00000000..72dd7f0c
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml
-@@ -0,0 +1,12 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- redhat-appstudio-pr-token.yaml
-+- redhat-appstudio-tekton-catalog-pr-token.yaml
-+- redhat-appstudio-pr-cronjob.yaml
-+- redhat-appstudio-tekton-catalog-pr-cronjob.yaml
-+configMapGenerator:
-+- name: single-image-pruner-configmap
-+  files:
-+  - image_pruner/prune_images.py
-+namespace: image-controller
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml
-new file mode 100644
-index 00000000..6a44e8f1
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml
-@@ -0,0 +1,47 @@
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: redhat-appstudio-pr-cronjob
-+spec:
-+  schedule: "0 0 * * *"
-+  concurrencyPolicy: Forbid
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          containers:
-+          - name: redhat-appstudio-pr-pruner
-+            image: registry.redhat.io/rhel8/python-39:1-120.1684740828
-+            env:
-+              - name: QUAY_TOKEN
-+                valueFrom:
-+                  secretKeyRef:
-+                    name: redhat-appstudio-pr-token
-+                    key: quaytoken
-+            imagePullPolicy: IfNotPresent
-+            command:
-+              - /bin/bash
-+              - '-c'
-+              - python /image-pruner/prune_images.py --namespace=redhat-appstudio --repo-name=pull-request-builds
-+            volumeMounts:
-+              - name: redhat-appstudio-pr-volume
-+                mountPath: /image-pruner
-+            resources:
-+              limits:
-+                cpu: 500m
-+                memory: 512Mi
-+              requests:
-+                cpu: 150m
-+                memory: 128Mi
-+            securityContext:
-+              readOnlyRootFilesystem: true
-+          restartPolicy: OnFailure
-+          securityContext:
-+            runAsNonRoot: true
-+          volumes:
-+            - name: redhat-appstudio-pr-volume
-+              configMap:
-+                name: single-image-pruner-configmap
-+            - name: redhat-appstudio-pr-token
-+              secret:
-+                secretName: redhat-appstudio-pr-token
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml
-new file mode 100644
-index 00000000..ea74c682
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml
-@@ -0,0 +1,19 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: redhat-appstudio-pr-token
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+spec:
-+  dataFrom:
-+    - extract:
-+        key: production/build/redhat-appstudio-pr-token
-+  refreshInterval: 20h
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: redhat-appstudio-pr-token
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml
-new file mode 100644
-index 00000000..b1d888b7
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml
-@@ -0,0 +1,47 @@
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: redhat-appstudio-tekton-catalog-pr-cronjob
-+spec:
-+  schedule: "0 1 * * *"
-+  concurrencyPolicy: Forbid
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          containers:
-+          - name: redhat-appstudio-tekton-catalog-pr-pruner
-+            image: registry.redhat.io/rhel8/python-39:1-120.1684740828
-+            env:
-+              - name: QUAY_TOKEN
-+                valueFrom:
-+                  secretKeyRef:
-+                    name: redhat-appstudio-tekton-catalog-pr-token
-+                    key: quaytoken
-+            imagePullPolicy: IfNotPresent
-+            command:
-+              - /bin/bash
-+              - '-c'
-+              - python /image-pruner/prune_images.py --namespace=redhat-appstudio-tekton-catalog --repo-name=pull-request-builds
-+            volumeMounts:
-+              - name: redhat-appstudio-tekton-catalog-pr-volume
-+                mountPath: /image-pruner
-+            resources:
-+              limits:
-+                cpu: 500m
-+                memory: 512Mi
-+              requests:
-+                cpu: 150m
-+                memory: 128Mi
-+            securityContext:
-+              readOnlyRootFilesystem: true
-+          restartPolicy: OnFailure
-+          securityContext:
-+            runAsNonRoot: true
-+          volumes:
-+            - name: redhat-appstudio-tekton-catalog-pr-volume
-+              configMap:
-+                name: single-image-pruner-configmap
-+            - name: redhat-appstudio-tekton-catalog-pr-token
-+              secret:
-+                secretName: redhat-appstudio-tekton-catalog-pr-token
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml
-new file mode 100644
-index 00000000..4a75be79
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml
-@@ -0,0 +1,19 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: redhat-appstudio-tekton-catalog-pr-token
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+spec:
-+  dataFrom:
-+    - extract:
-+        key: production/build/redhat-appstudio-tekton-catalog-pr-token
-+  refreshInterval: 20h
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: redhat-appstudio-tekton-catalog-pr-token
-diff --git a/components/image-controller/staging/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
-similarity index 82%
-rename from components/image-controller/staging/kustomization.yaml
-rename to components/image-controller/staging/base/kustomization.yaml
-index db906be6..5c039c43 100644
---- a/components/image-controller/staging/kustomization.yaml
-+++ b/components/image-controller/staging/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- ../base
--- ../base/external-secrets
-+- ../../base
-+- ../../base/external-secrets
- - https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- images:
-@@ -13,4 +13,4 @@ images:
- namespace: image-controller
- 
- patches:
--  - path: ./manager_resources_patch.yaml
-\ No newline at end of file
-+  - path: ./manager_resources_patch.yaml
-diff --git a/components/image-controller/staging/manager_resources_patch.yaml b/components/image-controller/staging/base/manager_resources_patch.yaml
-similarity index 100%
-rename from components/image-controller/staging/manager_resources_patch.yaml
-rename to components/image-controller/staging/base/manager_resources_patch.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (2 lines)</summary>  
-
-``` 
-./commit-1037cb45/production/components/image-controller/production: kustomize.out.yaml
-./commit-4ae52595/production/components/image-controller/production: stone-prd-rh01 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 1037cb45 to 4ae52595 on Tue Apr 2 15:43:19 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (487 lines)</summary>  
-
-``` 
-diff --git a/.tekton/image-controller-prod-overlay-update.yaml b/.tekton/image-controller-prod-overlay-update.yaml
-index 8d2b1560..6afd5433 100644
---- a/.tekton/image-controller-prod-overlay-update.yaml
-+++ b/.tekton/image-controller-prod-overlay-update.yaml
-@@ -5,7 +5,7 @@ metadata:
-   namespace: tekton-ci
-   annotations:
-     pipelinesascode.tekton.dev/on-cel-expression: |
--      event == "push" && target_branch == "main" && "components/image-controller/staging/kustomization.yaml".pathChanged()
-+      event == "push" && target_branch == "main" && "components/image-controller/staging/base/kustomization.yaml".pathChanged()
-     pipelinesascode.tekton.dev/max-keep-runs: "5"
-     pipelinesascode.tekton.dev/task: "[.tekton/tasks/promote-component.yaml]"
- spec:
-@@ -19,9 +19,9 @@ spec:
-             value: image-controller
-           - name: SCRIPT
-             value: |
--              STAGE_SHA=$(grep -oE '[0-9a-f]{40}' components/image-controller/staging/kustomization.yaml -m1)
--              OLD_PROD_SHA=$(grep -oE '[0-9a-f]{40}' components/image-controller/production/kustomization.yaml -m1)
-+              STAGE_SHA=$(grep -oE '[0-9a-f]{40}' components/image-controller/staging/base/kustomization.yaml -m1)
-+              OLD_PROD_SHA=$(grep -oE '[0-9a-f]{40}' components/image-controller/production/base/kustomization.yaml -m1)
-               echo "Changing prod sha from ${OLD_PROD_SHA} to ${STAGE_SHA}"
--              sed -i "s/$OLD_PROD_SHA/$STAGE_SHA/g" components/image-controller/production/kustomization.yaml
-+              sed -i "s/$OLD_PROD_SHA/$STAGE_SHA/g" components/image-controller/production/base/kustomization.yaml
-         taskRef:
-           name: promote-component
-diff --git a/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml b/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml
-index e6c94450..aac75e1a 100644
---- a/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml
-@@ -12,9 +12,11 @@ spec:
-               values:
-                 sourceRoot: components/image-controller
-                 environment: staging
--                clusterDir: ""
-+                clusterDir: base
-           - list:
--              elements: []
-+              elements:
-+                - nameNormalized: stone-prd-rh01
-+                  values.clusterDir: stone-prd-rh01
-   template:
-     metadata:
-       name: image-controller-{{nameNormalized}}
-diff --git a/components/image-controller/production/kustomization.yaml b/components/image-controller/production/base/kustomization.yaml
-similarity index 93%
-rename from components/image-controller/production/kustomization.yaml
-rename to components/image-controller/production/base/kustomization.yaml
-index 38fba437..45aef0a2 100644
---- a/components/image-controller/production/kustomization.yaml
-+++ b/components/image-controller/production/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- ../base
--- ../base/external-secrets
-+- ../../base
-+- ../../base/external-secrets
- - https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- images:
-diff --git a/components/image-controller/production/manager_resources_patch.yaml b/components/image-controller/production/base/manager_resources_patch.yaml
-similarity index 100%
-rename from components/image-controller/production/manager_resources_patch.yaml
-rename to components/image-controller/production/base/manager_resources_patch.yaml
-diff --git a/components/image-controller/production/quaytoken.yaml b/components/image-controller/production/base/quaytoken.yaml
-similarity index 100%
-rename from components/image-controller/production/quaytoken.yaml
-rename to components/image-controller/production/base/quaytoken.yaml
-diff --git a/components/image-controller/production/stone-prd-rh01/kustomization.yaml b/components/image-controller/production/stone-prd-rh01/kustomization.yaml
-new file mode 100644
-index 00000000..441e9e42
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-+- ./resources
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py b/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py
-new file mode 100644
-index 00000000..9edb43cf
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py
-@@ -0,0 +1,197 @@
-+import argparse
-+import itertools
-+import json
-+import logging
-+import os
-+import re
-+import time
-+
-+from collections.abc import Iterator
-+from http.client import HTTPResponse
-+from typing import Any, Dict, List
-+from urllib.error import HTTPError
-+from urllib.parse import urlencode
-+from urllib.request import Request, urlopen
-+from datetime import datetime
-+
-+logging.basicConfig(
-+    format="%(asctime)s - %(levelname)s - %(message)s", level=logging.INFO
-+)
-+LOGGER = logging.getLogger(__name__)
-+QUAY_API_URL = "https://quay.io/api/v1"
-+DAY_OLD_TS = int(datetime.now().timestamp()) - (60 * 60 * 24)
-+KEEP_MAX = 3
-+
-+ImageRepo = Dict[str, Any]
-+
-+
-+def get_quay_tags(quay_token: str, namespace: str, name: str) -> ImageRepo:
-+    next_page = None
-+    resp: HTTPResponse
-+
-+    all_tags = []
-+    while True:
-+        query_args = {"limit": 100, "onlyActiveTags": True}
-+        if next_page is not None:
-+            query_args["page"] = next_page
-+
-+        api_url = f"{QUAY_API_URL}/repository/{namespace}/{name}/tag/?{urlencode(query_args)}"
-+        request = Request(api_url, headers={
-+            "Authorization": f"Bearer {quay_token}",
-+        })
-+
-+        with urlopen(request) as resp:
-+            if resp.status != 200:
-+                raise RuntimeError(resp.reason)
-+            json_data = json.loads(resp.read())
-+
-+        tags = json_data.get("tags", [])
-+        all_tags.extend(tags)
-+
-+        if not tags:
-+            LOGGER.debug("No tags found.")
-+            break
-+
-+        page = json_data.get("page", None)
-+        additional = json_data.get("has_additional", False)
-+
-+        if additional:
-+            next_page = page + 1
-+        else:
-+            break
-+
-+    return all_tags
-+
-+
-+def quay_test_token(quay_token: str, namespace: str) -> None:
-+    api_url = f"{QUAY_API_URL}/organization/{namespace}/applications"
-+    request = Request(api_url, headers={
-+        "Authorization": f"Bearer {quay_token}",
-+    })
-+    try:
-+        urlopen(request)
-+    except HTTPError as ex:
-+        # if status is 401 that means that token is wrong
-+        if ex.status == 401:
-+            raise RuntimeError("Wrong quay token")
-+
-+
-+def delete_image_tag(quay_token: str, namespace: str, name: str, tag: str) -> None:
-+    api_url = f"{QUAY_API_URL}/repository/{namespace}/{name}/tag/{tag}"
-+    request = Request(api_url, method="DELETE", headers={
-+        "Authorization": f"Bearer {quay_token}",
-+    })
-+    resp: HTTPResponse
-+
-+    while True:
-+        try:
-+            with urlopen(request) as resp:
-+                if resp.status != 200 and resp.status != 204 and resp.status != 404:
-+                    raise RuntimeError(resp.reason)
-+                else:
-+                    break
-+        except HTTPError as ex:
-+            LOGGER.info("HTTPError exception: %s", ex)
-+
-+
-+def remove_leftover_tags(tags: List[Dict[str, Any]], quay_token: str, namespace: str, name: str,
-+                         dry_run: bool = False) -> None:
-+    tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig)$")
-+
-+    # remove att/sbom/src/sig for which is missing manifest digest
-+    image_digests = [image["manifest_digest"] for image in tags]
-+
-+    for tag in tags:
-+        if (match := tag_regex.match(tag["name"])) is not None:
-+            if f"sha256:{match.group(1)}" not in image_digests:
-+                if dry_run:
-+                    LOGGER.info("Leftover image %s from %s/%s should be removed", tag["name"], namespace, name)
-+                else:
-+                    LOGGER.info("Removing leftover image %s from %s/%s", tag["name"], namespace, name)
-+                    delete_image_tag(quay_token, namespace, name, tag["name"])
-+
-+
-+def remove_tags(tags: List[Dict[str, Any]], quay_token: str, namespace: str, name: str,
-+                days_old: int, keep_max: int, dry_run: bool = False) -> None:
-+    unique_names = {}
-+    removed_digests = []
-+
-+    # first remove only named tags
-+    for tag in tags:
-+        # skip att/sbom/src/sig
-+        if tag["name"].startswith("sha256-") or "-" not in tag["name"]:
-+            continue
-+
-+        tag_name, _ = tag["name"].rsplit('-', 1)
-+
-+        count = unique_names.get(tag_name, 0)
-+
-+        # keep at least first x per tag name
-+        if count < keep_max:
-+            unique_names[tag_name] = count + 1
-+
-+        # remove older than x
-+        elif tag["start_ts"] < days_old:
-+            if dry_run:
-+                LOGGER.info("Image %s from %s/%s should be removed", tag["name"], namespace, name)
-+                removed_digests.append(tag["manifest_digest"])
-+            else:
-+                LOGGER.info("Removing image %s from %s/%s", tag["name"], namespace, name)
-+                delete_image_tag(quay_token, namespace, name, tag["name"])
-+                removed_digests.append(tag["manifest_digest"])
-+
-+    tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig)$")
-+    # when named tags are removed, remove obsolete sbom/att/src
-+    for tag in tags:
-+        if (match := tag_regex.match(tag["name"])) is not None:
-+            if f"sha256:{match.group(1)}" in removed_digests:
-+                if dry_run:
-+                    LOGGER.info("Image %s from %s/%s should be removed", tag["name"], namespace, name)
-+                else:
-+                    LOGGER.info("Removing image %s from %s/%s", tag["name"], namespace, name)
-+                    delete_image_tag(quay_token, namespace, name, tag["name"])
-+
-+
-+def process_repository(quay_token: str, namespace: str, repo_name: str, days_old: int,
-+                       keep_max: int, dry_run: bool = False) -> None:
-+    LOGGER.info("Processing repository: %s/%s", namespace, repo_name)
-+
-+    quay_test_token(quay_token, namespace)
-+
-+    all_tags = get_quay_tags(quay_token, namespace, repo_name)
-+    LOGGER.info("Tag count in repository: %s", len(all_tags))
-+
-+    if all_tags:
-+        remove_tags(all_tags, quay_token, namespace, repo_name, days_old, keep_max, dry_run=dry_run)
-+
-+    all_tags = get_quay_tags(quay_token, namespace, repo_name)
-+    LOGGER.info("Tag count in repository: %s", len(all_tags))
-+
-+    if all_tags:
-+        remove_leftover_tags(all_tags, quay_token, namespace, repo_name, dry_run=dry_run)
-+
-+
-+def main():
-+    token = os.getenv("QUAY_TOKEN")
-+    if not token:
-+        raise ValueError("The token required for access to Quay API is missing!")
-+
-+    args = parse_args()
-+    process_repository(token, args.namespace, args.repo_name, days_old=args.old_days,
-+                       keep_max=args.keep_max, dry_run=args.dry_run)
-+
-+
-+def parse_args():
-+    parser = argparse.ArgumentParser()
-+    parser.add_argument("--namespace", required=True)
-+    parser.add_argument("--repo-name", required=True)
-+    parser.add_argument("--dry-run", action="store_true")
-+    parser.add_argument("--old-days", type=int, default=DAY_OLD_TS)
-+    parser.add_argument("--keep-max", type=int, default=KEEP_MAX)
-+
-+    args = parser.parse_args()
-+    return args
-+
-+
-+if __name__ == "__main__":
-+    main()
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml
-new file mode 100644
-index 00000000..72dd7f0c
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml
-@@ -0,0 +1,12 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- redhat-appstudio-pr-token.yaml
-+- redhat-appstudio-tekton-catalog-pr-token.yaml
-+- redhat-appstudio-pr-cronjob.yaml
-+- redhat-appstudio-tekton-catalog-pr-cronjob.yaml
-+configMapGenerator:
-+- name: single-image-pruner-configmap
-+  files:
-+  - image_pruner/prune_images.py
-+namespace: image-controller
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml
-new file mode 100644
-index 00000000..6a44e8f1
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml
-@@ -0,0 +1,47 @@
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: redhat-appstudio-pr-cronjob
-+spec:
-+  schedule: "0 0 * * *"
-+  concurrencyPolicy: Forbid
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          containers:
-+          - name: redhat-appstudio-pr-pruner
-+            image: registry.redhat.io/rhel8/python-39:1-120.1684740828
-+            env:
-+              - name: QUAY_TOKEN
-+                valueFrom:
-+                  secretKeyRef:
-+                    name: redhat-appstudio-pr-token
-+                    key: quaytoken
-+            imagePullPolicy: IfNotPresent
-+            command:
-+              - /bin/bash
-+              - '-c'
-+              - python /image-pruner/prune_images.py --namespace=redhat-appstudio --repo-name=pull-request-builds
-+            volumeMounts:
-+              - name: redhat-appstudio-pr-volume
-+                mountPath: /image-pruner
-+            resources:
-+              limits:
-+                cpu: 500m
-+                memory: 512Mi
-+              requests:
-+                cpu: 150m
-+                memory: 128Mi
-+            securityContext:
-+              readOnlyRootFilesystem: true
-+          restartPolicy: OnFailure
-+          securityContext:
-+            runAsNonRoot: true
-+          volumes:
-+            - name: redhat-appstudio-pr-volume
-+              configMap:
-+                name: single-image-pruner-configmap
-+            - name: redhat-appstudio-pr-token
-+              secret:
-+                secretName: redhat-appstudio-pr-token
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml
-new file mode 100644
-index 00000000..ea74c682
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml
-@@ -0,0 +1,19 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: redhat-appstudio-pr-token
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+spec:
-+  dataFrom:
-+    - extract:
-+        key: production/build/redhat-appstudio-pr-token
-+  refreshInterval: 20h
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: redhat-appstudio-pr-token
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml
-new file mode 100644
-index 00000000..b1d888b7
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml
-@@ -0,0 +1,47 @@
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: redhat-appstudio-tekton-catalog-pr-cronjob
-+spec:
-+  schedule: "0 1 * * *"
-+  concurrencyPolicy: Forbid
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          containers:
-+          - name: redhat-appstudio-tekton-catalog-pr-pruner
-+            image: registry.redhat.io/rhel8/python-39:1-120.1684740828
-+            env:
-+              - name: QUAY_TOKEN
-+                valueFrom:
-+                  secretKeyRef:
-+                    name: redhat-appstudio-tekton-catalog-pr-token
-+                    key: quaytoken
-+            imagePullPolicy: IfNotPresent
-+            command:
-+              - /bin/bash
-+              - '-c'
-+              - python /image-pruner/prune_images.py --namespace=redhat-appstudio-tekton-catalog --repo-name=pull-request-builds
-+            volumeMounts:
-+              - name: redhat-appstudio-tekton-catalog-pr-volume
-+                mountPath: /image-pruner
-+            resources:
-+              limits:
-+                cpu: 500m
-+                memory: 512Mi
-+              requests:
-+                cpu: 150m
-+                memory: 128Mi
-+            securityContext:
-+              readOnlyRootFilesystem: true
-+          restartPolicy: OnFailure
-+          securityContext:
-+            runAsNonRoot: true
-+          volumes:
-+            - name: redhat-appstudio-tekton-catalog-pr-volume
-+              configMap:
-+                name: single-image-pruner-configmap
-+            - name: redhat-appstudio-tekton-catalog-pr-token
-+              secret:
-+                secretName: redhat-appstudio-tekton-catalog-pr-token
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml
-new file mode 100644
-index 00000000..4a75be79
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml
-@@ -0,0 +1,19 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: redhat-appstudio-tekton-catalog-pr-token
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+spec:
-+  dataFrom:
-+    - extract:
-+        key: production/build/redhat-appstudio-tekton-catalog-pr-token
-+  refreshInterval: 20h
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: redhat-appstudio-tekton-catalog-pr-token
-diff --git a/components/image-controller/staging/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
-similarity index 82%
-rename from components/image-controller/staging/kustomization.yaml
-rename to components/image-controller/staging/base/kustomization.yaml
-index db906be6..5c039c43 100644
---- a/components/image-controller/staging/kustomization.yaml
-+++ b/components/image-controller/staging/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- ../base
--- ../base/external-secrets
-+- ../../base
-+- ../../base/external-secrets
- - https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- images:
-@@ -13,4 +13,4 @@ images:
- namespace: image-controller
- 
- patches:
--  - path: ./manager_resources_patch.yaml
-\ No newline at end of file
-+  - path: ./manager_resources_patch.yaml
-diff --git a/components/image-controller/staging/manager_resources_patch.yaml b/components/image-controller/staging/base/manager_resources_patch.yaml
-similarity index 100%
-rename from components/image-controller/staging/manager_resources_patch.yaml
-rename to components/image-controller/staging/base/manager_resources_patch.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (1 lines)</summary>  
-
-``` 
-./commit-1037cb45/staging/components: image-controller 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 1037cb45 to 4ae52595 on Tue Apr 2 15:43:19 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (487 lines)</summary>  
-
-``` 
-diff --git a/.tekton/image-controller-prod-overlay-update.yaml b/.tekton/image-controller-prod-overlay-update.yaml
-index 8d2b1560..6afd5433 100644
---- a/.tekton/image-controller-prod-overlay-update.yaml
-+++ b/.tekton/image-controller-prod-overlay-update.yaml
-@@ -5,7 +5,7 @@ metadata:
-   namespace: tekton-ci
-   annotations:
-     pipelinesascode.tekton.dev/on-cel-expression: |
--      event == "push" && target_branch == "main" && "components/image-controller/staging/kustomization.yaml".pathChanged()
-+      event == "push" && target_branch == "main" && "components/image-controller/staging/base/kustomization.yaml".pathChanged()
-     pipelinesascode.tekton.dev/max-keep-runs: "5"
-     pipelinesascode.tekton.dev/task: "[.tekton/tasks/promote-component.yaml]"
- spec:
-@@ -19,9 +19,9 @@ spec:
-             value: image-controller
-           - name: SCRIPT
-             value: |
--              STAGE_SHA=$(grep -oE '[0-9a-f]{40}' components/image-controller/staging/kustomization.yaml -m1)
--              OLD_PROD_SHA=$(grep -oE '[0-9a-f]{40}' components/image-controller/production/kustomization.yaml -m1)
-+              STAGE_SHA=$(grep -oE '[0-9a-f]{40}' components/image-controller/staging/base/kustomization.yaml -m1)
-+              OLD_PROD_SHA=$(grep -oE '[0-9a-f]{40}' components/image-controller/production/base/kustomization.yaml -m1)
-               echo "Changing prod sha from ${OLD_PROD_SHA} to ${STAGE_SHA}"
--              sed -i "s/$OLD_PROD_SHA/$STAGE_SHA/g" components/image-controller/production/kustomization.yaml
-+              sed -i "s/$OLD_PROD_SHA/$STAGE_SHA/g" components/image-controller/production/base/kustomization.yaml
-         taskRef:
-           name: promote-component
-diff --git a/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml b/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml
-index e6c94450..aac75e1a 100644
---- a/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml
-+++ b/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml
-@@ -12,9 +12,11 @@ spec:
-               values:
-                 sourceRoot: components/image-controller
-                 environment: staging
--                clusterDir: ""
-+                clusterDir: base
-           - list:
--              elements: []
-+              elements:
-+                - nameNormalized: stone-prd-rh01
-+                  values.clusterDir: stone-prd-rh01
-   template:
-     metadata:
-       name: image-controller-{{nameNormalized}}
-diff --git a/components/image-controller/production/kustomization.yaml b/components/image-controller/production/base/kustomization.yaml
-similarity index 93%
-rename from components/image-controller/production/kustomization.yaml
-rename to components/image-controller/production/base/kustomization.yaml
-index 38fba437..45aef0a2 100644
---- a/components/image-controller/production/kustomization.yaml
-+++ b/components/image-controller/production/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- ../base
--- ../base/external-secrets
-+- ../../base
-+- ../../base/external-secrets
- - https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- images:
-diff --git a/components/image-controller/production/manager_resources_patch.yaml b/components/image-controller/production/base/manager_resources_patch.yaml
-similarity index 100%
-rename from components/image-controller/production/manager_resources_patch.yaml
-rename to components/image-controller/production/base/manager_resources_patch.yaml
-diff --git a/components/image-controller/production/quaytoken.yaml b/components/image-controller/production/base/quaytoken.yaml
-similarity index 100%
-rename from components/image-controller/production/quaytoken.yaml
-rename to components/image-controller/production/base/quaytoken.yaml
-diff --git a/components/image-controller/production/stone-prd-rh01/kustomization.yaml b/components/image-controller/production/stone-prd-rh01/kustomization.yaml
-new file mode 100644
-index 00000000..441e9e42
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/kustomization.yaml
-@@ -0,0 +1,5 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- ../base
-+- ./resources
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py b/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py
-new file mode 100644
-index 00000000..9edb43cf
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py
-@@ -0,0 +1,197 @@
-+import argparse
-+import itertools
-+import json
-+import logging
-+import os
-+import re
-+import time
-+
-+from collections.abc import Iterator
-+from http.client import HTTPResponse
-+from typing import Any, Dict, List
-+from urllib.error import HTTPError
-+from urllib.parse import urlencode
-+from urllib.request import Request, urlopen
-+from datetime import datetime
-+
-+logging.basicConfig(
-+    format="%(asctime)s - %(levelname)s - %(message)s", level=logging.INFO
-+)
-+LOGGER = logging.getLogger(__name__)
-+QUAY_API_URL = "https://quay.io/api/v1"
-+DAY_OLD_TS = int(datetime.now().timestamp()) - (60 * 60 * 24)
-+KEEP_MAX = 3
-+
-+ImageRepo = Dict[str, Any]
-+
-+
-+def get_quay_tags(quay_token: str, namespace: str, name: str) -> ImageRepo:
-+    next_page = None
-+    resp: HTTPResponse
-+
-+    all_tags = []
-+    while True:
-+        query_args = {"limit": 100, "onlyActiveTags": True}
-+        if next_page is not None:
-+            query_args["page"] = next_page
-+
-+        api_url = f"{QUAY_API_URL}/repository/{namespace}/{name}/tag/?{urlencode(query_args)}"
-+        request = Request(api_url, headers={
-+            "Authorization": f"Bearer {quay_token}",
-+        })
-+
-+        with urlopen(request) as resp:
-+            if resp.status != 200:
-+                raise RuntimeError(resp.reason)
-+            json_data = json.loads(resp.read())
-+
-+        tags = json_data.get("tags", [])
-+        all_tags.extend(tags)
-+
-+        if not tags:
-+            LOGGER.debug("No tags found.")
-+            break
-+
-+        page = json_data.get("page", None)
-+        additional = json_data.get("has_additional", False)
-+
-+        if additional:
-+            next_page = page + 1
-+        else:
-+            break
-+
-+    return all_tags
-+
-+
-+def quay_test_token(quay_token: str, namespace: str) -> None:
-+    api_url = f"{QUAY_API_URL}/organization/{namespace}/applications"
-+    request = Request(api_url, headers={
-+        "Authorization": f"Bearer {quay_token}",
-+    })
-+    try:
-+        urlopen(request)
-+    except HTTPError as ex:
-+        # if status is 401 that means that token is wrong
-+        if ex.status == 401:
-+            raise RuntimeError("Wrong quay token")
-+
-+
-+def delete_image_tag(quay_token: str, namespace: str, name: str, tag: str) -> None:
-+    api_url = f"{QUAY_API_URL}/repository/{namespace}/{name}/tag/{tag}"
-+    request = Request(api_url, method="DELETE", headers={
-+        "Authorization": f"Bearer {quay_token}",
-+    })
-+    resp: HTTPResponse
-+
-+    while True:
-+        try:
-+            with urlopen(request) as resp:
-+                if resp.status != 200 and resp.status != 204 and resp.status != 404:
-+                    raise RuntimeError(resp.reason)
-+                else:
-+                    break
-+        except HTTPError as ex:
-+            LOGGER.info("HTTPError exception: %s", ex)
-+
-+
-+def remove_leftover_tags(tags: List[Dict[str, Any]], quay_token: str, namespace: str, name: str,
-+                         dry_run: bool = False) -> None:
-+    tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig)$")
-+
-+    # remove att/sbom/src/sig for which is missing manifest digest
-+    image_digests = [image["manifest_digest"] for image in tags]
-+
-+    for tag in tags:
-+        if (match := tag_regex.match(tag["name"])) is not None:
-+            if f"sha256:{match.group(1)}" not in image_digests:
-+                if dry_run:
-+                    LOGGER.info("Leftover image %s from %s/%s should be removed", tag["name"], namespace, name)
-+                else:
-+                    LOGGER.info("Removing leftover image %s from %s/%s", tag["name"], namespace, name)
-+                    delete_image_tag(quay_token, namespace, name, tag["name"])
-+
-+
-+def remove_tags(tags: List[Dict[str, Any]], quay_token: str, namespace: str, name: str,
-+                days_old: int, keep_max: int, dry_run: bool = False) -> None:
-+    unique_names = {}
-+    removed_digests = []
-+
-+    # first remove only named tags
-+    for tag in tags:
-+        # skip att/sbom/src/sig
-+        if tag["name"].startswith("sha256-") or "-" not in tag["name"]:
-+            continue
-+
-+        tag_name, _ = tag["name"].rsplit('-', 1)
-+
-+        count = unique_names.get(tag_name, 0)
-+
-+        # keep at least first x per tag name
-+        if count < keep_max:
-+            unique_names[tag_name] = count + 1
-+
-+        # remove older than x
-+        elif tag["start_ts"] < days_old:
-+            if dry_run:
-+                LOGGER.info("Image %s from %s/%s should be removed", tag["name"], namespace, name)
-+                removed_digests.append(tag["manifest_digest"])
-+            else:
-+                LOGGER.info("Removing image %s from %s/%s", tag["name"], namespace, name)
-+                delete_image_tag(quay_token, namespace, name, tag["name"])
-+                removed_digests.append(tag["manifest_digest"])
-+
-+    tag_regex = re.compile(r"^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig)$")
-+    # when named tags are removed, remove obsolete sbom/att/src
-+    for tag in tags:
-+        if (match := tag_regex.match(tag["name"])) is not None:
-+            if f"sha256:{match.group(1)}" in removed_digests:
-+                if dry_run:
-+                    LOGGER.info("Image %s from %s/%s should be removed", tag["name"], namespace, name)
-+                else:
-+                    LOGGER.info("Removing image %s from %s/%s", tag["name"], namespace, name)
-+                    delete_image_tag(quay_token, namespace, name, tag["name"])
-+
-+
-+def process_repository(quay_token: str, namespace: str, repo_name: str, days_old: int,
-+                       keep_max: int, dry_run: bool = False) -> None:
-+    LOGGER.info("Processing repository: %s/%s", namespace, repo_name)
-+
-+    quay_test_token(quay_token, namespace)
-+
-+    all_tags = get_quay_tags(quay_token, namespace, repo_name)
-+    LOGGER.info("Tag count in repository: %s", len(all_tags))
-+
-+    if all_tags:
-+        remove_tags(all_tags, quay_token, namespace, repo_name, days_old, keep_max, dry_run=dry_run)
-+
-+    all_tags = get_quay_tags(quay_token, namespace, repo_name)
-+    LOGGER.info("Tag count in repository: %s", len(all_tags))
-+
-+    if all_tags:
-+        remove_leftover_tags(all_tags, quay_token, namespace, repo_name, dry_run=dry_run)
-+
-+
-+def main():
-+    token = os.getenv("QUAY_TOKEN")
-+    if not token:
-+        raise ValueError("The token required for access to Quay API is missing!")
-+
-+    args = parse_args()
-+    process_repository(token, args.namespace, args.repo_name, days_old=args.old_days,
-+                       keep_max=args.keep_max, dry_run=args.dry_run)
-+
-+
-+def parse_args():
-+    parser = argparse.ArgumentParser()
-+    parser.add_argument("--namespace", required=True)
-+    parser.add_argument("--repo-name", required=True)
-+    parser.add_argument("--dry-run", action="store_true")
-+    parser.add_argument("--old-days", type=int, default=DAY_OLD_TS)
-+    parser.add_argument("--keep-max", type=int, default=KEEP_MAX)
-+
-+    args = parser.parse_args()
-+    return args
-+
-+
-+if __name__ == "__main__":
-+    main()
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml
-new file mode 100644
-index 00000000..72dd7f0c
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml
-@@ -0,0 +1,12 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+- redhat-appstudio-pr-token.yaml
-+- redhat-appstudio-tekton-catalog-pr-token.yaml
-+- redhat-appstudio-pr-cronjob.yaml
-+- redhat-appstudio-tekton-catalog-pr-cronjob.yaml
-+configMapGenerator:
-+- name: single-image-pruner-configmap
-+  files:
-+  - image_pruner/prune_images.py
-+namespace: image-controller
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml
-new file mode 100644
-index 00000000..6a44e8f1
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml
-@@ -0,0 +1,47 @@
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: redhat-appstudio-pr-cronjob
-+spec:
-+  schedule: "0 0 * * *"
-+  concurrencyPolicy: Forbid
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          containers:
-+          - name: redhat-appstudio-pr-pruner
-+            image: registry.redhat.io/rhel8/python-39:1-120.1684740828
-+            env:
-+              - name: QUAY_TOKEN
-+                valueFrom:
-+                  secretKeyRef:
-+                    name: redhat-appstudio-pr-token
-+                    key: quaytoken
-+            imagePullPolicy: IfNotPresent
-+            command:
-+              - /bin/bash
-+              - '-c'
-+              - python /image-pruner/prune_images.py --namespace=redhat-appstudio --repo-name=pull-request-builds
-+            volumeMounts:
-+              - name: redhat-appstudio-pr-volume
-+                mountPath: /image-pruner
-+            resources:
-+              limits:
-+                cpu: 500m
-+                memory: 512Mi
-+              requests:
-+                cpu: 150m
-+                memory: 128Mi
-+            securityContext:
-+              readOnlyRootFilesystem: true
-+          restartPolicy: OnFailure
-+          securityContext:
-+            runAsNonRoot: true
-+          volumes:
-+            - name: redhat-appstudio-pr-volume
-+              configMap:
-+                name: single-image-pruner-configmap
-+            - name: redhat-appstudio-pr-token
-+              secret:
-+                secretName: redhat-appstudio-pr-token
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml
-new file mode 100644
-index 00000000..ea74c682
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml
-@@ -0,0 +1,19 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: redhat-appstudio-pr-token
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+spec:
-+  dataFrom:
-+    - extract:
-+        key: production/build/redhat-appstudio-pr-token
-+  refreshInterval: 20h
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: redhat-appstudio-pr-token
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml
-new file mode 100644
-index 00000000..b1d888b7
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml
-@@ -0,0 +1,47 @@
-+apiVersion: batch/v1
-+kind: CronJob
-+metadata:
-+  name: redhat-appstudio-tekton-catalog-pr-cronjob
-+spec:
-+  schedule: "0 1 * * *"
-+  concurrencyPolicy: Forbid
-+  jobTemplate:
-+    spec:
-+      template:
-+        spec:
-+          containers:
-+          - name: redhat-appstudio-tekton-catalog-pr-pruner
-+            image: registry.redhat.io/rhel8/python-39:1-120.1684740828
-+            env:
-+              - name: QUAY_TOKEN
-+                valueFrom:
-+                  secretKeyRef:
-+                    name: redhat-appstudio-tekton-catalog-pr-token
-+                    key: quaytoken
-+            imagePullPolicy: IfNotPresent
-+            command:
-+              - /bin/bash
-+              - '-c'
-+              - python /image-pruner/prune_images.py --namespace=redhat-appstudio-tekton-catalog --repo-name=pull-request-builds
-+            volumeMounts:
-+              - name: redhat-appstudio-tekton-catalog-pr-volume
-+                mountPath: /image-pruner
-+            resources:
-+              limits:
-+                cpu: 500m
-+                memory: 512Mi
-+              requests:
-+                cpu: 150m
-+                memory: 128Mi
-+            securityContext:
-+              readOnlyRootFilesystem: true
-+          restartPolicy: OnFailure
-+          securityContext:
-+            runAsNonRoot: true
-+          volumes:
-+            - name: redhat-appstudio-tekton-catalog-pr-volume
-+              configMap:
-+                name: single-image-pruner-configmap
-+            - name: redhat-appstudio-tekton-catalog-pr-token
-+              secret:
-+                secretName: redhat-appstudio-tekton-catalog-pr-token
-diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml
-new file mode 100644
-index 00000000..4a75be79
---- /dev/null
-+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml
-@@ -0,0 +1,19 @@
-+apiVersion: external-secrets.io/v1beta1
-+kind: ExternalSecret
-+metadata:
-+  name: redhat-appstudio-tekton-catalog-pr-token
-+  annotations:
-+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-+    argocd.argoproj.io/sync-wave: "-1"
-+spec:
-+  dataFrom:
-+    - extract:
-+        key: production/build/redhat-appstudio-tekton-catalog-pr-token
-+  refreshInterval: 20h
-+  secretStoreRef:
-+    kind: ClusterSecretStore
-+    name: appsre-stonesoup-vault
-+  target:
-+    creationPolicy: Owner
-+    deletionPolicy: Delete
-+    name: redhat-appstudio-tekton-catalog-pr-token
-diff --git a/components/image-controller/staging/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml
-similarity index 82%
-rename from components/image-controller/staging/kustomization.yaml
-rename to components/image-controller/staging/base/kustomization.yaml
-index db906be6..5c039c43 100644
---- a/components/image-controller/staging/kustomization.yaml
-+++ b/components/image-controller/staging/base/kustomization.yaml
-@@ -1,8 +1,8 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- ../base
--- ../base/external-secrets
-+- ../../base
-+- ../../base/external-secrets
- - https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
- 
- images:
-@@ -13,4 +13,4 @@ images:
- namespace: image-controller
- 
- patches:
--  - path: ./manager_resources_patch.yaml
-\ No newline at end of file
-+  - path: ./manager_resources_patch.yaml
-diff --git a/components/image-controller/staging/manager_resources_patch.yaml b/components/image-controller/staging/base/manager_resources_patch.yaml
-similarity index 100%
-rename from components/image-controller/staging/manager_resources_patch.yaml
-rename to components/image-controller/staging/base/manager_resources_patch.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (7 lines)</summary>  
-
-``` 
-./commit-1037cb45/development/app-of-apps-development.yaml
-443,445c443
-<           elements:
-<           - nameNormalized: stone-prd-rh01
-<             values.clusterDir: stone-prd-rh01
----
->           elements: [] 
 ```
  
 </details>  

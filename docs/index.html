@@ -10,12 +10,725 @@
         <body>
           <div id='content'>
       <h1 id="kustomize-changes-tracked-by-commits">kustomize changes tracked by commits</h1>
-<h3 id="this-file-generated-at-wed-apr--3-160449-utc-2024">This file generated at Wed Apr  3 16:04:49 UTC 2024</h3>
+<h3 id="this-file-generated-at-wed-apr--3-200421-utc-2024">This file generated at Wed Apr  3 20:04:21 UTC 2024</h3>
 <h2 id="repo---httpsgithubcomredhat-appstudioinfra-deploymentsgit">Repo - https://github.com/redhat-appstudio/infra-deployments.git</h2>
 <h2 id="overlays-production-staging-development">Overlays: production staging development</h2>
 <h2 id="showing-last-4-commits">Showing last 4 commits</h2>
 <div>
-<h3>1: Production changes from 3d65a819 to b7a831fe on Wed Apr 3 13:07:33 2024 </h3>  
+<h3>1: Production changes from b7a831fe to c8c9252a on Wed Apr 3 17:59:03 2024 </h3>  
+
+<details> 
+<summary>Git Diff (121 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index 0777fb01..e5dbc2c4 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,8 +2,8 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+
+ # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
+<span class="hljs-deletion">-# See more information about this option, here: </span>
+<span class="hljs-deletion">-# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types </span>
+<span class="hljs-addition">+# See more information about this option, here:</span>
+<span class="hljs-addition">+# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types</span>
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+<span class="hljs-meta">@@ -33,11 +33,15 @@</span> patches:
+     target:
+       kind: TektonConfig
+       name: config
+<span class="hljs-deletion">-#  - path: scale-down-exporter.yaml</span>
+<span class="hljs-deletion">-#    target:</span>
+<span class="hljs-deletion">-#      kind: Deployment</span>
+<span class="hljs-deletion">-#      name: pipeline-metrics-exporter</span>
+<span class="hljs-deletion">-#      namespace: openshift-pipelines</span>
+<span class="hljs-addition">+  - path: update-tekton-config-features.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: TektonConfig</span>
+<span class="hljs-addition">+      name: config</span>
+<span class="hljs-addition">+  #  - path: scale-down-exporter.yaml</span>
+<span class="hljs-addition">+  #    target:</span>
+<span class="hljs-addition">+  #      kind: Deployment</span>
+<span class="hljs-addition">+  #      name: pipeline-metrics-exporter</span>
+<span class="hljs-addition">+  #      namespace: openshift-pipelines</span>
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+<span class="hljs-meta">@@ -51,4 +55,4 @@</span> patches:
+     target:
+       kind: Deployment
+       namespace: tekton-results
+<span class="hljs-deletion">-      name: tekton-results-watcher</span>
+\ No newline at end of file
+<span class="hljs-addition">+      name: tekton-results-watcher</span>
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/update-tekton-config-features.yaml b/components/pipeline-service/staging/base/update-tekton-config-features.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..c7da332c</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/update-tekton-config-features.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/pipeline/results-from</span>
+<span class="hljs-addition">+  # default upstream setting</span>
+<span class="hljs-addition">+  # value: termination-message</span>
+<span class="hljs-addition">+  value: sidecar-logs</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/pipeline/max-result-size</span>
+<span class="hljs-addition">+  # default upstream setting</span>
+<span class="hljs-addition">+  # value: 4096</span>
+<span class="hljs-addition">+  value: 12288</span>
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">index 1db38540..0a36a38f 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1877,6 +1877,7 @@</span> spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+<span class="hljs-addition">+    max-result-size: 12288</span>
+     options:
+       configMaps:
+         config-logging:
+<span class="hljs-meta">@@ -1982,6 +1983,7 @@</span> spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+<span class="hljs-addition">+    results-from: sidecar-logs</span>
+   platforms:
+     openshift:
+       pipelinesAsCode:
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">index f78fa7f7..111aa9fb 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1877,6 +1877,7 @@</span> spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+<span class="hljs-addition">+    max-result-size: 12288</span>
+     options:
+       configMaps:
+         config-logging:
+<span class="hljs-meta">@@ -1982,6 +1983,7 @@</span> spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+<span class="hljs-addition">+    results-from: sidecar-logs</span>
+   platforms:
+     openshift:
+       pipelinesAsCode:
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 95448a4d..c56eaea0 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1877,6 +1877,7 @@</span> spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+<span class="hljs-addition">+    max-result-size: 12288</span>
+     options:
+       configMaps:
+         config-logging:
+<span class="hljs-meta">@@ -1982,6 +1983,7 @@</span> spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+<span class="hljs-addition">+    results-from: sidecar-logs</span>
+   platforms:
+     openshift:
+       pipelinesAsCode: 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Staging changes from b7a831fe to c8c9252a on Wed Apr 3 17:59:03 2024 </h3>  
+
+<details> 
+<summary>Git Diff (121 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index 0777fb01..e5dbc2c4 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,8 +2,8 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+
+ # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
+<span class="hljs-deletion">-# See more information about this option, here: </span>
+<span class="hljs-deletion">-# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types </span>
+<span class="hljs-addition">+# See more information about this option, here:</span>
+<span class="hljs-addition">+# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types</span>
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+<span class="hljs-meta">@@ -33,11 +33,15 @@</span> patches:
+     target:
+       kind: TektonConfig
+       name: config
+<span class="hljs-deletion">-#  - path: scale-down-exporter.yaml</span>
+<span class="hljs-deletion">-#    target:</span>
+<span class="hljs-deletion">-#      kind: Deployment</span>
+<span class="hljs-deletion">-#      name: pipeline-metrics-exporter</span>
+<span class="hljs-deletion">-#      namespace: openshift-pipelines</span>
+<span class="hljs-addition">+  - path: update-tekton-config-features.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: TektonConfig</span>
+<span class="hljs-addition">+      name: config</span>
+<span class="hljs-addition">+  #  - path: scale-down-exporter.yaml</span>
+<span class="hljs-addition">+  #    target:</span>
+<span class="hljs-addition">+  #      kind: Deployment</span>
+<span class="hljs-addition">+  #      name: pipeline-metrics-exporter</span>
+<span class="hljs-addition">+  #      namespace: openshift-pipelines</span>
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+<span class="hljs-meta">@@ -51,4 +55,4 @@</span> patches:
+     target:
+       kind: Deployment
+       namespace: tekton-results
+<span class="hljs-deletion">-      name: tekton-results-watcher</span>
+\ No newline at end of file
+<span class="hljs-addition">+      name: tekton-results-watcher</span>
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/update-tekton-config-features.yaml b/components/pipeline-service/staging/base/update-tekton-config-features.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..c7da332c</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/update-tekton-config-features.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/pipeline/results-from</span>
+<span class="hljs-addition">+  # default upstream setting</span>
+<span class="hljs-addition">+  # value: termination-message</span>
+<span class="hljs-addition">+  value: sidecar-logs</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/pipeline/max-result-size</span>
+<span class="hljs-addition">+  # default upstream setting</span>
+<span class="hljs-addition">+  # value: 4096</span>
+<span class="hljs-addition">+  value: 12288</span>
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">index 1db38540..0a36a38f 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1877,6 +1877,7 @@</span> spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+<span class="hljs-addition">+    max-result-size: 12288</span>
+     options:
+       configMaps:
+         config-logging:
+<span class="hljs-meta">@@ -1982,6 +1983,7 @@</span> spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+<span class="hljs-addition">+    results-from: sidecar-logs</span>
+   platforms:
+     openshift:
+       pipelinesAsCode:
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">index f78fa7f7..111aa9fb 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1877,6 +1877,7 @@</span> spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+<span class="hljs-addition">+    max-result-size: 12288</span>
+     options:
+       configMaps:
+         config-logging:
+<span class="hljs-meta">@@ -1982,6 +1983,7 @@</span> spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+<span class="hljs-addition">+    results-from: sidecar-logs</span>
+   platforms:
+     openshift:
+       pipelinesAsCode:
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 95448a4d..c56eaea0 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1877,6 +1877,7 @@</span> spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+<span class="hljs-addition">+    max-result-size: 12288</span>
+     options:
+       configMaps:
+         config-logging:
+<span class="hljs-meta">@@ -1982,6 +1983,7 @@</span> spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+<span class="hljs-addition">+    results-from: sidecar-logs</span>
+   platforms:
+     openshift:
+       pipelinesAsCode: 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (15 lines)</summary>  
+<pre><code>  .<span class="hljs-regexp">/commit-b7a831fe/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stage-p01/kustomize.out.yaml
+<span class="hljs-number">1880</span>d1879
+&lt;     max-result-<span class="hljs-keyword">size</span>: <span class="hljs-number">12288</span>
+<span class="hljs-number">1986</span>d1984
+&lt;     results-<span class="hljs-keyword">from</span>: sidecar-logs
+.<span class="hljs-regexp">/commit-b7a831fe/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-m01/kustomize.out.yaml
+<span class="hljs-number">1880</span>d1879
+&lt;     max-result-<span class="hljs-keyword">size</span>: <span class="hljs-number">12288</span>
+<span class="hljs-number">1986</span>d1984
+&lt;     results-<span class="hljs-keyword">from</span>: sidecar-logs
+.<span class="hljs-regexp">/commit-b7a831fe/</span>staging<span class="hljs-regexp">/components/</span>pipeline-service<span class="hljs-regexp">/staging/</span>stone-stg-rh01/kustomize.out.yaml
+<span class="hljs-number">1880</span>d1879
+&lt;     max-result-<span class="hljs-keyword">size</span>: <span class="hljs-number">12288</span>
+<span class="hljs-number">1986</span>d1984
+&lt;     results-<span class="hljs-keyword">from</span>: sidecar-logs 
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>1: Development changes from b7a831fe to c8c9252a on Wed Apr 3 17:59:03 2024 </h3>  
+
+<details> 
+<summary>Git Diff (121 lines)</summary>  
+<pre><code>  <span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">index 0777fb01..e5dbc2c4 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/kustomization.yaml</span>
+<span class="hljs-meta">@@ -2,8 +2,8 @@</span> apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+
+ # Skip applying the Tekton/PaC operands while the Tekton/PaC operator is being installed.
+<span class="hljs-deletion">-# See more information about this option, here: </span>
+<span class="hljs-deletion">-# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types </span>
+<span class="hljs-addition">+# See more information about this option, here:</span>
+<span class="hljs-addition">+# https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/#skip-dry-run-for-new-custom-resources-types</span>
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+<span class="hljs-meta">@@ -33,11 +33,15 @@</span> patches:
+     target:
+       kind: TektonConfig
+       name: config
+<span class="hljs-deletion">-#  - path: scale-down-exporter.yaml</span>
+<span class="hljs-deletion">-#    target:</span>
+<span class="hljs-deletion">-#      kind: Deployment</span>
+<span class="hljs-deletion">-#      name: pipeline-metrics-exporter</span>
+<span class="hljs-deletion">-#      namespace: openshift-pipelines</span>
+<span class="hljs-addition">+  - path: update-tekton-config-features.yaml</span>
+<span class="hljs-addition">+    target:</span>
+<span class="hljs-addition">+      kind: TektonConfig</span>
+<span class="hljs-addition">+      name: config</span>
+<span class="hljs-addition">+  #  - path: scale-down-exporter.yaml</span>
+<span class="hljs-addition">+  #    target:</span>
+<span class="hljs-addition">+  #      kind: Deployment</span>
+<span class="hljs-addition">+  #      name: pipeline-metrics-exporter</span>
+<span class="hljs-addition">+  #      namespace: openshift-pipelines</span>
+   - path: update-tekton-config-performance.yaml
+     target:
+       kind: TektonConfig
+<span class="hljs-meta">@@ -51,4 +55,4 @@</span> patches:
+     target:
+       kind: Deployment
+       namespace: tekton-results
+<span class="hljs-deletion">-      name: tekton-results-watcher</span>
+\ No newline at end of file
+<span class="hljs-addition">+      name: tekton-results-watcher</span>
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/base/update-tekton-config-features.yaml b/components/pipeline-service/staging/base/update-tekton-config-features.yaml</span>
+new file mode 100644
+<span class="hljs-comment">index 00000000..c7da332c</span>
+<span class="hljs-comment">--- /dev/null</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/base/update-tekton-config-features.yaml</span>
+<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
+<span class="hljs-addition">+---</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/pipeline/results-from</span>
+<span class="hljs-addition">+  # default upstream setting</span>
+<span class="hljs-addition">+  # value: termination-message</span>
+<span class="hljs-addition">+  value: sidecar-logs</span>
+<span class="hljs-addition">+</span>
+<span class="hljs-addition">+- op: add</span>
+<span class="hljs-addition">+  path: /spec/pipeline/max-result-size</span>
+<span class="hljs-addition">+  # default upstream setting</span>
+<span class="hljs-addition">+  # value: 4096</span>
+<span class="hljs-addition">+  value: 12288</span>
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">index 1db38540..0a36a38f 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1877,6 +1877,7 @@</span> spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+<span class="hljs-addition">+    max-result-size: 12288</span>
+     options:
+       configMaps:
+         config-logging:
+<span class="hljs-meta">@@ -1982,6 +1983,7 @@</span> spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+<span class="hljs-addition">+    results-from: sidecar-logs</span>
+   platforms:
+     openshift:
+       pipelinesAsCode:
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">index f78fa7f7..111aa9fb 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1877,6 +1877,7 @@</span> spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+<span class="hljs-addition">+    max-result-size: 12288</span>
+     options:
+       configMaps:
+         config-logging:
+<span class="hljs-meta">@@ -1982,6 +1983,7 @@</span> spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+<span class="hljs-addition">+    results-from: sidecar-logs</span>
+   platforms:
+     openshift:
+       pipelinesAsCode:
+<span class="hljs-comment">diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">index 95448a4d..c56eaea0 100644</span>
+<span class="hljs-comment">--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-comment">+++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml</span>
+<span class="hljs-meta">@@ -1877,6 +1877,7 @@</span> spec:
+     enable-git-resolver: true
+     enable-hub-resolver: true
+     enable-tekton-oci-bundles: true
+<span class="hljs-addition">+    max-result-size: 12288</span>
+     options:
+       configMaps:
+         config-logging:
+<span class="hljs-meta">@@ -1982,6 +1983,7 @@</span> spec:
+       kube-api-qps: 50
+       replicas: 2
+       threads-per-controller: 32
+<span class="hljs-addition">+    results-from: sidecar-logs</span>
+   platforms:
+     openshift:
+       pipelinesAsCode: 
+</code></pre>
+
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+<pre><code>  
+</code></pre>
+
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found!
+<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
+
+<span class="hljs-attribute">No</span> lint errors found! 
+</code></pre>
+
+</details> 
+<br> 
+
+
+</div>
+<div>
+<h3>2: Production changes from 3d65a819 to b7a831fe on Wed Apr 3 13:07:33 2024 </h3>  
 
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -167,7 +880,7 @@
 
 </div>
 <div>
-<h3>1: Staging changes from 3d65a819 to b7a831fe on Wed Apr 3 13:07:33 2024 </h3>  
+<h3>2: Staging changes from 3d65a819 to b7a831fe on Wed Apr 3 13:07:33 2024 </h3>  
 
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -319,7 +1032,7 @@
 
 </div>
 <div>
-<h3>1: Development changes from 3d65a819 to b7a831fe on Wed Apr 3 13:07:33 2024 </h3>  
+<h3>2: Development changes from 3d65a819 to b7a831fe on Wed Apr 3 13:07:33 2024 </h3>  
 
 <details> 
 <summary>Git Diff (35 lines)</summary>  
@@ -426,7 +1139,7 @@
 
 </div>
 <div>
-<h3>2: Production changes from 12f5d9c2 to 3d65a819 on Wed Apr 3 12:04:18 2024 </h3>  
+<h3>3: Production changes from 12f5d9c2 to 3d65a819 on Wed Apr 3 12:04:18 2024 </h3>  
 
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -584,7 +1297,7 @@
 
 </div>
 <div>
-<h3>2: Staging changes from 12f5d9c2 to 3d65a819 on Wed Apr 3 12:04:18 2024 </h3>  
+<h3>3: Staging changes from 12f5d9c2 to 3d65a819 on Wed Apr 3 12:04:18 2024 </h3>  
 
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -742,7 +1455,7 @@
 
 </div>
 <div>
-<h3>2: Development changes from 12f5d9c2 to 3d65a819 on Wed Apr 3 12:04:18 2024 </h3>  
+<h3>3: Development changes from 12f5d9c2 to 3d65a819 on Wed Apr 3 12:04:18 2024 </h3>  
 
 <details> 
 <summary>Git Diff (31 lines)</summary>  
@@ -855,7 +1568,7 @@
 
 </div>
 <div>
-<h3>3: Production changes from 4ae52595 to 12f5d9c2 on Tue Apr 2 16:32:49 2024 </h3>  
+<h3>4: Production changes from 4ae52595 to 12f5d9c2 on Tue Apr 2 16:32:49 2024 </h3>  
 
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -1092,7 +1805,7 @@
 
 </div>
 <div>
-<h3>3: Staging changes from 4ae52595 to 12f5d9c2 on Tue Apr 2 16:32:49 2024 </h3>  
+<h3>4: Staging changes from 4ae52595 to 12f5d9c2 on Tue Apr 2 16:32:49 2024 </h3>  
 
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -1329,7 +2042,7 @@
 
 </div>
 <div>
-<h3>3: Development changes from 4ae52595 to 12f5d9c2 on Tue Apr 2 16:32:49 2024 </h3>  
+<h3>4: Development changes from 4ae52595 to 12f5d9c2 on Tue Apr 2 16:32:49 2024 </h3>  
 
 <details> 
 <summary>Git Diff (78 lines)</summary>  
@@ -1450,1810 +2163,6 @@
 <span class="hljs-string">&lt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e</span>
 <span class="hljs-meta">---</span>
 <span class="hljs-string">&gt;</span>     <span class="hljs-bullet">-</span> <span class="hljs-string">oci::quay.io/enterprise-contract/ec-release-policy:git-d471eb4@sha256:3a0a498da1eed0c64d12d75ad5ab8fa0af480d542f0bf99afa7a7cac631d3956</span> 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Production changes from 1037cb45 to 4ae52595 on Tue Apr 2 15:43:19 2024 </h3>  
-
-<details> 
-<summary>Git Diff (487 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/.tekton/image-controller-prod-overlay-update.yaml b/.tekton/image-controller-prod-overlay-update.yaml</span>
-<span class="hljs-comment">index 8d2b1560..6afd5433 100644</span>
-<span class="hljs-comment">--- a/.tekton/image-controller-prod-overlay-update.yaml</span>
-<span class="hljs-comment">+++ b/.tekton/image-controller-prod-overlay-update.yaml</span>
-<span class="hljs-meta">@@ -5,7 +5,7 @@</span> metadata:
-   namespace: tekton-ci
-   annotations:
-     pipelinesascode.tekton.dev/on-cel-expression: |
-<span class="hljs-deletion">-      event == &quot;push&quot; &amp;&amp; target_branch == &quot;main&quot; &amp;&amp; &quot;components/image-controller/staging/kustomization.yaml&quot;.pathChanged()</span>
-<span class="hljs-addition">+      event == &quot;push&quot; &amp;&amp; target_branch == &quot;main&quot; &amp;&amp; &quot;components/image-controller/staging/base/kustomization.yaml&quot;.pathChanged()</span>
-     pipelinesascode.tekton.dev/max-keep-runs: &quot;5&quot;
-     pipelinesascode.tekton.dev/task: &quot;[.tekton/tasks/promote-component.yaml]&quot;
- spec:
-<span class="hljs-meta">@@ -19,9 +19,9 @@</span> spec:
-             value: image-controller
-           - name: SCRIPT
-             value: |
-<span class="hljs-deletion">-              STAGE_SHA=$(grep -oE &#x27;[0-9a-f]{40}&#x27; components/image-controller/staging/kustomization.yaml -m1)</span>
-<span class="hljs-deletion">-              OLD_PROD_SHA=$(grep -oE &#x27;[0-9a-f]{40}&#x27; components/image-controller/production/kustomization.yaml -m1)</span>
-<span class="hljs-addition">+              STAGE_SHA=$(grep -oE &#x27;[0-9a-f]{40}&#x27; components/image-controller/staging/base/kustomization.yaml -m1)</span>
-<span class="hljs-addition">+              OLD_PROD_SHA=$(grep -oE &#x27;[0-9a-f]{40}&#x27; components/image-controller/production/base/kustomization.yaml -m1)</span>
-               echo &quot;Changing prod sha from ${OLD_PROD_SHA} to ${STAGE_SHA}&quot;
-<span class="hljs-deletion">-              sed -i &quot;s/$OLD_PROD_SHA/$STAGE_SHA/g&quot; components/image-controller/production/kustomization.yaml</span>
-<span class="hljs-addition">+              sed -i &quot;s/$OLD_PROD_SHA/$STAGE_SHA/g&quot; components/image-controller/production/base/kustomization.yaml</span>
-         taskRef:
-           name: promote-component
-<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml b/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml</span>
-<span class="hljs-comment">index e6c94450..aac75e1a 100644</span>
-<span class="hljs-comment">--- a/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml</span>
-<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml</span>
-<span class="hljs-meta">@@ -12,9 +12,11 @@</span> spec:
-               values:
-                 sourceRoot: components/image-controller
-                 environment: staging
-<span class="hljs-deletion">-                clusterDir: &quot;&quot;</span>
-<span class="hljs-addition">+                clusterDir: base</span>
-           - list:
-<span class="hljs-deletion">-              elements: []</span>
-<span class="hljs-addition">+              elements:</span>
-<span class="hljs-addition">+                - nameNormalized: stone-prd-rh01</span>
-<span class="hljs-addition">+                  values.clusterDir: stone-prd-rh01</span>
-   template:
-     metadata:
-       name: image-controller-{{nameNormalized}}
-<span class="hljs-comment">diff --git a/components/image-controller/production/kustomization.yaml b/components/image-controller/production/base/kustomization.yaml</span>
-similarity index 93%
-rename from components/image-controller/production/kustomization.yaml
-rename to components/image-controller/production/base/kustomization.yaml
-<span class="hljs-comment">index 38fba437..45aef0a2 100644</span>
-<span class="hljs-comment">--- a/components/image-controller/production/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -1,8 +1,8 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-- ../base</span>
-<span class="hljs-deletion">-- ../base/external-secrets</span>
-<span class="hljs-addition">+- ../../base</span>
-<span class="hljs-addition">+- ../../base/external-secrets</span>
- - https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
-
- images:
-<span class="hljs-comment">diff --git a/components/image-controller/production/manager_resources_patch.yaml b/components/image-controller/production/base/manager_resources_patch.yaml</span>
-similarity index 100%
-rename from components/image-controller/production/manager_resources_patch.yaml
-rename to components/image-controller/production/base/manager_resources_patch.yaml
-<span class="hljs-comment">diff --git a/components/image-controller/production/quaytoken.yaml b/components/image-controller/production/base/quaytoken.yaml</span>
-similarity index 100%
-rename from components/image-controller/production/quaytoken.yaml
-rename to components/image-controller/production/base/quaytoken.yaml
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/kustomization.yaml b/components/image-controller/production/stone-prd-rh01/kustomization.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..441e9e42</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/kustomization.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
-<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
-<span class="hljs-addition">+kind: Kustomization</span>
-<span class="hljs-addition">+resources:</span>
-<span class="hljs-addition">+- ../base</span>
-<span class="hljs-addition">+- ./resources</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py b/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..9edb43cf</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py</span>
-<span class="hljs-meta">@@ -0,0 +1,197 @@</span>
-<span class="hljs-addition">+import argparse</span>
-<span class="hljs-addition">+import itertools</span>
-<span class="hljs-addition">+import json</span>
-<span class="hljs-addition">+import logging</span>
-<span class="hljs-addition">+import os</span>
-<span class="hljs-addition">+import re</span>
-<span class="hljs-addition">+import time</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+from collections.abc import Iterator</span>
-<span class="hljs-addition">+from http.client import HTTPResponse</span>
-<span class="hljs-addition">+from typing import Any, Dict, List</span>
-<span class="hljs-addition">+from urllib.error import HTTPError</span>
-<span class="hljs-addition">+from urllib.parse import urlencode</span>
-<span class="hljs-addition">+from urllib.request import Request, urlopen</span>
-<span class="hljs-addition">+from datetime import datetime</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+logging.basicConfig(</span>
-<span class="hljs-addition">+    format=&quot;%(asctime)s - %(levelname)s - %(message)s&quot;, level=logging.INFO</span>
-<span class="hljs-addition">+)</span>
-<span class="hljs-addition">+LOGGER = logging.getLogger(__name__)</span>
-<span class="hljs-addition">+QUAY_API_URL = &quot;https://quay.io/api/v1&quot;</span>
-<span class="hljs-addition">+DAY_OLD_TS = int(datetime.now().timestamp()) - (60 * 60 * 24)</span>
-<span class="hljs-addition">+KEEP_MAX = 3</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+ImageRepo = Dict[str, Any]</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def get_quay_tags(quay_token: str, namespace: str, name: str) -&gt; ImageRepo:</span>
-<span class="hljs-addition">+    next_page = None</span>
-<span class="hljs-addition">+    resp: HTTPResponse</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    all_tags = []</span>
-<span class="hljs-addition">+    while True:</span>
-<span class="hljs-addition">+        query_args = {&quot;limit&quot;: 100, &quot;onlyActiveTags&quot;: True}</span>
-<span class="hljs-addition">+        if next_page is not None:</span>
-<span class="hljs-addition">+            query_args[&quot;page&quot;] = next_page</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        api_url = f&quot;{QUAY_API_URL}/repository/{namespace}/{name}/tag/?{urlencode(query_args)}&quot;</span>
-<span class="hljs-addition">+        request = Request(api_url, headers={</span>
-<span class="hljs-addition">+            &quot;Authorization&quot;: f&quot;Bearer {quay_token}&quot;,</span>
-<span class="hljs-addition">+        })</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        with urlopen(request) as resp:</span>
-<span class="hljs-addition">+            if resp.status != 200:</span>
-<span class="hljs-addition">+                raise RuntimeError(resp.reason)</span>
-<span class="hljs-addition">+            json_data = json.loads(resp.read())</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        tags = json_data.get(&quot;tags&quot;, [])</span>
-<span class="hljs-addition">+        all_tags.extend(tags)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        if not tags:</span>
-<span class="hljs-addition">+            LOGGER.debug(&quot;No tags found.&quot;)</span>
-<span class="hljs-addition">+            break</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        page = json_data.get(&quot;page&quot;, None)</span>
-<span class="hljs-addition">+        additional = json_data.get(&quot;has_additional&quot;, False)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        if additional:</span>
-<span class="hljs-addition">+            next_page = page + 1</span>
-<span class="hljs-addition">+        else:</span>
-<span class="hljs-addition">+            break</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    return all_tags</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def quay_test_token(quay_token: str, namespace: str) -&gt; None:</span>
-<span class="hljs-addition">+    api_url = f&quot;{QUAY_API_URL}/organization/{namespace}/applications&quot;</span>
-<span class="hljs-addition">+    request = Request(api_url, headers={</span>
-<span class="hljs-addition">+        &quot;Authorization&quot;: f&quot;Bearer {quay_token}&quot;,</span>
-<span class="hljs-addition">+    })</span>
-<span class="hljs-addition">+    try:</span>
-<span class="hljs-addition">+        urlopen(request)</span>
-<span class="hljs-addition">+    except HTTPError as ex:</span>
-<span class="hljs-addition">+        # if status is 401 that means that token is wrong</span>
-<span class="hljs-addition">+        if ex.status == 401:</span>
-<span class="hljs-addition">+            raise RuntimeError(&quot;Wrong quay token&quot;)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def delete_image_tag(quay_token: str, namespace: str, name: str, tag: str) -&gt; None:</span>
-<span class="hljs-addition">+    api_url = f&quot;{QUAY_API_URL}/repository/{namespace}/{name}/tag/{tag}&quot;</span>
-<span class="hljs-addition">+    request = Request(api_url, method=&quot;DELETE&quot;, headers={</span>
-<span class="hljs-addition">+        &quot;Authorization&quot;: f&quot;Bearer {quay_token}&quot;,</span>
-<span class="hljs-addition">+    })</span>
-<span class="hljs-addition">+    resp: HTTPResponse</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    while True:</span>
-<span class="hljs-addition">+        try:</span>
-<span class="hljs-addition">+            with urlopen(request) as resp:</span>
-<span class="hljs-addition">+                if resp.status != 200 and resp.status != 204 and resp.status != 404:</span>
-<span class="hljs-addition">+                    raise RuntimeError(resp.reason)</span>
-<span class="hljs-addition">+                else:</span>
-<span class="hljs-addition">+                    break</span>
-<span class="hljs-addition">+        except HTTPError as ex:</span>
-<span class="hljs-addition">+            LOGGER.info(&quot;HTTPError exception: %s&quot;, ex)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def remove_leftover_tags(tags: List[Dict[str, Any]], quay_token: str, namespace: str, name: str,</span>
-<span class="hljs-addition">+                         dry_run: bool = False) -&gt; None:</span>
-<span class="hljs-addition">+    tag_regex = re.compile(r&quot;^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig)$&quot;)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    # remove att/sbom/src/sig for which is missing manifest digest</span>
-<span class="hljs-addition">+    image_digests = [image[&quot;manifest_digest&quot;] for image in tags]</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    for tag in tags:</span>
-<span class="hljs-addition">+        if (match := tag_regex.match(tag[&quot;name&quot;])) is not None:</span>
-<span class="hljs-addition">+            if f&quot;sha256:{match.group(1)}&quot; not in image_digests:</span>
-<span class="hljs-addition">+                if dry_run:</span>
-<span class="hljs-addition">+                    LOGGER.info(&quot;Leftover image %s from %s/%s should be removed&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                else:</span>
-<span class="hljs-addition">+                    LOGGER.info(&quot;Removing leftover image %s from %s/%s&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                    delete_image_tag(quay_token, namespace, name, tag[&quot;name&quot;])</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def remove_tags(tags: List[Dict[str, Any]], quay_token: str, namespace: str, name: str,</span>
-<span class="hljs-addition">+                days_old: int, keep_max: int, dry_run: bool = False) -&gt; None:</span>
-<span class="hljs-addition">+    unique_names = {}</span>
-<span class="hljs-addition">+    removed_digests = []</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    # first remove only named tags</span>
-<span class="hljs-addition">+    for tag in tags:</span>
-<span class="hljs-addition">+        # skip att/sbom/src/sig</span>
-<span class="hljs-addition">+        if tag[&quot;name&quot;].startswith(&quot;sha256-&quot;) or &quot;-&quot; not in tag[&quot;name&quot;]:</span>
-<span class="hljs-addition">+            continue</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        tag_name, _ = tag[&quot;name&quot;].rsplit(&#x27;-&#x27;, 1)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        count = unique_names.get(tag_name, 0)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        # keep at least first x per tag name</span>
-<span class="hljs-addition">+        if count &lt; keep_max:</span>
-<span class="hljs-addition">+            unique_names[tag_name] = count + 1</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        # remove older than x</span>
-<span class="hljs-addition">+        elif tag[&quot;start_ts&quot;] &lt; days_old:</span>
-<span class="hljs-addition">+            if dry_run:</span>
-<span class="hljs-addition">+                LOGGER.info(&quot;Image %s from %s/%s should be removed&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                removed_digests.append(tag[&quot;manifest_digest&quot;])</span>
-<span class="hljs-addition">+            else:</span>
-<span class="hljs-addition">+                LOGGER.info(&quot;Removing image %s from %s/%s&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                delete_image_tag(quay_token, namespace, name, tag[&quot;name&quot;])</span>
-<span class="hljs-addition">+                removed_digests.append(tag[&quot;manifest_digest&quot;])</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    tag_regex = re.compile(r&quot;^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig)$&quot;)</span>
-<span class="hljs-addition">+    # when named tags are removed, remove obsolete sbom/att/src</span>
-<span class="hljs-addition">+    for tag in tags:</span>
-<span class="hljs-addition">+        if (match := tag_regex.match(tag[&quot;name&quot;])) is not None:</span>
-<span class="hljs-addition">+            if f&quot;sha256:{match.group(1)}&quot; in removed_digests:</span>
-<span class="hljs-addition">+                if dry_run:</span>
-<span class="hljs-addition">+                    LOGGER.info(&quot;Image %s from %s/%s should be removed&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                else:</span>
-<span class="hljs-addition">+                    LOGGER.info(&quot;Removing image %s from %s/%s&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                    delete_image_tag(quay_token, namespace, name, tag[&quot;name&quot;])</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def process_repository(quay_token: str, namespace: str, repo_name: str, days_old: int,</span>
-<span class="hljs-addition">+                       keep_max: int, dry_run: bool = False) -&gt; None:</span>
-<span class="hljs-addition">+    LOGGER.info(&quot;Processing repository: %s/%s&quot;, namespace, repo_name)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    quay_test_token(quay_token, namespace)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    all_tags = get_quay_tags(quay_token, namespace, repo_name)</span>
-<span class="hljs-addition">+    LOGGER.info(&quot;Tag count in repository: %s&quot;, len(all_tags))</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    if all_tags:</span>
-<span class="hljs-addition">+        remove_tags(all_tags, quay_token, namespace, repo_name, days_old, keep_max, dry_run=dry_run)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    all_tags = get_quay_tags(quay_token, namespace, repo_name)</span>
-<span class="hljs-addition">+    LOGGER.info(&quot;Tag count in repository: %s&quot;, len(all_tags))</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    if all_tags:</span>
-<span class="hljs-addition">+        remove_leftover_tags(all_tags, quay_token, namespace, repo_name, dry_run=dry_run)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def main():</span>
-<span class="hljs-addition">+    token = os.getenv(&quot;QUAY_TOKEN&quot;)</span>
-<span class="hljs-addition">+    if not token:</span>
-<span class="hljs-addition">+        raise ValueError(&quot;The token required for access to Quay API is missing!&quot;)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    args = parse_args()</span>
-<span class="hljs-addition">+    process_repository(token, args.namespace, args.repo_name, days_old=args.old_days,</span>
-<span class="hljs-addition">+                       keep_max=args.keep_max, dry_run=args.dry_run)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def parse_args():</span>
-<span class="hljs-addition">+    parser = argparse.ArgumentParser()</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--namespace&quot;, required=True)</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--repo-name&quot;, required=True)</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--dry-run&quot;, action=&quot;store_true&quot;)</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--old-days&quot;, type=int, default=DAY_OLD_TS)</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--keep-max&quot;, type=int, default=KEEP_MAX)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    args = parser.parse_args()</span>
-<span class="hljs-addition">+    return args</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+if __name__ == &quot;__main__&quot;:</span>
-<span class="hljs-addition">+    main()</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..72dd7f0c</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
-<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
-<span class="hljs-addition">+kind: Kustomization</span>
-<span class="hljs-addition">+resources:</span>
-<span class="hljs-addition">+- redhat-appstudio-pr-token.yaml</span>
-<span class="hljs-addition">+- redhat-appstudio-tekton-catalog-pr-token.yaml</span>
-<span class="hljs-addition">+- redhat-appstudio-pr-cronjob.yaml</span>
-<span class="hljs-addition">+- redhat-appstudio-tekton-catalog-pr-cronjob.yaml</span>
-<span class="hljs-addition">+configMapGenerator:</span>
-<span class="hljs-addition">+- name: single-image-pruner-configmap</span>
-<span class="hljs-addition">+  files:</span>
-<span class="hljs-addition">+  - image_pruner/prune_images.py</span>
-<span class="hljs-addition">+namespace: image-controller</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..6a44e8f1</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,47 @@</span>
-<span class="hljs-addition">+apiVersion: batch/v1</span>
-<span class="hljs-addition">+kind: CronJob</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: redhat-appstudio-pr-cronjob</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  schedule: &quot;0 0 * * *&quot;</span>
-<span class="hljs-addition">+  concurrencyPolicy: Forbid</span>
-<span class="hljs-addition">+  jobTemplate:</span>
-<span class="hljs-addition">+    spec:</span>
-<span class="hljs-addition">+      template:</span>
-<span class="hljs-addition">+        spec:</span>
-<span class="hljs-addition">+          containers:</span>
-<span class="hljs-addition">+          - name: redhat-appstudio-pr-pruner</span>
-<span class="hljs-addition">+            image: registry.redhat.io/rhel8/python-39:1-120.1684740828</span>
-<span class="hljs-addition">+            env:</span>
-<span class="hljs-addition">+              - name: QUAY_TOKEN</span>
-<span class="hljs-addition">+                valueFrom:</span>
-<span class="hljs-addition">+                  secretKeyRef:</span>
-<span class="hljs-addition">+                    name: redhat-appstudio-pr-token</span>
-<span class="hljs-addition">+                    key: quaytoken</span>
-<span class="hljs-addition">+            imagePullPolicy: IfNotPresent</span>
-<span class="hljs-addition">+            command:</span>
-<span class="hljs-addition">+              - /bin/bash</span>
-<span class="hljs-addition">+              - &#x27;-c&#x27;</span>
-<span class="hljs-addition">+              - python /image-pruner/prune_images.py --namespace=redhat-appstudio --repo-name=pull-request-builds</span>
-<span class="hljs-addition">+            volumeMounts:</span>
-<span class="hljs-addition">+              - name: redhat-appstudio-pr-volume</span>
-<span class="hljs-addition">+                mountPath: /image-pruner</span>
-<span class="hljs-addition">+            resources:</span>
-<span class="hljs-addition">+              limits:</span>
-<span class="hljs-addition">+                cpu: 500m</span>
-<span class="hljs-addition">+                memory: 512Mi</span>
-<span class="hljs-addition">+              requests:</span>
-<span class="hljs-addition">+                cpu: 150m</span>
-<span class="hljs-addition">+                memory: 128Mi</span>
-<span class="hljs-addition">+            securityContext:</span>
-<span class="hljs-addition">+              readOnlyRootFilesystem: true</span>
-<span class="hljs-addition">+          restartPolicy: OnFailure</span>
-<span class="hljs-addition">+          securityContext:</span>
-<span class="hljs-addition">+            runAsNonRoot: true</span>
-<span class="hljs-addition">+          volumes:</span>
-<span class="hljs-addition">+            - name: redhat-appstudio-pr-volume</span>
-<span class="hljs-addition">+              configMap:</span>
-<span class="hljs-addition">+                name: single-image-pruner-configmap</span>
-<span class="hljs-addition">+            - name: redhat-appstudio-pr-token</span>
-<span class="hljs-addition">+              secret:</span>
-<span class="hljs-addition">+                secretName: redhat-appstudio-pr-token</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..ea74c682</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: redhat-appstudio-pr-token</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: production/build/redhat-appstudio-pr-token</span>
-<span class="hljs-addition">+  refreshInterval: 20h</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: redhat-appstudio-pr-token</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..b1d888b7</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,47 @@</span>
-<span class="hljs-addition">+apiVersion: batch/v1</span>
-<span class="hljs-addition">+kind: CronJob</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: redhat-appstudio-tekton-catalog-pr-cronjob</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  schedule: &quot;0 1 * * *&quot;</span>
-<span class="hljs-addition">+  concurrencyPolicy: Forbid</span>
-<span class="hljs-addition">+  jobTemplate:</span>
-<span class="hljs-addition">+    spec:</span>
-<span class="hljs-addition">+      template:</span>
-<span class="hljs-addition">+        spec:</span>
-<span class="hljs-addition">+          containers:</span>
-<span class="hljs-addition">+          - name: redhat-appstudio-tekton-catalog-pr-pruner</span>
-<span class="hljs-addition">+            image: registry.redhat.io/rhel8/python-39:1-120.1684740828</span>
-<span class="hljs-addition">+            env:</span>
-<span class="hljs-addition">+              - name: QUAY_TOKEN</span>
-<span class="hljs-addition">+                valueFrom:</span>
-<span class="hljs-addition">+                  secretKeyRef:</span>
-<span class="hljs-addition">+                    name: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-addition">+                    key: quaytoken</span>
-<span class="hljs-addition">+            imagePullPolicy: IfNotPresent</span>
-<span class="hljs-addition">+            command:</span>
-<span class="hljs-addition">+              - /bin/bash</span>
-<span class="hljs-addition">+              - &#x27;-c&#x27;</span>
-<span class="hljs-addition">+              - python /image-pruner/prune_images.py --namespace=redhat-appstudio-tekton-catalog --repo-name=pull-request-builds</span>
-<span class="hljs-addition">+            volumeMounts:</span>
-<span class="hljs-addition">+              - name: redhat-appstudio-tekton-catalog-pr-volume</span>
-<span class="hljs-addition">+                mountPath: /image-pruner</span>
-<span class="hljs-addition">+            resources:</span>
-<span class="hljs-addition">+              limits:</span>
-<span class="hljs-addition">+                cpu: 500m</span>
-<span class="hljs-addition">+                memory: 512Mi</span>
-<span class="hljs-addition">+              requests:</span>
-<span class="hljs-addition">+                cpu: 150m</span>
-<span class="hljs-addition">+                memory: 128Mi</span>
-<span class="hljs-addition">+            securityContext:</span>
-<span class="hljs-addition">+              readOnlyRootFilesystem: true</span>
-<span class="hljs-addition">+          restartPolicy: OnFailure</span>
-<span class="hljs-addition">+          securityContext:</span>
-<span class="hljs-addition">+            runAsNonRoot: true</span>
-<span class="hljs-addition">+          volumes:</span>
-<span class="hljs-addition">+            - name: redhat-appstudio-tekton-catalog-pr-volume</span>
-<span class="hljs-addition">+              configMap:</span>
-<span class="hljs-addition">+                name: single-image-pruner-configmap</span>
-<span class="hljs-addition">+            - name: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-addition">+              secret:</span>
-<span class="hljs-addition">+                secretName: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..4a75be79</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: production/build/redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-addition">+  refreshInterval: 20h</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-comment">diff --git a/components/image-controller/staging/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml</span>
-similarity index 82%
-rename from components/image-controller/staging/kustomization.yaml
-rename to components/image-controller/staging/base/kustomization.yaml
-<span class="hljs-comment">index db906be6..5c039c43 100644</span>
-<span class="hljs-comment">--- a/components/image-controller/staging/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/image-controller/staging/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -1,8 +1,8 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-- ../base</span>
-<span class="hljs-deletion">-- ../base/external-secrets</span>
-<span class="hljs-addition">+- ../../base</span>
-<span class="hljs-addition">+- ../../base/external-secrets</span>
- - https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
-
- images:
-<span class="hljs-meta">@@ -13,4 +13,4 @@</span> images:
- namespace: image-controller
-
- patches:
-<span class="hljs-deletion">-  - path: ./manager_resources_patch.yaml</span>
-\ No newline at end of file
-<span class="hljs-addition">+  - path: ./manager_resources_patch.yaml</span>
-<span class="hljs-comment">diff --git a/components/image-controller/staging/manager_resources_patch.yaml b/components/image-controller/staging/base/manager_resources_patch.yaml</span>
-similarity index 100%
-rename from components/image-controller/staging/manager_resources_patch.yaml
-rename to components/image-controller/staging/base/manager_resources_patch.yaml 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (2 lines)</summary>  
-<pre><code>  .<span class="hljs-regexp">/commit-1037cb45/</span>production<span class="hljs-regexp">/components/im</span>age-controller/production: kustomize.out.yaml
-.<span class="hljs-regexp">/commit-4ae52595/</span>production<span class="hljs-regexp">/components/im</span>age-controller/production: stone-prd-rh01 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Staging changes from 1037cb45 to 4ae52595 on Tue Apr 2 15:43:19 2024 </h3>  
-
-<details> 
-<summary>Git Diff (487 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/.tekton/image-controller-prod-overlay-update.yaml b/.tekton/image-controller-prod-overlay-update.yaml</span>
-<span class="hljs-comment">index 8d2b1560..6afd5433 100644</span>
-<span class="hljs-comment">--- a/.tekton/image-controller-prod-overlay-update.yaml</span>
-<span class="hljs-comment">+++ b/.tekton/image-controller-prod-overlay-update.yaml</span>
-<span class="hljs-meta">@@ -5,7 +5,7 @@</span> metadata:
-   namespace: tekton-ci
-   annotations:
-     pipelinesascode.tekton.dev/on-cel-expression: |
-<span class="hljs-deletion">-      event == &quot;push&quot; &amp;&amp; target_branch == &quot;main&quot; &amp;&amp; &quot;components/image-controller/staging/kustomization.yaml&quot;.pathChanged()</span>
-<span class="hljs-addition">+      event == &quot;push&quot; &amp;&amp; target_branch == &quot;main&quot; &amp;&amp; &quot;components/image-controller/staging/base/kustomization.yaml&quot;.pathChanged()</span>
-     pipelinesascode.tekton.dev/max-keep-runs: &quot;5&quot;
-     pipelinesascode.tekton.dev/task: &quot;[.tekton/tasks/promote-component.yaml]&quot;
- spec:
-<span class="hljs-meta">@@ -19,9 +19,9 @@</span> spec:
-             value: image-controller
-           - name: SCRIPT
-             value: |
-<span class="hljs-deletion">-              STAGE_SHA=$(grep -oE &#x27;[0-9a-f]{40}&#x27; components/image-controller/staging/kustomization.yaml -m1)</span>
-<span class="hljs-deletion">-              OLD_PROD_SHA=$(grep -oE &#x27;[0-9a-f]{40}&#x27; components/image-controller/production/kustomization.yaml -m1)</span>
-<span class="hljs-addition">+              STAGE_SHA=$(grep -oE &#x27;[0-9a-f]{40}&#x27; components/image-controller/staging/base/kustomization.yaml -m1)</span>
-<span class="hljs-addition">+              OLD_PROD_SHA=$(grep -oE &#x27;[0-9a-f]{40}&#x27; components/image-controller/production/base/kustomization.yaml -m1)</span>
-               echo &quot;Changing prod sha from ${OLD_PROD_SHA} to ${STAGE_SHA}&quot;
-<span class="hljs-deletion">-              sed -i &quot;s/$OLD_PROD_SHA/$STAGE_SHA/g&quot; components/image-controller/production/kustomization.yaml</span>
-<span class="hljs-addition">+              sed -i &quot;s/$OLD_PROD_SHA/$STAGE_SHA/g&quot; components/image-controller/production/base/kustomization.yaml</span>
-         taskRef:
-           name: promote-component
-<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml b/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml</span>
-<span class="hljs-comment">index e6c94450..aac75e1a 100644</span>
-<span class="hljs-comment">--- a/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml</span>
-<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml</span>
-<span class="hljs-meta">@@ -12,9 +12,11 @@</span> spec:
-               values:
-                 sourceRoot: components/image-controller
-                 environment: staging
-<span class="hljs-deletion">-                clusterDir: &quot;&quot;</span>
-<span class="hljs-addition">+                clusterDir: base</span>
-           - list:
-<span class="hljs-deletion">-              elements: []</span>
-<span class="hljs-addition">+              elements:</span>
-<span class="hljs-addition">+                - nameNormalized: stone-prd-rh01</span>
-<span class="hljs-addition">+                  values.clusterDir: stone-prd-rh01</span>
-   template:
-     metadata:
-       name: image-controller-{{nameNormalized}}
-<span class="hljs-comment">diff --git a/components/image-controller/production/kustomization.yaml b/components/image-controller/production/base/kustomization.yaml</span>
-similarity index 93%
-rename from components/image-controller/production/kustomization.yaml
-rename to components/image-controller/production/base/kustomization.yaml
-<span class="hljs-comment">index 38fba437..45aef0a2 100644</span>
-<span class="hljs-comment">--- a/components/image-controller/production/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -1,8 +1,8 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-- ../base</span>
-<span class="hljs-deletion">-- ../base/external-secrets</span>
-<span class="hljs-addition">+- ../../base</span>
-<span class="hljs-addition">+- ../../base/external-secrets</span>
- - https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
-
- images:
-<span class="hljs-comment">diff --git a/components/image-controller/production/manager_resources_patch.yaml b/components/image-controller/production/base/manager_resources_patch.yaml</span>
-similarity index 100%
-rename from components/image-controller/production/manager_resources_patch.yaml
-rename to components/image-controller/production/base/manager_resources_patch.yaml
-<span class="hljs-comment">diff --git a/components/image-controller/production/quaytoken.yaml b/components/image-controller/production/base/quaytoken.yaml</span>
-similarity index 100%
-rename from components/image-controller/production/quaytoken.yaml
-rename to components/image-controller/production/base/quaytoken.yaml
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/kustomization.yaml b/components/image-controller/production/stone-prd-rh01/kustomization.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..441e9e42</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/kustomization.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
-<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
-<span class="hljs-addition">+kind: Kustomization</span>
-<span class="hljs-addition">+resources:</span>
-<span class="hljs-addition">+- ../base</span>
-<span class="hljs-addition">+- ./resources</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py b/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..9edb43cf</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py</span>
-<span class="hljs-meta">@@ -0,0 +1,197 @@</span>
-<span class="hljs-addition">+import argparse</span>
-<span class="hljs-addition">+import itertools</span>
-<span class="hljs-addition">+import json</span>
-<span class="hljs-addition">+import logging</span>
-<span class="hljs-addition">+import os</span>
-<span class="hljs-addition">+import re</span>
-<span class="hljs-addition">+import time</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+from collections.abc import Iterator</span>
-<span class="hljs-addition">+from http.client import HTTPResponse</span>
-<span class="hljs-addition">+from typing import Any, Dict, List</span>
-<span class="hljs-addition">+from urllib.error import HTTPError</span>
-<span class="hljs-addition">+from urllib.parse import urlencode</span>
-<span class="hljs-addition">+from urllib.request import Request, urlopen</span>
-<span class="hljs-addition">+from datetime import datetime</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+logging.basicConfig(</span>
-<span class="hljs-addition">+    format=&quot;%(asctime)s - %(levelname)s - %(message)s&quot;, level=logging.INFO</span>
-<span class="hljs-addition">+)</span>
-<span class="hljs-addition">+LOGGER = logging.getLogger(__name__)</span>
-<span class="hljs-addition">+QUAY_API_URL = &quot;https://quay.io/api/v1&quot;</span>
-<span class="hljs-addition">+DAY_OLD_TS = int(datetime.now().timestamp()) - (60 * 60 * 24)</span>
-<span class="hljs-addition">+KEEP_MAX = 3</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+ImageRepo = Dict[str, Any]</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def get_quay_tags(quay_token: str, namespace: str, name: str) -&gt; ImageRepo:</span>
-<span class="hljs-addition">+    next_page = None</span>
-<span class="hljs-addition">+    resp: HTTPResponse</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    all_tags = []</span>
-<span class="hljs-addition">+    while True:</span>
-<span class="hljs-addition">+        query_args = {&quot;limit&quot;: 100, &quot;onlyActiveTags&quot;: True}</span>
-<span class="hljs-addition">+        if next_page is not None:</span>
-<span class="hljs-addition">+            query_args[&quot;page&quot;] = next_page</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        api_url = f&quot;{QUAY_API_URL}/repository/{namespace}/{name}/tag/?{urlencode(query_args)}&quot;</span>
-<span class="hljs-addition">+        request = Request(api_url, headers={</span>
-<span class="hljs-addition">+            &quot;Authorization&quot;: f&quot;Bearer {quay_token}&quot;,</span>
-<span class="hljs-addition">+        })</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        with urlopen(request) as resp:</span>
-<span class="hljs-addition">+            if resp.status != 200:</span>
-<span class="hljs-addition">+                raise RuntimeError(resp.reason)</span>
-<span class="hljs-addition">+            json_data = json.loads(resp.read())</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        tags = json_data.get(&quot;tags&quot;, [])</span>
-<span class="hljs-addition">+        all_tags.extend(tags)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        if not tags:</span>
-<span class="hljs-addition">+            LOGGER.debug(&quot;No tags found.&quot;)</span>
-<span class="hljs-addition">+            break</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        page = json_data.get(&quot;page&quot;, None)</span>
-<span class="hljs-addition">+        additional = json_data.get(&quot;has_additional&quot;, False)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        if additional:</span>
-<span class="hljs-addition">+            next_page = page + 1</span>
-<span class="hljs-addition">+        else:</span>
-<span class="hljs-addition">+            break</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    return all_tags</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def quay_test_token(quay_token: str, namespace: str) -&gt; None:</span>
-<span class="hljs-addition">+    api_url = f&quot;{QUAY_API_URL}/organization/{namespace}/applications&quot;</span>
-<span class="hljs-addition">+    request = Request(api_url, headers={</span>
-<span class="hljs-addition">+        &quot;Authorization&quot;: f&quot;Bearer {quay_token}&quot;,</span>
-<span class="hljs-addition">+    })</span>
-<span class="hljs-addition">+    try:</span>
-<span class="hljs-addition">+        urlopen(request)</span>
-<span class="hljs-addition">+    except HTTPError as ex:</span>
-<span class="hljs-addition">+        # if status is 401 that means that token is wrong</span>
-<span class="hljs-addition">+        if ex.status == 401:</span>
-<span class="hljs-addition">+            raise RuntimeError(&quot;Wrong quay token&quot;)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def delete_image_tag(quay_token: str, namespace: str, name: str, tag: str) -&gt; None:</span>
-<span class="hljs-addition">+    api_url = f&quot;{QUAY_API_URL}/repository/{namespace}/{name}/tag/{tag}&quot;</span>
-<span class="hljs-addition">+    request = Request(api_url, method=&quot;DELETE&quot;, headers={</span>
-<span class="hljs-addition">+        &quot;Authorization&quot;: f&quot;Bearer {quay_token}&quot;,</span>
-<span class="hljs-addition">+    })</span>
-<span class="hljs-addition">+    resp: HTTPResponse</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    while True:</span>
-<span class="hljs-addition">+        try:</span>
-<span class="hljs-addition">+            with urlopen(request) as resp:</span>
-<span class="hljs-addition">+                if resp.status != 200 and resp.status != 204 and resp.status != 404:</span>
-<span class="hljs-addition">+                    raise RuntimeError(resp.reason)</span>
-<span class="hljs-addition">+                else:</span>
-<span class="hljs-addition">+                    break</span>
-<span class="hljs-addition">+        except HTTPError as ex:</span>
-<span class="hljs-addition">+            LOGGER.info(&quot;HTTPError exception: %s&quot;, ex)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def remove_leftover_tags(tags: List[Dict[str, Any]], quay_token: str, namespace: str, name: str,</span>
-<span class="hljs-addition">+                         dry_run: bool = False) -&gt; None:</span>
-<span class="hljs-addition">+    tag_regex = re.compile(r&quot;^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig)$&quot;)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    # remove att/sbom/src/sig for which is missing manifest digest</span>
-<span class="hljs-addition">+    image_digests = [image[&quot;manifest_digest&quot;] for image in tags]</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    for tag in tags:</span>
-<span class="hljs-addition">+        if (match := tag_regex.match(tag[&quot;name&quot;])) is not None:</span>
-<span class="hljs-addition">+            if f&quot;sha256:{match.group(1)}&quot; not in image_digests:</span>
-<span class="hljs-addition">+                if dry_run:</span>
-<span class="hljs-addition">+                    LOGGER.info(&quot;Leftover image %s from %s/%s should be removed&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                else:</span>
-<span class="hljs-addition">+                    LOGGER.info(&quot;Removing leftover image %s from %s/%s&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                    delete_image_tag(quay_token, namespace, name, tag[&quot;name&quot;])</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def remove_tags(tags: List[Dict[str, Any]], quay_token: str, namespace: str, name: str,</span>
-<span class="hljs-addition">+                days_old: int, keep_max: int, dry_run: bool = False) -&gt; None:</span>
-<span class="hljs-addition">+    unique_names = {}</span>
-<span class="hljs-addition">+    removed_digests = []</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    # first remove only named tags</span>
-<span class="hljs-addition">+    for tag in tags:</span>
-<span class="hljs-addition">+        # skip att/sbom/src/sig</span>
-<span class="hljs-addition">+        if tag[&quot;name&quot;].startswith(&quot;sha256-&quot;) or &quot;-&quot; not in tag[&quot;name&quot;]:</span>
-<span class="hljs-addition">+            continue</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        tag_name, _ = tag[&quot;name&quot;].rsplit(&#x27;-&#x27;, 1)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        count = unique_names.get(tag_name, 0)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        # keep at least first x per tag name</span>
-<span class="hljs-addition">+        if count &lt; keep_max:</span>
-<span class="hljs-addition">+            unique_names[tag_name] = count + 1</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        # remove older than x</span>
-<span class="hljs-addition">+        elif tag[&quot;start_ts&quot;] &lt; days_old:</span>
-<span class="hljs-addition">+            if dry_run:</span>
-<span class="hljs-addition">+                LOGGER.info(&quot;Image %s from %s/%s should be removed&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                removed_digests.append(tag[&quot;manifest_digest&quot;])</span>
-<span class="hljs-addition">+            else:</span>
-<span class="hljs-addition">+                LOGGER.info(&quot;Removing image %s from %s/%s&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                delete_image_tag(quay_token, namespace, name, tag[&quot;name&quot;])</span>
-<span class="hljs-addition">+                removed_digests.append(tag[&quot;manifest_digest&quot;])</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    tag_regex = re.compile(r&quot;^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig)$&quot;)</span>
-<span class="hljs-addition">+    # when named tags are removed, remove obsolete sbom/att/src</span>
-<span class="hljs-addition">+    for tag in tags:</span>
-<span class="hljs-addition">+        if (match := tag_regex.match(tag[&quot;name&quot;])) is not None:</span>
-<span class="hljs-addition">+            if f&quot;sha256:{match.group(1)}&quot; in removed_digests:</span>
-<span class="hljs-addition">+                if dry_run:</span>
-<span class="hljs-addition">+                    LOGGER.info(&quot;Image %s from %s/%s should be removed&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                else:</span>
-<span class="hljs-addition">+                    LOGGER.info(&quot;Removing image %s from %s/%s&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                    delete_image_tag(quay_token, namespace, name, tag[&quot;name&quot;])</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def process_repository(quay_token: str, namespace: str, repo_name: str, days_old: int,</span>
-<span class="hljs-addition">+                       keep_max: int, dry_run: bool = False) -&gt; None:</span>
-<span class="hljs-addition">+    LOGGER.info(&quot;Processing repository: %s/%s&quot;, namespace, repo_name)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    quay_test_token(quay_token, namespace)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    all_tags = get_quay_tags(quay_token, namespace, repo_name)</span>
-<span class="hljs-addition">+    LOGGER.info(&quot;Tag count in repository: %s&quot;, len(all_tags))</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    if all_tags:</span>
-<span class="hljs-addition">+        remove_tags(all_tags, quay_token, namespace, repo_name, days_old, keep_max, dry_run=dry_run)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    all_tags = get_quay_tags(quay_token, namespace, repo_name)</span>
-<span class="hljs-addition">+    LOGGER.info(&quot;Tag count in repository: %s&quot;, len(all_tags))</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    if all_tags:</span>
-<span class="hljs-addition">+        remove_leftover_tags(all_tags, quay_token, namespace, repo_name, dry_run=dry_run)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def main():</span>
-<span class="hljs-addition">+    token = os.getenv(&quot;QUAY_TOKEN&quot;)</span>
-<span class="hljs-addition">+    if not token:</span>
-<span class="hljs-addition">+        raise ValueError(&quot;The token required for access to Quay API is missing!&quot;)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    args = parse_args()</span>
-<span class="hljs-addition">+    process_repository(token, args.namespace, args.repo_name, days_old=args.old_days,</span>
-<span class="hljs-addition">+                       keep_max=args.keep_max, dry_run=args.dry_run)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def parse_args():</span>
-<span class="hljs-addition">+    parser = argparse.ArgumentParser()</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--namespace&quot;, required=True)</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--repo-name&quot;, required=True)</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--dry-run&quot;, action=&quot;store_true&quot;)</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--old-days&quot;, type=int, default=DAY_OLD_TS)</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--keep-max&quot;, type=int, default=KEEP_MAX)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    args = parser.parse_args()</span>
-<span class="hljs-addition">+    return args</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+if __name__ == &quot;__main__&quot;:</span>
-<span class="hljs-addition">+    main()</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..72dd7f0c</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
-<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
-<span class="hljs-addition">+kind: Kustomization</span>
-<span class="hljs-addition">+resources:</span>
-<span class="hljs-addition">+- redhat-appstudio-pr-token.yaml</span>
-<span class="hljs-addition">+- redhat-appstudio-tekton-catalog-pr-token.yaml</span>
-<span class="hljs-addition">+- redhat-appstudio-pr-cronjob.yaml</span>
-<span class="hljs-addition">+- redhat-appstudio-tekton-catalog-pr-cronjob.yaml</span>
-<span class="hljs-addition">+configMapGenerator:</span>
-<span class="hljs-addition">+- name: single-image-pruner-configmap</span>
-<span class="hljs-addition">+  files:</span>
-<span class="hljs-addition">+  - image_pruner/prune_images.py</span>
-<span class="hljs-addition">+namespace: image-controller</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..6a44e8f1</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,47 @@</span>
-<span class="hljs-addition">+apiVersion: batch/v1</span>
-<span class="hljs-addition">+kind: CronJob</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: redhat-appstudio-pr-cronjob</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  schedule: &quot;0 0 * * *&quot;</span>
-<span class="hljs-addition">+  concurrencyPolicy: Forbid</span>
-<span class="hljs-addition">+  jobTemplate:</span>
-<span class="hljs-addition">+    spec:</span>
-<span class="hljs-addition">+      template:</span>
-<span class="hljs-addition">+        spec:</span>
-<span class="hljs-addition">+          containers:</span>
-<span class="hljs-addition">+          - name: redhat-appstudio-pr-pruner</span>
-<span class="hljs-addition">+            image: registry.redhat.io/rhel8/python-39:1-120.1684740828</span>
-<span class="hljs-addition">+            env:</span>
-<span class="hljs-addition">+              - name: QUAY_TOKEN</span>
-<span class="hljs-addition">+                valueFrom:</span>
-<span class="hljs-addition">+                  secretKeyRef:</span>
-<span class="hljs-addition">+                    name: redhat-appstudio-pr-token</span>
-<span class="hljs-addition">+                    key: quaytoken</span>
-<span class="hljs-addition">+            imagePullPolicy: IfNotPresent</span>
-<span class="hljs-addition">+            command:</span>
-<span class="hljs-addition">+              - /bin/bash</span>
-<span class="hljs-addition">+              - &#x27;-c&#x27;</span>
-<span class="hljs-addition">+              - python /image-pruner/prune_images.py --namespace=redhat-appstudio --repo-name=pull-request-builds</span>
-<span class="hljs-addition">+            volumeMounts:</span>
-<span class="hljs-addition">+              - name: redhat-appstudio-pr-volume</span>
-<span class="hljs-addition">+                mountPath: /image-pruner</span>
-<span class="hljs-addition">+            resources:</span>
-<span class="hljs-addition">+              limits:</span>
-<span class="hljs-addition">+                cpu: 500m</span>
-<span class="hljs-addition">+                memory: 512Mi</span>
-<span class="hljs-addition">+              requests:</span>
-<span class="hljs-addition">+                cpu: 150m</span>
-<span class="hljs-addition">+                memory: 128Mi</span>
-<span class="hljs-addition">+            securityContext:</span>
-<span class="hljs-addition">+              readOnlyRootFilesystem: true</span>
-<span class="hljs-addition">+          restartPolicy: OnFailure</span>
-<span class="hljs-addition">+          securityContext:</span>
-<span class="hljs-addition">+            runAsNonRoot: true</span>
-<span class="hljs-addition">+          volumes:</span>
-<span class="hljs-addition">+            - name: redhat-appstudio-pr-volume</span>
-<span class="hljs-addition">+              configMap:</span>
-<span class="hljs-addition">+                name: single-image-pruner-configmap</span>
-<span class="hljs-addition">+            - name: redhat-appstudio-pr-token</span>
-<span class="hljs-addition">+              secret:</span>
-<span class="hljs-addition">+                secretName: redhat-appstudio-pr-token</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..ea74c682</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: redhat-appstudio-pr-token</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: production/build/redhat-appstudio-pr-token</span>
-<span class="hljs-addition">+  refreshInterval: 20h</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: redhat-appstudio-pr-token</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..b1d888b7</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,47 @@</span>
-<span class="hljs-addition">+apiVersion: batch/v1</span>
-<span class="hljs-addition">+kind: CronJob</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: redhat-appstudio-tekton-catalog-pr-cronjob</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  schedule: &quot;0 1 * * *&quot;</span>
-<span class="hljs-addition">+  concurrencyPolicy: Forbid</span>
-<span class="hljs-addition">+  jobTemplate:</span>
-<span class="hljs-addition">+    spec:</span>
-<span class="hljs-addition">+      template:</span>
-<span class="hljs-addition">+        spec:</span>
-<span class="hljs-addition">+          containers:</span>
-<span class="hljs-addition">+          - name: redhat-appstudio-tekton-catalog-pr-pruner</span>
-<span class="hljs-addition">+            image: registry.redhat.io/rhel8/python-39:1-120.1684740828</span>
-<span class="hljs-addition">+            env:</span>
-<span class="hljs-addition">+              - name: QUAY_TOKEN</span>
-<span class="hljs-addition">+                valueFrom:</span>
-<span class="hljs-addition">+                  secretKeyRef:</span>
-<span class="hljs-addition">+                    name: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-addition">+                    key: quaytoken</span>
-<span class="hljs-addition">+            imagePullPolicy: IfNotPresent</span>
-<span class="hljs-addition">+            command:</span>
-<span class="hljs-addition">+              - /bin/bash</span>
-<span class="hljs-addition">+              - &#x27;-c&#x27;</span>
-<span class="hljs-addition">+              - python /image-pruner/prune_images.py --namespace=redhat-appstudio-tekton-catalog --repo-name=pull-request-builds</span>
-<span class="hljs-addition">+            volumeMounts:</span>
-<span class="hljs-addition">+              - name: redhat-appstudio-tekton-catalog-pr-volume</span>
-<span class="hljs-addition">+                mountPath: /image-pruner</span>
-<span class="hljs-addition">+            resources:</span>
-<span class="hljs-addition">+              limits:</span>
-<span class="hljs-addition">+                cpu: 500m</span>
-<span class="hljs-addition">+                memory: 512Mi</span>
-<span class="hljs-addition">+              requests:</span>
-<span class="hljs-addition">+                cpu: 150m</span>
-<span class="hljs-addition">+                memory: 128Mi</span>
-<span class="hljs-addition">+            securityContext:</span>
-<span class="hljs-addition">+              readOnlyRootFilesystem: true</span>
-<span class="hljs-addition">+          restartPolicy: OnFailure</span>
-<span class="hljs-addition">+          securityContext:</span>
-<span class="hljs-addition">+            runAsNonRoot: true</span>
-<span class="hljs-addition">+          volumes:</span>
-<span class="hljs-addition">+            - name: redhat-appstudio-tekton-catalog-pr-volume</span>
-<span class="hljs-addition">+              configMap:</span>
-<span class="hljs-addition">+                name: single-image-pruner-configmap</span>
-<span class="hljs-addition">+            - name: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-addition">+              secret:</span>
-<span class="hljs-addition">+                secretName: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..4a75be79</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: production/build/redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-addition">+  refreshInterval: 20h</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-comment">diff --git a/components/image-controller/staging/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml</span>
-similarity index 82%
-rename from components/image-controller/staging/kustomization.yaml
-rename to components/image-controller/staging/base/kustomization.yaml
-<span class="hljs-comment">index db906be6..5c039c43 100644</span>
-<span class="hljs-comment">--- a/components/image-controller/staging/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/image-controller/staging/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -1,8 +1,8 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-- ../base</span>
-<span class="hljs-deletion">-- ../base/external-secrets</span>
-<span class="hljs-addition">+- ../../base</span>
-<span class="hljs-addition">+- ../../base/external-secrets</span>
- - https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
-
- images:
-<span class="hljs-meta">@@ -13,4 +13,4 @@</span> images:
- namespace: image-controller
-
- patches:
-<span class="hljs-deletion">-  - path: ./manager_resources_patch.yaml</span>
-\ No newline at end of file
-<span class="hljs-addition">+  - path: ./manager_resources_patch.yaml</span>
-<span class="hljs-comment">diff --git a/components/image-controller/staging/manager_resources_patch.yaml b/components/image-controller/staging/base/manager_resources_patch.yaml</span>
-similarity index 100%
-rename from components/image-controller/staging/manager_resources_patch.yaml
-rename to components/image-controller/staging/base/manager_resources_patch.yaml 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (1 lines)</summary>  
-<pre><code>  ./commit-1037cb45/staging/components: image-controller 
-</code></pre>
-
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-<pre><code>  <span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found!
-<span class="hljs-attribute">KubeLinter</span> v0.<span class="hljs-number">6</span>.<span class="hljs-number">1</span>-<span class="hljs-number">0</span>-gc6177366a3
-
-<span class="hljs-attribute">No</span> lint errors found! 
-</code></pre>
-
-</details> 
-<br> 
-
-
-</div>
-<div>
-<h3>4: Development changes from 1037cb45 to 4ae52595 on Tue Apr 2 15:43:19 2024 </h3>  
-
-<details> 
-<summary>Git Diff (487 lines)</summary>  
-<pre><code>  <span class="hljs-comment">diff --git a/.tekton/image-controller-prod-overlay-update.yaml b/.tekton/image-controller-prod-overlay-update.yaml</span>
-<span class="hljs-comment">index 8d2b1560..6afd5433 100644</span>
-<span class="hljs-comment">--- a/.tekton/image-controller-prod-overlay-update.yaml</span>
-<span class="hljs-comment">+++ b/.tekton/image-controller-prod-overlay-update.yaml</span>
-<span class="hljs-meta">@@ -5,7 +5,7 @@</span> metadata:
-   namespace: tekton-ci
-   annotations:
-     pipelinesascode.tekton.dev/on-cel-expression: |
-<span class="hljs-deletion">-      event == &quot;push&quot; &amp;&amp; target_branch == &quot;main&quot; &amp;&amp; &quot;components/image-controller/staging/kustomization.yaml&quot;.pathChanged()</span>
-<span class="hljs-addition">+      event == &quot;push&quot; &amp;&amp; target_branch == &quot;main&quot; &amp;&amp; &quot;components/image-controller/staging/base/kustomization.yaml&quot;.pathChanged()</span>
-     pipelinesascode.tekton.dev/max-keep-runs: &quot;5&quot;
-     pipelinesascode.tekton.dev/task: &quot;[.tekton/tasks/promote-component.yaml]&quot;
- spec:
-<span class="hljs-meta">@@ -19,9 +19,9 @@</span> spec:
-             value: image-controller
-           - name: SCRIPT
-             value: |
-<span class="hljs-deletion">-              STAGE_SHA=$(grep -oE &#x27;[0-9a-f]{40}&#x27; components/image-controller/staging/kustomization.yaml -m1)</span>
-<span class="hljs-deletion">-              OLD_PROD_SHA=$(grep -oE &#x27;[0-9a-f]{40}&#x27; components/image-controller/production/kustomization.yaml -m1)</span>
-<span class="hljs-addition">+              STAGE_SHA=$(grep -oE &#x27;[0-9a-f]{40}&#x27; components/image-controller/staging/base/kustomization.yaml -m1)</span>
-<span class="hljs-addition">+              OLD_PROD_SHA=$(grep -oE &#x27;[0-9a-f]{40}&#x27; components/image-controller/production/base/kustomization.yaml -m1)</span>
-               echo &quot;Changing prod sha from ${OLD_PROD_SHA} to ${STAGE_SHA}&quot;
-<span class="hljs-deletion">-              sed -i &quot;s/$OLD_PROD_SHA/$STAGE_SHA/g&quot; components/image-controller/production/kustomization.yaml</span>
-<span class="hljs-addition">+              sed -i &quot;s/$OLD_PROD_SHA/$STAGE_SHA/g&quot; components/image-controller/production/base/kustomization.yaml</span>
-         taskRef:
-           name: promote-component
-<span class="hljs-comment">diff --git a/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml b/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml</span>
-<span class="hljs-comment">index e6c94450..aac75e1a 100644</span>
-<span class="hljs-comment">--- a/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml</span>
-<span class="hljs-comment">+++ b/argo-cd-apps/base/member/infra-deployments/image-controller/image-controller.yaml</span>
-<span class="hljs-meta">@@ -12,9 +12,11 @@</span> spec:
-               values:
-                 sourceRoot: components/image-controller
-                 environment: staging
-<span class="hljs-deletion">-                clusterDir: &quot;&quot;</span>
-<span class="hljs-addition">+                clusterDir: base</span>
-           - list:
-<span class="hljs-deletion">-              elements: []</span>
-<span class="hljs-addition">+              elements:</span>
-<span class="hljs-addition">+                - nameNormalized: stone-prd-rh01</span>
-<span class="hljs-addition">+                  values.clusterDir: stone-prd-rh01</span>
-   template:
-     metadata:
-       name: image-controller-{{nameNormalized}}
-<span class="hljs-comment">diff --git a/components/image-controller/production/kustomization.yaml b/components/image-controller/production/base/kustomization.yaml</span>
-similarity index 93%
-rename from components/image-controller/production/kustomization.yaml
-rename to components/image-controller/production/base/kustomization.yaml
-<span class="hljs-comment">index 38fba437..45aef0a2 100644</span>
-<span class="hljs-comment">--- a/components/image-controller/production/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -1,8 +1,8 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-- ../base</span>
-<span class="hljs-deletion">-- ../base/external-secrets</span>
-<span class="hljs-addition">+- ../../base</span>
-<span class="hljs-addition">+- ../../base/external-secrets</span>
- - https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
-
- images:
-<span class="hljs-comment">diff --git a/components/image-controller/production/manager_resources_patch.yaml b/components/image-controller/production/base/manager_resources_patch.yaml</span>
-similarity index 100%
-rename from components/image-controller/production/manager_resources_patch.yaml
-rename to components/image-controller/production/base/manager_resources_patch.yaml
-<span class="hljs-comment">diff --git a/components/image-controller/production/quaytoken.yaml b/components/image-controller/production/base/quaytoken.yaml</span>
-similarity index 100%
-rename from components/image-controller/production/quaytoken.yaml
-rename to components/image-controller/production/base/quaytoken.yaml
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/kustomization.yaml b/components/image-controller/production/stone-prd-rh01/kustomization.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..441e9e42</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/kustomization.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,5 @@</span>
-<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
-<span class="hljs-addition">+kind: Kustomization</span>
-<span class="hljs-addition">+resources:</span>
-<span class="hljs-addition">+- ../base</span>
-<span class="hljs-addition">+- ./resources</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py b/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..9edb43cf</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/image_pruner/prune_images.py</span>
-<span class="hljs-meta">@@ -0,0 +1,197 @@</span>
-<span class="hljs-addition">+import argparse</span>
-<span class="hljs-addition">+import itertools</span>
-<span class="hljs-addition">+import json</span>
-<span class="hljs-addition">+import logging</span>
-<span class="hljs-addition">+import os</span>
-<span class="hljs-addition">+import re</span>
-<span class="hljs-addition">+import time</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+from collections.abc import Iterator</span>
-<span class="hljs-addition">+from http.client import HTTPResponse</span>
-<span class="hljs-addition">+from typing import Any, Dict, List</span>
-<span class="hljs-addition">+from urllib.error import HTTPError</span>
-<span class="hljs-addition">+from urllib.parse import urlencode</span>
-<span class="hljs-addition">+from urllib.request import Request, urlopen</span>
-<span class="hljs-addition">+from datetime import datetime</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+logging.basicConfig(</span>
-<span class="hljs-addition">+    format=&quot;%(asctime)s - %(levelname)s - %(message)s&quot;, level=logging.INFO</span>
-<span class="hljs-addition">+)</span>
-<span class="hljs-addition">+LOGGER = logging.getLogger(__name__)</span>
-<span class="hljs-addition">+QUAY_API_URL = &quot;https://quay.io/api/v1&quot;</span>
-<span class="hljs-addition">+DAY_OLD_TS = int(datetime.now().timestamp()) - (60 * 60 * 24)</span>
-<span class="hljs-addition">+KEEP_MAX = 3</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+ImageRepo = Dict[str, Any]</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def get_quay_tags(quay_token: str, namespace: str, name: str) -&gt; ImageRepo:</span>
-<span class="hljs-addition">+    next_page = None</span>
-<span class="hljs-addition">+    resp: HTTPResponse</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    all_tags = []</span>
-<span class="hljs-addition">+    while True:</span>
-<span class="hljs-addition">+        query_args = {&quot;limit&quot;: 100, &quot;onlyActiveTags&quot;: True}</span>
-<span class="hljs-addition">+        if next_page is not None:</span>
-<span class="hljs-addition">+            query_args[&quot;page&quot;] = next_page</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        api_url = f&quot;{QUAY_API_URL}/repository/{namespace}/{name}/tag/?{urlencode(query_args)}&quot;</span>
-<span class="hljs-addition">+        request = Request(api_url, headers={</span>
-<span class="hljs-addition">+            &quot;Authorization&quot;: f&quot;Bearer {quay_token}&quot;,</span>
-<span class="hljs-addition">+        })</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        with urlopen(request) as resp:</span>
-<span class="hljs-addition">+            if resp.status != 200:</span>
-<span class="hljs-addition">+                raise RuntimeError(resp.reason)</span>
-<span class="hljs-addition">+            json_data = json.loads(resp.read())</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        tags = json_data.get(&quot;tags&quot;, [])</span>
-<span class="hljs-addition">+        all_tags.extend(tags)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        if not tags:</span>
-<span class="hljs-addition">+            LOGGER.debug(&quot;No tags found.&quot;)</span>
-<span class="hljs-addition">+            break</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        page = json_data.get(&quot;page&quot;, None)</span>
-<span class="hljs-addition">+        additional = json_data.get(&quot;has_additional&quot;, False)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        if additional:</span>
-<span class="hljs-addition">+            next_page = page + 1</span>
-<span class="hljs-addition">+        else:</span>
-<span class="hljs-addition">+            break</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    return all_tags</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def quay_test_token(quay_token: str, namespace: str) -&gt; None:</span>
-<span class="hljs-addition">+    api_url = f&quot;{QUAY_API_URL}/organization/{namespace}/applications&quot;</span>
-<span class="hljs-addition">+    request = Request(api_url, headers={</span>
-<span class="hljs-addition">+        &quot;Authorization&quot;: f&quot;Bearer {quay_token}&quot;,</span>
-<span class="hljs-addition">+    })</span>
-<span class="hljs-addition">+    try:</span>
-<span class="hljs-addition">+        urlopen(request)</span>
-<span class="hljs-addition">+    except HTTPError as ex:</span>
-<span class="hljs-addition">+        # if status is 401 that means that token is wrong</span>
-<span class="hljs-addition">+        if ex.status == 401:</span>
-<span class="hljs-addition">+            raise RuntimeError(&quot;Wrong quay token&quot;)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def delete_image_tag(quay_token: str, namespace: str, name: str, tag: str) -&gt; None:</span>
-<span class="hljs-addition">+    api_url = f&quot;{QUAY_API_URL}/repository/{namespace}/{name}/tag/{tag}&quot;</span>
-<span class="hljs-addition">+    request = Request(api_url, method=&quot;DELETE&quot;, headers={</span>
-<span class="hljs-addition">+        &quot;Authorization&quot;: f&quot;Bearer {quay_token}&quot;,</span>
-<span class="hljs-addition">+    })</span>
-<span class="hljs-addition">+    resp: HTTPResponse</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    while True:</span>
-<span class="hljs-addition">+        try:</span>
-<span class="hljs-addition">+            with urlopen(request) as resp:</span>
-<span class="hljs-addition">+                if resp.status != 200 and resp.status != 204 and resp.status != 404:</span>
-<span class="hljs-addition">+                    raise RuntimeError(resp.reason)</span>
-<span class="hljs-addition">+                else:</span>
-<span class="hljs-addition">+                    break</span>
-<span class="hljs-addition">+        except HTTPError as ex:</span>
-<span class="hljs-addition">+            LOGGER.info(&quot;HTTPError exception: %s&quot;, ex)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def remove_leftover_tags(tags: List[Dict[str, Any]], quay_token: str, namespace: str, name: str,</span>
-<span class="hljs-addition">+                         dry_run: bool = False) -&gt; None:</span>
-<span class="hljs-addition">+    tag_regex = re.compile(r&quot;^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig)$&quot;)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    # remove att/sbom/src/sig for which is missing manifest digest</span>
-<span class="hljs-addition">+    image_digests = [image[&quot;manifest_digest&quot;] for image in tags]</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    for tag in tags:</span>
-<span class="hljs-addition">+        if (match := tag_regex.match(tag[&quot;name&quot;])) is not None:</span>
-<span class="hljs-addition">+            if f&quot;sha256:{match.group(1)}&quot; not in image_digests:</span>
-<span class="hljs-addition">+                if dry_run:</span>
-<span class="hljs-addition">+                    LOGGER.info(&quot;Leftover image %s from %s/%s should be removed&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                else:</span>
-<span class="hljs-addition">+                    LOGGER.info(&quot;Removing leftover image %s from %s/%s&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                    delete_image_tag(quay_token, namespace, name, tag[&quot;name&quot;])</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def remove_tags(tags: List[Dict[str, Any]], quay_token: str, namespace: str, name: str,</span>
-<span class="hljs-addition">+                days_old: int, keep_max: int, dry_run: bool = False) -&gt; None:</span>
-<span class="hljs-addition">+    unique_names = {}</span>
-<span class="hljs-addition">+    removed_digests = []</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    # first remove only named tags</span>
-<span class="hljs-addition">+    for tag in tags:</span>
-<span class="hljs-addition">+        # skip att/sbom/src/sig</span>
-<span class="hljs-addition">+        if tag[&quot;name&quot;].startswith(&quot;sha256-&quot;) or &quot;-&quot; not in tag[&quot;name&quot;]:</span>
-<span class="hljs-addition">+            continue</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        tag_name, _ = tag[&quot;name&quot;].rsplit(&#x27;-&#x27;, 1)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        count = unique_names.get(tag_name, 0)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        # keep at least first x per tag name</span>
-<span class="hljs-addition">+        if count &lt; keep_max:</span>
-<span class="hljs-addition">+            unique_names[tag_name] = count + 1</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+        # remove older than x</span>
-<span class="hljs-addition">+        elif tag[&quot;start_ts&quot;] &lt; days_old:</span>
-<span class="hljs-addition">+            if dry_run:</span>
-<span class="hljs-addition">+                LOGGER.info(&quot;Image %s from %s/%s should be removed&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                removed_digests.append(tag[&quot;manifest_digest&quot;])</span>
-<span class="hljs-addition">+            else:</span>
-<span class="hljs-addition">+                LOGGER.info(&quot;Removing image %s from %s/%s&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                delete_image_tag(quay_token, namespace, name, tag[&quot;name&quot;])</span>
-<span class="hljs-addition">+                removed_digests.append(tag[&quot;manifest_digest&quot;])</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    tag_regex = re.compile(r&quot;^sha256-([0-9a-f]+)(\.sbom|\.att|\.src|\.sig)$&quot;)</span>
-<span class="hljs-addition">+    # when named tags are removed, remove obsolete sbom/att/src</span>
-<span class="hljs-addition">+    for tag in tags:</span>
-<span class="hljs-addition">+        if (match := tag_regex.match(tag[&quot;name&quot;])) is not None:</span>
-<span class="hljs-addition">+            if f&quot;sha256:{match.group(1)}&quot; in removed_digests:</span>
-<span class="hljs-addition">+                if dry_run:</span>
-<span class="hljs-addition">+                    LOGGER.info(&quot;Image %s from %s/%s should be removed&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                else:</span>
-<span class="hljs-addition">+                    LOGGER.info(&quot;Removing image %s from %s/%s&quot;, tag[&quot;name&quot;], namespace, name)</span>
-<span class="hljs-addition">+                    delete_image_tag(quay_token, namespace, name, tag[&quot;name&quot;])</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def process_repository(quay_token: str, namespace: str, repo_name: str, days_old: int,</span>
-<span class="hljs-addition">+                       keep_max: int, dry_run: bool = False) -&gt; None:</span>
-<span class="hljs-addition">+    LOGGER.info(&quot;Processing repository: %s/%s&quot;, namespace, repo_name)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    quay_test_token(quay_token, namespace)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    all_tags = get_quay_tags(quay_token, namespace, repo_name)</span>
-<span class="hljs-addition">+    LOGGER.info(&quot;Tag count in repository: %s&quot;, len(all_tags))</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    if all_tags:</span>
-<span class="hljs-addition">+        remove_tags(all_tags, quay_token, namespace, repo_name, days_old, keep_max, dry_run=dry_run)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    all_tags = get_quay_tags(quay_token, namespace, repo_name)</span>
-<span class="hljs-addition">+    LOGGER.info(&quot;Tag count in repository: %s&quot;, len(all_tags))</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    if all_tags:</span>
-<span class="hljs-addition">+        remove_leftover_tags(all_tags, quay_token, namespace, repo_name, dry_run=dry_run)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def main():</span>
-<span class="hljs-addition">+    token = os.getenv(&quot;QUAY_TOKEN&quot;)</span>
-<span class="hljs-addition">+    if not token:</span>
-<span class="hljs-addition">+        raise ValueError(&quot;The token required for access to Quay API is missing!&quot;)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    args = parse_args()</span>
-<span class="hljs-addition">+    process_repository(token, args.namespace, args.repo_name, days_old=args.old_days,</span>
-<span class="hljs-addition">+                       keep_max=args.keep_max, dry_run=args.dry_run)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+def parse_args():</span>
-<span class="hljs-addition">+    parser = argparse.ArgumentParser()</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--namespace&quot;, required=True)</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--repo-name&quot;, required=True)</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--dry-run&quot;, action=&quot;store_true&quot;)</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--old-days&quot;, type=int, default=DAY_OLD_TS)</span>
-<span class="hljs-addition">+    parser.add_argument(&quot;--keep-max&quot;, type=int, default=KEEP_MAX)</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+    args = parser.parse_args()</span>
-<span class="hljs-addition">+    return args</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+</span>
-<span class="hljs-addition">+if __name__ == &quot;__main__&quot;:</span>
-<span class="hljs-addition">+    main()</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..72dd7f0c</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/kustomization.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,12 @@</span>
-<span class="hljs-addition">+apiVersion: kustomize.config.k8s.io/v1beta1</span>
-<span class="hljs-addition">+kind: Kustomization</span>
-<span class="hljs-addition">+resources:</span>
-<span class="hljs-addition">+- redhat-appstudio-pr-token.yaml</span>
-<span class="hljs-addition">+- redhat-appstudio-tekton-catalog-pr-token.yaml</span>
-<span class="hljs-addition">+- redhat-appstudio-pr-cronjob.yaml</span>
-<span class="hljs-addition">+- redhat-appstudio-tekton-catalog-pr-cronjob.yaml</span>
-<span class="hljs-addition">+configMapGenerator:</span>
-<span class="hljs-addition">+- name: single-image-pruner-configmap</span>
-<span class="hljs-addition">+  files:</span>
-<span class="hljs-addition">+  - image_pruner/prune_images.py</span>
-<span class="hljs-addition">+namespace: image-controller</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..6a44e8f1</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-cronjob.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,47 @@</span>
-<span class="hljs-addition">+apiVersion: batch/v1</span>
-<span class="hljs-addition">+kind: CronJob</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: redhat-appstudio-pr-cronjob</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  schedule: &quot;0 0 * * *&quot;</span>
-<span class="hljs-addition">+  concurrencyPolicy: Forbid</span>
-<span class="hljs-addition">+  jobTemplate:</span>
-<span class="hljs-addition">+    spec:</span>
-<span class="hljs-addition">+      template:</span>
-<span class="hljs-addition">+        spec:</span>
-<span class="hljs-addition">+          containers:</span>
-<span class="hljs-addition">+          - name: redhat-appstudio-pr-pruner</span>
-<span class="hljs-addition">+            image: registry.redhat.io/rhel8/python-39:1-120.1684740828</span>
-<span class="hljs-addition">+            env:</span>
-<span class="hljs-addition">+              - name: QUAY_TOKEN</span>
-<span class="hljs-addition">+                valueFrom:</span>
-<span class="hljs-addition">+                  secretKeyRef:</span>
-<span class="hljs-addition">+                    name: redhat-appstudio-pr-token</span>
-<span class="hljs-addition">+                    key: quaytoken</span>
-<span class="hljs-addition">+            imagePullPolicy: IfNotPresent</span>
-<span class="hljs-addition">+            command:</span>
-<span class="hljs-addition">+              - /bin/bash</span>
-<span class="hljs-addition">+              - &#x27;-c&#x27;</span>
-<span class="hljs-addition">+              - python /image-pruner/prune_images.py --namespace=redhat-appstudio --repo-name=pull-request-builds</span>
-<span class="hljs-addition">+            volumeMounts:</span>
-<span class="hljs-addition">+              - name: redhat-appstudio-pr-volume</span>
-<span class="hljs-addition">+                mountPath: /image-pruner</span>
-<span class="hljs-addition">+            resources:</span>
-<span class="hljs-addition">+              limits:</span>
-<span class="hljs-addition">+                cpu: 500m</span>
-<span class="hljs-addition">+                memory: 512Mi</span>
-<span class="hljs-addition">+              requests:</span>
-<span class="hljs-addition">+                cpu: 150m</span>
-<span class="hljs-addition">+                memory: 128Mi</span>
-<span class="hljs-addition">+            securityContext:</span>
-<span class="hljs-addition">+              readOnlyRootFilesystem: true</span>
-<span class="hljs-addition">+          restartPolicy: OnFailure</span>
-<span class="hljs-addition">+          securityContext:</span>
-<span class="hljs-addition">+            runAsNonRoot: true</span>
-<span class="hljs-addition">+          volumes:</span>
-<span class="hljs-addition">+            - name: redhat-appstudio-pr-volume</span>
-<span class="hljs-addition">+              configMap:</span>
-<span class="hljs-addition">+                name: single-image-pruner-configmap</span>
-<span class="hljs-addition">+            - name: redhat-appstudio-pr-token</span>
-<span class="hljs-addition">+              secret:</span>
-<span class="hljs-addition">+                secretName: redhat-appstudio-pr-token</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..ea74c682</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-pr-token.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: redhat-appstudio-pr-token</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: production/build/redhat-appstudio-pr-token</span>
-<span class="hljs-addition">+  refreshInterval: 20h</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: redhat-appstudio-pr-token</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..b1d888b7</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-cronjob.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,47 @@</span>
-<span class="hljs-addition">+apiVersion: batch/v1</span>
-<span class="hljs-addition">+kind: CronJob</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: redhat-appstudio-tekton-catalog-pr-cronjob</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  schedule: &quot;0 1 * * *&quot;</span>
-<span class="hljs-addition">+  concurrencyPolicy: Forbid</span>
-<span class="hljs-addition">+  jobTemplate:</span>
-<span class="hljs-addition">+    spec:</span>
-<span class="hljs-addition">+      template:</span>
-<span class="hljs-addition">+        spec:</span>
-<span class="hljs-addition">+          containers:</span>
-<span class="hljs-addition">+          - name: redhat-appstudio-tekton-catalog-pr-pruner</span>
-<span class="hljs-addition">+            image: registry.redhat.io/rhel8/python-39:1-120.1684740828</span>
-<span class="hljs-addition">+            env:</span>
-<span class="hljs-addition">+              - name: QUAY_TOKEN</span>
-<span class="hljs-addition">+                valueFrom:</span>
-<span class="hljs-addition">+                  secretKeyRef:</span>
-<span class="hljs-addition">+                    name: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-addition">+                    key: quaytoken</span>
-<span class="hljs-addition">+            imagePullPolicy: IfNotPresent</span>
-<span class="hljs-addition">+            command:</span>
-<span class="hljs-addition">+              - /bin/bash</span>
-<span class="hljs-addition">+              - &#x27;-c&#x27;</span>
-<span class="hljs-addition">+              - python /image-pruner/prune_images.py --namespace=redhat-appstudio-tekton-catalog --repo-name=pull-request-builds</span>
-<span class="hljs-addition">+            volumeMounts:</span>
-<span class="hljs-addition">+              - name: redhat-appstudio-tekton-catalog-pr-volume</span>
-<span class="hljs-addition">+                mountPath: /image-pruner</span>
-<span class="hljs-addition">+            resources:</span>
-<span class="hljs-addition">+              limits:</span>
-<span class="hljs-addition">+                cpu: 500m</span>
-<span class="hljs-addition">+                memory: 512Mi</span>
-<span class="hljs-addition">+              requests:</span>
-<span class="hljs-addition">+                cpu: 150m</span>
-<span class="hljs-addition">+                memory: 128Mi</span>
-<span class="hljs-addition">+            securityContext:</span>
-<span class="hljs-addition">+              readOnlyRootFilesystem: true</span>
-<span class="hljs-addition">+          restartPolicy: OnFailure</span>
-<span class="hljs-addition">+          securityContext:</span>
-<span class="hljs-addition">+            runAsNonRoot: true</span>
-<span class="hljs-addition">+          volumes:</span>
-<span class="hljs-addition">+            - name: redhat-appstudio-tekton-catalog-pr-volume</span>
-<span class="hljs-addition">+              configMap:</span>
-<span class="hljs-addition">+                name: single-image-pruner-configmap</span>
-<span class="hljs-addition">+            - name: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-addition">+              secret:</span>
-<span class="hljs-addition">+                secretName: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-comment">diff --git a/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml</span>
-new file mode 100644
-<span class="hljs-comment">index 00000000..4a75be79</span>
-<span class="hljs-comment">--- /dev/null</span>
-<span class="hljs-comment">+++ b/components/image-controller/production/stone-prd-rh01/resources/redhat-appstudio-tekton-catalog-pr-token.yaml</span>
-<span class="hljs-meta">@@ -0,0 +1,19 @@</span>
-<span class="hljs-addition">+apiVersion: external-secrets.io/v1beta1</span>
-<span class="hljs-addition">+kind: ExternalSecret</span>
-<span class="hljs-addition">+metadata:</span>
-<span class="hljs-addition">+  name: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-addition">+  annotations:</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true</span>
-<span class="hljs-addition">+    argocd.argoproj.io/sync-wave: &quot;-1&quot;</span>
-<span class="hljs-addition">+spec:</span>
-<span class="hljs-addition">+  dataFrom:</span>
-<span class="hljs-addition">+    - extract:</span>
-<span class="hljs-addition">+        key: production/build/redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-addition">+  refreshInterval: 20h</span>
-<span class="hljs-addition">+  secretStoreRef:</span>
-<span class="hljs-addition">+    kind: ClusterSecretStore</span>
-<span class="hljs-addition">+    name: appsre-stonesoup-vault</span>
-<span class="hljs-addition">+  target:</span>
-<span class="hljs-addition">+    creationPolicy: Owner</span>
-<span class="hljs-addition">+    deletionPolicy: Delete</span>
-<span class="hljs-addition">+    name: redhat-appstudio-tekton-catalog-pr-token</span>
-<span class="hljs-comment">diff --git a/components/image-controller/staging/kustomization.yaml b/components/image-controller/staging/base/kustomization.yaml</span>
-similarity index 82%
-rename from components/image-controller/staging/kustomization.yaml
-rename to components/image-controller/staging/base/kustomization.yaml
-<span class="hljs-comment">index db906be6..5c039c43 100644</span>
-<span class="hljs-comment">--- a/components/image-controller/staging/kustomization.yaml</span>
-<span class="hljs-comment">+++ b/components/image-controller/staging/base/kustomization.yaml</span>
-<span class="hljs-meta">@@ -1,8 +1,8 @@</span>
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-<span class="hljs-deletion">-- ../base</span>
-<span class="hljs-deletion">-- ../base/external-secrets</span>
-<span class="hljs-addition">+- ../../base</span>
-<span class="hljs-addition">+- ../../base/external-secrets</span>
- - https://github.com/redhat-appstudio/image-controller/config/default?ref=143d709ff49d94e2b7f489da2fdb9708d38f466c
-
- images:
-<span class="hljs-meta">@@ -13,4 +13,4 @@</span> images:
- namespace: image-controller
-
- patches:
-<span class="hljs-deletion">-  - path: ./manager_resources_patch.yaml</span>
-\ No newline at end of file
-<span class="hljs-addition">+  - path: ./manager_resources_patch.yaml</span>
-<span class="hljs-comment">diff --git a/components/image-controller/staging/manager_resources_patch.yaml b/components/image-controller/staging/base/manager_resources_patch.yaml</span>
-similarity index 100%
-rename from components/image-controller/staging/manager_resources_patch.yaml
-rename to components/image-controller/staging/base/manager_resources_patch.yaml 
-</code></pre>
-
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (7 lines)</summary>  
-<pre><code>  <span class="hljs-string">./commit-1037cb45/development/app-of-apps-development.yaml</span>
-<span class="hljs-number">443</span><span class="hljs-string">,445c443</span>
-<span class="hljs-string">&lt;</span>           <span class="hljs-attr">elements:</span>
-<span class="hljs-string">&lt;</span>           <span class="hljs-bullet">-</span> <span class="hljs-attr">nameNormalized:</span> <span class="hljs-string">stone-prd-rh01</span>
-<span class="hljs-string">&lt;</span>             <span class="hljs-attr">values.clusterDir:</span> <span class="hljs-string">stone-prd-rh01</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-string">&gt;</span>           <span class="hljs-attr">elements:</span> [] 
 </code></pre>
 
 </details>  
