@@ -1,0 +1,92 @@
+diff --git a/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
+index 49236b0e..8741c2b4 100644
+--- a/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
++++ b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
++  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
+diff --git a/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml
+index 03699519..926e4cdf 100644
+--- a/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml
++++ b/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-host
++  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-host
+diff --git a/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml
+index 2cbeba88..816e670e 100644
+--- a/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml
++++ b/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01
++  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01
+diff --git a/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml
+index ed125c4d..5fa62d28 100644
+--- a/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml
++++ b/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01
++  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01
+diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
+index 14321b34..548e1267 100644
+--- a/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
++++ b/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
+diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
+index 14321b34..548e1267 100644
+--- a/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
++++ b/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
+diff --git a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
+index 14321b34..548e1267 100644
+--- a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
++++ b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
+diff --git a/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
+index 14321b34..548e1267 100644
+--- a/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
++++ b/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
