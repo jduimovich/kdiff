@@ -1,12 +1,1362 @@
 # kustomize changes tracked by commits 
-### This file generated at Mon Apr 15 16:04:17 UTC 2024
+### This file generated at Mon Apr 15 20:04:10 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 85945121 to 5b7d2164 on Mon Apr 15 13:38:57 2024 </h3>  
+<h3>1: Production changes from a1513f0d to 31c2d838 on Mon Apr 15 18:12:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (33 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+index 504e63cc..617ab18e 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+@@ -19,8 +19,6 @@ spec:
+                   values.clusterDir: stone-stage-p01
+                 - nameNormalized: stone-prod-p01
+                   values.clusterDir: stone-prod-p01
+-                - nameNormalized: stone-stg-host
+-                  values.clusterDir: stone-stg-host
+   template:
+     metadata:
+       name: authentication-{{nameNormalized}}
+diff --git a/components/authentication/staging/base/kustomization.yaml b/components/authentication/staging/base/kustomization.yaml
+index eaa1ccc2..940d5937 100644
+--- a/components/authentication/staging/base/kustomization.yaml
++++ b/components/authentication/staging/base/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/github
++  - ../../base/rh-idp
+diff --git a/components/authentication/staging/stone-stg-host/kustomization.yaml b/components/authentication/staging/stone-stg-host/kustomization.yaml
+deleted file mode 100644
+index 940d5937..00000000
+--- a/components/authentication/staging/stone-stg-host/kustomization.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../../base/rh-idp 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from a1513f0d to 31c2d838 on Mon Apr 15 18:12:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (33 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+index 504e63cc..617ab18e 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+@@ -19,8 +19,6 @@ spec:
+                   values.clusterDir: stone-stage-p01
+                 - nameNormalized: stone-prod-p01
+                   values.clusterDir: stone-prod-p01
+-                - nameNormalized: stone-stg-host
+-                  values.clusterDir: stone-stg-host
+   template:
+     metadata:
+       name: authentication-{{nameNormalized}}
+diff --git a/components/authentication/staging/base/kustomization.yaml b/components/authentication/staging/base/kustomization.yaml
+index eaa1ccc2..940d5937 100644
+--- a/components/authentication/staging/base/kustomization.yaml
++++ b/components/authentication/staging/base/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/github
++  - ../../base/rh-idp
+diff --git a/components/authentication/staging/stone-stg-host/kustomization.yaml b/components/authentication/staging/stone-stg-host/kustomization.yaml
+deleted file mode 100644
+index 940d5937..00000000
+--- a/components/authentication/staging/stone-stg-host/kustomization.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../../base/rh-idp 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (1 lines)</summary>  
+
+``` 
+./commit-a1513f0d/staging/components/authentication/staging: stone-stg-host 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from a1513f0d to 31c2d838 on Mon Apr 15 18:12:14 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (33 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+index 504e63cc..617ab18e 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+@@ -19,8 +19,6 @@ spec:
+                   values.clusterDir: stone-stage-p01
+                 - nameNormalized: stone-prod-p01
+                   values.clusterDir: stone-prod-p01
+-                - nameNormalized: stone-stg-host
+-                  values.clusterDir: stone-stg-host
+   template:
+     metadata:
+       name: authentication-{{nameNormalized}}
+diff --git a/components/authentication/staging/base/kustomization.yaml b/components/authentication/staging/base/kustomization.yaml
+index eaa1ccc2..940d5937 100644
+--- a/components/authentication/staging/base/kustomization.yaml
++++ b/components/authentication/staging/base/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/github
++  - ../../base/rh-idp
+diff --git a/components/authentication/staging/stone-stg-host/kustomization.yaml b/components/authentication/staging/stone-stg-host/kustomization.yaml
+deleted file mode 100644
+index 940d5937..00000000
+--- a/components/authentication/staging/stone-stg-host/kustomization.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - ../../base/rh-idp 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 5b7d2164 to a1513f0d on Mon Apr 15 17:36:57 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (155 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+index 617ab18e..504e63cc 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+@@ -19,6 +19,8 @@ spec:
+                   values.clusterDir: stone-stage-p01
+                 - nameNormalized: stone-prod-p01
+                   values.clusterDir: stone-prod-p01
++                - nameNormalized: stone-stg-host
++                  values.clusterDir: stone-stg-host
+   template:
+     metadata:
+       name: authentication-{{nameNormalized}}
+diff --git a/components/authentication/base/all/group-sync/external-secrets/konflux-ldap-sa.yaml b/components/authentication/base/all/group-sync/external-secrets/konflux-ldap-sa.yaml
+new file mode 100644
+index 00000000..0cd25227
+--- /dev/null
++++ b/components/authentication/base/all/group-sync/external-secrets/konflux-ldap-sa.yaml
+@@ -0,0 +1,21 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: konflux-ldap-sa
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        conversionStrategy: Default
++        decodingStrategy: None
++        key: staging/group-sync/konflux-ldap-sa
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: konflux-ldap-sa
+diff --git a/components/authentication/base/rh-idp/group-sync/external-secrets/kustomization.yaml b/components/authentication/base/all/group-sync/external-secrets/kustomization.yaml
+similarity index 80%
+rename from components/authentication/base/rh-idp/group-sync/external-secrets/kustomization.yaml
+rename to components/authentication/base/all/group-sync/external-secrets/kustomization.yaml
+index 9637ff73..9e90c5af 100644
+--- a/components/authentication/base/rh-idp/group-sync/external-secrets/kustomization.yaml
++++ b/components/authentication/base/all/group-sync/external-secrets/kustomization.yaml
+@@ -1,4 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
++  - konflux-ldap-sa.yaml
+   - mtls-ca-validators.yaml
+diff --git a/components/authentication/base/rh-idp/group-sync/external-secrets/mtls-ca-validators.yaml b/components/authentication/base/all/group-sync/external-secrets/mtls-ca-validators.yaml
+similarity index 100%
+rename from components/authentication/base/rh-idp/group-sync/external-secrets/mtls-ca-validators.yaml
+rename to components/authentication/base/all/group-sync/external-secrets/mtls-ca-validators.yaml
+diff --git a/components/authentication/base/all/group-sync/kustomization.yaml b/components/authentication/base/all/group-sync/kustomization.yaml
+index c7c56631..22a78cdd 100644
+--- a/components/authentication/base/all/group-sync/kustomization.yaml
++++ b/components/authentication/base/all/group-sync/kustomization.yaml
+@@ -3,5 +3,6 @@ kind: Kustomization
+ namespace: group-sync-operator
+ resources:
+ - group-sync.yaml
++- external-secrets
+ - namespaces.yaml
+ - subscription.yaml
+diff --git a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+index f4f09109..ac6b50bb 100644
+--- a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
++++ b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+@@ -12,6 +12,9 @@ spec:
+           kind: Secret
+           name: mtls-ca-validators
+           namespace: group-sync-operator
++        credentialsSecret:
++          name: konflux-ldap-sa
++          namespace: group-sync-operator
+         insecure: false
+         prune: true
+         rfc2307:
+@@ -34,6 +37,6 @@ spec:
+             filter: (&(objectClass=rhatRoverGroup)(cn=konflux-*))
+             scope: sub
+           userUIDAttribute: dn
+-        url: 'ldaps://ldap.corp.redhat.com'
++        url: 'ldaps://ldapfrac.corp.redhat.com'
+       name: ldap-corp
+   schedule: '*/15 * * * *'
+diff --git a/components/authentication/base/rh-idp/group-sync/kustomization.yaml b/components/authentication/base/rh-idp/group-sync/kustomization.yaml
+index 9a9cf186..9453f06e 100644
+--- a/components/authentication/base/rh-idp/group-sync/kustomization.yaml
++++ b/components/authentication/base/rh-idp/group-sync/kustomization.yaml
+@@ -2,5 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ namespace: group-sync-operator
+ resources:
+-- external-secrets
+ - konflux-rover-groups.yaml
+diff --git a/components/authentication/k-components/ldap-url-patch/kustomization.yaml b/components/authentication/k-components/ldap-url-patch/kustomization.yaml
+new file mode 100644
+index 00000000..fa6e8e5e
+--- /dev/null
++++ b/components/authentication/k-components/ldap-url-patch/kustomization.yaml
+@@ -0,0 +1,10 @@
++---
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++patches:
++  - path: ldap-url-patch.yaml
++    target:
++      name: konflux-rover-groups
++      kind: GroupSync
++      group: redhatcop.redhat.io
++      version: v1alpha1
+diff --git a/components/authentication/k-components/ldap-url-patch/ldap-url-patch.yaml b/components/authentication/k-components/ldap-url-patch/ldap-url-patch.yaml
+new file mode 100644
+index 00000000..20c5dbe6
+--- /dev/null
++++ b/components/authentication/k-components/ldap-url-patch/ldap-url-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/providers/0/ldap/url
++  value: ldaps://ldap.corp.redhat.com
+diff --git a/components/authentication/production/stone-prod-p01/kustomization.yaml b/components/authentication/production/stone-prod-p01/kustomization.yaml
+index 2e53febf..8a8a2c1a 100644
+--- a/components/authentication/production/stone-prod-p01/kustomization.yaml
++++ b/components/authentication/production/stone-prod-p01/kustomization.yaml
+@@ -4,3 +4,4 @@ resources:
+   - ../../base/rh-idp
+ components:
+   - ../k-components/rhtap-infra-secrets-patch
++  - ../../k-components/ldap-url-patch
+diff --git a/components/authentication/staging/stone-stage-p01/kustomization.yaml b/components/authentication/staging/stone-stage-p01/kustomization.yaml
+index 940d5937..2395e070 100644
+--- a/components/authentication/staging/stone-stage-p01/kustomization.yaml
++++ b/components/authentication/staging/stone-stage-p01/kustomization.yaml
+@@ -2,3 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base/rh-idp
++components:
++  - ../../k-components/ldap-url-patch
+diff --git a/components/authentication/staging/stone-stg-host/kustomization.yaml b/components/authentication/staging/stone-stg-host/kustomization.yaml
+new file mode 100644
+index 00000000..940d5937
+--- /dev/null
++++ b/components/authentication/staging/stone-stg-host/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/rh-idp 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (29 lines)</summary>  
+
+``` 
+./commit-5b7d2164/production/components/authentication/production/stone-prod-p01/kustomize.out.yaml
+789,811d788
+<   name: konflux-ldap-sa
+<   namespace: group-sync-operator
+< spec:
+<   dataFrom:
+<   - extract:
+<       conversionStrategy: Default
+<       decodingStrategy: None
+<       key: staging/group-sync/konflux-ldap-sa
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: konflux-ldap-sa
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+864,866d840
+<         namespace: group-sync-operator
+<       credentialsSecret:
+<         name: konflux-ldap-sa 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 5b7d2164 to a1513f0d on Mon Apr 15 17:36:57 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (155 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+index 617ab18e..504e63cc 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+@@ -19,6 +19,8 @@ spec:
+                   values.clusterDir: stone-stage-p01
+                 - nameNormalized: stone-prod-p01
+                   values.clusterDir: stone-prod-p01
++                - nameNormalized: stone-stg-host
++                  values.clusterDir: stone-stg-host
+   template:
+     metadata:
+       name: authentication-{{nameNormalized}}
+diff --git a/components/authentication/base/all/group-sync/external-secrets/konflux-ldap-sa.yaml b/components/authentication/base/all/group-sync/external-secrets/konflux-ldap-sa.yaml
+new file mode 100644
+index 00000000..0cd25227
+--- /dev/null
++++ b/components/authentication/base/all/group-sync/external-secrets/konflux-ldap-sa.yaml
+@@ -0,0 +1,21 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: konflux-ldap-sa
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        conversionStrategy: Default
++        decodingStrategy: None
++        key: staging/group-sync/konflux-ldap-sa
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: konflux-ldap-sa
+diff --git a/components/authentication/base/rh-idp/group-sync/external-secrets/kustomization.yaml b/components/authentication/base/all/group-sync/external-secrets/kustomization.yaml
+similarity index 80%
+rename from components/authentication/base/rh-idp/group-sync/external-secrets/kustomization.yaml
+rename to components/authentication/base/all/group-sync/external-secrets/kustomization.yaml
+index 9637ff73..9e90c5af 100644
+--- a/components/authentication/base/rh-idp/group-sync/external-secrets/kustomization.yaml
++++ b/components/authentication/base/all/group-sync/external-secrets/kustomization.yaml
+@@ -1,4 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
++  - konflux-ldap-sa.yaml
+   - mtls-ca-validators.yaml
+diff --git a/components/authentication/base/rh-idp/group-sync/external-secrets/mtls-ca-validators.yaml b/components/authentication/base/all/group-sync/external-secrets/mtls-ca-validators.yaml
+similarity index 100%
+rename from components/authentication/base/rh-idp/group-sync/external-secrets/mtls-ca-validators.yaml
+rename to components/authentication/base/all/group-sync/external-secrets/mtls-ca-validators.yaml
+diff --git a/components/authentication/base/all/group-sync/kustomization.yaml b/components/authentication/base/all/group-sync/kustomization.yaml
+index c7c56631..22a78cdd 100644
+--- a/components/authentication/base/all/group-sync/kustomization.yaml
++++ b/components/authentication/base/all/group-sync/kustomization.yaml
+@@ -3,5 +3,6 @@ kind: Kustomization
+ namespace: group-sync-operator
+ resources:
+ - group-sync.yaml
++- external-secrets
+ - namespaces.yaml
+ - subscription.yaml
+diff --git a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+index f4f09109..ac6b50bb 100644
+--- a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
++++ b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+@@ -12,6 +12,9 @@ spec:
+           kind: Secret
+           name: mtls-ca-validators
+           namespace: group-sync-operator
++        credentialsSecret:
++          name: konflux-ldap-sa
++          namespace: group-sync-operator
+         insecure: false
+         prune: true
+         rfc2307:
+@@ -34,6 +37,6 @@ spec:
+             filter: (&(objectClass=rhatRoverGroup)(cn=konflux-*))
+             scope: sub
+           userUIDAttribute: dn
+-        url: 'ldaps://ldap.corp.redhat.com'
++        url: 'ldaps://ldapfrac.corp.redhat.com'
+       name: ldap-corp
+   schedule: '*/15 * * * *'
+diff --git a/components/authentication/base/rh-idp/group-sync/kustomization.yaml b/components/authentication/base/rh-idp/group-sync/kustomization.yaml
+index 9a9cf186..9453f06e 100644
+--- a/components/authentication/base/rh-idp/group-sync/kustomization.yaml
++++ b/components/authentication/base/rh-idp/group-sync/kustomization.yaml
+@@ -2,5 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ namespace: group-sync-operator
+ resources:
+-- external-secrets
+ - konflux-rover-groups.yaml
+diff --git a/components/authentication/k-components/ldap-url-patch/kustomization.yaml b/components/authentication/k-components/ldap-url-patch/kustomization.yaml
+new file mode 100644
+index 00000000..fa6e8e5e
+--- /dev/null
++++ b/components/authentication/k-components/ldap-url-patch/kustomization.yaml
+@@ -0,0 +1,10 @@
++---
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++patches:
++  - path: ldap-url-patch.yaml
++    target:
++      name: konflux-rover-groups
++      kind: GroupSync
++      group: redhatcop.redhat.io
++      version: v1alpha1
+diff --git a/components/authentication/k-components/ldap-url-patch/ldap-url-patch.yaml b/components/authentication/k-components/ldap-url-patch/ldap-url-patch.yaml
+new file mode 100644
+index 00000000..20c5dbe6
+--- /dev/null
++++ b/components/authentication/k-components/ldap-url-patch/ldap-url-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/providers/0/ldap/url
++  value: ldaps://ldap.corp.redhat.com
+diff --git a/components/authentication/production/stone-prod-p01/kustomization.yaml b/components/authentication/production/stone-prod-p01/kustomization.yaml
+index 2e53febf..8a8a2c1a 100644
+--- a/components/authentication/production/stone-prod-p01/kustomization.yaml
++++ b/components/authentication/production/stone-prod-p01/kustomization.yaml
+@@ -4,3 +4,4 @@ resources:
+   - ../../base/rh-idp
+ components:
+   - ../k-components/rhtap-infra-secrets-patch
++  - ../../k-components/ldap-url-patch
+diff --git a/components/authentication/staging/stone-stage-p01/kustomization.yaml b/components/authentication/staging/stone-stage-p01/kustomization.yaml
+index 940d5937..2395e070 100644
+--- a/components/authentication/staging/stone-stage-p01/kustomization.yaml
++++ b/components/authentication/staging/stone-stage-p01/kustomization.yaml
+@@ -2,3 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base/rh-idp
++components:
++  - ../../k-components/ldap-url-patch
+diff --git a/components/authentication/staging/stone-stg-host/kustomization.yaml b/components/authentication/staging/stone-stg-host/kustomization.yaml
+new file mode 100644
+index 00000000..940d5937
+--- /dev/null
++++ b/components/authentication/staging/stone-stg-host/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/rh-idp 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (30 lines)</summary>  
+
+``` 
+./commit-5b7d2164/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+789,811d788
+<   name: konflux-ldap-sa
+<   namespace: group-sync-operator
+< spec:
+<   dataFrom:
+<   - extract:
+<       conversionStrategy: Default
+<       decodingStrategy: None
+<       key: staging/group-sync/konflux-ldap-sa
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: konflux-ldap-sa
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+864,866d840
+<         namespace: group-sync-operator
+<       credentialsSecret:
+<         name: konflux-ldap-sa
+./commit-a1513f0d/staging/components/authentication/staging: stone-stg-host 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 5b7d2164 to a1513f0d on Mon Apr 15 17:36:57 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (155 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+index 617ab18e..504e63cc 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/authentication/authentication.yaml
+@@ -19,6 +19,8 @@ spec:
+                   values.clusterDir: stone-stage-p01
+                 - nameNormalized: stone-prod-p01
+                   values.clusterDir: stone-prod-p01
++                - nameNormalized: stone-stg-host
++                  values.clusterDir: stone-stg-host
+   template:
+     metadata:
+       name: authentication-{{nameNormalized}}
+diff --git a/components/authentication/base/all/group-sync/external-secrets/konflux-ldap-sa.yaml b/components/authentication/base/all/group-sync/external-secrets/konflux-ldap-sa.yaml
+new file mode 100644
+index 00000000..0cd25227
+--- /dev/null
++++ b/components/authentication/base/all/group-sync/external-secrets/konflux-ldap-sa.yaml
+@@ -0,0 +1,21 @@
++apiVersion: external-secrets.io/v1beta1
++kind: ExternalSecret
++metadata:
++  name: konflux-ldap-sa
++  annotations:
++    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
++    argocd.argoproj.io/sync-wave: "-1"
++spec:
++  dataFrom:
++    - extract:
++        conversionStrategy: Default
++        decodingStrategy: None
++        key: staging/group-sync/konflux-ldap-sa
++  refreshInterval: 1h
++  secretStoreRef:
++    kind: ClusterSecretStore
++    name: appsre-stonesoup-vault
++  target:
++    creationPolicy: Owner
++    deletionPolicy: Delete
++    name: konflux-ldap-sa
+diff --git a/components/authentication/base/rh-idp/group-sync/external-secrets/kustomization.yaml b/components/authentication/base/all/group-sync/external-secrets/kustomization.yaml
+similarity index 80%
+rename from components/authentication/base/rh-idp/group-sync/external-secrets/kustomization.yaml
+rename to components/authentication/base/all/group-sync/external-secrets/kustomization.yaml
+index 9637ff73..9e90c5af 100644
+--- a/components/authentication/base/rh-idp/group-sync/external-secrets/kustomization.yaml
++++ b/components/authentication/base/all/group-sync/external-secrets/kustomization.yaml
+@@ -1,4 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
++  - konflux-ldap-sa.yaml
+   - mtls-ca-validators.yaml
+diff --git a/components/authentication/base/rh-idp/group-sync/external-secrets/mtls-ca-validators.yaml b/components/authentication/base/all/group-sync/external-secrets/mtls-ca-validators.yaml
+similarity index 100%
+rename from components/authentication/base/rh-idp/group-sync/external-secrets/mtls-ca-validators.yaml
+rename to components/authentication/base/all/group-sync/external-secrets/mtls-ca-validators.yaml
+diff --git a/components/authentication/base/all/group-sync/kustomization.yaml b/components/authentication/base/all/group-sync/kustomization.yaml
+index c7c56631..22a78cdd 100644
+--- a/components/authentication/base/all/group-sync/kustomization.yaml
++++ b/components/authentication/base/all/group-sync/kustomization.yaml
+@@ -3,5 +3,6 @@ kind: Kustomization
+ namespace: group-sync-operator
+ resources:
+ - group-sync.yaml
++- external-secrets
+ - namespaces.yaml
+ - subscription.yaml
+diff --git a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+index f4f09109..ac6b50bb 100644
+--- a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
++++ b/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+@@ -12,6 +12,9 @@ spec:
+           kind: Secret
+           name: mtls-ca-validators
+           namespace: group-sync-operator
++        credentialsSecret:
++          name: konflux-ldap-sa
++          namespace: group-sync-operator
+         insecure: false
+         prune: true
+         rfc2307:
+@@ -34,6 +37,6 @@ spec:
+             filter: (&(objectClass=rhatRoverGroup)(cn=konflux-*))
+             scope: sub
+           userUIDAttribute: dn
+-        url: 'ldaps://ldap.corp.redhat.com'
++        url: 'ldaps://ldapfrac.corp.redhat.com'
+       name: ldap-corp
+   schedule: '*/15 * * * *'
+diff --git a/components/authentication/base/rh-idp/group-sync/kustomization.yaml b/components/authentication/base/rh-idp/group-sync/kustomization.yaml
+index 9a9cf186..9453f06e 100644
+--- a/components/authentication/base/rh-idp/group-sync/kustomization.yaml
++++ b/components/authentication/base/rh-idp/group-sync/kustomization.yaml
+@@ -2,5 +2,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ namespace: group-sync-operator
+ resources:
+-- external-secrets
+ - konflux-rover-groups.yaml
+diff --git a/components/authentication/k-components/ldap-url-patch/kustomization.yaml b/components/authentication/k-components/ldap-url-patch/kustomization.yaml
+new file mode 100644
+index 00000000..fa6e8e5e
+--- /dev/null
++++ b/components/authentication/k-components/ldap-url-patch/kustomization.yaml
+@@ -0,0 +1,10 @@
++---
++apiVersion: kustomize.config.k8s.io/v1alpha1
++kind: Component
++patches:
++  - path: ldap-url-patch.yaml
++    target:
++      name: konflux-rover-groups
++      kind: GroupSync
++      group: redhatcop.redhat.io
++      version: v1alpha1
+diff --git a/components/authentication/k-components/ldap-url-patch/ldap-url-patch.yaml b/components/authentication/k-components/ldap-url-patch/ldap-url-patch.yaml
+new file mode 100644
+index 00000000..20c5dbe6
+--- /dev/null
++++ b/components/authentication/k-components/ldap-url-patch/ldap-url-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/providers/0/ldap/url
++  value: ldaps://ldap.corp.redhat.com
+diff --git a/components/authentication/production/stone-prod-p01/kustomization.yaml b/components/authentication/production/stone-prod-p01/kustomization.yaml
+index 2e53febf..8a8a2c1a 100644
+--- a/components/authentication/production/stone-prod-p01/kustomization.yaml
++++ b/components/authentication/production/stone-prod-p01/kustomization.yaml
+@@ -4,3 +4,4 @@ resources:
+   - ../../base/rh-idp
+ components:
+   - ../k-components/rhtap-infra-secrets-patch
++  - ../../k-components/ldap-url-patch
+diff --git a/components/authentication/staging/stone-stage-p01/kustomization.yaml b/components/authentication/staging/stone-stage-p01/kustomization.yaml
+index 940d5937..2395e070 100644
+--- a/components/authentication/staging/stone-stage-p01/kustomization.yaml
++++ b/components/authentication/staging/stone-stage-p01/kustomization.yaml
+@@ -2,3 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+   - ../../base/rh-idp
++components:
++  - ../../k-components/ldap-url-patch
+diff --git a/components/authentication/staging/stone-stg-host/kustomization.yaml b/components/authentication/staging/stone-stg-host/kustomization.yaml
+new file mode 100644
+index 00000000..940d5937
+--- /dev/null
++++ b/components/authentication/staging/stone-stg-host/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - ../../base/rh-idp 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 85945121 to 5b7d2164 on Mon Apr 15 13:38:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (222 lines)</summary>  
@@ -362,7 +1712,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 85945121 to 5b7d2164 on Mon Apr 15 13:38:57 2024 </h3>  
+<h3>3: Staging changes from 85945121 to 5b7d2164 on Mon Apr 15 13:38:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (222 lines)</summary>  
@@ -721,7 +2071,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 85945121 to 5b7d2164 on Mon Apr 15 13:38:57 2024 </h3>  
+<h3>3: Development changes from 85945121 to 5b7d2164 on Mon Apr 15 13:38:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (222 lines)</summary>  
@@ -1035,7 +2385,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 0c606a5b to 85945121 on Thu Apr 11 04:34:09 2024 </h3>  
+<h3>4: Production changes from 0c606a5b to 85945121 on Thu Apr 11 04:34:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (92 lines)</summary>  
@@ -1261,7 +2611,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 0c606a5b to 85945121 on Thu Apr 11 04:34:09 2024 </h3>  
+<h3>4: Staging changes from 0c606a5b to 85945121 on Thu Apr 11 04:34:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (92 lines)</summary>  
@@ -1509,7 +2859,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 0c606a5b to 85945121 on Thu Apr 11 04:34:09 2024 </h3>  
+<h3>4: Development changes from 0c606a5b to 85945121 on Thu Apr 11 04:34:09 2024 </h3>  
  
 <details> 
 <summary>Git Diff (92 lines)</summary>  
@@ -1607,819 +2957,6 @@ index 14321b34..548e1267 100644
    path: /spec/data/1/remoteRef/key
 -  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
 +  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 5ca52e35 to 0c606a5b on Mon Apr 8 19:29:50 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-index 32efd1c2..97fe2cb0 100644
---- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-+++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-@@ -49,7 +49,7 @@ spec:
-           storageclass|volumename|release_reason|instance|result|deployment_reason|\
-           validation_reason|strategy|succeeded|target|name|method|code|sp|\
-           unexpected_status|failure|hostname|label_app_kubernetes_io_managed_by|status|\
--          pipeline|pipelinename|pipelinerun|schedule"
-+          pipeline|pipelinename|pipelinerun|schedule|check"
- ---
- # Grant permission to Federate In-Cluster Prometheus
- apiVersion: rbac.authorization.k8s.io/v1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 5ca52e35 to 0c606a5b on Mon Apr 8 19:29:50 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-index 32efd1c2..97fe2cb0 100644
---- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-+++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-@@ -49,7 +49,7 @@ spec:
-           storageclass|volumename|release_reason|instance|result|deployment_reason|\
-           validation_reason|strategy|succeeded|target|name|method|code|sp|\
-           unexpected_status|failure|hostname|label_app_kubernetes_io_managed_by|status|\
--          pipeline|pipelinename|pipelinerun|schedule"
-+          pipeline|pipelinename|pipelinerun|schedule|check"
- ---
- # Grant permission to Federate In-Cluster Prometheus
- apiVersion: rbac.authorization.k8s.io/v1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 5ca52e35 to 0c606a5b on Mon Apr 8 19:29:50 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (13 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-index 32efd1c2..97fe2cb0 100644
---- a/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-+++ b/components/monitoring/prometheus/base/monitoringstack/monitoringstack.yaml
-@@ -49,7 +49,7 @@ spec:
-           storageclass|volumename|release_reason|instance|result|deployment_reason|\
-           validation_reason|strategy|succeeded|target|name|method|code|sp|\
-           unexpected_status|failure|hostname|label_app_kubernetes_io_managed_by|status|\
--          pipeline|pipelinename|pipelinerun|schedule"
-+          pipeline|pipelinename|pipelinerun|schedule|check"
- ---
- # Grant permission to Federate In-Cluster Prometheus
- apiVersion: rbac.authorization.k8s.io/v1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 2f8c888c to 5ca52e35 on Mon Apr 8 16:00:52 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (16 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/production/kustomization.yaml b/components/monitoring/grafana/production/kustomization.yaml
-index afc8ae34..6be70876 100644
---- a/components/monitoring/grafana/production/kustomization.yaml
-+++ b/components/monitoring/grafana/production/kustomization.yaml
-@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=52405e0e807900e62d8a1911a3ab7da6a9746bf2
- 
- images:
- - name: quay.io/redhat-appstudio/o11y
-   newName: quay.io/redhat-appstudio/o11y
--  newTag: 8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+  newTag: 52405e0e807900e62d8a1911a3ab7da6a9746bf2 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 2f8c888c to 5ca52e35 on Mon Apr 8 16:00:52 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (16 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/production/kustomization.yaml b/components/monitoring/grafana/production/kustomization.yaml
-index afc8ae34..6be70876 100644
---- a/components/monitoring/grafana/production/kustomization.yaml
-+++ b/components/monitoring/grafana/production/kustomization.yaml
-@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=52405e0e807900e62d8a1911a3ab7da6a9746bf2
- 
- images:
- - name: quay.io/redhat-appstudio/o11y
-   newName: quay.io/redhat-appstudio/o11y
--  newTag: 8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+  newTag: 52405e0e807900e62d8a1911a3ab7da6a9746bf2 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 2f8c888c to 5ca52e35 on Mon Apr 8 16:00:52 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (16 lines)</summary>  
-
-``` 
-diff --git a/components/monitoring/grafana/production/kustomization.yaml b/components/monitoring/grafana/production/kustomization.yaml
-index afc8ae34..6be70876 100644
---- a/components/monitoring/grafana/production/kustomization.yaml
-+++ b/components/monitoring/grafana/production/kustomization.yaml
-@@ -2,9 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+  - https://github.com/redhat-appstudio/o11y/config/exporters/monitoring/grafana/base?ref=52405e0e807900e62d8a1911a3ab7da6a9746bf2
- 
- images:
- - name: quay.io/redhat-appstudio/o11y
-   newName: quay.io/redhat-appstudio/o11y
--  newTag: 8fe41bdea2c5d2616421b69e0bfa4544707828e3
-+  newTag: 52405e0e807900e62d8a1911a3ab7da6a9746bf2 
 ```
  
 </details> 

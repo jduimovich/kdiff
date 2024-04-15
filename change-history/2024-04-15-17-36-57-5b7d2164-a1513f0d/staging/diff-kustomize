@@ -1,0 +1,30 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-a1513f0d/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-5b7d2164/staging/components/authentication/staging/stone-stage-p01/kustomize.out.yaml
+789,811d788
+<   name: konflux-ldap-sa
+<   namespace: group-sync-operator
+< spec:
+<   dataFrom:
+<   - extract:
+<       conversionStrategy: Default
+<       decodingStrategy: None
+<       key: staging/group-sync/konflux-ldap-sa
+<   refreshInterval: 1h
+<   secretStoreRef:
+<     kind: ClusterSecretStore
+<     name: appsre-stonesoup-vault
+<   target:
+<     creationPolicy: Owner
+<     deletionPolicy: Delete
+<     name: konflux-ldap-sa
+< ---
+< apiVersion: external-secrets.io/v1beta1
+< kind: ExternalSecret
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+<     argocd.argoproj.io/sync-wave: "-1"
+864,866d840
+<         namespace: group-sync-operator
+<       credentialsSecret:
+<         name: konflux-ldap-sa
+Only in ./kustomized-cache/commit-a1513f0d/staging/components/authentication/staging: stone-stg-host
