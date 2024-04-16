@@ -1,0 +1,25 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37b979d9/production/components/backup/production/stone-prd-host1/kustomize.out.yaml ./kustomized-cache/commit-31c2d838/production/components/backup/production/stone-prd-host1/kustomize.out.yaml
+18c18
+<       key: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
+---
+>       key: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37b979d9/production/components/backup/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-31c2d838/production/components/backup/production/stone-prd-m01/kustomize.out.yaml
+18c18
+<       key: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
+---
+>       key: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37b979d9/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-31c2d838/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml
+18c18
+<       key: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
+---
+>       key: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37b979d9/production/components/backup/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-31c2d838/production/components/backup/production/stone-prod-p01/kustomize.out.yaml
+18c18
+<       key: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
+---
+>       key: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37b979d9/production/components/cluster-secret-store-rh/production/kustomize.out.yaml ./kustomized-cache/commit-31c2d838/production/components/cluster-secret-store-rh/production/kustomize.out.yaml
+39c39
+<       path: app-sre/integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
+---
+>       path: app-sre/integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/rh-artifacts-bucket-writer

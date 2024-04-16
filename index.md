@@ -1,12 +1,714 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Apr 16 00:05:42 UTC 2024
+### This file generated at Tue Apr 16 04:04:17 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from a1513f0d to 31c2d838 on Mon Apr 15 18:12:14 2024 </h3>  
+<h3>1: Production changes from 31c2d838 to 37b979d9 on Tue Apr 16 03:07:06 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (105 lines)</summary>  
+
+``` 
+diff --git a/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
+index c4e3a25f..7723c73a 100644
+--- a/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
++++ b/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
+diff --git a/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
+index 5a626c9b..554dd833 100644
+--- a/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
++++ b/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
+diff --git a/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
+index 50f361fd..38896201 100644
+--- a/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
++++ b/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
+diff --git a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
+index d0ab2f88..22ab57ee 100644
+--- a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
++++ b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
+diff --git a/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml b/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
+index b67df60a..e4ad87d2 100644
+--- a/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
++++ b/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
+@@ -9,7 +9,7 @@ spec:
+   provider:
+     vault:
+       server: "https://vault.ci.ext.devshift.net"
+-      path: app-sre/integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
++      path: app-sre/integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
+       version: v1
+       auth:
+         # VaultAppRole authenticates with Vault using the
+diff --git a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
+index 318087fd..6c9f4229 100644
+--- a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
++++ b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+diff --git a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
+index 318087fd..6c9f4229 100644
+--- a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
++++ b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+diff --git a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
+index 318087fd..6c9f4229 100644
+--- a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
++++ b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+diff --git a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
+index 318087fd..6c9f4229 100644
+--- a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
++++ b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (25 lines)</summary>  
+
+``` 
+./commit-31c2d838/production/components/backup/production/stone-prd-host1/kustomize.out.yaml
+18c18
+<       key: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
+---
+>       key: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
+./commit-31c2d838/production/components/backup/production/stone-prd-m01/kustomize.out.yaml
+18c18
+<       key: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
+---
+>       key: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
+./commit-31c2d838/production/components/backup/production/stone-prd-rh01/kustomize.out.yaml
+18c18
+<       key: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
+---
+>       key: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
+./commit-31c2d838/production/components/backup/production/stone-prod-p01/kustomize.out.yaml
+18c18
+<       key: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
+---
+>       key: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
+./commit-31c2d838/production/components/cluster-secret-store-rh/production/kustomize.out.yaml
+39c39
+<       path: app-sre/integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
+---
+>       path: app-sre/integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/rh-artifacts-bucket-writer 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 31c2d838 to 37b979d9 on Tue Apr 16 03:07:06 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (105 lines)</summary>  
+
+``` 
+diff --git a/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
+index c4e3a25f..7723c73a 100644
+--- a/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
++++ b/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
+diff --git a/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
+index 5a626c9b..554dd833 100644
+--- a/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
++++ b/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
+diff --git a/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
+index 50f361fd..38896201 100644
+--- a/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
++++ b/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
+diff --git a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
+index d0ab2f88..22ab57ee 100644
+--- a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
++++ b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
+diff --git a/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml b/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
+index b67df60a..e4ad87d2 100644
+--- a/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
++++ b/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
+@@ -9,7 +9,7 @@ spec:
+   provider:
+     vault:
+       server: "https://vault.ci.ext.devshift.net"
+-      path: app-sre/integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
++      path: app-sre/integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
+       version: v1
+       auth:
+         # VaultAppRole authenticates with Vault using the
+diff --git a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
+index 318087fd..6c9f4229 100644
+--- a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
++++ b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+diff --git a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
+index 318087fd..6c9f4229 100644
+--- a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
++++ b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+diff --git a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
+index 318087fd..6c9f4229 100644
+--- a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
++++ b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+diff --git a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
+index 318087fd..6c9f4229 100644
+--- a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
++++ b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 31c2d838 to 37b979d9 on Tue Apr 16 03:07:06 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (105 lines)</summary>  
+
+``` 
+diff --git a/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
+index c4e3a25f..7723c73a 100644
+--- a/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
++++ b/components/backup/production/stone-prd-host1/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-host1
+diff --git a/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
+index 5a626c9b..554dd833 100644
+--- a/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
++++ b/components/backup/production/stone-prd-m01/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-m01
+diff --git a/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
+index 50f361fd..38896201 100644
+--- a/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
++++ b/components/backup/production/stone-prd-rh01/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prd-rh01
+diff --git a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
+index d0ab2f88..22ab57ee 100644
+--- a/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
++++ b/components/backup/production/stone-prod-p01/backup-s3-credentials-patch.yaml
+@@ -1,3 +1,3 @@
+ - op: replace
+   path: /spec/dataFrom/0/extract/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-prod-backup/backup-stone-prod-p01
+diff --git a/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml b/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
+index b67df60a..e4ad87d2 100644
+--- a/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
++++ b/components/cluster-secret-store-rh/base/rh-artifacts-bucket-writer-secret-store.yml
+@@ -9,7 +9,7 @@ spec:
+   provider:
+     vault:
+       server: "https://vault.ci.ext.devshift.net"
+-      path: app-sre/integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
++      path: app-sre/integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/rh-artifacts-bucket-writer
+       version: v1
+       auth:
+         # VaultAppRole authenticates with Vault using the
+diff --git a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
+index 318087fd..6c9f4229 100644
+--- a/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
++++ b/components/remote-secret-controller/overlays/production/stone-prd-m01/aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+diff --git a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
+index 318087fd..6c9f4229 100644
+--- a/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
++++ b/components/remote-secret-controller/overlays/production/stone-prd-rh01/aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+diff --git a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
+index 318087fd..6c9f4229 100644
+--- a/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
++++ b/components/spi/overlays/production/stone-prd-m01/spi-aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+diff --git a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
+index 318087fd..6c9f4229 100644
+--- a/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
++++ b/components/spi/overlays/production/stone-prd-rh01/spi-aws-credentials-path-patch.yaml
+@@ -1,7 +1,7 @@
+ ---
+ - op: replace
+   path: /spec/data/0/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager
+ - op: replace
+   path: /spec/data/1/remoteRef/key
+-  value: integrations-output/terraform-resources/stonesoupp01ue1/stonesoup-infra-production/spi-secrets-manager
++  value: integrations-output/terraform-resources/appsrep05ue1/stonesoup-infra-production/spi-secrets-manager 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from a1513f0d to 31c2d838 on Mon Apr 15 18:12:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (33 lines)</summary>  
@@ -173,7 +875,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from a1513f0d to 31c2d838 on Mon Apr 15 18:12:14 2024 </h3>  
+<h3>2: Staging changes from a1513f0d to 31c2d838 on Mon Apr 15 18:12:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (33 lines)</summary>  
@@ -343,7 +1045,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from a1513f0d to 31c2d838 on Mon Apr 15 18:12:14 2024 </h3>  
+<h3>2: Development changes from a1513f0d to 31c2d838 on Mon Apr 15 18:12:14 2024 </h3>  
  
 <details> 
 <summary>Git Diff (33 lines)</summary>  
@@ -468,7 +1170,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 5b7d2164 to a1513f0d on Mon Apr 15 17:36:57 2024 </h3>  
+<h3>3: Production changes from 5b7d2164 to a1513f0d on Mon Apr 15 17:36:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (155 lines)</summary>  
@@ -785,7 +1487,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 5b7d2164 to a1513f0d on Mon Apr 15 17:36:57 2024 </h3>  
+<h3>3: Staging changes from 5b7d2164 to a1513f0d on Mon Apr 15 17:36:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (155 lines)</summary>  
@@ -1109,7 +1811,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 5b7d2164 to a1513f0d on Mon Apr 15 17:36:57 2024 </h3>  
+<h3>3: Development changes from 5b7d2164 to a1513f0d on Mon Apr 15 17:36:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (155 lines)</summary>  
@@ -1356,7 +2058,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 85945121 to 5b7d2164 on Mon Apr 15 13:38:57 2024 </h3>  
+<h3>4: Production changes from 85945121 to 5b7d2164 on Mon Apr 15 13:38:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (222 lines)</summary>  
@@ -1712,7 +2414,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 85945121 to 5b7d2164 on Mon Apr 15 13:38:57 2024 </h3>  
+<h3>4: Staging changes from 85945121 to 5b7d2164 on Mon Apr 15 13:38:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (222 lines)</summary>  
@@ -2071,7 +2773,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 85945121 to 5b7d2164 on Mon Apr 15 13:38:57 2024 </h3>  
+<h3>4: Development changes from 85945121 to 5b7d2164 on Mon Apr 15 13:38:57 2024 </h3>  
  
 <details> 
 <summary>Git Diff (222 lines)</summary>  
@@ -2299,664 +3001,6 @@ index 6adbabef..91b9c215 100644
 -      kind: ExternalSecret
 -      group: external-secrets.io
 -      version: v1beta1 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 0c606a5b to 85945121 on Thu Apr 11 04:34:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (92 lines)</summary>  
-
-``` 
-diff --git a/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-index 49236b0e..8741c2b4 100644
---- a/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
-diff --git a/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml
-index 03699519..926e4cdf 100644
---- a/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml
-+++ b/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-host
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-host
-diff --git a/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml
-index 2cbeba88..816e670e 100644
---- a/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01
-diff --git a/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml
-index ed125c4d..5fa62d28 100644
---- a/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
-index 14321b34..548e1267 100644
---- a/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
-index 14321b34..548e1267 100644
---- a/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
-diff --git a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
-index 14321b34..548e1267 100644
---- a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
-diff --git a/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
-index 14321b34..548e1267 100644
---- a/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 0c606a5b to 85945121 on Thu Apr 11 04:34:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (92 lines)</summary>  
-
-``` 
-diff --git a/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-index 49236b0e..8741c2b4 100644
---- a/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
-diff --git a/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml
-index 03699519..926e4cdf 100644
---- a/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml
-+++ b/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-host
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-host
-diff --git a/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml
-index 2cbeba88..816e670e 100644
---- a/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01
-diff --git a/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml
-index ed125c4d..5fa62d28 100644
---- a/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
-index 14321b34..548e1267 100644
---- a/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
-index 14321b34..548e1267 100644
---- a/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
-diff --git a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
-index 14321b34..548e1267 100644
---- a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
-diff --git a/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
-index 14321b34..548e1267 100644
---- a/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (20 lines)</summary>  
-
-``` 
-./commit-0c606a5b/staging/components/backup/staging/stone-stage-p01/kustomize.out.yaml
-18c18
-<       key: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
----
->       key: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
-./commit-0c606a5b/staging/components/backup/staging/stone-stg-host/kustomize.out.yaml
-18c18
-<       key: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-host
----
->       key: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-host
-./commit-0c606a5b/staging/components/backup/staging/stone-stg-m01/kustomize.out.yaml
-18c18
-<       key: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01
----
->       key: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01
-./commit-0c606a5b/staging/components/backup/staging/stone-stg-rh01/kustomize.out.yaml
-18c18
-<       key: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01
----
->       key: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 0c606a5b to 85945121 on Thu Apr 11 04:34:09 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (92 lines)</summary>  
-
-``` 
-diff --git a/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-index 49236b0e..8741c2b4 100644
---- a/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/staging/stone-stage-p01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stage-p01
-diff --git a/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml
-index 03699519..926e4cdf 100644
---- a/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml
-+++ b/components/backup/staging/stone-stg-host/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-host
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-host
-diff --git a/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml
-index 2cbeba88..816e670e 100644
---- a/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/staging/stone-stg-m01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-m01
-diff --git a/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml b/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml
-index ed125c4d..5fa62d28 100644
---- a/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml
-+++ b/components/backup/staging/stone-stg-rh01/backup-s3-credentials-patch.yaml
-@@ -1,3 +1,3 @@
- - op: replace
-   path: /spec/dataFrom/0/extract/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage-backup/backup-stone-stg-rh01
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
-index 14321b34..548e1267 100644
---- a/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/staging/stone-stg-m01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
-diff --git a/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml b/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
-index 14321b34..548e1267 100644
---- a/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
-+++ b/components/remote-secret-controller/overlays/staging/stone-stg-rh01/aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
-diff --git a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
-index 14321b34..548e1267 100644
---- a/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/staging/stone-stg-m01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
-diff --git a/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml b/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
-index 14321b34..548e1267 100644
---- a/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
-+++ b/components/spi/overlays/staging/stone-stg-rh01/spi-aws-credentials-path-patch.yaml
-@@ -1,7 +1,7 @@
- ---
- - op: replace
-   path: /spec/data/0/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager
- - op: replace
-   path: /spec/data/1/remoteRef/key
--  value: integrations-output/terraform-resources/stonesoups01ue1/stonesoup-infra-stage/spi-secrets-manager
-+  value: integrations-output/terraform-resources/appsres05ue1/stonesoup-infra-stage/spi-secrets-manager 
 ```
  
 </details> 
