@@ -1,0 +1,307 @@
+diff --git a/components/authentication/base/all/admin-checker/admin-checker-sa.yaml b/components/authentication/base/admin-checker/admin-checker-sa.yaml
+similarity index 100%
+rename from components/authentication/base/all/admin-checker/admin-checker-sa.yaml
+rename to components/authentication/base/admin-checker/admin-checker-sa.yaml
+diff --git a/components/authentication/base/all/admin-checker/cronjob.yaml b/components/authentication/base/admin-checker/cronjob.yaml
+similarity index 100%
+rename from components/authentication/base/all/admin-checker/cronjob.yaml
+rename to components/authentication/base/admin-checker/cronjob.yaml
+diff --git a/components/authentication/base/all/admin-checker/external-secrets/kustomization.yaml b/components/authentication/base/admin-checker/external-secrets/kustomization.yaml
+similarity index 100%
+rename from components/authentication/base/all/admin-checker/external-secrets/kustomization.yaml
+rename to components/authentication/base/admin-checker/external-secrets/kustomization.yaml
+diff --git a/components/authentication/base/all/admin-checker/external-secrets/rhtap-infra-secrets.yaml b/components/authentication/base/admin-checker/external-secrets/rhtap-infra-secrets.yaml
+similarity index 100%
+rename from components/authentication/base/all/admin-checker/external-secrets/rhtap-infra-secrets.yaml
+rename to components/authentication/base/admin-checker/external-secrets/rhtap-infra-secrets.yaml
+diff --git a/components/authentication/base/all/admin-checker/kustomization.yaml b/components/authentication/base/admin-checker/kustomization.yaml
+similarity index 100%
+rename from components/authentication/base/all/admin-checker/kustomization.yaml
+rename to components/authentication/base/admin-checker/kustomization.yaml
+diff --git a/components/authentication/base/all/admin-checker/namespace.yaml b/components/authentication/base/admin-checker/namespace.yaml
+similarity index 100%
+rename from components/authentication/base/all/admin-checker/namespace.yaml
+rename to components/authentication/base/admin-checker/namespace.yaml
+diff --git a/components/authentication/base/all/component-maintainer.yaml b/components/authentication/base/component-maintainer.yaml
+similarity index 100%
+rename from components/authentication/base/all/component-maintainer.yaml
+rename to components/authentication/base/component-maintainer.yaml
+diff --git a/components/authentication/base/all/everyone-can-view-patch.yaml b/components/authentication/base/everyone-can-view-patch.yaml
+similarity index 100%
+rename from components/authentication/base/all/everyone-can-view-patch.yaml
+rename to components/authentication/base/everyone-can-view-patch.yaml
+diff --git a/components/authentication/base/all/everyone-can-view.yaml b/components/authentication/base/everyone-can-view.yaml
+similarity index 100%
+rename from components/authentication/base/all/everyone-can-view.yaml
+rename to components/authentication/base/everyone-can-view.yaml
+diff --git a/components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio.yaml b/components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio.yaml
+deleted file mode 100644
+index 5585c537..00000000
+--- a/components/authentication/base/github/group-sync/external-secrets/github-redhat-appstudio.yaml
++++ /dev/null
+@@ -1,21 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: github-redhat-appstudio
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        conversionStrategy: Default
+-        decodingStrategy: None
+-        key: staging/group-sync/github-redhat-appstudio
+-  refreshInterval: 1h
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: github-redhat-appstudio
+diff --git a/components/authentication/base/github/group-sync/external-secrets/kustomization.yaml b/components/authentication/base/github/group-sync/external-secrets/kustomization.yaml
+deleted file mode 100644
+index 8e663f2b..00000000
+--- a/components/authentication/base/github/group-sync/external-secrets/kustomization.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-  - github-redhat-appstudio.yaml
+diff --git a/components/authentication/base/github/group-sync/github-redhat-appstudio.yaml b/components/authentication/base/github/group-sync/github-redhat-appstudio.yaml
+deleted file mode 100644
+index 23ebd876..00000000
+--- a/components/authentication/base/github/group-sync/github-redhat-appstudio.yaml
++++ /dev/null
+@@ -1,15 +0,0 @@
+-apiVersion: redhatcop.redhat.io/v1alpha1
+-kind: GroupSync
+-metadata:
+-  name: github-redhat-appstudio
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-spec:
+-  schedule: "*/15 * * * *"
+-  providers:
+-  - name: github
+-    github:
+-      organization: redhat-appstudio
+-      credentialsSecret:
+-        name: github-redhat-appstudio
+-        namespace: group-sync-operator
+diff --git a/components/authentication/base/github/group-sync/kustomization.yaml b/components/authentication/base/github/group-sync/kustomization.yaml
+deleted file mode 100644
+index 81213fa4..00000000
+--- a/components/authentication/base/github/group-sync/kustomization.yaml
++++ /dev/null
+@@ -1,6 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-namespace: group-sync-operator
+-resources:
+-- external-secrets
+-- github-redhat-appstudio.yaml
+diff --git a/components/authentication/base/github/kustomization.yaml b/components/authentication/base/github/kustomization.yaml
+deleted file mode 100644
+index 6fb7c23c..00000000
+--- a/components/authentication/base/github/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- ../all
+-- group-sync
+diff --git a/components/authentication/base/all/group-sync/external-secrets/konflux-ldap-sa.yaml b/components/authentication/base/group-sync/external-secrets/konflux-ldap-sa.yaml
+similarity index 100%
+rename from components/authentication/base/all/group-sync/external-secrets/konflux-ldap-sa.yaml
+rename to components/authentication/base/group-sync/external-secrets/konflux-ldap-sa.yaml
+diff --git a/components/authentication/base/all/group-sync/external-secrets/kustomization.yaml b/components/authentication/base/group-sync/external-secrets/kustomization.yaml
+similarity index 100%
+rename from components/authentication/base/all/group-sync/external-secrets/kustomization.yaml
+rename to components/authentication/base/group-sync/external-secrets/kustomization.yaml
+diff --git a/components/authentication/base/all/group-sync/external-secrets/mtls-ca-validators.yaml b/components/authentication/base/group-sync/external-secrets/mtls-ca-validators.yaml
+similarity index 100%
+rename from components/authentication/base/all/group-sync/external-secrets/mtls-ca-validators.yaml
+rename to components/authentication/base/group-sync/external-secrets/mtls-ca-validators.yaml
+diff --git a/components/authentication/base/all/group-sync/group-sync.yaml b/components/authentication/base/group-sync/group-sync.yaml
+similarity index 100%
+rename from components/authentication/base/all/group-sync/group-sync.yaml
+rename to components/authentication/base/group-sync/group-sync.yaml
+diff --git a/components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml b/components/authentication/base/group-sync/konflux-rover-groups.yaml
+similarity index 100%
+rename from components/authentication/base/rh-idp/group-sync/konflux-rover-groups.yaml
+rename to components/authentication/base/group-sync/konflux-rover-groups.yaml
+diff --git a/components/authentication/base/all/group-sync/kustomization.yaml b/components/authentication/base/group-sync/kustomization.yaml
+similarity index 86%
+rename from components/authentication/base/all/group-sync/kustomization.yaml
+rename to components/authentication/base/group-sync/kustomization.yaml
+index 22a78cdd..a8ba40e0 100644
+--- a/components/authentication/base/all/group-sync/kustomization.yaml
++++ b/components/authentication/base/group-sync/kustomization.yaml
+@@ -4,5 +4,6 @@ namespace: group-sync-operator
+ resources:
+ - group-sync.yaml
+ - external-secrets
++- konflux-rover-groups.yaml
+ - namespaces.yaml
+ - subscription.yaml
+diff --git a/components/authentication/base/all/group-sync/namespaces.yaml b/components/authentication/base/group-sync/namespaces.yaml
+similarity index 100%
+rename from components/authentication/base/all/group-sync/namespaces.yaml
+rename to components/authentication/base/group-sync/namespaces.yaml
+diff --git a/components/authentication/base/all/group-sync/subscription.yaml b/components/authentication/base/group-sync/subscription.yaml
+similarity index 100%
+rename from components/authentication/base/all/group-sync/subscription.yaml
+rename to components/authentication/base/group-sync/subscription.yaml
+diff --git a/components/authentication/base/all/konflux-admins.yaml b/components/authentication/base/konflux-admins.yaml
+similarity index 100%
+rename from components/authentication/base/all/konflux-admins.yaml
+rename to components/authentication/base/konflux-admins.yaml
+diff --git a/components/authentication/base/all/kustomization.yaml b/components/authentication/base/kustomization.yaml
+similarity index 100%
+rename from components/authentication/base/all/kustomization.yaml
+rename to components/authentication/base/kustomization.yaml
+diff --git a/components/authentication/base/rh-idp/group-sync/kustomization.yaml b/components/authentication/base/rh-idp/group-sync/kustomization.yaml
+deleted file mode 100644
+index 9453f06e..00000000
+--- a/components/authentication/base/rh-idp/group-sync/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-namespace: group-sync-operator
+-resources:
+-- konflux-rover-groups.yaml
+diff --git a/components/authentication/base/rh-idp/kustomization.yaml b/components/authentication/base/rh-idp/kustomization.yaml
+deleted file mode 100644
+index 6fb7c23c..00000000
+--- a/components/authentication/base/rh-idp/kustomization.yaml
++++ /dev/null
+@@ -1,5 +0,0 @@
+-apiVersion: kustomize.config.k8s.io/v1beta1
+-kind: Kustomization
+-resources:
+-- ../all
+-- group-sync
+diff --git a/components/authentication/production/base/github-redhat-appstudio-secret-patch.yaml b/components/authentication/production/base/github-redhat-appstudio-secret-patch.yaml
+deleted file mode 100644
+index 92f7db51..00000000
+--- a/components/authentication/production/base/github-redhat-appstudio-secret-patch.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/group-sync/github-redhat-appstudio
+diff --git a/components/authentication/production/base/konflux-ldap-sa-patch.yaml b/components/authentication/production/base/konflux-ldap-sa-patch.yaml
+new file mode 100644
+index 00000000..30af93be
+--- /dev/null
++++ b/components/authentication/production/base/konflux-ldap-sa-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/group-sync/konflux-ldap-sa
+diff --git a/components/authentication/production/base/kustomization.yaml b/components/authentication/production/base/kustomization.yaml
+index 91b9c215..4b27d6a1 100644
+--- a/components/authentication/production/base/kustomization.yaml
++++ b/components/authentication/production/base/kustomization.yaml
+@@ -1,13 +1,23 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/github
+-components:
+-  - ../k-components/rhtap-infra-secrets-patch
++  - ../../base
+ patches:
+-  - path: github-redhat-appstudio-secret-patch.yaml
++  - path: rhtap-infra-secrets-patch.yaml
+     target:
+-      name: github-redhat-appstudio
++      name: rhtap-infra-secrets
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
++  - path: konflux-ldap-sa-patch.yaml
++    target:
++      name: konflux-ldap-sa
++      kind: ExternalSecret
++      group: external-secrets.io
++      version: v1beta1
++  - path: mtls-ca-validators-patch.yaml
++    target:
++      name: mtls-ca-validators
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
+diff --git a/components/authentication/production/base/mtls-ca-validators-patch.yaml b/components/authentication/production/base/mtls-ca-validators-patch.yaml
+new file mode 100644
+index 00000000..d6a88c4f
+--- /dev/null
++++ b/components/authentication/production/base/mtls-ca-validators-patch.yaml
+@@ -0,0 +1,4 @@
++---
++- op: add
++  path: /spec/dataFrom/0/extract/key
++  value: production/group-sync/mtls-ca-validators
+diff --git a/components/authentication/production/k-components/rhtap-infra-secrets-patch/rhtap-infra-secrets-patch.yaml b/components/authentication/production/base/rhtap-infra-secrets-patch.yaml
+similarity index 100%
+rename from components/authentication/production/k-components/rhtap-infra-secrets-patch/rhtap-infra-secrets-patch.yaml
+rename to components/authentication/production/base/rhtap-infra-secrets-patch.yaml
+diff --git a/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml b/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml
+deleted file mode 100644
+index 6046aa98..00000000
+--- a/components/authentication/production/k-components/rhtap-infra-secrets-patch/kustomization.yaml
++++ /dev/null
+@@ -1,10 +0,0 @@
+----
+-apiVersion: kustomize.config.k8s.io/v1alpha1
+-kind: Component
+-patches:
+-  - path: rhtap-infra-secrets-patch.yaml
+-    target:
+-      name: rhtap-infra-secrets
+-      kind: ExternalSecret
+-      group: external-secrets.io
+-      version: v1beta1
+diff --git a/components/authentication/production/stone-prod-p01/kustomization.yaml b/components/authentication/production/stone-prod-p01/kustomization.yaml
+index 8a8a2c1a..48c2e849 100644
+--- a/components/authentication/production/stone-prod-p01/kustomization.yaml
++++ b/components/authentication/production/stone-prod-p01/kustomization.yaml
+@@ -1,7 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/rh-idp
++  - ../base
+ components:
+-  - ../k-components/rhtap-infra-secrets-patch
+   - ../../k-components/ldap-url-patch
+diff --git a/components/authentication/staging/base/kustomization.yaml b/components/authentication/staging/base/kustomization.yaml
+index 940d5937..2333422e 100644
+--- a/components/authentication/staging/base/kustomization.yaml
++++ b/components/authentication/staging/base/kustomization.yaml
+@@ -1,4 +1,4 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/rh-idp
++  - ../../base
+diff --git a/components/authentication/staging/stone-stage-p01/kustomization.yaml b/components/authentication/staging/stone-stage-p01/kustomization.yaml
+index 2395e070..48c2e849 100644
+--- a/components/authentication/staging/stone-stage-p01/kustomization.yaml
++++ b/components/authentication/staging/stone-stage-p01/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - ../../base/rh-idp
++  - ../base
+ components:
+   - ../../k-components/ldap-url-patch
