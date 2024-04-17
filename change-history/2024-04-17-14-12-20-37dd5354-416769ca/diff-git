@@ -1,0 +1,212 @@
+diff --git a/components/pipeline-service/development/chains-deployment-perf-bump.yaml b/components/pipeline-service/development/chains-deployment-perf-bump.yaml
+deleted file mode 100644
+index dbb1e522..00000000
+--- a/components/pipeline-service/development/chains-deployment-perf-bump.yaml
++++ /dev/null
+@@ -1,21 +0,0 @@
+----
+-apiVersion: operator.tekton.dev/v1alpha1
+-kind: TektonConfig
+-metadata:
+-  name: config
+-spec:
+-  chain:
+-    options:
+-      deployments:
+-        tekton-chains-controller:
+-          spec:
+-            template:
+-              spec:
+-                containers:
+-                  - name: tekton-chains-controller
+-                    args:
+-                      [
+-                        '--threads-per-controller=32',
+-                        '--kube-api-qps=50',
+-                        '--kube-api-burst=50',
+-                      ]
+\ No newline at end of file
+diff --git a/components/pipeline-service/development/chains-tekton-config-patches.yaml b/components/pipeline-service/development/chains-tekton-config-patches.yaml
+new file mode 100644
+index 00000000..e7c79e42
+--- /dev/null
++++ b/components/pipeline-service/development/chains-tekton-config-patches.yaml
+@@ -0,0 +1,40 @@
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  name: config
++spec:
++  chain:
++    # Configure TaskRun attestation.
++    # RHTAP does not leverage the TaskRun attestations.
++    # This tells Tekton Chains to not store them in the OCI registry.
++    artifacts.taskrun.format: "in-toto"
++    artifacts.taskrun.storage: ""
++
++    # Configure image signing
++    artifacts.oci.storage: "oci"
++
++    # Configure deep inspection
++    artifacts.pipelinerun.enable-deep-inspection: true
++
++    # Configure PipelineRun attestation
++    artifacts.pipelinerun.format: "in-toto"
++    artifacts.pipelinerun.storage: "oci"
++
++    # Rekor integration is disabled for now. It is planned to be re-introduced in the future.
++    transparency.enabled: "false"
++
++    options:
++      deployments:
++        tekton-chains-controller:
++          spec:
++            template:
++              spec:
++                containers:
++                  - name: tekton-chains-controller
++                    args:
++                      [
++                        '--threads-per-controller=32',
++                        '--kube-api-qps=50',
++                        '--kube-api-burst=50',
++                      ]
+\ No newline at end of file
+diff --git a/components/pipeline-service/development/kustomization.yaml b/components/pipeline-service/development/kustomization.yaml
+index 3a7f1e48..4c6f6326 100644
+--- a/components/pipeline-service/development/kustomization.yaml
++++ b/components/pipeline-service/development/kustomization.yaml
+@@ -13,7 +13,7 @@ resources:
+   - ../base/rbac
+ 
+ patches:
+-  - path: chains-deployment-perf-bump.yaml
++  - path: chains-tekton-config-patches.yaml
+     target:
+       kind: TektonConfig
+       name: config
+diff --git a/components/pipeline-service/staging/base/chains-deployment-perf-bump.yaml b/components/pipeline-service/staging/base/chains-deployment-perf-bump.yaml
+deleted file mode 100644
+index dbb1e522..00000000
+--- a/components/pipeline-service/staging/base/chains-deployment-perf-bump.yaml
++++ /dev/null
+@@ -1,21 +0,0 @@
+----
+-apiVersion: operator.tekton.dev/v1alpha1
+-kind: TektonConfig
+-metadata:
+-  name: config
+-spec:
+-  chain:
+-    options:
+-      deployments:
+-        tekton-chains-controller:
+-          spec:
+-            template:
+-              spec:
+-                containers:
+-                  - name: tekton-chains-controller
+-                    args:
+-                      [
+-                        '--threads-per-controller=32',
+-                        '--kube-api-qps=50',
+-                        '--kube-api-burst=50',
+-                      ]
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/base/chains-tekton-config-patches.yaml b/components/pipeline-service/staging/base/chains-tekton-config-patches.yaml
+new file mode 100644
+index 00000000..e7c79e42
+--- /dev/null
++++ b/components/pipeline-service/staging/base/chains-tekton-config-patches.yaml
+@@ -0,0 +1,40 @@
++---
++apiVersion: operator.tekton.dev/v1alpha1
++kind: TektonConfig
++metadata:
++  name: config
++spec:
++  chain:
++    # Configure TaskRun attestation.
++    # RHTAP does not leverage the TaskRun attestations.
++    # This tells Tekton Chains to not store them in the OCI registry.
++    artifacts.taskrun.format: "in-toto"
++    artifacts.taskrun.storage: ""
++
++    # Configure image signing
++    artifacts.oci.storage: "oci"
++
++    # Configure deep inspection
++    artifacts.pipelinerun.enable-deep-inspection: true
++
++    # Configure PipelineRun attestation
++    artifacts.pipelinerun.format: "in-toto"
++    artifacts.pipelinerun.storage: "oci"
++
++    # Rekor integration is disabled for now. It is planned to be re-introduced in the future.
++    transparency.enabled: "false"
++
++    options:
++      deployments:
++        tekton-chains-controller:
++          spec:
++            template:
++              spec:
++                containers:
++                  - name: tekton-chains-controller
++                    args:
++                      [
++                        '--threads-per-controller=32',
++                        '--kube-api-qps=50',
++                        '--kube-api-burst=50',
++                      ]
+\ No newline at end of file
+diff --git a/components/pipeline-service/staging/base/kustomization.yaml b/components/pipeline-service/staging/base/kustomization.yaml
+index 27c7aefd..dcbbf3bc 100644
+--- a/components/pipeline-service/staging/base/kustomization.yaml
++++ b/components/pipeline-service/staging/base/kustomization.yaml
+@@ -15,7 +15,7 @@ resources:
+   - ../../base/rbac
+ 
+ patches:
+-  - path: chains-deployment-perf-bump.yaml
++  - path: chains-tekton-config-patches.yaml
+     target:
+       kind: TektonConfig
+       name: config
+diff --git a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+index 94ace71f..3c8b702f 100644
+--- a/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stage-p01/deploy.yaml
+@@ -1849,6 +1849,7 @@ metadata:
+ spec:
+   chain:
+     artifacts.oci.storage: oci
++    artifacts.pipelinerun.enable-deep-inspection: true
+     artifacts.pipelinerun.format: in-toto
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+diff --git a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+index 06316805..40a9f325 100644
+--- a/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-m01/deploy.yaml
+@@ -1849,6 +1849,7 @@ metadata:
+ spec:
+   chain:
+     artifacts.oci.storage: oci
++    artifacts.pipelinerun.enable-deep-inspection: true
+     artifacts.pipelinerun.format: in-toto
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto
+diff --git a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+index de75e0f7..79c22315 100644
+--- a/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
++++ b/components/pipeline-service/staging/stone-stg-rh01/deploy.yaml
+@@ -1849,6 +1849,7 @@ metadata:
+ spec:
+   chain:
+     artifacts.oci.storage: oci
++    artifacts.pipelinerun.enable-deep-inspection: true
+     artifacts.pipelinerun.format: in-toto
+     artifacts.pipelinerun.storage: oci
+     artifacts.taskrun.format: in-toto

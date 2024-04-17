@@ -1,0 +1,15 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37dd5354/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-ab244edc/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1976c1976
+<             minReplicas: 6
+---
+>             minReplicas: 2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37dd5354/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-ab244edc/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1976c1976
+<             minReplicas: 6
+---
+>             minReplicas: 2
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-37dd5354/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-ab244edc/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1976c1976
+<             minReplicas: 6
+---
+>             minReplicas: 2

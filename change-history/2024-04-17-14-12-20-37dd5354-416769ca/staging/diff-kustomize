@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-416769ca/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-37dd5354/staging/components/pipeline-service/staging/stone-stage-p01/kustomize.out.yaml
+1852d1851
+<     artifacts.pipelinerun.enable-deep-inspection: true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-416769ca/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml ./kustomized-cache/commit-37dd5354/staging/components/pipeline-service/staging/stone-stg-m01/kustomize.out.yaml
+1852d1851
+<     artifacts.pipelinerun.enable-deep-inspection: true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-416769ca/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml ./kustomized-cache/commit-37dd5354/staging/components/pipeline-service/staging/stone-stg-rh01/kustomize.out.yaml
+1852d1851
+<     artifacts.pipelinerun.enable-deep-inspection: true

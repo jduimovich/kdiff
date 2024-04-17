@@ -1,0 +1,51 @@
+diff --git a/components/pipeline-service/production/base/update-tekton-config-performance.yaml b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+index fecb5932..b406a17f 100644
+--- a/components/pipeline-service/production/base/update-tekton-config-performance.yaml
++++ b/components/pipeline-service/production/base/update-tekton-config-performance.yaml
+@@ -43,3 +43,6 @@
+   path: /spec/platforms/openshift/pipelinesAsCode/options/deployments/pipelines-as-code-webhook/spec/replicas
+   # default pipeline-service setting is 1
+   value: 2
++- op: replace
++  path: /spec/pipeline/options/horizontalPodAutoscalers/tekton-pipelines-webhook/spec/minReplicas
++  value: 6
+\ No newline at end of file
+diff --git a/components/pipeline-service/production/stone-prd-m01/deploy.yaml b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+index 6bde15cf..cd595fb1 100644
+--- a/components/pipeline-service/production/stone-prd-m01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-m01/deploy.yaml
+@@ -1973,7 +1973,7 @@ spec:
+                   averageUtilization: 100
+                   type: Utilization
+               type: Resource
+-            minReplicas: 2
++            minReplicas: 6
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+index e4e560d9..1541bc13 100644
+--- a/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prd-rh01/deploy.yaml
+@@ -1973,7 +1973,7 @@ spec:
+                   averageUtilization: 100
+                   type: Utilization
+               type: Resource
+-            minReplicas: 2
++            minReplicas: 6
+     performance:
+       buckets: 4
+       disable-ha: false
+diff --git a/components/pipeline-service/production/stone-prod-p01/deploy.yaml b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+index 6248b2e4..1607fd3a 100644
+--- a/components/pipeline-service/production/stone-prod-p01/deploy.yaml
++++ b/components/pipeline-service/production/stone-prod-p01/deploy.yaml
+@@ -1973,7 +1973,7 @@ spec:
+                   averageUtilization: 100
+                   type: Utilization
+               type: Resource
+-            minReplicas: 2
++            minReplicas: 6
+     performance:
+       buckets: 4
+       disable-ha: false
