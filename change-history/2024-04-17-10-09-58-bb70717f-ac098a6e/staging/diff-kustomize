@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ac098a6e/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-bb70717f/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+1207c1207
+<         image: quay.io/redhat-appstudio/integration-service:f0373664133c8e208c416eab55beebc1382ab6f2
+---
+>         image: quay.io/redhat-appstudio/integration-service:1cf98dbb0b7fea4fc9e8118713d34f57323c341c
+1298c1298
+<             image: quay.io/redhat-appstudio/integration-service:f0373664133c8e208c416eab55beebc1382ab6f2
+---
+>             image: quay.io/redhat-appstudio/integration-service:1cf98dbb0b7fea4fc9e8118713d34f57323c341c
