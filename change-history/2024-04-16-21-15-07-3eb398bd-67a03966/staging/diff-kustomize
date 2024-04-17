@@ -1,0 +1,4 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-67a03966/staging/components/cluster-secret-store/staging/kustomize.out.yaml ./kustomized-cache/commit-3eb398bd/staging/components/cluster-secret-store/staging/kustomize.out.yaml
+24d23
+<     - quality-dashboard
+Only in ./kustomized-cache/commit-67a03966/staging/components: quality-dashboard
