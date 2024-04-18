@@ -1,53 +1,552 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Apr 18 12:04:32 UTC 2024
+### This file generated at Thu Apr 18 16:09:15 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 722ffbba to 7618b22d on Thu Apr 18 11:23:15 2024 </h3>  
+<h3>1: Production changes from b069469e to 6c50484c on Thu Apr 18 15:36:12 2024 </h3>  
  
 <details> 
-<summary>Git Diff (36 lines)</summary>  
+<summary>Git Diff (26 lines)</summary>  
 
 ``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index 864e1d8b..f500ecf8 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index d8445be6..9f163af7 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=c528daeafa497195049316087828594ab988ccc1
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=c528daeafa497195049316087828594ab988ccc1
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
++  newTag: c528daeafa497195049316087828594ab988ccc1
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
++  newTag: c528daeafa497195049316087828594ab988ccc1
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (15 lines)</summary>  
+
+``` 
+./commit-b069469e/production/components/multi-platform-controller/production/kustomize.out.yaml
+257c257
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:c528daeafa497195049316087828594ab988ccc1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
+266c266
+<             memory: 2Gi
+---
+>             memory: 512Mi
+299c299
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:c528daeafa497195049316087828594ab988ccc1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
+474d473
+<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from b069469e to 6c50484c on Thu Apr 18 15:36:12 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index d8445be6..9f163af7 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=c528daeafa497195049316087828594ab988ccc1
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=c528daeafa497195049316087828594ab988ccc1
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
++  newTag: c528daeafa497195049316087828594ab988ccc1
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
++  newTag: c528daeafa497195049316087828594ab988ccc1
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (15 lines)</summary>  
+
+``` 
+./commit-b069469e/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+247c247
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:c528daeafa497195049316087828594ab988ccc1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
+256c256
+<             memory: 2Gi
+---
+>             memory: 512Mi
+289c289
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:c528daeafa497195049316087828594ab988ccc1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
+418d417
+<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from b069469e to 6c50484c on Thu Apr 18 15:36:12 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index d8445be6..9f163af7 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=c528daeafa497195049316087828594ab988ccc1
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=c528daeafa497195049316087828594ab988ccc1
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: 7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
++  newTag: c528daeafa497195049316087828594ab988ccc1
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: 7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
++  newTag: c528daeafa497195049316087828594ab988ccc1
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (15 lines)</summary>  
+
+``` 
+./commit-b069469e/development/components/multi-platform-controller/development/kustomize.out.yaml
+209c209
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:c528daeafa497195049316087828594ab988ccc1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
+218c218
+<             memory: 2Gi
+---
+>             memory: 512Mi
+251c251
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:c528daeafa497195049316087828594ab988ccc1
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
+311d310
+<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 9a21a900 to b069469e on Thu Apr 18 15:11:46 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (43 lines)</summary>  
+
+``` 
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index d0fb6aff..e7c3810f 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
  - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=72eebd74d11635e2325eb2c0eae3d7b0bc2a127d
-+- https://github.com/konflux-ci/project-controller/config/default?ref=966b29cdc462c6507145122826b5bc428f105aba
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=6185859e63a32de41a8e436a8daa1ac3a5b1f364
++- https://github.com/redhat-appstudio/build-service/config/default?ref=c214c7ecad9e2b65834089c123d89d8157ad078c
+ 
+ namespace: build-service
  
  images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 72eebd74d11635e2325eb2c0eae3d7b0bc2a127d
-+  newTag: 966b29cdc462c6507145122826b5bc428f105aba
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: 6185859e63a32de41a8e436a8daa1ac3a5b1f364
++  newTag: c214c7ecad9e2b65834089c123d89d8157ad078c
  
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 91fcf4d0..b3450c06 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index d20cbd53..d82e7423 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
  resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=72eebd74d11635e2325eb2c0eae3d7b0bc2a127d
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=966b29cdc462c6507145122826b5bc428f105aba
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=6185859e63a32de41a8e436a8daa1ac3a5b1f364
++- https://github.com/redhat-appstudio/build-service/config/default?ref=c214c7ecad9e2b65834089c123d89d8157ad078c
+ 
+ namespace: build-service
  
  images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 72eebd74d11635e2325eb2c0eae3d7b0bc2a127d
-+  newTag: 966b29cdc462c6507145122826b5bc428f105aba
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: 6185859e63a32de41a8e436a8daa1ac3a5b1f364
++  newTag: c214c7ecad9e2b65834089c123d89d8157ad078c
  
- namespace: project-controller 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+\ No newline at end of file 
 ```
  
 </details> 
@@ -179,48 +678,55 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 722ffbba to 7618b22d on Thu Apr 18 11:23:15 2024 </h3>  
+<h3>2: Staging changes from 9a21a900 to b069469e on Thu Apr 18 15:11:46 2024 </h3>  
  
 <details> 
-<summary>Git Diff (36 lines)</summary>  
+<summary>Git Diff (43 lines)</summary>  
 
 ``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index 864e1d8b..f500ecf8 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index d0fb6aff..e7c3810f 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
  - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=72eebd74d11635e2325eb2c0eae3d7b0bc2a127d
-+- https://github.com/konflux-ci/project-controller/config/default?ref=966b29cdc462c6507145122826b5bc428f105aba
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=6185859e63a32de41a8e436a8daa1ac3a5b1f364
++- https://github.com/redhat-appstudio/build-service/config/default?ref=c214c7ecad9e2b65834089c123d89d8157ad078c
+ 
+ namespace: build-service
  
  images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 72eebd74d11635e2325eb2c0eae3d7b0bc2a127d
-+  newTag: 966b29cdc462c6507145122826b5bc428f105aba
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: 6185859e63a32de41a8e436a8daa1ac3a5b1f364
++  newTag: c214c7ecad9e2b65834089c123d89d8157ad078c
  
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 91fcf4d0..b3450c06 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index d20cbd53..d82e7423 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
  resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=72eebd74d11635e2325eb2c0eae3d7b0bc2a127d
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=966b29cdc462c6507145122826b5bc428f105aba
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=6185859e63a32de41a8e436a8daa1ac3a5b1f364
++- https://github.com/redhat-appstudio/build-service/config/default?ref=c214c7ecad9e2b65834089c123d89d8157ad078c
+ 
+ namespace: build-service
  
  images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 72eebd74d11635e2325eb2c0eae3d7b0bc2a127d
-+  newTag: 966b29cdc462c6507145122826b5bc428f105aba
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: 6185859e63a32de41a8e436a8daa1ac3a5b1f364
++  newTag: c214c7ecad9e2b65834089c123d89d8157ad078c
  
- namespace: project-controller 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+\ No newline at end of file 
 ```
  
 </details> 
@@ -229,11 +735,11 @@ index 91fcf4d0..b3450c06 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-./commit-722ffbba/staging/components/project-controller/staging/kustomize.out.yaml
-685c685
-<         image: quay.io/redhat-appstudio/project-controller:966b29cdc462c6507145122826b5bc428f105aba
+./commit-9a21a900/staging/components/build-service/staging/stone-stage-p01/kustomize.out.yaml
+694c694
+<         image: quay.io/redhat-appstudio/build-service:c214c7ecad9e2b65834089c123d89d8157ad078c
 ---
->         image: quay.io/redhat-appstudio/project-controller:72eebd74d11635e2325eb2c0eae3d7b0bc2a127d 
+>         image: quay.io/redhat-appstudio/build-service:6185859e63a32de41a8e436a8daa1ac3a5b1f364 
 ```
  
 </details>  
@@ -359,48 +865,55 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 722ffbba to 7618b22d on Thu Apr 18 11:23:15 2024 </h3>  
+<h3>2: Development changes from 9a21a900 to b069469e on Thu Apr 18 15:11:46 2024 </h3>  
  
 <details> 
-<summary>Git Diff (36 lines)</summary>  
+<summary>Git Diff (43 lines)</summary>  
 
 ``` 
-diff --git a/components/project-controller/development/kustomization.yaml b/components/project-controller/development/kustomization.yaml
-index 864e1d8b..f500ecf8 100644
---- a/components/project-controller/development/kustomization.yaml
-+++ b/components/project-controller/development/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index d0fb6aff..e7c3810f 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
  - ../base
--- https://github.com/konflux-ci/project-controller/config/default?ref=72eebd74d11635e2325eb2c0eae3d7b0bc2a127d
-+- https://github.com/konflux-ci/project-controller/config/default?ref=966b29cdc462c6507145122826b5bc428f105aba
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=6185859e63a32de41a8e436a8daa1ac3a5b1f364
++- https://github.com/redhat-appstudio/build-service/config/default?ref=c214c7ecad9e2b65834089c123d89d8157ad078c
+ 
+ namespace: build-service
  
  images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 72eebd74d11635e2325eb2c0eae3d7b0bc2a127d
-+  newTag: 966b29cdc462c6507145122826b5bc428f105aba
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: 6185859e63a32de41a8e436a8daa1ac3a5b1f364
++  newTag: c214c7ecad9e2b65834089c123d89d8157ad078c
  
- namespace: project-controller
-diff --git a/components/project-controller/staging/kustomization.yaml b/components/project-controller/staging/kustomization.yaml
-index 91fcf4d0..b3450c06 100644
---- a/components/project-controller/staging/kustomization.yaml
-+++ b/components/project-controller/staging/kustomization.yaml
-@@ -2,11 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index d20cbd53..d82e7423 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,14 +3,14 @@ kind: Kustomization
  resources:
-   - ../base
--  - https://github.com/konflux-ci/project-controller/config/default?ref=72eebd74d11635e2325eb2c0eae3d7b0bc2a127d
-+  - https://github.com/konflux-ci/project-controller/config/default?ref=966b29cdc462c6507145122826b5bc428f105aba
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=6185859e63a32de41a8e436a8daa1ac3a5b1f364
++- https://github.com/redhat-appstudio/build-service/config/default?ref=c214c7ecad9e2b65834089c123d89d8157ad078c
+ 
+ namespace: build-service
  
  images:
- - name: konflux-project-controller
-   newName: quay.io/redhat-appstudio/project-controller
--  newTag: 72eebd74d11635e2325eb2c0eae3d7b0bc2a127d
-+  newTag: 966b29cdc462c6507145122826b5bc428f105aba
+ - name: quay.io/redhat-appstudio/build-service
+   newName: quay.io/redhat-appstudio/build-service
+-  newTag: 6185859e63a32de41a8e436a8daa1ac3a5b1f364
++  newTag: c214c7ecad9e2b65834089c123d89d8157ad078c
  
- namespace: project-controller 
+ commonAnnotations:
+   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+\ No newline at end of file 
 ```
  
 </details> 
@@ -409,11 +922,11 @@ index 91fcf4d0..b3450c06 100644
 <summary>Kustomize Generated Diff (5 lines)</summary>  
 
 ``` 
-./commit-722ffbba/development/components/project-controller/development/kustomize.out.yaml
-685c685
-<         image: quay.io/redhat-appstudio/project-controller:966b29cdc462c6507145122826b5bc428f105aba
+./commit-9a21a900/development/components/build-service/development/kustomize.out.yaml
+689c689
+<         image: quay.io/redhat-appstudio/build-service:c214c7ecad9e2b65834089c123d89d8157ad078c
 ---
->         image: quay.io/redhat-appstudio/project-controller:72eebd74d11635e2325eb2c0eae3d7b0bc2a127d 
+>         image: quay.io/redhat-appstudio/build-service:6185859e63a32de41a8e436a8daa1ac3a5b1f364 
 ```
  
 </details>  
@@ -494,618 +1007,54 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 8edd348a to 722ffbba on Thu Apr 18 10:20:02 2024 </h3>  
+<h3>3: Production changes from c551c479 to 9a21a900 on Thu Apr 18 13:57:33 2024 </h3>  
  
 <details> 
-<summary>Git Diff (70 lines)</summary>  
+<summary>Git Diff (42 lines)</summary>  
 
 ``` 
-diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
-index 847dfccf..8790c3fd 100644
---- a/components/has/base/kustomization.yaml
-+++ b/components/has/base/kustomization.yaml
-@@ -3,7 +3,7 @@ kind: Kustomization
- resources:
-   - ./argocd-roles
-   - ./rbac
--  - https://github.com/redhat-appstudio/application-service/config/default?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+  - https://github.com/redhat-appstudio/application-service/config/default?ref=50752a0044601c365275b01a0249007396010b06
- 
- 
- components:
-@@ -13,7 +13,7 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/application-service
-     newName: quay.io/redhat-appstudio/application-service
--    newTag: 6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+    newTag: 50752a0044601c365275b01a0249007396010b06
- 
- configMapGenerator:
-   - literals:
-diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
-index 18e3d2e1..d972180b 100644
---- a/components/has/production/kustomization.yaml
-+++ b/components/has/production/kustomization.yaml
-@@ -4,8 +4,8 @@ resources:
-   - ../base/argocd-roles
-   - ../base/external-secrets
-   - ../base/rbac
--  - https://github.com/redhat-appstudio/application-service/config/default?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
--  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+  - https://github.com/redhat-appstudio/application-service/config/default?ref=50752a0044601c365275b01a0249007396010b06
-+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=50752a0044601c365275b01a0249007396010b06
- 
- components:
-   - ../k-components/manager-resources
-@@ -15,7 +15,7 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/application-service
-     newName: quay.io/redhat-appstudio/application-service
--    newTag: 6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+    newTag: 50752a0044601c365275b01a0249007396010b06
- 
- configMapGenerator:
-   - literals:
-diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
-index 3502f273..a8f20701 100644
---- a/components/has/staging/kustomization.yaml
-+++ b/components/has/staging/kustomization.yaml
-@@ -4,7 +4,7 @@ resources:
-   - ../base
-   - ../base/external-secrets
-   - rbac
--  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=50752a0044601c365275b01a0249007396010b06
- 
- 
- components:
-diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-index 7da19cf9..be09c2e6 100644
---- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-@@ -1,5 +1,5 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index d6133dd2..5f158d66 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
  kind: Kustomization
  resources:
--  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=50752a0044601c365275b01a0249007396010b06
-   - dashboard.yaml 
-```
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=c0eece85870ab816ab3637ca4d08b3dae76ad556
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c0eece85870ab816ab3637ca4d08b3dae76ad556
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=8fca27abeb6959d04fa71dd19b330550ed38308e
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=8fca27abeb6959d04fa71dd19b330550ed38308e
  
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-8edd348a/production/components/has/production/kustomize.out.yaml
-818c818
-<         image: quay.io/redhat-appstudio/application-service:50752a0044601c365275b01a0249007396010b06
----
->         image: quay.io/redhat-appstudio/application-service:6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Staging changes from 8edd348a to 722ffbba on Thu Apr 18 10:20:02 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (70 lines)</summary>  
-
-``` 
-diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
-index 847dfccf..8790c3fd 100644
---- a/components/has/base/kustomization.yaml
-+++ b/components/has/base/kustomization.yaml
-@@ -3,7 +3,7 @@ kind: Kustomization
- resources:
-   - ./argocd-roles
-   - ./rbac
--  - https://github.com/redhat-appstudio/application-service/config/default?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+  - https://github.com/redhat-appstudio/application-service/config/default?ref=50752a0044601c365275b01a0249007396010b06
- 
- 
- components:
-@@ -13,7 +13,7 @@ components:
  images:
-   - name: quay.io/redhat-appstudio/application-service
-     newName: quay.io/redhat-appstudio/application-service
--    newTag: 6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+    newTag: 50752a0044601c365275b01a0249007396010b06
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: c0eece85870ab816ab3637ca4d08b3dae76ad556
++  newTag: 8fca27abeb6959d04fa71dd19b330550ed38308e
  
  configMapGenerator:
-   - literals:
-diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
-index 18e3d2e1..d972180b 100644
---- a/components/has/production/kustomization.yaml
-+++ b/components/has/production/kustomization.yaml
-@@ -4,8 +4,8 @@ resources:
-   - ../base/argocd-roles
-   - ../base/external-secrets
-   - ../base/rbac
--  - https://github.com/redhat-appstudio/application-service/config/default?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
--  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+  - https://github.com/redhat-appstudio/application-service/config/default?ref=50752a0044601c365275b01a0249007396010b06
-+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=50752a0044601c365275b01a0249007396010b06
+ - name: console-url
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index e857d6b3..31d1e577 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=c0eece85870ab816ab3637ca4d08b3dae76ad556
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c0eece85870ab816ab3637ca4d08b3dae76ad556
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=8fca27abeb6959d04fa71dd19b330550ed38308e
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=8fca27abeb6959d04fa71dd19b330550ed38308e
  
- components:
-   - ../k-components/manager-resources
-@@ -15,7 +15,7 @@ components:
  images:
-   - name: quay.io/redhat-appstudio/application-service
-     newName: quay.io/redhat-appstudio/application-service
--    newTag: 6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+    newTag: 50752a0044601c365275b01a0249007396010b06
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: c0eece85870ab816ab3637ca4d08b3dae76ad556
++  newTag: 8fca27abeb6959d04fa71dd19b330550ed38308e
  
  configMapGenerator:
-   - literals:
-diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
-index 3502f273..a8f20701 100644
---- a/components/has/staging/kustomization.yaml
-+++ b/components/has/staging/kustomization.yaml
-@@ -4,7 +4,7 @@ resources:
-   - ../base
-   - ../base/external-secrets
-   - rbac
--  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=50752a0044601c365275b01a0249007396010b06
- 
- 
- components:
-diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-index 7da19cf9..be09c2e6 100644
---- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-@@ -1,5 +1,5 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=50752a0044601c365275b01a0249007396010b06
-   - dashboard.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-8edd348a/staging/components/has/staging/kustomize.out.yaml
-845c845
-<         image: quay.io/redhat-appstudio/application-service:50752a0044601c365275b01a0249007396010b06
----
->         image: quay.io/redhat-appstudio/application-service:6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>2: Development changes from 8edd348a to 722ffbba on Thu Apr 18 10:20:02 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (70 lines)</summary>  
-
-``` 
-diff --git a/components/has/base/kustomization.yaml b/components/has/base/kustomization.yaml
-index 847dfccf..8790c3fd 100644
---- a/components/has/base/kustomization.yaml
-+++ b/components/has/base/kustomization.yaml
-@@ -3,7 +3,7 @@ kind: Kustomization
- resources:
-   - ./argocd-roles
-   - ./rbac
--  - https://github.com/redhat-appstudio/application-service/config/default?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+  - https://github.com/redhat-appstudio/application-service/config/default?ref=50752a0044601c365275b01a0249007396010b06
- 
- 
- components:
-@@ -13,7 +13,7 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/application-service
-     newName: quay.io/redhat-appstudio/application-service
--    newTag: 6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+    newTag: 50752a0044601c365275b01a0249007396010b06
- 
- configMapGenerator:
-   - literals:
-diff --git a/components/has/production/kustomization.yaml b/components/has/production/kustomization.yaml
-index 18e3d2e1..d972180b 100644
---- a/components/has/production/kustomization.yaml
-+++ b/components/has/production/kustomization.yaml
-@@ -4,8 +4,8 @@ resources:
-   - ../base/argocd-roles
-   - ../base/external-secrets
-   - ../base/rbac
--  - https://github.com/redhat-appstudio/application-service/config/default?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
--  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+  - https://github.com/redhat-appstudio/application-service/config/default?ref=50752a0044601c365275b01a0249007396010b06
-+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=50752a0044601c365275b01a0249007396010b06
- 
- components:
-   - ../k-components/manager-resources
-@@ -15,7 +15,7 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/application-service
-     newName: quay.io/redhat-appstudio/application-service
--    newTag: 6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+    newTag: 50752a0044601c365275b01a0249007396010b06
- 
- configMapGenerator:
-   - literals:
-diff --git a/components/has/staging/kustomization.yaml b/components/has/staging/kustomization.yaml
-index 3502f273..a8f20701 100644
---- a/components/has/staging/kustomization.yaml
-+++ b/components/has/staging/kustomization.yaml
-@@ -4,7 +4,7 @@ resources:
-   - ../base
-   - ../base/external-secrets
-   - rbac
--  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+  - https://github.com/redhat-appstudio/application-service/config/prometheus/?ref=50752a0044601c365275b01a0249007396010b06
- 
- 
- components:
-diff --git a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-index 7da19cf9..be09c2e6 100644
---- a/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-+++ b/components/monitoring/grafana/base/dashboards/has/kustomization.yaml
-@@ -1,5 +1,5 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b
-+  - https://github.com/redhat-appstudio/application-service/config/monitoring/?ref=50752a0044601c365275b01a0249007396010b06
-   - dashboard.yaml 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-8edd348a/development/components/has/development/kustomize.out.yaml
-777c777
-<         image: quay.io/redhat-appstudio/application-service:50752a0044601c365275b01a0249007396010b06
----
->         image: quay.io/redhat-appstudio/application-service:6956cf67fbbc8b1cf3bba084d2e674a0c66fdd3b 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 6e36cc71 to 8edd348a on Wed Apr 17 16:15:20 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (12 lines)</summary>  
-
-``` 
-diff --git a/components/quality-dashboard/base/rbac/quality-dashboard.yaml b/components/quality-dashboard/base/rbac/quality-dashboard.yaml
-index 386c7bcd..a9780aa1 100644
---- a/components/quality-dashboard/base/rbac/quality-dashboard.yaml
-+++ b/components/quality-dashboard/base/rbac/quality-dashboard.yaml
-@@ -8,6 +8,7 @@ rules:
-       - create
-       - delete
-       - edit
-+      - get
-       - list
-     apiGroups:
-       - '' 
+ - name: console-url 
 ```
  
 </details> 
@@ -1237,35 +1186,71 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 6e36cc71 to 8edd348a on Wed Apr 17 16:15:20 2024 </h3>  
+<h3>3: Staging changes from c551c479 to 9a21a900 on Thu Apr 18 13:57:33 2024 </h3>  
  
 <details> 
-<summary>Git Diff (12 lines)</summary>  
+<summary>Git Diff (42 lines)</summary>  
 
 ``` 
-diff --git a/components/quality-dashboard/base/rbac/quality-dashboard.yaml b/components/quality-dashboard/base/rbac/quality-dashboard.yaml
-index 386c7bcd..a9780aa1 100644
---- a/components/quality-dashboard/base/rbac/quality-dashboard.yaml
-+++ b/components/quality-dashboard/base/rbac/quality-dashboard.yaml
-@@ -8,6 +8,7 @@ rules:
-       - create
-       - delete
-       - edit
-+      - get
-       - list
-     apiGroups:
-       - '' 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index d6133dd2..5f158d66 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=c0eece85870ab816ab3637ca4d08b3dae76ad556
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c0eece85870ab816ab3637ca4d08b3dae76ad556
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=8fca27abeb6959d04fa71dd19b330550ed38308e
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=8fca27abeb6959d04fa71dd19b330550ed38308e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: c0eece85870ab816ab3637ca4d08b3dae76ad556
++  newTag: 8fca27abeb6959d04fa71dd19b330550ed38308e
+ 
+ configMapGenerator:
+ - name: console-url
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index e857d6b3..31d1e577 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=c0eece85870ab816ab3637ca4d08b3dae76ad556
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c0eece85870ab816ab3637ca4d08b3dae76ad556
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=8fca27abeb6959d04fa71dd19b330550ed38308e
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=8fca27abeb6959d04fa71dd19b330550ed38308e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: c0eece85870ab816ab3637ca4d08b3dae76ad556
++  newTag: 8fca27abeb6959d04fa71dd19b330550ed38308e
+ 
+ configMapGenerator:
+ - name: console-url 
 ```
  
 </details> 
 
 <details> 
-<summary>Kustomize Generated Diff (3 lines)</summary>  
+<summary>Kustomize Generated Diff (9 lines)</summary>  
 
 ``` 
-./commit-6e36cc71/staging/components/quality-dashboard/staging/kustomize.out.yaml
-23d22
-<   - get 
+./commit-c551c479/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+1207c1207
+<         image: quay.io/redhat-appstudio/integration-service:8fca27abeb6959d04fa71dd19b330550ed38308e
+---
+>         image: quay.io/redhat-appstudio/integration-service:c0eece85870ab816ab3637ca4d08b3dae76ad556
+1298c1298
+<             image: quay.io/redhat-appstudio/integration-service:8fca27abeb6959d04fa71dd19b330550ed38308e
+---
+>             image: quay.io/redhat-appstudio/integration-service:c0eece85870ab816ab3637ca4d08b3dae76ad556 
 ```
  
 </details>  
@@ -1391,24 +1376,286 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 6e36cc71 to 8edd348a on Wed Apr 17 16:15:20 2024 </h3>  
+<h3>3: Development changes from c551c479 to 9a21a900 on Thu Apr 18 13:57:33 2024 </h3>  
  
 <details> 
-<summary>Git Diff (12 lines)</summary>  
+<summary>Git Diff (42 lines)</summary>  
 
 ``` 
-diff --git a/components/quality-dashboard/base/rbac/quality-dashboard.yaml b/components/quality-dashboard/base/rbac/quality-dashboard.yaml
-index 386c7bcd..a9780aa1 100644
---- a/components/quality-dashboard/base/rbac/quality-dashboard.yaml
-+++ b/components/quality-dashboard/base/rbac/quality-dashboard.yaml
-@@ -8,6 +8,7 @@ rules:
-       - create
-       - delete
-       - edit
-+      - get
-       - list
-     apiGroups:
-       - '' 
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index d6133dd2..5f158d66 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -2,13 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=c0eece85870ab816ab3637ca4d08b3dae76ad556
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c0eece85870ab816ab3637ca4d08b3dae76ad556
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=8fca27abeb6959d04fa71dd19b330550ed38308e
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=8fca27abeb6959d04fa71dd19b330550ed38308e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: c0eece85870ab816ab3637ca4d08b3dae76ad556
++  newTag: 8fca27abeb6959d04fa71dd19b330550ed38308e
+ 
+ configMapGenerator:
+ - name: console-url
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index e857d6b3..31d1e577 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -3,13 +3,13 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/integration-service/config/default?ref=c0eece85870ab816ab3637ca4d08b3dae76ad556
+-- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=c0eece85870ab816ab3637ca4d08b3dae76ad556
++- https://github.com/redhat-appstudio/integration-service/config/default?ref=8fca27abeb6959d04fa71dd19b330550ed38308e
++- https://github.com/redhat-appstudio/integration-service/config/snapshotgc?ref=8fca27abeb6959d04fa71dd19b330550ed38308e
+ 
+ images:
+ - name: quay.io/redhat-appstudio/integration-service
+   newName: quay.io/redhat-appstudio/integration-service
+-  newTag: c0eece85870ab816ab3637ca4d08b3dae76ad556
++  newTag: 8fca27abeb6959d04fa71dd19b330550ed38308e
+ 
+ configMapGenerator:
+ - name: console-url 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (9 lines)</summary>  
+
+``` 
+./commit-c551c479/development/components/integration/development/kustomize.out.yaml
+1205c1205
+<         image: quay.io/redhat-appstudio/integration-service:8fca27abeb6959d04fa71dd19b330550ed38308e
+---
+>         image: quay.io/redhat-appstudio/integration-service:c0eece85870ab816ab3637ca4d08b3dae76ad556
+1299c1299
+<             image: quay.io/redhat-appstudio/integration-service:8fca27abeb6959d04fa71dd19b330550ed38308e
+---
+>             image: quay.io/redhat-appstudio/integration-service:c0eece85870ab816ab3637ca4d08b3dae76ad556 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>4: Production changes from 4e79722b to c551c479 on Thu Apr 18 13:09:57 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (129 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+new file mode 100644
+index 00000000..3a725fcf
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+@@ -0,0 +1,41 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: kubesaw-common
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/sandbox/common
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: kubesaw-common-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: kubesaw-common
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml
+new file mode 100644
+index 00000000..cced2a80
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - kubesaw-common.yaml
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+index e3596c0f..3e8ab42f 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+@@ -11,5 +11,6 @@ resources:
+   - disable-csvcopy-for-all-cluster
+   - enable-dvo-for-all-cluster
+   - backup
++  - kubesaw-common
+ components:
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index 293eeaf4..13168393 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -82,3 +82,9 @@ kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: kubesaw-common
++$patch: delete
+diff --git a/components/sandbox/base/kustomization.yaml b/components/sandbox/common/kustomization.yaml
+similarity index 100%
+rename from components/sandbox/base/kustomization.yaml
+rename to components/sandbox/common/kustomization.yaml
+diff --git a/components/sandbox/base/olm-restart/cronjob.yaml b/components/sandbox/common/olm-restart/cronjob.yaml
+similarity index 100%
+rename from components/sandbox/base/olm-restart/cronjob.yaml
+rename to components/sandbox/common/olm-restart/cronjob.yaml
+diff --git a/components/sandbox/base/olm-restart/kustomization.yaml b/components/sandbox/common/olm-restart/kustomization.yaml
+similarity index 100%
+rename from components/sandbox/base/olm-restart/kustomization.yaml
+rename to components/sandbox/common/olm-restart/kustomization.yaml
+diff --git a/components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml b/components/sandbox/common/olm-restart/sandbox-sre-olm-restart.yaml
+similarity index 100%
+rename from components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml
+rename to components/sandbox/common/olm-restart/sandbox-sre-olm-restart.yaml
+diff --git a/components/sandbox/base/rbac/kustomization.yaml b/components/sandbox/common/rbac/kustomization.yaml
+similarity index 100%
+rename from components/sandbox/base/rbac/kustomization.yaml
+rename to components/sandbox/common/rbac/kustomization.yaml
+diff --git a/components/sandbox/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/common/rbac/sandbox-sre-admins.yaml
+similarity index 100%
+rename from components/sandbox/base/rbac/sandbox-sre-admins.yaml
+rename to components/sandbox/common/rbac/sandbox-sre-admins.yaml
+diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+index 60bf269b..df54c578 100644
+--- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ namespace: toolchain-host-operator
+ resources:
+-- ../../base
+ - ./rbac
+ - ./monitoring
+ - ./proxy
+diff --git a/components/sandbox/toolchain-member-operator/base/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+index 2e323db7..f14a47f0 100644
+--- a/components/sandbox/toolchain-member-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+@@ -2,6 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ namespace: toolchain-member-operator
+ resources:
+-- ../../base
+ - ./rbac
+ - ./olm 
 ```
  
 </details> 
@@ -1488,126 +1735,6 @@ KubeLinter v0.6.1-0-gc6177366a3
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from a5164d91 to 6e36cc71 on Wed Apr 17 14:12:34 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (21 lines)</summary>  
-
-``` 
-diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
-index ff794f8d..d6313ff7 100644
---- a/components/release/production/kustomization.yaml
-+++ b/components/release/production/kustomization.yaml
-@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/release-service/config/default?ref=84a78472781814a2827af663659f2672a07f0f8f
-+  - https://github.com/redhat-appstudio/release-service/config/default?ref=ec5cca73ee273dcfa4b49aa5bde471f824171405
- 
- components:
-   - ../k-components/manager-resources-patch
-@@ -10,6 +10,6 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 84a78472781814a2827af663659f2672a07f0f8f
-+    newTag: ec5cca73ee273dcfa4b49aa5bde471f824171405
- 
- namespace: release-service 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (5 lines)</summary>  
-
-``` 
-./commit-a5164d91/production/components/release/production/kustomize.out.yaml
-1765c1765
-<         image: quay.io/redhat-appstudio/release-service:ec5cca73ee273dcfa4b49aa5bde471f824171405
----
->         image: quay.io/redhat-appstudio/release-service:84a78472781814a2827af663659f2672a07f0f8f 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
 No lint errors found!
 KubeLinter v0.6.1-0-gc6177366a3
 
@@ -1660,33 +1787,141 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Staging changes from a5164d91 to 6e36cc71 on Wed Apr 17 14:12:34 2024 </h3>  
+<h3>4: Staging changes from 4e79722b to c551c479 on Thu Apr 18 13:09:57 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (129 lines)</summary>  
 
 ``` 
-diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
-index ff794f8d..d6313ff7 100644
---- a/components/release/production/kustomization.yaml
-+++ b/components/release/production/kustomization.yaml
-@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/release-service/config/default?ref=84a78472781814a2827af663659f2672a07f0f8f
-+  - https://github.com/redhat-appstudio/release-service/config/default?ref=ec5cca73ee273dcfa4b49aa5bde471f824171405
- 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+new file mode 100644
+index 00000000..3a725fcf
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+@@ -0,0 +1,41 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: kubesaw-common
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/sandbox/common
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: kubesaw-common-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: kubesaw-common
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml
+new file mode 100644
+index 00000000..cced2a80
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - kubesaw-common.yaml
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+index e3596c0f..3e8ab42f 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+@@ -11,5 +11,6 @@ resources:
+   - disable-csvcopy-for-all-cluster
+   - enable-dvo-for-all-cluster
+   - backup
++  - kubesaw-common
  components:
-   - ../k-components/manager-resources-patch
-@@ -10,6 +10,6 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 84a78472781814a2827af663659f2672a07f0f8f
-+    newTag: ec5cca73ee273dcfa4b49aa5bde471f824171405
- 
- namespace: release-service 
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index 293eeaf4..13168393 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -82,3 +82,9 @@ kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: kubesaw-common
++$patch: delete
+diff --git a/components/sandbox/base/kustomization.yaml b/components/sandbox/common/kustomization.yaml
+similarity index 100%
+rename from components/sandbox/base/kustomization.yaml
+rename to components/sandbox/common/kustomization.yaml
+diff --git a/components/sandbox/base/olm-restart/cronjob.yaml b/components/sandbox/common/olm-restart/cronjob.yaml
+similarity index 100%
+rename from components/sandbox/base/olm-restart/cronjob.yaml
+rename to components/sandbox/common/olm-restart/cronjob.yaml
+diff --git a/components/sandbox/base/olm-restart/kustomization.yaml b/components/sandbox/common/olm-restart/kustomization.yaml
+similarity index 100%
+rename from components/sandbox/base/olm-restart/kustomization.yaml
+rename to components/sandbox/common/olm-restart/kustomization.yaml
+diff --git a/components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml b/components/sandbox/common/olm-restart/sandbox-sre-olm-restart.yaml
+similarity index 100%
+rename from components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml
+rename to components/sandbox/common/olm-restart/sandbox-sre-olm-restart.yaml
+diff --git a/components/sandbox/base/rbac/kustomization.yaml b/components/sandbox/common/rbac/kustomization.yaml
+similarity index 100%
+rename from components/sandbox/base/rbac/kustomization.yaml
+rename to components/sandbox/common/rbac/kustomization.yaml
+diff --git a/components/sandbox/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/common/rbac/sandbox-sre-admins.yaml
+similarity index 100%
+rename from components/sandbox/base/rbac/sandbox-sre-admins.yaml
+rename to components/sandbox/common/rbac/sandbox-sre-admins.yaml
+diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+index 60bf269b..df54c578 100644
+--- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ namespace: toolchain-host-operator
+ resources:
+-- ../../base
+ - ./rbac
+ - ./monitoring
+ - ./proxy
+diff --git a/components/sandbox/toolchain-member-operator/base/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+index 2e323db7..f14a47f0 100644
+--- a/components/sandbox/toolchain-member-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+@@ -2,6 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ namespace: toolchain-member-operator
+ resources:
+-- ../../base
+ - ./rbac
+ - ./olm 
 ```
  
 </details> 
@@ -1821,33 +2056,141 @@ No lint errors found!
 </div>
 
 <div>
-<h3>4: Development changes from a5164d91 to 6e36cc71 on Wed Apr 17 14:12:34 2024 </h3>  
+<h3>4: Development changes from 4e79722b to c551c479 on Thu Apr 18 13:09:57 2024 </h3>  
  
 <details> 
-<summary>Git Diff (21 lines)</summary>  
+<summary>Git Diff (129 lines)</summary>  
 
 ``` 
-diff --git a/components/release/production/kustomization.yaml b/components/release/production/kustomization.yaml
-index ff794f8d..d6313ff7 100644
---- a/components/release/production/kustomization.yaml
-+++ b/components/release/production/kustomization.yaml
-@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../base
--  - https://github.com/redhat-appstudio/release-service/config/default?ref=84a78472781814a2827af663659f2672a07f0f8f
-+  - https://github.com/redhat-appstudio/release-service/config/default?ref=ec5cca73ee273dcfa4b49aa5bde471f824171405
- 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+new file mode 100644
+index 00000000..3a725fcf
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+@@ -0,0 +1,41 @@
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: kubesaw-common
++spec:
++  generators:
++    - merge:
++        mergeKeys:
++          - nameNormalized
++        generators:
++          - clusters:
++              values:
++                sourceRoot: components/sandbox/common
++                environment: staging
++                clusterDir: ""
++          - list:
++              elements: []
++  template:
++    metadata:
++      name: kubesaw-common-{{nameNormalized}}
++    spec:
++      project: default
++      source:
++        path: '{{values.sourceRoot}}'
++        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
++        targetRevision: main
++      destination:
++        namespace: kubesaw-common
++        server: '{{server}}'
++      syncPolicy:
++        automated:
++          prune: true
++          selfHeal: true
++        syncOptions:
++          - CreateNamespace=true
++        retry:
++          limit: -1
++          backoff:
++            duration: 10s
++            factor: 2
++            maxDuration: 3m
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml
+new file mode 100644
+index 00000000..cced2a80
+--- /dev/null
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml
+@@ -0,0 +1,4 @@
++apiVersion: kustomize.config.k8s.io/v1beta1
++kind: Kustomization
++resources:
++  - kubesaw-common.yaml
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+index e3596c0f..3e8ab42f 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
+@@ -11,5 +11,6 @@ resources:
+   - disable-csvcopy-for-all-cluster
+   - enable-dvo-for-all-cluster
+   - backup
++  - kubesaw-common
  components:
-   - ../k-components/manager-resources-patch
-@@ -10,6 +10,6 @@ components:
- images:
-   - name: quay.io/redhat-appstudio/release-service
-     newName: quay.io/redhat-appstudio/release-service
--    newTag: 84a78472781814a2827af663659f2672a07f0f8f
-+    newTag: ec5cca73ee273dcfa4b49aa5bde471f824171405
- 
- namespace: release-service 
+   - ../../../k-components/inject-infra-deployments-repo-details
+diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
+index 293eeaf4..13168393 100644
+--- a/argo-cd-apps/overlays/development/delete-applications.yaml
++++ b/argo-cd-apps/overlays/development/delete-applications.yaml
+@@ -82,3 +82,9 @@ kind: ApplicationSet
+ metadata:
+   name: quality-dashboard
+ $patch: delete
++---
++apiVersion: argoproj.io/v1alpha1
++kind: ApplicationSet
++metadata:
++  name: kubesaw-common
++$patch: delete
+diff --git a/components/sandbox/base/kustomization.yaml b/components/sandbox/common/kustomization.yaml
+similarity index 100%
+rename from components/sandbox/base/kustomization.yaml
+rename to components/sandbox/common/kustomization.yaml
+diff --git a/components/sandbox/base/olm-restart/cronjob.yaml b/components/sandbox/common/olm-restart/cronjob.yaml
+similarity index 100%
+rename from components/sandbox/base/olm-restart/cronjob.yaml
+rename to components/sandbox/common/olm-restart/cronjob.yaml
+diff --git a/components/sandbox/base/olm-restart/kustomization.yaml b/components/sandbox/common/olm-restart/kustomization.yaml
+similarity index 100%
+rename from components/sandbox/base/olm-restart/kustomization.yaml
+rename to components/sandbox/common/olm-restart/kustomization.yaml
+diff --git a/components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml b/components/sandbox/common/olm-restart/sandbox-sre-olm-restart.yaml
+similarity index 100%
+rename from components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml
+rename to components/sandbox/common/olm-restart/sandbox-sre-olm-restart.yaml
+diff --git a/components/sandbox/base/rbac/kustomization.yaml b/components/sandbox/common/rbac/kustomization.yaml
+similarity index 100%
+rename from components/sandbox/base/rbac/kustomization.yaml
+rename to components/sandbox/common/rbac/kustomization.yaml
+diff --git a/components/sandbox/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/common/rbac/sandbox-sre-admins.yaml
+similarity index 100%
+rename from components/sandbox/base/rbac/sandbox-sre-admins.yaml
+rename to components/sandbox/common/rbac/sandbox-sre-admins.yaml
+diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+index 60bf269b..df54c578 100644
+--- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
+@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ namespace: toolchain-host-operator
+ resources:
+-- ../../base
+ - ./rbac
+ - ./monitoring
+ - ./proxy
+diff --git a/components/sandbox/toolchain-member-operator/base/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+index 2e323db7..f14a47f0 100644
+--- a/components/sandbox/toolchain-member-operator/base/kustomization.yaml
++++ b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
+@@ -2,6 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ namespace: toolchain-member-operator
+ resources:
+-- ../../base
+ - ./rbac
+ - ./olm 
 ```
  
 </details> 
