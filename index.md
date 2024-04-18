@@ -1,12 +1,969 @@
 # kustomize changes tracked by commits 
-### This file generated at Thu Apr 18 16:09:15 UTC 2024
+### This file generated at Thu Apr 18 20:04:19 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from b069469e to 6c50484c on Thu Apr 18 15:36:12 2024 </h3>  
+<h3>1: Production changes from 6c50484c to 28d7b5c9 on Thu Apr 18 19:10:10 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (153 lines)</summary>  
+
+``` 
+diff --git a/components/konflux-ci/base/external-secrets/kustomization.yaml b/components/konflux-ci/base/external-secrets/kustomization.yaml
+index 57bbd947..ddaee4a2 100644
+--- a/components/konflux-ci/base/external-secrets/kustomization.yaml
++++ b/components/konflux-ci/base/external-secrets/kustomization.yaml
+@@ -1,7 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- quay-push-secret.yaml
+ - quay-push-secret-konflux-ci.yaml
+ - infra-deployments-pr-creator.yaml
+ - snyk-shared-token.yaml
+diff --git a/components/konflux-ci/base/external-secrets/quay-push-secret.yaml b/components/konflux-ci/base/external-secrets/quay-push-secret.yaml
+deleted file mode 100644
+index 6f1237e1..00000000
+--- a/components/konflux-ci/base/external-secrets/quay-push-secret.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: quay-push-secret
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        key: staging/build/tekton-ci/quay-push-secret
+-  refreshInterval: 15m
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: quay-push-secret
+-    template:
+-      engineVersion: v2
+-      type: kubernetes.io/dockerconfigjson
+-      data:
+-        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/konflux-ci/base/serviceaccount.yaml b/components/konflux-ci/base/serviceaccount.yaml
+index 4b4d59b9..ddfe2fe4 100644
+--- a/components/konflux-ci/base/serviceaccount.yaml
++++ b/components/konflux-ci/base/serviceaccount.yaml
+@@ -3,8 +3,8 @@ kind: ServiceAccount
+ metadata:
+   name: appstudio-pipeline
+ secrets:
+-  - name: quay-push-secret
++  - name: quay-push-secret-konflux-ci
+   - name: registry-redhat-io-pull-secret
+ imagePullSecrets:
+-  - name: quay-push-secret
++  - name: quay-push-secret-konflux-ci
+   - name: registry-redhat-io-pull-secret
+diff --git a/components/konflux-ci/production/kustomization.yaml b/components/konflux-ci/production/kustomization.yaml
+index ba934adf..58bbc82a 100644
+--- a/components/konflux-ci/production/kustomization.yaml
++++ b/components/konflux-ci/production/kustomization.yaml
+@@ -7,12 +7,6 @@ resources:
+ - plnsvc-codecov-secret.yaml
+ 
+ patches:
+-  - path: quay-push-secret.yaml
+-    target:
+-      name: quay-push-secret
+-      kind: ExternalSecret
+-      group: external-secrets.io
+-      version: v1beta1
+   - path: quay-push-secret-konflux-ci.yaml
+     target:
+       name: quay-push-secret-konflux-ci
+diff --git a/components/konflux-ci/production/quay-push-secret.yaml b/components/konflux-ci/production/quay-push-secret.yaml
+deleted file mode 100644
+index b4fdd4c0..00000000
+--- a/components/konflux-ci/production/quay-push-secret.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/build/tekton-ci/quay-push-secret
+diff --git a/components/tekton-ci/base/external-secrets/kustomization.yaml b/components/tekton-ci/base/external-secrets/kustomization.yaml
+index 74626764..e26e7cf0 100644
+--- a/components/tekton-ci/base/external-secrets/kustomization.yaml
++++ b/components/tekton-ci/base/external-secrets/kustomization.yaml
+@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - quay-push-secret.yaml
+-- quay-push-secret-konflux-ci.yaml
+ - infra-deployments-pr-creator.yaml
+ - snyk-shared-token.yaml
+ - slack-webhook-notification-secret.yaml
+diff --git a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
+deleted file mode 100644
+index 2d67489c..00000000
+--- a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: quay-push-secret-konflux-ci
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        key: staging/build/tekton-ci/quay-push-secret-konflux-ci
+-  refreshInterval: 15m
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: quay-push-secret-konflux-ci
+-    template:
+-      engineVersion: v2
+-      type: kubernetes.io/dockerconfigjson
+-      data:
+-        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
+index ba934adf..65cd79ed 100644
+--- a/components/tekton-ci/production/kustomization.yaml
++++ b/components/tekton-ci/production/kustomization.yaml
+@@ -13,12 +13,6 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
+-  - path: quay-push-secret-konflux-ci.yaml
+-    target:
+-      name: quay-push-secret-konflux-ci
+-      kind: ExternalSecret
+-      group: external-secrets.io
+-      version: v1beta1
+   - path: infra-deployments-pr-creator.yaml
+     target:
+       name: infra-deployments-pr-creator
+diff --git a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
+deleted file mode 100644
+index 8a3590aa..00000000
+--- a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/build/tekton-ci/quay-push-secret-konflux-ci 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (64 lines)</summary>  
+
+``` 
+./commit-6c50484c/production/components/konflux-ci/production/kustomize.out.yaml
+11c11
+< - name: quay-push-secret-konflux-ci
+---
+> - name: quay-push-secret
+19c19
+< - name: quay-push-secret-konflux-ci
+---
+> - name: quay-push-secret
+114a115,140
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   name: quay-push-secret
+>   namespace: konflux-ci
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: production/build/tekton-ci/quay-push-secret
+>   refreshInterval: 15m
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: quay-push-secret
+>     template:
+>       data:
+>         .dockerconfigjson: '{{ .config }}'
+>       engineVersion: v2
+>       type: kubernetes.io/dockerconfigjson
+./commit-6c50484c/production/components/tekton-ci/production/kustomize.out.yaml
+147a148,173
+>   name: quay-push-secret-konflux-ci
+>   namespace: tekton-ci
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: production/build/tekton-ci/quay-push-secret-konflux-ci
+>   refreshInterval: 15m
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: quay-push-secret-konflux-ci
+>     template:
+>       data:
+>         .dockerconfigjson: '{{ .config }}'
+>       engineVersion: v2
+>       type: kubernetes.io/dockerconfigjson
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1" 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 6c50484c to 28d7b5c9 on Thu Apr 18 19:10:10 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (153 lines)</summary>  
+
+``` 
+diff --git a/components/konflux-ci/base/external-secrets/kustomization.yaml b/components/konflux-ci/base/external-secrets/kustomization.yaml
+index 57bbd947..ddaee4a2 100644
+--- a/components/konflux-ci/base/external-secrets/kustomization.yaml
++++ b/components/konflux-ci/base/external-secrets/kustomization.yaml
+@@ -1,7 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- quay-push-secret.yaml
+ - quay-push-secret-konflux-ci.yaml
+ - infra-deployments-pr-creator.yaml
+ - snyk-shared-token.yaml
+diff --git a/components/konflux-ci/base/external-secrets/quay-push-secret.yaml b/components/konflux-ci/base/external-secrets/quay-push-secret.yaml
+deleted file mode 100644
+index 6f1237e1..00000000
+--- a/components/konflux-ci/base/external-secrets/quay-push-secret.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: quay-push-secret
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        key: staging/build/tekton-ci/quay-push-secret
+-  refreshInterval: 15m
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: quay-push-secret
+-    template:
+-      engineVersion: v2
+-      type: kubernetes.io/dockerconfigjson
+-      data:
+-        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/konflux-ci/base/serviceaccount.yaml b/components/konflux-ci/base/serviceaccount.yaml
+index 4b4d59b9..ddfe2fe4 100644
+--- a/components/konflux-ci/base/serviceaccount.yaml
++++ b/components/konflux-ci/base/serviceaccount.yaml
+@@ -3,8 +3,8 @@ kind: ServiceAccount
+ metadata:
+   name: appstudio-pipeline
+ secrets:
+-  - name: quay-push-secret
++  - name: quay-push-secret-konflux-ci
+   - name: registry-redhat-io-pull-secret
+ imagePullSecrets:
+-  - name: quay-push-secret
++  - name: quay-push-secret-konflux-ci
+   - name: registry-redhat-io-pull-secret
+diff --git a/components/konflux-ci/production/kustomization.yaml b/components/konflux-ci/production/kustomization.yaml
+index ba934adf..58bbc82a 100644
+--- a/components/konflux-ci/production/kustomization.yaml
++++ b/components/konflux-ci/production/kustomization.yaml
+@@ -7,12 +7,6 @@ resources:
+ - plnsvc-codecov-secret.yaml
+ 
+ patches:
+-  - path: quay-push-secret.yaml
+-    target:
+-      name: quay-push-secret
+-      kind: ExternalSecret
+-      group: external-secrets.io
+-      version: v1beta1
+   - path: quay-push-secret-konflux-ci.yaml
+     target:
+       name: quay-push-secret-konflux-ci
+diff --git a/components/konflux-ci/production/quay-push-secret.yaml b/components/konflux-ci/production/quay-push-secret.yaml
+deleted file mode 100644
+index b4fdd4c0..00000000
+--- a/components/konflux-ci/production/quay-push-secret.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/build/tekton-ci/quay-push-secret
+diff --git a/components/tekton-ci/base/external-secrets/kustomization.yaml b/components/tekton-ci/base/external-secrets/kustomization.yaml
+index 74626764..e26e7cf0 100644
+--- a/components/tekton-ci/base/external-secrets/kustomization.yaml
++++ b/components/tekton-ci/base/external-secrets/kustomization.yaml
+@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - quay-push-secret.yaml
+-- quay-push-secret-konflux-ci.yaml
+ - infra-deployments-pr-creator.yaml
+ - snyk-shared-token.yaml
+ - slack-webhook-notification-secret.yaml
+diff --git a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
+deleted file mode 100644
+index 2d67489c..00000000
+--- a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: quay-push-secret-konflux-ci
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        key: staging/build/tekton-ci/quay-push-secret-konflux-ci
+-  refreshInterval: 15m
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: quay-push-secret-konflux-ci
+-    template:
+-      engineVersion: v2
+-      type: kubernetes.io/dockerconfigjson
+-      data:
+-        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
+index ba934adf..65cd79ed 100644
+--- a/components/tekton-ci/production/kustomization.yaml
++++ b/components/tekton-ci/production/kustomization.yaml
+@@ -13,12 +13,6 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
+-  - path: quay-push-secret-konflux-ci.yaml
+-    target:
+-      name: quay-push-secret-konflux-ci
+-      kind: ExternalSecret
+-      group: external-secrets.io
+-      version: v1beta1
+   - path: infra-deployments-pr-creator.yaml
+     target:
+       name: infra-deployments-pr-creator
+diff --git a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
+deleted file mode 100644
+index 8a3590aa..00000000
+--- a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/build/tekton-ci/quay-push-secret-konflux-ci 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (64 lines)</summary>  
+
+``` 
+./commit-6c50484c/staging/components/konflux-ci/staging/kustomize.out.yaml
+11c11
+< - name: quay-push-secret-konflux-ci
+---
+> - name: quay-push-secret
+19c19
+< - name: quay-push-secret-konflux-ci
+---
+> - name: quay-push-secret
+114a115,140
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1"
+>   name: quay-push-secret
+>   namespace: konflux-ci
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: staging/build/tekton-ci/quay-push-secret
+>   refreshInterval: 15m
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: quay-push-secret
+>     template:
+>       data:
+>         .dockerconfigjson: '{{ .config }}'
+>       engineVersion: v2
+>       type: kubernetes.io/dockerconfigjson
+./commit-6c50484c/staging/components/tekton-ci/staging/kustomize.out.yaml
+147a148,173
+>   name: quay-push-secret-konflux-ci
+>   namespace: tekton-ci
+> spec:
+>   dataFrom:
+>   - extract:
+>       key: staging/build/tekton-ci/quay-push-secret-konflux-ci
+>   refreshInterval: 15m
+>   secretStoreRef:
+>     kind: ClusterSecretStore
+>     name: appsre-stonesoup-vault
+>   target:
+>     creationPolicy: Owner
+>     deletionPolicy: Delete
+>     name: quay-push-secret-konflux-ci
+>     template:
+>       data:
+>         .dockerconfigjson: '{{ .config }}'
+>       engineVersion: v2
+>       type: kubernetes.io/dockerconfigjson
+> ---
+> apiVersion: external-secrets.io/v1beta1
+> kind: ExternalSecret
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+>     argocd.argoproj.io/sync-wave: "-1" 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 6c50484c to 28d7b5c9 on Thu Apr 18 19:10:10 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (153 lines)</summary>  
+
+``` 
+diff --git a/components/konflux-ci/base/external-secrets/kustomization.yaml b/components/konflux-ci/base/external-secrets/kustomization.yaml
+index 57bbd947..ddaee4a2 100644
+--- a/components/konflux-ci/base/external-secrets/kustomization.yaml
++++ b/components/konflux-ci/base/external-secrets/kustomization.yaml
+@@ -1,7 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- quay-push-secret.yaml
+ - quay-push-secret-konflux-ci.yaml
+ - infra-deployments-pr-creator.yaml
+ - snyk-shared-token.yaml
+diff --git a/components/konflux-ci/base/external-secrets/quay-push-secret.yaml b/components/konflux-ci/base/external-secrets/quay-push-secret.yaml
+deleted file mode 100644
+index 6f1237e1..00000000
+--- a/components/konflux-ci/base/external-secrets/quay-push-secret.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: quay-push-secret
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        key: staging/build/tekton-ci/quay-push-secret
+-  refreshInterval: 15m
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: quay-push-secret
+-    template:
+-      engineVersion: v2
+-      type: kubernetes.io/dockerconfigjson
+-      data:
+-        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/konflux-ci/base/serviceaccount.yaml b/components/konflux-ci/base/serviceaccount.yaml
+index 4b4d59b9..ddfe2fe4 100644
+--- a/components/konflux-ci/base/serviceaccount.yaml
++++ b/components/konflux-ci/base/serviceaccount.yaml
+@@ -3,8 +3,8 @@ kind: ServiceAccount
+ metadata:
+   name: appstudio-pipeline
+ secrets:
+-  - name: quay-push-secret
++  - name: quay-push-secret-konflux-ci
+   - name: registry-redhat-io-pull-secret
+ imagePullSecrets:
+-  - name: quay-push-secret
++  - name: quay-push-secret-konflux-ci
+   - name: registry-redhat-io-pull-secret
+diff --git a/components/konflux-ci/production/kustomization.yaml b/components/konflux-ci/production/kustomization.yaml
+index ba934adf..58bbc82a 100644
+--- a/components/konflux-ci/production/kustomization.yaml
++++ b/components/konflux-ci/production/kustomization.yaml
+@@ -7,12 +7,6 @@ resources:
+ - plnsvc-codecov-secret.yaml
+ 
+ patches:
+-  - path: quay-push-secret.yaml
+-    target:
+-      name: quay-push-secret
+-      kind: ExternalSecret
+-      group: external-secrets.io
+-      version: v1beta1
+   - path: quay-push-secret-konflux-ci.yaml
+     target:
+       name: quay-push-secret-konflux-ci
+diff --git a/components/konflux-ci/production/quay-push-secret.yaml b/components/konflux-ci/production/quay-push-secret.yaml
+deleted file mode 100644
+index b4fdd4c0..00000000
+--- a/components/konflux-ci/production/quay-push-secret.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/build/tekton-ci/quay-push-secret
+diff --git a/components/tekton-ci/base/external-secrets/kustomization.yaml b/components/tekton-ci/base/external-secrets/kustomization.yaml
+index 74626764..e26e7cf0 100644
+--- a/components/tekton-ci/base/external-secrets/kustomization.yaml
++++ b/components/tekton-ci/base/external-secrets/kustomization.yaml
+@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - quay-push-secret.yaml
+-- quay-push-secret-konflux-ci.yaml
+ - infra-deployments-pr-creator.yaml
+ - snyk-shared-token.yaml
+ - slack-webhook-notification-secret.yaml
+diff --git a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
+deleted file mode 100644
+index 2d67489c..00000000
+--- a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-apiVersion: external-secrets.io/v1beta1
+-kind: ExternalSecret
+-metadata:
+-  name: quay-push-secret-konflux-ci
+-  annotations:
+-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+-    argocd.argoproj.io/sync-wave: "-1"
+-spec:
+-  dataFrom:
+-    - extract:
+-        key: staging/build/tekton-ci/quay-push-secret-konflux-ci
+-  refreshInterval: 15m
+-  secretStoreRef:
+-    kind: ClusterSecretStore
+-    name: appsre-stonesoup-vault
+-  target:
+-    creationPolicy: Owner
+-    deletionPolicy: Delete
+-    name: quay-push-secret-konflux-ci
+-    template:
+-      engineVersion: v2
+-      type: kubernetes.io/dockerconfigjson
+-      data:
+-        .dockerconfigjson: "{{ .config }}"
+diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
+index ba934adf..65cd79ed 100644
+--- a/components/tekton-ci/production/kustomization.yaml
++++ b/components/tekton-ci/production/kustomization.yaml
+@@ -13,12 +13,6 @@ patches:
+       kind: ExternalSecret
+       group: external-secrets.io
+       version: v1beta1
+-  - path: quay-push-secret-konflux-ci.yaml
+-    target:
+-      name: quay-push-secret-konflux-ci
+-      kind: ExternalSecret
+-      group: external-secrets.io
+-      version: v1beta1
+   - path: infra-deployments-pr-creator.yaml
+     target:
+       name: infra-deployments-pr-creator
+diff --git a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
+deleted file mode 100644
+index 8a3590aa..00000000
+--- a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+----
+-- op: add
+-  path: /spec/dataFrom/0/extract/key
+-  value: production/build/tekton-ci/quay-push-secret-konflux-ci 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from b069469e to 6c50484c on Thu Apr 18 15:36:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -183,7 +1140,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from b069469e to 6c50484c on Thu Apr 18 15:36:12 2024 </h3>  
+<h3>2: Staging changes from b069469e to 6c50484c on Thu Apr 18 15:36:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -363,7 +1320,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from b069469e to 6c50484c on Thu Apr 18 15:36:12 2024 </h3>  
+<h3>2: Development changes from b069469e to 6c50484c on Thu Apr 18 15:36:12 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -498,7 +1455,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 9a21a900 to b069469e on Thu Apr 18 15:11:46 2024 </h3>  
+<h3>3: Production changes from 9a21a900 to b069469e on Thu Apr 18 15:11:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -678,7 +1635,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 9a21a900 to b069469e on Thu Apr 18 15:11:46 2024 </h3>  
+<h3>3: Staging changes from 9a21a900 to b069469e on Thu Apr 18 15:11:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -865,7 +1822,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 9a21a900 to b069469e on Thu Apr 18 15:11:46 2024 </h3>  
+<h3>3: Development changes from 9a21a900 to b069469e on Thu Apr 18 15:11:46 2024 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -1007,7 +1964,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from c551c479 to 9a21a900 on Thu Apr 18 13:57:33 2024 </h3>  
+<h3>4: Production changes from c551c479 to 9a21a900 on Thu Apr 18 13:57:33 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1186,7 +2143,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from c551c479 to 9a21a900 on Thu Apr 18 13:57:33 2024 </h3>  
+<h3>4: Staging changes from c551c479 to 9a21a900 on Thu Apr 18 13:57:33 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1376,7 +2333,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from c551c479 to 9a21a900 on Thu Apr 18 13:57:33 2024 </h3>  
+<h3>4: Development changes from c551c479 to 9a21a900 on Thu Apr 18 13:57:33 2024 </h3>  
  
 <details> 
 <summary>Git Diff (42 lines)</summary>  
@@ -1441,765 +2398,6 @@ index e857d6b3..31d1e577 100644
 <             image: quay.io/redhat-appstudio/integration-service:8fca27abeb6959d04fa71dd19b330550ed38308e
 ---
 >             image: quay.io/redhat-appstudio/integration-service:c0eece85870ab816ab3637ca4d08b3dae76ad556 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 4e79722b to c551c479 on Thu Apr 18 13:09:57 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (129 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
-new file mode 100644
-index 00000000..3a725fcf
---- /dev/null
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
-@@ -0,0 +1,41 @@
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: kubesaw-common
-+spec:
-+  generators:
-+    - merge:
-+        mergeKeys:
-+          - nameNormalized
-+        generators:
-+          - clusters:
-+              values:
-+                sourceRoot: components/sandbox/common
-+                environment: staging
-+                clusterDir: ""
-+          - list:
-+              elements: []
-+  template:
-+    metadata:
-+      name: kubesaw-common-{{nameNormalized}}
-+    spec:
-+      project: default
-+      source:
-+        path: '{{values.sourceRoot}}'
-+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
-+        targetRevision: main
-+      destination:
-+        namespace: kubesaw-common
-+        server: '{{server}}'
-+      syncPolicy:
-+        automated:
-+          prune: true
-+          selfHeal: true
-+        syncOptions:
-+          - CreateNamespace=true
-+        retry:
-+          limit: -1
-+          backoff:
-+            duration: 10s
-+            factor: 2
-+            maxDuration: 3m
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml
-new file mode 100644
-index 00000000..cced2a80
---- /dev/null
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - kubesaw-common.yaml
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
-index e3596c0f..3e8ab42f 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
-@@ -11,5 +11,6 @@ resources:
-   - disable-csvcopy-for-all-cluster
-   - enable-dvo-for-all-cluster
-   - backup
-+  - kubesaw-common
- components:
-   - ../../../k-components/inject-infra-deployments-repo-details
-diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
-index 293eeaf4..13168393 100644
---- a/argo-cd-apps/overlays/development/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/development/delete-applications.yaml
-@@ -82,3 +82,9 @@ kind: ApplicationSet
- metadata:
-   name: quality-dashboard
- $patch: delete
-+---
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: kubesaw-common
-+$patch: delete
-diff --git a/components/sandbox/base/kustomization.yaml b/components/sandbox/common/kustomization.yaml
-similarity index 100%
-rename from components/sandbox/base/kustomization.yaml
-rename to components/sandbox/common/kustomization.yaml
-diff --git a/components/sandbox/base/olm-restart/cronjob.yaml b/components/sandbox/common/olm-restart/cronjob.yaml
-similarity index 100%
-rename from components/sandbox/base/olm-restart/cronjob.yaml
-rename to components/sandbox/common/olm-restart/cronjob.yaml
-diff --git a/components/sandbox/base/olm-restart/kustomization.yaml b/components/sandbox/common/olm-restart/kustomization.yaml
-similarity index 100%
-rename from components/sandbox/base/olm-restart/kustomization.yaml
-rename to components/sandbox/common/olm-restart/kustomization.yaml
-diff --git a/components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml b/components/sandbox/common/olm-restart/sandbox-sre-olm-restart.yaml
-similarity index 100%
-rename from components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml
-rename to components/sandbox/common/olm-restart/sandbox-sre-olm-restart.yaml
-diff --git a/components/sandbox/base/rbac/kustomization.yaml b/components/sandbox/common/rbac/kustomization.yaml
-similarity index 100%
-rename from components/sandbox/base/rbac/kustomization.yaml
-rename to components/sandbox/common/rbac/kustomization.yaml
-diff --git a/components/sandbox/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/common/rbac/sandbox-sre-admins.yaml
-similarity index 100%
-rename from components/sandbox/base/rbac/sandbox-sre-admins.yaml
-rename to components/sandbox/common/rbac/sandbox-sre-admins.yaml
-diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-index 60bf269b..df54c578 100644
---- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-+++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- namespace: toolchain-host-operator
- resources:
--- ../../base
- - ./rbac
- - ./monitoring
- - ./proxy
-diff --git a/components/sandbox/toolchain-member-operator/base/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
-index 2e323db7..f14a47f0 100644
---- a/components/sandbox/toolchain-member-operator/base/kustomization.yaml
-+++ b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
-@@ -2,6 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- namespace: toolchain-member-operator
- resources:
--- ../../base
- - ./rbac
- - ./olm 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 4e79722b to c551c479 on Thu Apr 18 13:09:57 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (129 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
-new file mode 100644
-index 00000000..3a725fcf
---- /dev/null
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
-@@ -0,0 +1,41 @@
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: kubesaw-common
-+spec:
-+  generators:
-+    - merge:
-+        mergeKeys:
-+          - nameNormalized
-+        generators:
-+          - clusters:
-+              values:
-+                sourceRoot: components/sandbox/common
-+                environment: staging
-+                clusterDir: ""
-+          - list:
-+              elements: []
-+  template:
-+    metadata:
-+      name: kubesaw-common-{{nameNormalized}}
-+    spec:
-+      project: default
-+      source:
-+        path: '{{values.sourceRoot}}'
-+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
-+        targetRevision: main
-+      destination:
-+        namespace: kubesaw-common
-+        server: '{{server}}'
-+      syncPolicy:
-+        automated:
-+          prune: true
-+          selfHeal: true
-+        syncOptions:
-+          - CreateNamespace=true
-+        retry:
-+          limit: -1
-+          backoff:
-+            duration: 10s
-+            factor: 2
-+            maxDuration: 3m
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml
-new file mode 100644
-index 00000000..cced2a80
---- /dev/null
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - kubesaw-common.yaml
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
-index e3596c0f..3e8ab42f 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
-@@ -11,5 +11,6 @@ resources:
-   - disable-csvcopy-for-all-cluster
-   - enable-dvo-for-all-cluster
-   - backup
-+  - kubesaw-common
- components:
-   - ../../../k-components/inject-infra-deployments-repo-details
-diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
-index 293eeaf4..13168393 100644
---- a/argo-cd-apps/overlays/development/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/development/delete-applications.yaml
-@@ -82,3 +82,9 @@ kind: ApplicationSet
- metadata:
-   name: quality-dashboard
- $patch: delete
-+---
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: kubesaw-common
-+$patch: delete
-diff --git a/components/sandbox/base/kustomization.yaml b/components/sandbox/common/kustomization.yaml
-similarity index 100%
-rename from components/sandbox/base/kustomization.yaml
-rename to components/sandbox/common/kustomization.yaml
-diff --git a/components/sandbox/base/olm-restart/cronjob.yaml b/components/sandbox/common/olm-restart/cronjob.yaml
-similarity index 100%
-rename from components/sandbox/base/olm-restart/cronjob.yaml
-rename to components/sandbox/common/olm-restart/cronjob.yaml
-diff --git a/components/sandbox/base/olm-restart/kustomization.yaml b/components/sandbox/common/olm-restart/kustomization.yaml
-similarity index 100%
-rename from components/sandbox/base/olm-restart/kustomization.yaml
-rename to components/sandbox/common/olm-restart/kustomization.yaml
-diff --git a/components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml b/components/sandbox/common/olm-restart/sandbox-sre-olm-restart.yaml
-similarity index 100%
-rename from components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml
-rename to components/sandbox/common/olm-restart/sandbox-sre-olm-restart.yaml
-diff --git a/components/sandbox/base/rbac/kustomization.yaml b/components/sandbox/common/rbac/kustomization.yaml
-similarity index 100%
-rename from components/sandbox/base/rbac/kustomization.yaml
-rename to components/sandbox/common/rbac/kustomization.yaml
-diff --git a/components/sandbox/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/common/rbac/sandbox-sre-admins.yaml
-similarity index 100%
-rename from components/sandbox/base/rbac/sandbox-sre-admins.yaml
-rename to components/sandbox/common/rbac/sandbox-sre-admins.yaml
-diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-index 60bf269b..df54c578 100644
---- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-+++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- namespace: toolchain-host-operator
- resources:
--- ../../base
- - ./rbac
- - ./monitoring
- - ./proxy
-diff --git a/components/sandbox/toolchain-member-operator/base/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
-index 2e323db7..f14a47f0 100644
---- a/components/sandbox/toolchain-member-operator/base/kustomization.yaml
-+++ b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
-@@ -2,6 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- namespace: toolchain-member-operator
- resources:
--- ../../base
- - ./rbac
- - ./olm 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 4e79722b to c551c479 on Thu Apr 18 13:09:57 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (129 lines)</summary>  
-
-``` 
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
-new file mode 100644
-index 00000000..3a725fcf
---- /dev/null
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
-@@ -0,0 +1,41 @@
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: kubesaw-common
-+spec:
-+  generators:
-+    - merge:
-+        mergeKeys:
-+          - nameNormalized
-+        generators:
-+          - clusters:
-+              values:
-+                sourceRoot: components/sandbox/common
-+                environment: staging
-+                clusterDir: ""
-+          - list:
-+              elements: []
-+  template:
-+    metadata:
-+      name: kubesaw-common-{{nameNormalized}}
-+    spec:
-+      project: default
-+      source:
-+        path: '{{values.sourceRoot}}'
-+        repoURL: https://github.com/redhat-appstudio/infra-deployments.git
-+        targetRevision: main
-+      destination:
-+        namespace: kubesaw-common
-+        server: '{{server}}'
-+      syncPolicy:
-+        automated:
-+          prune: true
-+          selfHeal: true
-+        syncOptions:
-+          - CreateNamespace=true
-+        retry:
-+          limit: -1
-+          backoff:
-+            duration: 10s
-+            factor: 2
-+            maxDuration: 3m
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml
-new file mode 100644
-index 00000000..cced2a80
---- /dev/null
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kustomization.yaml
-@@ -0,0 +1,4 @@
-+apiVersion: kustomize.config.k8s.io/v1beta1
-+kind: Kustomization
-+resources:
-+  - kubesaw-common.yaml
-diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
-index e3596c0f..3e8ab42f 100644
---- a/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
-+++ b/argo-cd-apps/base/all-clusters/infra-deployments/kustomization.yaml
-@@ -11,5 +11,6 @@ resources:
-   - disable-csvcopy-for-all-cluster
-   - enable-dvo-for-all-cluster
-   - backup
-+  - kubesaw-common
- components:
-   - ../../../k-components/inject-infra-deployments-repo-details
-diff --git a/argo-cd-apps/overlays/development/delete-applications.yaml b/argo-cd-apps/overlays/development/delete-applications.yaml
-index 293eeaf4..13168393 100644
---- a/argo-cd-apps/overlays/development/delete-applications.yaml
-+++ b/argo-cd-apps/overlays/development/delete-applications.yaml
-@@ -82,3 +82,9 @@ kind: ApplicationSet
- metadata:
-   name: quality-dashboard
- $patch: delete
-+---
-+apiVersion: argoproj.io/v1alpha1
-+kind: ApplicationSet
-+metadata:
-+  name: kubesaw-common
-+$patch: delete
-diff --git a/components/sandbox/base/kustomization.yaml b/components/sandbox/common/kustomization.yaml
-similarity index 100%
-rename from components/sandbox/base/kustomization.yaml
-rename to components/sandbox/common/kustomization.yaml
-diff --git a/components/sandbox/base/olm-restart/cronjob.yaml b/components/sandbox/common/olm-restart/cronjob.yaml
-similarity index 100%
-rename from components/sandbox/base/olm-restart/cronjob.yaml
-rename to components/sandbox/common/olm-restart/cronjob.yaml
-diff --git a/components/sandbox/base/olm-restart/kustomization.yaml b/components/sandbox/common/olm-restart/kustomization.yaml
-similarity index 100%
-rename from components/sandbox/base/olm-restart/kustomization.yaml
-rename to components/sandbox/common/olm-restart/kustomization.yaml
-diff --git a/components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml b/components/sandbox/common/olm-restart/sandbox-sre-olm-restart.yaml
-similarity index 100%
-rename from components/sandbox/base/olm-restart/sandbox-sre-olm-restart.yaml
-rename to components/sandbox/common/olm-restart/sandbox-sre-olm-restart.yaml
-diff --git a/components/sandbox/base/rbac/kustomization.yaml b/components/sandbox/common/rbac/kustomization.yaml
-similarity index 100%
-rename from components/sandbox/base/rbac/kustomization.yaml
-rename to components/sandbox/common/rbac/kustomization.yaml
-diff --git a/components/sandbox/base/rbac/sandbox-sre-admins.yaml b/components/sandbox/common/rbac/sandbox-sre-admins.yaml
-similarity index 100%
-rename from components/sandbox/base/rbac/sandbox-sre-admins.yaml
-rename to components/sandbox/common/rbac/sandbox-sre-admins.yaml
-diff --git a/components/sandbox/toolchain-host-operator/base/kustomization.yaml b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-index 60bf269b..df54c578 100644
---- a/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-+++ b/components/sandbox/toolchain-host-operator/base/kustomization.yaml
-@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- namespace: toolchain-host-operator
- resources:
--- ../../base
- - ./rbac
- - ./monitoring
- - ./proxy
-diff --git a/components/sandbox/toolchain-member-operator/base/kustomization.yaml b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
-index 2e323db7..f14a47f0 100644
---- a/components/sandbox/toolchain-member-operator/base/kustomization.yaml
-+++ b/components/sandbox/toolchain-member-operator/base/kustomization.yaml
-@@ -2,6 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- namespace: toolchain-member-operator
- resources:
--- ../../base
- - ./rbac
- - ./olm 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
 ```
  
 </details>  
