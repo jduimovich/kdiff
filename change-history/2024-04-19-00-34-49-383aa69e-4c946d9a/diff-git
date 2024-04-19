@@ -1,0 +1,52 @@
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+index 95e44273..2c6f0fd4 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+@@ -25,14 +25,14 @@ spec:
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
+-        namespace: kubesaw-common
++        namespace: ksaw-common
+         server: '{{server}}'
+       syncPolicy:
+         automated:
+           prune: true
+           selfHeal: true
+         syncOptions:
+-          - CreateNamespace=false
++          - CreateNamespace=true
+         retry:
+           limit: -1
+           backoff:
+diff --git a/components/sandbox/common/kustomization.yaml b/components/sandbox/common/kustomization.yaml
+index 9dc1053b..b2d378a8 100644
+--- a/components/sandbox/common/kustomization.yaml
++++ b/components/sandbox/common/kustomization.yaml
+@@ -3,4 +3,3 @@ kind: Kustomization
+ resources:
+ - ./rbac
+ - ./olm-restart
+-- namespace.yaml
+diff --git a/components/sandbox/common/namespace.yaml b/components/sandbox/common/namespace.yaml
+deleted file mode 100644
+index 45c562d3..00000000
+--- a/components/sandbox/common/namespace.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+-apiVersion: v1
+-kind: Namespace
+-metadata:
+-  name: kubesaw-common
+diff --git a/components/sandbox/common/olm-restart/kustomization.yaml b/components/sandbox/common/olm-restart/kustomization.yaml
+index 01f7d942..9a125719 100644
+--- a/components/sandbox/common/olm-restart/kustomization.yaml
++++ b/components/sandbox/common/olm-restart/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+-namespace: kubesaw-common
++namespace: ksaw-common
+ resources:
+ - cronjob.yaml
+ - sandbox-sre-olm-restart.yaml

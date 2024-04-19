@@ -1,12 +1,1092 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Apr 19 00:07:34 UTC 2024
+### This file generated at Fri Apr 19 04:06:07 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 1f32a363 to 383aa69e on Thu Apr 18 20:51:53 2024 </h3>  
+<h3>1: Production changes from 4c946d9a to a7e7c075 on Fri Apr 19 01:29:35 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 9f163af7..ff981726 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=c528daeafa497195049316087828594ab988ccc1
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=c528daeafa497195049316087828594ab988ccc1
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=6491fb49fdeb1c371011d89e551874bc8b53f0e3
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=6491fb49fdeb1c371011d89e551874bc8b53f0e3
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: c528daeafa497195049316087828594ab988ccc1
++  newTag: 6491fb49fdeb1c371011d89e551874bc8b53f0e3
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: c528daeafa497195049316087828594ab988ccc1
++  newTag: 6491fb49fdeb1c371011d89e551874bc8b53f0e3
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (35 lines)</summary>  
+
+``` 
+./commit-4c946d9a/production/components/multi-platform-controller/production/kustomize.out.yaml
+257c257
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:6491fb49fdeb1c371011d89e551874bc8b53f0e3
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:c528daeafa497195049316087828594ab988ccc1
+299c299
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:6491fb49fdeb1c371011d89e551874bc8b53f0e3
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:c528daeafa497195049316087828594ab988ccc1
+467a468
+>       set -o pipefail
+473c474
+<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME || true
+---
+>       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME
+607a609,610
+>       set -eu
+>       set -o pipefail
+613,628d615
+< 
+<       #now clean up any dangling users, if their cleanup failed for whatever reason
+< 
+<       cat >script.sh <<EOF
+<       threshold=$(date -d "1 day ago" +%s)
+<       cd /home
+<       for file in *; do
+<         # Check if the file is a regular file and older than the threshold
+<         if [[ $(stat -c "%Y" "$file") -lt $threshold ]]; then
+<         # Delete the user
+<         sudo userdel -f -r -Z $file
+<         echo "Deleted: $file"
+<         fi
+<       done
+<       EOF
+<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST "bash -s" <script.sh 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from 4c946d9a to a7e7c075 on Fri Apr 19 01:29:35 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 9f163af7..ff981726 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=c528daeafa497195049316087828594ab988ccc1
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=c528daeafa497195049316087828594ab988ccc1
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=6491fb49fdeb1c371011d89e551874bc8b53f0e3
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=6491fb49fdeb1c371011d89e551874bc8b53f0e3
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: c528daeafa497195049316087828594ab988ccc1
++  newTag: 6491fb49fdeb1c371011d89e551874bc8b53f0e3
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: c528daeafa497195049316087828594ab988ccc1
++  newTag: 6491fb49fdeb1c371011d89e551874bc8b53f0e3
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (35 lines)</summary>  
+
+``` 
+./commit-4c946d9a/staging/components/multi-platform-controller/staging/kustomize.out.yaml
+247c247
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:6491fb49fdeb1c371011d89e551874bc8b53f0e3
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:c528daeafa497195049316087828594ab988ccc1
+289c289
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:6491fb49fdeb1c371011d89e551874bc8b53f0e3
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:c528daeafa497195049316087828594ab988ccc1
+411a412
+>       set -o pipefail
+417c418
+<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME || true
+---
+>       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME
+551a553,554
+>       set -eu
+>       set -o pipefail
+557,572d559
+< 
+<       #now clean up any dangling users, if their cleanup failed for whatever reason
+< 
+<       cat >script.sh <<EOF
+<       threshold=$(date -d "1 day ago" +%s)
+<       cd /home
+<       for file in *; do
+<         # Check if the file is a regular file and older than the threshold
+<         if [[ $(stat -c "%Y" "$file") -lt $threshold ]]; then
+<         # Delete the user
+<         sudo userdel -f -r -Z $file
+<         echo "Deleted: $file"
+<         fi
+<       done
+<       EOF
+<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST "bash -s" <script.sh 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from 4c946d9a to a7e7c075 on Fri Apr 19 01:29:35 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (26 lines)</summary>  
+
+``` 
+diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
+index 9f163af7..ff981726 100644
+--- a/components/multi-platform-controller/base/kustomization.yaml
++++ b/components/multi-platform-controller/base/kustomization.yaml
+@@ -3,17 +3,17 @@ kind: Kustomization
+ 
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=c528daeafa497195049316087828594ab988ccc1
+-- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=c528daeafa497195049316087828594ab988ccc1
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=6491fb49fdeb1c371011d89e551874bc8b53f0e3
++- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=6491fb49fdeb1c371011d89e551874bc8b53f0e3
+ 
+ 
+ images:
+ - name: multi-platform-controller
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
+-  newTag: c528daeafa497195049316087828594ab988ccc1
++  newTag: 6491fb49fdeb1c371011d89e551874bc8b53f0e3
+ - name: multi-platform-otp-server
+   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
+-  newTag: c528daeafa497195049316087828594ab988ccc1
++  newTag: 6491fb49fdeb1c371011d89e551874bc8b53f0e3
+ 
+ namespace: multi-platform-controller
+  
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (35 lines)</summary>  
+
+``` 
+./commit-4c946d9a/development/components/multi-platform-controller/development/kustomize.out.yaml
+209c209
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:6491fb49fdeb1c371011d89e551874bc8b53f0e3
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:c528daeafa497195049316087828594ab988ccc1
+251c251
+<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:6491fb49fdeb1c371011d89e551874bc8b53f0e3
+---
+>         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:c528daeafa497195049316087828594ab988ccc1
+304a305
+>       set -o pipefail
+310c311
+<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME || true
+---
+>       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME
+444a446,447
+>       set -eu
+>       set -o pipefail
+450,465d452
+< 
+<       #now clean up any dangling users, if their cleanup failed for whatever reason
+< 
+<       cat >script.sh <<EOF
+<       threshold=$(date -d "1 day ago" +%s)
+<       cd /home
+<       for file in *; do
+<         # Check if the file is a regular file and older than the threshold
+<         if [[ $(stat -c "%Y" "$file") -lt $threshold ]]; then
+<         # Delete the user
+<         sudo userdel -f -r -Z $file
+<         echo "Deleted: $file"
+<         fi
+<       done
+<       EOF
+<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST "bash -s" <script.sh 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 383aa69e to 4c946d9a on Fri Apr 19 00:34:49 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (52 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+index 95e44273..2c6f0fd4 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+@@ -25,14 +25,14 @@ spec:
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
+-        namespace: kubesaw-common
++        namespace: ksaw-common
+         server: '{{server}}'
+       syncPolicy:
+         automated:
+           prune: true
+           selfHeal: true
+         syncOptions:
+-          - CreateNamespace=false
++          - CreateNamespace=true
+         retry:
+           limit: -1
+           backoff:
+diff --git a/components/sandbox/common/kustomization.yaml b/components/sandbox/common/kustomization.yaml
+index 9dc1053b..b2d378a8 100644
+--- a/components/sandbox/common/kustomization.yaml
++++ b/components/sandbox/common/kustomization.yaml
+@@ -3,4 +3,3 @@ kind: Kustomization
+ resources:
+ - ./rbac
+ - ./olm-restart
+-- namespace.yaml
+diff --git a/components/sandbox/common/namespace.yaml b/components/sandbox/common/namespace.yaml
+deleted file mode 100644
+index 45c562d3..00000000
+--- a/components/sandbox/common/namespace.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+-apiVersion: v1
+-kind: Namespace
+-metadata:
+-  name: kubesaw-common
+diff --git a/components/sandbox/common/olm-restart/kustomization.yaml b/components/sandbox/common/olm-restart/kustomization.yaml
+index 01f7d942..9a125719 100644
+--- a/components/sandbox/common/olm-restart/kustomization.yaml
++++ b/components/sandbox/common/olm-restart/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+-namespace: kubesaw-common
++namespace: ksaw-common
+ resources:
+ - cronjob.yaml
+ - sandbox-sre-olm-restart.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Staging changes from 383aa69e to 4c946d9a on Fri Apr 19 00:34:49 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (52 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+index 95e44273..2c6f0fd4 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+@@ -25,14 +25,14 @@ spec:
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
+-        namespace: kubesaw-common
++        namespace: ksaw-common
+         server: '{{server}}'
+       syncPolicy:
+         automated:
+           prune: true
+           selfHeal: true
+         syncOptions:
+-          - CreateNamespace=false
++          - CreateNamespace=true
+         retry:
+           limit: -1
+           backoff:
+diff --git a/components/sandbox/common/kustomization.yaml b/components/sandbox/common/kustomization.yaml
+index 9dc1053b..b2d378a8 100644
+--- a/components/sandbox/common/kustomization.yaml
++++ b/components/sandbox/common/kustomization.yaml
+@@ -3,4 +3,3 @@ kind: Kustomization
+ resources:
+ - ./rbac
+ - ./olm-restart
+-- namespace.yaml
+diff --git a/components/sandbox/common/namespace.yaml b/components/sandbox/common/namespace.yaml
+deleted file mode 100644
+index 45c562d3..00000000
+--- a/components/sandbox/common/namespace.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+-apiVersion: v1
+-kind: Namespace
+-metadata:
+-  name: kubesaw-common
+diff --git a/components/sandbox/common/olm-restart/kustomization.yaml b/components/sandbox/common/olm-restart/kustomization.yaml
+index 01f7d942..9a125719 100644
+--- a/components/sandbox/common/olm-restart/kustomization.yaml
++++ b/components/sandbox/common/olm-restart/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+-namespace: kubesaw-common
++namespace: ksaw-common
+ resources:
+ - cronjob.yaml
+ - sandbox-sre-olm-restart.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Development changes from 383aa69e to 4c946d9a on Fri Apr 19 00:34:49 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (52 lines)</summary>  
+
+``` 
+diff --git a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+index 95e44273..2c6f0fd4 100644
+--- a/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
++++ b/argo-cd-apps/base/all-clusters/infra-deployments/kubesaw-common/kubesaw-common.yaml
+@@ -25,14 +25,14 @@ spec:
+         repoURL: https://github.com/redhat-appstudio/infra-deployments.git
+         targetRevision: main
+       destination:
+-        namespace: kubesaw-common
++        namespace: ksaw-common
+         server: '{{server}}'
+       syncPolicy:
+         automated:
+           prune: true
+           selfHeal: true
+         syncOptions:
+-          - CreateNamespace=false
++          - CreateNamespace=true
+         retry:
+           limit: -1
+           backoff:
+diff --git a/components/sandbox/common/kustomization.yaml b/components/sandbox/common/kustomization.yaml
+index 9dc1053b..b2d378a8 100644
+--- a/components/sandbox/common/kustomization.yaml
++++ b/components/sandbox/common/kustomization.yaml
+@@ -3,4 +3,3 @@ kind: Kustomization
+ resources:
+ - ./rbac
+ - ./olm-restart
+-- namespace.yaml
+diff --git a/components/sandbox/common/namespace.yaml b/components/sandbox/common/namespace.yaml
+deleted file mode 100644
+index 45c562d3..00000000
+--- a/components/sandbox/common/namespace.yaml
++++ /dev/null
+@@ -1,4 +0,0 @@
+-apiVersion: v1
+-kind: Namespace
+-metadata:
+-  name: kubesaw-common
+diff --git a/components/sandbox/common/olm-restart/kustomization.yaml b/components/sandbox/common/olm-restart/kustomization.yaml
+index 01f7d942..9a125719 100644
+--- a/components/sandbox/common/olm-restart/kustomization.yaml
++++ b/components/sandbox/common/olm-restart/kustomization.yaml
+@@ -1,6 +1,6 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+-namespace: kubesaw-common
++namespace: ksaw-common
+ resources:
+ - cronjob.yaml
+ - sandbox-sre-olm-restart.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>3: Production changes from 1f32a363 to 383aa69e on Thu Apr 18 20:51:53 2024 </h3>  
  
 <details> 
 <summary>Git Diff (52 lines)</summary>  
@@ -209,7 +1289,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 1f32a363 to 383aa69e on Thu Apr 18 20:51:53 2024 </h3>  
+<h3>3: Staging changes from 1f32a363 to 383aa69e on Thu Apr 18 20:51:53 2024 </h3>  
  
 <details> 
 <summary>Git Diff (52 lines)</summary>  
@@ -401,7 +1481,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 1f32a363 to 383aa69e on Thu Apr 18 20:51:53 2024 </h3>  
+<h3>3: Development changes from 1f32a363 to 383aa69e on Thu Apr 18 20:51:53 2024 </h3>  
  
 <details> 
 <summary>Git Diff (52 lines)</summary>  
@@ -548,7 +1628,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 28d7b5c9 to 1f32a363 on Thu Apr 18 20:02:26 2024 </h3>  
+<h3>4: Production changes from 28d7b5c9 to 1f32a363 on Thu Apr 18 20:02:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -728,7 +1808,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 28d7b5c9 to 1f32a363 on Thu Apr 18 20:02:26 2024 </h3>  
+<h3>4: Staging changes from 28d7b5c9 to 1f32a363 on Thu Apr 18 20:02:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -911,7 +1991,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 28d7b5c9 to 1f32a363 on Thu Apr 18 20:02:26 2024 </h3>  
+<h3>4: Development changes from 28d7b5c9 to 1f32a363 on Thu Apr 18 20:02:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (43 lines)</summary>  
@@ -969,1455 +2049,6 @@ index a08d091a..01f7d942 100644
 
 ``` 
  
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Production changes from 6c50484c to 28d7b5c9 on Thu Apr 18 19:10:10 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (153 lines)</summary>  
-
-``` 
-diff --git a/components/konflux-ci/base/external-secrets/kustomization.yaml b/components/konflux-ci/base/external-secrets/kustomization.yaml
-index 57bbd947..ddaee4a2 100644
---- a/components/konflux-ci/base/external-secrets/kustomization.yaml
-+++ b/components/konflux-ci/base/external-secrets/kustomization.yaml
-@@ -1,7 +1,6 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- quay-push-secret.yaml
- - quay-push-secret-konflux-ci.yaml
- - infra-deployments-pr-creator.yaml
- - snyk-shared-token.yaml
-diff --git a/components/konflux-ci/base/external-secrets/quay-push-secret.yaml b/components/konflux-ci/base/external-secrets/quay-push-secret.yaml
-deleted file mode 100644
-index 6f1237e1..00000000
---- a/components/konflux-ci/base/external-secrets/quay-push-secret.yaml
-+++ /dev/null
-@@ -1,24 +0,0 @@
--apiVersion: external-secrets.io/v1beta1
--kind: ExternalSecret
--metadata:
--  name: quay-push-secret
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "-1"
--spec:
--  dataFrom:
--    - extract:
--        key: staging/build/tekton-ci/quay-push-secret
--  refreshInterval: 15m
--  secretStoreRef:
--    kind: ClusterSecretStore
--    name: appsre-stonesoup-vault
--  target:
--    creationPolicy: Owner
--    deletionPolicy: Delete
--    name: quay-push-secret
--    template:
--      engineVersion: v2
--      type: kubernetes.io/dockerconfigjson
--      data:
--        .dockerconfigjson: "{{ .config }}"
-diff --git a/components/konflux-ci/base/serviceaccount.yaml b/components/konflux-ci/base/serviceaccount.yaml
-index 4b4d59b9..ddfe2fe4 100644
---- a/components/konflux-ci/base/serviceaccount.yaml
-+++ b/components/konflux-ci/base/serviceaccount.yaml
-@@ -3,8 +3,8 @@ kind: ServiceAccount
- metadata:
-   name: appstudio-pipeline
- secrets:
--  - name: quay-push-secret
-+  - name: quay-push-secret-konflux-ci
-   - name: registry-redhat-io-pull-secret
- imagePullSecrets:
--  - name: quay-push-secret
-+  - name: quay-push-secret-konflux-ci
-   - name: registry-redhat-io-pull-secret
-diff --git a/components/konflux-ci/production/kustomization.yaml b/components/konflux-ci/production/kustomization.yaml
-index ba934adf..58bbc82a 100644
---- a/components/konflux-ci/production/kustomization.yaml
-+++ b/components/konflux-ci/production/kustomization.yaml
-@@ -7,12 +7,6 @@ resources:
- - plnsvc-codecov-secret.yaml
- 
- patches:
--  - path: quay-push-secret.yaml
--    target:
--      name: quay-push-secret
--      kind: ExternalSecret
--      group: external-secrets.io
--      version: v1beta1
-   - path: quay-push-secret-konflux-ci.yaml
-     target:
-       name: quay-push-secret-konflux-ci
-diff --git a/components/konflux-ci/production/quay-push-secret.yaml b/components/konflux-ci/production/quay-push-secret.yaml
-deleted file mode 100644
-index b4fdd4c0..00000000
---- a/components/konflux-ci/production/quay-push-secret.yaml
-+++ /dev/null
-@@ -1,4 +0,0 @@
-----
--- op: add
--  path: /spec/dataFrom/0/extract/key
--  value: production/build/tekton-ci/quay-push-secret
-diff --git a/components/tekton-ci/base/external-secrets/kustomization.yaml b/components/tekton-ci/base/external-secrets/kustomization.yaml
-index 74626764..e26e7cf0 100644
---- a/components/tekton-ci/base/external-secrets/kustomization.yaml
-+++ b/components/tekton-ci/base/external-secrets/kustomization.yaml
-@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - quay-push-secret.yaml
--- quay-push-secret-konflux-ci.yaml
- - infra-deployments-pr-creator.yaml
- - snyk-shared-token.yaml
- - slack-webhook-notification-secret.yaml
-diff --git a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
-deleted file mode 100644
-index 2d67489c..00000000
---- a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
-+++ /dev/null
-@@ -1,24 +0,0 @@
--apiVersion: external-secrets.io/v1beta1
--kind: ExternalSecret
--metadata:
--  name: quay-push-secret-konflux-ci
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "-1"
--spec:
--  dataFrom:
--    - extract:
--        key: staging/build/tekton-ci/quay-push-secret-konflux-ci
--  refreshInterval: 15m
--  secretStoreRef:
--    kind: ClusterSecretStore
--    name: appsre-stonesoup-vault
--  target:
--    creationPolicy: Owner
--    deletionPolicy: Delete
--    name: quay-push-secret-konflux-ci
--    template:
--      engineVersion: v2
--      type: kubernetes.io/dockerconfigjson
--      data:
--        .dockerconfigjson: "{{ .config }}"
-diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
-index ba934adf..65cd79ed 100644
---- a/components/tekton-ci/production/kustomization.yaml
-+++ b/components/tekton-ci/production/kustomization.yaml
-@@ -13,12 +13,6 @@ patches:
-       kind: ExternalSecret
-       group: external-secrets.io
-       version: v1beta1
--  - path: quay-push-secret-konflux-ci.yaml
--    target:
--      name: quay-push-secret-konflux-ci
--      kind: ExternalSecret
--      group: external-secrets.io
--      version: v1beta1
-   - path: infra-deployments-pr-creator.yaml
-     target:
-       name: infra-deployments-pr-creator
-diff --git a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
-deleted file mode 100644
-index 8a3590aa..00000000
---- a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
-+++ /dev/null
-@@ -1,4 +0,0 @@
-----
--- op: add
--  path: /spec/dataFrom/0/extract/key
--  value: production/build/tekton-ci/quay-push-secret-konflux-ci 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (64 lines)</summary>  
-
-``` 
-./commit-6c50484c/production/components/konflux-ci/production/kustomize.out.yaml
-11c11
-< - name: quay-push-secret-konflux-ci
----
-> - name: quay-push-secret
-19c19
-< - name: quay-push-secret-konflux-ci
----
-> - name: quay-push-secret
-114a115,140
-> ---
-> apiVersion: external-secrets.io/v1beta1
-> kind: ExternalSecret
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
->     argocd.argoproj.io/sync-wave: "-1"
->   name: quay-push-secret
->   namespace: konflux-ci
-> spec:
->   dataFrom:
->   - extract:
->       key: production/build/tekton-ci/quay-push-secret
->   refreshInterval: 15m
->   secretStoreRef:
->     kind: ClusterSecretStore
->     name: appsre-stonesoup-vault
->   target:
->     creationPolicy: Owner
->     deletionPolicy: Delete
->     name: quay-push-secret
->     template:
->       data:
->         .dockerconfigjson: '{{ .config }}'
->       engineVersion: v2
->       type: kubernetes.io/dockerconfigjson
-./commit-6c50484c/production/components/tekton-ci/production/kustomize.out.yaml
-147a148,173
->   name: quay-push-secret-konflux-ci
->   namespace: tekton-ci
-> spec:
->   dataFrom:
->   - extract:
->       key: production/build/tekton-ci/quay-push-secret-konflux-ci
->   refreshInterval: 15m
->   secretStoreRef:
->     kind: ClusterSecretStore
->     name: appsre-stonesoup-vault
->   target:
->     creationPolicy: Owner
->     deletionPolicy: Delete
->     name: quay-push-secret-konflux-ci
->     template:
->       data:
->         .dockerconfigjson: '{{ .config }}'
->       engineVersion: v2
->       type: kubernetes.io/dockerconfigjson
-> ---
-> apiVersion: external-secrets.io/v1beta1
-> kind: ExternalSecret
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
->     argocd.argoproj.io/sync-wave: "-1" 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Staging changes from 6c50484c to 28d7b5c9 on Thu Apr 18 19:10:10 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (153 lines)</summary>  
-
-``` 
-diff --git a/components/konflux-ci/base/external-secrets/kustomization.yaml b/components/konflux-ci/base/external-secrets/kustomization.yaml
-index 57bbd947..ddaee4a2 100644
---- a/components/konflux-ci/base/external-secrets/kustomization.yaml
-+++ b/components/konflux-ci/base/external-secrets/kustomization.yaml
-@@ -1,7 +1,6 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- quay-push-secret.yaml
- - quay-push-secret-konflux-ci.yaml
- - infra-deployments-pr-creator.yaml
- - snyk-shared-token.yaml
-diff --git a/components/konflux-ci/base/external-secrets/quay-push-secret.yaml b/components/konflux-ci/base/external-secrets/quay-push-secret.yaml
-deleted file mode 100644
-index 6f1237e1..00000000
---- a/components/konflux-ci/base/external-secrets/quay-push-secret.yaml
-+++ /dev/null
-@@ -1,24 +0,0 @@
--apiVersion: external-secrets.io/v1beta1
--kind: ExternalSecret
--metadata:
--  name: quay-push-secret
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "-1"
--spec:
--  dataFrom:
--    - extract:
--        key: staging/build/tekton-ci/quay-push-secret
--  refreshInterval: 15m
--  secretStoreRef:
--    kind: ClusterSecretStore
--    name: appsre-stonesoup-vault
--  target:
--    creationPolicy: Owner
--    deletionPolicy: Delete
--    name: quay-push-secret
--    template:
--      engineVersion: v2
--      type: kubernetes.io/dockerconfigjson
--      data:
--        .dockerconfigjson: "{{ .config }}"
-diff --git a/components/konflux-ci/base/serviceaccount.yaml b/components/konflux-ci/base/serviceaccount.yaml
-index 4b4d59b9..ddfe2fe4 100644
---- a/components/konflux-ci/base/serviceaccount.yaml
-+++ b/components/konflux-ci/base/serviceaccount.yaml
-@@ -3,8 +3,8 @@ kind: ServiceAccount
- metadata:
-   name: appstudio-pipeline
- secrets:
--  - name: quay-push-secret
-+  - name: quay-push-secret-konflux-ci
-   - name: registry-redhat-io-pull-secret
- imagePullSecrets:
--  - name: quay-push-secret
-+  - name: quay-push-secret-konflux-ci
-   - name: registry-redhat-io-pull-secret
-diff --git a/components/konflux-ci/production/kustomization.yaml b/components/konflux-ci/production/kustomization.yaml
-index ba934adf..58bbc82a 100644
---- a/components/konflux-ci/production/kustomization.yaml
-+++ b/components/konflux-ci/production/kustomization.yaml
-@@ -7,12 +7,6 @@ resources:
- - plnsvc-codecov-secret.yaml
- 
- patches:
--  - path: quay-push-secret.yaml
--    target:
--      name: quay-push-secret
--      kind: ExternalSecret
--      group: external-secrets.io
--      version: v1beta1
-   - path: quay-push-secret-konflux-ci.yaml
-     target:
-       name: quay-push-secret-konflux-ci
-diff --git a/components/konflux-ci/production/quay-push-secret.yaml b/components/konflux-ci/production/quay-push-secret.yaml
-deleted file mode 100644
-index b4fdd4c0..00000000
---- a/components/konflux-ci/production/quay-push-secret.yaml
-+++ /dev/null
-@@ -1,4 +0,0 @@
-----
--- op: add
--  path: /spec/dataFrom/0/extract/key
--  value: production/build/tekton-ci/quay-push-secret
-diff --git a/components/tekton-ci/base/external-secrets/kustomization.yaml b/components/tekton-ci/base/external-secrets/kustomization.yaml
-index 74626764..e26e7cf0 100644
---- a/components/tekton-ci/base/external-secrets/kustomization.yaml
-+++ b/components/tekton-ci/base/external-secrets/kustomization.yaml
-@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - quay-push-secret.yaml
--- quay-push-secret-konflux-ci.yaml
- - infra-deployments-pr-creator.yaml
- - snyk-shared-token.yaml
- - slack-webhook-notification-secret.yaml
-diff --git a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
-deleted file mode 100644
-index 2d67489c..00000000
---- a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
-+++ /dev/null
-@@ -1,24 +0,0 @@
--apiVersion: external-secrets.io/v1beta1
--kind: ExternalSecret
--metadata:
--  name: quay-push-secret-konflux-ci
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "-1"
--spec:
--  dataFrom:
--    - extract:
--        key: staging/build/tekton-ci/quay-push-secret-konflux-ci
--  refreshInterval: 15m
--  secretStoreRef:
--    kind: ClusterSecretStore
--    name: appsre-stonesoup-vault
--  target:
--    creationPolicy: Owner
--    deletionPolicy: Delete
--    name: quay-push-secret-konflux-ci
--    template:
--      engineVersion: v2
--      type: kubernetes.io/dockerconfigjson
--      data:
--        .dockerconfigjson: "{{ .config }}"
-diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
-index ba934adf..65cd79ed 100644
---- a/components/tekton-ci/production/kustomization.yaml
-+++ b/components/tekton-ci/production/kustomization.yaml
-@@ -13,12 +13,6 @@ patches:
-       kind: ExternalSecret
-       group: external-secrets.io
-       version: v1beta1
--  - path: quay-push-secret-konflux-ci.yaml
--    target:
--      name: quay-push-secret-konflux-ci
--      kind: ExternalSecret
--      group: external-secrets.io
--      version: v1beta1
-   - path: infra-deployments-pr-creator.yaml
-     target:
-       name: infra-deployments-pr-creator
-diff --git a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
-deleted file mode 100644
-index 8a3590aa..00000000
---- a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
-+++ /dev/null
-@@ -1,4 +0,0 @@
-----
--- op: add
--  path: /spec/dataFrom/0/extract/key
--  value: production/build/tekton-ci/quay-push-secret-konflux-ci 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (64 lines)</summary>  
-
-``` 
-./commit-6c50484c/staging/components/konflux-ci/staging/kustomize.out.yaml
-11c11
-< - name: quay-push-secret-konflux-ci
----
-> - name: quay-push-secret
-19c19
-< - name: quay-push-secret-konflux-ci
----
-> - name: quay-push-secret
-114a115,140
-> ---
-> apiVersion: external-secrets.io/v1beta1
-> kind: ExternalSecret
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
->     argocd.argoproj.io/sync-wave: "-1"
->   name: quay-push-secret
->   namespace: konflux-ci
-> spec:
->   dataFrom:
->   - extract:
->       key: staging/build/tekton-ci/quay-push-secret
->   refreshInterval: 15m
->   secretStoreRef:
->     kind: ClusterSecretStore
->     name: appsre-stonesoup-vault
->   target:
->     creationPolicy: Owner
->     deletionPolicy: Delete
->     name: quay-push-secret
->     template:
->       data:
->         .dockerconfigjson: '{{ .config }}'
->       engineVersion: v2
->       type: kubernetes.io/dockerconfigjson
-./commit-6c50484c/staging/components/tekton-ci/staging/kustomize.out.yaml
-147a148,173
->   name: quay-push-secret-konflux-ci
->   namespace: tekton-ci
-> spec:
->   dataFrom:
->   - extract:
->       key: staging/build/tekton-ci/quay-push-secret-konflux-ci
->   refreshInterval: 15m
->   secretStoreRef:
->     kind: ClusterSecretStore
->     name: appsre-stonesoup-vault
->   target:
->     creationPolicy: Owner
->     deletionPolicy: Delete
->     name: quay-push-secret-konflux-ci
->     template:
->       data:
->         .dockerconfigjson: '{{ .config }}'
->       engineVersion: v2
->       type: kubernetes.io/dockerconfigjson
-> ---
-> apiVersion: external-secrets.io/v1beta1
-> kind: ExternalSecret
-> metadata:
->   annotations:
->     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
->     argocd.argoproj.io/sync-wave: "-1" 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>3: Development changes from 6c50484c to 28d7b5c9 on Thu Apr 18 19:10:10 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (153 lines)</summary>  
-
-``` 
-diff --git a/components/konflux-ci/base/external-secrets/kustomization.yaml b/components/konflux-ci/base/external-secrets/kustomization.yaml
-index 57bbd947..ddaee4a2 100644
---- a/components/konflux-ci/base/external-secrets/kustomization.yaml
-+++ b/components/konflux-ci/base/external-secrets/kustomization.yaml
-@@ -1,7 +1,6 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
--- quay-push-secret.yaml
- - quay-push-secret-konflux-ci.yaml
- - infra-deployments-pr-creator.yaml
- - snyk-shared-token.yaml
-diff --git a/components/konflux-ci/base/external-secrets/quay-push-secret.yaml b/components/konflux-ci/base/external-secrets/quay-push-secret.yaml
-deleted file mode 100644
-index 6f1237e1..00000000
---- a/components/konflux-ci/base/external-secrets/quay-push-secret.yaml
-+++ /dev/null
-@@ -1,24 +0,0 @@
--apiVersion: external-secrets.io/v1beta1
--kind: ExternalSecret
--metadata:
--  name: quay-push-secret
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "-1"
--spec:
--  dataFrom:
--    - extract:
--        key: staging/build/tekton-ci/quay-push-secret
--  refreshInterval: 15m
--  secretStoreRef:
--    kind: ClusterSecretStore
--    name: appsre-stonesoup-vault
--  target:
--    creationPolicy: Owner
--    deletionPolicy: Delete
--    name: quay-push-secret
--    template:
--      engineVersion: v2
--      type: kubernetes.io/dockerconfigjson
--      data:
--        .dockerconfigjson: "{{ .config }}"
-diff --git a/components/konflux-ci/base/serviceaccount.yaml b/components/konflux-ci/base/serviceaccount.yaml
-index 4b4d59b9..ddfe2fe4 100644
---- a/components/konflux-ci/base/serviceaccount.yaml
-+++ b/components/konflux-ci/base/serviceaccount.yaml
-@@ -3,8 +3,8 @@ kind: ServiceAccount
- metadata:
-   name: appstudio-pipeline
- secrets:
--  - name: quay-push-secret
-+  - name: quay-push-secret-konflux-ci
-   - name: registry-redhat-io-pull-secret
- imagePullSecrets:
--  - name: quay-push-secret
-+  - name: quay-push-secret-konflux-ci
-   - name: registry-redhat-io-pull-secret
-diff --git a/components/konflux-ci/production/kustomization.yaml b/components/konflux-ci/production/kustomization.yaml
-index ba934adf..58bbc82a 100644
---- a/components/konflux-ci/production/kustomization.yaml
-+++ b/components/konflux-ci/production/kustomization.yaml
-@@ -7,12 +7,6 @@ resources:
- - plnsvc-codecov-secret.yaml
- 
- patches:
--  - path: quay-push-secret.yaml
--    target:
--      name: quay-push-secret
--      kind: ExternalSecret
--      group: external-secrets.io
--      version: v1beta1
-   - path: quay-push-secret-konflux-ci.yaml
-     target:
-       name: quay-push-secret-konflux-ci
-diff --git a/components/konflux-ci/production/quay-push-secret.yaml b/components/konflux-ci/production/quay-push-secret.yaml
-deleted file mode 100644
-index b4fdd4c0..00000000
---- a/components/konflux-ci/production/quay-push-secret.yaml
-+++ /dev/null
-@@ -1,4 +0,0 @@
-----
--- op: add
--  path: /spec/dataFrom/0/extract/key
--  value: production/build/tekton-ci/quay-push-secret
-diff --git a/components/tekton-ci/base/external-secrets/kustomization.yaml b/components/tekton-ci/base/external-secrets/kustomization.yaml
-index 74626764..e26e7cf0 100644
---- a/components/tekton-ci/base/external-secrets/kustomization.yaml
-+++ b/components/tekton-ci/base/external-secrets/kustomization.yaml
-@@ -2,7 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
- - quay-push-secret.yaml
--- quay-push-secret-konflux-ci.yaml
- - infra-deployments-pr-creator.yaml
- - snyk-shared-token.yaml
- - slack-webhook-notification-secret.yaml
-diff --git a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
-deleted file mode 100644
-index 2d67489c..00000000
---- a/components/tekton-ci/base/external-secrets/quay-push-secret-konflux-ci.yaml
-+++ /dev/null
-@@ -1,24 +0,0 @@
--apiVersion: external-secrets.io/v1beta1
--kind: ExternalSecret
--metadata:
--  name: quay-push-secret-konflux-ci
--  annotations:
--    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
--    argocd.argoproj.io/sync-wave: "-1"
--spec:
--  dataFrom:
--    - extract:
--        key: staging/build/tekton-ci/quay-push-secret-konflux-ci
--  refreshInterval: 15m
--  secretStoreRef:
--    kind: ClusterSecretStore
--    name: appsre-stonesoup-vault
--  target:
--    creationPolicy: Owner
--    deletionPolicy: Delete
--    name: quay-push-secret-konflux-ci
--    template:
--      engineVersion: v2
--      type: kubernetes.io/dockerconfigjson
--      data:
--        .dockerconfigjson: "{{ .config }}"
-diff --git a/components/tekton-ci/production/kustomization.yaml b/components/tekton-ci/production/kustomization.yaml
-index ba934adf..65cd79ed 100644
---- a/components/tekton-ci/production/kustomization.yaml
-+++ b/components/tekton-ci/production/kustomization.yaml
-@@ -13,12 +13,6 @@ patches:
-       kind: ExternalSecret
-       group: external-secrets.io
-       version: v1beta1
--  - path: quay-push-secret-konflux-ci.yaml
--    target:
--      name: quay-push-secret-konflux-ci
--      kind: ExternalSecret
--      group: external-secrets.io
--      version: v1beta1
-   - path: infra-deployments-pr-creator.yaml
-     target:
-       name: infra-deployments-pr-creator
-diff --git a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml b/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
-deleted file mode 100644
-index 8a3590aa..00000000
---- a/components/tekton-ci/production/quay-push-secret-konflux-ci.yaml
-+++ /dev/null
-@@ -1,4 +0,0 @@
-----
--- op: add
--  path: /spec/dataFrom/0/extract/key
--  value: production/build/tekton-ci/quay-push-secret-konflux-ci 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from b069469e to 6c50484c on Thu Apr 18 15:36:12 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (26 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index d8445be6..9f163af7 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -3,17 +3,17 @@ kind: Kustomization
- 
- resources:
- - allow-argocd-to-manage.yaml
--- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
--- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-+- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=c528daeafa497195049316087828594ab988ccc1
-+- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=c528daeafa497195049316087828594ab988ccc1
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
--  newTag: 7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-+  newTag: c528daeafa497195049316087828594ab988ccc1
- - name: multi-platform-otp-server
-   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
--  newTag: 7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-+  newTag: c528daeafa497195049316087828594ab988ccc1
- 
- namespace: multi-platform-controller
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (15 lines)</summary>  
-
-``` 
-./commit-b069469e/production/components/multi-platform-controller/production/kustomize.out.yaml
-257c257
-<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:c528daeafa497195049316087828594ab988ccc1
----
->         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-266c266
-<             memory: 2Gi
----
->             memory: 512Mi
-299c299
-<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:c528daeafa497195049316087828594ab988ccc1
----
->         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-474d473
-<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from b069469e to 6c50484c on Thu Apr 18 15:36:12 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (26 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index d8445be6..9f163af7 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -3,17 +3,17 @@ kind: Kustomization
- 
- resources:
- - allow-argocd-to-manage.yaml
--- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
--- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-+- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=c528daeafa497195049316087828594ab988ccc1
-+- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=c528daeafa497195049316087828594ab988ccc1
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
--  newTag: 7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-+  newTag: c528daeafa497195049316087828594ab988ccc1
- - name: multi-platform-otp-server
-   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
--  newTag: 7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-+  newTag: c528daeafa497195049316087828594ab988ccc1
- 
- namespace: multi-platform-controller
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (15 lines)</summary>  
-
-``` 
-./commit-b069469e/staging/components/multi-platform-controller/staging/kustomize.out.yaml
-247c247
-<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:c528daeafa497195049316087828594ab988ccc1
----
->         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-256c256
-<             memory: 2Gi
----
->             memory: 512Mi
-289c289
-<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:c528daeafa497195049316087828594ab988ccc1
----
->         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-418d417
-<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from b069469e to 6c50484c on Thu Apr 18 15:36:12 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (26 lines)</summary>  
-
-``` 
-diff --git a/components/multi-platform-controller/base/kustomization.yaml b/components/multi-platform-controller/base/kustomization.yaml
-index d8445be6..9f163af7 100644
---- a/components/multi-platform-controller/base/kustomization.yaml
-+++ b/components/multi-platform-controller/base/kustomization.yaml
-@@ -3,17 +3,17 @@ kind: Kustomization
- 
- resources:
- - allow-argocd-to-manage.yaml
--- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
--- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-+- https://github.com/redhat-appstudio/multi-platform-controller/deploy/operator?ref=c528daeafa497195049316087828594ab988ccc1
-+- https://github.com/redhat-appstudio/multi-platform-controller/deploy/otp?ref=c528daeafa497195049316087828594ab988ccc1
- 
- 
- images:
- - name: multi-platform-controller
-   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller
--  newTag: 7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-+  newTag: c528daeafa497195049316087828594ab988ccc1
- - name: multi-platform-otp-server
-   newName: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service
--  newTag: 7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-+  newTag: c528daeafa497195049316087828594ab988ccc1
- 
- namespace: multi-platform-controller
-  
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (15 lines)</summary>  
-
-``` 
-./commit-b069469e/development/components/multi-platform-controller/development/kustomize.out.yaml
-209c209
-<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:c528daeafa497195049316087828594ab988ccc1
----
->         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-arch-controller:7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-218c218
-<             memory: 2Gi
----
->             memory: 512Mi
-251c251
-<         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:c528daeafa497195049316087828594ab988ccc1
----
->         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:7fa3f6078eb68151d52bd98f36e5cd990b29dd0c
-311d310
-<       ssh -i /tmp/master_key -o StrictHostKeyChecking=no $SSH_HOST sudo killall -9 -u $USERNAME 
 ```
  
 </details>  
