@@ -1,0 +1,12 @@
+diff --git a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchainconfig.yaml b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchainconfig.yaml
+index a1f9c820..2647a616 100644
+--- a/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchainconfig.yaml
++++ b/components/sandbox/toolchain-host-operator/staging/stone-stage-p01/toolchainconfig.yaml
+@@ -8,7 +8,6 @@ metadata:
+ spec:
+     host:
+       tiers:
+-        defaultTier: 'appstudio'
+         defaultSpaceTier: 'appstudio'
+       automaticApproval:
+         enabled: true
