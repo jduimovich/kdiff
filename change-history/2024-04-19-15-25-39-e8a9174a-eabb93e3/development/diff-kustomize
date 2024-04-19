@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-eabb93e3/development/components/release/development/kustomize.out.yaml ./kustomized-cache/commit-e8a9174a/development/components/release/development/kustomize.out.yaml
+1851c1851
+<               > expirationTime) {\n       args=\"%s:%s\\n\"\n       printf(args, $1,
+---
+>               > expirationTime) {\n       args=\"%s:%s\"\n       printf(args, $1,
