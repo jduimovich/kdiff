@@ -1,0 +1,13 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-4ead3be4/production/components/ui/production/kustomize.out.yaml ./kustomized-cache/commit-d4a8b418/production/components/ui/production/kustomize.out.yaml
+255c255
+<       - image: quay.io/cloudservices/insights-chrome-frontend:94f3475
+---
+>       - image: quay.io/cloudservices/insights-chrome-frontend:9ddfec6
+445c445
+<       - image: quay.io/cloudservices/hac-dev-frontend:69fab83
+---
+>       - image: quay.io/cloudservices/hac-dev-frontend:7932b2a
+585c585
+<         image: quay.io/cloudservices/chrome-service:3fcdfde
+---
+>         image: quay.io/cloudservices/chrome-service:457001e
