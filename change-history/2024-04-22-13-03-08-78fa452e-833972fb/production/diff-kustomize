@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-833972fb/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-78fa452e/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+2001c2001
+<           custom-console-url-pr-details: https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/application-pipeline/ns/{{
+---
+>           custom-console-url-pr-details: https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/ns/{{
+2003c2003
+<           custom-console-url-pr-tasklog: https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/application-pipeline/ns/{{
+---
+>           custom-console-url-pr-tasklog: https://konflux.apps.stone-prod-p01.wcfb.p1.openshiftapps.com/ns/{{

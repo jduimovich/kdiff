@@ -1,0 +1,9 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-78fa452e/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml ./kustomized-cache/commit-950f429f/production/components/pipeline-service/production/stone-prd-m01/kustomize.out.yaml
+1851d1850
+<     artifacts.pipelinerun.enable-deep-inspection: true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-78fa452e/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml ./kustomized-cache/commit-950f429f/production/components/pipeline-service/production/stone-prd-rh01/kustomize.out.yaml
+1851d1850
+<     artifacts.pipelinerun.enable-deep-inspection: true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-78fa452e/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-950f429f/production/components/pipeline-service/production/stone-prod-p01/kustomize.out.yaml
+1851d1850
+<     artifacts.pipelinerun.enable-deep-inspection: true
