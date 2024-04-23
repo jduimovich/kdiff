@@ -1,12 +1,714 @@
 # kustomize changes tracked by commits 
-### This file generated at Tue Apr 23 16:02:17 UTC 2024
+### This file generated at Tue Apr 23 20:03:24 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 18b55966 to a313d4c6 on Tue Apr 23 03:25:23 2024 </h3>  
+<h3>1: Production changes from a313d4c6 to fd35f18b on Tue Apr 23 17:43:37 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (78 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 354e6924..fbe75ce4 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -44,7 +44,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -88,7 +88,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -110,7 +110,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -129,4 +129,4 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-task-policy:git-13034fc@sha256:965c2ef01e2a13cb9774acff438d8b76b5b440be57f0a6ebddb64fe7aa66b8d5
++        - oci::quay.io/enterprise-contract/ec-task-policy:git-2a836d4@sha256:fff7b984994c12cc19edb4dab062c9c0a8b45abe09da13e97e528d894605bab6
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 57bfd5f8..1e3e5478 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=6a3f89ca049b00166d4ff21ac11859a951ff2329
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=8ea25fcd8dfe4cf3f552d36b97dcbf970a9c5363
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -12,7 +12,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:5682f93d16166df81248343b21c5d843522acaf2@sha256:c3f1a210299075e4c719ea503f10343dc7ac28b08c67e1c25ee3fefd8123d27e
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:e3f5f0810f9988abfe3be30414ec49020b61c1b7@sha256:6dccad55da995af50e26d4ef408cbceec6ea739b264968ab97a9a93d5cfad9eb
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=5682f93d16166df81248343b21c5d843522acaf2
++      - verify_ec_task_git_revision=e3f5f0810f9988abfe3be30414ec49020b61c1b7
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+
+``` 
+./commit-a313d4c6/production/components/enterprise-contract/kustomize.out.yaml
+376c376
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:e3f5f0810f9988abfe3be30414ec49020b61c1b7@sha256:6dccad55da995af50e26d4ef408cbceec6ea739b264968ab97a9a93d5cfad9eb
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:5682f93d16166df81248343b21c5d843522acaf2@sha256:c3f1a210299075e4c719ea503f10343dc7ac28b08c67e1c25ee3fefd8123d27e
+378c378
+<   verify_ec_task_git_revision: e3f5f0810f9988abfe3be30414ec49020b61c1b7
+---
+>   verify_ec_task_git_revision: 5682f93d16166df81248343b21c5d843522acaf2
+612c612
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+637c637
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+661c661
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+688c688
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+707c707
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-2a836d4@sha256:fff7b984994c12cc19edb4dab062c9c0a8b45abe09da13e97e528d894605bab6
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-13034fc@sha256:965c2ef01e2a13cb9774acff438d8b76b5b440be57f0a6ebddb64fe7aa66b8d5
+733c733
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from a313d4c6 to fd35f18b on Tue Apr 23 17:43:37 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (78 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 354e6924..fbe75ce4 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -44,7 +44,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -88,7 +88,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -110,7 +110,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -129,4 +129,4 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-task-policy:git-13034fc@sha256:965c2ef01e2a13cb9774acff438d8b76b5b440be57f0a6ebddb64fe7aa66b8d5
++        - oci::quay.io/enterprise-contract/ec-task-policy:git-2a836d4@sha256:fff7b984994c12cc19edb4dab062c9c0a8b45abe09da13e97e528d894605bab6
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 57bfd5f8..1e3e5478 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=6a3f89ca049b00166d4ff21ac11859a951ff2329
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=8ea25fcd8dfe4cf3f552d36b97dcbf970a9c5363
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -12,7 +12,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:5682f93d16166df81248343b21c5d843522acaf2@sha256:c3f1a210299075e4c719ea503f10343dc7ac28b08c67e1c25ee3fefd8123d27e
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:e3f5f0810f9988abfe3be30414ec49020b61c1b7@sha256:6dccad55da995af50e26d4ef408cbceec6ea739b264968ab97a9a93d5cfad9eb
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=5682f93d16166df81248343b21c5d843522acaf2
++      - verify_ec_task_git_revision=e3f5f0810f9988abfe3be30414ec49020b61c1b7
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+
+``` 
+./commit-a313d4c6/staging/components/enterprise-contract/kustomize.out.yaml
+376c376
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:e3f5f0810f9988abfe3be30414ec49020b61c1b7@sha256:6dccad55da995af50e26d4ef408cbceec6ea739b264968ab97a9a93d5cfad9eb
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:5682f93d16166df81248343b21c5d843522acaf2@sha256:c3f1a210299075e4c719ea503f10343dc7ac28b08c67e1c25ee3fefd8123d27e
+378c378
+<   verify_ec_task_git_revision: e3f5f0810f9988abfe3be30414ec49020b61c1b7
+---
+>   verify_ec_task_git_revision: 5682f93d16166df81248343b21c5d843522acaf2
+612c612
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+637c637
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+661c661
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+688c688
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+707c707
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-2a836d4@sha256:fff7b984994c12cc19edb4dab062c9c0a8b45abe09da13e97e528d894605bab6
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-13034fc@sha256:965c2ef01e2a13cb9774acff438d8b76b5b440be57f0a6ebddb64fe7aa66b8d5
+733c733
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from a313d4c6 to fd35f18b on Tue Apr 23 17:43:37 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (78 lines)</summary>  
+
+``` 
+diff --git a/components/enterprise-contract/ecp.yaml b/components/enterprise-contract/ecp.yaml
+index 354e6924..fbe75ce4 100644
+--- a/components/enterprise-contract/ecp.yaml
++++ b/components/enterprise-contract/ecp.yaml
+@@ -23,7 +23,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -44,7 +44,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -67,7 +67,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -88,7 +88,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -110,7 +110,7 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
++        - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+ ---
+ apiVersion: appstudio.redhat.com/v1alpha1
+ kind: EnterpriseContractPolicy
+@@ -129,4 +129,4 @@ spec:
+         - github.com/release-engineering/rhtap-ec-policy//data
+       name: Default
+       policy:
+-        - oci::quay.io/enterprise-contract/ec-task-policy:git-13034fc@sha256:965c2ef01e2a13cb9774acff438d8b76b5b440be57f0a6ebddb64fe7aa66b8d5
++        - oci::quay.io/enterprise-contract/ec-task-policy:git-2a836d4@sha256:fff7b984994c12cc19edb4dab062c9c0a8b45abe09da13e97e528d894605bab6
+diff --git a/components/enterprise-contract/kustomization.yaml b/components/enterprise-contract/kustomization.yaml
+index 57bfd5f8..1e3e5478 100644
+--- a/components/enterprise-contract/kustomization.yaml
++++ b/components/enterprise-contract/kustomization.yaml
+@@ -1,7 +1,7 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=6a3f89ca049b00166d4ff21ac11859a951ff2329
++  - https://github.com/enterprise-contract/enterprise-contract-controller/config/crd?ref=8ea25fcd8dfe4cf3f552d36b97dcbf970a9c5363
+   - ecp.yaml
+   - role.yaml
+   - rolebinding.yaml
+@@ -12,7 +12,7 @@ configMapGenerator:
+   - name: ec-defaults
+     namespace: enterprise-contract-service
+     literals:
+-      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:5682f93d16166df81248343b21c5d843522acaf2@sha256:c3f1a210299075e4c719ea503f10343dc7ac28b08c67e1c25ee3fefd8123d27e
++      - verify_ec_task_bundle=quay.io/enterprise-contract/ec-task-bundle:e3f5f0810f9988abfe3be30414ec49020b61c1b7@sha256:6dccad55da995af50e26d4ef408cbceec6ea739b264968ab97a9a93d5cfad9eb
+       - verify_ec_task_git_url=https://github.com/enterprise-contract/ec-cli.git
+-      - verify_ec_task_git_revision=5682f93d16166df81248343b21c5d843522acaf2
++      - verify_ec_task_git_revision=e3f5f0810f9988abfe3be30414ec49020b61c1b7
+       - verify_ec_task_git_pathInRepo=tasks/verify-enterprise-contract/0.1/verify-enterprise-contract.yaml 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (33 lines)</summary>  
+
+``` 
+./commit-a313d4c6/development/components/enterprise-contract/kustomize.out.yaml
+376c376
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:e3f5f0810f9988abfe3be30414ec49020b61c1b7@sha256:6dccad55da995af50e26d4ef408cbceec6ea739b264968ab97a9a93d5cfad9eb
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:5682f93d16166df81248343b21c5d843522acaf2@sha256:c3f1a210299075e4c719ea503f10343dc7ac28b08c67e1c25ee3fefd8123d27e
+378c378
+<   verify_ec_task_git_revision: e3f5f0810f9988abfe3be30414ec49020b61c1b7
+---
+>   verify_ec_task_git_revision: 5682f93d16166df81248343b21c5d843522acaf2
+612c612
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+637c637
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+661c661
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+688c688
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+707c707
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-2a836d4@sha256:fff7b984994c12cc19edb4dab062c9c0a8b45abe09da13e97e528d894605bab6
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-13034fc@sha256:965c2ef01e2a13cb9774acff438d8b76b5b440be57f0a6ebddb64fe7aa66b8d5
+733c733
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 18b55966 to a313d4c6 on Tue Apr 23 03:25:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -171,7 +873,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 18b55966 to a313d4c6 on Tue Apr 23 03:25:23 2024 </h3>  
+<h3>2: Staging changes from 18b55966 to a313d4c6 on Tue Apr 23 03:25:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -331,7 +1033,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 18b55966 to a313d4c6 on Tue Apr 23 03:25:23 2024 </h3>  
+<h3>2: Development changes from 18b55966 to a313d4c6 on Tue Apr 23 03:25:23 2024 </h3>  
  
 <details> 
 <summary>Git Diff (20 lines)</summary>  
@@ -446,7 +1148,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from a240a0d2 to 18b55966 on Mon Apr 22 19:50:35 2024 </h3>  
+<h3>3: Production changes from a240a0d2 to 18b55966 on Mon Apr 22 19:50:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (67 lines)</summary>  
@@ -676,7 +1378,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from a240a0d2 to 18b55966 on Mon Apr 22 19:50:35 2024 </h3>  
+<h3>3: Staging changes from a240a0d2 to 18b55966 on Mon Apr 22 19:50:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (67 lines)</summary>  
@@ -883,7 +1585,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from a240a0d2 to 18b55966 on Mon Apr 22 19:50:35 2024 </h3>  
+<h3>3: Development changes from a240a0d2 to 18b55966 on Mon Apr 22 19:50:35 2024 </h3>  
  
 <details> 
 <summary>Git Diff (67 lines)</summary>  
@@ -1045,7 +1747,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from a0b10700 to a240a0d2 on Mon Apr 22 17:42:59 2024 </h3>  
+<h3>4: Production changes from a0b10700 to a240a0d2 on Mon Apr 22 17:42:59 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1218,7 +1920,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from a0b10700 to a240a0d2 on Mon Apr 22 17:42:59 2024 </h3>  
+<h3>4: Staging changes from a0b10700 to a240a0d2 on Mon Apr 22 17:42:59 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1394,7 +2096,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from a0b10700 to a240a0d2 on Mon Apr 22 17:42:59 2024 </h3>  
+<h3>4: Development changes from a0b10700 to a240a0d2 on Mon Apr 22 17:42:59 2024 </h3>  
  
 <details> 
 <summary>Git Diff (26 lines)</summary>  
@@ -1445,544 +2147,6 @@ index 45b526fb..39373245 100644
 >         image: quay.io/redhat-user-workloads/rhtap-build-tenant/multi-arch-controller/multi-platform-controller-otp-service:857aab5f1a0fe256fa28e351de06d2fa64c33947
 362d361
 <       sudo restorecon -FRvv /home/$USERNAME/.ssh 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from fc458e47 to a0b10700 on Mon Apr 22 16:02:57 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (50 lines)</summary>  
-
-``` 
-diff --git a/components/quality-dashboard/base/backend/kustomization.yaml b/components/quality-dashboard/base/backend/kustomization.yaml
-index e762cd1c..46ddc25e 100644
---- a/components/quality-dashboard/base/backend/kustomization.yaml
-+++ b/components/quality-dashboard/base/backend/kustomization.yaml
-@@ -1,5 +1,5 @@
- resources:
--- https://github.com/redhat-appstudio/quality-dashboard/backend/deploy/base?ref=e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-+- https://github.com/redhat-appstudio/quality-dashboard/backend/deploy/base?ref=0909a2826e9d66cdf42b35ef8069f8ce1216859a
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-@@ -8,4 +8,4 @@ kind: Kustomization
- images:
-   - name: quay.io/redhat-appstudio/quality-dashboard-backend
-     newName: quay.io/redhat-appstudio/quality-dashboard-backend
--    newTag: e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-\ No newline at end of file
-+    newTag: 0909a2826e9d66cdf42b35ef8069f8ce1216859a
-\ No newline at end of file
-diff --git a/components/quality-dashboard/base/dex/kustomization.yaml b/components/quality-dashboard/base/dex/kustomization.yaml
-index f198b1fa..b9a0a0b8 100644
---- a/components/quality-dashboard/base/dex/kustomization.yaml
-+++ b/components/quality-dashboard/base/dex/kustomization.yaml
-@@ -1,5 +1,5 @@
- resources:
--- https://github.com/redhat-appstudio/quality-dashboard/dex/deploy/base?ref=0b072313be6e68ea933f0189242f966f0a42a807
-+- https://github.com/redhat-appstudio/quality-dashboard/dex/deploy/base?ref=0909a2826e9d66cdf42b35ef8069f8ce1216859a
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-\ No newline at end of file
-diff --git a/components/quality-dashboard/base/frontend/kustomization.yaml b/components/quality-dashboard/base/frontend/kustomization.yaml
-index 8c921cfb..946770e9 100644
---- a/components/quality-dashboard/base/frontend/kustomization.yaml
-+++ b/components/quality-dashboard/base/frontend/kustomization.yaml
-@@ -1,5 +1,5 @@
- resources:
--- https://github.com/redhat-appstudio/quality-dashboard/frontend/deploy/base?ref=e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-+- https://github.com/redhat-appstudio/quality-dashboard/frontend/deploy/base?ref=0909a2826e9d66cdf42b35ef8069f8ce1216859a
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-@@ -7,4 +7,4 @@ kind: Kustomization
- images:
-   - name: quay.io/redhat-appstudio/quality-dashboard-frontend
-     newName: quay.io/redhat-appstudio/quality-dashboard-frontend
--    newTag: e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-\ No newline at end of file
-+    newTag: 0909a2826e9d66cdf42b35ef8069f8ce1216859a
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from fc458e47 to a0b10700 on Mon Apr 22 16:02:57 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (50 lines)</summary>  
-
-``` 
-diff --git a/components/quality-dashboard/base/backend/kustomization.yaml b/components/quality-dashboard/base/backend/kustomization.yaml
-index e762cd1c..46ddc25e 100644
---- a/components/quality-dashboard/base/backend/kustomization.yaml
-+++ b/components/quality-dashboard/base/backend/kustomization.yaml
-@@ -1,5 +1,5 @@
- resources:
--- https://github.com/redhat-appstudio/quality-dashboard/backend/deploy/base?ref=e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-+- https://github.com/redhat-appstudio/quality-dashboard/backend/deploy/base?ref=0909a2826e9d66cdf42b35ef8069f8ce1216859a
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-@@ -8,4 +8,4 @@ kind: Kustomization
- images:
-   - name: quay.io/redhat-appstudio/quality-dashboard-backend
-     newName: quay.io/redhat-appstudio/quality-dashboard-backend
--    newTag: e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-\ No newline at end of file
-+    newTag: 0909a2826e9d66cdf42b35ef8069f8ce1216859a
-\ No newline at end of file
-diff --git a/components/quality-dashboard/base/dex/kustomization.yaml b/components/quality-dashboard/base/dex/kustomization.yaml
-index f198b1fa..b9a0a0b8 100644
---- a/components/quality-dashboard/base/dex/kustomization.yaml
-+++ b/components/quality-dashboard/base/dex/kustomization.yaml
-@@ -1,5 +1,5 @@
- resources:
--- https://github.com/redhat-appstudio/quality-dashboard/dex/deploy/base?ref=0b072313be6e68ea933f0189242f966f0a42a807
-+- https://github.com/redhat-appstudio/quality-dashboard/dex/deploy/base?ref=0909a2826e9d66cdf42b35ef8069f8ce1216859a
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-\ No newline at end of file
-diff --git a/components/quality-dashboard/base/frontend/kustomization.yaml b/components/quality-dashboard/base/frontend/kustomization.yaml
-index 8c921cfb..946770e9 100644
---- a/components/quality-dashboard/base/frontend/kustomization.yaml
-+++ b/components/quality-dashboard/base/frontend/kustomization.yaml
-@@ -1,5 +1,5 @@
- resources:
--- https://github.com/redhat-appstudio/quality-dashboard/frontend/deploy/base?ref=e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-+- https://github.com/redhat-appstudio/quality-dashboard/frontend/deploy/base?ref=0909a2826e9d66cdf42b35ef8069f8ce1216859a
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-@@ -7,4 +7,4 @@ kind: Kustomization
- images:
-   - name: quay.io/redhat-appstudio/quality-dashboard-frontend
-     newName: quay.io/redhat-appstudio/quality-dashboard-frontend
--    newTag: e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-\ No newline at end of file
-+    newTag: 0909a2826e9d66cdf42b35ef8069f8ce1216859a
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-fc458e47/staging/components/quality-dashboard/staging/kustomize.out.yaml
-182c182
-<         image: quay.io/redhat-appstudio/quality-dashboard-backend:0909a2826e9d66cdf42b35ef8069f8ce1216859a
----
->         image: quay.io/redhat-appstudio/quality-dashboard-backend:e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-307c307
-<         image: quay.io/redhat-appstudio/quality-dashboard-frontend:0909a2826e9d66cdf42b35ef8069f8ce1216859a
----
->         image: quay.io/redhat-appstudio/quality-dashboard-frontend:e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from fc458e47 to a0b10700 on Mon Apr 22 16:02:57 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (50 lines)</summary>  
-
-``` 
-diff --git a/components/quality-dashboard/base/backend/kustomization.yaml b/components/quality-dashboard/base/backend/kustomization.yaml
-index e762cd1c..46ddc25e 100644
---- a/components/quality-dashboard/base/backend/kustomization.yaml
-+++ b/components/quality-dashboard/base/backend/kustomization.yaml
-@@ -1,5 +1,5 @@
- resources:
--- https://github.com/redhat-appstudio/quality-dashboard/backend/deploy/base?ref=e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-+- https://github.com/redhat-appstudio/quality-dashboard/backend/deploy/base?ref=0909a2826e9d66cdf42b35ef8069f8ce1216859a
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-@@ -8,4 +8,4 @@ kind: Kustomization
- images:
-   - name: quay.io/redhat-appstudio/quality-dashboard-backend
-     newName: quay.io/redhat-appstudio/quality-dashboard-backend
--    newTag: e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-\ No newline at end of file
-+    newTag: 0909a2826e9d66cdf42b35ef8069f8ce1216859a
-\ No newline at end of file
-diff --git a/components/quality-dashboard/base/dex/kustomization.yaml b/components/quality-dashboard/base/dex/kustomization.yaml
-index f198b1fa..b9a0a0b8 100644
---- a/components/quality-dashboard/base/dex/kustomization.yaml
-+++ b/components/quality-dashboard/base/dex/kustomization.yaml
-@@ -1,5 +1,5 @@
- resources:
--- https://github.com/redhat-appstudio/quality-dashboard/dex/deploy/base?ref=0b072313be6e68ea933f0189242f966f0a42a807
-+- https://github.com/redhat-appstudio/quality-dashboard/dex/deploy/base?ref=0909a2826e9d66cdf42b35ef8069f8ce1216859a
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-\ No newline at end of file
-diff --git a/components/quality-dashboard/base/frontend/kustomization.yaml b/components/quality-dashboard/base/frontend/kustomization.yaml
-index 8c921cfb..946770e9 100644
---- a/components/quality-dashboard/base/frontend/kustomization.yaml
-+++ b/components/quality-dashboard/base/frontend/kustomization.yaml
-@@ -1,5 +1,5 @@
- resources:
--- https://github.com/redhat-appstudio/quality-dashboard/frontend/deploy/base?ref=e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-+- https://github.com/redhat-appstudio/quality-dashboard/frontend/deploy/base?ref=0909a2826e9d66cdf42b35ef8069f8ce1216859a
- 
- apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
-@@ -7,4 +7,4 @@ kind: Kustomization
- images:
-   - name: quay.io/redhat-appstudio/quality-dashboard-frontend
-     newName: quay.io/redhat-appstudio/quality-dashboard-frontend
--    newTag: e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-\ No newline at end of file
-+    newTag: 0909a2826e9d66cdf42b35ef8069f8ce1216859a
-\ No newline at end of file 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (9 lines)</summary>  
-
-``` 
-./commit-fc458e47/development/components/quality-dashboard/development/kustomize.out.yaml
-151c151
-<         image: quay.io/redhat-appstudio/quality-dashboard-backend:0909a2826e9d66cdf42b35ef8069f8ce1216859a
----
->         image: quay.io/redhat-appstudio/quality-dashboard-backend:e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9
-276c276
-<         image: quay.io/redhat-appstudio/quality-dashboard-frontend:0909a2826e9d66cdf42b35ef8069f8ce1216859a
----
->         image: quay.io/redhat-appstudio/quality-dashboard-frontend:e82bf3ad53b9a75af8acad6f3dd17f9dd5d860a9 
 ```
  
 </details>  

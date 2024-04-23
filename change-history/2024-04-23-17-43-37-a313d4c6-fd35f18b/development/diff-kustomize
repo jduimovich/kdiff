@@ -1,0 +1,33 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-fd35f18b/development/components/enterprise-contract/kustomize.out.yaml ./kustomized-cache/commit-a313d4c6/development/components/enterprise-contract/kustomize.out.yaml
+376c376
+<   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:e3f5f0810f9988abfe3be30414ec49020b61c1b7@sha256:6dccad55da995af50e26d4ef408cbceec6ea739b264968ab97a9a93d5cfad9eb
+---
+>   verify_ec_task_bundle: quay.io/enterprise-contract/ec-task-bundle:5682f93d16166df81248343b21c5d843522acaf2@sha256:c3f1a210299075e4c719ea503f10343dc7ac28b08c67e1c25ee3fefd8123d27e
+378c378
+<   verify_ec_task_git_revision: e3f5f0810f9988abfe3be30414ec49020b61c1b7
+---
+>   verify_ec_task_git_revision: 5682f93d16166df81248343b21c5d843522acaf2
+612c612
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+637c637
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+661c661
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+688c688
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
+707c707
+<     - oci::quay.io/enterprise-contract/ec-task-policy:git-2a836d4@sha256:fff7b984994c12cc19edb4dab062c9c0a8b45abe09da13e97e528d894605bab6
+---
+>     - oci::quay.io/enterprise-contract/ec-task-policy:git-13034fc@sha256:965c2ef01e2a13cb9774acff438d8b76b5b440be57f0a6ebddb64fe7aa66b8d5
+733c733
+<     - oci::quay.io/enterprise-contract/ec-release-policy:git-2a836d4@sha256:a95d8ba89fdecda51f0685dd3b802ba63c16434913d767f14474ae23d7f7fc01
+---
+>     - oci::quay.io/enterprise-contract/ec-release-policy:git-13034fc@sha256:cd9e22d106cb740e3355f35fb86f3baf63cc8339f7361ee04045cf4795d02a5e
