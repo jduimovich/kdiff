@@ -1,12 +1,477 @@
 # kustomize changes tracked by commits 
-### This file generated at Fri Apr 26 16:03:15 UTC 2024
+### This file generated at Fri Apr 26 20:03:35 UTC 2024
 ## Repo - https://github.com/redhat-appstudio/infra-deployments.git 
 ## Overlays: production staging development
 ## Showing last 4 commits
 
 
 <div>
-<h3>1: Production changes from 7cc0bc64 to bae9dedc on Fri Apr 26 15:26:24 2024 </h3>  
+<h3>1: Production changes from bae9dedc to 10ca7ab0 on Fri Apr 26 17:18:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (27 lines)</summary>  
+
+``` 
+diff --git a/components/ui/production/kustomization.yaml b/components/ui/production/kustomization.yaml
+index 9ccb3f57..99bc07eb 100644
+--- a/components/ui/production/kustomization.yaml
++++ b/components/ui/production/kustomization.yaml
+@@ -7,11 +7,11 @@ images:
+   # chrome frontend
+   - name: quay.io/cloudservices/insights-chrome-frontend
+     newName: quay.io/cloudservices/insights-chrome-frontend
+-    newTag: 94f3475
++    newTag: 03a0a14
+   # chrome service
+   - name: quay.io/cloudservices/chrome-service
+     newName: quay.io/cloudservices/chrome-service
+-    newTag: 3fcdfde
++    newTag: acd4a91
+   # hac
+   - name: quay.io/cloudservices/hac-core-frontend
+     newName: quay.io/cloudservices/hac-core-frontend
+@@ -19,7 +19,7 @@ images:
+   # hac-dev
+   - name: quay.io/cloudservices/hac-dev-frontend
+     newName: quay.io/cloudservices/hac-dev-frontend
+-    newTag: 69fab83
++    newTag: d5e862c
+ 
+ configMapGenerator:
+   - name: fed-modules 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (13 lines)</summary>  
+
+``` 
+./commit-bae9dedc/production/components/ui/production/kustomize.out.yaml
+255c255
+<       - image: quay.io/cloudservices/insights-chrome-frontend:03a0a14
+---
+>       - image: quay.io/cloudservices/insights-chrome-frontend:94f3475
+445c445
+<       - image: quay.io/cloudservices/hac-dev-frontend:d5e862c
+---
+>       - image: quay.io/cloudservices/hac-dev-frontend:69fab83
+585c585
+<         image: quay.io/cloudservices/chrome-service:acd4a91
+---
+>         image: quay.io/cloudservices/chrome-service:3fcdfde 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Staging changes from bae9dedc to 10ca7ab0 on Fri Apr 26 17:18:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (27 lines)</summary>  
+
+``` 
+diff --git a/components/ui/production/kustomization.yaml b/components/ui/production/kustomization.yaml
+index 9ccb3f57..99bc07eb 100644
+--- a/components/ui/production/kustomization.yaml
++++ b/components/ui/production/kustomization.yaml
+@@ -7,11 +7,11 @@ images:
+   # chrome frontend
+   - name: quay.io/cloudservices/insights-chrome-frontend
+     newName: quay.io/cloudservices/insights-chrome-frontend
+-    newTag: 94f3475
++    newTag: 03a0a14
+   # chrome service
+   - name: quay.io/cloudservices/chrome-service
+     newName: quay.io/cloudservices/chrome-service
+-    newTag: 3fcdfde
++    newTag: acd4a91
+   # hac
+   - name: quay.io/cloudservices/hac-core-frontend
+     newName: quay.io/cloudservices/hac-core-frontend
+@@ -19,7 +19,7 @@ images:
+   # hac-dev
+   - name: quay.io/cloudservices/hac-dev-frontend
+     newName: quay.io/cloudservices/hac-dev-frontend
+-    newTag: 69fab83
++    newTag: d5e862c
+ 
+ configMapGenerator:
+   - name: fed-modules 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>1: Development changes from bae9dedc to 10ca7ab0 on Fri Apr 26 17:18:47 2024 </h3>  
+ 
+<details> 
+<summary>Git Diff (27 lines)</summary>  
+
+``` 
+diff --git a/components/ui/production/kustomization.yaml b/components/ui/production/kustomization.yaml
+index 9ccb3f57..99bc07eb 100644
+--- a/components/ui/production/kustomization.yaml
++++ b/components/ui/production/kustomization.yaml
+@@ -7,11 +7,11 @@ images:
+   # chrome frontend
+   - name: quay.io/cloudservices/insights-chrome-frontend
+     newName: quay.io/cloudservices/insights-chrome-frontend
+-    newTag: 94f3475
++    newTag: 03a0a14
+   # chrome service
+   - name: quay.io/cloudservices/chrome-service
+     newName: quay.io/cloudservices/chrome-service
+-    newTag: 3fcdfde
++    newTag: acd4a91
+   # hac
+   - name: quay.io/cloudservices/hac-core-frontend
+     newName: quay.io/cloudservices/hac-core-frontend
+@@ -19,7 +19,7 @@ images:
+   # hac-dev
+   - name: quay.io/cloudservices/hac-dev-frontend
+     newName: quay.io/cloudservices/hac-dev-frontend
+-    newTag: 69fab83
++    newTag: d5e862c
+ 
+ configMapGenerator:
+   - name: fed-modules 
+```
+ 
+</details> 
+
+<details> 
+<summary>Kustomize Generated Diff (0 lines)</summary>  
+
+``` 
+ 
+```
+ 
+</details>  
+
+<details> 
+<summary>Lint</summary>  
+
+``` 
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found!
+KubeLinter v0.6.1-0-gc6177366a3
+
+No lint errors found! 
+```
+ 
+</details> 
+<br> 
+
+
+</div>
+
+<div>
+<h3>2: Production changes from 7cc0bc64 to bae9dedc on Fri Apr 26 15:26:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -181,7 +646,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Staging changes from 7cc0bc64 to bae9dedc on Fri Apr 26 15:26:24 2024 </h3>  
+<h3>2: Staging changes from 7cc0bc64 to bae9dedc on Fri Apr 26 15:26:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -359,7 +824,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>1: Development changes from 7cc0bc64 to bae9dedc on Fri Apr 26 15:26:24 2024 </h3>  
+<h3>2: Development changes from 7cc0bc64 to bae9dedc on Fri Apr 26 15:26:24 2024 </h3>  
  
 <details> 
 <summary>Git Diff (38 lines)</summary>  
@@ -593,7 +1058,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Production changes from 28ee31b9 to 7cc0bc64 on Thu Apr 25 12:49:26 2024 </h3>  
+<h3>3: Production changes from 28ee31b9 to 7cc0bc64 on Thu Apr 25 12:49:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -758,7 +1223,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Staging changes from 28ee31b9 to 7cc0bc64 on Thu Apr 25 12:49:26 2024 </h3>  
+<h3>3: Staging changes from 28ee31b9 to 7cc0bc64 on Thu Apr 25 12:49:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -926,7 +1391,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>2: Development changes from 28ee31b9 to 7cc0bc64 on Thu Apr 25 12:49:26 2024 </h3>  
+<h3>3: Development changes from 28ee31b9 to 7cc0bc64 on Thu Apr 25 12:49:26 2024 </h3>  
  
 <details> 
 <summary>Git Diff (28 lines)</summary>  
@@ -1053,7 +1518,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Production changes from 0d376e21 to 28ee31b9 on Thu Apr 25 12:05:25 2024 </h3>  
+<h3>4: Production changes from 0d376e21 to 28ee31b9 on Thu Apr 25 12:05:25 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -1265,7 +1730,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Staging changes from 0d376e21 to 28ee31b9 on Thu Apr 25 12:05:25 2024 </h3>  
+<h3>4: Staging changes from 0d376e21 to 28ee31b9 on Thu Apr 25 12:05:25 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -1480,7 +1945,7 @@ No lint errors found!
 </div>
 
 <div>
-<h3>3: Development changes from 0d376e21 to 28ee31b9 on Thu Apr 25 12:05:25 2024 </h3>  
+<h3>4: Development changes from 0d376e21 to 28ee31b9 on Thu Apr 25 12:05:25 2024 </h3>  
  
 <details> 
 <summary>Git Diff (75 lines)</summary>  
@@ -1558,513 +2023,6 @@ index 6b858df5..882b0a80 100644
      newName: quay.io/redhat-appstudio/service-provider-integration-oauth
 -    newTag: 7d1d8aa8c33f0d6a497ab5830b8f3a7b167746a9
 +    newTag: a07e8305e1713f841a8fefff4ec9b9517b3c65ca
- 
- patches:
-   - target: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Production changes from 22f28561 to 0d376e21 on Thu Apr 25 11:18:41 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (45 lines)</summary>  
-
-``` 
-diff --git a/components/remote-secret-controller/overlays/development/kustomization.yaml b/components/remote-secret-controller/overlays/development/kustomization.yaml
-index cdbffdb4..29c09d95 100644
---- a/components/remote-secret-controller/overlays/development/kustomization.yaml
-+++ b/components/remote-secret-controller/overlays/development/kustomization.yaml
-@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../base
--  - https://github.com/konflux-ci/remote-secret/config/overlays/openshift_vault?ref=5734b3b5c4ae2f46c42bc541e896971a5ab64810
-+  - https://github.com/konflux-ci/remote-secret/config/overlays/openshift_vault?ref=8340aad1717bf7530a3d9b7fe241858a3155df87
- 
- namespace: remotesecret
- 
- images:
-   - name:  quay.io/redhat-appstudio/remote-secret-controller
-     newName: quay.io/redhat-appstudio/remote-secret-controller
--    newTag: 5734b3b5c4ae2f46c42bc541e896971a5ab64810
-+    newTag: 8340aad1717bf7530a3d9b7fe241858a3155df87
- 
- patches:
-   - target:
-diff --git a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
-index 1564239c..556dcc70 100644
---- a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
-+++ b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
-@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../../base
--  - https://github.com/konflux-ci/remote-secret/config/overlays/openshift_aws?ref=5734b3b5c4ae2f46c42bc541e896971a5ab64810
--  - https://github.com/konflux-ci/remote-secret/config/monitoring/prometheus?ref=5734b3b5c4ae2f46c42bc541e896971a5ab64810
-+  - https://github.com/konflux-ci/remote-secret/config/overlays/openshift_aws?ref=8340aad1717bf7530a3d9b7fe241858a3155df87
-+  - https://github.com/konflux-ci/remote-secret/config/monitoring/prometheus?ref=8340aad1717bf7530a3d9b7fe241858a3155df87
-   - aws-credentials-external-secret.yaml
- 
- namespace: remotesecret
-@@ -11,7 +11,7 @@ namespace: remotesecret
- images:
-   - name:  quay.io/redhat-appstudio/remote-secret-controller
-     newName: quay.io/redhat-appstudio/remote-secret-controller
--    newTag: 5734b3b5c4ae2f46c42bc541e896971a5ab64810
-+    newTag: 8340aad1717bf7530a3d9b7fe241858a3155df87
- 
- patches:
-   - target: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Staging changes from 22f28561 to 0d376e21 on Thu Apr 25 11:18:41 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (45 lines)</summary>  
-
-``` 
-diff --git a/components/remote-secret-controller/overlays/development/kustomization.yaml b/components/remote-secret-controller/overlays/development/kustomization.yaml
-index cdbffdb4..29c09d95 100644
---- a/components/remote-secret-controller/overlays/development/kustomization.yaml
-+++ b/components/remote-secret-controller/overlays/development/kustomization.yaml
-@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../base
--  - https://github.com/konflux-ci/remote-secret/config/overlays/openshift_vault?ref=5734b3b5c4ae2f46c42bc541e896971a5ab64810
-+  - https://github.com/konflux-ci/remote-secret/config/overlays/openshift_vault?ref=8340aad1717bf7530a3d9b7fe241858a3155df87
- 
- namespace: remotesecret
- 
- images:
-   - name:  quay.io/redhat-appstudio/remote-secret-controller
-     newName: quay.io/redhat-appstudio/remote-secret-controller
--    newTag: 5734b3b5c4ae2f46c42bc541e896971a5ab64810
-+    newTag: 8340aad1717bf7530a3d9b7fe241858a3155df87
- 
- patches:
-   - target:
-diff --git a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
-index 1564239c..556dcc70 100644
---- a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
-+++ b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
-@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../../base
--  - https://github.com/konflux-ci/remote-secret/config/overlays/openshift_aws?ref=5734b3b5c4ae2f46c42bc541e896971a5ab64810
--  - https://github.com/konflux-ci/remote-secret/config/monitoring/prometheus?ref=5734b3b5c4ae2f46c42bc541e896971a5ab64810
-+  - https://github.com/konflux-ci/remote-secret/config/overlays/openshift_aws?ref=8340aad1717bf7530a3d9b7fe241858a3155df87
-+  - https://github.com/konflux-ci/remote-secret/config/monitoring/prometheus?ref=8340aad1717bf7530a3d9b7fe241858a3155df87
-   - aws-credentials-external-secret.yaml
- 
- namespace: remotesecret
-@@ -11,7 +11,7 @@ namespace: remotesecret
- images:
-   - name:  quay.io/redhat-appstudio/remote-secret-controller
-     newName: quay.io/redhat-appstudio/remote-secret-controller
--    newTag: 5734b3b5c4ae2f46c42bc541e896971a5ab64810
-+    newTag: 8340aad1717bf7530a3d9b7fe241858a3155df87
- 
- patches:
-   - target: 
-```
- 
-</details> 
-
-<details> 
-<summary>Kustomize Generated Diff (0 lines)</summary>  
-
-``` 
- 
-```
- 
-</details>  
-
-<details> 
-<summary>Lint</summary>  
-
-``` 
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found!
-KubeLinter v0.6.1-0-gc6177366a3
-
-No lint errors found! 
-```
- 
-</details> 
-<br> 
-
-
-</div>
-
-<div>
-<h3>4: Development changes from 22f28561 to 0d376e21 on Thu Apr 25 11:18:41 2024 </h3>  
- 
-<details> 
-<summary>Git Diff (45 lines)</summary>  
-
-``` 
-diff --git a/components/remote-secret-controller/overlays/development/kustomization.yaml b/components/remote-secret-controller/overlays/development/kustomization.yaml
-index cdbffdb4..29c09d95 100644
---- a/components/remote-secret-controller/overlays/development/kustomization.yaml
-+++ b/components/remote-secret-controller/overlays/development/kustomization.yaml
-@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../base
--  - https://github.com/konflux-ci/remote-secret/config/overlays/openshift_vault?ref=5734b3b5c4ae2f46c42bc541e896971a5ab64810
-+  - https://github.com/konflux-ci/remote-secret/config/overlays/openshift_vault?ref=8340aad1717bf7530a3d9b7fe241858a3155df87
- 
- namespace: remotesecret
- 
- images:
-   - name:  quay.io/redhat-appstudio/remote-secret-controller
-     newName: quay.io/redhat-appstudio/remote-secret-controller
--    newTag: 5734b3b5c4ae2f46c42bc541e896971a5ab64810
-+    newTag: 8340aad1717bf7530a3d9b7fe241858a3155df87
- 
- patches:
-   - target:
-diff --git a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
-index 1564239c..556dcc70 100644
---- a/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
-+++ b/components/remote-secret-controller/overlays/staging/base/kustomization.yaml
-@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
- kind: Kustomization
- resources:
-   - ../../../base
--  - https://github.com/konflux-ci/remote-secret/config/overlays/openshift_aws?ref=5734b3b5c4ae2f46c42bc541e896971a5ab64810
--  - https://github.com/konflux-ci/remote-secret/config/monitoring/prometheus?ref=5734b3b5c4ae2f46c42bc541e896971a5ab64810
-+  - https://github.com/konflux-ci/remote-secret/config/overlays/openshift_aws?ref=8340aad1717bf7530a3d9b7fe241858a3155df87
-+  - https://github.com/konflux-ci/remote-secret/config/monitoring/prometheus?ref=8340aad1717bf7530a3d9b7fe241858a3155df87
-   - aws-credentials-external-secret.yaml
- 
- namespace: remotesecret
-@@ -11,7 +11,7 @@ namespace: remotesecret
- images:
-   - name:  quay.io/redhat-appstudio/remote-secret-controller
-     newName: quay.io/redhat-appstudio/remote-secret-controller
--    newTag: 5734b3b5c4ae2f46c42bc541e896971a5ab64810
-+    newTag: 8340aad1717bf7530a3d9b7fe241858a3155df87
  
  patches:
    - target: 
