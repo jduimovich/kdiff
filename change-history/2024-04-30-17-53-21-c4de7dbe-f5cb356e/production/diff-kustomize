@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f5cb356e/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml ./kustomized-cache/commit-c4de7dbe/production/components/build-service/production/stone-prod-p01/kustomize.out.yaml
+694c694
+<         image: quay.io/redhat-appstudio/build-service:b19e3a30aa621ed898d64488e4c8785420b87f3e
+---
+>         image: quay.io/redhat-appstudio/build-service:d314aeee0b89b93354e08d8e6997e73933f3bcdb
