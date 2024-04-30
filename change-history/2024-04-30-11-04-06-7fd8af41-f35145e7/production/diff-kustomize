@@ -1,0 +1,22 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f35145e7/production/components/konflux-ci/production/kustomize.out.yaml ./kustomized-cache/commit-7fd8af41/production/components/konflux-ci/production/kustomize.out.yaml
+255,263d254
+<   name: ci-helper-app
+< spec:
+<   url: https://github.com/konflux-ci/ci-helper-app
+< ---
+< apiVersion: pipelinesascode.tekton.dev/v1alpha1
+< kind: Repository
+< metadata:
+<   annotations:
+<     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-f35145e7/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-7fd8af41/production/components/tekton-ci/production/kustomize.out.yaml
+290a291,299
+>   name: ci-helper-app
+> spec:
+>   url: https://github.com/redhat-appstudio/ci-helper-app
+> ---
+> apiVersion: pipelinesascode.tekton.dev/v1alpha1
+> kind: Repository
+> metadata:
+>   annotations:
+>     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true

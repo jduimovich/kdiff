@@ -1,0 +1,30 @@
+diff --git a/components/konflux-ci/base/repository.yaml b/components/konflux-ci/base/repository.yaml
+index c2361022..25067115 100644
+--- a/components/konflux-ci/base/repository.yaml
++++ b/components/konflux-ci/base/repository.yaml
+@@ -5,3 +5,10 @@ metadata:
+   name: sprayproxy
+ spec:
+   url: "https://github.com/konflux-ci/sprayproxy"
++---
++apiVersion: pipelinesascode.tekton.dev/v1alpha1
++kind: Repository
++metadata:
++  name: ci-helper-app
++spec:
++  url: "https://github.com/konflux-ci/ci-helper-app"
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index 9ff1f1a1..a95cda2c 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -103,10 +103,3 @@ metadata:
+   name: quality-dashboard
+ spec:
+   url: "https://github.com/redhat-appstudio/quality-dashboard"
+----
+-apiVersion: pipelinesascode.tekton.dev/v1alpha1
+-kind: Repository
+-metadata:
+-  name: ci-helper-app
+-spec:
+-  url: "https://github.com/redhat-appstudio/ci-helper-app"
