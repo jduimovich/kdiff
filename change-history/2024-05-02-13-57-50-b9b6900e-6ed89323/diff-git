@@ -1,0 +1,12 @@
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index fc2e372a..a95cda2c 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -47,7 +47,6 @@ metadata:
+   name: build-definitions
+ spec:
+   url: "https://github.com/redhat-appstudio/build-definitions"
+-  concurrency_limit: 1
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository

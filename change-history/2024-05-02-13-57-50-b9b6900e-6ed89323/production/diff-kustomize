@@ -1,0 +1,3 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-6ed89323/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-b9b6900e/production/components/tekton-ci/production/kustomize.out.yaml
+265a266
+>   concurrency_limit: 1
