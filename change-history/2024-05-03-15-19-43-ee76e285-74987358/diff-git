@@ -1,0 +1,115 @@
+diff --git a/components/build-service/README.md b/components/build-service/README.md
+index 9bc2939c..7d257e4e 100644
+--- a/components/build-service/README.md
++++ b/components/build-service/README.md
+@@ -8,7 +8,7 @@ The StoneSoup Build System is composed of the following components:
+ - [Tekton Chains](https://github.com/tektoncd/chains)
+ - [Tekton Results](https://github.com/tektoncd/results)
+ - [Pipelines as Code](https://pipelinesascode.com/)
+-- [App Studio Build Service](https://github.com/redhat-appstudio/build-service/)
++- [App Studio Build Service](https://github.com/konflux-ci/build-service/)
+ - [HACBS JVM Build Service](https://github.com/redhat-appstudio/jvm-build-service)
+ - [PVC Cleaner](https://github.com/redhat-appstudio/pvc-cleaner/)
+ 
+diff --git a/components/build-service/development/kustomization.yaml b/components/build-service/development/kustomization.yaml
+index cadf5064..1f57f06a 100644
+--- a/components/build-service/development/kustomization.yaml
++++ b/components/build-service/development/kustomization.yaml
+@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+ - ../base
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=b19e3a30aa621ed898d64488e4c8785420b87f3e
++- https://github.com/konflux-ci/build-service/config/default?ref=b19e3a30aa621ed898d64488e4c8785420b87f3e
+ 
+ namespace: build-service
+ 
+diff --git a/components/build-service/production/base/kustomization.yaml b/components/build-service/production/base/kustomization.yaml
+index dde866f3..5d73f027 100644
+--- a/components/build-service/production/base/kustomization.yaml
++++ b/components/build-service/production/base/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=b19e3a30aa621ed898d64488e4c8785420b87f3e
++- https://github.com/konflux-ci/build-service/config/default?ref=b19e3a30aa621ed898d64488e4c8785420b87f3e
+ 
+ namespace: build-service
+ 
+diff --git a/components/build-service/staging/base/kustomization.yaml b/components/build-service/staging/base/kustomization.yaml
+index 21706001..2e4e4321 100644
+--- a/components/build-service/staging/base/kustomization.yaml
++++ b/components/build-service/staging/base/kustomization.yaml
+@@ -3,7 +3,7 @@ kind: Kustomization
+ resources:
+ - ../../base
+ - ../../base/external-secrets
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=b19e3a30aa621ed898d64488e4c8785420b87f3e
++- https://github.com/konflux-ci/build-service/config/default?ref=b19e3a30aa621ed898d64488e4c8785420b87f3e
+ 
+ namespace: build-service
+ 
+diff --git a/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml b/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
+index be55a8df..458d089c 100644
+--- a/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
++++ b/components/monitoring/grafana/base/dashboards/build-service/kustomization.yaml
+@@ -1,5 +1,5 @@
+ apiVersion: kustomize.config.k8s.io/v1beta1
+ kind: Kustomization
+ resources:
+-- https://github.com/redhat-appstudio/build-service/config/monitoring/grafana-dashboards/?ref=76523a64ea661814bfc6eb2b5628a2ed3cedae77
++- https://github.com/konflux-ci/build-service/config/monitoring/grafana-dashboards/?ref=76523a64ea661814bfc6eb2b5628a2ed3cedae77
+ - dashboard.yaml
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index 17ffb6fd..df198a4a 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -39,7 +39,7 @@ kind: Repository
+ metadata:
+   name: build-service
+ spec:
+-  url: "https://github.com/redhat-appstudio/build-service"
++  url: "https://github.com/konflux-ci/build-service"
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
+diff --git a/docs/deployment/extending-the-service.md b/docs/deployment/extending-the-service.md
+index cda44bf0..798188d1 100644
+--- a/docs/deployment/extending-the-service.md
++++ b/docs/deployment/extending-the-service.md
+@@ -119,7 +119,7 @@ More examples of using Kustomize to drive deployments using GitOps can be [found
+ [Pipelines as Code](https://pipelinesascode.com/) is deployed and available for testing and building of images.
+ To test and run builds for a component, add your github repository to `components/tekton-ci/repository.yaml` if you want to publish to quay.io/redhat-appstudio or `components/konflux-ci/repository.yaml` if you want to publish to quay.io/konflux-ci.
+ 
+-Target repository has to have installed GitHub app - [Red Hat Trusted App Pipeline](https://github.com/apps/red-hat-trusted-app-pipeline) and pipelineRuns created in `.tekton` folder, example [Build Service](https://github.com/redhat-appstudio/build-service/tree/main/.tekton). Target image repository in quay.io must exist and robot account `redhat-appstudio+production_tektonci` has to have `write` permission on the repository.
++Target repository has to have installed GitHub app - [Red Hat Trusted App Pipeline](https://github.com/apps/red-hat-trusted-app-pipeline) and pipelineRuns created in `.tekton` folder, example [Build Service](https://github.com/konflux-ci/build-service/tree/main/.tekton). Target image repository in quay.io must exist and robot account `redhat-appstudio+production_tektonci` has to have `write` permission on the repository.
+ 
+ 
+ ## Maintaining your components
+diff --git a/docs/development/deployment.md b/docs/development/deployment.md
+index a5a16420..876f3634 100644
+--- a/docs/development/deployment.md
++++ b/docs/development/deployment.md
+@@ -248,7 +248,7 @@ it's in [components/build-service/base/kustomization.yaml][build-service-kustomi
+ ```yaml
+ resources:
+ - allow-argocd-to-manage.yaml
+-- https://github.com/redhat-appstudio/build-service/config/default?ref=99cebd0a67a6b25b8ccffb76522861f526c762de
++- https://github.com/konflux-ci/build-service/config/default?ref=99cebd0a67a6b25b8ccffb76522861f526c762de
+ ```
+ 
+ Replace this reference with a reference to your fork and the commit you would like to test. Create
+diff --git a/hack/preview.sh b/hack/preview.sh
+index f0c8ddf1..2b06a836 100755
+--- a/hack/preview.sh
++++ b/hack/preview.sh
+@@ -175,7 +175,7 @@ sed -i.bak "s/rekor-server.enterprise-contract-service.svc/$rekor_server/" $ROOT
+ [ -n "${BUILD_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/build-service\")) |=.newName=\"${BUILD_SERVICE_IMAGE_REPO}\"" $ROOT/components/build-service/development/kustomization.yaml
+ [ -n "${BUILD_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"quay.io/redhat-appstudio/build-service\")) |=.newTag=\"${BUILD_SERVICE_IMAGE_TAG}\"" $ROOT/components/build-service/development/kustomization.yaml
+ [ -n "${BUILD_SERVICE_IMAGE_TAG_EXPIRATION}" ] && yq -i e "(.spec.template.spec.containers[].env[] | select(.name==\"IMAGE_TAG_ON_PR_EXPIRATION\") | .value) |= \"${BUILD_SERVICE_IMAGE_TAG_EXPIRATION}\"" $ROOT/components/build-service/development/image-expiration-patch.yaml
+-[[ -n "${BUILD_SERVICE_PR_OWNER}" && "${BUILD_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/redhat-appstudio/build-service*\")) |= \"https://github.com/${BUILD_SERVICE_PR_OWNER}/build-service/config/default?ref=${BUILD_SERVICE_PR_SHA}\"" $ROOT/components/build-service/development/kustomization.yaml
++[[ -n "${BUILD_SERVICE_PR_OWNER}" && "${BUILD_SERVICE_PR_SHA}" ]] && yq -i e "(.resources[] | select(. ==\"*github.com/konflux-ci/build-service*\")) |= \"https://github.com/${BUILD_SERVICE_PR_OWNER}/build-service/config/default?ref=${BUILD_SERVICE_PR_SHA}\"" $ROOT/components/build-service/development/kustomization.yaml
+ [ -n "${JVM_BUILD_SERVICE_IMAGE_REPO}" ] && yq -i e "(.images.[] | select(.name==\"hacbs-jvm-operator\")) |=.newName=\"${JVM_BUILD_SERVICE_IMAGE_REPO}\"" $ROOT/components/jvm-build-service/base/kustomization.yaml
+ [ -n "${JVM_BUILD_SERVICE_IMAGE_TAG}" ] && yq -i e "(.images.[] | select(.name==\"hacbs-jvm-operator\")) |=.newTag=\"${JVM_BUILD_SERVICE_IMAGE_TAG}\"" $ROOT/components/jvm-build-service/base/kustomization.yaml
+ [[ -n "${JVM_BUILD_SERVICE_PR_OWNER}" && "${JVM_BUILD_SERVICE_PR_SHA}" ]] && sed -i -e "s|\(https://github.com/\)redhat-appstudio\(/jvm-build-service/.*?ref=\)\(.*\)|\1${JVM_BUILD_SERVICE_PR_OWNER}\2${JVM_BUILD_SERVICE_PR_SHA}|" -e "s|\(https://raw.githubusercontent.com/\)redhat-appstudio\(/jvm-build-service/\)[^/]*\(/.*\)|\1${JVM_BUILD_SERVICE_PR_OWNER}\2${JVM_BUILD_SERVICE_PR_SHA}\3|" $ROOT/components/jvm-build-service/base/kustomization.yaml

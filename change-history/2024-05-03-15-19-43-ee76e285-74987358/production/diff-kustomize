@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-74987358/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-ee76e285/production/components/tekton-ci/production/kustomize.out.yaml
+275c275
+<   url: https://github.com/konflux-ci/build-service
+---
+>   url: https://github.com/redhat-appstudio/build-service

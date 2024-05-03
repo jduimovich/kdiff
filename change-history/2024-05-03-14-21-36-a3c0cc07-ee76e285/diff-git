@@ -1,0 +1,16 @@
+diff --git a/components/tekton-ci/base/repository.yaml b/components/tekton-ci/base/repository.yaml
+index 38488bac..17ffb6fd 100644
+--- a/components/tekton-ci/base/repository.yaml
++++ b/components/tekton-ci/base/repository.yaml
+@@ -30,9 +30,9 @@ spec:
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository
+ metadata:
+-  name: hacbs-test
++  name: konflux-test
+ spec:
+-  url: "https://github.com/redhat-appstudio/hacbs-test"
++  url: "https://github.com/konflux-ci/konflux-test"
+ ---
+ apiVersion: pipelinesascode.tekton.dev/v1alpha1
+ kind: Repository

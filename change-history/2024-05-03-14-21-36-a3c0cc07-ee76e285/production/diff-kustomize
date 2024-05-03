@@ -1,0 +1,25 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-ee76e285/production/components/tekton-ci/production/kustomize.out.yaml ./kustomized-cache/commit-a3c0cc07/production/components/tekton-ci/production/kustomize.out.yaml
+327c327
+<   name: infra-deployments
+---
+>   name: hacbs-test
+329c329
+<   url: https://github.com/redhat-appstudio/infra-deployments
+---
+>   url: https://github.com/redhat-appstudio/hacbs-test
+336c336
+<   name: jvm-build-service
+---
+>   name: infra-deployments
+338c338
+<   url: https://github.com/redhat-appstudio/jvm-build-service
+---
+>   url: https://github.com/redhat-appstudio/infra-deployments
+345c345
+<   name: konflux-test
+---
+>   name: jvm-build-service
+347c347
+<   url: https://github.com/konflux-ci/konflux-test
+---
+>   url: https://github.com/redhat-appstudio/jvm-build-service
