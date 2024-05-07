@@ -1,0 +1,31 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-27d81bd4/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml ./kustomized-cache/commit-c6a7ec1c/staging/components/integration/staging/stone-stage-p01/kustomize.out.yaml
+1296,1305d1295
+< data:
+<   FINALLY_TIMEOUT: 1h
+<   PIPELINE_TIMEOUT: 3h
+<   TASKS_TIMEOUT: 2h
+< kind: ConfigMap
+< metadata:
+<   name: pipelinerun-options-494m66dgdm
+<   namespace: integration-service
+< ---
+< apiVersion: v1
+1398,1415d1387
+<               optional: true
+<         - name: PIPELINE_TIMEOUT
+<           valueFrom:
+<             configMapKeyRef:
+<               key: PIPELINE_TIMEOUT
+<               name: pipelinerun-options-494m66dgdm
+<               optional: true
+<         - name: TASKS_TIMEOUT
+<           valueFrom:
+<             configMapKeyRef:
+<               key: TASKS_TIMEOUT
+<               name: pipelinerun-options-494m66dgdm
+<               optional: true
+<         - name: FINALLY_TIMEOUT
+<           valueFrom:
+<             configMapKeyRef:
+<               key: FINALLY_TIMEOUT
+<               name: pipelinerun-options-494m66dgdm

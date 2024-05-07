@@ -1,0 +1,126 @@
+diff --git a/components/integration/development/kustomization.yaml b/components/integration/development/kustomization.yaml
+index 9f50e0b8..a49d43c2 100644
+--- a/components/integration/development/kustomization.yaml
++++ b/components/integration/development/kustomization.yaml
+@@ -15,6 +15,11 @@ configMapGenerator:
+   literals:
+     - CONSOLE_URL=""
+     - CONSOLE_URL_TASKLOG=""
++- name: pipelinerun-options
++  literals:
++    - PIPELINE_TIMEOUT="3h"
++    - TASKS_TIMEOUT="2h"
++    - FINALLY_TIMEOUT="1h"
+ 
+ namespace: integration-service
+ 
+diff --git a/components/integration/development/manager_resources_patch.yaml b/components/integration/development/manager_resources_patch.yaml
+index b84108dc..fdee9558 100644
+--- a/components/integration/development/manager_resources_patch.yaml
++++ b/components/integration/development/manager_resources_patch.yaml
+@@ -28,3 +28,21 @@ spec:
+               name: console-url
+               key: CONSOLE_URL_TASKLOG
+               optional: true
++        - name: PIPELINE_TIMEOUT
++          valueFrom:
++            configMapKeyRef:
++              name: pipelinerun-options
++              key: PIPELINE_TIMEOUT
++              optional: true
++        - name: TASKS_TIMEOUT
++          valueFrom:
++            configMapKeyRef:
++              name: pipelinerun-options
++              key: TASKS_TIMEOUT
++              optional: true
++        - name: FINALLY_TIMEOUT
++          valueFrom:
++            configMapKeyRef:
++              name: pipelinerun-options
++              key: FINALLY_TIMEOUT
++              optional: true
+diff --git a/components/integration/production/base/kustomization.yaml b/components/integration/production/base/kustomization.yaml
+index 0bcbef62..4ff19f69 100644
+--- a/components/integration/production/base/kustomization.yaml
++++ b/components/integration/production/base/kustomization.yaml
+@@ -16,6 +16,11 @@ configMapGenerator:
+   literals:
+     - CONSOLE_URL="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+     - CONSOLE_URL_TASKLOG="https://console.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
++- name: pipelinerun-options
++  literals:
++    - PIPELINE_TIMEOUT="3h"
++    - TASKS_TIMEOUT="2h"
++    - FINALLY_TIMEOUT="1h"
+ 
+ namespace: integration-service
+ 
+diff --git a/components/integration/production/base/manager_resources_patch.yaml b/components/integration/production/base/manager_resources_patch.yaml
+index f02c8b95..745c4630 100644
+--- a/components/integration/production/base/manager_resources_patch.yaml
++++ b/components/integration/production/base/manager_resources_patch.yaml
+@@ -28,3 +28,21 @@ spec:
+               name: console-url
+               key: CONSOLE_URL_TASKLOG
+               optional: true
++        - name: PIPELINE_TIMEOUT
++          valueFrom:
++            configMapKeyRef:
++              name: pipelinerun-options
++              key: PIPELINE_TIMEOUT
++              optional: true
++        - name: TASKS_TIMEOUT
++          valueFrom:
++            configMapKeyRef:
++              name: pipelinerun-options
++              key: TASKS_TIMEOUT
++              optional: true
++        - name: FINALLY_TIMEOUT
++          valueFrom:
++            configMapKeyRef:
++              name: pipelinerun-options
++              key: FINALLY_TIMEOUT
++              optional: true
+diff --git a/components/integration/staging/base/kustomization.yaml b/components/integration/staging/base/kustomization.yaml
+index 0e5663ec..ae03414b 100644
+--- a/components/integration/staging/base/kustomization.yaml
++++ b/components/integration/staging/base/kustomization.yaml
+@@ -16,6 +16,11 @@ configMapGenerator:
+   literals:
+     - CONSOLE_URL="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}"
+     - CONSOLE_URL_TASKLOG="https://console.dev.redhat.com/preview/application-pipeline/ns/{{ .Namespace }}/pipelinerun/{{ .PipelineRunName }}/logs/{{ .TaskName }}"
++- name: pipelinerun-options
++  literals:
++    - PIPELINE_TIMEOUT="3h"
++    - TASKS_TIMEOUT="2h"
++    - FINALLY_TIMEOUT="1h"
+ 
+ namespace: integration-service
+ 
+diff --git a/components/integration/staging/base/manager_resources_patch.yaml b/components/integration/staging/base/manager_resources_patch.yaml
+index b84108dc..fdee9558 100644
+--- a/components/integration/staging/base/manager_resources_patch.yaml
++++ b/components/integration/staging/base/manager_resources_patch.yaml
+@@ -28,3 +28,21 @@ spec:
+               name: console-url
+               key: CONSOLE_URL_TASKLOG
+               optional: true
++        - name: PIPELINE_TIMEOUT
++          valueFrom:
++            configMapKeyRef:
++              name: pipelinerun-options
++              key: PIPELINE_TIMEOUT
++              optional: true
++        - name: TASKS_TIMEOUT
++          valueFrom:
++            configMapKeyRef:
++              name: pipelinerun-options
++              key: TASKS_TIMEOUT
++              optional: true
++        - name: FINALLY_TIMEOUT
++          valueFrom:
++            configMapKeyRef:
++              name: pipelinerun-options
++              key: FINALLY_TIMEOUT
++              optional: true
