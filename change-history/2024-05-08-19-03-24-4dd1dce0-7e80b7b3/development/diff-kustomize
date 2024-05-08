@@ -1,0 +1,5 @@
+diff -r '--exclude=kustomize.out.lint' ./kustomized-cache/commit-7e80b7b3/development/components/has/development/kustomize.out.yaml ./kustomized-cache/commit-4dd1dce0/development/components/has/development/kustomize.out.yaml
+777c777
+<         image: quay.io/redhat-appstudio/application-service:cad2834100c0f1ea359d5ff8301237b0562240b5
+---
+>         image: quay.io/redhat-appstudio/application-service:50752a0044601c365275b01a0249007396010b06
